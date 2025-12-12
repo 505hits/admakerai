@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdMaker AI | Créez des Publicités IA en Minutes</title>
+    <meta name="description"
+        content="La plateforme #1 pour créer des publicités vidéo avec l'IA. Écrivez votre script, choisissez vos acteurs et générez votre vidéo en 2 minutes.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <img src="admaker/logo.png" alt="AdMaker AI" style="height: 40px; width: auto;">
+                </div>
+                <div class="nav-links">
+                    <a href="#features">Fonctionnalités</a>
+                    <a href="#pricing">Tarifs</a>
+                    <a href="#faq">FAQ</a>
+                    <a href="#" class="btn-secondary">Connexion</a>
+                    <a href="#" class="btn-primary">Commencer</a>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-glow"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span>✨ Propulsé par l'IA Avancée</span>
+                </div>
+                <h1 class="hero-title">
+                    Créez des vidéos IA pour votre
+                    <span class="gradient-text-red">croissance explosive</span>
+                </h1>
+                <p class="hero-subtitle">
+                    La façon la plus rapide de créer des vidéos publicitaires IA
+                </p>
+                <p class="hero-description">
+                    Écrivez votre script → Choisissez un avatar → Générez votre vidéo
+                </p>
+                <div class="hero-cta">
+                    <a href="#" class="btn-primary btn-large">
+                        Créer votre première pub
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                    <a href="#demo" class="btn-ghost btn-large">
+                        Voir la démo
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Vidéos créées</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">2 min</div>
+                        <div class="stat-label">Temps moyen</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sliding Examples Section -->
+    <section class="examples-slider">
+        <div class="slider-track">
+            <div class="slide">
+                <div class="example-card">
+                    <div class="example-image">
+                        <video autoplay loop muted playsinline>
+                            <source src="admaker/public/video  beauté.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="example-info">
+                        <h4>Publicité Beauté</h4>
+                        <p>Conversion +250%</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="example-card">
+                    <div class="example-image">
+                        <video autoplay loop muted playsinline>
+                            <source src="admaker/public/video  bleu.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="example-info">
+                        <h4>Lancement Produit</h4>
+                        <p>10M+ vues</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="example-card">
+                    <div class="example-image">
+                        <video autoplay loop muted playsinline>
+                            <source src="admaker/public/video canette.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="example-info">
+                        <h4>Campagne Boisson</h4>
+                        <p>ROI x5</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="example-card">
+                    <div class="example-image">
+                        <video autoplay loop muted playsinline>
+                            <source src="admaker/public/video podcast.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="example-info">
+                        <h4>Podcast UGC</h4>
+                        <p>Engagement +180%</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="example-card">
+                    <div class="example-image">
+                        <video autoplay loop muted playsinline>
+                            <source src="admaker/public/video podcast 2.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="example-info">
+                        <h4>Témoignage Client</h4>
+                        <p>CTR +320%</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="example-card">
+                    <div class="example-image">
+                        <video autoplay loop muted playsinline>
+                            <source src="admaker/public/video sportif.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="example-info">
+                        <h4>Fitness & Sport</h4>
+                        <p>Reach x3</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Duplicate for seamless loop -->
+            <div class="slide">
+                <div class="example-card">
+                    <div class="example-image">
+                        <video autoplay loop muted playsinline>
+                            <source src="admaker/public/video  beauté.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="example-info">
+                        <h4>Publicité Beauté</h4>
+                        <p>Conversion +250%</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="example-card">
+                    <div class="example-image">
+                        <video autoplay loop muted playsinline>
+                            <source src="admaker/public/video  bleu.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="example-info">
+                        <h4>Lancement Produit</h4>
+                        <p>10M+ vues</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2><span class="gradient-text-red">1 Agent IA</span> Publicitaire</h2>
+                <p>Tout ce dont vous avez besoin pour créer des publicités virales</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <path d="M20 5L25 15L35 16.5L27.5 24L29.5 35L20 29.5L10.5 35L12.5 24L5 16.5L15 15L20 5Z"
+                                fill="url(#iconGradient1)" />
+                            <defs>
+                                <linearGradient id="iconGradient1" x1="5" y1="5" x2="35" y2="35">
+                                    <stop offset="0%" stop-color="#ff0844" />
+                                    <stop offset="100%" stop-color="#ff6b6b" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3>Génération <span class="gradient-text-red">Ultra-Rapide</span></h3>
+                    <p>Créez des vidéos publicitaires professionnelles en moins de 2 minutes. Notre IA avancée
+                        transforme votre script en contenu viral instantanément.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <circle cx="20" cy="20" r="15" stroke="url(#iconGradient2)" stroke-width="2" />
+                            <path d="M15 20L18 23L25 16" stroke="url(#iconGradient2)" stroke-width="2"
+                                stroke-linecap="round" />
+                            <defs>
+                                <linearGradient id="iconGradient2" x1="5" y1="5" x2="35" y2="35">
+                                    <stop offset="0%" stop-color="#ff0844" />
+                                    <stop offset="100%" stop-color="#ff6b6b" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3>Avatars <span class="gradient-text-red">Réalistes</span></h3>
+                    <p>Choisissez parmi des dizaines d'avatars IA ultra-réalistes. Personnalisez l'apparence, la voix et
+                        le style pour matcher votre marque parfaitement.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <rect x="8" y="8" width="24" height="24" rx="4" stroke="url(#iconGradient3)"
+                                stroke-width="2" />
+                            <path d="M16 20L20 24L28 16" stroke="url(#iconGradient3)" stroke-width="2"
+                                stroke-linecap="round" />
+                            <defs>
+                                <linearGradient id="iconGradient3" x1="8" y1="8" x2="32" y2="32">
+                                    <stop offset="0%" stop-color="#ff0844" />
+                                    <stop offset="100%" stop-color="#ff6b6b" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3>Multi-Langues <span class="gradient-text-red">Automatique</span></h3>
+                    <p>Générez vos publicités dans plus de 40 langues. Atteignez une audience mondiale sans effort
+                        supplémentaire ni coûts de traduction.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <path d="M10 30L20 10L30 30H10Z" stroke="url(#iconGradient4)" stroke-width="2"
+                                stroke-linejoin="round" />
+                            <defs>
+                                <linearGradient id="iconGradient4" x1="10" y1="10" x2="30" y2="30">
+                                    <stop offset="0%" stop-color="#ff0844" />
+                                    <stop offset="100%" stop-color="#ff6b6b" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3>Performance <span class="gradient-text-red">Garantie</span></h3>
+                    <p>Nos clients voient en moyenne +250% de conversion. L'IA optimise automatiquement chaque élément
+                        pour maximiser l'engagement et les résultats.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Agent Section -->
+    <section class="video-agent">
+        <div class="container">
+            <div class="agent-content">
+                <div class="agent-text">
+                    <h2>Rencontrez <span class="gradient-text-red">Video Agent</span></h2>
+                    <p class="agent-subtitle">Créez du contenu viral avec notre Agent Vidéo IA</p>
+                    <p class="agent-description">Notre technologie d'IA de pointe analyse les tendances virales,
+                        optimise votre script et génère des vidéos qui captivent votre audience. C'est comme avoir une
+                        équipe de production complète à votre disposition, 24/7.</p>
+                    <ul class="agent-features">
+                        <li>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M5 13L9 17L19 7" stroke="#ff0844" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>Analyse automatique des tendances</span>
+                        </li>
+                        <li>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M5 13L9 17L19 7" stroke="#ff0844" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>Optimisation du script en temps réel</span>
+                        </li>
+                        <li>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M5 13L9 17L19 7" stroke="#ff0844" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>Génération multi-formats (16:9, 9:16, 1:1)</span>
+                        </li>
+                        <li>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M5 13L9 17L19 7" stroke="#ff0844" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>Export prêt pour toutes les plateformes</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="btn-primary">Essayer Video Agent</a>
+                </div>
+                <div class="agent-visual">
+                    <div class="agent-glow"></div>
+                    <img src="admaker/image2.png" alt="Video Agent"
+                        style="max-width: 100%; height: auto; border-radius: 16px; box-shadow: 0 20px 60px rgba(255, 8, 68, 0.3);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Commencez à créer <span class="gradient-text-red">dès aujourd'hui</span></h2>
+                <p>Choisissez le plan qui correspond à vos besoins</p>
+            </div>
+            <div class="pricing-toggle">
+                <button class="toggle-btn active" data-plan="monthly">Mensuel</button>
+                <button class="toggle-btn" data-plan="annual">
+                    Annuel
+                    <span class="discount-badge">-20%</span>
+                </button>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Starter</h3>
+                        <p>Pour les créateurs qui débutent</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price">29€</span>
+                        <span class="period">/mois</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M4 10L8 14L16 6" stroke="#ff0844" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>10 vidéos par mois</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M4 10L8 14L16 6" stroke="#ff0844" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>Tous les avatars</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M4 10L8 14L16 6" stroke="#ff0844" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>HD 1080p</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M4 10L8 14L16 6" stroke="#ff0844" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>Support email</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="btn-secondary btn-full">Choisir ce plan</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="popular-badge">Populaire</div>
+                    <div class="pricing-header">
+                        <h3>Pro</h3>
+                        <p>Pour tester plusieurs créatives par mois</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price">79€</span>
+                        <span class="period">/mois</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M4 10L8 14L16 6" stroke="#ff0844" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>50 vidéos par mois</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M4 10L8 14L16 6" stroke="#ff0844" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>Tous les avatars premium</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M4 10L8 14L16 6" stroke="#ff0844" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>4K Ultra HD</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M4 10L8 14L16 6" stroke="#ff0844" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>Support prioritaire</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M4 10L8 14L16 6" stroke="#ff0844" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>API Access</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="btn-primary btn-full">Choisir ce plan</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Enterprise</h3>
+                        <p>Pour les équipes et power users</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price">199€</span>
+                        <span class="period">/mois</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M4 10L8 14L16 6" stroke="#ff0844" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>Vidéos illimitées</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M4 10L8 14L16 6" stroke="#ff0844" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>Avatars personnalisés</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M4 10L8 14L16 6" stroke="#ff0844" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>8K + RAW exports</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M4 10L8 14L16 6" stroke="#ff0844" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>Support dédié 24/7</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M4 10L8 14L16 6" stroke="#ff0844" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                            <span>Intégrations personnalisées</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="btn-secondary btn-full">Contactez-nous</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nous avons <span class="gradient-text-red">tout couvert</span></h2>
+                <p>Tout ce que vous devez savoir</p>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Combien de temps prend la génération d'une vidéo ?</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>La plupart des vidéos sont générées en moins de 2 minutes. Pour des vidéos plus longues ou
+                            complexes, cela peut prendre jusqu'à 5 minutes.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>L'IA peut-elle tenir mon produit dans la vidéo ?</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Oui ! Notre technologie avancée permet aux avatars de tenir et d'interagir avec vos produits
+                            de manière ultra-réaliste. Uploadez simplement une image de votre produit.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Y a-t-il des limites sur l'utilisation des publicités créées ?</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Aucune limite ! Vous possédez tous les droits commerciaux sur les vidéos que vous créez.
+                            Utilisez-les sur toutes les plateformes sans restrictions.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Puis-je annuler mon abonnement à tout moment ?</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolument. Vous pouvez annuler votre abonnement à tout moment depuis votre tableau de bord.
+                            Aucun engagement, aucune question posée.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Proposez-vous un essai gratuit ?</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Oui ! Nous offrons un essai gratuit de 7 jours avec accès complet à toutes les
+                            fonctionnalités. Aucune carte de crédit requise.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Offrez-vous un remboursement ?</span>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M19 9L12 16L5 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Nous offrons une garantie satisfait ou remboursé de 30 jours. Si vous n'êtes pas satisfait,
+                            contactez-nous pour un remboursement complet.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-glow"></div>
+        <div class="container">
+            <div class="cta-content" style="display: flex; align-items: center; gap: 60px; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 300px;">
+                    <h2>Prêt à créer des publicités <span class="gradient-text-red">qui convertissent</span> ?</h2>
+                    <p>Rejoignez plus de 10,000 créateurs qui utilisent AdMaker AI pour générer des millions de vues</p>
+                    <a href="#" class="btn-primary btn-large">
+                        Commencer gratuitement
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </a>
+                </div>
+                <div style="flex: 1; min-width: 300px;">
+                    <img src="admaker/image3.png" alt="AdMaker AI Demo"
+                        style="max-width: 100%; height: auto; border-radius: 16px; box-shadow: 0 20px 60px rgba(255, 8, 68, 0.3);">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <img src="admaker/logo.png" alt="AdMaker AI" style="height: 40px; width: auto;">
+                    </div>
+                    <p>La plateforme #1 pour créer des publicités vidéo IA en minutes.</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Produit</h4>
+                        <a href="#">Fonctionnalités</a>
+                        <a href="#">Tarifs</a>
+                        <a href="#">Cas d'usage</a>
+                        <a href="#">API</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Ressources</h4>
+                        <a href="#">Documentation</a>
+                        <a href="#">Tutoriels</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Support</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Entreprise</h4>
+                        <a href="#">À propos</a>
+                        <a href="#">Carrières</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Partenaires</a>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Légal</h4>
+                        <a href="#">Confidentialité</a>
+                        <a href="#">Conditions</a>
+                        <a href="#">Cookies</a>
+                        <a href="#">Licences</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 AdMaker AI. Tous droits réservés.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Twitter">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path
+                                d="M6.29 18.25c7.55 0 11.67-6.25 11.67-11.67 0-.18 0-.35-.01-.53A8.35 8.35 0 0020 3.92a8.18 8.18 0 01-2.36.65 4.12 4.12 0 001.8-2.27 8.22 8.22 0 01-2.6 1 4.1 4.1 0 00-6.99 3.74 11.65 11.65 0 01-8.46-4.29 4.1 4.1 0 001.27 5.48A4.07 4.07 0 01.8 7.71v.05a4.1 4.1 0 003.29 4.02 4.1 4.1 0 01-1.85.07 4.1 4.1 0 003.83 2.85A8.23 8.23 0 010 16.4a11.62 11.62 0 006.29 1.84" />
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path
+                                d="M18.52 0H1.48C.66 0 0 .65 0 1.45v17.1C0 19.35.66 20 1.48 20h17.04c.82 0 1.48-.65 1.48-1.45V1.45C20 .65 19.34 0 18.52 0zM5.93 17.04H2.96V7.5h2.97v9.54zM4.45 6.2a1.72 1.72 0 110-3.44 1.72 1.72 0 010 3.44zM17.04 17.04h-2.96v-4.64c0-1.11-.02-2.53-1.54-2.53-1.54 0-1.78 1.2-1.78 2.45v4.72H7.8V7.5h2.84v1.3h.04c.4-.75 1.36-1.54 2.8-1.54 2.99 0 3.54 1.97 3.54 4.53v5.25z" />
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                            <path
+                                d="M10 1.8c2.67 0 2.99.01 4.04.06 1.05.05 1.77.22 2.4.47.65.25 1.2.6 1.75 1.15.55.55.9 1.1 1.15 1.75.25.63.42 1.35.47 2.4.05 1.05.06 1.37.06 4.04s-.01 2.99-.06 4.04c-.05 1.05-.22 1.77-.47 2.4-.25.65-.6 1.2-1.15 1.75-.55.55-1.1.9-1.75 1.15-.63.25-1.35.42-2.4.47-1.05.05-1.37.06-4.04.06s-2.99-.01-4.04-.06c-1.05-.05-1.77-.22-2.4-.47-.65-.25-1.2-.6-1.75-1.15-.55-.55-.9-1.1-1.15-1.75-.25-.63-.42-1.35-.47-2.4C1.81 12.99 1.8 12.67 1.8 10s.01-2.99.06-4.04c.05-1.05.22-1.77.47-2.4.25-.65.6-1.2 1.15-1.75.55-.55 1.1-.9 1.75-1.15.63-.25 1.35-.42 2.4-.47C7.01 1.81 7.33 1.8 10 1.8zM10 0C7.28 0 6.94.01 5.88.06 4.82.11 4.08.29 3.45.55c-.67.26-1.24.61-1.81 1.18C1.07 2.3.72 2.87.46 3.54.2 4.17.02 4.91-.03 5.97-.08 7.03-.09 7.37-.09 10.09s.01 3.06.06 4.12c.05 1.06.23 1.8.49 2.43.26.67.61 1.24 1.18 1.81.57.57 1.14.92 1.81 1.18.63.26 1.37.44 2.43.49 1.06.05 1.4.06 4.12.06s3.06-.01 4.12-.06c1.06-.05 1.8-.23 2.43-.49.67-.26 1.24-.61 1.81-1.18.57-.57.92-1.14 1.18-1.81.26-.63.44-1.37.49-2.43.05-1.06.06-1.4.06-4.12s-.01-3.06-.06-4.12c-.05-1.06-.23-1.8-.49-2.43-.26-.67-.61-1.24-1.18-1.81-.57-.57-1.14-.92-1.81-1.18-.63-.26-1.37-.44-2.43-.49C13.06.01 12.72 0 10 0z" />
+                            <path
+                                d="M10 4.86A5.14 5.14 0 1010 15.14 5.14 5.14 0 0010 4.86zm0 8.48a3.34 3.34 0 110-6.68 3.34 3.34 0 010 6.68zM16.54 4.66a1.2 1.2 0 11-2.4 0 1.2 1.2 0 012.4 0z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
