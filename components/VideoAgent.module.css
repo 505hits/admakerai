@@ -1,0 +1,158 @@
+.videoAgent {
+    padding: var(--spacing-3xl) 0;
+    background: linear-gradient(180deg, transparent 0%, rgba(255, 8, 68, 0.02) 50%, transparent 100%);
+}
+
+.agentContent {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-3xl);
+    align-items: center;
+}
+
+.agentText h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--spacing-md);
+}
+
+.agentSubtitle {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-lg);
+}
+
+.agentDescription {
+    font-size: var(--font-size-base);
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-xl);
+}
+
+.agentFeatures {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.agentFeatures li {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    font-size: var(--font-size-base);
+    color: var(--color-text-primary);
+}
+
+.agentVisual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.agentGlow {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255, 8, 68, 0.2) 0%, transparent 70%);
+    pointer-events: none;
+    animation: pulse 6s ease-in-out infinite;
+}
+
+.agentCard {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.agentCardHeader {
+    margin-bottom: var(--spacing-lg);
+}
+
+.agentStatus {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-md);
+    background: rgba(255, 8, 68, 0.1);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+}
+
+.statusDot {
+    width: 8px;
+    height: 8px;
+    background: var(--color-red-primary);
+    border-radius: 50%;
+    animation: blink 2s ease-in-out infinite;
+}
+
+.agentCardBody {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.typingIndicator {
+    display: flex;
+    gap: 6px;
+}
+
+.typingIndicator span {
+    width: 8px;
+    height: 8px;
+    background: var(--color-red-primary);
+    border-radius: 50%;
+    animation: typing 1.4s ease-in-out infinite;
+}
+
+.typingIndicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typingIndicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.agentCardBody p {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-base);
+}
+
+.btnPrimary {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: 0.875rem 1.75rem;
+    background: var(--gradient-red);
+    color: var(--color-text-primary);
+    font-weight: 600;
+    font-size: var(--font-size-base);
+    border-radius: var(--radius-full);
+    transition: all var(--transition-base);
+    box-shadow: 0 4px 20px rgba(255, 8, 68, 0.3);
+    width: fit-content;
+}
+
+.btnPrimary:hover {
+    background: var(--gradient-red-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(255, 8, 68, 0.4);
+}
+
+@media (max-width: 1024px) {
+    .agentContent {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-2xl);
+    }
+}

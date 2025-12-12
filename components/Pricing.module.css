@@ -1,0 +1,199 @@
+.pricing {
+    padding: var(--spacing-3xl) 0;
+}
+
+.sectionHeader {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto var(--spacing-3xl);
+}
+
+.sectionHeader h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--spacing-md);
+}
+
+.sectionHeader p {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+}
+
+.pricingToggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-2xl);
+    background: rgba(255, 255, 255, 0.03);
+    padding: var(--spacing-xs);
+    border-radius: var(--radius-full);
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.toggleBtn {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    transition: all var(--transition-base);
+}
+
+.toggleBtn.active {
+    background: var(--gradient-red);
+    color: var(--color-text-primary);
+}
+
+.discountBadge {
+    padding: 2px 8px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-xs);
+}
+
+.pricingGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.pricingCard {
+    position: relative;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
+    transition: all var(--transition-base);
+}
+
+.pricingCard:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 8, 68, 0.3);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(255, 8, 68, 0.15);
+}
+
+.pricingCard.featured {
+    border-color: rgba(255, 8, 68, 0.5);
+    background: rgba(255, 8, 68, 0.05);
+    box-shadow: 0 20px 60px rgba(255, 8, 68, 0.2);
+}
+
+.popularBadge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: var(--spacing-xs) var(--spacing-md);
+    background: var(--gradient-red);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.pricingHeader {
+    margin-bottom: var(--spacing-lg);
+}
+
+.pricingHeader h3 {
+    font-size: var(--font-size-2xl);
+    font-weight: 800;
+    margin-bottom: var(--spacing-xs);
+}
+
+.pricingHeader p {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+.pricingPrice {
+    display: flex;
+    align-items: baseline;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-xl);
+}
+
+.price {
+    font-size: var(--font-size-5xl);
+    font-weight: 900;
+    background: var(--gradient-red);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.period {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+}
+
+.pricingFeatures {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.pricingFeatures li {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-base);
+    color: var(--color-text-primary);
+}
+
+.btnPrimary,
+.btnSecondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    padding: 0.875rem 1.75rem;
+    font-weight: 600;
+    font-size: var(--font-size-base);
+    border-radius: var(--radius-full);
+    transition: all var(--transition-base);
+    width: 100%;
+}
+
+.btnPrimary {
+    background: var(--gradient-red);
+    color: var(--color-text-primary);
+    box-shadow: 0 4px 20px rgba(255, 8, 68, 0.3);
+}
+
+.btnPrimary:hover {
+    background: var(--gradient-red-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(255, 8, 68, 0.4);
+}
+
+.btnSecondary {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--color-text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btnSecondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .pricingGrid {
+        grid-template-columns: 1fr;
+    }
+}
