@@ -768,7 +768,7 @@
 
 /* Form Elements */
 .formGroup {
-    margin-bottom: var(--spacing-xs);
+    margin-bottom: 6px;
 }
 
 .formLabel {
@@ -919,7 +919,7 @@
 
 /* Image Upload Styles */
 .imageUploadContainer {
-    margin-top: var(--spacing-xs);
+    margin-top: 4px;
 }
 
 .fileInput {
@@ -933,7 +933,7 @@
 
 .imagePreview {
     position: relative;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     overflow: hidden;
     background: rgba(0, 0, 0, 0.3);
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -942,7 +942,7 @@
 .imagePreview img {
     width: 100%;
     height: auto;
-    max-height: 180px;
+    max-height: 120px;
     object-fit: cover;
     display: block;
 }
@@ -958,7 +958,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: var(--spacing-xs);
+    gap: 4px;
     opacity: 0;
     transition: opacity var(--transition-base);
 }
@@ -969,11 +969,13 @@
 
 .imageOverlay svg {
     color: white;
+    width: 20px;
+    height: 20px;
 }
 
 .imageOverlay span {
     color: white;
-    font-size: var(--font-size-sm);
+    font-size: 11px;
     font-weight: 600;
 }
 
@@ -982,12 +984,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    padding: var(--spacing-md);
+    gap: 4px;
+    padding: var(--spacing-sm);
     background: rgba(0, 0, 0, 0.3);
     border: 2px dashed rgba(255, 255, 255, 0.15);
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-md);
     transition: all var(--transition-base);
+    min-height: 120px;
 }
 
 .uploadPlaceholder:hover {
@@ -997,15 +1000,45 @@
 
 .uploadPlaceholder svg {
     color: var(--color-text-muted);
+    width: 32px;
+    height: 32px;
 }
 
 .uploadText {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 600;
     color: var(--color-text-secondary);
+    text-align: center;
 }
 
 .uploadHint {
-    font-size: 10px;
+    font-size: 9px;
     color: var(--color-text-muted);
+}
+
+/* Compact Modal Body */
+.modalBody {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+/* Image Uploads Grid */
+.imageUploadsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+@media (max-width: 768px) {
+    .imageUploadsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .uploadPlaceholder {
+        min-height: 100px;
+    }
 }

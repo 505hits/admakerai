@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import styles from './Navbar.module.css';
+import { getMediaUrl } from '../lib/cloudflare-config';
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -34,7 +35,7 @@ export default function Navbar() {
             <div className="container">
                 <div className={styles.navContent}>
                     <a href="/" className={styles.logo}>
-                        <img src="/logo.png" alt="AdMaker AI" style={{ height: '70px', width: 'auto' }} />
+                        <img src={getMediaUrl('logo.png')} alt="AdMaker AI" style={{ height: '70px', width: 'auto' }} />
                     </a>
                     <div className={`${styles.navLinks} ${isMobileMenuOpen ? styles.active : ''}`}>
                         <a href="#features">Features</a>

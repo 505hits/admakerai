@@ -1,11 +1,96 @@
 {
     "actors": [
         {
+            "id": "original_001",
+            "name": "Adventure Explorer - Mountain Peak",
+            "category": "Originals",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/mountain.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/mountain.png",
+            "sceneDescription": "Epic mountain peak at golden hour, adventure gear, breathtaking landscape background",
+            "tags": [
+                "adventure",
+                "travel",
+                "outdoor",
+                "premium"
+            ],
+            "gender": "male",
+            "ageRange": "25-35",
+            "style": "Adventure content creator"
+        },
+        {
+            "id": "original_002",
+            "name": "Space Explorer - Moon Landing",
+            "category": "Originals",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/moon.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/moon.png",
+            "sceneDescription": "Lunar surface with Earth in background, futuristic space setting, meditation pose",
+            "tags": [
+                "futuristic",
+                "space",
+                "creative",
+                "premium"
+            ],
+            "gender": "female",
+            "ageRange": "25-35",
+            "style": "Sci-fi content creator"
+        },
+        {
+            "id": "original_003",
+            "name": "Luxury Presenter - Futuristic Villa",
+            "category": "Originals",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/building.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/building.png",
+            "sceneDescription": "Ultra-modern luxury villa with waterfall view, professional business attire, premium setting",
+            "tags": [
+                "luxury",
+                "business",
+                "premium",
+                "professional"
+            ],
+            "gender": "female",
+            "ageRange": "28-38",
+            "style": "Luxury brand ambassador"
+        },
+        {
+            "id": "original_004",
+            "name": "Urban Explorer - Rooftop View",
+            "category": "Originals",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/subway.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/subway.png",
+            "sceneDescription": "Dramatic rooftop perspective with cityscape, casual urban style, unique angle",
+            "tags": [
+                "urban",
+                "lifestyle",
+                "creative",
+                "premium"
+            ],
+            "gender": "male",
+            "ageRange": "25-35",
+            "style": "Urban lifestyle creator"
+        },
+        {
+            "id": "original_005",
+            "name": "Action Hero - Apocalypse Scene",
+            "category": "Originals",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/fire.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/fire.png",
+            "sceneDescription": "Dramatic apocalyptic city scene with fire and destruction, action movie style",
+            "tags": [
+                "action",
+                "dramatic",
+                "cinematic",
+                "premium"
+            ],
+            "gender": "male",
+            "ageRange": "30-40",
+            "style": "Action content creator"
+        },
+        {
             "id": "actor_001",
             "name": "Professional Man - Office",
             "category": "Business",
-            "imageUrl": "/actors/business-actor-1.png",
-            "thumbnailUrl": "/actors/business-actor-1.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-1.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-1.png",
             "sceneDescription": "Modern office setting with city skyline view, professional business attire, podcast microphone setup",
             "tags": [
                 "business",
@@ -21,8 +106,8 @@
             "id": "actor_001b",
             "name": "Professional Woman - Podcast",
             "category": "Business",
-            "imageUrl": "/actors/business-actor-2.jpg",
-            "thumbnailUrl": "/actors/business-actor-2.jpg",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-2.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-2.jpg",
             "sceneDescription": "Warm podcast studio with wooden panels, professional setup with microphone",
             "tags": [
                 "business",
@@ -38,8 +123,8 @@
             "id": "actor_001c",
             "name": "Business Podcaster",
             "category": "Business",
-            "imageUrl": "/actors/business-actor-3.jpg",
-            "thumbnailUrl": "/actors/business-actor-3.jpg",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-3.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-3.jpg",
             "sceneDescription": "Modern podcast studio with warm lighting and professional microphone setup",
             "tags": [
                 "business",
@@ -55,8 +140,8 @@
             "id": "actor_001d",
             "name": "Executive Professional",
             "category": "Business",
-            "imageUrl": "/actors/business-actor-4.png",
-            "thumbnailUrl": "/actors/business-actor-4.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-4.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-4.png",
             "sceneDescription": "Executive office with modern lighting, professional business suit and tie",
             "tags": [
                 "business",
@@ -72,8 +157,8 @@
             "id": "actor_001e",
             "name": "Business Professional - Office",
             "category": "Business",
-            "imageUrl": "/actors/business-actor-5.png",
-            "thumbnailUrl": "/actors/business-actor-5.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-5.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-5.png",
             "sceneDescription": "Modern office with city skyline, professional business attire, podcast setup",
             "tags": [
                 "business",
@@ -89,8 +174,8 @@
             "id": "actor_001f",
             "name": "Business Woman - Podcast Studio",
             "category": "Business",
-            "imageUrl": "/actors/business-actor-6.jpg",
-            "thumbnailUrl": "/actors/business-actor-6.jpg",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-6.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-6.jpg",
             "sceneDescription": "Modern podcast studio with professional lighting, orange sweater and microphone setup",
             "tags": [
                 "business",
@@ -106,8 +191,8 @@
             "id": "actor_001g",
             "name": "Business Man - Executive Office",
             "category": "Business",
-            "imageUrl": "/actors/business-actor-7.png",
-            "thumbnailUrl": "/actors/business-actor-7.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-7.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-7.png",
             "sceneDescription": "Executive office with Dubai skyline view, professional business attire with microphone",
             "tags": [
                 "business",
@@ -123,8 +208,8 @@
             "id": "actor_001h",
             "name": "Business Man - Podcast Host",
             "category": "Business",
-            "imageUrl": "/actors/business-actor-8.jpg",
-            "thumbnailUrl": "/actors/business-actor-8.jpg",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-8.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-8.jpg",
             "sceneDescription": "Professional podcast studio with modern lighting, casual business attire",
             "tags": [
                 "business",
@@ -140,8 +225,8 @@
             "id": "actor_001i",
             "name": "Business Woman - Studio Interview",
             "category": "Business",
-            "imageUrl": "/actors/business-actor-9.jpg",
-            "thumbnailUrl": "/actors/business-actor-9.jpg",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-9.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-9.jpg",
             "sceneDescription": "Professional studio with modern lighting, business casual attire with microphone",
             "tags": [
                 "business",
@@ -157,8 +242,8 @@
             "id": "actor_001j",
             "name": "Business Man - Casual Podcast",
             "category": "Business",
-            "imageUrl": "/actors/business-actor-10.jpg",
-            "thumbnailUrl": "/actors/business-actor-10.jpg",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-10.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-10.jpg",
             "sceneDescription": "Warm podcast studio with natural lighting, casual hoodie style with microphone",
             "tags": [
                 "business",
@@ -174,8 +259,8 @@
             "id": "actor_001k",
             "name": "Business Woman - Professional Podcast",
             "category": "Business",
-            "imageUrl": "/actors/business-actor-11.jpg",
-            "thumbnailUrl": "/actors/business-actor-11.jpg",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-11.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-11.jpg",
             "sceneDescription": "Professional podcast studio with modern lighting, beige sweater and microphone",
             "tags": [
                 "business",
@@ -191,8 +276,8 @@
             "id": "actor_001l",
             "name": "Business Man - Dubai Office",
             "category": "Business",
-            "imageUrl": "/actors/business-actor-12.png",
-            "thumbnailUrl": "/actors/business-actor-12.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-12.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-12.png",
             "sceneDescription": "Modern office with Dubai skyline and Burj Khalifa view, casual business shirt",
             "tags": [
                 "business",
@@ -208,8 +293,8 @@
             "id": "actor_002",
             "name": "Casual Woman - Street Style",
             "category": "Casual",
-            "imageUrl": "/actors/casual-actor-1.png",
-            "thumbnailUrl": "/actors/casual-actor-1.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-actor-1.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-actor-1.png",
             "sceneDescription": "Outdoor urban setting with denim jacket, casual street style with microphone",
             "tags": [
                 "lifestyle",
@@ -225,8 +310,8 @@
             "id": "actor_002b",
             "name": "Casual Woman - Modern Apartment",
             "category": "Casual",
-            "imageUrl": "/actors/casual-actor-2.png",
-            "thumbnailUrl": "/actors/casual-actor-2.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-actor-2.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-actor-2.png",
             "sceneDescription": "Modern apartment with city view, casual white top and jeans",
             "tags": [
                 "lifestyle",
@@ -242,8 +327,8 @@
             "id": "actor_002c",
             "name": "Casual Woman - Outdoor Interview",
             "category": "Casual",
-            "imageUrl": "/actors/casual-actor-3.png",
-            "thumbnailUrl": "/actors/casual-actor-3.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-actor-3.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-actor-3.png",
             "sceneDescription": "European street setting with warm sweater, casual outdoor interview style",
             "tags": [
                 "lifestyle",
@@ -259,8 +344,8 @@
             "id": "actor_002d",
             "name": "Casual Woman - Urban Vibe",
             "category": "Casual",
-            "imageUrl": "/actors/casual-actor-4.png",
-            "thumbnailUrl": "/actors/casual-actor-4.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-actor-4.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-actor-4.png",
             "sceneDescription": "Urban street with bokeh lights, casual tank top and denim jacket",
             "tags": [
                 "lifestyle",
@@ -276,8 +361,8 @@
             "id": "actor_002e",
             "name": "Casual Woman - Cozy Home",
             "category": "Casual",
-            "imageUrl": "/actors/casual-actor-5.jpg",
-            "thumbnailUrl": "/actors/casual-actor-5.jpg",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-actor-5.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-actor-5.jpg",
             "sceneDescription": "Cozy home office with plants, casual sweater and jeans with coffee cup",
             "tags": [
                 "lifestyle",
@@ -290,11 +375,96 @@
             "style": "Casual homey"
         },
         {
+            "id": "casual_003",
+            "name": "Casual Man - Bedroom Morning",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-3.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-3.jpg",
+            "sceneDescription": "Cozy bedroom setting, casual blue t-shirt, sitting on bed with breakfast",
+            "tags": [
+                "casual",
+                "lifestyle",
+                "morning",
+                "home"
+            ],
+            "gender": "male",
+            "ageRange": "25-35",
+            "style": "Casual relaxed"
+        },
+        {
+            "id": "casual_004",
+            "name": "Casual Woman - Cozy Bedroom",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-4.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-4.jpg",
+            "sceneDescription": "Warm bedroom with fairy lights, olive green sweater, sitting on bed",
+            "tags": [
+                "casual",
+                "lifestyle",
+                "cozy",
+                "home"
+            ],
+            "gender": "female",
+            "ageRange": "25-35",
+            "style": "Casual homey"
+        },
+        {
+            "id": "casual_005",
+            "name": "Casual Woman - City Driver",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-5.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-5.jpg",
+            "sceneDescription": "Modern car interior, city background, casual sweater, driving in urban setting",
+            "tags": [
+                "casual",
+                "lifestyle",
+                "car",
+                "urban"
+            ],
+            "gender": "female",
+            "ageRange": "25-35",
+            "style": "Casual urban"
+        },
+        {
+            "id": "casual_006",
+            "name": "Casual Woman - Car Passenger",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-6.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-6.jpg",
+            "sceneDescription": "Car interior, orange hoodie, relaxed passenger seat setting",
+            "tags": [
+                "casual",
+                "lifestyle",
+                "car",
+                "travel"
+            ],
+            "gender": "female",
+            "ageRange": "25-35",
+            "style": "Casual sporty"
+        },
+        {
+            "id": "casual_007",
+            "name": "Casual Man - Car Passenger",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-7.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-7.jpg",
+            "sceneDescription": "Car back seat, denim jacket over white tee, casual travel vibe",
+            "tags": [
+                "casual",
+                "lifestyle",
+                "car",
+                "travel"
+            ],
+            "gender": "male",
+            "ageRange": "25-35",
+            "style": "Casual denim"
+        },
+        {
             "id": "actor_003",
             "name": "Beauty Man - Bathroom Selfie",
             "category": "Beauty",
-            "imageUrl": "/actors/beauty-actor-1.png",
-            "thumbnailUrl": "/actors/beauty-actor-1.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-1.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-1.png",
             "sceneDescription": "Modern bathroom with mirror, casual grooming and skincare routine",
             "tags": [
                 "beauty",
@@ -310,8 +480,8 @@
             "id": "actor_003b",
             "name": "Beauty Woman - Makeup Studio",
             "category": "Beauty",
-            "imageUrl": "/actors/beauty-actor-2.png",
-            "thumbnailUrl": "/actors/beauty-actor-2.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-2.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-2.png",
             "sceneDescription": "Professional makeup studio with ring light, beauty products and brushes visible",
             "tags": [
                 "beauty",
@@ -327,8 +497,8 @@
             "id": "actor_003c",
             "name": "Beauty Man - Skincare Routine",
             "category": "Beauty",
-            "imageUrl": "/actors/beauty-actor-3.png",
-            "thumbnailUrl": "/actors/beauty-actor-3.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-3.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-3.png",
             "sceneDescription": "Clean bathroom setting with marble background, skincare demonstration",
             "tags": [
                 "beauty",
@@ -344,8 +514,8 @@
             "id": "actor_003d",
             "name": "Beauty Woman - Professional Studio",
             "category": "Beauty",
-            "imageUrl": "/actors/beauty-actor-4.png",
-            "thumbnailUrl": "/actors/beauty-actor-4.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-4.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-4.png",
             "sceneDescription": "Professional beauty studio with shelves of makeup products and ring light",
             "tags": [
                 "beauty",
@@ -361,8 +531,8 @@
             "id": "actor_003e",
             "name": "Beauty Man - Grooming Tutorial",
             "category": "Beauty",
-            "imageUrl": "/actors/beauty-actor-5.png",
-            "thumbnailUrl": "/actors/beauty-actor-5.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-5.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-5.png",
             "sceneDescription": "Modern bathroom with mirror and natural lighting, grooming demonstration",
             "tags": [
                 "beauty",
@@ -378,8 +548,8 @@
             "id": "actor_003f",
             "name": "Beauty Woman - Makeup Tutorial",
             "category": "Beauty",
-            "imageUrl": "/actors/beauty-actor-6.png",
-            "thumbnailUrl": "/actors/beauty-actor-6.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-6.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-6.png",
             "sceneDescription": "Professional beauty studio with makeup products and ring light, orange off-shoulder sweater",
             "tags": [
                 "beauty",
@@ -395,8 +565,8 @@
             "id": "actor_003g",
             "name": "Beauty Man - Skincare Demo",
             "category": "Beauty",
-            "imageUrl": "/actors/beauty-actor-7.png",
-            "thumbnailUrl": "/actors/beauty-actor-7.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-7.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-7.png",
             "sceneDescription": "Modern bathroom with marble background, casual skincare demonstration",
             "tags": [
                 "beauty",
@@ -412,8 +582,8 @@
             "id": "actor_003h",
             "name": "Beauty Man - Face Wash Tutorial",
             "category": "Beauty",
-            "imageUrl": "/actors/beauty-actor-8.png",
-            "thumbnailUrl": "/actors/beauty-actor-8.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-8.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-8.png",
             "sceneDescription": "Clean bathroom with LED mirror, face wash demonstration with foam",
             "tags": [
                 "beauty",
@@ -429,8 +599,8 @@
             "id": "actor_003i",
             "name": "Beauty Woman - Professional Tutorial",
             "category": "Beauty",
-            "imageUrl": "/actors/beauty-actor-9.png",
-            "thumbnailUrl": "/actors/beauty-actor-9.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-9.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-9.png",
             "sceneDescription": "Professional beauty studio with ring light and makeup products on desk",
             "tags": [
                 "beauty",
@@ -446,8 +616,8 @@
             "id": "actor_003j",
             "name": "Beauty Woman - Studio Content",
             "category": "Beauty",
-            "imageUrl": "/actors/beauty-actor-10.png",
-            "thumbnailUrl": "/actors/beauty-actor-10.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-10.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-10.png",
             "sceneDescription": "Professional beauty studio with ring light, makeup products and professional lighting setup",
             "tags": [
                 "beauty",
@@ -460,62 +630,11 @@
             "style": "Beauty professional"
         },
         {
-            "id": "actor_004",
-            "name": "Alex Kim",
-            "category": "Fitness",
-            "imageUrl": "https://placeholder-actor-images.com/alex-kim.jpg",
-            "thumbnailUrl": "https://placeholder-actor-images.com/alex-kim-thumb.jpg",
-            "sceneDescription": "Modern gym environment, athletic wear, energetic atmosphere",
-            "tags": [
-                "fitness",
-                "health",
-                "sports",
-                "wellness"
-            ],
-            "gender": "male",
-            "ageRange": "25-35",
-            "style": "Fitness coach"
-        },
-        {
-            "id": "actor_005",
-            "name": "Olivia Martinez",
-            "category": "Lifestyle",
-            "imageUrl": "https://placeholder-actor-images.com/olivia-martinez.jpg",
-            "thumbnailUrl": "https://placeholder-actor-images.com/olivia-martinez-thumb.jpg",
-            "sceneDescription": "Cozy home kitchen, warm lighting, lifestyle content",
-            "tags": [
-                "lifestyle",
-                "home",
-                "cooking",
-                "family"
-            ],
-            "gender": "female",
-            "ageRange": "28-38",
-            "style": "Lifestyle blogger"
-        },
-        {
-            "id": "actor_006",
-            "name": "David Park",
-            "category": "Product Demo",
-            "imageUrl": "https://placeholder-actor-images.com/david-park.jpg",
-            "thumbnailUrl": "https://placeholder-actor-images.com/david-park-thumb.jpg",
-            "sceneDescription": "Clean product showcase background, professional demonstration setup",
-            "tags": [
-                "product",
-                "demo",
-                "tech",
-                "review"
-            ],
-            "gender": "male",
-            "ageRange": "30-40",
-            "style": "Product reviewer"
-        },
-        {
             "id": "actor_vlog_001",
             "name": "Vlog Creator - Cafe Setting",
             "category": "Vlog",
-            "imageUrl": "/actors/vlog-actor-1.jpg",
-            "thumbnailUrl": "/actors/vlog-actor-1.jpg",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/vlog-actor-1.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/vlog-actor-1.jpg",
             "sceneDescription": "Cozy cafe setting with industrial windows, casual denim jacket, authentic vlog atmosphere",
             "tags": [
                 "vlog",
@@ -531,8 +650,8 @@
             "id": "actor_vlog_002",
             "name": "Outdoor Vlogger - Nature",
             "category": "Vlog",
-            "imageUrl": "/actors/vlog-actor-2.png",
-            "thumbnailUrl": "/actors/vlog-actor-2.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/vlog-actor-2.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/vlog-actor-2.png",
             "sceneDescription": "Beautiful outdoor setting with mountains and lake, casual overalls and sweater, travel vlog style",
             "tags": [
                 "vlog",
@@ -548,8 +667,8 @@
             "id": "actor_vlog_003",
             "name": "Lifestyle Vlogger - Cozy Cafe",
             "category": "Vlog",
-            "imageUrl": "/actors/vlog-actor-3.png",
-            "thumbnailUrl": "/actors/vlog-actor-3.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/vlog-actor-3.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/vlog-actor-3.png",
             "sceneDescription": "Warm cafe interior with soft lighting, casual sweater and necklace, intimate vlog setting",
             "tags": [
                 "vlog",
@@ -565,8 +684,8 @@
             "id": "actor_vlog_004",
             "name": "Urban Vlogger - Street Style",
             "category": "Vlog",
-            "imageUrl": "/actors/vlog-actor-4.png",
-            "thumbnailUrl": "/actors/vlog-actor-4.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/vlog-actor-4.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/vlog-actor-4.png",
             "sceneDescription": "Urban street setting with bokeh lights, casual white shirt, authentic street vlog atmosphere",
             "tags": [
                 "vlog",
@@ -582,8 +701,8 @@
             "id": "actor_vlog_005",
             "name": "Adventure Vlogger - Outdoor",
             "category": "Vlog",
-            "imageUrl": "/actors/vlog-actor-5.jpg",
-            "thumbnailUrl": "/actors/vlog-actor-5.jpg",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/vlog-actor-5.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/vlog-actor-5.jpg",
             "sceneDescription": "Lush green rice terraces background, athletic tank top, adventure travel vlog style",
             "tags": [
                 "vlog",
@@ -599,8 +718,8 @@
             "id": "sport_001",
             "name": "Fitness Coach - Woman 1",
             "category": "Sport",
-            "imageUrl": "/actors/sport-1.png",
-            "thumbnailUrl": "/actors/sport-1.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-1.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-1.png",
             "sceneDescription": "Modern gym studio with natural lighting, fitness instructor in athletic wear",
             "tags": [
                 "sport",
@@ -616,8 +735,8 @@
             "id": "sport_002",
             "name": "Fitness Coach - Woman 2",
             "category": "Sport",
-            "imageUrl": "/actors/sport-2.png",
-            "thumbnailUrl": "/actors/sport-2.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-2.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-2.png",
             "sceneDescription": "Bright gym studio, professional fitness coach in athletic attire",
             "tags": [
                 "sport",
@@ -633,8 +752,8 @@
             "id": "sport_003",
             "name": "Tennis Player - Man",
             "category": "Sport",
-            "imageUrl": "/actors/sport-3.png",
-            "thumbnailUrl": "/actors/sport-3.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-3.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-3.png",
             "sceneDescription": "Outdoor tennis court at sunset, professional tennis player with racket",
             "tags": [
                 "sport",
@@ -650,8 +769,8 @@
             "id": "sport_004",
             "name": "Gym Trainer - Woman",
             "category": "Sport",
-            "imageUrl": "/actors/sport-4.png",
-            "thumbnailUrl": "/actors/sport-4.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-4.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-4.png",
             "sceneDescription": "Modern gym with equipment, fitness trainer in professional athletic wear",
             "tags": [
                 "sport",
@@ -667,8 +786,8 @@
             "id": "sport_005",
             "name": "Basketball Player - Man",
             "category": "Sport",
-            "imageUrl": "/actors/sport-5.png",
-            "thumbnailUrl": "/actors/sport-5.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-5.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-5.png",
             "sceneDescription": "Outdoor basketball court, professional player in team jersey with basketball",
             "tags": [
                 "sport",
@@ -684,8 +803,8 @@
             "id": "sport_006",
             "name": "Basketball Player - Man 2",
             "category": "Sport",
-            "imageUrl": "/actors/sport-6.png",
-            "thumbnailUrl": "/actors/sport-6.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-6.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-6.png",
             "sceneDescription": "Outdoor basketball court at sunset, athletic player with basketball",
             "tags": [
                 "sport",
@@ -701,8 +820,8 @@
             "id": "sport_007",
             "name": "Gym Trainer - Man",
             "category": "Sport",
-            "imageUrl": "/actors/sport-7.png",
-            "thumbnailUrl": "/actors/sport-7.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-7.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-7.png",
             "sceneDescription": "Modern gym with equipment, professional fitness trainer",
             "tags": [
                 "sport",
@@ -718,8 +837,8 @@
             "id": "sport_008",
             "name": "Tennis Player - Woman",
             "category": "Sport",
-            "imageUrl": "/actors/sport-8.png",
-            "thumbnailUrl": "/actors/sport-8.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-8.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-8.png",
             "sceneDescription": "Tennis court at sunset, professional tennis player with racket",
             "tags": [
                 "sport",
@@ -735,8 +854,8 @@
             "id": "sport_009",
             "name": "Fitness Coach - Man",
             "category": "Sport",
-            "imageUrl": "/actors/sport-9.png",
-            "thumbnailUrl": "/actors/sport-9.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-9.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-9.png",
             "sceneDescription": "Bright modern gym, professional fitness coach",
             "tags": [
                 "sport",
@@ -750,6 +869,7 @@
         }
     ],
     "categories": [
+        "Originals",
         "Business",
         "Casual",
         "Lifestyle",

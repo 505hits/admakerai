@@ -8,6 +8,7 @@ import ProductImageUpload from '@/components/dashboard/ProductImageUpload';
 import AIActorSelector from '@/components/dashboard/AIActorSelector';
 import { AIActor } from '@/lib/types/veo';
 import { generateVideoWithDuration } from '@/lib/api/veo';
+import { getMediaUrl } from '@/lib/cloudflare-config';
 
 export default function DashboardPage() {
     const [activeTab, setActiveTab] = useState('create');
@@ -115,7 +116,7 @@ export default function DashboardPage() {
             <aside className={`${styles.sidebar} ${sidebarOpen ? styles.open : ''}`}>
                 <div className={styles.sidebarHeader}>
                     <a href="/" className={styles.logo}>
-                        <img src="/logo.png" alt="AdMaker AI" />
+                        <img src={getMediaUrl('logo.png')} alt="AdMaker AI" />
                     </a>
                 </div>
 
@@ -398,37 +399,93 @@ export default function DashboardPage() {
                                 />
                             </div>
 
-                            <div className={styles.formGroup}>
-                                <label className={styles.formLabel}>Reference Image</label>
-                                <div className={styles.imageUploadContainer}>
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        onChange={handleActorImageUpload}
-                                        className={styles.fileInput}
-                                        id="actorImageInput"
-                                    />
-                                    <label htmlFor="actorImageInput" className={styles.uploadLabel}>
-                                        {actorReferenceImage ? (
-                                            <div className={styles.imagePreview}>
-                                                <img src={actorReferenceImage} alt="Actor reference" />
-                                                <div className={styles.imageOverlay}>
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                                    </svg>
-                                                    <span>Change Image</span>
+                            {/* Image Uploads Grid */}
+                            <div className={styles.imageUploadsGrid}>
+                                {/* Person Reference Image */}
+                                <div className={styles.formGroup}>
+                                    <label className={styles.formLabel}>
+                                        Person *
+                                    </label>
+                                    <div className={styles.imageUploadContainer}>
+                                        <input
+                                            type="file"
+                                            accept="image/*"
+                                            onChange={handleActorImageUpload}
+                                            className={styles.fileInput}
+                                            id="personImageInput"
+                                        />
+                                        <label htmlFor="personImageInput" className={styles.uploadLabel}>
+                                            {actorReferenceImage ? (
+                                                <div className={styles.imagePreview}>
+                                                    <img src={actorReferenceImage} alt="Person reference" />
+                                                    <div className={styles.imageOverlay}>
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                        </svg>
+                                                        <span>Change</span>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        ) : (
+                                            ) : (
+                                                <div className={styles.uploadPlaceholder}>
+                                                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                                        <circle cx="24" cy="18" r="8" stroke="currentColor" strokeWidth="2" />
+                                                        <path d="M12 40a12 12 0 0124 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                                    </svg>
+                                                    <span className={styles.uploadText}>Upload Person</span>
+                                                    <span className={styles.uploadHint}>PNG, JPG 5MB</span>
+                                                </div>
+                                            )}
+                                        </label>
+                                    </div>
+                                </div>
+
+                                {/* Object Reference Image */}
+                                <div className={styles.formGroup}>
+                                    <label className={styles.formLabel}>
+                                        Object
+                                    </label>
+                                    <div className={styles.imageUploadContainer}>
+                                        <input
+                                            type="file"
+                                            accept="image/*"
+                                            className={styles.fileInput}
+                                            id="objectImageInput"
+                                        />
+                                        <label htmlFor="objectImageInput" className={styles.uploadLabel}>
                                             <div className={styles.uploadPlaceholder}>
                                                 <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                                                    <path d="M42 30v8a4 4 0 01-4 4H10a4 4 0 01-4-4v-8M34 16l-10-10-10 10M24 6v24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                    <rect x="12" y="12" width="24" height="24" rx="4" stroke="currentColor" strokeWidth="2" />
                                                 </svg>
-                                                <span className={styles.uploadText}>Upload Reference Image</span>
-                                                <span className={styles.uploadHint}>PNG, JPG up to 5MB</span>
+                                                <span className={styles.uploadText}>Upload Object</span>
+                                                <span className={styles.uploadHint}>PNG, JPG 5MB</span>
                                             </div>
-                                        )}
+                                        </label>
+                                    </div>
+                                </div>
+
+                                {/* Decor Reference Image */}
+                                <div className={styles.formGroup}>
+                                    <label className={styles.formLabel}>
+                                        Decor
                                     </label>
+                                    <div className={styles.imageUploadContainer}>
+                                        <input
+                                            type="file"
+                                            accept="image/*"
+                                            className={styles.fileInput}
+                                            id="decorImageInput"
+                                        />
+                                        <label htmlFor="decorImageInput" className={styles.uploadLabel}>
+                                            <div className={styles.uploadPlaceholder}>
+                                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                                    <path d="M8 8h32v32H8z" stroke="currentColor" strokeWidth="2" />
+                                                    <path d="M16 16h16v16H16z" stroke="currentColor" strokeWidth="2" />
+                                                </svg>
+                                                <span className={styles.uploadText}>Upload Decor</span>
+                                                <span className={styles.uploadHint}>PNG, JPG 5MB</span>
+                                            </div>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
 
@@ -437,7 +494,7 @@ export default function DashboardPage() {
                                 <textarea
                                     className={styles.formTextarea}
                                     placeholder="Describe the actor's appearance, clothing, setting, and decor... Example: Professional woman in her 30s, wearing business attire, modern office background with plants and natural lighting"
-                                    rows={3}
+                                    rows={2}
                                 />
                             </div>
 

@@ -8,6 +8,7 @@ import Pricing from '@/components/Pricing';
 import FAQ from '@/components/FAQ';
 import TypedText from '@/components/TypedText';
 import Testimonials from '@/components/Testimonials';
+import { getMediaUrl } from '@/lib/cloudflare-config';
 
 export default function Home() {
   useEffect(() => {
@@ -51,12 +52,12 @@ export default function Home() {
         <div className="slider-track">
           {[...Array(18)].map((_, i) => {
             const videoUrls = [
-              '/video  beauté.mp4',
-              '/video  bleu.mp4',
-              '/video canette.mp4',
-              '/video podcast.mp4',
-              '/video podcast 2.mp4',
-              '/video sportif.mp4'
+              getMediaUrl('video  beauté.mp4'),
+              getMediaUrl('video  bleu.mp4'),
+              getMediaUrl('video canette.mp4'),
+              getMediaUrl('video podcast.mp4'),
+              getMediaUrl('video podcast 2.mp4'),
+              getMediaUrl('video sportif.mp4')
             ];
 
             const titles = [
@@ -122,14 +123,14 @@ export default function Home() {
               </ul>
             </div>
             <div className="feature-image feature-image-tilt">
-              <img src="/ultra-fast-generation.jpg" alt="UGC Video Examples" />
+              <img src={getMediaUrl('ultra-fast-generation.jpg')} alt="UGC Video Examples" />
             </div>
           </div>
 
           {/* Feature Row 2 - Image Left */}
           <div className="feature-row feature-row-reverse">
             <div className="feature-image">
-              <img src="/ugc-phones.png" alt="Realistic AI Avatars" />
+              <img src={getMediaUrl('ugc-phones.png')} alt="Realistic AI Avatars" />
             </div>
             <div className="feature-content">
               <h3><span className="gradient-text-red">Realistic</span> Avatars</h3>
@@ -154,7 +155,7 @@ export default function Home() {
               </ul>
             </div>
             <div className="feature-image">
-              <img src="/ugc-phones.png" alt="Performance Analytics" />
+              <img src={getMediaUrl('ugc-phones.png')} alt="Performance Analytics" />
             </div>
           </div>
         </div>
@@ -189,7 +190,7 @@ export default function Home() {
             </div>
             <div style={{ flex: 1, minWidth: '300px' }}>
               <img
-                src="/video-demo.jpg"
+                src={getMediaUrl('video-demo.jpg')}
                 alt="Video Demo"
                 style={{
                   maxWidth: '100%',

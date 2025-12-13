@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '../login/Auth.module.css';
+import { getMediaUrl } from '@/lib/cloudflare-config';
 
 export default function LoginPage() {
     const router = useRouter();
@@ -30,7 +31,7 @@ export default function LoginPage() {
                     <div className={styles.authLeft}>
                         <div className={styles.authCard}>
                             <div className={styles.authLogo}>
-                                <img src="/logo.png" alt="AdMaker AI" />
+                                <img src={getMediaUrl('logo.png')} alt="AdMaker AI" />
                             </div>
 
                             <div className={styles.verifyEmail}>
@@ -62,7 +63,7 @@ export default function LoginPage() {
                 <div className={styles.authLeft}>
                     <div className={styles.authCard}>
                         <div className={styles.authLogo}>
-                            <img src="/logo.png" alt="AdMaker AI" />
+                            <img src={getMediaUrl('logo.png')} alt="AdMaker AI" />
                         </div>
 
                         {/* Social Proof */}
@@ -136,9 +137,9 @@ function VideoShowcase() {
     const [currentVideo, setCurrentVideo] = useState(0);
 
     const videos = [
-        '/influ page auth 1.mp4',
-        '/influ page auth 2.mp4',
-        '/influ auth 3.mp4'
+        getMediaUrl('influ page auth 1.mp4'),
+        getMediaUrl('influ page auth 2.mp4'),
+        getMediaUrl('influ auth 3.mp4')
     ];
 
     useEffect(() => {

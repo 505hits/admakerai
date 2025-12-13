@@ -1,4 +1,5 @@
 import styles from './VideoAgent.module.css';
+import { getMediaUrl } from '../lib/cloudflare-config';
 
 export default function VideoAgent() {
     return (
@@ -42,7 +43,7 @@ export default function VideoAgent() {
                     <div className={styles.agentVisual}>
                         <div className={styles.agentGlow}></div>
                         <img
-                            src="/avatars-showcase.png"
+                            src={getMediaUrl('avatars-showcase.png')}
                             alt="AI Avatars Showcase"
                             style={{
                                 maxWidth: '100%',
