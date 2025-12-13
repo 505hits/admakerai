@@ -1,7 +1,5 @@
 {
-    "buildCommand": "cd admaker && npm run build",
-    "devCommand": "cd admaker && npm run dev",
-    "installCommand": "cd admaker && npm install",
-    "framework": "nextjs",
-    "outputDirectory": "admaker/.next"
+    "buildCommand": "npm run build",
+    "installCommand": "npm install",
+    "framework": "nextjs"
 }
