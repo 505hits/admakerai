@@ -1,0 +1,189 @@
+.settingsContainer {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.settingsTitle {
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.settingsGrid {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    gap: var(--spacing-md);
+    align-items: center;
+}
+
+.settingGroup {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.settingLabel {
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+}
+
+/* Format Buttons */
+.formatButtons {
+    display: flex;
+    gap: 4px;
+}
+
+.formatButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 4px 8px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-secondary);
+    font-size: 10px;
+    font-weight: 600;
+    transition: all var(--transition-base);
+    cursor: pointer;
+}
+
+.formatButton:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 8, 68, 0.3);
+}
+
+.formatButton.active {
+    background: rgba(255, 8, 68, 0.15);
+    border-color: rgba(255, 8, 68, 0.6);
+    color: var(--color-red-primary);
+}
+
+.formatButton svg {
+    flex-shrink: 0;
+    width: 20px;
+    height: 16px;
+}
+
+.formatButton span:first-of-type {
+    font-weight: 700;
+    font-size: 10px;
+}
+
+.formatDesc {
+    display: none;
+}
+
+/* Duration Buttons */
+.durationButtons {
+    display: flex;
+    gap: 4px;
+}
+
+.durationButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 4px 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    color: var(--color-text-secondary);
+    transition: all var(--transition-base);
+    cursor: pointer;
+}
+
+.durationButton:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 8, 68, 0.3);
+}
+
+.durationButton.active {
+    background: rgba(255, 8, 68, 0.15);
+    border-color: rgba(255, 8, 68, 0.6);
+    color: var(--color-red-primary);
+}
+
+.durationTime {
+    font-size: var(--font-size-sm);
+    font-weight: 800;
+    color: var(--color-text-primary);
+}
+
+.durationButton.active .durationTime {
+    color: var(--color-red-primary);
+}
+
+.durationCost {
+    font-size: 9px;
+    color: var(--color-text-muted);
+    font-weight: 600;
+}
+
+.durationButton.active .durationCost {
+    color: var(--color-red-primary);
+}
+
+.durationNote {
+    display: none;
+}
+
+/* Credit Cost */
+.creditCost {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: 4px var(--spacing-sm);
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-sm);
+    margin-left: auto;
+}
+
+.creditCost svg {
+    color: var(--color-red-primary);
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+}
+
+.costValue {
+    font-size: var(--font-size-lg);
+    font-weight: 900;
+    color: var(--color-text-primary);
+}
+
+.costLabel {
+    font-size: 10px;
+    color: var(--color-text-muted);
+    font-weight: 600;
+}
+
+/* Model Info */
+.modelInfo {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .settingsGrid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .formatButtons,
+    .durationButtons {
+        width: 100%;
+    }
+
+    .creditCost {
+        justify-content: center;
+    }
+}

@@ -1,0 +1,107 @@
+.paymentHero {
+    position: relative;
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 140px 0 var(--spacing-3xl) 0;
+    overflow: hidden;
+}
+
+.heroGlow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle at center,
+            rgba(255, 8, 68, 0.15) 0%,
+            rgba(255, 8, 68, 0.08) 40%,
+            transparent 70%);
+    pointer-events: none;
+    filter: blur(60px);
+}
+
+.heroContent {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.heroContent h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: var(--spacing-md);
+}
+
+.heroContent p {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-secondary);
+}
+
+.finalCta {
+    position: relative;
+    padding: var(--spacing-3xl) 0;
+    overflow: hidden;
+}
+
+.ctaGlow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(255, 8, 68, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.ctaContent {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.ctaContent h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    margin-bottom: var(--spacing-md);
+}
+
+.ctaContent p {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-xl);
+}
+
+.ctaBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: 1.125rem 2.25rem;
+    background: var(--gradient-red);
+    color: var(--color-text-primary);
+    font-weight: 600;
+    font-size: var(--font-size-lg);
+    border-radius: var(--radius-full);
+    box-shadow: 0 4px 20px rgba(255, 8, 68, 0.3);
+    transition: all var(--transition-base);
+}
+
+.ctaBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(255, 8, 68, 0.4);
+}
+
+@media (max-width: 768px) {
+    .paymentHero {
+        padding: 120px 0 var(--spacing-xl) 0;
+    }
+}

@@ -1,0 +1,117 @@
+.uploadContainer {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-sm) var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.uploadHeader {
+    margin-bottom: var(--spacing-sm);
+}
+
+.uploadTitle {
+    font-size: var(--font-size-sm);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 2px;
+}
+
+.uploadDescription {
+    font-size: 10px;
+    color: var(--color-text-muted);
+}
+
+.fileInput {
+    display: none;
+}
+
+.uploadBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-md);
+    background: rgba(255, 255, 255, 0.02);
+    border: 2px dashed rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    min-height: 100px;
+}
+
+.uploadBox:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 8, 68, 0.4);
+}
+
+.uploadBox svg {
+    color: var(--color-text-muted);
+    width: 32px;
+    height: 32px;
+}
+
+.uploadText {
+    font-size: var(--font-size-xs);
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.uploadHint {
+    font-size: 10px;
+    color: var(--color-text-muted);
+}
+
+.preview {
+    position: relative;
+    width: 100%;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.preview img {
+    width: 100%;
+    height: auto;
+    max-height: 150px;
+    object-fit: cover;
+    display: block;
+}
+
+.removeBtn {
+    position: absolute;
+    top: var(--spacing-xs);
+    right: var(--spacing-xs);
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: var(--radius-full);
+    transition: all var(--transition-base);
+    backdrop-filter: blur(4px);
+}
+
+.removeBtn:hover {
+    background: rgba(255, 8, 68, 0.9);
+    transform: scale(1.1);
+}
+
+.infoBox {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .uploadBox {
+        min-height: 150px;
+        padding: var(--spacing-lg);
+    }
+
+    .preview img {
+        max-height: 200px;
+    }
+}
