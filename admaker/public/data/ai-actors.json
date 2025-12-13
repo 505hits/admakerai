@@ -290,6 +290,74 @@
             "style": "Business casual"
         },
         {
+            "id": "business_006",
+            "name": "Business Man - Podcast Setup",
+            "category": "Business",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-6.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-6.jpg",
+            "sceneDescription": "Professional podcast setup, teal sweater, office background with shelves",
+            "tags": [
+                "business",
+                "podcast",
+                "professional",
+                "office"
+            ],
+            "gender": "male",
+            "ageRange": "30-40",
+            "style": "Business casual"
+        },
+        {
+            "id": "business_007",
+            "name": "Business Woman - Podcast Host",
+            "category": "Business",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-7.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-7.jpg",
+            "sceneDescription": "Podcast recording setup, purple sweater, professional office environment",
+            "tags": [
+                "business",
+                "podcast",
+                "professional",
+                "female"
+            ],
+            "gender": "female",
+            "ageRange": "25-35",
+            "style": "Business casual"
+        },
+        {
+            "id": "business_008",
+            "name": "Business Man - Modern Office",
+            "category": "Business",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-8.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-8.jpg",
+            "sceneDescription": "Modern office with blue background, black sweater, professional podcast setup",
+            "tags": [
+                "business",
+                "professional",
+                "office",
+                "modern"
+            ],
+            "gender": "male",
+            "ageRange": "28-38",
+            "style": "Business professional"
+        },
+        {
+            "id": "business_009",
+            "name": "Business Woman - Executive Office",
+            "category": "Business",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-9.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-9.jpg",
+            "sceneDescription": "Luxury executive office, beige blazer, professional presentation setup",
+            "tags": [
+                "business",
+                "executive",
+                "professional",
+                "luxury"
+            ],
+            "gender": "female",
+            "ageRange": "30-40",
+            "style": "Business executive"
+        },
+        {
             "id": "actor_002",
             "name": "Casual Woman - Street Style",
             "category": "Casual",
