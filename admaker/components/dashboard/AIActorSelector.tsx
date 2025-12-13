@@ -39,6 +39,14 @@ export default function AIActorSelector({ onActorSelect }: AIActorSelectorProps)
     const handleActorClick = (actor: AIActor) => {
         setSelectedActor(actor.id);
         onActorSelect(actor);
+
+        // Auto-scroll to next section after selection
+        setTimeout(() => {
+            const nextSection = document.querySelector('[data-next-section]');
+            if (nextSection) {
+                nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }, 300);
     };
 
     if (loading) {

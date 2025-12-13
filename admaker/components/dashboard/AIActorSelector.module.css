@@ -58,9 +58,31 @@
 .actorsGrid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    grid-template-rows: repeat(2, 1fr);
+    grid-auto-flow: column;
     gap: var(--spacing-sm);
-    max-height: calc((140px * 4/3) * 2 + var(--spacing-sm));
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-bottom: var(--spacing-sm);
+    scroll-behavior: smooth;
+}
+
+.actorsGrid::-webkit-scrollbar {
+    height: 6px;
+}
+
+.actorsGrid::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-full);
+}
+
+.actorsGrid::-webkit-scrollbar-thumb {
+    background: rgba(255, 8, 68, 0.3);
+    border-radius: var(--radius-full);
+}
+
+.actorsGrid::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 8, 68, 0.5);
 }
 
 .actorCard {

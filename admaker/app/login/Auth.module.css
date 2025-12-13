@@ -392,72 +392,64 @@
     }
 
     .authCard {
-        padding: var(--spacing-md);
+        padding: var(--spacing-lg);
         border-radius: var(--radius-md);
         max-width: 100%;
     }
 
     .authLogo {
-        margin-bottom: var(--spacing-xs);
+        margin-bottom: var(--spacing-sm);
     }
 
     .authLogo img {
-        height: 40px;
+        height: 45px;
     }
 
     .authSocialProof {
-        margin-bottom: var(--spacing-xs);
-        padding: 4px var(--spacing-xs);
+        margin-bottom: var(--spacing-sm);
+        padding: 6px var(--spacing-sm);
     }
 
     .avatar {
-        width: 20px;
-        height: 20px;
+        width: 22px;
+        height: 22px;
     }
 
     .socialProofText {
-        font-size: 10px;
+        font-size: 11px;
     }
 
     .googleBtn,
     .emailInput,
     .submitBtn {
-        padding: 8px var(--spacing-sm);
-        font-size: 13px;
+        padding: 12px var(--spacing-md);
+        font-size: 14px;
     }
 
     .divider {
-        margin: var(--spacing-xs) 0;
-        font-size: 11px;
+        margin: var(--spacing-sm) 0;
+        font-size: 12px;
     }
 
     .authFooter {
-        margin-top: var(--spacing-xs);
-        font-size: 10px;
+        margin-top: var(--spacing-sm);
+        font-size: 11px;
     }
 
-    .authLeft,
+    .authLeft {
+        padding: var(--spacing-md);
+    }
+
+    /* Hide video showcase on mobile */
     .authRight {
-        padding: var(--spacing-sm);
+        display: none !important;
     }
 
     .videoShowcase {
-        max-width: 100%;
-        gap: var(--spacing-sm);
-    }
-
-    .showcaseTitle {
-        font-size: var(--font-size-sm);
-    }
-
-    .videoSlider {
-        max-height: 350px;
+        display: none !important;
     }
 
     .aiGeneratedBadge {
-        top: 8px;
-        right: 8px;
-        padding: 3px 8px;
-        font-size: 9px;
+        display: none;
     }
 }

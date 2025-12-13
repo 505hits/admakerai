@@ -3,6 +3,7 @@ import Pricing from '@/components/Pricing';
 import Testimonials from '@/components/Testimonials';
 import FAQ from '@/components/FAQ';
 import styles from './Payment.module.css';
+import { getMediaUrl } from '@/lib/cloudflare-config';
 
 export default function PaymentPage() {
     return (
@@ -17,12 +18,12 @@ export default function PaymentPage() {
                 <div className="slider-track">
                     {[...Array(18)].map((_, i) => {
                         const videoUrls = [
-                            '/video  beauté.mp4',
-                            '/video  bleu.mp4',
-                            '/video canette.mp4',
-                            '/video podcast.mp4',
-                            '/video podcast 2.mp4',
-                            '/video sportif.mp4'
+                            getMediaUrl('video  beauté.mp4'),
+                            getMediaUrl('video  bleu.mp4'),
+                            getMediaUrl('video canette.mp4'),
+                            getMediaUrl('video podcast.mp4'),
+                            getMediaUrl('video podcast 2.mp4'),
+                            getMediaUrl('video sportif.mp4')
                         ];
 
                         const titles = [

@@ -209,12 +209,14 @@ export default function DashboardPage() {
                         {selectedActor && (
                             <>
                                 {/* Script Editor */}
-                                <ScriptEditor
-                                    showSceneDescription={true}
-                                    duration={duration}
-                                    onScriptChange={setScript}
-                                    onSceneChange={setSceneDescription}
-                                />
+                                <div data-next-section>
+                                    <ScriptEditor
+                                        showSceneDescription={true}
+                                        duration={duration}
+                                        onScriptChange={setScript}
+                                        onSceneChange={setSceneDescription}
+                                    />
+                                </div>
 
                                 {/* Optional Product Image */}
                                 <ProductImageUpload onImageChange={setProductImageUrl} />
