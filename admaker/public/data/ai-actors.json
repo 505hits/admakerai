@@ -361,8 +361,8 @@
             "id": "business_010",
             "name": "Business Professional - Office Setup",
             "category": "Business",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-10.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-10.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business10.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business10.png",
             "sceneDescription": "Professional business setting, modern office environment",
             "tags": [
                 "business",
@@ -378,8 +378,8 @@
             "id": "business_011",
             "name": "Business Executive - Corporate",
             "category": "Business",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-11.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-11.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business11.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business11.png",
             "sceneDescription": "Executive business environment, professional presentation",
             "tags": [
                 "business",
@@ -395,8 +395,8 @@
             "id": "business_012",
             "name": "Business Manager - Modern Office",
             "category": "Business",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-12.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-12.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business12.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business12.png",
             "sceneDescription": "Modern office setup, professional business attire",
             "tags": [
                 "business",
@@ -412,8 +412,8 @@
             "id": "business_013",
             "name": "Business Consultant - Professional",
             "category": "Business",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-13.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-13.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business13.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business13.png",
             "sceneDescription": "Professional consulting environment, business casual",
             "tags": [
                 "business",
@@ -616,8 +616,8 @@
             "id": "casual_010",
             "name": "Casual Person - Relaxed Style",
             "category": "Casual",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-10.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-10.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual10.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual10.png",
             "sceneDescription": "Casual relaxed environment, everyday style",
             "tags": [
                 "casual",
@@ -633,8 +633,8 @@
             "id": "casual_011",
             "name": "Casual Person - Urban Style",
             "category": "Casual",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-11.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-11.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual11.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual11.png",
             "sceneDescription": "Urban casual setting, modern lifestyle",
             "tags": [
                 "casual",
@@ -650,8 +650,8 @@
             "id": "casual_012",
             "name": "Casual Person - Street Style",
             "category": "Casual",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-12.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-12.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual12.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual12.png",
             "sceneDescription": "Street style casual, contemporary fashion",
             "tags": [
                 "casual",
@@ -667,8 +667,8 @@
             "id": "casual_013",
             "name": "Casual Person - Lifestyle",
             "category": "Casual",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-13.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-13.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual13.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual13.png",
             "sceneDescription": "Lifestyle casual setting, natural vibe",
             "tags": [
                 "casual",
@@ -684,8 +684,8 @@
             "id": "casual_014",
             "name": "Casual Person - Everyday",
             "category": "Casual",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-14.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-14.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual14.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual14.png",
             "sceneDescription": "Everyday casual environment, comfortable style",
             "tags": [
                 "casual",
@@ -1087,6 +1087,142 @@
             "gender": "male",
             "ageRange": "25-35",
             "style": "Fitness coach"
+        },
+        {
+            "id": "micro_001",
+            "name": "Micro-Content - Street Interview 1",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro1.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro1.png",
+            "sceneDescription": "Street interview style, micro-trottoir content",
+            "tags": [
+                "micro-content",
+                "street",
+                "interview",
+                "vox-pop"
+            ],
+            "gender": "male",
+            "ageRange": "25-35",
+            "style": "Street interview"
+        },
+        {
+            "id": "micro_002",
+            "name": "Micro-Content - Street Interview 2",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro2.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro2.png",
+            "sceneDescription": "Urban micro-content, street style interview",
+            "tags": [
+                "micro-content",
+                "urban",
+                "interview",
+                "street"
+            ],
+            "gender": "female",
+            "ageRange": "22-32",
+            "style": "Urban interview"
+        },
+        {
+            "id": "micro_003",
+            "name": "Micro-Content - Street Interview 3",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro3.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro3.png",
+            "sceneDescription": "Casual street interview, authentic vibe",
+            "tags": [
+                "micro-content",
+                "casual",
+                "interview",
+                "authentic"
+            ],
+            "gender": "male",
+            "ageRange": "20-30",
+            "style": "Casual interview"
+        },
+        {
+            "id": "micro_004",
+            "name": "Micro-Content - Street Interview 4",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro4.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro4.png",
+            "sceneDescription": "Street vox-pop style, micro-content format",
+            "tags": [
+                "micro-content",
+                "vox-pop",
+                "street",
+                "interview"
+            ],
+            "gender": "female",
+            "ageRange": "25-35",
+            "style": "Vox-pop style"
+        },
+        {
+            "id": "micro_005",
+            "name": "Micro-Content - Street Interview 5",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro5.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro5.png",
+            "sceneDescription": "Modern street interview, engaging content",
+            "tags": [
+                "micro-content",
+                "modern",
+                "interview",
+                "engaging"
+            ],
+            "gender": "male",
+            "ageRange": "28-38",
+            "style": "Modern interview"
+        },
+        {
+            "id": "micro_006",
+            "name": "Micro-Content - Street Interview 6",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro6.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro6.png",
+            "sceneDescription": "Dynamic street content, micro-trottoir format",
+            "tags": [
+                "micro-content",
+                "dynamic",
+                "street",
+                "interview"
+            ],
+            "gender": "female",
+            "ageRange": "23-33",
+            "style": "Dynamic interview"
+        },
+        {
+            "id": "micro_007",
+            "name": "Micro-Content - Street Interview 7",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro7.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro7.png",
+            "sceneDescription": "Authentic street interview, real people vibe",
+            "tags": [
+                "micro-content",
+                "authentic",
+                "street",
+                "real"
+            ],
+            "gender": "male",
+            "ageRange": "26-36",
+            "style": "Authentic interview"
+        },
+        {
+            "id": "micro_008",
+            "name": "Micro-Content - Street Interview 8",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro8.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro8.png",
+            "sceneDescription": "Energetic street content, micro-interview style",
+            "tags": [
+                "micro-content",
+                "energetic",
+                "street",
+                "interview"
+            ],
+            "gender": "female",
+            "ageRange": "24-34",
+            "style": "Energetic interview"
         }
     ],
     "categories": [

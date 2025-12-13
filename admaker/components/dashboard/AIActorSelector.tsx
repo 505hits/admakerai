@@ -28,7 +28,7 @@ export default function AIActorSelector({ onActorSelect }: AIActorSelectorProps)
             });
     }, []);
 
-    const categories = ['All', 'My Actors', 'Business', 'Casual', 'Lifestyle', 'Product Demo', 'Sport', 'Beauty', 'Vlog', 'Originals'];
+    const categories = ['All', 'My Actors', 'Business', 'Casual', 'Lifestyle', 'Product Demo', 'Sport', 'Beauty', 'Vlog', 'Micro-Content', 'Originals'];
 
     const filteredActors = selectedCategory === 'All'
         ? actors
