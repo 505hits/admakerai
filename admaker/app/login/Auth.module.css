@@ -393,8 +393,10 @@
 
     .authCard {
         padding: var(--spacing-lg);
-        border-radius: var(--radius-md);
+        border-radius: 0;
         max-width: 100%;
+        border-left: none;
+        border-right: none;
     }
 
     .authLogo {
@@ -437,7 +439,7 @@
     }
 
     .authLeft {
-        padding: var(--spacing-md);
+        padding: 0;
     }
 
     /* Hide video showcase on mobile */

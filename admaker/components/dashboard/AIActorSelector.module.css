@@ -57,8 +57,8 @@
 
 .actorsGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fill, 140px);
+    grid-template-rows: repeat(2, minmax(0, 1fr));
     grid-auto-flow: column;
     gap: var(--spacing-sm);
     overflow-x: auto;

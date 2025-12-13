@@ -482,6 +482,11 @@ img {
         --spacing-3xl: 4rem;
     }
 
+    /* Remove container padding in navbar on mobile */
+    .navbar .container {
+        padding: 0 var(--spacing-sm);
+    }
+
     .features-grid {
         grid-template-columns: 1fr;
     }
