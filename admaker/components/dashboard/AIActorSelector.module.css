@@ -30,6 +30,28 @@
 .categoryTabs {
     display: flex;
     gap: var(--spacing-xs);
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: var(--spacing-xs);
+    scroll-behavior: smooth;
+}
+
+.categoryTabs::-webkit-scrollbar {
+    height: 4px;
+}
+
+.categoryTabs::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-full);
+}
+
+.categoryTabs::-webkit-scrollbar-thumb {
+    background: rgba(255, 8, 68, 0.3);
+    border-radius: var(--radius-full);
+}
+
+.categoryTabs::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 8, 68, 0.5);
 }
 
 .categoryTab {
@@ -42,6 +64,8 @@
     font-weight: 600;
     transition: all var(--transition-base);
     cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .categoryTab:hover {

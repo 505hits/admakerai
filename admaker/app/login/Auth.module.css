@@ -390,14 +390,16 @@
 
     .authSplitLayout {
         height: auto;
-        min-height: 100vh;
+        min-height: auto;
+        flex-direction: column;
     }
 
     .authCard {
-        padding: var(--spacing-xl) var(--spacing-lg);
-        border-radius: var(--radius-md);
+        padding: var(--spacing-xl) var(--spacing-md);
+        border-radius: 0;
         max-width: 100%;
-        margin: 0 var(--spacing-sm);
+        margin: 0;
+        border: none;
     }
 
     .authLogo {
@@ -440,16 +442,23 @@
     }
 
     .authLeft {
-        padding: 0;
+        padding: var(--spacing-lg) 0;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    /* Hide video showcase on mobile */
+    /* Show video showcase on mobile when scrolling */
     .authRight {
-        display: none !important;
+        display: flex !important;
+        padding: var(--spacing-xl) var(--spacing-md);
+        min-height: 100vh;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .videoShowcase {
-        display: none !important;
+        max-width: 100%;
     }
 
     .aiGeneratedBadge {
