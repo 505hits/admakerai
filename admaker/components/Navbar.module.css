@@ -173,10 +173,24 @@
     transition: all var(--transition-base);
 }
 
+
 @media (max-width: 768px) {
+    .navbar {
+        padding: 0 var(--spacing-sm);
+    }
+
     .navContent {
         padding-left: 0;
         padding-right: 0;
+    }
+
+    .logo {
+        margin-left: 0;
+        padding-left: 0;
+    }
+
+    .logo img {
+        margin-left: 0 !important;
     }
 
     .mobileMenuBtn {

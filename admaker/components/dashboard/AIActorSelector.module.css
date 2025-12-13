@@ -56,15 +56,15 @@
 }
 
 .actorsGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, 140px);
-    grid-template-rows: repeat(2, minmax(0, 1fr));
-    grid-auto-flow: column;
+    display: flex;
+    flex-wrap: wrap;
+    max-height: calc(((140px * 4/3) + var(--spacing-sm)) * 2);
     gap: var(--spacing-sm);
     overflow-x: auto;
     overflow-y: hidden;
     padding-bottom: var(--spacing-sm);
     scroll-behavior: smooth;
+    align-content: flex-start;
 }
 
 .actorsGrid::-webkit-scrollbar {
@@ -86,6 +86,8 @@
 }
 
 .actorCard {
+    flex: 0 0 140px;
+    width: 140px;
     display: flex;
     flex-direction: column;
     padding: 0;
