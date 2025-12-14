@@ -1,34 +1,50 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import styles from './Navbar.module.css';
 import { getMediaUrl } from '../lib/cloudflare-config';
+import { createClient } from '@/lib/supabase/client';
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [showUserDropdown, setShowUserDropdown] = useState(false);
+    const router = useRouter();
+    const supabase = createClient();
 
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 100);
         };
 
-        // Check login status
-        const checkLoginStatus = () => {
-            setIsLoggedIn(localStorage.getItem('isLoggedIn') === 'true');
+        // Check login status with Supabase
+        const checkLoginStatus = async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            setIsLoggedIn(!!session);
         };
 
         checkLoginStatus();
         window.addEventListener('scroll', handleScroll);
-        window.addEventListener('storage', checkLoginStatus);
+
+        // Listen for auth changes
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            setIsLoggedIn(!!session);
+        });
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
-            window.removeEventListener('storage', checkLoginStatus);
+            subscription.unsubscribe();
         };
     }, []);
+
+
+    const handleLogout = async () => {
+        await supabase.auth.signOut();
+        setShowUserDropdown(false);
+        router.push('/');
+    };
 
     return (
         <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''}`}>
@@ -74,6 +90,12 @@ export default function Navbar() {
                                             </svg>
                                             Dashboard
                                         </a>
+                                        <button onClick={handleLogout} className={styles.dropdownItem}>
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                <path d="M6 14H3a1 1 0 01-1-1V3a1 1 0 011-1h3M11 11l3-3-3-3M14 8H6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                            </svg>
+                                            Logout
+                                        </button>
                                     </div>
                                 )}
                             </div>

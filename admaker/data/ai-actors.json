@@ -4,8 +4,8 @@
             "id": "actor_001",
             "name": "Professional Man - Office",
             "category": "Business",
-            "imageUrl": "/actors/business-actor-1.png",
-            "thumbnailUrl": "/actors/business-actor-1.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-1.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-1.png",
             "sceneDescription": "Modern office setting with city skyline view, professional business attire, podcast microphone setup",
             "tags": [
                 "business",
@@ -21,8 +21,8 @@
             "id": "actor_001b",
             "name": "Professional Woman - Podcast",
             "category": "Business",
-            "imageUrl": "/actors/business-actor-2.jpg",
-            "thumbnailUrl": "/actors/business-actor-2.jpg",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-2.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-2.jpg",
             "sceneDescription": "Warm podcast studio with wooden panels, professional setup with microphone",
             "tags": [
                 "business",
@@ -38,8 +38,8 @@
             "id": "actor_001c",
             "name": "Business Podcaster",
             "category": "Business",
-            "imageUrl": "/actors/business-actor-3.jpg",
-            "thumbnailUrl": "/actors/business-actor-3.jpg",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-3.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-3.jpg",
             "sceneDescription": "Modern podcast studio with warm lighting and professional microphone setup",
             "tags": [
                 "business",
@@ -55,8 +55,8 @@
             "id": "actor_001d",
             "name": "Executive Professional",
             "category": "Business",
-            "imageUrl": "/actors/business-actor-4.png",
-            "thumbnailUrl": "/actors/business-actor-4.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-4.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-4.png",
             "sceneDescription": "Executive office with modern lighting, professional business suit and tie",
             "tags": [
                 "business",
@@ -72,8 +72,8 @@
             "id": "actor_001e",
             "name": "Business Professional - Office",
             "category": "Business",
-            "imageUrl": "/actors/business-actor-5.png",
-            "thumbnailUrl": "/actors/business-actor-5.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-5.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-5.png",
             "sceneDescription": "Modern office with city skyline, professional business attire, podcast setup",
             "tags": [
                 "business",
@@ -89,8 +89,8 @@
             "id": "actor_001f",
             "name": "Business Woman - Podcast Studio",
             "category": "Business",
-            "imageUrl": "/actors/business-actor-6.jpg",
-            "thumbnailUrl": "/actors/business-actor-6.jpg",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-6.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-6.jpg",
             "sceneDescription": "Modern podcast studio with professional lighting, orange sweater and microphone setup",
             "tags": [
                 "business",
@@ -106,8 +106,8 @@
             "id": "actor_001g",
             "name": "Business Man - Executive Office",
             "category": "Business",
-            "imageUrl": "/actors/business-actor-7.png",
-            "thumbnailUrl": "/actors/business-actor-7.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-7.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-7.png",
             "sceneDescription": "Executive office with Dubai skyline view, professional business attire with microphone",
             "tags": [
                 "business",
@@ -123,8 +123,8 @@
             "id": "actor_001h",
             "name": "Business Man - Podcast Host",
             "category": "Business",
-            "imageUrl": "/actors/business-actor-8.jpg",
-            "thumbnailUrl": "/actors/business-actor-8.jpg",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-8.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-8.jpg",
             "sceneDescription": "Professional podcast studio with modern lighting, casual business attire",
             "tags": [
                 "business",
@@ -140,8 +140,8 @@
             "id": "actor_001i",
             "name": "Business Woman - Studio Interview",
             "category": "Business",
-            "imageUrl": "/actors/business-actor-9.jpg",
-            "thumbnailUrl": "/actors/business-actor-9.jpg",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-9.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-9.jpg",
             "sceneDescription": "Professional studio with modern lighting, business casual attire with microphone",
             "tags": [
                 "business",
@@ -157,8 +157,8 @@
             "id": "actor_001j",
             "name": "Business Man - Casual Podcast",
             "category": "Business",
-            "imageUrl": "/actors/business-actor-10.jpg",
-            "thumbnailUrl": "/actors/business-actor-10.jpg",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-10.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-10.jpg",
             "sceneDescription": "Warm podcast studio with natural lighting, casual hoodie style with microphone",
             "tags": [
                 "business",
@@ -174,8 +174,8 @@
             "id": "actor_001k",
             "name": "Business Woman - Professional Podcast",
             "category": "Business",
-            "imageUrl": "/actors/business-actor-11.jpg",
-            "thumbnailUrl": "/actors/business-actor-11.jpg",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-11.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-11.jpg",
             "sceneDescription": "Professional podcast studio with modern lighting, beige sweater and microphone",
             "tags": [
                 "business",
@@ -191,8 +191,8 @@
             "id": "actor_001l",
             "name": "Business Man - Dubai Office",
             "category": "Business",
-            "imageUrl": "/actors/business-actor-12.png",
-            "thumbnailUrl": "/actors/business-actor-12.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-12.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business-actor-12.png",
             "sceneDescription": "Modern office with Dubai skyline and Burj Khalifa view, casual business shirt",
             "tags": [
                 "business",
@@ -205,11 +205,71 @@
             "style": "Business casual"
         },
         {
+            "id": "business_010",
+            "name": "Business Professional 10",
+            "category": "Business",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business10.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business10.png",
+            "sceneDescription": "Professional business setting",
+            "tags": [
+                "business",
+                "professional"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Business professional"
+        },
+        {
+            "id": "business_011",
+            "name": "Business Professional 11",
+            "category": "Business",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business11.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business11.png",
+            "sceneDescription": "Professional business setting",
+            "tags": [
+                "business",
+                "professional"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Business professional"
+        },
+        {
+            "id": "business_012",
+            "name": "Business Professional 12",
+            "category": "Business",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business12.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business12.png",
+            "sceneDescription": "Professional business setting",
+            "tags": [
+                "business",
+                "professional"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Business professional"
+        },
+        {
+            "id": "business_013",
+            "name": "Business Professional 13",
+            "category": "Business",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business13.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/business13.png",
+            "sceneDescription": "Professional business setting",
+            "tags": [
+                "business",
+                "professional"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Business professional"
+        },
+        {
             "id": "actor_002",
             "name": "Casual Woman - Street Style",
             "category": "Casual",
-            "imageUrl": "/actors/casual-actor-1.png",
-            "thumbnailUrl": "/actors/casual-actor-1.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-actor-1.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-actor-1.png",
             "sceneDescription": "Outdoor urban setting with denim jacket, casual street style with microphone",
             "tags": [
                 "lifestyle",
@@ -225,8 +285,8 @@
             "id": "actor_002b",
             "name": "Casual Woman - Modern Apartment",
             "category": "Casual",
-            "imageUrl": "/actors/casual-actor-2.png",
-            "thumbnailUrl": "/actors/casual-actor-2.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-actor-2.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-actor-2.png",
             "sceneDescription": "Modern apartment with city view, casual white top and jeans",
             "tags": [
                 "lifestyle",
@@ -242,8 +302,8 @@
             "id": "actor_002c",
             "name": "Casual Woman - Outdoor Interview",
             "category": "Casual",
-            "imageUrl": "/actors/casual-actor-3.png",
-            "thumbnailUrl": "/actors/casual-actor-3.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-actor-3.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-actor-3.png",
             "sceneDescription": "European street setting with warm sweater, casual outdoor interview style",
             "tags": [
                 "lifestyle",
@@ -259,8 +319,8 @@
             "id": "actor_002d",
             "name": "Casual Woman - Urban Vibe",
             "category": "Casual",
-            "imageUrl": "/actors/casual-actor-4.png",
-            "thumbnailUrl": "/actors/casual-actor-4.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-actor-4.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-actor-4.png",
             "sceneDescription": "Urban street with bokeh lights, casual tank top and denim jacket",
             "tags": [
                 "lifestyle",
@@ -276,8 +336,8 @@
             "id": "actor_002e",
             "name": "Casual Woman - Cozy Home",
             "category": "Casual",
-            "imageUrl": "/actors/casual-actor-5.jpg",
-            "thumbnailUrl": "/actors/casual-actor-5.jpg",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-actor-5.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual-actor-5.jpg",
             "sceneDescription": "Cozy home office with plants, casual sweater and jeans with coffee cup",
             "tags": [
                 "lifestyle",
@@ -290,11 +350,86 @@
             "style": "Casual homey"
         },
         {
+            "id": "casual_010",
+            "name": "Casual Creator 10",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual10.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual10.png",
+            "sceneDescription": "Casual lifestyle setting",
+            "tags": [
+                "casual",
+                "lifestyle"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Casual creator"
+        },
+        {
+            "id": "casual_011",
+            "name": "Casual Creator 11",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual11.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual11.png",
+            "sceneDescription": "Casual lifestyle setting",
+            "tags": [
+                "casual",
+                "lifestyle"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Casual creator"
+        },
+        {
+            "id": "casual_012",
+            "name": "Casual Creator 12",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual12.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual12.png",
+            "sceneDescription": "Casual lifestyle setting",
+            "tags": [
+                "casual",
+                "lifestyle"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Casual creator"
+        },
+        {
+            "id": "casual_013",
+            "name": "Casual Creator 13",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual13.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual13.png",
+            "sceneDescription": "Casual lifestyle setting",
+            "tags": [
+                "casual",
+                "lifestyle"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Casual creator"
+        },
+        {
+            "id": "casual_014",
+            "name": "Casual Creator 14",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual14.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual14.png",
+            "sceneDescription": "Casual lifestyle setting",
+            "tags": [
+                "casual",
+                "lifestyle"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Casual creator"
+        },
+        {
             "id": "actor_003",
             "name": "Beauty Man - Bathroom Selfie",
             "category": "Beauty",
-            "imageUrl": "/actors/beauty-actor-1.png",
-            "thumbnailUrl": "/actors/beauty-actor-1.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-1.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-1.png",
             "sceneDescription": "Modern bathroom with mirror, casual grooming and skincare routine",
             "tags": [
                 "beauty",
@@ -310,8 +445,8 @@
             "id": "actor_003b",
             "name": "Beauty Woman - Makeup Studio",
             "category": "Beauty",
-            "imageUrl": "/actors/beauty-actor-2.png",
-            "thumbnailUrl": "/actors/beauty-actor-2.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-2.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-2.png",
             "sceneDescription": "Professional makeup studio with ring light, beauty products and brushes visible",
             "tags": [
                 "beauty",
@@ -327,8 +462,8 @@
             "id": "actor_003c",
             "name": "Beauty Man - Skincare Routine",
             "category": "Beauty",
-            "imageUrl": "/actors/beauty-actor-3.png",
-            "thumbnailUrl": "/actors/beauty-actor-3.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-3.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-3.png",
             "sceneDescription": "Clean bathroom setting with marble background, skincare demonstration",
             "tags": [
                 "beauty",
@@ -344,8 +479,8 @@
             "id": "actor_003d",
             "name": "Beauty Woman - Professional Studio",
             "category": "Beauty",
-            "imageUrl": "/actors/beauty-actor-4.png",
-            "thumbnailUrl": "/actors/beauty-actor-4.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-4.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-4.png",
             "sceneDescription": "Professional beauty studio with shelves of makeup products and ring light",
             "tags": [
                 "beauty",
@@ -361,8 +496,8 @@
             "id": "actor_003e",
             "name": "Beauty Man - Grooming Tutorial",
             "category": "Beauty",
-            "imageUrl": "/actors/beauty-actor-5.png",
-            "thumbnailUrl": "/actors/beauty-actor-5.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-5.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-5.png",
             "sceneDescription": "Modern bathroom with mirror and natural lighting, grooming demonstration",
             "tags": [
                 "beauty",
@@ -378,8 +513,8 @@
             "id": "actor_003f",
             "name": "Beauty Woman - Makeup Tutorial",
             "category": "Beauty",
-            "imageUrl": "/actors/beauty-actor-6.png",
-            "thumbnailUrl": "/actors/beauty-actor-6.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-6.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-6.png",
             "sceneDescription": "Professional beauty studio with makeup products and ring light, orange off-shoulder sweater",
             "tags": [
                 "beauty",
@@ -395,8 +530,8 @@
             "id": "actor_003g",
             "name": "Beauty Man - Skincare Demo",
             "category": "Beauty",
-            "imageUrl": "/actors/beauty-actor-7.png",
-            "thumbnailUrl": "/actors/beauty-actor-7.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-7.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-7.png",
             "sceneDescription": "Modern bathroom with marble background, casual skincare demonstration",
             "tags": [
                 "beauty",
@@ -412,8 +547,8 @@
             "id": "actor_003h",
             "name": "Beauty Man - Face Wash Tutorial",
             "category": "Beauty",
-            "imageUrl": "/actors/beauty-actor-8.png",
-            "thumbnailUrl": "/actors/beauty-actor-8.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-8.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-8.png",
             "sceneDescription": "Clean bathroom with LED mirror, face wash demonstration with foam",
             "tags": [
                 "beauty",
@@ -429,8 +564,8 @@
             "id": "actor_003i",
             "name": "Beauty Woman - Professional Tutorial",
             "category": "Beauty",
-            "imageUrl": "/actors/beauty-actor-9.png",
-            "thumbnailUrl": "/actors/beauty-actor-9.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-9.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-9.png",
             "sceneDescription": "Professional beauty studio with ring light and makeup products on desk",
             "tags": [
                 "beauty",
@@ -446,8 +581,8 @@
             "id": "actor_003j",
             "name": "Beauty Woman - Studio Content",
             "category": "Beauty",
-            "imageUrl": "/actors/beauty-actor-10.png",
-            "thumbnailUrl": "/actors/beauty-actor-10.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-10.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/beauty-actor-10.png",
             "sceneDescription": "Professional beauty studio with ring light, makeup products and professional lighting setup",
             "tags": [
                 "beauty",
@@ -460,64 +595,477 @@
             "style": "Beauty professional"
         },
         {
-            "id": "actor_004",
-            "name": "Alex Kim",
-            "category": "Fitness",
-            "imageUrl": "https://placeholder-actor-images.com/alex-kim.jpg",
-            "thumbnailUrl": "https://placeholder-actor-images.com/alex-kim-thumb.jpg",
-            "sceneDescription": "Modern gym environment, athletic wear, energetic atmosphere",
-            "tags": [
-                "fitness",
-                "health",
-                "sports",
-                "wellness"
-            ],
-            "gender": "male",
-            "ageRange": "25-35",
-            "style": "Fitness coach"
-        },
-        {
-            "id": "actor_005",
-            "name": "Olivia Martinez",
-            "category": "Lifestyle",
-            "imageUrl": "https://placeholder-actor-images.com/olivia-martinez.jpg",
-            "thumbnailUrl": "https://placeholder-actor-images.com/olivia-martinez-thumb.jpg",
-            "sceneDescription": "Cozy home kitchen, warm lighting, lifestyle content",
-            "tags": [
-                "lifestyle",
-                "home",
-                "cooking",
-                "family"
-            ],
-            "gender": "female",
-            "ageRange": "28-38",
-            "style": "Lifestyle blogger"
-        },
-        {
-            "id": "actor_006",
-            "name": "David Park",
+            "id": "product_001",
+            "name": "Product Demo 1",
             "category": "Product Demo",
-            "imageUrl": "https://placeholder-actor-images.com/david-park.jpg",
-            "thumbnailUrl": "https://placeholder-actor-images.com/david-park-thumb.jpg",
-            "sceneDescription": "Clean product showcase background, professional demonstration setup",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product1.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product1.png",
+            "sceneDescription": "Product demonstration setting",
             "tags": [
                 "product",
                 "demo",
-                "tech",
-                "review"
+                "commercial"
             ],
-            "gender": "male",
-            "ageRange": "30-40",
-            "style": "Product reviewer"
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Product showcase"
+        },
+        {
+            "id": "product_010",
+            "name": "Product Demo 10",
+            "category": "Product Demo",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product10.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product10.png",
+            "sceneDescription": "Product demonstration setting",
+            "tags": [
+                "product",
+                "demo",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Product showcase"
+        },
+        {
+            "id": "product_011",
+            "name": "Product Demo 11",
+            "category": "Product Demo",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product11.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product11.png",
+            "sceneDescription": "Product demonstration setting",
+            "tags": [
+                "product",
+                "demo",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Product showcase"
+        },
+        {
+            "id": "product_012",
+            "name": "Product Demo 12",
+            "category": "Product Demo",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product12.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product12.png",
+            "sceneDescription": "Product demonstration setting",
+            "tags": [
+                "product",
+                "demo",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Product showcase"
+        },
+        {
+            "id": "product_013",
+            "name": "Product Demo 13",
+            "category": "Product Demo",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product13.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product13.png",
+            "sceneDescription": "Product demonstration setting",
+            "tags": [
+                "product",
+                "demo",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Product showcase"
+        },
+        {
+            "id": "product_014",
+            "name": "Product Demo 14",
+            "category": "Product Demo",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product14.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product14.png",
+            "sceneDescription": "Product demonstration setting",
+            "tags": [
+                "product",
+                "demo",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Product showcase"
+        },
+        {
+            "id": "micro_001",
+            "name": "Micro Content 1",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro1.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro1.png",
+            "sceneDescription": "Short-form content setting",
+            "tags": [
+                "micro",
+                "short-form",
+                "social"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Social media creator"
+        },
+        {
+            "id": "micro_002",
+            "name": "Micro Content 2",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro2.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro2.png",
+            "sceneDescription": "Short-form content setting",
+            "tags": [
+                "micro",
+                "short-form",
+                "social"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Social media creator"
+        },
+        {
+            "id": "micro_003",
+            "name": "Micro Content 3",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro3.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro3.png",
+            "sceneDescription": "Short-form content setting",
+            "tags": [
+                "micro",
+                "short-form",
+                "social"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Social media creator"
+        },
+        {
+            "id": "micro_004",
+            "name": "Micro Content 4",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro4.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro4.png",
+            "sceneDescription": "Short-form content setting",
+            "tags": [
+                "micro",
+                "short-form",
+                "social"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Social media creator"
+        },
+        {
+            "id": "micro_005",
+            "name": "Micro Content 5",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro5.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro5.png",
+            "sceneDescription": "Short-form content setting",
+            "tags": [
+                "micro",
+                "short-form",
+                "social"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Social media creator"
+        },
+        {
+            "id": "micro_006",
+            "name": "Micro Content 6",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro6.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro6.png",
+            "sceneDescription": "Short-form content setting",
+            "tags": [
+                "micro",
+                "short-form",
+                "social"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Social media creator"
+        },
+        {
+            "id": "micro_007",
+            "name": "Micro Content 7",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro7.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro7.png",
+            "sceneDescription": "Short-form content setting",
+            "tags": [
+                "micro",
+                "short-form",
+                "social"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Social media creator"
+        },
+        {
+            "id": "micro_008",
+            "name": "Micro Content 8",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro8.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro8.png",
+            "sceneDescription": "Short-form content setting",
+            "tags": [
+                "micro",
+                "short-form",
+                "social"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Social media creator"
+        },
+        {
+            "id": "micro_009",
+            "name": "Micro Content 9",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro9.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro9.png",
+            "sceneDescription": "Short-form content setting",
+            "tags": [
+                "micro",
+                "short-form",
+                "social"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Social media creator"
+        },
+        {
+            "id": "micro_010",
+            "name": "Micro Content 10",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro10.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro10.png",
+            "sceneDescription": "Short-form content setting",
+            "tags": [
+                "micro",
+                "short-form",
+                "social"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Social media creator"
+        },
+        {
+            "id": "micro_011",
+            "name": "Micro Content 11",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro11.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro11.png",
+            "sceneDescription": "Short-form content setting",
+            "tags": [
+                "micro",
+                "short-form",
+                "social"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Social media creator"
+        },
+        {
+            "id": "micro_012",
+            "name": "Micro Content 12",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro12.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro12.png",
+            "sceneDescription": "Short-form content setting",
+            "tags": [
+                "micro",
+                "short-form",
+                "social"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Social media creator"
+        },
+        {
+            "id": "micro_013",
+            "name": "Micro Content 13",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro13.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro13.png",
+            "sceneDescription": "Short-form content setting",
+            "tags": [
+                "micro",
+                "short-form",
+                "social"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Social media creator"
+        },
+        {
+            "id": "micro_014",
+            "name": "Micro Content 14",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro14.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro14.png",
+            "sceneDescription": "Short-form content setting",
+            "tags": [
+                "micro",
+                "short-form",
+                "social"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Social media creator"
+        },
+        {
+            "id": "micro_015",
+            "name": "Micro Content 15",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro15.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro15.png",
+            "sceneDescription": "Short-form content setting",
+            "tags": [
+                "micro",
+                "short-form",
+                "social"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Social media creator"
+        },
+        {
+            "id": "micro_016",
+            "name": "Micro Content 16",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro16.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro16.png",
+            "sceneDescription": "Short-form content setting",
+            "tags": [
+                "micro",
+                "short-form",
+                "social"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Social media creator"
+        },
+        {
+            "id": "micro_017",
+            "name": "Micro Content 17",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro17.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro17.png",
+            "sceneDescription": "Short-form content setting",
+            "tags": [
+                "micro",
+                "short-form",
+                "social"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Social media creator"
+        },
+        {
+            "id": "micro_018",
+            "name": "Micro Content 18",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro18.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro18.png",
+            "sceneDescription": "Short-form content setting",
+            "tags": [
+                "micro",
+                "short-form",
+                "social"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Social media creator"
+        },
+        {
+            "id": "micro_019",
+            "name": "Micro Content 19",
+            "category": "Micro-Content",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro19.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/micro19.png",
+            "sceneDescription": "Short-form content setting",
+            "tags": [
+                "micro",
+                "short-form",
+                "social"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Social media creator"
+        },
+        {
+            "id": "original_001",
+            "name": "Fire Scene",
+            "category": "Originals",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/fire.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/fire.png",
+            "sceneDescription": "Dramatic fire scene background",
+            "tags": [
+                "original",
+                "dramatic",
+                "fire"
+            ],
+            "gender": "neutral",
+            "ageRange": "any",
+            "style": "Cinematic original"
+        },
+        {
+            "id": "original_002",
+            "name": "Moon Scene",
+            "category": "Originals",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/moon.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/moon.png",
+            "sceneDescription": "Mystical moon scene background",
+            "tags": [
+                "original",
+                "mystical",
+                "moon"
+            ],
+            "gender": "neutral",
+            "ageRange": "any",
+            "style": "Cinematic original"
+        },
+        {
+            "id": "original_003",
+            "name": "Mountain Scene",
+            "category": "Originals",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/mountain.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/mountain.png",
+            "sceneDescription": "Epic mountain landscape background",
+            "tags": [
+                "original",
+                "landscape",
+                "mountain"
+            ],
+            "gender": "neutral",
+            "ageRange": "any",
+            "style": "Cinematic original"
+        },
+        {
+            "id": "original_004",
+            "name": "Building Scene",
+            "category": "Originals",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/building.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/building.png",
+            "sceneDescription": "Urban building architecture background",
+            "tags": [
+                "original",
+                "urban",
+                "architecture"
+            ],
+            "gender": "neutral",
+            "ageRange": "any",
+            "style": "Cinematic original"
         }
     ],
     "categories": [
         "Business",
         "Casual",
-        "Lifestyle",
+        "Beauty",
         "Product Demo",
-        "Fitness",
-        "Beauty"
+        "Micro-Content",
+        "Originals"
     ],
-    "note": "This is mock data with 6 sample actors. Replace imageUrl and thumbnailUrl with actual Supabase storage URLs when ready. You mentioned having ~100 actors, so expand this array accordingly."
+    "note": "All image URLs point to Cloudflare R2 storage with the Actors/ prefix included."
 }

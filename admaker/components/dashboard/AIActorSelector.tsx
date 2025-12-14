@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import styles from './AIActorSelector.module.css';
 import { AIActor } from '@/lib/types/veo';
+import { getMediaUrl } from '@/lib/cloudflare-config';
 
 interface AIActorSelectorProps {
     onActorSelect: (actor: AIActor) => void;
@@ -89,7 +90,7 @@ export default function AIActorSelector({ onActorSelect }: AIActorSelectorProps)
                         <div className={styles.actorImageWrapper}>
                             {actor.thumbnailUrl ? (
                                 <img
-                                    src={actor.thumbnailUrl}
+                                    src={actor.thumbnailUrl.startsWith('http') ? actor.thumbnailUrl : (actor.thumbnailUrl.startsWith('/') ? actor.thumbnailUrl : getMediaUrl(actor.thumbnailUrl))}
                                     alt={actor.name}
                                     className={styles.actorImage}
                                 />

@@ -24,6 +24,7 @@ export default function DashboardPage() {
     const [isGenerating, setIsGenerating] = useState(false);
     const [generatedVideo, setGeneratedVideo] = useState<string | null>(null);
     const [credits, setCredits] = useState(10);
+    const [actorCredits, setActorCredits] = useState(10); // AI Actor credits
     const [showCreditsModal, setShowCreditsModal] = useState(false);
     const [showCreateActorModal, setShowCreateActorModal] = useState(false);
     const [actorReferenceImage, setActorReferenceImage] = useState<string | null>(null);
@@ -112,6 +113,12 @@ export default function DashboardPage() {
 
     return (
         <div className={styles.dashboardContainer}>
+            {/* Sidebar Overlay */}
+            <div
+                className={`${styles.sidebarOverlay} ${sidebarOpen ? styles.open : ''}`}
+                onClick={() => setSidebarOpen(false)}
+            />
+
             {/* Sidebar */}
             <aside className={`${styles.sidebar} ${sidebarOpen ? styles.open : ''}`}>
                 <div className={styles.sidebarHeader}>
@@ -172,13 +179,23 @@ export default function DashboardPage() {
                 </nav>
 
                 <div className={styles.creditsDisplay}>
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <circle cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="2" />
-                        <path d="M10 6v4l3 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                    </svg>
-                    <div>
-                        <span className={styles.creditsLabel}>Credits</span>
-                        <span className={styles.creditsValue}>{credits}</span>
+                    <div className={styles.creditItem}>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" fill="currentColor" />
+                        </svg>
+                        <div>
+                            <span className={styles.creditsLabel}>Video Credits</span>
+                            <span className={styles.creditsValue}>{credits}</span>
+                        </div>
+                    </div>
+                    <div className={styles.creditItem}>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 10a3 3 0 100-6 3 3 0 000 6zM4 18a6 6 0 0112 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                        </svg>
+                        <div>
+                            <span className={styles.creditsLabel}>AI Actor Credits</span>
+                            <span className={styles.creditsValue}>{actorCredits}</span>
+                        </div>
                     </div>
                 </div>
             </aside>
@@ -317,14 +334,21 @@ export default function DashboardPage() {
                                     Create custom AI actors with your own images and settings
                                 </p>
                             </div>
+                            <div className={styles.actorCreditsInfo}>
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M10 10a3 3 0 100-6 3 3 0 000 6zM4 18a6 6 0 0112 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                </svg>
+                                <span>{actorCredits} AI Actor Credits Remaining</span>
+                            </div>
                             <button
                                 className={styles.createActorBtn}
                                 onClick={() => setShowCreateActorModal(true)}
+                                disabled={actorCredits < 1}
                             >
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                                     <path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                                 </svg>
-                                Create Actor
+                                Create Actor (1 credit)
                             </button>
                         </div>
 

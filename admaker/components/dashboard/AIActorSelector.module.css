@@ -210,6 +210,32 @@
     font-size: var(--font-size-sm);
 }
 
+.showMoreContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.showMoreBtn {
+    padding: var(--spacing-sm) var(--spacing-xl);
+    background: rgba(255, 8, 68, 0.1);
+    border: 1px solid rgba(255, 8, 68, 0.3);
+    border-radius: var(--radius-full);
+    color: var(--color-red-primary);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    transition: all var(--transition-base);
+    cursor: pointer;
+}
+
+.showMoreBtn:hover {
+    background: rgba(255, 8, 68, 0.2);
+    border-color: rgba(255, 8, 68, 0.5);
+    transform: translateY(-2px);
+}
+
 @media (max-width: 768px) {
     .selectorHeader {
         flex-direction: column;
@@ -223,7 +249,16 @@
     }
 
     .actorsGrid {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        grid-auto-flow: column;
+        grid-template-rows: repeat(2, 1fr);
+        grid-template-columns: none;
+        grid-auto-columns: 140px;
         gap: var(--spacing-sm);
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+
+    .actorCard {
+        width: 140px;
     }
 }

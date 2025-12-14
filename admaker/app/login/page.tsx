@@ -1,27 +1,136 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import styles from '../login/Auth.module.css';
 import { getMediaUrl } from '@/lib/cloudflare-config';
+import { createClient } from '@/lib/supabase/client';
+
 
 export default function LoginPage() {
     const router = useRouter();
+    const searchParams = useSearchParams();
     const [email, setEmail] = useState('');
     const [isEmailSent, setIsEmailSent] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const supabase = createClient();
 
-    const handleGoogleLogin = () => {
-        // Handle Google OAuth
-        console.log('Google login');
-        // After successful Google auth, redirect to payment
-        router.push('/payment');
+    // Check for error in URL params
+    useEffect(() => {
+        const errorParam = searchParams.get('error');
+        if (errorParam) {
+            setError(`Authentication failed: ${errorParam}. Please try again.`);
+            setLoading(false);
+        }
+    }, [searchParams]);
+
+    // Handle PKCE code exchange on client side
+    useEffect(() => {
+        const handleCodeExchange = async () => {
+            const code = searchParams.get('code');
+
+            if (code) {
+                try {
+                    setLoading(true);
+                    console.log('Exchanging code for session...');
+
+                    // Supabase client will automatically exchange the code using stored verifier
+                    const { data, error } = await supabase.auth.exchangeCodeForSession(code);
+
+                    if (error) {
+                        console.error('Exchange error:', error);
+                        setError('Authentication failed. Please try again.');
+                        setLoading(false);
+                        return;
+                    }
+
+                    if (data.session) {
+                        console.log('Session created, redirecting...');
+                        // Clear URL params
+                        window.history.replaceState(null, '', '/login');
+                        router.push('/payment');
+                    }
+                } catch (err) {
+                    console.error('Code exchange error:', err);
+                    setError('Authentication failed. Please try again.');
+                    setLoading(false);
+                }
+            }
+        };
+
+        handleCodeExchange();
+    }, [searchParams, router]);
+
+    // Check if already logged in
+    useEffect(() => {
+        const checkAuth = async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (session) {
+                console.log('Already logged in, redirecting to dashboard');
+                router.push('/payment');
+            }
+        };
+
+        checkAuth();
+    }, [router]);
+
+    // Listen for auth state changes
+    useEffect(() => {
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+            console.log('Auth event:', event);
+
+            if (event === 'SIGNED_IN' && session) {
+                console.log('User signed in:', session.user.email);
+                router.push('/payment');
+            }
+        });
+
+        return () => subscription.unsubscribe();
+    }, [router]);
+
+    const handleGoogleLogin = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+
+            const { error } = await supabase.auth.signInWithOAuth({
+                provider: 'google',
+                options: {
+                    redirectTo: `${window.location.origin}/auth/callback`,
+                },
+            });
+
+            if (error) throw error;
+            // User will be redirected by Supabase
+        } catch (err) {
+            console.error('Google login error:', err);
+            setError('Failed to sign in with Google. Please try again.');
+            setLoading(false);
+        }
     };
 
-    const handleEmailSubmit = (e: React.FormEvent) => {
+    const handleEmailSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Send magic link email
-        console.log('Sending magic link to:', email);
-        setIsEmailSent(true);
+        try {
+            setLoading(true);
+            setError(null);
+
+            const { error } = await supabase.auth.signInWithOtp({
+                email,
+                options: {
+                    emailRedirectTo: `${window.location.origin}/auth/callback`,
+                },
+            });
+
+            if (error) throw error;
+            setIsEmailSent(true);
+        } catch (err) {
+            console.error('Email login error:', err);
+            setError('Failed to send magic link. Please check your email and try again.');
+        } finally {
+            setLoading(false);
+        }
     };
 
     if (isEmailSent) {
@@ -88,14 +197,32 @@ export default function LoginPage() {
                             <span className={styles.socialProofText}>Join 50,000+ creators</span>
                         </div>
 
-                        <button onClick={handleGoogleLogin} className={styles.googleBtn}>
+                        {/* Error Message */}
+                        {error && (
+                            <div style={{
+                                padding: '12px',
+                                backgroundColor: '#ff4444',
+                                color: 'white',
+                                borderRadius: '8px',
+                                marginBottom: '16px',
+                                fontSize: '14px'
+                            }}>
+                                {error}
+                            </div>
+                        )}
+
+                        <button
+                            onClick={handleGoogleLogin}
+                            className={styles.googleBtn}
+                            disabled={loading}
+                        >
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <path d="M19.6 10.227c0-.709-.064-1.39-.182-2.045H10v3.868h5.382a4.6 4.6 0 01-1.996 3.018v2.51h3.232c1.891-1.742 2.982-4.305 2.982-7.35z" fill="#4285F4" />
                                 <path d="M10 20c2.7 0 4.964-.895 6.618-2.423l-3.232-2.509c-.895.6-2.04.955-3.386.955-2.605 0-4.81-1.76-5.595-4.123H1.064v2.59A9.996 9.996 0 0010 20z" fill="#34A853" />
                                 <path d="M4.405 11.9c-.2-.6-.314-1.24-.314-1.9 0-.66.114-1.3.314-1.9V5.51H1.064A9.996 9.996 0 000 10c0 1.614.386 3.14 1.064 4.49l3.34-2.59z" fill="#FBBC05" />
                                 <path d="M10 3.977c1.468 0 2.786.505 3.823 1.496l2.868-2.868C14.959.99 12.695 0 10 0 6.09 0 2.71 2.24 1.064 5.51l3.34 2.59C5.19 5.736 7.395 3.977 10 3.977z" fill="#EA4335" />
                             </svg>
-                            Continue with Google
+                            {loading ? 'Loading...' : 'Continue with Google'}
                         </button>
 
                         <div className={styles.divider}>
@@ -110,16 +237,64 @@ export default function LoginPage() {
                                 onChange={(e) => setEmail(e.target.value)}
                                 className={styles.emailInput}
                                 required
+                                disabled={loading}
                             />
 
-                            <button type="submit" className={styles.submitBtn}>
-                                Continue
+                            <button type="submit" className={styles.submitBtn} disabled={loading}>
+                                {loading ? 'Sending...' : 'Continue'}
                             </button>
                         </form>
 
                         <p className={styles.authFooter}>
                             By clicking "Continue" or "Continue with Google", you agree to our <a href="#">Terms of use</a> & <a href="#">Privacy Policy</a>.
                         </p>
+
+                        {/* Customer Testimonials */}
+                        <div className={styles.testimonialsSection}>
+                            <div className={styles.testimonialsScroller}>
+                                <div className={styles.testimonialCard}>
+                                    <div className={styles.stars}>⭐⭐⭐⭐⭐</div>
+                                    <p className={styles.testimonialText}>"AdMaker AI transformed my content creation. I generate 20+ videos per week now!"</p>
+                                    <p className={styles.testimonialAuthor}>- Sarah M., Content Creator</p>
+                                </div>
+                                <div className={styles.testimonialCard}>
+                                    <div className={styles.stars}>⭐⭐⭐⭐⭐</div>
+                                    <p className={styles.testimonialText}>"The AI actors are incredibly realistic. My engagement increased by 300%!"</p>
+                                    <p className={styles.testimonialAuthor}>- Mike R., E-commerce Owner</p>
+                                </div>
+                                <div className={styles.testimonialCard}>
+                                    <div className={styles.stars}>⭐⭐⭐⭐⭐</div>
+                                    <p className={styles.testimonialText}>"Best investment for my business. ROI was positive in the first month!"</p>
+                                    <p className={styles.testimonialAuthor}>- Jessica L., Marketing Manager</p>
+                                </div>
+                                <div className={styles.testimonialCard}>
+                                    <div className={styles.stars}>⭐⭐⭐⭐⭐</div>
+                                    <p className={styles.testimonialText}>"So easy to use! I created my first video in under 5 minutes."</p>
+                                    <p className={styles.testimonialAuthor}>- David K., Small Business Owner</p>
+                                </div>
+                                <div className={styles.testimonialCard}>
+                                    <div className={styles.stars}>⭐⭐⭐⭐⭐</div>
+                                    <p className={styles.testimonialText}>"The quality is amazing. My clients think I hired professional actors!"</p>
+                                    <p className={styles.testimonialAuthor}>- Emma T., Freelancer</p>
+                                </div>
+                                <div className={styles.testimonialCard}>
+                                    <div className={styles.stars}>⭐⭐⭐⭐⭐</div>
+                                    <p className={styles.testimonialText}>"Game changer for UGC content. I can test multiple creatives daily!"</p>
+                                    <p className={styles.testimonialAuthor}>- Alex P., Digital Marketer</p>
+                                </div>
+                                {/* Duplicate for seamless loop */}
+                                <div className={styles.testimonialCard}>
+                                    <div className={styles.stars}>⭐⭐⭐⭐⭐</div>
+                                    <p className={styles.testimonialText}>"AdMaker AI transformed my content creation. I generate 20+ videos per week now!"</p>
+                                    <p className={styles.testimonialAuthor}>- Sarah M., Content Creator</p>
+                                </div>
+                                <div className={styles.testimonialCard}>
+                                    <div className={styles.stars}>⭐⭐⭐⭐⭐</div>
+                                    <p className={styles.testimonialText}>"The AI actors are incredibly realistic. My engagement increased by 300%!"</p>
+                                    <p className={styles.testimonialAuthor}>- Mike R., E-commerce Owner</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

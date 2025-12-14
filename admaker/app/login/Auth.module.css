@@ -395,11 +395,14 @@
     }
 
     .authCard {
-        padding: var(--spacing-xl) var(--spacing-md);
-        border-radius: 0;
-        max-width: 100%;
-        margin: 0;
-        border: none;
+        padding: var(--spacing-2xl) var(--spacing-lg);
+        border-radius: var(--radius-lg);
+        max-width: 90%;
+        margin: var(--spacing-lg) auto;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(30px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
     }
 
     .authLogo {
@@ -442,7 +445,7 @@
     }
 
     .authLeft {
-        padding: var(--spacing-lg) 0;
+        padding: var(--spacing-2xl) 0;
         min-height: 100vh;
         display: flex;
         align-items: center;
@@ -463,5 +466,80 @@
 
     .aiGeneratedBadge {
         display: none;
+    }
+}
+
+/* Testimonials Section */
+.testimonialsSection {
+    margin-top: var(--spacing-xl);
+    overflow: hidden;
+    width: 100%;
+}
+
+.testimonialsScroller {
+    display: flex;
+    gap: var(--spacing-md);
+    animation: scroll 30s linear infinite;
+    width: max-content;
+}
+
+.testimonialsScroller:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.testimonialCard {
+    min-width: 280px;
+    max-width: 280px;
+    padding: var(--spacing-md);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+}
+
+.testimonialCard:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 8, 68, 0.3);
+    transform: translateY(-2px);
+}
+
+.stars {
+    font-size: 14px;
+    margin-bottom: var(--spacing-xs);
+}
+
+.testimonialText {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-primary);
+    line-height: 1.5;
+    margin-bottom: var(--spacing-xs);
+    font-style: italic;
+}
+
+.testimonialAuthor {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    font-weight: 600;
+}
+
+@media (max-width: 480px) {
+    .testimonialsSection {
+        margin-top: var(--spacing-lg);
+    }
+
+    .testimonialCard {
+        min-width: 240px;
+        max-width: 240px;
+        padding: var(--spacing-sm);
     }
 }
