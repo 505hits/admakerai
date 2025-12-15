@@ -132,15 +132,21 @@ export default function DashboardPage() {
         try {
             setLoadingProgress('Sending request to Veo API...');
 
-            // Get current user for metadata storage
+            // TEMPORARY: Auth disabled for testing R2 storage
+            // TODO: Re-enable after test
             const supabase = createClient();
             const { data: { user } } = await supabase.auth.getUser();
 
+            // Use test user ID if not logged in
+            const userId = user?.id || 'test-user-' + Date.now();
+
+            /* COMMENTED FOR TESTING - UNCOMMENT AFTER TEST
             if (!user) {
                 setError('You must be logged in to generate videos');
                 setIsGenerating(false);
                 return;
             }
+            */
 
             // Call the real Veo API
             const result = await generateVideoWithDuration(
@@ -161,7 +167,7 @@ export default function DashboardPage() {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         taskId: result.initialTaskId,
-                        userId: user.id,
+                        userId: userId, // Use test user ID
                         actorName: selectedActor.name,
                         actorImageUrl: selectedActor.thumbnailUrl,
                         script,
