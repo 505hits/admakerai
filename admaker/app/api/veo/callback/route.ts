@@ -1,10 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { downloadVideo, uploadVideoToR2 } from '@/lib/api/r2-upload';
+import { createClient } from '@/lib/supabase/server';
 
 /**
- * Simplified callback endpoint for testing
+ * Callback endpoint for Veo API
+ * Handles video completion, downloads from Veo, uploads to R2, and saves to Supabase
  */
 
-// In-memory storage for video tasks
+// In-memory storage for video tasks (for polling)
 const videoTasks = new Map<string, {
     status: 'pending' | 'processing' | 'completed' | 'failed';
     videoUrl?: string;
@@ -12,6 +15,18 @@ const videoTasks = new Map<string, {
     taskId: string;
     timestamp: number;
 }>();
+
+// In-memory storage for task metadata (user_id, actor info, etc.)
+export const taskMetadata = new Map<string, {
+    userId: string;
+    actorName: string;
+    actorImageUrl: string;
+    script: string;
+    sceneDescription: string;
+    duration: number;
+    format: string;
+}>();
+
 
 export async function POST(request: NextRequest) {
     try {
@@ -21,14 +36,11 @@ export async function POST(request: NextRequest) {
         console.log('Content-Type:', contentType);
 
         const bodyText = await request.text();
-        console.log('Raw body:', bodyText.substring(0, 200)); // Log first 200 chars
+        console.log('Raw body:', bodyText.substring(0, 200));
 
         // Check if body is a URL (plain text)
         if (bodyText.startsWith('http://') || bodyText.startsWith('https://')) {
             console.log('📹 Received plain URL callback');
-
-            // Extract taskId from URL or use a default
-            // For now, we can't process this without more info
             console.log('⚠️ Plain URL format not yet supported:', bodyText);
 
             return NextResponse.json({
@@ -45,7 +57,6 @@ export async function POST(request: NextRequest) {
             console.error('❌ Failed to parse as JSON:', parseError);
             console.log('Body was:', bodyText);
 
-            // Return success anyway to avoid Veo retrying
             return NextResponse.json(
                 { success: true, message: 'Received but could not parse' },
                 { status: 200 }
@@ -67,17 +78,76 @@ export async function POST(request: NextRequest) {
 
         if (code === 200) {
             const videoUrls = info?.resultUrls ? JSON.parse(info.resultUrls) : [];
-            const videoUrl = videoUrls[0];
+            const veoVideoUrl = videoUrls[0];
 
+            if (!veoVideoUrl) {
+                console.log('⚠️ No video URL in callback');
+                videoTasks.set(taskId, {
+                    status: 'failed',
+                    error: 'No video URL provided',
+                    taskId,
+                    timestamp: Date.now(),
+                });
+                return NextResponse.json({ success: true }, { status: 200 });
+            }
+
+            console.log(`✅ Video completed: ${taskId}`);
+            console.log(`📺 Veo URL: ${veoVideoUrl}`);
+
+            // Download video from Veo
+            console.log('📥 Downloading video from Veo...');
+            const videoBuffer = await downloadVideo(veoVideoUrl);
+
+            // Upload to R2
+            console.log('☁️ Uploading to Cloudflare R2...');
+            const fileName = `${taskId}.mp4`;
+            const r2VideoUrl = await uploadVideoToR2(videoBuffer, fileName);
+
+            console.log(`✅ Video uploaded to R2: ${r2VideoUrl}`);
+
+            // Save to Supabase
+            console.log('💾 Saving metadata to Supabase...');
+            const supabase = await createClient();
+
+            // Get metadata from the original request
+            const metadata = taskMetadata.get(taskId);
+
+            if (metadata) {
+                const { error: dbError } = await supabase
+                    .from('videos')
+                    .insert({
+                        user_id: metadata.userId,
+                        task_id: taskId,
+                        video_url: r2VideoUrl,
+                        actor_name: metadata.actorName,
+                        actor_image_url: metadata.actorImageUrl,
+                        script: metadata.script,
+                        scene_description: metadata.sceneDescription,
+                        duration: metadata.duration,
+                        format: metadata.format,
+                        status: 'completed'
+                    });
+
+                if (dbError) {
+                    console.error('❌ Error saving to Supabase:', dbError);
+                    // Continue anyway - video is in R2
+                } else {
+                    console.log('✅ Metadata saved to Supabase');
+                    // Clean up metadata after successful save
+                    taskMetadata.delete(taskId);
+                }
+            } else {
+                console.log('⚠️ No metadata found for taskId, skipping Supabase save');
+            }
+
+            // Update in-memory cache
             videoTasks.set(taskId, {
                 status: 'completed',
-                videoUrl,
+                videoUrl: r2VideoUrl,
                 taskId,
                 timestamp: Date.now(),
             });
 
-            console.log(`✅ Video completed: ${taskId}`);
-            console.log(`📺 URL: ${videoUrl}`);
         } else {
             videoTasks.set(taskId, {
                 status: 'failed',

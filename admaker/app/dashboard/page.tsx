@@ -132,6 +132,16 @@ export default function DashboardPage() {
         try {
             setLoadingProgress('Sending request to Veo API...');
 
+            // Get current user for metadata storage
+            const supabase = createClient();
+            const { data: { user } } = await supabase.auth.getUser();
+
+            if (!user) {
+                setError('You must be logged in to generate videos');
+                setIsGenerating(false);
+                return;
+            }
+
             // Call the real Veo API
             const result = await generateVideoWithDuration(
                 selectedActor.imageUrl,
@@ -143,6 +153,23 @@ export default function DashboardPage() {
             );
 
             console.log('✅ Video generation started:', result);
+
+            // Store metadata for the callback to use
+            await fetch('/api/veo/store-metadata', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    taskId: result.initialTaskId,
+                    userId: user.id,
+                    actorName: selectedActor.name,
+                    actorImageUrl: selectedActor.thumbnailUrl,
+                    script,
+                    sceneDescription,
+                    duration,
+                    format
+                })
+            });
+
             setLoadingProgress('Video generation started! Processing...');
 
             // Deduct credits immediately
