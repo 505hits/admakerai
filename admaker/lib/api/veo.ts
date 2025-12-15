@@ -125,19 +125,21 @@ export async function generateVideoWithDuration(
     // For 9:16 videos, we'll use FIRST_AND_LAST_FRAMES_2_VIDEO mode instead
     const useReferenceMode = format === '16:9';
 
-    // Combine script and scene description into a natural prompt
-    // Format: "Action/dialogue. Scene description."
-    const combinedPrompt = `${script.trim()}. ${sceneDescription.trim()}`;
+    // Create a natural prompt for Veo
+    // Format: Scene description with action
+    const naturalPrompt = sceneDescription.trim()
+        ? `${sceneDescription.trim()}. ${script.trim()}`
+        : script.trim();
 
     // Generate initial 8s video
     const generateRequest: VeoGenerateRequest = {
-        prompt: combinedPrompt,
+        prompt: naturalPrompt,
         imageUrls,
         model: 'veo3_fast', // Fast model for quicker generation
         aspectRatio: format, // Use user-selected format
         generationType: useReferenceMode ? 'REFERENCE_2_VIDEO' : 'FIRST_AND_LAST_FRAMES_2_VIDEO',
         enableTranslation: true, // Auto-translate prompts to English
-        watermark: 'AdMaker AI',
+        watermark: 'AdMaker AI', // Fixed: lowercase 'watermark'
         callBackUrl, // Callback URL for async notification
     };
 
