@@ -9,7 +9,7 @@ const getCallbackUrl = () => {
     // even when testing on preview deployments
     const appUrl = process.env.NEXT_PUBLIC_APP_URL ||
         (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000');
-    return `${appUrl}/api/veo/callback`;
+    return `${appUrl}/api/veo/webhook`;
 };
 
 class VeoAPIClient {
@@ -87,7 +87,7 @@ class VeoAPIClient {
         // This polls our local callback storage which only gets populated if:
         // 1. You're using ngrok/tunneling, OR
         // 2. You're deployed to a public URL (Vercel, etc.)
-        const response = await fetch(`/api/veo/callback?taskId=${taskId}`);
+        const response = await fetch(`/api/veo/webhook?taskId=${taskId}`);
         if (!response.ok) {
             return null;
         }

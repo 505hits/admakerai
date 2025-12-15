@@ -209,7 +209,7 @@ export default function DashboardPage() {
                     // Poll our local callback storage
                     // NOTE: In localhost, Veo can't send callbacks, so this will timeout
                     // The video IS being generated on Veo's servers though!
-                    const response = await fetch(`/api/veo/callback?taskId=${taskId}`);
+                    const response = await fetch(`/api/veo/webhook?taskId=${taskId}`);
 
                     if (response.status === 404) {
                         // Callback not received yet
