@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
         const bodyText = await request.text();
         console.log('Raw body:', bodyText.substring(0, 200));
 
-        // Check if body is a URL (plain text)
+        // Check if body is a URL (plain text) - FORCE REDEPLOY
         if (bodyText.startsWith('http://') || bodyText.startsWith('https://')) {
             console.log('📹 Received plain URL callback');
             const veoVideoUrl = bodyText.trim();
