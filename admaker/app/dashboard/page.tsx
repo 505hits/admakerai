@@ -6,6 +6,7 @@ import ScriptEditor from '@/components/dashboard/ScriptEditor';
 import VideoSettings from '@/components/dashboard/VideoSettings';
 import ProductImageUpload from '@/components/dashboard/ProductImageUpload';
 import AIActorSelector from '@/components/dashboard/AIActorSelector';
+import VideoGenerationLoader from '@/components/dashboard/VideoGenerationLoader';
 import { AIActor } from '@/lib/types/veo';
 import { generateVideoWithDuration, veoClient } from '@/lib/api/veo';
 import { getMediaUrl } from '@/lib/cloudflare-config';
@@ -32,6 +33,7 @@ export default function DashboardPage() {
     const [actorReferenceImage, setActorReferenceImage] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [loadingProgress, setLoadingProgress] = useState<string>('Initializing...');
+    const [elapsedTime, setElapsedTime] = useState(0);
     const [videoHistory, setVideoHistory] = useState<any[]>([]);
 
     // Load video history from Supabase on mount
@@ -187,6 +189,12 @@ export default function DashboardPage() {
 
 
             setLoadingProgress('Video generation started! Processing...');
+            setElapsedTime(0); // Reset timer
+
+            // Start elapsed time counter
+            const timerInterval = setInterval(() => {
+                setElapsedTime(prev => prev + 1);
+            }, 1000);
 
             // Deduct credits immediately
             setCredits(prev => prev - cost);
@@ -225,6 +233,7 @@ export default function DashboardPage() {
                     const elapsed = Math.floor(attempts);
 
                     if (status.status === 'completed' && status.videoUrl) {
+                        clearInterval(timerInterval); // Stop timer
                         setIsGenerating(false);
                         setGeneratedVideo(status.videoUrl);
                         console.log('🎉 Video ready:', status.videoUrl);
@@ -241,6 +250,7 @@ export default function DashboardPage() {
                             createdAt: new Date().toISOString(),
                         });
                     } else if (status.status === 'failed') {
+                        clearInterval(timerInterval); // Stop timer
                         setIsGenerating(false);
                         setError(status.error || 'Video generation failed. Please try again.');
                         // Refund credits on failure
@@ -282,6 +292,15 @@ export default function DashboardPage() {
 
     return (
         <div className={styles.dashboardContainer}>
+            {/* Video Generation Loader */}
+            {isGenerating && (
+                <VideoGenerationLoader
+                    progress={loadingProgress}
+                    elapsedTime={elapsedTime}
+                    estimatedRemaining={Math.max(0, 120 - elapsedTime)}
+                />
+            )}
+
             {/* Sidebar Overlay */}
             <div
                 className={`${styles.sidebarOverlay} ${sidebarOpen ? styles.open : ''}`}
