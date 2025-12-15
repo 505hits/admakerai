@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { taskMetadata, videoTasks } from '../webhook/route';
+import { taskMetadata } from '../webhook/route';
+import { createServiceClient } from '@/lib/supabase/service';
 
 /**
  * Store metadata for a video generation task
@@ -26,7 +27,7 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Store metadata in the shared Map
+        // Store metadata in the shared Map (for webhook callback)
         taskMetadata.set(taskId, {
             userId,
             actorName: actorName || 'Unknown',
@@ -37,16 +38,23 @@ export async function POST(request: NextRequest) {
             format: format || '16:9'
         });
 
-        // Initialize task in videoTasks with pending status
-        // This allows polling to work immediately
-        videoTasks.set(taskId, {
-            status: 'pending',
-            taskId,
-            timestamp: Date.now(),
-        });
+        // Initialize task in Supabase with pending status
+        // This persists across serverless function invocations
+        const supabase = createServiceClient();
+        const { error: dbError } = await supabase
+            .from('video_tasks')
+            .insert({
+                task_id: taskId,
+                status: 'pending'
+            });
 
-        console.log(`✅ Metadata stored for taskId: ${taskId}`);
-        console.log(`📊 Task initialized in videoTasks with pending status`);
+        if (dbError) {
+            console.error('❌ Error initializing task in Supabase:', dbError);
+            // Continue anyway - task will still work via metadata
+        } else {
+            console.log(`✅ Metadata stored for taskId: ${taskId}`);
+            console.log(`📊 Task initialized in Supabase with pending status`);
+        }
 
         return NextResponse.json({ success: true }, { status: 200 });
 

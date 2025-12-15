@@ -95,13 +95,25 @@ export async function POST(request: NextRequest) {
                 console.error('❌ Supabase error:', dbErr.message);
             }
 
-            // Update in-memory cache with Veo URL
-            videoTasks.set(taskId, {
-                status: 'completed',
-                videoUrl: veoVideoUrl,
-                taskId,
-                timestamp: Date.now(),
-            });
+            // Update task status in Supabase
+            try {
+                const supabase = createServiceClient();
+                const { error: updateError } = await supabase
+                    .from('video_tasks')
+                    .update({
+                        status: 'completed',
+                        video_url: veoVideoUrl
+                    })
+                    .eq('task_id', taskId);
+
+                if (updateError) {
+                    console.error('❌ Error updating task status in Supabase:', updateError);
+                } else {
+                    console.log('✅ Task status updated in Supabase');
+                }
+            } catch (updateErr: any) {
+                console.error('❌ Task update error:', updateErr.message);
+            }
 
             return NextResponse.json({ success: true }, { status: 200 });
         }
@@ -191,21 +203,44 @@ export async function POST(request: NextRequest) {
                 console.error('❌ Supabase error:', dbErr.message);
             }
 
-            // Update in-memory cache with Veo URL
-            videoTasks.set(taskId, {
-                status: 'completed',
-                videoUrl: veoVideoUrl,
-                taskId,
-                timestamp: Date.now(),
-            });
+            // Update task status in Supabase
+            try {
+                const supabase = createServiceClient();
+                const { error: updateError } = await supabase
+                    .from('video_tasks')
+                    .update({
+                        status: 'completed',
+                        video_url: veoVideoUrl
+                    })
+                    .eq('task_id', taskId);
+
+                if (updateError) {
+                    console.error('❌ Error updating task status in Supabase:', updateError);
+                } else {
+                    console.log('✅ Task status updated in Supabase');
+                }
+            } catch (updateErr: any) {
+                console.error('❌ Task update error:', updateErr.message);
+            }
 
         } else {
-            videoTasks.set(taskId, {
-                status: 'failed',
-                error: msg || 'Failed',
-                taskId,
-                timestamp: Date.now(),
-            });
+            // Update task status to failed in Supabase
+            try {
+                const supabase = createServiceClient();
+                const { error: updateError } = await supabase
+                    .from('video_tasks')
+                    .update({
+                        status: 'failed',
+                        error: msg || 'Failed'
+                    })
+                    .eq('task_id', taskId);
+
+                if (updateError) {
+                    console.error('❌ Error updating failed task in Supabase:', updateError);
+                }
+            } catch (updateErr: any) {
+                console.error('❌ Failed task update error:', updateErr.message);
+            }
 
             console.log(`❌ Video failed: ${taskId}`);
         }
@@ -233,14 +268,27 @@ export async function GET(request: NextRequest) {
         );
     }
 
-    const task = videoTasks.get(taskId);
+    // Query Supabase instead of in-memory Map
+    const supabase = createServiceClient();
+    const { data: task, error } = await supabase
+        .from('video_tasks')
+        .select('*')
+        .eq('task_id', taskId)
+        .single();
 
-    if (!task) {
+    if (error || !task) {
         return NextResponse.json(
             { error: 'Task not found' },
             { status: 404 }
         );
     }
 
-    return NextResponse.json(task, { status: 200 });
+    // Return task in the expected format
+    return NextResponse.json({
+        status: task.status,
+        videoUrl: task.video_url,
+        error: task.error,
+        taskId: task.task_id,
+        timestamp: new Date(task.created_at).getTime()
+    }, { status: 200 });
 }
