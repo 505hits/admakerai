@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { taskMetadata } from '../webhook/route';
+import { taskMetadata, videoTasks } from '../webhook/route';
 
 /**
  * Store metadata for a video generation task
@@ -37,7 +37,16 @@ export async function POST(request: NextRequest) {
             format: format || '16:9'
         });
 
+        // Initialize task in videoTasks with pending status
+        // This allows polling to work immediately
+        videoTasks.set(taskId, {
+            status: 'pending',
+            taskId,
+            timestamp: Date.now(),
+        });
+
         console.log(`✅ Metadata stored for taskId: ${taskId}`);
+        console.log(`📊 Task initialized in videoTasks with pending status`);
 
         return NextResponse.json({ success: true }, { status: 200 });
 

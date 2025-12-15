@@ -12,7 +12,7 @@ export const runtime = 'nodejs';
 export const maxDuration = 60; // 60 seconds max
 
 // In-memory storage for video tasks (for polling)
-const videoTasks = new Map<string, {
+export const videoTasks = new Map<string, {
     status: 'pending' | 'processing' | 'completed' | 'failed';
     videoUrl?: string;
     error?: string;
