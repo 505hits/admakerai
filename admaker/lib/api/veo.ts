@@ -3,16 +3,13 @@ import { VeoGenerateRequest, VeoExtendRequest, VeoResponse } from '@/lib/types/v
 const API_BASE_URL = 'https://api.kie.ai';
 const API_KEY = process.env.NEXT_PUBLIC_VEO_API_KEY || '';
 
-// Get the callback URL based on environment
+// Get the callback URL - always use the production URL from env
 const getCallbackUrl = () => {
-    if (typeof window !== 'undefined') {
-        // Client-side: use current origin
-        return `${window.location.origin}/api/veo/callback`;
-    }
-    // Server-side: use environment variable or default
-    return process.env.NEXT_PUBLIC_APP_URL
-        ? `${process.env.NEXT_PUBLIC_APP_URL}/api/veo/callback`
-        : 'http://localhost:3000/api/veo/callback';
+    // Always use NEXT_PUBLIC_APP_URL to ensure callbacks work
+    // even when testing on preview deployments
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL ||
+        (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000');
+    return `${appUrl}/api/veo/callback`;
 };
 
 class VeoAPIClient {
