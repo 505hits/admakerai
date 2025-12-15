@@ -27,10 +27,16 @@ CREATE POLICY "Users can view own videos"
   ON videos FOR SELECT
   USING (auth.uid() = user_id);
 
--- Policy: Users can insert their own videos
+-- Policy: Users can insert their own videos (from client)
 CREATE POLICY "Users can insert own videos"
   ON videos FOR INSERT
   WITH CHECK (auth.uid() = user_id);
+
+-- Policy: Service role can insert videos (for webhooks/callbacks)
+-- This allows the Veo callback to insert videos using the service_role key
+CREATE POLICY "Service role can insert videos"
+  ON videos FOR INSERT
+  WITH CHECK (true);
 
 -- Policy: Users can delete their own videos
 CREATE POLICY "Users can delete own videos"

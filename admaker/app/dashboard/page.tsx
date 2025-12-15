@@ -155,20 +155,30 @@ export default function DashboardPage() {
             console.log('✅ Video generation started:', result);
 
             // Store metadata for the callback to use
-            await fetch('/api/veo/store-metadata', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    taskId: result.initialTaskId,
-                    userId: user.id,
-                    actorName: selectedActor.name,
-                    actorImageUrl: selectedActor.thumbnailUrl,
-                    script,
-                    sceneDescription,
-                    duration,
-                    format
-                })
-            });
+            try {
+                const metadataResponse = await fetch('/api/veo/store-metadata', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        taskId: result.initialTaskId,
+                        userId: user.id,
+                        actorName: selectedActor.name,
+                        actorImageUrl: selectedActor.thumbnailUrl,
+                        script,
+                        sceneDescription,
+                        duration,
+                        format
+                    })
+                });
+
+                if (!metadataResponse.ok) {
+                    console.warn('⚠️ Failed to store metadata - video will be saved to R2 only');
+                }
+            } catch (metaErr) {
+                console.error('❌ Metadata storage error:', metaErr);
+                // Continue anyway - video will still be generated and saved to R2
+            }
+
 
             setLoadingProgress('Video generation started! Processing...');
 
