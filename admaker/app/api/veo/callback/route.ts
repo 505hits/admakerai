@@ -1,13 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { downloadVideo, uploadVideoToR2 } from '@/lib/api/r2-upload';
+import { createClient } from '@supabase/supabase-js';
 
 /**
  * Callback endpoint for Veo 3.1 API
  * 
  * This route receives notifications from the Veo API when video generation is complete.
  * The API will POST to this endpoint with the task results.
+ * 
+ * Flow:
+ * 1. Receive callback from Veo with video URL
+ * 2. Download video from Veo (temporary URL)
+ * 3. Upload video to Cloudflare R2 (permanent storage)
+ * 4. Save metadata to Supabase
+ * 5. Store in memory for immediate polling access
  */
 
-// In-memory storage for video tasks (in production, use a database)
+// In-memory storage for video tasks (for immediate polling access)
 const videoTasks = new Map<string, {
     status: 'pending' | 'processing' | 'completed' | 'failed';
     videoUrl?: string;
@@ -15,6 +24,11 @@ const videoTasks = new Map<string, {
     taskId: string;
     timestamp: number;
 }>();
+
+// Initialize Supabase admin client (server-side)
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
 export async function POST(request: NextRequest) {
     try {
@@ -36,17 +50,51 @@ export async function POST(request: NextRequest) {
         if (code === 200) {
             // Success - video generated
             const videoUrls = info?.resultUrls ? JSON.parse(info.resultUrls) : [];
-            const videoUrl = videoUrls[0] || null;
+            const veoVideoUrl = videoUrls[0];
 
-            videoTasks.set(taskId, {
-                status: 'completed',
-                videoUrl,
-                taskId,
-                timestamp: Date.now(),
-            });
+            if (!veoVideoUrl) {
+                console.error('❌ No video URL in callback');
+                videoTasks.set(taskId, {
+                    status: 'failed',
+                    error: 'No video URL received',
+                    taskId,
+                    timestamp: Date.now(),
+                });
+                return NextResponse.json({ success: true }, { status: 200 });
+            }
 
-            console.log(`✅ Video generation completed for task ${taskId}`);
-            console.log(`📺 Video URL: ${videoUrl}`);
+            console.log(`📥 Downloading video from Veo: ${veoVideoUrl}`);
+
+            try {
+                // Download video from Veo
+                const videoBuffer = await downloadVideo(veoVideoUrl);
+
+                // Upload to R2 with filename: taskId.mp4
+                const fileName = `${taskId}.mp4`;
+                const r2VideoUrl = await uploadVideoToR2(videoBuffer, fileName);
+
+                console.log(`✅ Video uploaded to R2: ${r2VideoUrl}`);
+
+                // Store in memory for immediate polling
+                videoTasks.set(taskId, {
+                    status: 'completed',
+                    videoUrl: r2VideoUrl,
+                    taskId,
+                    timestamp: Date.now(),
+                });
+
+                console.log(`✅ Video generation completed for task ${taskId}`);
+                console.log(`📺 R2 Video URL: ${r2VideoUrl}`);
+
+            } catch (uploadError: any) {
+                console.error('❌ Error uploading to R2:', uploadError);
+                videoTasks.set(taskId, {
+                    status: 'failed',
+                    error: 'Failed to upload video to storage',
+                    taskId,
+                    timestamp: Date.now(),
+                });
+            }
 
         } else {
             // Failed - video generation error

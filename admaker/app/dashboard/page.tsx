@@ -9,6 +9,8 @@ import AIActorSelector from '@/components/dashboard/AIActorSelector';
 import { AIActor } from '@/lib/types/veo';
 import { generateVideoWithDuration, veoClient } from '@/lib/api/veo';
 import { getMediaUrl } from '@/lib/cloudflare-config';
+import { saveVideo, getUserVideos } from '@/lib/api/videos';
+import { createClient } from '@/lib/supabase/client';
 
 export default function DashboardPage() {
     const [activeTab, setActiveTab] = useState('create');
@@ -32,19 +34,44 @@ export default function DashboardPage() {
     const [loadingProgress, setLoadingProgress] = useState<string>('Initializing...');
     const [videoHistory, setVideoHistory] = useState<any[]>([]);
 
-    // Load video history from localStorage on mount
+    // Load video history from Supabase on mount
     useEffect(() => {
-        const savedVideos = localStorage.getItem('videoHistory');
-        if (savedVideos) {
-            setVideoHistory(JSON.parse(savedVideos));
-        }
+        const loadVideos = async () => {
+            const videos = await getUserVideos(20);
+            setVideoHistory(videos);
+        };
+        loadVideos();
     }, []);
 
-    // Save video to history
-    const saveVideoToHistory = (video: any) => {
-        const newHistory = [video, ...videoHistory].slice(0, 20); // Keep last 20 videos
-        setVideoHistory(newHistory);
-        localStorage.setItem('videoHistory', JSON.stringify(newHistory));
+    // Save video to history (Supabase)
+    const saveVideoToHistory = async (video: any) => {
+        const supabase = createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+
+        if (!user) {
+            console.error('No user found, cannot save video');
+            return;
+        }
+
+        // Save to Supabase
+        const savedVideo = await saveVideo({
+            user_id: user.id,
+            task_id: video.id,
+            video_url: video.videoUrl,
+            actor_name: video.actorName,
+            actor_image_url: video.actorImage,
+            script: video.script,
+            scene_description: sceneDescription,
+            duration: video.duration,
+            format: video.format,
+            status: 'completed',
+        });
+
+        if (savedVideo) {
+            // Update local state
+            const newHistory = [savedVideo, ...videoHistory].slice(0, 20);
+            setVideoHistory(newHistory);
+        }
     };
 
     const getCreditCost = () => {
