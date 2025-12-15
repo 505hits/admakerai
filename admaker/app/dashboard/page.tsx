@@ -1,13 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './Dashboard.module.css';
 import ScriptEditor from '@/components/dashboard/ScriptEditor';
 import VideoSettings from '@/components/dashboard/VideoSettings';
 import ProductImageUpload from '@/components/dashboard/ProductImageUpload';
 import AIActorSelector from '@/components/dashboard/AIActorSelector';
 import { AIActor } from '@/lib/types/veo';
-import { generateVideoWithDuration } from '@/lib/api/veo';
+import { generateVideoWithDuration, veoClient } from '@/lib/api/veo';
 import { getMediaUrl } from '@/lib/cloudflare-config';
 
 export default function DashboardPage() {
@@ -29,6 +29,23 @@ export default function DashboardPage() {
     const [showCreateActorModal, setShowCreateActorModal] = useState(false);
     const [actorReferenceImage, setActorReferenceImage] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
+    const [loadingProgress, setLoadingProgress] = useState<string>('Initializing...');
+    const [videoHistory, setVideoHistory] = useState<any[]>([]);
+
+    // Load video history from localStorage on mount
+    useEffect(() => {
+        const savedVideos = localStorage.getItem('videoHistory');
+        if (savedVideos) {
+            setVideoHistory(JSON.parse(savedVideos));
+        }
+    }, []);
+
+    // Save video to history
+    const saveVideoToHistory = (video: any) => {
+        const newHistory = [video, ...videoHistory].slice(0, 20); // Keep last 20 videos
+        setVideoHistory(newHistory);
+        localStorage.setItem('videoHistory', JSON.stringify(newHistory));
+    };
 
     const getCreditCost = () => {
         // Credits based only on duration
@@ -86,6 +103,9 @@ export default function DashboardPage() {
         setGeneratedVideo(null);
 
         try {
+            setLoadingProgress('Sending request to Veo API...');
+
+            // Call the real Veo API
             const result = await generateVideoWithDuration(
                 selectedActor.imageUrl,
                 script,
@@ -95,19 +115,98 @@ export default function DashboardPage() {
                 productImageUrl || undefined
             );
 
-            // Deduct credits
+            console.log('✅ Video generation started:', result);
+            setLoadingProgress('Video generation started! Processing...');
+
+            // Deduct credits immediately
             setCredits(prev => prev - cost);
 
-            // In production, you'd poll for video completion or use webhooks
-            // For now, simulate completion
-            setTimeout(() => {
-                setIsGenerating(false);
-                setGeneratedVideo('/videos/example-video.mp4');
-            }, 5000);
+            // Poll for video status
+            const taskId = result.initialTaskId;
+            let attempts = 0;
+            const maxAttempts = 300; // 5 minutes max (300 * 1 second) - Veo can take 1-3 minutes
+
+            const pollStatus = async () => {
+                try {
+                    // Poll our local callback storage
+                    // NOTE: In localhost, Veo can't send callbacks, so this will timeout
+                    // The video IS being generated on Veo's servers though!
+                    const response = await fetch(`/api/veo/callback?taskId=${taskId}`);
+
+                    if (response.status === 404) {
+                        // Callback not received yet
+                        if (attempts < maxAttempts) {
+                            attempts++;
+                            const elapsed = Math.floor(attempts);
+                            const estimatedRemaining = Math.max(0, 120 - elapsed);
+                            setLoadingProgress(`Generating video... ${elapsed}s elapsed (est. ${estimatedRemaining}s remaining)`);
+                            setTimeout(pollStatus, 2000);
+                        } else {
+                            setIsGenerating(false);
+                            setError(`⚠️ Localhost limitation: Callbacks don't work in development. Your video IS being generated! Check your Veo dashboard at https://kie.ai to see the result. Task ID: ${taskId}`);
+                        }
+                        return;
+                    }
+
+                    const status = await response.json();
+                    console.log('📊 Video status:', status);
+
+                    // Update progress message
+                    const elapsed = Math.floor(attempts);
+
+                    if (status.status === 'completed' && status.videoUrl) {
+                        setIsGenerating(false);
+                        setGeneratedVideo(status.videoUrl);
+                        console.log('🎉 Video ready:', status.videoUrl);
+
+                        // Save to history
+                        saveVideoToHistory({
+                            id: taskId,
+                            videoUrl: status.videoUrl,
+                            actorName: selectedActor.name,
+                            actorImage: selectedActor.thumbnailUrl,
+                            script: script.substring(0, 100) + (script.length > 100 ? '...' : ''),
+                            duration,
+                            format,
+                            createdAt: new Date().toISOString(),
+                        });
+                    } else if (status.status === 'failed') {
+                        setIsGenerating(false);
+                        setError(status.error || 'Video generation failed. Please try again.');
+                        // Refund credits on failure
+                        setCredits(prev => prev + cost);
+                    } else {
+                        // Still processing (pending or processing status), continue polling
+                        if (attempts < maxAttempts) {
+                            attempts++;
+                            const estimatedRemaining = Math.max(0, 120 - elapsed);
+                            setLoadingProgress(`Generating video... ${elapsed}s elapsed (est. ${estimatedRemaining}s remaining)`);
+                            setTimeout(pollStatus, 1000);
+                        } else {
+                            setIsGenerating(false);
+                            setError('Video generation timed out after 5 minutes. The video may still be processing. Please check Video History in a few minutes.');
+                        }
+                    }
+                } catch (err: any) {
+                    console.error('Error polling status:', err);
+                    if (attempts < maxAttempts) {
+                        attempts++;
+                        setTimeout(pollStatus, 1000);
+                    } else {
+                        setIsGenerating(false);
+                        setError('Failed to check video status after 5 minutes. Please check Video History later.');
+                        // Don't refund credits as video might still be generating
+                    }
+                }
+            };
+
+            // Start polling after a short delay
+            setTimeout(pollStatus, 2000);
 
         } catch (err: any) {
             setIsGenerating(false);
             setError(err.message || 'Failed to generate video');
+            console.error('❌ Video generation error:', err);
         }
     };
 
@@ -314,14 +413,78 @@ export default function DashboardPage() {
                 {activeTab === 'history' && (
                     <div className={styles.historySection}>
                         <h1 className={styles.pageTitle}>Video History</h1>
-                        <div className={styles.emptyState}>
-                            <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
-                                <path d="M32 56a24 24 0 100-48 24 24 0 000 48z" stroke="currentColor" strokeWidth="2" />
-                                <path d="M26 28l12 8-12 8V28z" fill="currentColor" />
-                            </svg>
-                            <h3>No videos yet</h3>
-                            <p>Create your first video to see it here</p>
-                        </div>
+                        {videoHistory.length === 0 ? (
+                            <div className={styles.emptyState}>
+                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                                    <path d="M32 56a24 24 0 100-48 24 24 0 000 48z" stroke="currentColor" strokeWidth="2" />
+                                    <path d="M26 28l12 8-12 8V28z" fill="currentColor" />
+                                </svg>
+                                <h3>No videos yet</h3>
+                                <p>Create your first video to see it here</p>
+                            </div>
+                        ) : (
+                            <div className={styles.videoGrid}>
+                                {videoHistory.map((video) => (
+                                    <div key={video.id} className={styles.videoCard}>
+                                        <div className={styles.videoThumbnail}>
+                                            <video
+                                                src={video.videoUrl}
+                                                className={styles.thumbnailVideo}
+                                                onMouseEnter={(e) => (e.target as HTMLVideoElement).play()}
+                                                onMouseLeave={(e) => {
+                                                    const vid = e.target as HTMLVideoElement;
+                                                    vid.pause();
+                                                    vid.currentTime = 0;
+                                                }}
+                                                muted
+                                                loop
+                                            />
+                                            <div className={styles.videoOverlay}>
+                                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                                    <circle cx="24" cy="24" r="20" fill="rgba(0,0,0,0.5)" />
+                                                    <path d="M18 14l16 10-16 10V14z" fill="white" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div className={styles.videoInfo}>
+                                            <div className={styles.actorInfo}>
+                                                <img src={video.actorImage} alt={video.actorName} className={styles.actorThumb} />
+                                                <span className={styles.actorName}>{video.actorName}</span>
+                                            </div>
+                                            <p className={styles.videoScript}>{video.script}</p>
+                                            <div className={styles.videoMeta}>
+                                                <span className={styles.videoDuration}>{video.duration}s</span>
+                                                <span className={styles.videoFormat}>{video.format}</span>
+                                                <span className={styles.videoDate}>
+                                                    {new Date(video.createdAt).toLocaleDateString()}
+                                                </span>
+                                            </div>
+                                            <div className={styles.videoActions}>
+                                                <a href={video.videoUrl} download className={styles.downloadBtn}>
+                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                        <path d="M8 2v8m0 0l-3-3m3 3l3-3M2 14h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                                    </svg>
+                                                    Download
+                                                </a>
+                                                <button
+                                                    onClick={() => {
+                                                        setGeneratedVideo(video.videoUrl);
+                                                        setActiveTab('create');
+                                                    }}
+                                                    className={styles.viewBtn}
+                                                >
+                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                        <path d="M8 3C4.5 3 1.7 5.3 1 8c.7 2.7 3.5 5 7 5s6.3-2.3 7-5c-.7-2.7-3.5-5-7-5z" stroke="currentColor" strokeWidth="2" />
+                                                        <circle cx="8" cy="8" r="2" stroke="currentColor" strokeWidth="2" />
+                                                    </svg>
+                                                    View
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
                 )}
 

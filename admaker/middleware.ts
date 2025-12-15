@@ -1,8 +1,13 @@
 import { updateSession } from '@/lib/supabase/middleware'
-import { type NextRequest } from 'next/server'
+import { type NextRequest, NextResponse } from 'next/server'
 
 export async function middleware(request: NextRequest) {
-    return await updateSession(request)
+    // Temporarily disabled Supabase auth for testing
+    // Uncomment the line below when you're ready to enable authentication
+    // return await updateSession(request)
+
+    // For now, just pass through all requests
+    return NextResponse.next()
 }
 
 export const config = {

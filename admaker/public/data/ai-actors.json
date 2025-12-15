@@ -425,6 +425,96 @@
             "style": "Casual creator"
         },
         {
+            "id": "casual_015",
+            "name": "Casual Creator 15",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual15.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual15.png",
+            "sceneDescription": "Casual lifestyle setting",
+            "tags": [
+                "casual",
+                "lifestyle"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Casual creator"
+        },
+        {
+            "id": "casual_016",
+            "name": "Casual Creator 16",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual16.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual16.png",
+            "sceneDescription": "Casual lifestyle setting",
+            "tags": [
+                "casual",
+                "lifestyle"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Casual creator"
+        },
+        {
+            "id": "casual_017",
+            "name": "Casual Creator 17",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual17.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual17.png",
+            "sceneDescription": "Casual lifestyle setting",
+            "tags": [
+                "casual",
+                "lifestyle"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Casual creator"
+        },
+        {
+            "id": "casual_018",
+            "name": "Casual Creator 18",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual18.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual18.png",
+            "sceneDescription": "Casual lifestyle setting",
+            "tags": [
+                "casual",
+                "lifestyle"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Casual creator"
+        },
+        {
+            "id": "casual_019",
+            "name": "Casual Creator 19",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual19.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual19.png",
+            "sceneDescription": "Casual lifestyle setting",
+            "tags": [
+                "casual",
+                "lifestyle"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Casual creator"
+        },
+        {
+            "id": "casual_020",
+            "name": "Casual Creator 20",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual20.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual20.png",
+            "sceneDescription": "Casual lifestyle setting",
+            "tags": [
+                "casual",
+                "lifestyle"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Casual creator"
+        },
+        {
             "id": "actor_003",
             "name": "Beauty Man - Bathroom Selfie",
             "category": "Beauty",
@@ -1521,6 +1611,198 @@
             "gender": "neutral",
             "ageRange": "28-40",
             "style": "Tech professional"
+        },
+        {
+            "id": "senior_001",
+            "name": "Senior Actor 1",
+            "category": "Senior",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior1.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior1.png",
+            "sceneDescription": "Senior content setting",
+            "tags": [
+                "senior",
+                "mature",
+                "experienced"
+            ],
+            "gender": "neutral",
+            "ageRange": "55-75",
+            "style": "Senior professional"
+        },
+        {
+            "id": "senior_002",
+            "name": "Senior Actor 2",
+            "category": "Senior",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior2.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior2.png",
+            "sceneDescription": "Senior content setting",
+            "tags": [
+                "senior",
+                "mature",
+                "experienced"
+            ],
+            "gender": "neutral",
+            "ageRange": "55-75",
+            "style": "Senior professional"
+        },
+        {
+            "id": "senior_003",
+            "name": "Senior Actor 3",
+            "category": "Senior",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior3.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior3.png",
+            "sceneDescription": "Senior content setting",
+            "tags": [
+                "senior",
+                "mature",
+                "experienced"
+            ],
+            "gender": "neutral",
+            "ageRange": "55-75",
+            "style": "Senior professional"
+        },
+        {
+            "id": "senior_004",
+            "name": "Senior Actor 4",
+            "category": "Senior",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior4.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior4.png",
+            "sceneDescription": "Senior content setting",
+            "tags": [
+                "senior",
+                "mature",
+                "experienced"
+            ],
+            "gender": "neutral",
+            "ageRange": "55-75",
+            "style": "Senior professional"
+        },
+        {
+            "id": "senior_005",
+            "name": "Senior Actor 5",
+            "category": "Senior",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior5.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior5.png",
+            "sceneDescription": "Senior content setting",
+            "tags": [
+                "senior",
+                "mature",
+                "experienced"
+            ],
+            "gender": "neutral",
+            "ageRange": "55-75",
+            "style": "Senior professional"
+        },
+        {
+            "id": "senior_006",
+            "name": "Senior Actor 6",
+            "category": "Senior",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior6.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior6.png",
+            "sceneDescription": "Senior content setting",
+            "tags": [
+                "senior",
+                "mature",
+                "experienced"
+            ],
+            "gender": "neutral",
+            "ageRange": "55-75",
+            "style": "Senior professional"
+        },
+        {
+            "id": "senior_007",
+            "name": "Senior Actor 7",
+            "category": "Senior",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior7.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior7.png",
+            "sceneDescription": "Senior content setting",
+            "tags": [
+                "senior",
+                "mature",
+                "experienced"
+            ],
+            "gender": "neutral",
+            "ageRange": "55-75",
+            "style": "Senior professional"
+        },
+        {
+            "id": "senior_008",
+            "name": "Senior Actor 8",
+            "category": "Senior",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior8.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior8.png",
+            "sceneDescription": "Senior content setting",
+            "tags": [
+                "senior",
+                "mature",
+                "experienced"
+            ],
+            "gender": "neutral",
+            "ageRange": "55-75",
+            "style": "Senior professional"
+        },
+        {
+            "id": "senior_009",
+            "name": "Senior Actor 9",
+            "category": "Senior",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior9.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior9.png",
+            "sceneDescription": "Senior content setting",
+            "tags": [
+                "senior",
+                "mature",
+                "experienced"
+            ],
+            "gender": "neutral",
+            "ageRange": "55-75",
+            "style": "Senior professional"
+        },
+        {
+            "id": "senior_010",
+            "name": "Senior Actor 10",
+            "category": "Senior",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior10.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior10.png",
+            "sceneDescription": "Senior content setting",
+            "tags": [
+                "senior",
+                "mature",
+                "experienced"
+            ],
+            "gender": "neutral",
+            "ageRange": "55-75",
+            "style": "Senior professional"
+        },
+        {
+            "id": "senior_011",
+            "name": "Senior Actor 11",
+            "category": "Senior",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior11.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior11.png",
+            "sceneDescription": "Senior content setting",
+            "tags": [
+                "senior",
+                "mature",
+                "experienced"
+            ],
+            "gender": "neutral",
+            "ageRange": "55-75",
+            "style": "Senior professional"
+        },
+        {
+            "id": "senior_012",
+            "name": "Senior Actor 12",
+            "category": "Senior",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior12.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior12.png",
+            "sceneDescription": "Senior content setting",
+            "tags": [
+                "senior",
+                "mature",
+                "experienced"
+            ],
+            "gender": "neutral",
+            "ageRange": "55-75",
+            "style": "Senior professional"
         }
     ],
     "categories": [
@@ -1530,6 +1812,7 @@
         "Product Demo",
         "Micro-Content",
         "Sport",
+        "Senior",
         "Vlog",
         "Originals"
     ],

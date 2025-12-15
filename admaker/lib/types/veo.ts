@@ -4,7 +4,7 @@ export interface VeoGenerateRequest {
     prompt: string;
     imageUrls: string[];
     model: 'veo3' | 'veo3_fast';
-    aspectRatio: '16:9' | '9:16';
+    aspectRatio: '16:9' | '9:16' | 'Auto';
     generationType: 'TEXT_2_VIDEO' | 'FIRST_AND_LAST_FRAMES_2_VIDEO' | 'REFERENCE_2_VIDEO';
     seeds?: number;
     callBackUrl?: string;
