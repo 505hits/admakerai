@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { taskMetadata } from '../callback/route';
+import { taskMetadata } from '../webhook/route';
 
 /**
  * Store metadata for a video generation task
