@@ -32,9 +32,29 @@ const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
 export async function POST(request: NextRequest) {
     try {
-        const body = await request.json();
+        // Log raw request for debugging
+        const contentType = request.headers.get('content-type');
+        console.log('📹 Veo Callback received');
+        console.log('Content-Type:', contentType);
 
-        console.log('📹 Veo Callback received:', JSON.stringify(body, null, 2));
+        // Try to get the body as text first to see what we're receiving
+        const bodyText = await request.text();
+        console.log('Raw body:', bodyText);
+
+        // Parse as JSON
+        let body;
+        try {
+            body = JSON.parse(bodyText);
+        } catch (parseError) {
+            console.error('❌ Failed to parse body as JSON:', parseError);
+            console.log('Body text was:', bodyText);
+            return NextResponse.json(
+                { error: 'Invalid JSON in request body' },
+                { status: 400 }
+            );
+        }
+
+        console.log('📹 Parsed Veo Callback:', JSON.stringify(body, null, 2));
 
         const { code, msg, data } = body;
         const { taskId, info, fallbackFlag } = data || {};
