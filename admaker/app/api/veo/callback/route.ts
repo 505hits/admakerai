@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { downloadVideo, uploadVideoToR2 } from '@/lib/api/r2-upload';
-import { createClient } from '@/lib/supabase/server';
+import { createServiceClient } from '@/lib/supabase/service';
 
 /**
  * Callback endpoint for Veo API
@@ -94,59 +94,77 @@ export async function POST(request: NextRequest) {
             console.log(`✅ Video completed: ${taskId}`);
             console.log(`📺 Veo URL: ${veoVideoUrl}`);
 
-            // Download video from Veo
-            console.log('📥 Downloading video from Veo...');
-            const videoBuffer = await downloadVideo(veoVideoUrl);
+            // Wrap in try-catch to handle storage errors gracefully
+            try {
+                // Download video from Veo
+                console.log('📥 Downloading video from Veo...');
+                const videoBuffer = await downloadVideo(veoVideoUrl);
 
-            // Upload to R2
-            console.log('☁️ Uploading to Cloudflare R2...');
-            const fileName = `${taskId}.mp4`;
-            const r2VideoUrl = await uploadVideoToR2(videoBuffer, fileName);
+                // Upload to R2
+                console.log('☁️ Uploading to Cloudflare R2...');
+                const fileName = `${taskId}.mp4`;
+                const r2VideoUrl = await uploadVideoToR2(videoBuffer, fileName);
 
-            console.log(`✅ Video uploaded to R2: ${r2VideoUrl}`);
+                console.log(`✅ Video uploaded to R2: ${r2VideoUrl}`);
 
-            // Save to Supabase
-            console.log('💾 Saving metadata to Supabase...');
-            const supabase = await createClient();
+                // Save to Supabase (non-critical - video is already in R2)
+                try {
+                    console.log('💾 Saving metadata to Supabase...');
+                    const supabase = createServiceClient();
 
-            // Get metadata from the original request
-            const metadata = taskMetadata.get(taskId);
+                    // Get metadata from the original request
+                    const metadata = taskMetadata.get(taskId);
 
-            if (metadata) {
-                const { error: dbError } = await supabase
-                    .from('videos')
-                    .insert({
-                        user_id: metadata.userId,
-                        task_id: taskId,
-                        video_url: r2VideoUrl,
-                        actor_name: metadata.actorName,
-                        actor_image_url: metadata.actorImageUrl,
-                        script: metadata.script,
-                        scene_description: metadata.sceneDescription,
-                        duration: metadata.duration,
-                        format: metadata.format,
-                        status: 'completed'
-                    });
+                    if (metadata) {
+                        const { error: dbError } = await supabase
+                            .from('videos')
+                            .insert({
+                                user_id: metadata.userId,
+                                task_id: taskId,
+                                video_url: r2VideoUrl,
+                                actor_name: metadata.actorName,
+                                actor_image_url: metadata.actorImageUrl,
+                                script: metadata.script,
+                                scene_description: metadata.sceneDescription,
+                                duration: metadata.duration,
+                                format: metadata.format,
+                                status: 'completed'
+                            });
 
-                if (dbError) {
-                    console.error('❌ Error saving to Supabase:', dbError);
-                    // Continue anyway - video is in R2
-                } else {
-                    console.log('✅ Metadata saved to Supabase');
-                    // Clean up metadata after successful save
-                    taskMetadata.delete(taskId);
+                        if (dbError) {
+                            console.error('❌ Error saving to Supabase:', dbError);
+                        } else {
+                            console.log('✅ Metadata saved to Supabase');
+                            taskMetadata.delete(taskId);
+                        }
+                    } else {
+                        console.log('⚠️ No metadata found - video saved to R2 only');
+                    }
+                } catch (dbErr: any) {
+                    console.error('❌ Supabase error (non-critical):', dbErr.message);
                 }
-            } else {
-                console.log('⚠️ No metadata found for taskId, skipping Supabase save');
-            }
 
-            // Update in-memory cache
-            videoTasks.set(taskId, {
-                status: 'completed',
-                videoUrl: r2VideoUrl,
-                taskId,
-                timestamp: Date.now(),
-            });
+                // Update in-memory cache with R2 URL
+                videoTasks.set(taskId, {
+                    status: 'completed',
+                    videoUrl: r2VideoUrl,
+                    taskId,
+                    timestamp: Date.now(),
+                });
+
+            } catch (storageError: any) {
+                console.error('❌ CRITICAL: Storage failed:', storageError.message);
+
+                // Fallback: keep Veo URL (temporary, expires in 24h)
+                videoTasks.set(taskId, {
+                    status: 'completed',
+                    videoUrl: veoVideoUrl,
+                    taskId,
+                    timestamp: Date.now(),
+                });
+
+                console.log('⚠️ Using temporary Veo URL:', veoVideoUrl);
+            }
 
         } else {
             videoTasks.set(taskId, {
