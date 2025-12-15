@@ -41,12 +41,87 @@ export async function POST(request: NextRequest) {
         // Check if body is a URL (plain text)
         if (bodyText.startsWith('http://') || bodyText.startsWith('https://')) {
             console.log('📹 Received plain URL callback');
-            console.log('⚠️ Plain URL format not yet supported:', bodyText);
+            const veoVideoUrl = bodyText.trim();
+            console.log(`📺 Veo URL (plain text): ${veoVideoUrl}`);
 
-            return NextResponse.json({
-                success: true,
-                message: 'URL received but format not supported yet'
-            }, { status: 200 });
+            // Extract taskId from URL if possible, or use a fallback
+            // Veo URLs usually contain the task ID
+            const taskIdMatch = veoVideoUrl.match(/\/([a-f0-9]{32})\./);
+            const taskId = taskIdMatch ? taskIdMatch[1] : 'unknown';
+
+            console.log(`🔍 Extracted taskId: ${taskId}`);
+
+            // Process the video
+            try {
+                // Download video from Veo
+                console.log('📥 Downloading video from Veo...');
+                const videoBuffer = await downloadVideo(veoVideoUrl);
+
+                // Upload to R2
+                console.log('☁️ Uploading to Cloudflare R2...');
+                const fileName = `${taskId}.mp4`;
+                const r2VideoUrl = await uploadVideoToR2(videoBuffer, fileName);
+
+                console.log(`✅ Video uploaded to R2: ${r2VideoUrl}`);
+
+                // Save to Supabase (non-critical)
+                try {
+                    console.log('💾 Saving metadata to Supabase...');
+                    const supabase = createServiceClient();
+                    const metadata = taskMetadata.get(taskId);
+
+                    if (metadata) {
+                        const { error: dbError } = await supabase
+                            .from('videos')
+                            .insert({
+                                user_id: metadata.userId,
+                                task_id: taskId,
+                                video_url: r2VideoUrl,
+                                actor_name: metadata.actorName,
+                                actor_image_url: metadata.actorImageUrl,
+                                script: metadata.script,
+                                scene_description: metadata.sceneDescription,
+                                duration: metadata.duration,
+                                format: metadata.format,
+                                status: 'completed'
+                            });
+
+                        if (dbError) {
+                            console.error('❌ Error saving to Supabase:', dbError);
+                        } else {
+                            console.log('✅ Metadata saved to Supabase');
+                            taskMetadata.delete(taskId);
+                        }
+                    } else {
+                        console.log('⚠️ No metadata found - video saved to R2 only');
+                    }
+                } catch (dbErr: any) {
+                    console.error('❌ Supabase error (non-critical):', dbErr.message);
+                }
+
+                // Update in-memory cache
+                videoTasks.set(taskId, {
+                    status: 'completed',
+                    videoUrl: r2VideoUrl,
+                    taskId,
+                    timestamp: Date.now(),
+                });
+
+                return NextResponse.json({ success: true }, { status: 200 });
+
+            } catch (storageError: any) {
+                console.error('❌ CRITICAL: Storage failed:', storageError.message);
+
+                // Fallback: keep Veo URL
+                videoTasks.set(taskId, {
+                    status: 'completed',
+                    videoUrl: veoVideoUrl,
+                    taskId,
+                    timestamp: Date.now(),
+                });
+
+                return NextResponse.json({ success: true }, { status: 200 });
+            }
         }
 
         // Try to parse as JSON
