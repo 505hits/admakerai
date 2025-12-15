@@ -3,8 +3,13 @@ import { createServiceClient } from '@/lib/supabase/service';
 
 /**
  * Callback endpoint for Veo API
- * Handles video completion, downloads from Veo, uploads to R2, and saves to Supabase
+ * Handles video completion and saves to Supabase
  */
+
+// Force dynamic rendering - critical for webhooks
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+export const maxDuration = 60; // 60 seconds max
 
 // In-memory storage for video tasks (for polling)
 const videoTasks = new Map<string, {
