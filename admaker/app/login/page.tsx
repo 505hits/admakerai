@@ -1,13 +1,22 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import styles from '../login/Auth.module.css';
 import { getMediaUrl } from '@/lib/cloudflare-config';
 import { createClient } from '@/lib/supabase/client';
 
-
+// Wrapper component with Suspense
 export default function LoginPage() {
+    return (
+        <Suspense fallback={<div className={styles.authContainer}><div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', color: 'white' }}>Loading...</div></div>}>
+            <LoginContent />
+        </Suspense>
+    );
+}
+
+// Main login component that uses useSearchParams
+function LoginContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [email, setEmail] = useState('');
