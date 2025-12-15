@@ -30,7 +30,7 @@ export const taskMetadata = new Map<string, {
 
 export async function POST(request: NextRequest) {
     try {
-        console.log('📹 Veo Callback POST received');
+        console.log('📹 Veo Callback POST received - Build:', Date.now());
 
         const contentType = request.headers.get('content-type') || '';
         console.log('Content-Type:', contentType);
