@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { downloadVideo, uploadVideoToR2 } from '@/lib/api/r2-upload';
 import { createServiceClient } from '@/lib/supabase/service';
 
 /**
@@ -39,90 +38,67 @@ export async function POST(request: NextRequest) {
         const bodyText = await request.text();
         console.log('Raw body:', bodyText.substring(0, 200));
 
-        // Check if body is a URL (plain text) - FORCE REDEPLOY
+        // Check if body is a URL (plain text) - SIMPLIFIED: Store Veo URL directly
         if (bodyText.startsWith('http://') || bodyText.startsWith('https://')) {
             console.log('📹 Received plain URL callback');
             const veoVideoUrl = bodyText.trim();
             console.log(`📺 Veo URL (plain text): ${veoVideoUrl}`);
 
             // Extract taskId from URL if possible, or use a fallback
-            // Veo URLs usually contain the task ID
             const taskIdMatch = veoVideoUrl.match(/\/([a-f0-9]{32})\./);
             const taskId = taskIdMatch ? taskIdMatch[1] : 'unknown';
 
             console.log(`🔍 Extracted taskId: ${taskId}`);
 
-            // Process the video
+            // Store Veo URL directly to Supabase (no download/upload needed!)
             try {
-                // Download video from Veo
-                console.log('📥 Downloading video from Veo...');
-                const videoBuffer = await downloadVideo(veoVideoUrl);
+                console.log('💾 Saving Veo URL directly to Supabase...');
+                const supabase = createServiceClient();
+                const metadata = taskMetadata.get(taskId);
 
-                // Upload to R2
-                console.log('☁️ Uploading to Cloudflare R2...');
-                const fileName = `${taskId}.mp4`;
-                const r2VideoUrl = await uploadVideoToR2(videoBuffer, fileName);
+                if (metadata) {
+                    // Calculate expiration date (60 days from now)
+                    const expiresAt = new Date();
+                    expiresAt.setDate(expiresAt.getDate() + 60);
 
-                console.log(`✅ Video uploaded to R2: ${r2VideoUrl}`);
+                    const { error: dbError } = await supabase
+                        .from('videos')
+                        .insert({
+                            user_id: metadata.userId,
+                            task_id: taskId,
+                            video_url: veoVideoUrl, // Store Veo URL directly!
+                            actor_name: metadata.actorName,
+                            actor_image_url: metadata.actorImageUrl,
+                            script: metadata.script,
+                            scene_description: metadata.sceneDescription,
+                            duration: metadata.duration,
+                            format: metadata.format,
+                            status: 'completed',
+                            expires_at: expiresAt.toISOString()
+                        });
 
-                // Save to Supabase (non-critical)
-                try {
-                    console.log('💾 Saving metadata to Supabase...');
-                    const supabase = createServiceClient();
-                    const metadata = taskMetadata.get(taskId);
-
-                    if (metadata) {
-                        const { error: dbError } = await supabase
-                            .from('videos')
-                            .insert({
-                                user_id: metadata.userId,
-                                task_id: taskId,
-                                video_url: r2VideoUrl,
-                                actor_name: metadata.actorName,
-                                actor_image_url: metadata.actorImageUrl,
-                                script: metadata.script,
-                                scene_description: metadata.sceneDescription,
-                                duration: metadata.duration,
-                                format: metadata.format,
-                                status: 'completed'
-                            });
-
-                        if (dbError) {
-                            console.error('❌ Error saving to Supabase:', dbError);
-                        } else {
-                            console.log('✅ Metadata saved to Supabase');
-                            taskMetadata.delete(taskId);
-                        }
+                    if (dbError) {
+                        console.error('❌ Error saving to Supabase:', dbError);
                     } else {
-                        console.log('⚠️ No metadata found - video saved to R2 only');
+                        console.log('✅ Veo URL saved to Supabase (expires in 60 days)');
+                        taskMetadata.delete(taskId);
                     }
-                } catch (dbErr: any) {
-                    console.error('❌ Supabase error (non-critical):', dbErr.message);
+                } else {
+                    console.log('⚠️ No metadata found - cannot save to database');
                 }
-
-                // Update in-memory cache
-                videoTasks.set(taskId, {
-                    status: 'completed',
-                    videoUrl: r2VideoUrl,
-                    taskId,
-                    timestamp: Date.now(),
-                });
-
-                return NextResponse.json({ success: true }, { status: 200 });
-
-            } catch (storageError: any) {
-                console.error('❌ CRITICAL: Storage failed:', storageError.message);
-
-                // Fallback: keep Veo URL
-                videoTasks.set(taskId, {
-                    status: 'completed',
-                    videoUrl: veoVideoUrl,
-                    taskId,
-                    timestamp: Date.now(),
-                });
-
-                return NextResponse.json({ success: true }, { status: 200 });
+            } catch (dbErr: any) {
+                console.error('❌ Supabase error:', dbErr.message);
             }
+
+            // Update in-memory cache with Veo URL
+            videoTasks.set(taskId, {
+                status: 'completed',
+                videoUrl: veoVideoUrl,
+                taskId,
+                timestamp: Date.now(),
+            });
+
+            return NextResponse.json({ success: true }, { status: 200 });
         }
 
         // Try to parse as JSON
@@ -170,77 +146,53 @@ export async function POST(request: NextRequest) {
             console.log(`✅ Video completed: ${taskId}`);
             console.log(`📺 Veo URL: ${veoVideoUrl}`);
 
-            // Wrap in try-catch to handle storage errors gracefully
+            // Store Veo URL directly to Supabase (simplified architecture!)
             try {
-                // Download video from Veo
-                console.log('📥 Downloading video from Veo...');
-                const videoBuffer = await downloadVideo(veoVideoUrl);
+                console.log('💾 Saving Veo URL directly to Supabase...');
+                const supabase = createServiceClient();
+                const metadata = taskMetadata.get(taskId);
 
-                // Upload to R2
-                console.log('☁️ Uploading to Cloudflare R2...');
-                const fileName = `${taskId}.mp4`;
-                const r2VideoUrl = await uploadVideoToR2(videoBuffer, fileName);
+                if (metadata) {
+                    // Calculate expiration date (60 days from now)
+                    const expiresAt = new Date();
+                    expiresAt.setDate(expiresAt.getDate() + 60);
 
-                console.log(`✅ Video uploaded to R2: ${r2VideoUrl}`);
+                    const { error: dbError } = await supabase
+                        .from('videos')
+                        .insert({
+                            user_id: metadata.userId,
+                            task_id: taskId,
+                            video_url: veoVideoUrl, // Store Veo URL directly!
+                            actor_name: metadata.actorName,
+                            actor_image_url: metadata.actorImageUrl,
+                            script: metadata.script,
+                            scene_description: metadata.sceneDescription,
+                            duration: metadata.duration,
+                            format: metadata.format,
+                            status: 'completed',
+                            expires_at: expiresAt.toISOString()
+                        });
 
-                // Save to Supabase (non-critical - video is already in R2)
-                try {
-                    console.log('💾 Saving metadata to Supabase...');
-                    const supabase = createServiceClient();
-
-                    // Get metadata from the original request
-                    const metadata = taskMetadata.get(taskId);
-
-                    if (metadata) {
-                        const { error: dbError } = await supabase
-                            .from('videos')
-                            .insert({
-                                user_id: metadata.userId,
-                                task_id: taskId,
-                                video_url: r2VideoUrl,
-                                actor_name: metadata.actorName,
-                                actor_image_url: metadata.actorImageUrl,
-                                script: metadata.script,
-                                scene_description: metadata.sceneDescription,
-                                duration: metadata.duration,
-                                format: metadata.format,
-                                status: 'completed'
-                            });
-
-                        if (dbError) {
-                            console.error('❌ Error saving to Supabase:', dbError);
-                        } else {
-                            console.log('✅ Metadata saved to Supabase');
-                            taskMetadata.delete(taskId);
-                        }
+                    if (dbError) {
+                        console.error('❌ Error saving to Supabase:', dbError);
                     } else {
-                        console.log('⚠️ No metadata found - video saved to R2 only');
+                        console.log('✅ Veo URL saved to Supabase (expires in 60 days)');
+                        taskMetadata.delete(taskId);
                     }
-                } catch (dbErr: any) {
-                    console.error('❌ Supabase error (non-critical):', dbErr.message);
+                } else {
+                    console.log('⚠️ No metadata found - storing in memory only');
                 }
-
-                // Update in-memory cache with R2 URL
-                videoTasks.set(taskId, {
-                    status: 'completed',
-                    videoUrl: r2VideoUrl,
-                    taskId,
-                    timestamp: Date.now(),
-                });
-
-            } catch (storageError: any) {
-                console.error('❌ CRITICAL: Storage failed:', storageError.message);
-
-                // Fallback: keep Veo URL (temporary, expires in 24h)
-                videoTasks.set(taskId, {
-                    status: 'completed',
-                    videoUrl: veoVideoUrl,
-                    taskId,
-                    timestamp: Date.now(),
-                });
-
-                console.log('⚠️ Using temporary Veo URL:', veoVideoUrl);
+            } catch (dbErr: any) {
+                console.error('❌ Supabase error:', dbErr.message);
             }
+
+            // Update in-memory cache with Veo URL
+            videoTasks.set(taskId, {
+                status: 'completed',
+                videoUrl: veoVideoUrl,
+                taskId,
+                timestamp: Date.now(),
+            });
 
         } else {
             videoTasks.set(taskId, {

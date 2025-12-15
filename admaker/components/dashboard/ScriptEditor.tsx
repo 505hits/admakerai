@@ -38,7 +38,7 @@ export default function ScriptEditor({
     return (
         <div className={styles.editorContainer}>
             <div className={styles.editorHeader}>
-                <h2 className={styles.editorTitle}>Script</h2>
+                <h2 className={styles.editorTitle}>Describe your video and script</h2>
                 <button
                     className={styles.aiWriterBtn}
                     onClick={() => setShowAIWriter(true)}
@@ -50,37 +50,25 @@ export default function ScriptEditor({
                 </button>
             </div>
 
-            {/* Script Textarea */}
+            {/* Combined Script and Scene Textarea */}
             <div className={styles.editorWrapper}>
                 <textarea
                     className={styles.scriptTextarea}
-                    placeholder="Write your script here... Example: Hi! I'm excited to show you this amazing product that will change your life!"
+                    placeholder={`Write your script and describe the scene...
+
+Example:
+Script: "Hi! I'm excited to show you this amazing product that will change your life!"
+
+Scene: Enthusiastic presentation, holding product, smiling at camera, modern office background with natural lighting`}
                     value={script}
                     onChange={(e) => handleScriptChange(e.target.value.slice(0, maxChars))}
                     maxLength={maxChars}
+                    rows={8}
                 />
                 <div className={styles.charCounter}>
                     {script.length}/{maxChars}
                 </div>
             </div>
-
-            {/* Scene Description */}
-            {showSceneDescription && (
-                <div className={styles.sceneWrapper}>
-                    <label className={styles.sceneLabel}>Scene Description</label>
-                    <textarea
-                        className={styles.sceneTextarea}
-                        placeholder="Describe how to animate the scene... Example: Enthusiastic presentation, holding product, smiling at camera"
-                        value={sceneDescription}
-                        onChange={(e) => handleSceneChange(e.target.value.slice(0, maxSceneChars))}
-                        maxLength={maxSceneChars}
-                        rows={3}
-                    />
-                    <div className={styles.charCounter}>
-                        {sceneDescription.length}/{maxSceneChars}
-                    </div>
-                </div>
-            )}
 
             {/* AI Writer Modal */}
             {showAIWriter && (

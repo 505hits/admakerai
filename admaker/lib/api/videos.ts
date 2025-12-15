@@ -13,6 +13,7 @@ export interface Video {
     format: string;
     status: string;
     created_at: string;
+    expires_at?: string; // Veo URLs expire after 60 days
 }
 
 /**

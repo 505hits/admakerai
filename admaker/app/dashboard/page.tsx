@@ -112,13 +112,29 @@ export default function DashboardPage() {
         }
 
         if (!script.trim()) {
-            setError('Please write a script');
+            setError('Please describe your video and script');
             return;
         }
 
-        if (!sceneDescription.trim()) {
-            setError('Please add a scene description');
-            return;
+        // Parse the combined script to extract script and scene description
+        // Expected format: "Script: ... \n\nScene: ..."
+        let actualScript = script;
+        let actualScene = sceneDescription || 'Professional video presentation';
+
+        // Try to parse if user followed the format
+        const scriptMatch = script.match(/Script:\s*([^]*?)(?=\n\nScene:|$)/i);
+        const sceneMatch = script.match(/Scene:\s*([^]*)$/i);
+
+        if (scriptMatch && scriptMatch[1]) {
+            actualScript = scriptMatch[1].trim();
+        }
+        if (sceneMatch && sceneMatch[1]) {
+            actualScene = sceneMatch[1].trim();
+        }
+
+        // If no explicit format, use the whole text as script and default scene
+        if (!scriptMatch && !sceneMatch) {
+            actualScript = script.trim();
         }
 
         const cost = getCreditCost();
@@ -150,11 +166,11 @@ export default function DashboardPage() {
             }
             */
 
-            // Call the real Veo API
+            // Call the real Veo API with parsed script and scene
             const result = await generateVideoWithDuration(
                 selectedActor.imageUrl,
-                script,
-                sceneDescription,
+                actualScript,
+                actualScene,
                 format,
                 duration,
                 productImageUrl || undefined
@@ -172,8 +188,8 @@ export default function DashboardPage() {
                         userId: userId, // Use test user ID
                         actorName: selectedActor.name,
                         actorImageUrl: selectedActor.thumbnailUrl,
-                        script,
-                        sceneDescription,
+                        script: actualScript,
+                        sceneDescription: actualScene,
                         duration,
                         format
                     })
@@ -244,7 +260,7 @@ export default function DashboardPage() {
                             videoUrl: status.videoUrl,
                             actorName: selectedActor.name,
                             actorImage: selectedActor.thumbnailUrl,
-                            script: script.substring(0, 100) + (script.length > 100 ? '...' : ''),
+                            script: actualScript.substring(0, 100) + (actualScript.length > 100 ? '...' : ''),
                             duration,
                             format,
                             createdAt: new Date().toISOString(),
@@ -513,65 +529,121 @@ export default function DashboardPage() {
                             </div>
                         ) : (
                             <div className={styles.videoGrid}>
-                                {videoHistory.map((video) => (
-                                    <div key={video.id} className={styles.videoCard}>
-                                        <div className={styles.videoThumbnail}>
-                                            <video
-                                                src={video.videoUrl}
-                                                className={styles.thumbnailVideo}
-                                                onMouseEnter={(e) => (e.target as HTMLVideoElement).play()}
-                                                onMouseLeave={(e) => {
-                                                    const vid = e.target as HTMLVideoElement;
-                                                    vid.pause();
-                                                    vid.currentTime = 0;
-                                                }}
-                                                muted
-                                                loop
-                                            />
-                                            <div className={styles.videoOverlay}>
-                                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                                                    <circle cx="24" cy="24" r="20" fill="rgba(0,0,0,0.5)" />
-                                                    <path d="M18 14l16 10-16 10V14z" fill="white" />
-                                                </svg>
-                                            </div>
-                                        </div>
-                                        <div className={styles.videoInfo}>
-                                            <div className={styles.actorInfo}>
-                                                <img src={video.actorImage} alt={video.actorName} className={styles.actorThumb} />
-                                                <span className={styles.actorName}>{video.actorName}</span>
-                                            </div>
-                                            <p className={styles.videoScript}>{video.script}</p>
-                                            <div className={styles.videoMeta}>
-                                                <span className={styles.videoDuration}>{video.duration}s</span>
-                                                <span className={styles.videoFormat}>{video.format}</span>
-                                                <span className={styles.videoDate}>
-                                                    {new Date(video.createdAt).toLocaleDateString()}
-                                                </span>
-                                            </div>
-                                            <div className={styles.videoActions}>
-                                                <a href={video.videoUrl} download className={styles.downloadBtn}>
-                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                        <path d="M8 2v8m0 0l-3-3m3 3l3-3M2 14h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                                                    </svg>
-                                                    Download
-                                                </a>
-                                                <button
-                                                    onClick={() => {
-                                                        setGeneratedVideo(video.videoUrl);
-                                                        setActiveTab('create');
+                                {videoHistory.map((video) => {
+                                    // Calculate days until expiration
+                                    const expiresAt = video.expires_at ? new Date(video.expires_at) : null;
+                                    const now = new Date();
+                                    const daysUntilExpiration = expiresAt
+                                        ? Math.ceil((expiresAt.getTime() - now.getTime()) / (1000 * 60 * 60 * 24))
+                                        : null;
+                                    const isExpiringSoon = daysUntilExpiration !== null && daysUntilExpiration <= 7;
+                                    const isExpired = daysUntilExpiration !== null && daysUntilExpiration <= 0;
+
+                                    return (
+                                        <div key={video.id} className={styles.videoCard}>
+                                            <div className={styles.videoThumbnail}>
+                                                <video
+                                                    src={video.videoUrl}
+                                                    className={styles.thumbnailVideo}
+                                                    onMouseEnter={(e) => (e.target as HTMLVideoElement).play()}
+                                                    onMouseLeave={(e) => {
+                                                        const vid = e.target as HTMLVideoElement;
+                                                        vid.pause();
+                                                        vid.currentTime = 0;
                                                     }}
-                                                    className={styles.viewBtn}
-                                                >
-                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                        <path d="M8 3C4.5 3 1.7 5.3 1 8c.7 2.7 3.5 5 7 5s6.3-2.3 7-5c-.7-2.7-3.5-5-7-5z" stroke="currentColor" strokeWidth="2" />
-                                                        <circle cx="8" cy="8" r="2" stroke="currentColor" strokeWidth="2" />
+                                                    muted
+                                                    loop
+                                                />
+                                                <div className={styles.videoOverlay}>
+                                                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                                        <circle cx="24" cy="24" r="20" fill="rgba(0,0,0,0.5)" />
+                                                        <path d="M18 14l16 10-16 10V14z" fill="white" />
                                                     </svg>
-                                                    View
-                                                </button>
+                                                </div>
+                                                {/* Expiration warning badge */}
+                                                {isExpired && (
+                                                    <div className={styles.expiredBadge}>
+                                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                            <circle cx="8" cy="8" r="7" fill="#ef4444" />
+                                                            <path d="M8 4v4M8 10h.01" stroke="white" strokeWidth="2" strokeLinecap="round" />
+                                                        </svg>
+                                                        Expired
+                                                    </div>
+                                                )}
+                                                {!isExpired && isExpiringSoon && (
+                                                    <div className={styles.expiringSoonBadge}>
+                                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                            <circle cx="8" cy="8" r="7" fill="#f59e0b" />
+                                                            <path d="M8 4v4l2 2" stroke="white" strokeWidth="2" strokeLinecap="round" />
+                                                        </svg>
+                                                        {daysUntilExpiration}d left
+                                                    </div>
+                                                )}
+                                            </div>
+                                            <div className={styles.videoInfo}>
+                                                <div className={styles.actorInfo}>
+                                                    <img src={video.actorImage} alt={video.actorName} className={styles.actorThumb} />
+                                                    <span className={styles.actorName}>{video.actorName}</span>
+                                                </div>
+                                                <p className={styles.videoScript}>{video.script}</p>
+                                                <div className={styles.videoMeta}>
+                                                    <span className={styles.videoDuration}>{video.duration}s</span>
+                                                    <span className={styles.videoFormat}>{video.format}</span>
+                                                    <span className={styles.videoDate}>
+                                                        {new Date(video.createdAt).toLocaleDateString()}
+                                                    </span>
+                                                    {expiresAt && (
+                                                        <span className={styles.videoExpires} title={`Expires on ${expiresAt.toLocaleDateString()}`}>
+                                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ marginRight: '4px' }}>
+                                                                <circle cx="7" cy="7" r="6" stroke="currentColor" strokeWidth="1.5" />
+                                                                <path d="M7 3v4l2 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                                                            </svg>
+                                                            Expires {expiresAt.toLocaleDateString()}
+                                                        </span>
+                                                    )}
+                                                </div>
+                                                {isExpiringSoon && !isExpired && (
+                                                    <div className={styles.expirationWarning}>
+                                                        ⚠️ Download soon! This video expires in {daysUntilExpiration} day{daysUntilExpiration !== 1 ? 's' : ''}.
+                                                    </div>
+                                                )}
+                                                {isExpired && (
+                                                    <div className={styles.expiredWarning}>
+                                                        ❌ This video URL has expired and is no longer accessible.
+                                                    </div>
+                                                )}
+                                                <div className={styles.videoActions}>
+                                                    <a
+                                                        href={video.videoUrl}
+                                                        download={`video-${video.task_id}.mp4`}
+                                                        className={styles.downloadBtn}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                    >
+                                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                            <path d="M8 2v8m0 0l-3-3m3 3l3-3M2 14h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                                        </svg>
+                                                        Download
+                                                    </a>
+                                                    <button
+                                                        onClick={() => {
+                                                            setGeneratedVideo(video.videoUrl);
+                                                            setActiveTab('create');
+                                                        }}
+                                                        className={styles.viewBtn}
+                                                        disabled={isExpired}
+                                                    >
+                                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                            <path d="M8 3C4.5 3 1.7 5.3 1 8c.7 2.7 3.5 5 7 5s6.3-2.3 7-5c-.7-2.7-3.5-5-7-5z" stroke="currentColor" strokeWidth="2" />
+                                                            <circle cx="8" cy="8" r="2" stroke="currentColor" strokeWidth="2" />
+                                                        </svg>
+                                                        View
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    );
+                                })}
                             </div>
                         )}
                     </div>
