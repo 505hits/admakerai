@@ -1507,6 +1507,230 @@
             "style": "Vlog creator"
         },
         {
+            "id": "presentation_001",
+            "name": "Présentation 1",
+            "category": "Présentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation1.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation1.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_002",
+            "name": "Présentation 2",
+            "category": "Présentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation2.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation2.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_003",
+            "name": "Présentation 3",
+            "category": "Présentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation3.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation3.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_004",
+            "name": "Présentation 4",
+            "category": "Présentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation4.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation4.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_005",
+            "name": "Présentation 5",
+            "category": "Présentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation5.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation5.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_006",
+            "name": "Présentation 6",
+            "category": "Présentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation6.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation6.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_007",
+            "name": "Présentation 7",
+            "category": "Présentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation7.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation7.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_008",
+            "name": "Présentation 8",
+            "category": "Présentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation8.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation8.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_009",
+            "name": "Présentation 9",
+            "category": "Présentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation9.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation9.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_010",
+            "name": "Présentation 10",
+            "category": "Présentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation10.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation10.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_011",
+            "name": "Présentation 11",
+            "category": "Présentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation11.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation11.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_012",
+            "name": "Présentation 12",
+            "category": "Présentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation12.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation12.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_013",
+            "name": "Présentation 13",
+            "category": "Présentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation13.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation13.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_014",
+            "name": "Présentation 14",
+            "category": "Présentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation14.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation14.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
             "id": "original_001",
             "name": "Fire Scene",
             "category": "Originals",
@@ -1581,6 +1805,7 @@
         "Lifestyle",
         "Tech",
         "Vlog",
+        "Présentation",
         "Originals"
     ],
     "note": "All image URLs point to Cloudflare R2 storage with the Actors/ prefix included."
