@@ -524,7 +524,7 @@ export default function DashboardPage() {
                                                     cursor: 'pointer',
                                                     overflow: 'hidden'
                                                 }}
-                                                    onClick={() => window.open(video.video_url, '_blank')}
+                                                    onClick={() => setVideoModalUrl(video.video_url)}
                                                 >
                                                     {/* Actor Image as Background */}
                                                     <div style={{
