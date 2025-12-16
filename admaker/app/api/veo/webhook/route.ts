@@ -167,11 +167,28 @@ async function saveVideoToDatabase(taskId: string, videoUrl: string) {
     try {
         console.log('💾 Saving Veo URL directly to Supabase...');
         const supabase = createServiceClient();
-        const metadata = taskMetadata.get(taskId);
+        let metadata = taskMetadata.get(taskId);
 
         if (!metadata) {
             console.log('⚠️ No metadata found for taskId:', taskId);
-            console.log('Cannot save to database without user info');
+            console.log('🔄 Trying fallback: using most recent task metadata...');
+
+            // Fallback: use the most recent task metadata
+            const allTaskIds = Array.from(taskMetadata.keys());
+            console.log(`Found ${allTaskIds.length} stored task IDs:`, allTaskIds);
+
+            if (allTaskIds.length > 0) {
+                const recentTaskId = allTaskIds[allTaskIds.length - 1];
+                metadata = taskMetadata.get(recentTaskId);
+                console.log(`✅ Using metadata from most recent taskId: ${recentTaskId}`);
+            } else {
+                console.log('❌ No stored metadata available');
+                return;
+            }
+        }
+
+        if (!metadata) {
+            console.log('❌ Cannot save to database without user info');
             return;
         }
 
