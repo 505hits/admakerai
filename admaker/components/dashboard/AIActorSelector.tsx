@@ -14,6 +14,7 @@ export default function AIActorSelector({ onActorSelect }: AIActorSelectorProps)
     const [selectedActor, setSelectedActor] = useState<string | null>(null);
     const [selectedCategory, setSelectedCategory] = useState<string>('All');
     const [loading, setLoading] = useState(true);
+    const [categories, setCategories] = useState<string[]>(['All', 'My Actors']);
 
     useEffect(() => {
         // Load actors from JSON file
@@ -21,6 +22,10 @@ export default function AIActorSelector({ onActorSelect }: AIActorSelectorProps)
             .then(res => res.json())
             .then(data => {
                 setActors(data.actors);
+                // Set categories dynamically from JSON
+                if (data.categories) {
+                    setCategories(['All', 'My Actors', ...data.categories]);
+                }
                 setLoading(false);
             })
             .catch(error => {
@@ -28,8 +33,6 @@ export default function AIActorSelector({ onActorSelect }: AIActorSelectorProps)
                 setLoading(false);
             });
     }, []);
-
-    const categories = ['All', 'My Actors', 'Business', 'Casual', 'Lifestyle', 'Product Demo', 'Sport', 'Senior', 'Beauty', 'Vlog', 'Micro-Content', 'Originals'];
 
     const filteredActors = selectedCategory === 'All'
         ? actors
