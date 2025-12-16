@@ -34,9 +34,9 @@ export const taskMetadata = new Map<string, {
 
 export async function POST(request: NextRequest) {
     try {
-        // FORCE REBUILD - Last updated: 2025-12-16 12:53:00
-        console.log('📹 Veo Callback POST received - Build:', Date.now());
-        console.log('🔄 FRESH BUILD - Timestamp:', new Date().toISOString());
+        // BUILD ID: 2025-12-16-13:30 - FORCE NEW BUILD
+        console.log('📹 Veo Callback POST received - Build: 2025-12-16-13:30');
+        console.log('🔄 NEW CODE ACTIVE - Timestamp:', new Date().toISOString());
 
         const contentType = request.headers.get('content-type') || '';
         console.log('Content-Type:', contentType);
