@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { downloadVideo, uploadVideoToR2 } from '@/lib/r2-upload';
 
 /**
  * Callback endpoint for Veo API
@@ -204,17 +205,29 @@ async function saveVideoToDatabase(taskId: string, videoUrl: string) {
             return;
         }
 
-        // Calculate expiration date (60 days from now - Kie URL expiration)
-        const expiresAt = new Date();
-        expiresAt.setDate(expiresAt.getDate() + 60);
+        // Download video from Kie
+        console.log('📥 Downloading video from Kie...');
+        const videoBuffer = await downloadVideo(videoUrl);
 
-        // Insert video record into Supabase
+        // Upload to Cloudflare R2
+        console.log('☁️ Uploading video to Cloudflare R2...');
+        const fileName = `videos/${taskId}.mp4`;
+        const r2VideoUrl = await uploadVideoToR2(videoBuffer, fileName);
+
+        console.log(`✅ Video uploaded to R2: ${r2VideoUrl}`);
+
+        // Videos on R2 don't expire (unlike Kie URLs)
+        // But we can set a far future date for consistency
+        const expiresAt = new Date();
+        expiresAt.setFullYear(expiresAt.getFullYear() + 10); // 10 years
+
+        // Insert video record into Supabase with R2 URL
         const { error: insertError } = await supabase
             .from('videos')
             .insert({
                 user_id: metadata.user_id,
                 task_id: taskId,
-                video_url: videoUrl,
+                video_url: r2VideoUrl, // R2 URL instead of Kie URL
                 actor_name: metadata.actor_name,
                 actor_image_url: metadata.actor_image_url,
                 script: metadata.script,
@@ -232,6 +245,7 @@ async function saveVideoToDatabase(taskId: string, videoUrl: string) {
 
         console.log('✅ Video saved to Supabase successfully');
         console.log(`📊 Video details: user=${metadata.user_id}, actor=${metadata.actor_name}, duration=${metadata.duration}s`);
+        console.log(`🔗 R2 URL: ${r2VideoUrl}`);
 
         // Clean up metadata after successful save
         await supabase
