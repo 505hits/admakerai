@@ -148,23 +148,19 @@ export default function DashboardPage() {
         setGeneratedVideo(null);
 
         try {
-            setLoadingProgress('Sending request to Veo API...');
-
-            // TEMPORARY: Auth disabled for testing R2 storage
-            // TODO: Re-enable after test
             const supabase = createClient();
             const { data: { user } } = await supabase.auth.getUser();
 
-            // Require authentication for video generation
+            // Require authentication
             if (!user) {
                 setError('You must be logged in to generate videos');
                 setIsGenerating(false);
                 return;
             }
 
-            const userId = user.id; // This is a UUID
+            const userId = user.id;
 
-            // Call the real Veo API with parsed script and scene
+            // Call Veo API
             const result = await generateVideoWithDuration(
                 selectedActor.imageUrl,
                 actualScript,
@@ -176,14 +172,14 @@ export default function DashboardPage() {
 
             console.log('✅ Video generation started:', result);
 
-            // Store metadata for the callback to use (this also creates the video_tasks entry)
+            // Store metadata for webhook
             try {
-                const metadataResponse = await fetch('/api/veo/store-metadata', {
+                await fetch('/api/veo/store-metadata', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         taskId: result.initialTaskId,
-                        userId: userId, // Use test user ID
+                        userId: userId,
                         actorName: selectedActor.name,
                         actorImageUrl: selectedActor.thumbnailUrl,
                         script: actualScript,
@@ -192,124 +188,24 @@ export default function DashboardPage() {
                         format
                     })
                 });
-
-                if (!metadataResponse.ok) {
-                    console.warn('⚠️ Failed to store metadata - video will be saved to R2 only');
-                }
             } catch (metaErr) {
                 console.error('❌ Metadata storage error:', metaErr);
-                // Continue anyway - video will still be generated and saved to R2
             }
-
-
-            setLoadingProgress('Video generation started! Processing...');
-            setElapsedTime(0); // Reset timer
-
-            // Start elapsed time counter
-            const timerInterval = setInterval(() => {
-                setElapsedTime(prev => prev + 1);
-            }, 1000);
 
             // Deduct credits immediately
             setCredits(prev => prev - cost);
 
-            // Poll for video status
-            const taskId = result.initialTaskId;
-            let attempts = 0;
-            const maxAttempts = 300; // 5 minutes max (300 * 1 second) - Veo can take 1-3 minutes
+            // Show success message
+            setError(null);
+            alert('✅ Video generation started! Your video will appear in "Video History" in 1-3 minutes.');
 
-            const pollStatus = async () => {
-                try {
-                    // Poll our local callback storage
-                    console.log(`🔍 Polling status for taskId: ${taskId} (attempt ${attempts + 1}/${maxAttempts})`);
-                    const response = await fetch(`/api/veo/webhook?taskId=${taskId}`);
-
-                    console.log(`📡 Polling response status: ${response.status}`);
-
-                    if (response.status === 404) {
-                        // Callback not received yet
-                        if (attempts < maxAttempts) {
-                            attempts++;
-                            const elapsed = Math.floor(attempts * 2); // 2 seconds per attempt
-                            const estimatedRemaining = Math.max(0, 120 - elapsed);
-                            setLoadingProgress(`Generating video... ${elapsed}s elapsed (est. ${estimatedRemaining}s remaining)`);
-                            console.log(`⏳ Video still processing... ${elapsed}s elapsed`);
-                            setTimeout(pollStatus, 2000);
-                        } else {
-                            clearInterval(timerInterval);
-                            setIsGenerating(false);
-                            setError(`⚠️ Video generation timed out. Your video may still be processing. Check your Veo dashboard at https://kie.ai or try again. Task ID: ${taskId}`);
-                            console.error('❌ Polling timed out after 5 minutes');
-                        }
-                        return;
-                    }
-
-                    const status = await response.json();
-                    console.log('📊 Video status:', status);
-
-                    // Update progress message
-                    const elapsed = Math.floor(attempts * 2);
-
-                    if (status.status === 'completed' && status.videoUrl) {
-                        clearInterval(timerInterval); // Stop timer
-                        setIsGenerating(false);
-                        setGeneratedVideo(status.videoUrl);
-                        setLoadingProgress('Video ready!');
-                        console.log('🎉 Video ready:', status.videoUrl);
-
-                        // Save to history
-                        await saveVideoToHistory({
-                            id: taskId,
-                            videoUrl: status.videoUrl,
-                            actorName: selectedActor.name,
-                            actorImage: selectedActor.thumbnailUrl,
-                            script: actualScript.substring(0, 100) + (actualScript.length > 100 ? '...' : ''),
-                            duration,
-                            format,
-                            createdAt: new Date().toISOString(),
-                        });
-
-                        // Reload video history to show the new video
-                        const videos = await getUserVideos(20);
-                        setVideoHistory(videos);
-                    } else if (status.status === 'failed') {
-                        clearInterval(timerInterval); // Stop timer
-                        setIsGenerating(false);
-                        setError(status.error || 'Video generation failed. Please try again.');
-                        // Refund credits on failure
-                        setCredits(prev => prev + cost);
-                    } else {
-                        // Still processing (pending or processing status), continue polling
-                        if (attempts < maxAttempts) {
-                            attempts++;
-                            const estimatedRemaining = Math.max(0, 120 - elapsed);
-                            setLoadingProgress(`Generating video... ${elapsed}s elapsed (est. ${estimatedRemaining}s remaining)`);
-                            setTimeout(pollStatus, 1000);
-                        } else {
-                            setIsGenerating(false);
-                            setError('Video generation timed out after 5 minutes. The video may still be processing. Please check Video History in a few minutes.');
-                        }
-                    }
-                } catch (err: any) {
-                    console.error('Error polling status:', err);
-                    if (attempts < maxAttempts) {
-                        attempts++;
-                        setTimeout(pollStatus, 1000);
-                    } else {
-                        setIsGenerating(false);
-                        setError('Failed to check video status after 5 minutes. Please check Video History later.');
-                        // Don't refund credits as video might still be generating
-                    }
-                }
-            };
-
-            // Start polling after a short delay
-            setTimeout(pollStatus, 2000);
+            console.log('💡 User should check Video History tab in 1-3 minutes');
 
         } catch (err: any) {
+            console.error('❌ Generation error:', err);
+            setError(err.message || 'Failed to start video generation');
+        } finally {
             setIsGenerating(false);
-            setError(err.message || 'Failed to generate video');
-            console.error('❌ Video generation error:', err);
         }
     };
 

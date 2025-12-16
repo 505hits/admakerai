@@ -108,26 +108,6 @@ export async function POST(request: NextRequest) {
                 console.error('❌ Supabase error:', dbErr.message);
             }
 
-            // Update task status in Supabase
-            try {
-                const supabase = createServiceClient();
-                const { error: updateError } = await supabase
-                    .from('video_tasks')
-                    .update({
-                        status: 'completed',
-                        video_url: veoVideoUrl
-                    })
-                    .eq('task_id', taskId);
-
-                if (updateError) {
-                    console.error('❌ Error updating task status in Supabase:', updateError);
-                } else {
-                    console.log('✅ Task status updated in Supabase');
-                }
-            } catch (updateErr: any) {
-                console.error('❌ Task update error:', updateErr.message);
-            }
-
             return NextResponse.json({ success: true }, { status: 200 });
         }
 

@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { taskMetadata } from '../webhook/route';
-import { createServiceClient } from '@/lib/supabase/service';
 
 /**
  * Store metadata for a video generation task
@@ -38,25 +37,7 @@ export async function POST(request: NextRequest) {
             format: format || '16:9'
         });
 
-        // Initialize task in Supabase with pending status
-        // This persists across serverless function invocations
-        const supabase = createServiceClient();
-        const { error: dbError } = await supabase
-            .from('video_tasks')
-            .insert({
-                task_id: taskId,
-                user_id: userId, // CRITICAL: Must include user_id
-                status: 'pending',
-                created_at: new Date().toISOString()
-            });
-
-        if (dbError) {
-            console.error('❌ Error initializing task in Supabase:', dbError);
-            // Continue anyway - task will still work via metadata
-        } else {
-            console.log(`✅ Metadata stored for taskId: ${taskId}`);
-            console.log(`📊 Task initialized in Supabase with pending status`);
-        }
+        console.log(`✅ Metadata stored for taskId: ${taskId}`);
 
         return NextResponse.json({ success: true }, { status: 200 });
 
