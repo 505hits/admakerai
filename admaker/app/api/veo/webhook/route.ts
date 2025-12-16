@@ -51,23 +51,42 @@ export async function POST(request: NextRequest) {
 
         const bodyText = await request.text();
         console.log('Raw body length:', bodyText.length);
+        console.log('Raw body preview:', bodyText.substring(0, 200));
 
         // Check if body is a URL (plain text) - Kie sends this format
         const trimmedBody = bodyText.trim();
-        if (trimmedBody.startsWith('http://') || trimmedBody.startsWith('https://')) {
-            console.log('📹 Received plain URL callback');
-            const veoVideoUrl = trimmedBody;
+
+        // Handle plain URL (with or without quotes)
+        const urlMatch = trimmedBody.match(/https?:\/\/[^\s"'\]]+/);
+        if (urlMatch) {
+            const veoVideoUrl = urlMatch[0];
+            console.log('📹 Received URL callback (extracted from text)');
             console.log(`📺 Veo URL: ${veoVideoUrl}`);
 
             // Extract taskId from URL - Kie uses UUID format with dashes
             // Example: /r/45b73df1-b7d6-41d5-98fa-6455de802e58_watermarked.mp4
+            // Or: /r/c3a0d9bd-6ba9-4055-a8cc-a4d2288c4244_watermarked.mp4
             const taskIdMatch = veoVideoUrl.match(/\/([a-f0-9-]{36})/);
             const taskId = taskIdMatch ? taskIdMatch[1] : null;
 
             if (!taskId) {
                 console.error('❌ Could not extract taskId from URL:', veoVideoUrl);
+                console.log('⚠️ Trying to use stored metadata keys...');
+
+                // Try to find a matching taskId in metadata by checking all stored tasks
+                const allTaskIds = Array.from(taskMetadata.keys());
+                console.log(`Found ${allTaskIds.length} stored task IDs`);
+
+                if (allTaskIds.length > 0) {
+                    // Use the most recent task (last one added)
+                    const recentTaskId = allTaskIds[allTaskIds.length - 1];
+                    console.log(`Using most recent taskId: ${recentTaskId}`);
+                    await saveVideoToDatabase(recentTaskId, veoVideoUrl);
+                    return NextResponse.json({ success: true }, { status: 200 });
+                }
+
                 return NextResponse.json(
-                    { success: true, message: 'Could not extract taskId from URL' },
+                    { success: true, message: 'Could not extract taskId from URL and no stored tasks' },
                     { status: 200 }
                 );
             }
@@ -87,6 +106,7 @@ export async function POST(request: NextRequest) {
         } catch (parseError) {
             console.error('❌ Failed to parse as JSON:', parseError);
             console.log('Body was not a URL and not valid JSON');
+            console.log('Body content:', trimmedBody.substring(0, 500));
 
             return NextResponse.json(
                 { success: true, message: 'Received but could not parse' },
