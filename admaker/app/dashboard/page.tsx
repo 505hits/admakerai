@@ -487,6 +487,38 @@ export default function DashboardPage() {
                 {activeTab === 'history' && (
                     <div className={styles.historySection}>
                         <h1 className={styles.pageTitle}>Video History</h1>
+
+                        {/* Generation in Progress Indicator */}
+                        {isGenerating && (
+                            <div style={{
+                                padding: '16px 20px',
+                                background: 'linear-gradient(135deg, rgba(255, 8, 68, 0.1) 0%, rgba(0, 0, 0, 0.3) 100%)',
+                                borderRadius: '12px',
+                                border: '1px solid rgba(255, 8, 68, 0.3)',
+                                marginBottom: '24px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '12px'
+                            }}>
+                                <div style={{
+                                    width: '20px',
+                                    height: '20px',
+                                    border: '3px solid rgba(255, 8, 68, 0.3)',
+                                    borderTop: '3px solid #ff0844',
+                                    borderRadius: '50%',
+                                    animation: 'spin 1s linear infinite'
+                                }} />
+                                <div>
+                                    <div style={{ fontSize: '14px', fontWeight: 600, color: '#e5e7eb', marginBottom: '4px' }}>
+                                        Génération en cours...
+                                    </div>
+                                    <div style={{ fontSize: '12px', color: '#9ca3af' }}>
+                                        Votre vidéo sera prête dans 1-2 minutes et apparaîtra automatiquement ici
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
                         {videoHistory.length === 0 ? (
                             <div className={styles.emptyState}>
                                 <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
@@ -511,133 +543,135 @@ export default function DashboardPage() {
                                     return (
                                         <div key={video.id} className={styles.videoCard}>
                                             <div className={styles.videoThumbnail}>
-                                                {/* Video Preview with Play Button */}
+                                                {/* Video Preview - Clearer Image */}
                                                 <div style={{
                                                     position: 'relative',
                                                     width: '100%',
                                                     height: '100%',
-                                                    background: 'linear-gradient(135deg, rgba(255, 8, 68, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%)',
                                                     borderRadius: '12px',
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    justifyContent: 'center',
-                                                    cursor: 'pointer',
-                                                    overflow: 'hidden'
+                                                    overflow: 'hidden',
+                                                    cursor: 'pointer'
                                                 }}
                                                     onClick={() => setVideoModalUrl(video.video_url)}
                                                 >
-                                                    {/* Actor Image as Background */}
+                                                    {/* Actor Image - Less Blur, More Visible */}
+                                                    <img
+                                                        src={video.actor_image_url}
+                                                        alt={video.actor_name}
+                                                        style={{
+                                                            width: '100%',
+                                                            height: '100%',
+                                                            objectFit: 'cover'
+                                                        }}
+                                                    />
+
+                                                    {/* Dark Overlay for Better Contrast */}
                                                     <div style={{
                                                         position: 'absolute',
                                                         top: 0,
                                                         left: 0,
                                                         right: 0,
                                                         bottom: 0,
-                                                        backgroundImage: `url(${video.actor_image_url})`,
-                                                        backgroundSize: 'cover',
-                                                        backgroundPosition: 'center',
-                                                        opacity: 0.3,
-                                                        filter: 'blur(8px)'
+                                                        background: 'linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%)'
                                                     }} />
 
                                                     {/* Play Button */}
                                                     <div style={{
-                                                        position: 'relative',
+                                                        position: 'absolute',
+                                                        top: '50%',
+                                                        left: '50%',
+                                                        transform: 'translate(-50%, -50%)',
                                                         zIndex: 2,
-                                                        width: '80px',
-                                                        height: '80px',
+                                                        width: '64px',
+                                                        height: '64px',
                                                         borderRadius: '50%',
-                                                        background: 'linear-gradient(135deg, #ff0844 0%, #dc2626 100%)',
+                                                        background: 'rgba(255, 8, 68, 0.9)',
                                                         display: 'flex',
                                                         alignItems: 'center',
                                                         justifyContent: 'center',
-                                                        boxShadow: '0 8px 32px rgba(255, 8, 68, 0.4)',
-                                                        transition: 'transform 0.2s ease'
+                                                        boxShadow: '0 4px 16px rgba(255, 8, 68, 0.4)',
+                                                        transition: 'transform 0.2s ease, background 0.2s ease'
                                                     }}
-                                                        onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
-                                                        onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                                                        onMouseEnter={(e) => {
+                                                            e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1.1)';
+                                                            e.currentTarget.style.background = 'rgba(255, 8, 68, 1)';
+                                                        }}
+                                                        onMouseLeave={(e) => {
+                                                            e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1)';
+                                                            e.currentTarget.style.background = 'rgba(255, 8, 68, 0.9)';
+                                                        }}
                                                     >
-                                                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                                                            <path d="M10 8l16 8-16 8V8z" fill="white" />
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                            <path d="M8 5l13 7-13 7V5z" fill="white" />
                                                         </svg>
                                                     </div>
 
-                                                    {/* Video Info Overlay */}
-                                                    <div style={{
-                                                        position: 'absolute',
-                                                        bottom: '12px',
-                                                        left: '12px',
-                                                        right: '12px',
-                                                        zIndex: 2,
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                        gap: '8px',
-                                                        padding: '8px 12px',
-                                                        background: 'rgba(0, 0, 0, 0.7)',
-                                                        borderRadius: '8px',
-                                                        backdropFilter: 'blur(8px)'
-                                                    }}>
-                                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                            <circle cx="8" cy="8" r="7" stroke="white" strokeWidth="1.5" />
-                                                            <path d="M6 5l5 3-5 3V5z" fill="white" />
-                                                        </svg>
-                                                        <span style={{ fontSize: '12px', color: 'white', fontWeight: 600 }}>
-                                                            Cliquez pour lire
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                {/* Expiration warning badge */}
-                                                {isExpired && (
-                                                    <div className={styles.expiredBadge}>
-                                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                            <circle cx="8" cy="8" r="7" fill="#ef4444" />
-                                                            <path d="M8 4v4M8 10h.01" stroke="white" strokeWidth="2" strokeLinecap="round" />
-                                                        </svg>
-                                                        Expired
-                                                    </div>
-                                                )}
-                                                {!isExpired && isExpiringSoon && (
-                                                    <div className={styles.expiringSoonBadge}>
-                                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                            <circle cx="8" cy="8" r="7" fill="#f59e0b" />
-                                                            <path d="M8 4v4l2 2" stroke="white" strokeWidth="2" strokeLinecap="round" />
-                                                        </svg>
-                                                        {daysUntilExpiration}d left
-                                                    </div>
-                                                )}
-                                            </div>
-                                            <div className={styles.videoInfo}>
-                                                <div className={styles.actorInfo}>
-                                                    <img src={video.actorImage} alt={video.actorName} className={styles.actorThumb} />
-                                                    <span className={styles.actorName}>{video.actorName}</span>
-                                                </div>
-                                                <p className={styles.videoScript}>{video.script}</p>
-                                                <div className={styles.videoMeta}>
-                                                    <span className={styles.videoDuration}>{video.duration}s</span>
-                                                    <span className={styles.videoFormat}>{video.format}</span>
-                                                    <span className={styles.videoDate}>
-                                                        {new Date(video.createdAt).toLocaleDateString()}
-                                                    </span>
-                                                    {expiresAt && (
-                                                        <span className={styles.videoExpires} title={`Expires on ${expiresAt.toLocaleDateString()}`}>
-                                                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ marginRight: '4px' }}>
-                                                                <circle cx="7" cy="7" r="6" stroke="currentColor" strokeWidth="1.5" />
-                                                                <path d="M7 3v4l2 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                                                            </svg>
-                                                            Expires {expiresAt.toLocaleDateString()}
-                                                        </span>
+                                                    {/* Expiration Badge */}
+                                                    {isExpired && (
+                                                        <div style={{
+                                                            position: 'absolute',
+                                                            top: '12px',
+                                                            right: '12px',
+                                                            padding: '6px 12px',
+                                                            background: '#ef4444',
+                                                            borderRadius: '6px',
+                                                            fontSize: '12px',
+                                                            fontWeight: 600,
+                                                            color: 'white',
+                                                            zIndex: 3
+                                                        }}>
+                                                            Expired
+                                                        </div>
+                                                    )}
+                                                    {!isExpired && isExpiringSoon && (
+                                                        <div style={{
+                                                            position: 'absolute',
+                                                            top: '12px',
+                                                            right: '12px',
+                                                            padding: '6px 12px',
+                                                            background: '#f59e0b',
+                                                            borderRadius: '6px',
+                                                            fontSize: '12px',
+                                                            fontWeight: 600,
+                                                            color: 'white',
+                                                            zIndex: 3
+                                                        }}>
+                                                            {daysUntilExpiration}d left
+                                                        </div>
                                                     )}
                                                 </div>
-                                                {isExpiringSoon && !isExpired && (
-                                                    <div className={styles.expirationWarning}>
-                                                        ⚠️ Download soon! This video expires in {daysUntilExpiration} day{daysUntilExpiration !== 1 ? 's' : ''}.
+                                            </div>
+
+                                            {/* Video Info - Simplified */}
+                                            <div className={styles.videoInfo}>
+                                                <p className={styles.videoScript} style={{
+                                                    fontSize: '14px',
+                                                    lineHeight: '1.5',
+                                                    marginBottom: '8px',
+                                                    color: '#e5e7eb'
+                                                }}>
+                                                    {video.script}
+                                                </p>
+
+                                                {/* Expiration Date */}
+                                                {expiresAt && (
+                                                    <div style={{
+                                                        fontSize: '12px',
+                                                        color: '#9ca3af',
+                                                        marginBottom: '12px',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        gap: '4px'
+                                                    }}>
+                                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                                            <circle cx="7" cy="7" r="6" stroke="currentColor" strokeWidth="1.5" />
+                                                            <path d="M7 3v4l2 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                                                        </svg>
+                                                        Expires {expiresAt.toLocaleDateString()}
                                                     </div>
                                                 )}
-                                                {isExpired && (
-                                                    <div className={styles.expiredWarning}>
-                                                        ❌ This video URL has expired and is no longer accessible.
-                                                    </div>
-                                                )}
+
+                                                {/* Action Buttons */}
                                                 <div className={styles.videoActions}>
                                                     <button
                                                         onClick={() => setVideoModalUrl(video.video_url)}
