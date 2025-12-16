@@ -2,10 +2,14 @@ import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 
 // Cloudflare R2 Configuration
 const R2_ACCOUNT_ID = '1defcdb7b33d256403a1c29fc50d14b4';
-const R2_ACCESS_KEY_ID = process.env.R2_ACCESS_KEY_ID || '170995158ee7d1a859e96c903dfef11f';
-const R2_SECRET_ACCESS_KEY = process.env.R2_SECRET_ACCESS_KEY || 'f22849b2e2a591517f2680cc8021d7e0a7ef3ade6dca6732e67ed236d0fefe51';
+const R2_ACCESS_KEY_ID = process.env.R2_ACCESS_KEY_ID;
+const R2_SECRET_ACCESS_KEY = process.env.R2_SECRET_ACCESS_KEY;
 const R2_BUCKET_NAME = 'admakerai-media';
 const R2_PUBLIC_URL = 'https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev';
+
+if (!R2_ACCESS_KEY_ID || !R2_SECRET_ACCESS_KEY) {
+    throw new Error('Missing R2 credentials: R2_ACCESS_KEY_ID and R2_SECRET_ACCESS_KEY must be set in environment variables');
+}
 
 // Create S3 client configured for Cloudflare R2
 const r2Client = new S3Client({
