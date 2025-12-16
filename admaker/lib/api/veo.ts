@@ -1,4 +1,4 @@
-import { VeoGenerateRequest, VeoExtendRequest, VeoResponse } from '@/lib/types/veo';
+import { VeoGenerateRequest, VeoResponse } from '@/lib/types/veo';
 
 const API_BASE_URL = 'https://api.kie.ai';
 const API_KEY = process.env.NEXT_PUBLIC_VEO_API_KEY || '';
@@ -78,99 +78,76 @@ class VeoAPIClient {
         return this.request<VeoResponse>('/api/v1/veo/generate', params);
     }
 
-    async extendVideo(params: VeoExtendRequest): Promise<VeoResponse> {
-        return this.request<VeoResponse>('/api/v1/veo/extend', params);
-    }
-
-    async getVideoStatus(taskId: string): Promise<any> {
-        // In localhost, callbacks don't work because Veo can't reach your machine
-        // This polls our local callback storage which only gets populated if:
-        // 1. You're using ngrok/tunneling, OR
-        // 2. You're deployed to a public URL (Vercel, etc.)
-        const response = await fetch(`/api/veo/webhook?taskId=${taskId}`);
-        if (!response.ok) {
-            return null;
-        }
-        return response.json();
-    }
+    // Note: Kie API doesn't document a /extend endpoint
+    // We only support 8s video generation
 }
 
 export const veoClient = new VeoAPIClient(API_KEY);
 
 // Helper function to generate video with actor image
+// Note: Only 8s videos are supported (Kie API doesn't document /extend endpoint)
 export async function generateVideoWithDuration(
     actorImageUrl: string,
     script: string,
     sceneDescription: string,
     format: '16:9' | '9:16',
-    duration: 8 | 16,
+    duration: 8 | 16, // Keep parameter for compatibility, but only 8s is used
     productImageUrl?: string
-): Promise<{ initialTaskId: string; extendTaskId?: string }> {
-
-    // Build the prompt combining script and scene description
-    const prompt = `${script}\n\nScene: ${sceneDescription}`;
-
-    // Use REFERENCE_2_VIDEO mode with actor image as reference
-    // If product image is provided, include it as well (max 3 images for REFERENCE mode)
-    const imageUrls = productImageUrl
-        ? [actorImageUrl, productImageUrl]
-        : [actorImageUrl];
+): Promise<{ taskId: string }> {
 
     // Get callback URL
     const callBackUrl = getCallbackUrl();
 
-    console.log(`📹 Generating video with callback URL: ${callBackUrl}`);
+    console.log(`📹 Generating ${duration}s video with callback URL: ${callBackUrl}`);
 
-    // Note: REFERENCE_2_VIDEO mode only supports 16:9 aspect ratio with veo3_fast
-    // For 9:16 videos, we'll use FIRST_AND_LAST_FRAMES_2_VIDEO mode instead
+    if (duration === 16) {
+        console.warn('⚠️ 16s videos not supported by Kie API - generating 8s video instead');
+    }
+
+    // Build image URLs array
+    // REFERENCE_2_VIDEO: 1-3 images (actor + optional product)
+    // FIRST_AND_LAST_FRAMES_2_VIDEO: 1-2 images
+    const imageUrls = productImageUrl
+        ? [actorImageUrl, productImageUrl]
+        : [actorImageUrl];
+
+    // Mode selection based on aspect ratio
+    // REFERENCE_2_VIDEO: Only supports 16:9 with veo3_fast
+    // FIRST_AND_LAST_FRAMES_2_VIDEO: Supports both 16:9 and 9:16
     const useReferenceMode = format === '16:9';
 
-    // Create a natural prompt for Veo
-    // Format: Scene description with action
+    // Create a natural prompt combining scene and script
     const naturalPrompt = sceneDescription.trim()
         ? `${sceneDescription.trim()}. ${script.trim()}`
         : script.trim();
 
-    // Generate initial 8s video
+    // Generate 8s video
     const generateRequest: VeoGenerateRequest = {
         prompt: naturalPrompt,
         imageUrls,
-        model: 'veo3_fast', // Fast model for quicker generation
-        aspectRatio: format, // Use user-selected format
+        model: 'veo3_fast', // Fast and cost-effective
+        aspectRatio: format,
         generationType: useReferenceMode ? 'REFERENCE_2_VIDEO' : 'FIRST_AND_LAST_FRAMES_2_VIDEO',
-        enableTranslation: true, // Auto-translate prompts to English
-        watermark: 'AdMaker AI', // Fixed: lowercase 'watermark'
-        callBackUrl, // Callback URL for async notification
+        enableTranslation: true, // Auto-translate to English
+        watermark: 'AdMaker AI',
+        callBackUrl,
     };
 
-    const initialResponse = await veoClient.generateVideo(generateRequest);
+    console.log('📤 Sending request to Kie API:', {
+        mode: generateRequest.generationType,
+        format: generateRequest.aspectRatio,
+        imageCount: imageUrls.length,
+    });
 
-    if (initialResponse.code !== 200) {
-        throw new Error(initialResponse.msg);
+    const response = await veoClient.generateVideo(generateRequest);
+
+    if (response.code !== 200) {
+        throw new Error(response.msg);
     }
 
-    const result = {
-        initialTaskId: initialResponse.data.taskId,
-        extendTaskId: undefined as string | undefined,
+    console.log('✅ Video generation started, taskId:', response.data.taskId);
+
+    return {
+        taskId: response.data.taskId,
     };
-
-    // If 16s requested, extend the video
-    if (duration === 16) {
-        const extendRequest: VeoExtendRequest = {
-            taskId: initialResponse.data.taskId,
-            prompt: `Continue the scene: ${sceneDescription}`,
-            watermark: 'AdMaker AI',
-            callBackUrl,
-        };
-
-        const extendResponse = await veoClient.extendVideo(extendRequest);
-
-        if (extendResponse.code !== 200) {
-            throw new Error(extendResponse.msg);
-        }
-
-        result.extendTaskId = extendResponse.data.taskId;
-    }
-
-    return result;
 }

@@ -160,7 +160,7 @@ export default function DashboardPage() {
 
             const userId = user.id;
 
-            // Call Veo API
+            // Call Veo API (simplified - only returns taskId)
             const result = await generateVideoWithDuration(
                 selectedActor.imageUrl,
                 actualScript,
@@ -170,7 +170,7 @@ export default function DashboardPage() {
                 productImageUrl || undefined
             );
 
-            console.log('✅ Video generation started:', result);
+            console.log('✅ Video generation started, taskId:', result.taskId);
 
             // Store metadata for webhook
             try {
@@ -178,7 +178,7 @@ export default function DashboardPage() {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        taskId: result.initialTaskId,
+                        taskId: result.taskId,
                         userId: userId,
                         actorName: selectedActor.name,
                         actorImageUrl: selectedActor.thumbnailUrl,
@@ -195,16 +195,27 @@ export default function DashboardPage() {
             // Deduct credits immediately
             setCredits(prev => prev - cost);
 
-            // Show success message
+            // Show success message and switch to Video History
             setError(null);
-            alert('✅ Video generation started! Your video will appear in "Video History" in 1-3 minutes.');
+            setIsGenerating(false);
 
-            console.log('💡 User should check Video History tab in 1-3 minutes');
+            // Switch to Video History tab
+            setActiveTab('history');
+
+            // Show success notification
+            alert('✅ Vidéo en cours de génération !\n\nVotre vidéo apparaîtra dans l\'historique dans 1-3 minutes.');
+
+            // Reload videos after 2 minutes to catch the new video
+            setTimeout(async () => {
+                const videos = await getUserVideos(20);
+                setVideoHistory(videos);
+            }, 120000); // 2 minutes
+
+            console.log('💡 Video will appear in history in 1-3 minutes');
 
         } catch (err: any) {
             console.error('❌ Generation error:', err);
             setError(err.message || 'Failed to start video generation');
-        } finally {
             setIsGenerating(false);
         }
     };
