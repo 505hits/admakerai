@@ -33,9 +33,9 @@ export default function DashboardPage() {
     const [showSuccessNotification, setShowSuccessNotification] = useState(false);
     const [actorReferenceImage, setActorReferenceImage] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
-    const [loadingProgress, setLoadingProgress] = useState<string>('Initializing...');
-    const [elapsedTime, setElapsedTime] = useState(0);
     const [videoHistory, setVideoHistory] = useState<any[]>([]);
+    const [isLoadingVideos, setIsLoadingVideos] = useState(false);
+    const [videoModalUrl, setVideoModalUrl] = useState<string | null>(null);
 
     // Load video history from Supabase on mount
     useEffect(() => {
@@ -228,13 +228,56 @@ export default function DashboardPage() {
 
     return (
         <div className={styles.dashboardContainer}>
-            {/* Video Generation Loader */}
-            {isGenerating && (
-                <VideoGenerationLoader
-                    progress={loadingProgress}
-                    elapsedTime={elapsedTime}
-                    estimatedRemaining={Math.max(0, 120 - elapsedTime)}
-                />
+            {/* Video Modal */}
+            {videoModalUrl && (
+                <div
+                    style={{
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background: 'rgba(0, 0, 0, 0.95)',
+                        zIndex: 9999,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        padding: '20px'
+                    }}
+                    onClick={() => setVideoModalUrl(null)}
+                >
+                    <div style={{ position: 'relative', maxWidth: '90vw', maxHeight: '90vh' }}>
+                        <button
+                            onClick={() => setVideoModalUrl(null)}
+                            style={{
+                                position: 'absolute',
+                                top: '-40px',
+                                right: '0',
+                                background: 'rgba(255, 255, 255, 0.1)',
+                                border: 'none',
+                                color: 'white',
+                                width: '32px',
+                                height: '32px',
+                                borderRadius: '50%',
+                                cursor: 'pointer',
+                                fontSize: '20px'
+                            }}
+                        >
+                            ×
+                        </button>
+                        <video
+                            src={videoModalUrl}
+                            controls
+                            autoPlay
+                            style={{
+                                maxWidth: '100%',
+                                maxHeight: '90vh',
+                                borderRadius: '12px'
+                            }}
+                            onClick={(e) => e.stopPropagation()}
+                        />
+                    </div>
+                </div>
             )}
 
             {/* Sidebar Overlay */}
@@ -596,317 +639,321 @@ export default function DashboardPage() {
                                                     </div>
                                                 )}
                                                 <div className={styles.videoActions}>
+                                                    <button
+                                                        onClick={() => setVideoModalUrl(video.video_url)}
+                                                        className={styles.viewBtn}
+                                                        disabled={isExpired}
+                                                    >
+                                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                            <path d="M8 3C4.5 3 1.7 5.3 1 8c.7 2.7 3.5 5 7 5s6.3-2.3 7-5c-.7-2.7-3.5-5-7-5z" stroke="currentColor" strokeWidth="2" />
+                                                            <circle cx="8" cy="8" r="2" fill="currentColor" />
+                                                        </svg>
+                                                        View
+                                                    </button>
                                                     <a
-                                                        href={video.videoUrl}
+                                                        href={video.video_url}
                                                         download={`video-${video.task_id}.mp4`}
                                                         className={styles.downloadBtn}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
                                                     >
                                                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                                                             <path d="M8 2v8m0 0l-3-3m3 3l3-3M2 14h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                                                         </svg>
                                                         Download
                                                     </a>
-                                                    <button
-                                                        onClick={() => {
-                                                            setGeneratedVideo(video.videoUrl);
-                                                            setActiveTab('create');
-                                                        }}
-                                                        className={styles.viewBtn}
-                                                        disabled={isExpired}
-                                                    >
-                                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                            <path d="M8 3C4.5 3 1.7 5.3 1 8c.7 2.7 3.5 5 7 5s6.3-2.3 7-5c-.7-2.7-3.5-5-7-5z" stroke="currentColor" strokeWidth="2" />
-                                                            <circle cx="8" cy="8" r="2" stroke="currentColor" strokeWidth="2" />
-                                                        </svg>
-                                                        View
-                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
                                     );
                                 })}
                             </div>
-                        )}
-                    </div>
+                    </div >
                 )}
 
-                {activeTab === 'actors' && (
-                    <div className={styles.actorsSection}>
-                        <div className={styles.actorsHeader}>
-                            <div>
-                                <h1 className={styles.pageTitle}>My Actors</h1>
-                                <p className={styles.pageSubtitle}>
-                                    Create custom AI actors with your own images and settings
-                                </p>
+                {
+                    activeTab === 'actors' && (
+                        <div className={styles.actorsSection}>
+                            <div className={styles.actorsHeader}>
+                                <div>
+                                    <h1 className={styles.pageTitle}>My Actors</h1>
+                                    <p className={styles.pageSubtitle}>
+                                        Create custom AI actors with your own images and settings
+                                    </p>
+                                </div>
+                                <div className={styles.actorCreditsInfo}>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <path d="M10 10a3 3 0 100-6 3 3 0 000 6zM4 18a6 6 0 0112 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                    </svg>
+                                    <span>{actorCredits} AI Actor Credits Remaining</span>
+                                </div>
+                                <button
+                                    className={styles.createActorBtn}
+                                    onClick={() => setShowCreateActorModal(true)}
+                                    disabled={actorCredits < 1}
+                                >
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                    </svg>
+                                    Create Actor (1 credit)
+                                </button>
                             </div>
-                            <div className={styles.actorCreditsInfo}>
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M10 10a3 3 0 100-6 3 3 0 000 6zM4 18a6 6 0 0112 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+
+                            {/* User's custom actors will be displayed here */}
+                            <div className={styles.emptyState}>
+                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                                    <path d="M32 32a10 10 0 100-20 10 10 0 000 20zM12 52a20 20 0 0140 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                                 </svg>
-                                <span>{actorCredits} AI Actor Credits Remaining</span>
+                                <h3>No custom actors yet</h3>
+                                <p>Click "Create Actor" to add your first custom AI actor</p>
                             </div>
-                            <button
-                                className={styles.createActorBtn}
-                                onClick={() => setShowCreateActorModal(true)}
-                                disabled={actorCredits < 1}
-                            >
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                                </svg>
-                                Create Actor (1 credit)
-                            </button>
                         </div>
+                    )
+                }
 
-                        {/* User's custom actors will be displayed here */}
-                        <div className={styles.emptyState}>
-                            <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
-                                <path d="M32 32a10 10 0 100-20 10 10 0 000 20zM12 52a20 20 0 0140 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                            </svg>
-                            <h3>No custom actors yet</h3>
-                            <p>Click "Create Actor" to add your first custom AI actor</p>
+                {
+                    activeTab === 'settings' && (
+                        <div className={styles.settingsSection}>
+                            <h1 className={styles.pageTitle}>Settings</h1>
+                            <p className={styles.comingSoon}>Coming soon...</p>
                         </div>
-                    </div>
-                )}
-
-                {activeTab === 'settings' && (
-                    <div className={styles.settingsSection}>
-                        <h1 className={styles.pageTitle}>Settings</h1>
-                        <p className={styles.comingSoon}>Coming soon...</p>
-                    </div>
-                )}
-            </main>
+                    )
+                }
+            </main >
 
             {/* Credits Modal */}
-            {showCreditsModal && (
-                <div className={styles.modalOverlay} onClick={() => setShowCreditsModal(false)}>
-                    <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-                        <div className={styles.modalIcon}>
-                            <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
-                                <circle cx="32" cy="32" r="30" stroke="currentColor" strokeWidth="3" />
-                                <path d="M32 16v16l12 8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-                            </svg>
-                        </div>
-                        <h2 className={styles.modalTitle}>Out of Credits!</h2>
-                        <p className={styles.modalDescription}>
-                            You need {getCreditCost()} credits to generate this video. Upgrade your plan to get more credits.
-                        </p>
-                        <div className={styles.modalActions}>
-                            <a href="/#pricing" className={styles.modalUpgradeBtn}>
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" fill="currentColor" />
+            {
+                showCreditsModal && (
+                    <div className={styles.modalOverlay} onClick={() => setShowCreditsModal(false)}>
+                        <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+                            <div className={styles.modalIcon}>
+                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                                    <circle cx="32" cy="32" r="30" stroke="currentColor" strokeWidth="3" />
+                                    <path d="M32 16v16l12 8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
                                 </svg>
-                                Upgrade Plan
-                            </a>
-                            <button onClick={() => setShowCreditsModal(false)} className={styles.modalCloseBtn}>
-                                Maybe Later
-                            </button>
+                            </div>
+                            <h2 className={styles.modalTitle}>Out of Credits!</h2>
+                            <p className={styles.modalDescription}>
+                                You need {getCreditCost()} credits to generate this video. Upgrade your plan to get more credits.
+                            </p>
+                            <div className={styles.modalActions}>
+                                <a href="/#pricing" className={styles.modalUpgradeBtn}>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" fill="currentColor" />
+                                    </svg>
+                                    Upgrade Plan
+                                </a>
+                                <button onClick={() => setShowCreditsModal(false)} className={styles.modalCloseBtn}>
+                                    Maybe Later
+                                </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
+                )
+            }
 
             {/* Create Actor Modal */}
-            {showCreateActorModal && (
-                <div className={styles.modalOverlay} onClick={() => setShowCreateActorModal(false)}>
-                    <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-                        <div className={styles.modalHeader}>
-                            <h2 className={styles.modalTitle}>Create Custom AI Actor</h2>
+            {
+                showCreateActorModal && (
+                    <div className={styles.modalOverlay} onClick={() => setShowCreateActorModal(false)}>
+                        <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+                            <div className={styles.modalHeader}>
+                                <h2 className={styles.modalTitle}>Create Custom AI Actor</h2>
+                                <button
+                                    className={styles.closeBtn}
+                                    onClick={() => setShowCreateActorModal(false)}
+                                >
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <path d="M5 5l10 10M5 15L15 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div className={styles.modalBody}>
+                                <div className={styles.formGroup}>
+                                    <label className={styles.formLabel}>Actor Name</label>
+                                    <input
+                                        type="text"
+                                        className={styles.formInput}
+                                        placeholder="e.g., John Smith"
+                                    />
+                                </div>
+
+                                {/* Image Uploads Grid */}
+                                <div className={styles.imageUploadsGrid}>
+                                    {/* Person Reference Image */}
+                                    <div className={styles.formGroup}>
+                                        <label className={styles.formLabel}>
+                                            Person *
+                                        </label>
+                                        <div className={styles.imageUploadContainer}>
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                onChange={handleActorImageUpload}
+                                                className={styles.fileInput}
+                                                id="personImageInput"
+                                            />
+                                            <label htmlFor="personImageInput" className={styles.uploadLabel}>
+                                                {actorReferenceImage ? (
+                                                    <div className={styles.imagePreview}>
+                                                        <img src={actorReferenceImage} alt="Person reference" />
+                                                        <div className={styles.imageOverlay}>
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                            </svg>
+                                                            <span>Change</span>
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <div className={styles.uploadPlaceholder}>
+                                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                                            <circle cx="24" cy="18" r="8" stroke="currentColor" strokeWidth="2" />
+                                                            <path d="M12 40a12 12 0 0124 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                                        </svg>
+                                                        <span className={styles.uploadText}>Upload Person</span>
+                                                        <span className={styles.uploadHint}>PNG, JPG 5MB</span>
+                                                    </div>
+                                                )}
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    {/* Object Reference Image */}
+                                    <div className={styles.formGroup}>
+                                        <label className={styles.formLabel}>
+                                            Object
+                                        </label>
+                                        <div className={styles.imageUploadContainer}>
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                className={styles.fileInput}
+                                                id="objectImageInput"
+                                            />
+                                            <label htmlFor="objectImageInput" className={styles.uploadLabel}>
+                                                <div className={styles.uploadPlaceholder}>
+                                                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                                        <rect x="12" y="12" width="24" height="24" rx="4" stroke="currentColor" strokeWidth="2" />
+                                                    </svg>
+                                                    <span className={styles.uploadText}>Upload Object</span>
+                                                    <span className={styles.uploadHint}>PNG, JPG 5MB</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    {/* Decor Reference Image */}
+                                    <div className={styles.formGroup}>
+                                        <label className={styles.formLabel}>
+                                            Decor
+                                        </label>
+                                        <div className={styles.imageUploadContainer}>
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                className={styles.fileInput}
+                                                id="decorImageInput"
+                                            />
+                                            <label htmlFor="decorImageInput" className={styles.uploadLabel}>
+                                                <div className={styles.uploadPlaceholder}>
+                                                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                                        <path d="M8 8h32v32H8z" stroke="currentColor" strokeWidth="2" />
+                                                        <path d="M16 16h16v16H16z" stroke="currentColor" strokeWidth="2" />
+                                                    </svg>
+                                                    <span className={styles.uploadText}>Upload Decor</span>
+                                                    <span className={styles.uploadHint}>PNG, JPG 5MB</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className={styles.formGroup}>
+                                    <label className={styles.formLabel}>Actor & Scene Description</label>
+                                    <textarea
+                                        className={styles.formTextarea}
+                                        placeholder="Describe the actor's appearance, clothing, setting, and decor... Example: Professional woman in her 30s, wearing business attire, modern office background with plants and natural lighting"
+                                        rows={2}
+                                    />
+                                </div>
+
+                                <div className={styles.modalActions}>
+                                    <button className={styles.createBtn}>
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                            <path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                        </svg>
+                                        Create Actor
+                                    </button>
+                                    <button onClick={() => setShowCreateActorModal(false)} className={styles.cancelBtn}>
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
+
+            {/* Success Notification */}
+            {
+                showSuccessNotification && (
+                    <div style={{
+                        position: 'fixed',
+                        top: '24px',
+                        right: '24px',
+                        zIndex: 3000,
+                        animation: 'slideInRight 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)'
+                    }}>
+                        <div style={{
+                            display: 'flex',
+                            alignItems: 'flex-start',
+                            gap: '16px',
+                            padding: '20px 24px',
+                            background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.15) 100%)',
+                            border: '1px solid rgba(16, 185, 129, 0.3)',
+                            borderRadius: '16px',
+                            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(16, 185, 129, 0.1)',
+                            backdropFilter: 'blur(12px)',
+                            minWidth: '360px',
+                            maxWidth: '420px'
+                        }}>
+                            <div style={{ flexShrink: 0 }}>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="12" r="10" fill="#10b981" />
+                                    <path d="M8 12l2 2 4-4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </div>
+                            <div style={{ flex: 1 }}>
+                                <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#10b981', margin: '0 0 6px 0', lineHeight: 1.4 }}>
+                                    Vidéo en cours de génération !
+                                </h3>
+                                <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.8)', margin: 0, lineHeight: 1.5 }}>
+                                    Votre vidéo apparaîtra dans l'historique dans 1-2 minutes.
+                                </p>
+                            </div>
                             <button
-                                className={styles.closeBtn}
-                                onClick={() => setShowCreateActorModal(false)}
+                                onClick={() => setShowSuccessNotification(false)}
+                                style={{
+                                    flexShrink: 0,
+                                    width: '28px',
+                                    height: '28px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    background: 'rgba(255, 255, 255, 0.05)',
+                                    border: 'none',
+                                    borderRadius: '50%',
+                                    color: 'rgba(255, 255, 255, 0.6)',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.2s ease'
+                                }}
                             >
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                                     <path d="M5 5l10 10M5 15L15 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                                 </svg>
                             </button>
                         </div>
-                        <div className={styles.modalBody}>
-                            <div className={styles.formGroup}>
-                                <label className={styles.formLabel}>Actor Name</label>
-                                <input
-                                    type="text"
-                                    className={styles.formInput}
-                                    placeholder="e.g., John Smith"
-                                />
-                            </div>
-
-                            {/* Image Uploads Grid */}
-                            <div className={styles.imageUploadsGrid}>
-                                {/* Person Reference Image */}
-                                <div className={styles.formGroup}>
-                                    <label className={styles.formLabel}>
-                                        Person *
-                                    </label>
-                                    <div className={styles.imageUploadContainer}>
-                                        <input
-                                            type="file"
-                                            accept="image/*"
-                                            onChange={handleActorImageUpload}
-                                            className={styles.fileInput}
-                                            id="personImageInput"
-                                        />
-                                        <label htmlFor="personImageInput" className={styles.uploadLabel}>
-                                            {actorReferenceImage ? (
-                                                <div className={styles.imagePreview}>
-                                                    <img src={actorReferenceImage} alt="Person reference" />
-                                                    <div className={styles.imageOverlay}>
-                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                                        </svg>
-                                                        <span>Change</span>
-                                                    </div>
-                                                </div>
-                                            ) : (
-                                                <div className={styles.uploadPlaceholder}>
-                                                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                                                        <circle cx="24" cy="18" r="8" stroke="currentColor" strokeWidth="2" />
-                                                        <path d="M12 40a12 12 0 0124 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                                                    </svg>
-                                                    <span className={styles.uploadText}>Upload Person</span>
-                                                    <span className={styles.uploadHint}>PNG, JPG 5MB</span>
-                                                </div>
-                                            )}
-                                        </label>
-                                    </div>
-                                </div>
-
-                                {/* Object Reference Image */}
-                                <div className={styles.formGroup}>
-                                    <label className={styles.formLabel}>
-                                        Object
-                                    </label>
-                                    <div className={styles.imageUploadContainer}>
-                                        <input
-                                            type="file"
-                                            accept="image/*"
-                                            className={styles.fileInput}
-                                            id="objectImageInput"
-                                        />
-                                        <label htmlFor="objectImageInput" className={styles.uploadLabel}>
-                                            <div className={styles.uploadPlaceholder}>
-                                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                                                    <rect x="12" y="12" width="24" height="24" rx="4" stroke="currentColor" strokeWidth="2" />
-                                                </svg>
-                                                <span className={styles.uploadText}>Upload Object</span>
-                                                <span className={styles.uploadHint}>PNG, JPG 5MB</span>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-
-                                {/* Decor Reference Image */}
-                                <div className={styles.formGroup}>
-                                    <label className={styles.formLabel}>
-                                        Decor
-                                    </label>
-                                    <div className={styles.imageUploadContainer}>
-                                        <input
-                                            type="file"
-                                            accept="image/*"
-                                            className={styles.fileInput}
-                                            id="decorImageInput"
-                                        />
-                                        <label htmlFor="decorImageInput" className={styles.uploadLabel}>
-                                            <div className={styles.uploadPlaceholder}>
-                                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                                                    <path d="M8 8h32v32H8z" stroke="currentColor" strokeWidth="2" />
-                                                    <path d="M16 16h16v16H16z" stroke="currentColor" strokeWidth="2" />
-                                                </svg>
-                                                <span className={styles.uploadText}>Upload Decor</span>
-                                                <span className={styles.uploadHint}>PNG, JPG 5MB</span>
-                                            </div>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className={styles.formGroup}>
-                                <label className={styles.formLabel}>Actor & Scene Description</label>
-                                <textarea
-                                    className={styles.formTextarea}
-                                    placeholder="Describe the actor's appearance, clothing, setting, and decor... Example: Professional woman in her 30s, wearing business attire, modern office background with plants and natural lighting"
-                                    rows={2}
-                                />
-                            </div>
-
-                            <div className={styles.modalActions}>
-                                <button className={styles.createBtn}>
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                        <path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                                    </svg>
-                                    Create Actor
-                                </button>
-                                <button onClick={() => setShowCreateActorModal(false)} className={styles.cancelBtn}>
-                                    Cancel
-                                </button>
-                            </div>
-                        </div>
                     </div>
-                </div>
-            )}
-
-            {/* Success Notification */}
-            {showSuccessNotification && (
-                <div style={{
-                    position: 'fixed',
-                    top: '24px',
-                    right: '24px',
-                    zIndex: 3000,
-                    animation: 'slideInRight 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)'
-                }}>
-                    <div style={{
-                        display: 'flex',
-                        alignItems: 'flex-start',
-                        gap: '16px',
-                        padding: '20px 24px',
-                        background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.15) 100%)',
-                        border: '1px solid rgba(16, 185, 129, 0.3)',
-                        borderRadius: '16px',
-                        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(16, 185, 129, 0.1)',
-                        backdropFilter: 'blur(12px)',
-                        minWidth: '360px',
-                        maxWidth: '420px'
-                    }}>
-                        <div style={{ flexShrink: 0 }}>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <circle cx="12" cy="12" r="10" fill="#10b981" />
-                                <path d="M8 12l2 2 4-4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                        </div>
-                        <div style={{ flex: 1 }}>
-                            <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#10b981', margin: '0 0 6px 0', lineHeight: 1.4 }}>
-                                Vidéo en cours de génération !
-                            </h3>
-                            <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.8)', margin: 0, lineHeight: 1.5 }}>
-                                Votre vidéo apparaîtra dans l'historique dans 1-2 minutes.
-                            </p>
-                        </div>
-                        <button
-                            onClick={() => setShowSuccessNotification(false)}
-                            style={{
-                                flexShrink: 0,
-                                width: '28px',
-                                height: '28px',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                background: 'rgba(255, 255, 255, 0.05)',
-                                border: 'none',
-                                borderRadius: '50%',
-                                color: 'rgba(255, 255, 255, 0.6)',
-                                cursor: 'pointer',
-                                transition: 'all 0.2s ease'
-                            }}
-                        >
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                <path d="M5 5l10 10M5 15L15 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                            </svg>
-                        </button>
-                    </div>
-                </div>
-            )}
-        </div>
+                )
+            }
+        </div >
     );
 }
