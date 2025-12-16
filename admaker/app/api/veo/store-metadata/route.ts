@@ -45,7 +45,9 @@ export async function POST(request: NextRequest) {
             .from('video_tasks')
             .insert({
                 task_id: taskId,
-                status: 'pending'
+                user_id: userId, // CRITICAL: Must include user_id
+                status: 'pending',
+                created_at: new Date().toISOString()
             });
 
         if (dbError) {

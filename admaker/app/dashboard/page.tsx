@@ -176,27 +176,7 @@ export default function DashboardPage() {
 
             console.log('✅ Video generation started:', result);
 
-            // Create entry in video_tasks table for polling
-            try {
-                const { error: taskError } = await supabase
-                    .from('video_tasks')
-                    .insert({
-                        task_id: result.initialTaskId,
-                        user_id: userId, // UUID from auth
-                        status: 'pending',
-                        created_at: new Date().toISOString()
-                    });
-
-                if (taskError) {
-                    console.error('❌ Error creating video_tasks entry:', taskError);
-                } else {
-                    console.log('✅ Created video_tasks entry for polling');
-                }
-            } catch (taskErr: any) {
-                console.error('❌ video_tasks creation error:', taskErr.message);
-            }
-
-            // Store metadata for the callback to use
+            // Store metadata for the callback to use (this also creates the video_tasks entry)
             try {
                 const metadataResponse = await fetch('/api/veo/store-metadata', {
                     method: 'POST',
