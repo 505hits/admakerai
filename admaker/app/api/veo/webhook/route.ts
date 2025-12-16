@@ -167,24 +167,36 @@ async function saveVideoToDatabase(taskId: string, videoUrl: string) {
     try {
         console.log('💾 Saving Veo URL directly to Supabase...');
         const supabase = createServiceClient();
-        let metadata = taskMetadata.get(taskId);
 
-        if (!metadata) {
+        // Retrieve metadata from Supabase (replaces in-memory Map)
+        console.log(`🔍 Looking for metadata with taskId: ${taskId}`);
+        const { data: metadataRow, error: metadataError } = await supabase
+            .from('video_generation_metadata')
+            .select('*')
+            .eq('task_id', taskId)
+            .single();
+
+        let metadata = metadataRow;
+
+        if (metadataError || !metadata) {
             console.log('⚠️ No metadata found for taskId:', taskId);
             console.log('🔄 Trying fallback: using most recent task metadata...');
 
             // Fallback: use the most recent task metadata
-            const allTaskIds = Array.from(taskMetadata.keys());
-            console.log(`Found ${allTaskIds.length} stored task IDs:`, allTaskIds);
+            const { data: recentMetadata, error: recentError } = await supabase
+                .from('video_generation_metadata')
+                .select('*')
+                .order('created_at', { ascending: false })
+                .limit(1)
+                .single();
 
-            if (allTaskIds.length > 0) {
-                const recentTaskId = allTaskIds[allTaskIds.length - 1];
-                metadata = taskMetadata.get(recentTaskId);
-                console.log(`✅ Using metadata from most recent taskId: ${recentTaskId}`);
-            } else {
-                console.log('❌ No stored metadata available');
+            if (recentError || !recentMetadata) {
+                console.log('❌ No stored metadata available in Supabase');
                 return;
             }
+
+            metadata = recentMetadata;
+            console.log(`✅ Using metadata from most recent task: ${metadata.task_id}`);
         }
 
         if (!metadata) {
@@ -196,31 +208,42 @@ async function saveVideoToDatabase(taskId: string, videoUrl: string) {
         const expiresAt = new Date();
         expiresAt.setDate(expiresAt.getDate() + 60);
 
-        const { error: dbError } = await supabase
+        // Insert video record into Supabase
+        const { error: insertError } = await supabase
             .from('videos')
             .insert({
-                user_id: metadata.userId,
+                user_id: metadata.user_id,
                 task_id: taskId,
-                video_url: videoUrl, // Store Kie URL directly!
-                actor_name: metadata.actorName,
-                actor_image_url: metadata.actorImageUrl,
+                video_url: videoUrl,
+                actor_name: metadata.actor_name,
+                actor_image_url: metadata.actor_image_url,
                 script: metadata.script,
-                scene_description: metadata.sceneDescription,
+                scene_description: metadata.scene_description,
                 duration: metadata.duration,
                 format: metadata.format,
                 status: 'completed',
                 expires_at: expiresAt.toISOString()
             });
 
-        if (dbError) {
-            console.error('❌ Error saving to Supabase:', dbError);
-        } else {
-            console.log('✅ Veo URL saved to Supabase (expires in 60 days)');
-            // Clean up metadata
-            taskMetadata.delete(taskId);
+        if (insertError) {
+            console.error('❌ Error inserting video:', insertError);
+            throw insertError;
         }
-    } catch (dbErr: any) {
-        console.error('❌ Database error:', dbErr.message);
+
+        console.log('✅ Video saved to Supabase successfully');
+        console.log(`📊 Video details: user=${metadata.user_id}, actor=${metadata.actor_name}, duration=${metadata.duration}s`);
+
+        // Clean up metadata after successful save
+        await supabase
+            .from('video_generation_metadata')
+            .delete()
+            .eq('task_id', taskId);
+
+        console.log('🧹 Metadata cleaned up');
+
+    } catch (error: any) {
+        console.error('❌ Error saving video to database:', error);
+        throw error;
     }
 }
 
