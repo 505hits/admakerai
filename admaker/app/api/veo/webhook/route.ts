@@ -34,6 +34,7 @@ export const taskMetadata = new Map<string, {
 
 export async function POST(request: NextRequest) {
     try {
+        // FORCE REBUILD - Last updated: 2025-12-16 12:53:00
         console.log('📹 Veo Callback POST received - Build:', Date.now());
         console.log('🔄 FRESH BUILD - Timestamp:', new Date().toISOString());
 
@@ -52,9 +53,18 @@ export async function POST(request: NextRequest) {
             const veoVideoUrl = trimmedBody;
             console.log(`📺 Veo URL (plain text): ${veoVideoUrl}`);
 
-            // Extract taskId from URL if possible, or use a fallback
-            const taskIdMatch = veoVideoUrl.match(/\/([a-f0-9]{32})\./);
-            const taskId = taskIdMatch ? taskIdMatch[1] : 'unknown';
+            // Extract taskId from URL - Kie uses UUID format with dashes
+            // Example: /r/45b73df1-b7d6-41d5-98fa-6455de802e58_watermarked.mp4
+            const taskIdMatch = veoVideoUrl.match(/\/([a-f0-9-]{36})/);
+            const taskId = taskIdMatch ? taskIdMatch[1] : null;
+
+            if (!taskId) {
+                console.error('❌ Could not extract taskId from URL:', veoVideoUrl);
+                return NextResponse.json(
+                    { success: true, message: 'Could not extract taskId from URL' },
+                    { status: 200 }
+                );
+            }
 
             console.log(`🔍 Extracted taskId: ${taskId}`);
 
