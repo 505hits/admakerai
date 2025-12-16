@@ -30,6 +30,7 @@ export default function DashboardPage() {
     const [actorCredits, setActorCredits] = useState(10); // AI Actor credits
     const [showCreditsModal, setShowCreditsModal] = useState(false);
     const [showCreateActorModal, setShowCreateActorModal] = useState(false);
+    const [showSuccessNotification, setShowSuccessNotification] = useState(false);
     const [actorReferenceImage, setActorReferenceImage] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [loadingProgress, setLoadingProgress] = useState<string>('Initializing...');
@@ -203,7 +204,12 @@ export default function DashboardPage() {
             setActiveTab('history');
 
             // Show success notification
-            alert('✅ Vidéo en cours de génération !\n\nVotre vidéo apparaîtra dans l\'historique dans 1-3 minutes.');
+            setShowSuccessNotification(true);
+
+            // Auto-hide notification after 5 seconds
+            setTimeout(() => {
+                setShowSuccessNotification(false);
+            }, 5000);
 
             // Reload videos after 2 minutes to catch the new video
             setTimeout(async () => {
@@ -777,6 +783,67 @@ export default function DashboardPage() {
                                 </button>
                             </div>
                         </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Success Notification */}
+            {showSuccessNotification && (
+                <div style={{
+                    position: 'fixed',
+                    top: '24px',
+                    right: '24px',
+                    zIndex: 3000,
+                    animation: 'slideInRight 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)'
+                }}>
+                    <div style={{
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        gap: '16px',
+                        padding: '20px 24px',
+                        background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.15) 100%)',
+                        border: '1px solid rgba(16, 185, 129, 0.3)',
+                        borderRadius: '16px',
+                        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(16, 185, 129, 0.1)',
+                        backdropFilter: 'blur(12px)',
+                        minWidth: '360px',
+                        maxWidth: '420px'
+                    }}>
+                        <div style={{ flexShrink: 0 }}>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" fill="#10b981" />
+                                <path d="M8 12l2 2 4-4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                        </div>
+                        <div style={{ flex: 1 }}>
+                            <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#10b981', margin: '0 0 6px 0', lineHeight: 1.4 }}>
+                                Vidéo en cours de génération !
+                            </h3>
+                            <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.8)', margin: 0, lineHeight: 1.5 }}>
+                                Votre vidéo apparaîtra dans l'historique dans 1-2 minutes.
+                            </p>
+                        </div>
+                        <button
+                            onClick={() => setShowSuccessNotification(false)}
+                            style={{
+                                flexShrink: 0,
+                                width: '28px',
+                                height: '28px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                background: 'rgba(255, 255, 255, 0.05)',
+                                border: 'none',
+                                borderRadius: '50%',
+                                color: 'rgba(255, 255, 255, 0.6)',
+                                cursor: 'pointer',
+                                transition: 'all 0.2s ease'
+                            }}
+                        >
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M5 5l10 10M5 15L15 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                            </svg>
+                        </button>
                     </div>
                 </div>
             )}
