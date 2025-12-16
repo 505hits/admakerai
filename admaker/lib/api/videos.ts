@@ -42,9 +42,18 @@ export async function saveVideo(video: Omit<Video, 'id' | 'created_at'>): Promis
 export async function getUserVideos(limit = 20): Promise<Video[]> {
     const supabase = createClient();
 
+    // Get current user
+    const { data: { user }, error: authError } = await supabase.auth.getUser();
+
+    if (authError || !user) {
+        console.error('Error getting user:', authError);
+        return [];
+    }
+
     const { data, error } = await supabase
         .from('videos')
         .select('*')
+        .eq('user_id', user.id) // Filter by current user
         .order('created_at', { ascending: false })
         .limit(limit);
 
