@@ -42,11 +42,14 @@ export async function POST(request: NextRequest) {
 
         const bodyText = await request.text();
         console.log('Raw body:', bodyText.substring(0, 200));
+        console.log('Body length:', bodyText.length);
+        console.log('Body trimmed:', bodyText.trim().substring(0, 200));
 
         // Check if body is a URL (plain text) - SIMPLIFIED: Store Veo URL directly
-        if (bodyText.startsWith('http://') || bodyText.startsWith('https://')) {
+        const trimmedBody = bodyText.trim();
+        if (trimmedBody.startsWith('http://') || trimmedBody.startsWith('https://')) {
             console.log('📹 Received plain URL callback');
-            const veoVideoUrl = bodyText.trim();
+            const veoVideoUrl = trimmedBody;
             console.log(`📺 Veo URL (plain text): ${veoVideoUrl}`);
 
             // Extract taskId from URL if possible, or use a fallback
@@ -118,13 +121,13 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ success: true }, { status: 200 });
         }
 
-        // Try to parse as JSON
+        // Try to parse as JSON only if it's not a plain URL
         let body;
         try {
-            body = JSON.parse(bodyText);
+            body = JSON.parse(trimmedBody);
         } catch (parseError) {
             console.error('❌ Failed to parse as JSON:', parseError);
-            console.log('Body was:', bodyText);
+            console.log('Body was not a URL and not valid JSON:', trimmedBody.substring(0, 100));
 
             return NextResponse.json(
                 { success: true, message: 'Received but could not parse' },
