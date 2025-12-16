@@ -155,16 +155,14 @@ export default function DashboardPage() {
             const supabase = createClient();
             const { data: { user } } = await supabase.auth.getUser();
 
-            // Use test user ID if not logged in
-            const userId = user?.id || 'test-user-' + Date.now();
-
-            /* COMMENTED FOR TESTING - UNCOMMENT AFTER TEST
+            // Require authentication for video generation
             if (!user) {
                 setError('You must be logged in to generate videos');
                 setIsGenerating(false);
                 return;
             }
-            */
+
+            const userId = user.id; // This is a UUID
 
             // Call the real Veo API with parsed script and scene
             const result = await generateVideoWithDuration(
@@ -177,6 +175,26 @@ export default function DashboardPage() {
             );
 
             console.log('✅ Video generation started:', result);
+
+            // Create entry in video_tasks table for polling
+            try {
+                const { error: taskError } = await supabase
+                    .from('video_tasks')
+                    .insert({
+                        task_id: result.initialTaskId,
+                        user_id: userId, // UUID from auth
+                        status: 'pending',
+                        created_at: new Date().toISOString()
+                    });
+
+                if (taskError) {
+                    console.error('❌ Error creating video_tasks entry:', taskError);
+                } else {
+                    console.log('✅ Created video_tasks entry for polling');
+                }
+            } catch (taskErr: any) {
+                console.error('❌ video_tasks creation error:', taskErr.message);
+            }
 
             // Store metadata for the callback to use
             try {
@@ -223,21 +241,25 @@ export default function DashboardPage() {
             const pollStatus = async () => {
                 try {
                     // Poll our local callback storage
-                    // NOTE: In localhost, Veo can't send callbacks, so this will timeout
-                    // The video IS being generated on Veo's servers though!
+                    console.log(`🔍 Polling status for taskId: ${taskId} (attempt ${attempts + 1}/${maxAttempts})`);
                     const response = await fetch(`/api/veo/webhook?taskId=${taskId}`);
+
+                    console.log(`📡 Polling response status: ${response.status}`);
 
                     if (response.status === 404) {
                         // Callback not received yet
                         if (attempts < maxAttempts) {
                             attempts++;
-                            const elapsed = Math.floor(attempts);
+                            const elapsed = Math.floor(attempts * 2); // 2 seconds per attempt
                             const estimatedRemaining = Math.max(0, 120 - elapsed);
                             setLoadingProgress(`Generating video... ${elapsed}s elapsed (est. ${estimatedRemaining}s remaining)`);
+                            console.log(`⏳ Video still processing... ${elapsed}s elapsed`);
                             setTimeout(pollStatus, 2000);
                         } else {
+                            clearInterval(timerInterval);
                             setIsGenerating(false);
-                            setError(`⚠️ Localhost limitation: Callbacks don't work in development. Your video IS being generated! Check your Veo dashboard at https://kie.ai to see the result. Task ID: ${taskId}`);
+                            setError(`⚠️ Video generation timed out. Your video may still be processing. Check your Veo dashboard at https://kie.ai or try again. Task ID: ${taskId}`);
+                            console.error('❌ Polling timed out after 5 minutes');
                         }
                         return;
                     }
@@ -246,16 +268,17 @@ export default function DashboardPage() {
                     console.log('📊 Video status:', status);
 
                     // Update progress message
-                    const elapsed = Math.floor(attempts);
+                    const elapsed = Math.floor(attempts * 2);
 
                     if (status.status === 'completed' && status.videoUrl) {
                         clearInterval(timerInterval); // Stop timer
                         setIsGenerating(false);
                         setGeneratedVideo(status.videoUrl);
+                        setLoadingProgress('Video ready!');
                         console.log('🎉 Video ready:', status.videoUrl);
 
                         // Save to history
-                        saveVideoToHistory({
+                        await saveVideoToHistory({
                             id: taskId,
                             videoUrl: status.videoUrl,
                             actorName: selectedActor.name,
@@ -265,6 +288,10 @@ export default function DashboardPage() {
                             format,
                             createdAt: new Date().toISOString(),
                         });
+
+                        // Reload video history to show the new video
+                        const videos = await getUserVideos(20);
+                        setVideoHistory(videos);
                     } else if (status.status === 'failed') {
                         clearInterval(timerInterval); // Stop timer
                         setIsGenerating(false);
@@ -497,12 +524,18 @@ export default function DashboardPage() {
                                     </video>
                                 </div>
                                 <div className={styles.resultActions}>
-                                    <button className={styles.downloadBtn}>
+                                    <a
+                                        href={generatedVideo}
+                                        download="admaker-video.mp4"
+                                        className={styles.downloadBtn}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
                                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                                             <path d="M10 3v10m0 0l-4-4m4 4l4-4M3 17h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                         </svg>
                                         Download
-                                    </button>
+                                    </a>
                                     <button className={styles.shareBtn}>
                                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                                             <path d="M15 7a3 3 0 100-6 3 3 0 000 6zM5 13a3 3 0 100-6 3 3 0 000 6zM15 19a3 3 0 100-6 3 3 0 000 6zM6.5 11.5l7-3M6.5 14.5l7 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
