@@ -464,22 +464,19 @@ export default function DashboardPage() {
                                             <div className={styles.videoThumbnail}>
                                                 <video
                                                     src={video.videoUrl}
-                                                    className={styles.thumbnailVideo}
-                                                    onMouseEnter={(e) => (e.target as HTMLVideoElement).play()}
-                                                    onMouseLeave={(e) => {
-                                                        const vid = e.target as HTMLVideoElement;
-                                                        vid.pause();
-                                                        vid.currentTime = 0;
+                                                    className={styles.videoPlayer}
+                                                    controls
+                                                    preload="metadata"
+                                                    playsInline
+                                                    style={{
+                                                        width: '100%',
+                                                        height: '100%',
+                                                        objectFit: 'cover',
+                                                        borderRadius: '12px'
                                                     }}
-                                                    muted
-                                                    loop
-                                                />
-                                                <div className={styles.videoOverlay}>
-                                                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                                                        <circle cx="24" cy="24" r="20" fill="rgba(0,0,0,0.5)" />
-                                                        <path d="M18 14l16 10-16 10V14z" fill="white" />
-                                                    </svg>
-                                                </div>
+                                                >
+                                                    Your browser does not support the video tag.
+                                                </video>
                                                 {/* Expiration warning badge */}
                                                 {isExpired && (
                                                     <div className={styles.expiredBadge}>
