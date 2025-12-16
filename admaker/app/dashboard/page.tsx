@@ -468,21 +468,81 @@ export default function DashboardPage() {
                                     return (
                                         <div key={video.id} className={styles.videoCard}>
                                             <div className={styles.videoThumbnail}>
-                                                <video
-                                                    src={video.videoUrl}
-                                                    className={styles.videoPlayer}
-                                                    controls
-                                                    preload="metadata"
-                                                    playsInline
-                                                    style={{
-                                                        width: '100%',
-                                                        height: '100%',
-                                                        objectFit: 'cover',
-                                                        borderRadius: '12px'
-                                                    }}
+                                                {/* Video Preview with Play Button */}
+                                                <div style={{
+                                                    position: 'relative',
+                                                    width: '100%',
+                                                    height: '100%',
+                                                    background: 'linear-gradient(135deg, rgba(255, 8, 68, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%)',
+                                                    borderRadius: '12px',
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    justifyContent: 'center',
+                                                    cursor: 'pointer',
+                                                    overflow: 'hidden'
+                                                }}
+                                                    onClick={() => window.open(video.video_url, '_blank')}
                                                 >
-                                                    Your browser does not support the video tag.
-                                                </video>
+                                                    {/* Actor Image as Background */}
+                                                    <div style={{
+                                                        position: 'absolute',
+                                                        top: 0,
+                                                        left: 0,
+                                                        right: 0,
+                                                        bottom: 0,
+                                                        backgroundImage: `url(${video.actor_image_url})`,
+                                                        backgroundSize: 'cover',
+                                                        backgroundPosition: 'center',
+                                                        opacity: 0.3,
+                                                        filter: 'blur(8px)'
+                                                    }} />
+
+                                                    {/* Play Button */}
+                                                    <div style={{
+                                                        position: 'relative',
+                                                        zIndex: 2,
+                                                        width: '80px',
+                                                        height: '80px',
+                                                        borderRadius: '50%',
+                                                        background: 'linear-gradient(135deg, #ff0844 0%, #dc2626 100%)',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center',
+                                                        boxShadow: '0 8px 32px rgba(255, 8, 68, 0.4)',
+                                                        transition: 'transform 0.2s ease'
+                                                    }}
+                                                        onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.1)'}
+                                                        onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                                                    >
+                                                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                                                            <path d="M10 8l16 8-16 8V8z" fill="white" />
+                                                        </svg>
+                                                    </div>
+
+                                                    {/* Video Info Overlay */}
+                                                    <div style={{
+                                                        position: 'absolute',
+                                                        bottom: '12px',
+                                                        left: '12px',
+                                                        right: '12px',
+                                                        zIndex: 2,
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        gap: '8px',
+                                                        padding: '8px 12px',
+                                                        background: 'rgba(0, 0, 0, 0.7)',
+                                                        borderRadius: '8px',
+                                                        backdropFilter: 'blur(8px)'
+                                                    }}>
+                                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                            <circle cx="8" cy="8" r="7" stroke="white" strokeWidth="1.5" />
+                                                            <path d="M6 5l5 3-5 3V5z" fill="white" />
+                                                        </svg>
+                                                        <span style={{ fontSize: '12px', color: 'white', fontWeight: 600 }}>
+                                                            Cliquez pour lire
+                                                        </span>
+                                                    </div>
+                                                </div>
                                                 {/* Expiration warning badge */}
                                                 {isExpired && (
                                                     <div className={styles.expiredBadge}>
