@@ -995,6 +995,230 @@
             "style": "Social media creator"
         },
         {
+            "id": "sport_010",
+            "name": "Sport Athlete 10",
+            "category": "Sport",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport10.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport10.png",
+            "sceneDescription": "Athletic sports setting",
+            "tags": [
+                "sport",
+                "fitness",
+                "athletic"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Athletic sports"
+        },
+        {
+            "id": "sport_011",
+            "name": "Sport Athlete 11",
+            "category": "Sport",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport11.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport11.png",
+            "sceneDescription": "Athletic sports setting",
+            "tags": [
+                "sport",
+                "fitness",
+                "athletic"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Athletic sports"
+        },
+        {
+            "id": "sport_012",
+            "name": "Sport Athlete 12",
+            "category": "Sport",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport12.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport12.png",
+            "sceneDescription": "Athletic sports setting",
+            "tags": [
+                "sport",
+                "fitness",
+                "athletic"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Athletic sports"
+        },
+        {
+            "id": "sport_013",
+            "name": "Sport Athlete 13",
+            "category": "Sport",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport13.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport13.png",
+            "sceneDescription": "Athletic sports setting",
+            "tags": [
+                "sport",
+                "fitness",
+                "athletic"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Athletic sports"
+        },
+        {
+            "id": "sport_014",
+            "name": "Sport Athlete 14",
+            "category": "Sport",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport14.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport14.png",
+            "sceneDescription": "Athletic sports setting",
+            "tags": [
+                "sport",
+                "fitness",
+                "athletic"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Athletic sports"
+        },
+        {
+            "id": "sport_015",
+            "name": "Sport Athlete 15",
+            "category": "Sport",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport15.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport15.png",
+            "sceneDescription": "Athletic sports setting",
+            "tags": [
+                "sport",
+                "fitness",
+                "athletic"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Athletic sports"
+        },
+        {
+            "id": "lifestyle_001",
+            "name": "Lifestyle Creator 1",
+            "category": "Lifestyle",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/lifestyle1.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/lifestyle1.png",
+            "sceneDescription": "Lifestyle content setting",
+            "tags": [
+                "lifestyle",
+                "casual",
+                "relatable"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Lifestyle creator"
+        },
+        {
+            "id": "lifestyle_002",
+            "name": "Lifestyle Creator 2",
+            "category": "Lifestyle",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/lifestyle2.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/lifestyle2.png",
+            "sceneDescription": "Lifestyle content setting",
+            "tags": [
+                "lifestyle",
+                "casual",
+                "relatable"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Lifestyle creator"
+        },
+        {
+            "id": "lifestyle_003",
+            "name": "Lifestyle Creator 3",
+            "category": "Lifestyle",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/lifestyle3.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/lifestyle3.png",
+            "sceneDescription": "Lifestyle content setting",
+            "tags": [
+                "lifestyle",
+                "casual",
+                "relatable"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Lifestyle creator"
+        },
+        {
+            "id": "lifestyle_004",
+            "name": "Lifestyle Creator 4",
+            "category": "Lifestyle",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/lifestyle4.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/lifestyle4.png",
+            "sceneDescription": "Lifestyle content setting",
+            "tags": [
+                "lifestyle",
+                "casual",
+                "relatable"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Lifestyle creator"
+        },
+        {
+            "id": "lifestyle_005",
+            "name": "Lifestyle Creator 5",
+            "category": "Lifestyle",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/lifestyle5.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/lifestyle5.png",
+            "sceneDescription": "Lifestyle content setting",
+            "tags": [
+                "lifestyle",
+                "casual",
+                "relatable"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Lifestyle creator"
+        },
+        {
+            "id": "lifestyle_006",
+            "name": "Lifestyle Creator 6",
+            "category": "Lifestyle",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/lifestyle6.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/lifestyle6.png",
+            "sceneDescription": "Lifestyle content setting",
+            "tags": [
+                "lifestyle",
+                "casual",
+                "relatable"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Lifestyle creator"
+        },
+        {
+            "id": "lifestyle_007",
+            "name": "Lifestyle Creator 7",
+            "category": "Lifestyle",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/lifestyle7.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/lifestyle7.png",
+            "sceneDescription": "Lifestyle content setting",
+            "tags": [
+                "lifestyle",
+                "casual",
+                "relatable"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Lifestyle creator"
+        },
+        {
+            "id": "lifestyle_008",
+            "name": "Lifestyle Creator 8",
+            "category": "Lifestyle",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/lifestyle8.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/lifestyle8.png",
+            "sceneDescription": "Lifestyle content setting",
+            "tags": [
+                "lifestyle",
+                "casual",
+                "relatable"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Lifestyle creator"
+        },
+        {
             "id": "original_001",
             "name": "Fire Scene",
             "category": "Originals",
@@ -1065,6 +1289,8 @@
         "Beauty",
         "Product Demo",
         "Micro-Content",
+        "Sport",
+        "Lifestyle",
         "Originals"
     ],
     "note": "All image URLs point to Cloudflare R2 storage with the Actors/ prefix included."
