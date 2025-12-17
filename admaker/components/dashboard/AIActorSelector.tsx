@@ -7,9 +7,10 @@ import { getMediaUrl } from '@/lib/cloudflare-config';
 
 interface AIActorSelectorProps {
     onActorSelect: (actor: AIActor) => void;
+    customActors?: any[]; // Custom actors from Supabase
 }
 
-export default function AIActorSelector({ onActorSelect }: AIActorSelectorProps) {
+export default function AIActorSelector({ onActorSelect, customActors = [] }: AIActorSelectorProps) {
     const [actors, setActors] = useState<AIActor[]>([]);
     const [selectedActor, setSelectedActor] = useState<string | null>(null);
     const [selectedCategory, setSelectedCategory] = useState<string>('All');
@@ -21,7 +22,24 @@ export default function AIActorSelector({ onActorSelect }: AIActorSelectorProps)
         fetch('/data/ai-actors.json')
             .then(res => res.json())
             .then(data => {
-                setActors(data.actors);
+                // Convert custom actors to AIActor format
+                const customAIActors: AIActor[] = customActors.map(actor => ({
+                    id: actor.id,
+                    name: actor.name,
+                    category: 'Custom' as const,
+                    imageUrl: actor.reference_image_url,
+                    thumbnailUrl: actor.reference_image_url,
+                    sceneDescription: actor.description || actor.prompt || '',
+                    description: actor.description || actor.prompt || '',
+                    tags: ['custom', 'user-created'],
+                    gender: 'neutral' as const,
+                    ageRange: 'adult',
+                    style: 'custom'
+                }));
+
+                // Merge JSON actors with custom actors
+                setActors([...customAIActors, ...data.actors]);
+
                 // Set categories dynamically from JSON
                 if (data.categories) {
                     setCategories(['All', 'My Actors', ...data.categories]);
@@ -32,7 +50,7 @@ export default function AIActorSelector({ onActorSelect }: AIActorSelectorProps)
                 console.error('Failed to load actors:', error);
                 setLoading(false);
             });
-    }, []);
+    }, [customActors]);
 
     const filteredActors = selectedCategory === 'All'
         ? actors

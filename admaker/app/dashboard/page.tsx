@@ -610,7 +610,7 @@ export default function DashboardPage() {
                         </p>
 
                         {/* AI Actor Selection */}
-                        <AIActorSelector onActorSelect={setSelectedActor} />
+                        <AIActorSelector onActorSelect={setSelectedActor} customActors={customActors} />
 
                         {/* Show rest of form only if actor is selected */}
                         {selectedActor && (
