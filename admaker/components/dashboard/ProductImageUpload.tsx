@@ -20,10 +20,10 @@ export default function ProductImageUpload({ onImageChange }: ProductImageUpload
                     const canvas = document.createElement('canvas');
                     const ctx = canvas.getContext('2d');
 
-                    // Calculate new dimensions (max 800px width/height)
+                    // Calculate new dimensions (max 400px width/height for better compression)
                     let width = img.width;
                     let height = img.height;
-                    const maxSize = 600;
+                    const maxSize = 400; // Reduced from 600px to minimize payload size
 
                     if (width > height) {
                         if (width > maxSize) {
@@ -43,8 +43,8 @@ export default function ProductImageUpload({ onImageChange }: ProductImageUpload
                     // Draw and compress
                     ctx?.drawImage(img, 0, 0, width, height);
 
-                    // Convert to base64 with 0.7 quality (JPEG compression)
-                    const compressedBase64 = canvas.toDataURL('image/jpeg', 0.5);
+                    // Convert to base64 with higher compression (0.4 quality)
+                    const compressedBase64 = canvas.toDataURL('image/jpeg', 0.4);
                     resolve(compressedBase64);
                 };
                 img.onerror = reject;
@@ -63,6 +63,14 @@ export default function ProductImageUpload({ onImageChange }: ProductImageUpload
                 // Compress image first
                 compressedImage = await compressImage(file);
 
+                // Validate compressed size (base64 should be < 5MB for API route)
+                const sizeInBytes = (compressedImage.length * 3) / 4; // Approximate base64 decoded size
+                const sizeInMB = sizeInBytes / (1024 * 1024);
+
+                if (sizeInMB > 5) {
+                    throw new Error(`Compressed image is too large (${sizeInMB.toFixed(1)}MB). Please use a smaller image.`);
+                }
+
                 // Show preview immediately
                 setProductImage(compressedImage);
 
@@ -74,19 +82,20 @@ export default function ProductImageUpload({ onImageChange }: ProductImageUpload
                 });
 
                 if (!response.ok) {
-                    throw new Error('Upload failed');
+                    const errorData = await response.json().catch(() => ({ error: 'Upload failed' }));
+                    throw new Error(errorData.error || 'Upload failed');
                 }
 
                 const { url } = await response.json();
 
                 // Return R2 URL instead of base64
                 onImageChange(url);
-            } catch (error) {
+            } catch (error: any) {
                 console.error('Image upload failed:', error);
-                // Fallback to base64 if upload fails
-                if (compressedImage) {
-                    onImageChange(compressedImage);
-                }
+                alert(error.message || 'Failed to upload image. Please try a smaller image.');
+                // Clear the failed upload
+                setProductImage(null);
+                onImageChange(null);
             }
         }
     };

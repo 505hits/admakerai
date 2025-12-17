@@ -1,6 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 
+// Configure route to accept larger payloads
+export const config = {
+    api: {
+        bodyParser: {
+            sizeLimit: '10mb',
+        },
+    },
+};
+
 const s3Client = new S3Client({
     region: 'auto',
     endpoint: process.env.R2_ENDPOINT!,
@@ -18,6 +27,17 @@ export async function POST(request: NextRequest) {
             return NextResponse.json(
                 { error: 'No image data provided' },
                 { status: 400 }
+            );
+        }
+
+        // Validate base64 size (should be < 10MB)
+        const sizeInBytes = (imageData.length * 3) / 4;
+        const sizeInMB = sizeInBytes / (1024 * 1024);
+
+        if (sizeInMB > 10) {
+            return NextResponse.json(
+                { error: `Image too large (${sizeInMB.toFixed(1)}MB). Maximum size is 10MB.` },
+                { status: 413 } // Payload Too Large
             );
         }
 
@@ -45,6 +65,15 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ url: publicUrl });
     } catch (error: any) {
         console.error('Product image upload error:', error);
+
+        // Handle specific error types
+        if (error.message?.includes('size') || error.message?.includes('large')) {
+            return NextResponse.json(
+                { error: 'Image size exceeds limit. Please use a smaller image.' },
+                { status: 413 }
+            );
+        }
+
         return NextResponse.json(
             { error: error.message || 'Failed to upload image' },
             { status: 500 }
