@@ -23,7 +23,7 @@ export default function ProductImageUpload({ onImageChange }: ProductImageUpload
                     // Calculate new dimensions (max 800px width/height)
                     let width = img.width;
                     let height = img.height;
-                    const maxSize = 800;
+                    const maxSize = 600;
 
                     if (width > height) {
                         if (width > maxSize) {
@@ -44,7 +44,7 @@ export default function ProductImageUpload({ onImageChange }: ProductImageUpload
                     ctx?.drawImage(img, 0, 0, width, height);
 
                     // Convert to base64 with 0.7 quality (JPEG compression)
-                    const compressedBase64 = canvas.toDataURL('image/jpeg', 0.7);
+                    const compressedBase64 = canvas.toDataURL('image/jpeg', 0.5);
                     resolve(compressedBase64);
                 };
                 img.onerror = reject;
