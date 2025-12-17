@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import { createNanoBananaTask } from '@/lib/api/kie-nano-banana';
+import { uploadImageToR2 } from '@/lib/r2-upload';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
+export const maxDuration = 60;
 
 // Helper function to create Supabase service client
 function createServiceClient() {
@@ -20,6 +22,13 @@ function createServiceClient() {
             persistSession: false
         }
     });
+}
+
+// Helper to convert base64 to buffer
+function base64ToBuffer(base64: string): Buffer {
+    // Remove data:image/...;base64, prefix if present
+    const base64Data = base64.replace(/^data:image\/\w+;base64,/, '');
+    return Buffer.from(base64Data, 'base64');
 }
 
 export async function POST(request: NextRequest) {
@@ -56,19 +65,55 @@ export async function POST(request: NextRequest) {
         console.log(`👤 Creating actor for user: ${userId}`);
         console.log(`📝 Prompt: ${prompt}`);
 
-        // Build image_input array from provided reference images
+        // Upload base64 images to R2 and get public URLs
         const imageInput: string[] = [];
-        if (personImageUrl) imageInput.push(personImageUrl);
-        if (objectImageUrl) imageInput.push(objectImageUrl);
-        if (decorImageUrl) imageInput.push(decorImageUrl);
+        const timestamp = Date.now();
 
-        console.log(`🖼️ Reference images: ${imageInput.length}`);
+        if (personImageUrl) {
+            console.log('📤 Uploading person image to R2...');
+            const personBuffer = base64ToBuffer(personImageUrl);
+            const personR2Url = await uploadImageToR2(
+                personBuffer,
+                `temp-actors/${userId}/${timestamp}-person.png`,
+                'image/png'
+            );
+            imageInput.push(personR2Url);
+            console.log(`✅ Person image uploaded: ${personR2Url}`);
+        }
+
+        if (objectImageUrl) {
+            console.log('📤 Uploading object image to R2...');
+            const objectBuffer = base64ToBuffer(objectImageUrl);
+            const objectR2Url = await uploadImageToR2(
+                objectBuffer,
+                `temp-actors/${userId}/${timestamp}-object.png`,
+                'image/png'
+            );
+            imageInput.push(objectR2Url);
+            console.log(`✅ Object image uploaded: ${objectR2Url}`);
+        }
+
+        if (decorImageUrl) {
+            console.log('📤 Uploading decor image to R2...');
+            const decorBuffer = base64ToBuffer(decorImageUrl);
+            const decorR2Url = await uploadImageToR2(
+                decorBuffer,
+                `temp-actors/${userId}/${timestamp}-decor.png`,
+                'image/png'
+            );
+            imageInput.push(decorR2Url);
+            console.log(`✅ Decor image uploaded: ${decorR2Url}`);
+        }
+
+        console.log(`🖼️ Reference images uploaded: ${imageInput.length}`);
 
         // Get callback URL for webhook
         const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://admakerai.vercel.app';
         const callBackUrl = `${baseUrl}/api/kie/nano-banana/webhook`;
 
-        // Create Nano Banana task
+        console.log('🍌 Calling Nano Banana API...');
+
+        // Create Nano Banana task with R2 URLs
         const taskResponse = await createNanoBananaTask(
             {
                 prompt,
@@ -80,6 +125,11 @@ export async function POST(request: NextRequest) {
             apiKey,
             callBackUrl
         );
+
+        if (!taskResponse || !taskResponse.data || !taskResponse.data.taskId) {
+            console.error('❌ Invalid response from Nano Banana:', taskResponse);
+            throw new Error('Invalid response from Nano Banana API');
+        }
 
         const taskId = taskResponse.data.taskId;
         console.log(`✅ Task created: ${taskId}`);
@@ -93,9 +143,9 @@ export async function POST(request: NextRequest) {
                 user_id: userId,
                 actor_name: actorName || 'Custom Actor',
                 prompt,
-                person_reference_url: personImageUrl || null,
-                object_reference_url: objectImageUrl || null,
-                decor_reference_url: decorImageUrl || null,
+                person_reference_url: imageInput[0] || null,
+                object_reference_url: imageInput[1] || null,
+                decor_reference_url: imageInput[2] || null,
                 aspect_ratio: aspectRatio,
                 resolution
             });
@@ -113,6 +163,7 @@ export async function POST(request: NextRequest) {
 
     } catch (error: any) {
         console.error('❌ Error creating actor:', error);
+        console.error('Error details:', error.stack);
         return NextResponse.json(
             { error: error.message || 'Failed to create actor' },
             { status: 500 }
