@@ -59,11 +59,31 @@ export default function ProductImageUpload({ onImageChange }: ProductImageUpload
         const file = e.target.files?.[0];
         if (file) {
             try {
+                // Compress image first
                 const compressedImage = await compressImage(file);
+
+                // Show preview immediately
                 setProductImage(compressedImage);
-                onImageChange(compressedImage);
+
+                // Upload to R2 in background
+                const response = await fetch('/api/upload-product', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ imageData: compressedImage })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Upload failed');
+                }
+
+                const { url } = await response.json();
+
+                // Return R2 URL instead of base64
+                onImageChange(url);
             } catch (error) {
-                console.error('Image compression failed:', error);
+                console.error('Image upload failed:', error);
+                // Fallback to base64 if upload fails
+                onImageChange(compressedImage);
             }
         }
     };
