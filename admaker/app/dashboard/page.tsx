@@ -239,6 +239,32 @@ export default function DashboardPage() {
 
                 if (statusData.state === 'success' && statusData.imageUrl) {
                     console.log('✅ Actor created successfully!');
+                    console.log('📸 Image URL:', statusData.imageUrl);
+
+                    // Save actor directly to custom_actors table
+                    const { error: saveError } = await supabase
+                        .from('custom_actors')
+                        .insert({
+                            user_id: user.id,
+                            task_id: taskId,
+                            actor_name: actorName || 'Custom Actor',
+                            prompt: actorPrompt,
+                            image_url: statusData.imageUrl,
+                            person_reference_url: personImagePreview,
+                            object_reference_url: objectImagePreview,
+                            decor_reference_url: decorImagePreview,
+                            aspect_ratio: '1:1',
+                            resolution: '1K'
+                        });
+
+                    if (saveError) {
+                        console.error('❌ Error saving actor:', saveError);
+                        setActorCreationError('Failed to save actor: ' + saveError.message);
+                        setIsCreatingActor(false);
+                        return;
+                    }
+
+                    console.log('💾 Actor saved to database successfully');
 
                     // Reload custom actors
                     const { data: actors } = await supabase
