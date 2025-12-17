@@ -111,6 +111,11 @@ export async function POST(request: NextRequest) {
         const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://admakerai.vercel.app';
         const callBackUrl = `${baseUrl}/api/kie/nano-banana/webhook`;
 
+        console.log('🔗 Callback URL configuration:');
+        console.log(`   NEXT_PUBLIC_APP_URL: ${process.env.NEXT_PUBLIC_APP_URL || '(not set, using default)'}`);
+        console.log(`   Base URL: ${baseUrl}`);
+        console.log(`   Full callback URL: ${callBackUrl}`);
+
         console.log('🍌 Calling Nano Banana API...');
 
         // Create Nano Banana task with R2 URLs

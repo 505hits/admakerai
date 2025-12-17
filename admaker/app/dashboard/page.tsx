@@ -221,14 +221,19 @@ export default function DashboardPage() {
             setActorCredits(prev => prev - 1);
 
             // Poll for completion (or wait for webhook)
-            // Nano Banana can take 2-3 minutes, so we poll for up to 3 minutes
+            // Nano Banana can take 2-5 minutes, so we poll for up to 5 minutes
             let attempts = 0;
-            const maxAttempts = 180; // 180 seconds = 3 minutes
+            const maxAttempts = 300; // 300 seconds = 5 minutes
 
             const pollStatus = async () => {
                 if (attempts >= maxAttempts) {
+                    console.log('⏱️ Polling timeout reached after 5 minutes');
                     setIsCreatingActor(false);
-                    setActorCreationError('Generation timeout. Please check "My Actors" in a moment.');
+                    setActorCreationError('Generation is taking longer than expected. The actor will appear in "My Actors" when ready (usually within 5-10 minutes).');
+
+                    // Close modal and switch to actors tab so user can see when it appears
+                    setShowCreateActorModal(false);
+                    setActiveTab('actors');
                     return;
                 }
 
