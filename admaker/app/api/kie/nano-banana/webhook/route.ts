@@ -179,20 +179,26 @@ async function saveActorToDatabase(taskId: string, imageUrl: string) {
 
         console.log(`✅ Image uploaded to R2: ${r2ImageUrl}`);
 
-        // Insert actor record into Supabase
+        // Insert actor record into Supabase using the actual schema
         console.log('💾 Inserting actor into custom_actors table...');
         const { data: insertedActor, error: insertError } = await supabase
             .from('custom_actors')
             .insert({
                 user_id: metadata.user_id,
                 name: metadata.actor_name || 'Custom Actor',
-                prompt: metadata.prompt,
-                image_url: r2ImageUrl,
-                person_reference_url: metadata.person_reference_url,
-                object_reference_url: metadata.object_reference_url,
-                decor_reference_url: metadata.decor_reference_url,
-                aspect_ratio: metadata.aspect_ratio,
-                resolution: metadata.resolution
+                description: metadata.prompt || '',
+                reference_image_url: r2ImageUrl, // Use this for the generated image
+                metadata: {
+                    task_id: taskId,
+                    prompt: metadata.prompt,
+                    image_url: r2ImageUrl,
+                    person_reference_url: metadata.person_reference_url,
+                    object_reference_url: metadata.object_reference_url,
+                    decor_reference_url: metadata.decor_reference_url,
+                    aspect_ratio: metadata.aspect_ratio,
+                    resolution: metadata.resolution,
+                    generated_at: new Date().toISOString()
+                }
             })
             .select()
             .single();

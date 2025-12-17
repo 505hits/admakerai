@@ -253,13 +253,19 @@ export default function DashboardPage() {
                         .insert({
                             user_id: user.id,
                             name: actorName || 'Custom Actor',
-                            prompt: actorPrompt,
-                            image_url: statusData.imageUrl,
-                            person_reference_url: personImagePreview,
-                            object_reference_url: objectImagePreview,
-                            decor_reference_url: decorImagePreview,
-                            aspect_ratio: '1:1',
-                            resolution: '1K'
+                            description: actorPrompt || '',
+                            reference_image_url: statusData.imageUrl,
+                            metadata: {
+                                task_id: taskId,
+                                prompt: actorPrompt,
+                                image_url: statusData.imageUrl,
+                                person_reference_url: personImagePreview,
+                                object_reference_url: objectImagePreview,
+                                decor_reference_url: decorImagePreview,
+                                aspect_ratio: '1:1',
+                                resolution: '1K',
+                                generated_at: new Date().toISOString()
+                            }
                         });
 
                     if (saveError) {
