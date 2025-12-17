@@ -146,7 +146,7 @@ export async function POST(request: NextRequest) {
             .insert({
                 task_id: taskId,
                 user_id: userId,
-                name: actorName || 'Custom Actor',
+                actor_name: actorName || 'Custom Actor',
                 prompt,
                 person_reference_url: imageInput[0] || null,
                 object_reference_url: imageInput[1] || null,

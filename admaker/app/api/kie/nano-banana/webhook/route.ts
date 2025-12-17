@@ -183,7 +183,7 @@ async function saveActorToDatabase(taskId: string, imageUrl: string) {
         }
 
         console.log(`✅ Found metadata for user: ${metadata.user_id}`);
-        console.log(`📝 Actor name: ${metadata.name || metadata.actor_name}`);
+        console.log(`📝 Actor name: ${metadata.actor_name}`);
         console.log(`📝 Prompt: ${metadata.prompt}`);
 
         // Download image from Kie
@@ -205,7 +205,7 @@ async function saveActorToDatabase(taskId: string, imageUrl: string) {
             .insert({
                 user_id: metadata.user_id,
                 task_id: taskId,
-                name: metadata.name || metadata.actor_name || 'Custom Actor',
+                name: metadata.actor_name || 'Custom Actor',
                 prompt: metadata.prompt,
                 image_url: r2ImageUrl,
                 person_reference_url: metadata.person_reference_url,
