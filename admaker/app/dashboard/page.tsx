@@ -221,8 +221,9 @@ export default function DashboardPage() {
             setActorCredits(prev => prev - 1);
 
             // Poll for completion (or wait for webhook)
+            // Nano Banana can take 2-3 minutes, so we poll for up to 3 minutes
             let attempts = 0;
-            const maxAttempts = 60; // 60 seconds max
+            const maxAttempts = 180; // 180 seconds = 3 minutes
 
             const pollStatus = async () => {
                 if (attempts >= maxAttempts) {
