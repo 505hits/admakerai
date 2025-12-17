@@ -41,6 +41,7 @@ const actors = [
     {
         id: 'elegant_001',
         name: 'Elegant Woman - Natural Light',
+        filename: 'elegant-1.png',
         gender: 'WOMAN',
         outfit: 'tight ribbed cream knitwear',
         location: 'sunlit modern bedroom with white sheets',
@@ -49,6 +50,7 @@ const actors = [
     {
         id: 'elegant_002',
         name: 'Elegant Man - Urban Style',
+        filename: 'elegant-2.png',
         gender: 'MAN',
         outfit: 'fitted black turtleneck',
         location: 'dimly lit modern bathroom with marble tiles',
@@ -57,6 +59,7 @@ const actors = [
     {
         id: 'elegant_003',
         name: 'Elegant Woman - Sophisticated',
+        filename: 'elegant-3.png',
         gender: 'WOMAN',
         outfit: 'elegant off-shoulder beige sweater',
         location: 'bright minimalist apartment with natural light',
@@ -120,29 +123,22 @@ async function waitForCompletion(task) {
     throw new Error('Timeout after 5 minutes');
 }
 
-async function addToActorsJson(generatedActors) {
-    const actorsJsonPath = path.join(__dirname, 'public', 'data', 'ai-actors.json');
-    const actorsData = JSON.parse(fs.readFileSync(actorsJsonPath, 'utf8'));
+async function downloadAndUploadToR2(imageUrl, filename) {
+    console.log(`📥 Downloading ${filename}...`);
 
-    // Add new actors to the array
-    generatedActors.forEach(actor => {
-        actorsData.actors.push({
-            id: actor.id,
-            name: actor.name,
-            category: 'Elegant Faces',
-            imageUrl: actor.imageUrl,
-            thumbnailUrl: actor.imageUrl,
-            sceneDescription: `Ultra-realistic UGC style selfie in ${actor.location}`,
-            tags: actor.tags,
-            gender: actor.gender.toLowerCase(),
-            ageRange: '25-35',
-            style: 'Elegant UGC'
-        });
-    });
+    // Download image from Nano Banana
+    const response = await fetch(imageUrl);
+    const arrayBuffer = await response.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
 
-    // Write back to file
-    fs.writeFileSync(actorsJsonPath, JSON.stringify(actorsData, null, 4));
-    console.log(`\n💾 Added ${generatedActors.length} actors to ai-actors.json`);
+    console.log(`📤 Uploading to R2: Actors/${filename}...`);
+
+    // Upload to R2 using the existing function
+    const { uploadImageToR2 } = require('./lib/r2-upload');
+    const r2Url = await uploadImageToR2(buffer, `Actors/${filename}`, 'image/png');
+
+    console.log(`✅ Uploaded to R2: ${r2Url}`);
+    return r2Url;
 }
 
 async function main() {
@@ -171,29 +167,35 @@ async function main() {
             const imageUrl = await waitForCompletion(task);
             generatedActors.push({
                 ...task,
-                imageUrl: imageUrl
+                sourceUrl: imageUrl
             });
         }
 
-        // Step 3: Add to ai-actors.json
-        console.log('\n💾 Step 3: Adding to ai-actors.json...\n');
-        await addToActorsJson(generatedActors);
+        // Step 3: Download and upload to R2
+        console.log('\n📤 Step 3: Uploading to R2...\n');
+        for (const actor of generatedActors) {
+            const r2Url = await downloadAndUploadToR2(actor.sourceUrl, actor.filename);
+            actor.r2Url = r2Url;
+        }
 
         // Step 4: Summary
         console.log('\n' + '='.repeat(60));
-        console.log('\n🎉 SUCCESS! Elegant Faces category created\n');
+        console.log('\n🎉 SUCCESS! Elegant Faces category fully deployed\n');
         console.log('📸 Generated Actors:');
         generatedActors.forEach((actor, i) => {
             console.log(`\n${i + 1}. ${actor.name}`);
             console.log(`   ID: ${actor.id}`);
-            console.log(`   URL: ${actor.imageUrl}`);
+            console.log(`   Source: ${actor.sourceUrl}`);
+            console.log(`   R2 URL: ${actor.r2Url}`);
         });
 
-        console.log('\n✅ All actors are now available in the "Elegant Faces" category!');
-        console.log('🚀 Commit and push to deploy the changes.');
+        console.log('\n✅ All actors are now live in the "Elegant Faces" category!');
+        console.log('🚀 The category is already deployed and available to all users.');
+        console.log('\n💡 No further action needed - everything is automated!');
 
     } catch (error) {
         console.error('\n❌ Error:', error.message);
+        console.error(error.stack);
         process.exit(1);
     }
 }
