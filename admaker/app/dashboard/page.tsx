@@ -41,6 +41,7 @@ export default function DashboardPage() {
     const [customActors, setCustomActors] = useState<any[]>([]);
     const [actorName, setActorName] = useState('');
     const [actorPrompt, setActorPrompt] = useState('');
+    const [actorAspectRatio, setActorAspectRatio] = useState<'1:1' | '9:16' | '16:9'>('9:16'); // Default to mobile format
     const [personImage, setPersonImage] = useState<File | null>(null);
     const [objectImage, setObjectImage] = useState<File | null>(null);
     const [decorImage, setDecorImage] = useState<File | null>(null);
@@ -190,7 +191,7 @@ export default function DashboardPage() {
                     personImageUrl,
                     objectImageUrl,
                     decorImageUrl,
-                    aspectRatio: '1:1',
+                    aspectRatio: actorAspectRatio,
                     resolution: '1K'
                 })
             });
@@ -262,7 +263,7 @@ export default function DashboardPage() {
                                 person_reference_url: personImagePreview,
                                 object_reference_url: objectImagePreview,
                                 decor_reference_url: decorImagePreview,
-                                aspect_ratio: '1:1',
+                                aspect_ratio: actorAspectRatio,
                                 resolution: '1K',
                                 generated_at: new Date().toISOString()
                             }
@@ -298,6 +299,7 @@ export default function DashboardPage() {
                     // Reset form
                     setActorName('');
                     setActorPrompt('');
+                    setActorAspectRatio('9:16');
                     setPersonImage(null);
                     setObjectImage(null);
                     setDecorImage(null);
@@ -966,7 +968,7 @@ export default function DashboardPage() {
                                 <div className={styles.videoGrid}>
                                     {customActors.map((actor) => (
                                         <div key={actor.id} className={styles.videoCard}>
-                                            <div className={styles.videoThumbnail}>
+                                            <div className={styles.videoThumbnail} style={{ position: 'relative' }}>
                                                 <img
                                                     src={actor.reference_image_url}
                                                     alt={actor.name}
@@ -977,6 +979,55 @@ export default function DashboardPage() {
                                                         borderRadius: '12px'
                                                     }}
                                                 />
+                                                {/* Download Button */}
+                                                <button
+                                                    onClick={async () => {
+                                                        try {
+                                                            const response = await fetch(actor.reference_image_url);
+                                                            const blob = await response.blob();
+                                                            const url = window.URL.createObjectURL(blob);
+                                                            const a = document.createElement('a');
+                                                            a.href = url;
+                                                            a.download = `${actor.name || 'actor'}.png`;
+                                                            document.body.appendChild(a);
+                                                            a.click();
+                                                            window.URL.revokeObjectURL(url);
+                                                            document.body.removeChild(a);
+                                                        } catch (error) {
+                                                            console.error('Download failed:', error);
+                                                        }
+                                                    }}
+                                                    style={{
+                                                        position: 'absolute',
+                                                        top: '8px',
+                                                        right: '8px',
+                                                        width: '36px',
+                                                        height: '36px',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center',
+                                                        background: 'rgba(0, 0, 0, 0.7)',
+                                                        backdropFilter: 'blur(8px)',
+                                                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                                                        borderRadius: '8px',
+                                                        color: '#fff',
+                                                        cursor: 'pointer',
+                                                        transition: 'all 0.2s',
+                                                        opacity: 0.8
+                                                    }}
+                                                    onMouseEnter={(e) => {
+                                                        e.currentTarget.style.opacity = '1';
+                                                        e.currentTarget.style.background = 'rgba(102, 126, 234, 0.9)';
+                                                    }}
+                                                    onMouseLeave={(e) => {
+                                                        e.currentTarget.style.opacity = '0.8';
+                                                        e.currentTarget.style.background = 'rgba(0, 0, 0, 0.7)';
+                                                    }}
+                                                >
+                                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                        <path d="M10 3v10M10 13l-3-3M10 13l3-3M4 17h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                    </svg>
+                                                </button>
                                             </div>
                                             <div className={styles.videoInfo}>
                                                 <p className={styles.videoScript} style={{
@@ -992,7 +1043,7 @@ export default function DashboardPage() {
                                                     color: '#9ca3af',
                                                     marginBottom: '12px'
                                                 }}>
-                                                    {actor.prompt}
+                                                    {actor.description || actor.prompt}
                                                 </p>
                                             </div>
                                         </div>
@@ -1106,6 +1157,74 @@ export default function DashboardPage() {
                                         onChange={(e) => setActorName(e.target.value)}
                                         disabled={isCreatingActor}
                                     />
+                                </div>
+
+                                {/* Aspect Ratio Selector */}
+                                <div className={styles.formGroup}>
+                                    <label className={styles.formLabel}>Image Format</label>
+                                    <div style={{
+                                        display: 'grid',
+                                        gridTemplateColumns: 'repeat(3, 1fr)',
+                                        gap: '12px'
+                                    }}>
+                                        <button
+                                            type="button"
+                                            onClick={() => setActorAspectRatio('1:1')}
+                                            disabled={isCreatingActor}
+                                            style={{
+                                                padding: '12px',
+                                                background: actorAspectRatio === '1:1' ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : 'rgba(255, 255, 255, 0.05)',
+                                                border: actorAspectRatio === '1:1' ? '2px solid #667eea' : '1px solid rgba(255, 255, 255, 0.1)',
+                                                borderRadius: '8px',
+                                                color: '#fff',
+                                                fontSize: '14px',
+                                                fontWeight: 600,
+                                                cursor: isCreatingActor ? 'not-allowed' : 'pointer',
+                                                transition: 'all 0.2s',
+                                                opacity: isCreatingActor ? 0.5 : 1
+                                            }}
+                                        >
+                                            1:1<br /><span style={{ fontSize: '11px', opacity: 0.7 }}>Square</span>
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => setActorAspectRatio('9:16')}
+                                            disabled={isCreatingActor}
+                                            style={{
+                                                padding: '12px',
+                                                background: actorAspectRatio === '9:16' ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : 'rgba(255, 255, 255, 0.05)',
+                                                border: actorAspectRatio === '9:16' ? '2px solid #667eea' : '1px solid rgba(255, 255, 255, 0.1)',
+                                                borderRadius: '8px',
+                                                color: '#fff',
+                                                fontSize: '14px',
+                                                fontWeight: 600,
+                                                cursor: isCreatingActor ? 'not-allowed' : 'pointer',
+                                                transition: 'all 0.2s',
+                                                opacity: isCreatingActor ? 0.5 : 1
+                                            }}
+                                        >
+                                            9:16<br /><span style={{ fontSize: '11px', opacity: 0.7 }}>Mobile</span>
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => setActorAspectRatio('16:9')}
+                                            disabled={isCreatingActor}
+                                            style={{
+                                                padding: '12px',
+                                                background: actorAspectRatio === '16:9' ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : 'rgba(255, 255, 255, 0.05)',
+                                                border: actorAspectRatio === '16:9' ? '2px solid #667eea' : '1px solid rgba(255, 255, 255, 0.1)',
+                                                borderRadius: '8px',
+                                                color: '#fff',
+                                                fontSize: '14px',
+                                                fontWeight: 600,
+                                                cursor: isCreatingActor ? 'not-allowed' : 'pointer',
+                                                transition: 'all 0.2s',
+                                                opacity: isCreatingActor ? 0.5 : 1
+                                            }}
+                                        >
+                                            16:9<br /><span style={{ fontSize: '11px', opacity: 0.7 }}>Landscape</span>
+                                        </button>
+                                    </div>
                                 </div>
 
                                 {/* Image Uploads Grid */}
