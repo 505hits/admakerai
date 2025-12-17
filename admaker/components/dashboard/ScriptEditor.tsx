@@ -20,9 +20,8 @@ export default function ScriptEditor({
     const [sceneDescription, setSceneDescription] = useState('');
     const [showAIWriter, setShowAIWriter] = useState(false);
 
-    // Adjust character limit based on video duration
-    // Average speaking rate: ~150 words/minute = ~12-13 characters/second
-    const maxChars = duration === 8 ? 100 : 200;
+    // Adjust character limit to 500 characters
+    const maxChars = 500;
     const maxSceneChars = 300;
 
     const handleScriptChange = (value: string) => {
@@ -54,7 +53,7 @@ export default function ScriptEditor({
             <div className={styles.editorWrapper}>
                 <textarea
                     className={styles.scriptTextarea}
-                    placeholder={`Write your script and describe the scene...
+                    placeholder={`Write your script and describe the scene... (Selected duration: ${duration}s - Adjust your text length accordingly)
 
 Example:
 Script: "Hi! I'm excited to show you this amazing product that will change your life!"
@@ -66,7 +65,7 @@ Scene: Enthusiastic presentation, holding product, smiling at camera, modern off
                     rows={8}
                 />
                 <div className={styles.charCounter}>
-                    {script.length}/{maxChars}
+                    {script.length}/{maxChars} characters
                 </div>
             </div>
 
