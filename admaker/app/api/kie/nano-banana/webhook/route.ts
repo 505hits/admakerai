@@ -140,25 +140,6 @@ async function saveActorToDatabase(taskId: string, imageUrl: string) {
 
         const supabase = createServiceClient();
 
-        // Check if actor already exists
-        console.log('🔍 Checking if actor already exists...');
-        const { data: existingActor, error: checkError } = await supabase
-            .from('custom_actors')
-            .select('id, name')
-            .eq('task_id', taskId)
-            .maybeSingle();
-
-        if (checkError) {
-            console.error('❌ Error checking for existing actor:', checkError);
-        }
-
-        if (existingActor) {
-            console.log('✅ Actor already exists:', existingActor.name);
-            console.log('⏭️ Skipping duplicate save');
-            console.log('💾 ============================================');
-            return;
-        }
-
         // Retrieve metadata from Supabase
         console.log(`🔍 Looking for metadata with taskId: ${taskId}`);
         const { data: metadata, error: metadataError } = await supabase
@@ -204,7 +185,6 @@ async function saveActorToDatabase(taskId: string, imageUrl: string) {
             .from('custom_actors')
             .insert({
                 user_id: metadata.user_id,
-                task_id: taskId,
                 name: metadata.actor_name || 'Custom Actor',
                 prompt: metadata.prompt,
                 image_url: r2ImageUrl,
