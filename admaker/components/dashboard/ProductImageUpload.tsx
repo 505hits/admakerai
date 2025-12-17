@@ -58,9 +58,10 @@ export default function ProductImageUpload({ onImageChange }: ProductImageUpload
     const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
+            let compressedImage = '';
             try {
                 // Compress image first
-                const compressedImage = await compressImage(file);
+                compressedImage = await compressImage(file);
 
                 // Show preview immediately
                 setProductImage(compressedImage);
@@ -83,7 +84,9 @@ export default function ProductImageUpload({ onImageChange }: ProductImageUpload
             } catch (error) {
                 console.error('Image upload failed:', error);
                 // Fallback to base64 if upload fails
-                onImageChange(compressedImage);
+                if (compressedImage) {
+                    onImageChange(compressedImage);
+                }
             }
         }
     };
