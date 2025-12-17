@@ -50,6 +50,7 @@ export default function DashboardPage() {
     const [decorImagePreview, setDecorImagePreview] = useState<string | null>(null);
     const [isCreatingActor, setIsCreatingActor] = useState(false);
     const [actorCreationError, setActorCreationError] = useState<string | null>(null);
+    const [viewActorImageUrl, setViewActorImageUrl] = useState<string | null>(null); // For viewing actor in modal
 
     // Load video history and custom actors from Supabase on mount
     useEffect(() => {
@@ -979,55 +980,81 @@ export default function DashboardPage() {
                                                         borderRadius: '12px'
                                                     }}
                                                 />
-                                                {/* Download Button */}
-                                                <button
-                                                    onClick={async () => {
-                                                        try {
-                                                            const response = await fetch(actor.reference_image_url);
-                                                            const blob = await response.blob();
-                                                            const url = window.URL.createObjectURL(blob);
-                                                            const a = document.createElement('a');
-                                                            a.href = url;
-                                                            a.download = `${actor.name || 'actor'}.png`;
-                                                            document.body.appendChild(a);
-                                                            a.click();
-                                                            window.URL.revokeObjectURL(url);
-                                                            document.body.removeChild(a);
-                                                        } catch (error) {
-                                                            console.error('Download failed:', error);
-                                                        }
-                                                    }}
-                                                    style={{
-                                                        position: 'absolute',
-                                                        top: '8px',
-                                                        right: '8px',
-                                                        width: '36px',
-                                                        height: '36px',
-                                                        display: 'flex',
-                                                        alignItems: 'center',
-                                                        justifyContent: 'center',
-                                                        background: 'rgba(0, 0, 0, 0.7)',
-                                                        backdropFilter: 'blur(8px)',
-                                                        border: '1px solid rgba(255, 255, 255, 0.1)',
-                                                        borderRadius: '8px',
-                                                        color: '#fff',
-                                                        cursor: 'pointer',
-                                                        transition: 'all 0.2s',
-                                                        opacity: 0.8
-                                                    }}
-                                                    onMouseEnter={(e) => {
-                                                        e.currentTarget.style.opacity = '1';
-                                                        e.currentTarget.style.background = 'rgba(102, 126, 234, 0.9)';
-                                                    }}
-                                                    onMouseLeave={(e) => {
-                                                        e.currentTarget.style.opacity = '0.8';
-                                                        e.currentTarget.style.background = 'rgba(0, 0, 0, 0.7)';
-                                                    }}
-                                                >
-                                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                                        <path d="M10 3v10M10 13l-3-3M10 13l3-3M4 17h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                                    </svg>
-                                                </button>
+                                                {/* Action Buttons */}
+                                                <div style={{
+                                                    position: 'absolute',
+                                                    top: '8px',
+                                                    right: '8px',
+                                                    display: 'flex',
+                                                    gap: '8px'
+                                                }}>
+                                                    {/* View Button */}
+                                                    <button
+                                                        onClick={() => setViewActorImageUrl(actor.reference_image_url)}
+                                                        style={{
+                                                            width: '36px',
+                                                            height: '36px',
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            justifyContent: 'center',
+                                                            background: 'rgba(0, 0, 0, 0.7)',
+                                                            backdropFilter: 'blur(8px)',
+                                                            border: '1px solid rgba(255, 255, 255, 0.1)',
+                                                            borderRadius: '8px',
+                                                            color: '#fff',
+                                                            cursor: 'pointer',
+                                                            transition: 'all 0.2s',
+                                                            opacity: 0.8
+                                                        }}
+                                                        onMouseEnter={(e) => {
+                                                            e.currentTarget.style.opacity = '1';
+                                                            e.currentTarget.style.background = 'rgba(102, 126, 234, 0.9)';
+                                                        }}
+                                                        onMouseLeave={(e) => {
+                                                            e.currentTarget.style.opacity = '0.8';
+                                                            e.currentTarget.style.background = 'rgba(0, 0, 0, 0.7)';
+                                                        }}
+                                                    >
+                                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                            <path d="M10 3C5 3 1.73 6.11 1 10c.73 3.89 4 7 9 7s8.27-3.11 9-7c-.73-3.89-4-7-9-7z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                            <circle cx="10" cy="10" r="3" stroke="currentColor" strokeWidth="2" />
+                                                        </svg>
+                                                    </button>
+
+                                                    {/* Download Button */}
+                                                    <a
+                                                        href={actor.reference_image_url}
+                                                        download={`${actor.name || 'actor'}.png`}
+                                                        style={{
+                                                            width: '36px',
+                                                            height: '36px',
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            justifyContent: 'center',
+                                                            background: 'rgba(0, 0, 0, 0.7)',
+                                                            backdropFilter: 'blur(8px)',
+                                                            border: '1px solid rgba(255, 255, 255, 0.1)',
+                                                            borderRadius: '8px',
+                                                            color: '#fff',
+                                                            cursor: 'pointer',
+                                                            transition: 'all 0.2s',
+                                                            opacity: 0.8,
+                                                            textDecoration: 'none'
+                                                        }}
+                                                        onMouseEnter={(e) => {
+                                                            e.currentTarget.style.opacity = '1';
+                                                            e.currentTarget.style.background = 'rgba(102, 126, 234, 0.9)';
+                                                        }}
+                                                        onMouseLeave={(e) => {
+                                                            e.currentTarget.style.opacity = '0.8';
+                                                            e.currentTarget.style.background = 'rgba(0, 0, 0, 0.7)';
+                                                        }}
+                                                    >
+                                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                            <path d="M10 3v10M10 13l-3-3M10 13l3-3M4 17h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                        </svg>
+                                                    </a>
+                                                </div>
                                             </div>
                                             <div className={styles.videoInfo}>
                                                 <p className={styles.videoScript} style={{
@@ -1403,6 +1430,66 @@ export default function DashboardPage() {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                )
+            }
+
+            {/* Actor Image View Modal */}
+            {
+                viewActorImageUrl && (
+                    <div
+                        style={{
+                            position: 'fixed',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            background: 'rgba(0, 0, 0, 0.95)',
+                            zIndex: 4000,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            padding: '20px'
+                        }}
+                        onClick={() => setViewActorImageUrl(null)}
+                    >
+                        <button
+                            onClick={() => setViewActorImageUrl(null)}
+                            style={{
+                                position: 'absolute',
+                                top: '20px',
+                                right: '20px',
+                                width: '48px',
+                                height: '48px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                background: 'rgba(255, 255, 255, 0.1)',
+                                backdropFilter: 'blur(8px)',
+                                border: '1px solid rgba(255, 255, 255, 0.2)',
+                                borderRadius: '50%',
+                                color: '#fff',
+                                cursor: 'pointer',
+                                transition: 'all 0.2s',
+                                zIndex: 4001
+                            }}
+                        >
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M6 6l12 12M6 18L18 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                            </svg>
+                        </button>
+                        <img
+                            src={viewActorImageUrl}
+                            alt="Actor preview"
+                            style={{
+                                maxWidth: '90%',
+                                maxHeight: '90%',
+                                objectFit: 'contain',
+                                borderRadius: '12px',
+                                boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)'
+                            }}
+                            onClick={(e) => e.stopPropagation()}
+                        />
                     </div>
                 )
             }
