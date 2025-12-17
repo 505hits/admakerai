@@ -968,8 +968,8 @@ export default function DashboardPage() {
                                         <div key={actor.id} className={styles.videoCard}>
                                             <div className={styles.videoThumbnail}>
                                                 <img
-                                                    src={actor.image_url}
-                                                    alt={actor.actor_name}
+                                                    src={actor.reference_image_url}
+                                                    alt={actor.name}
                                                     style={{
                                                         width: '100%',
                                                         height: '100%',
@@ -985,7 +985,7 @@ export default function DashboardPage() {
                                                     marginBottom: '4px',
                                                     color: '#e5e7eb'
                                                 }}>
-                                                    {actor.actor_name}
+                                                    {actor.name}
                                                 </p>
                                                 <p style={{
                                                     fontSize: '12px',
