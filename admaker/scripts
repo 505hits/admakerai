@@ -1,0 +1,177 @@
+// Script to generate 3 Elegant Faces actors using Nano Banana API
+// Run with: node scripts/generate-elegant-faces.js
+
+const API_KEY = process.env.KIE_API_KEY;
+const BASE_URL = 'https://api.kie.ai';
+
+// Master prompt template
+const createPrompt = (gender, outfit, location) => {
+    return `A hyper-realistic RAW photo, handheld smartphone selfie of a stunning ${gender}, looking directly into the lens with a confident and magnetic gaze.
+
+Extreme Realism Details: 8k resolution, cinematic photorealism. Focus on hyper-detailed skin texture: visible pores, natural skin grain, subtle micro-blemishes, and fine facial hair. Zero digital smoothing. Natural perspiration and real skin reflectivity. Hair: messy, natural strands with flyaways.
+
+UGC Aesthetic: Authentic 'unfiltered' social media look. Slight lens flare, subtle motion blur, and organic smartphone camera noise. Wide-angle 24mm lens distortion typical of a front-facing camera. Non-professional, candid framing.
+
+Physique & Outfit: Strong focus on realistic body physics. Wearing ${outfit}, showing high-fidelity fabric tension, realistic wrinkles, and shadows that define a fit silhouette.
+
+Lighting & Environment: Shot in a ${location}. Harsh overhead lighting or natural window light creating high-contrast highlights on the face and collarbones. Shallow depth of field with a messy, realistic background.
+
+Technical Signature: No cinematic color grading, raw sensor output, high dynamic range, authentic shadows, 100% lifelike anatomy.`;
+};
+
+// 3 actor configurations
+const actors = [
+    {
+        name: 'Elegant Woman - Natural Light',
+        gender: 'WOMAN',
+        outfit: 'tight ribbed cream knitwear',
+        location: 'sunlit modern bedroom with white sheets'
+    },
+    {
+        name: 'Elegant Man - Urban Style',
+        gender: 'MAN',
+        outfit: 'fitted black turtleneck',
+        location: 'dimly lit modern bathroom with marble tiles'
+    },
+    {
+        name: 'Elegant Woman - Sophisticated',
+        gender: 'WOMAN',
+        outfit: 'elegant off-shoulder beige sweater',
+        location: 'bright minimalist apartment with natural light'
+    }
+];
+
+async function generateActor(actorConfig, index) {
+    const prompt = createPrompt(actorConfig.gender, actorConfig.outfit, actorConfig.location);
+
+    console.log(`\n🎨 Generating Actor ${index + 1}: ${actorConfig.name}`);
+    console.log(`📝 Prompt: ${prompt.substring(0, 100)}...`);
+
+    try {
+        const response = await fetch(`${BASE_URL}/api/v1/nano-banana/create-task`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${API_KEY}`
+            },
+            body: JSON.stringify({
+                prompt: prompt,
+                aspect_ratio: '9:16', // Mobile format for UGC
+                resolution: '1K',
+                output_format: 'png'
+            })
+        });
+
+        const data = await response.json();
+
+        if (data.code === 200 && data.data && data.data.taskId) {
+            console.log(`✅ Task created: ${data.data.taskId}`);
+            return {
+                ...actorConfig,
+                taskId: data.data.taskId,
+                index: index + 1
+            };
+        } else {
+            console.error(`❌ Error: ${data.msg || 'Unknown error'}`);
+            return null;
+        }
+    } catch (error) {
+        console.error(`❌ Request failed:`, error.message);
+        return null;
+    }
+}
+
+async function checkTaskStatus(taskId) {
+    try {
+        const response = await fetch(`${BASE_URL}/api/v1/nano-banana/check-status?taskId=${taskId}`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${API_KEY}`
+            }
+        });
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error(`❌ Status check failed:`, error.message);
+        return null;
+    }
+}
+
+async function main() {
+    console.log('🍌 Starting Elegant Faces Actor Generation\n');
+    console.log('='.repeat(60));
+
+    if (!API_KEY) {
+        console.error('❌ KIE_API_KEY environment variable not set');
+        process.exit(1);
+    }
+
+    // Generate all 3 actors
+    const tasks = [];
+    for (let i = 0; i < actors.length; i++) {
+        const task = await generateActor(actors[i], i);
+        if (task) {
+            tasks.push(task);
+        }
+        // Wait 2 seconds between requests to avoid rate limiting
+        if (i < actors.length - 1) {
+            await new Promise(resolve => setTimeout(resolve, 2000));
+        }
+    }
+
+    console.log('\n' + '='.repeat(60));
+    console.log(`\n✅ Generated ${tasks.length} tasks successfully`);
+    console.log('\n📋 Task IDs:');
+    tasks.forEach(task => {
+        console.log(`   ${task.index}. ${task.name}: ${task.taskId}`);
+    });
+
+    console.log('\n⏳ Waiting for generation to complete (this may take 2-5 minutes)...\n');
+
+    // Poll for completion
+    const results = [];
+    for (const task of tasks) {
+        let attempts = 0;
+        const maxAttempts = 300; // 5 minutes max
+
+        while (attempts < maxAttempts) {
+            const status = await checkTaskStatus(task.taskId);
+
+            if (status && status.data) {
+                if (status.data.state === 'success' && status.data.imageUrl) {
+                    console.log(`✅ ${task.name} completed!`);
+                    console.log(`   URL: ${status.data.imageUrl}`);
+                    results.push({
+                        ...task,
+                        imageUrl: status.data.imageUrl
+                    });
+                    break;
+                } else if (status.data.state === 'fail') {
+                    console.error(`❌ ${task.name} failed: ${status.data.failMsg || 'Unknown error'}`);
+                    break;
+                }
+            }
+
+            attempts++;
+            await new Promise(resolve => setTimeout(resolve, 1000)); // Check every second
+        }
+
+        if (attempts >= maxAttempts) {
+            console.error(`⏱️ ${task.name} timed out after 5 minutes`);
+        }
+    }
+
+    console.log('\n' + '='.repeat(60));
+    console.log('\n🎉 Generation Complete!\n');
+    console.log('📸 Generated Images:');
+    results.forEach(result => {
+        console.log(`\n${result.index}. ${result.name}`);
+        console.log(`   Task ID: ${result.taskId}`);
+        console.log(`   Image URL: ${result.imageUrl}`);
+    });
+
+    console.log('\n💾 Save these URLs to add to ai-actors.json');
+}
+
+main().catch(console.error);

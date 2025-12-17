@@ -1681,6 +1681,60 @@
             "gender": "neutral",
             "ageRange": "any",
             "style": "Cinematic original"
+        },
+        {
+            "id": "elegant_001",
+            "name": "Elegant Woman - Natural Light",
+            "category": "Elegant Faces",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant-1.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant-1.png",
+            "sceneDescription": "Ultra-realistic UGC style selfie in sunlit modern bedroom with white sheets",
+            "tags": [
+                "elegant",
+                "natural",
+                "ugc",
+                "realistic",
+                "woman"
+            ],
+            "gender": "female",
+            "ageRange": "25-35",
+            "style": "Elegant UGC"
+        },
+        {
+            "id": "elegant_002",
+            "name": "Elegant Man - Urban Style",
+            "category": "Elegant Faces",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant-2.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant-2.png",
+            "sceneDescription": "Ultra-realistic UGC style selfie in dimly lit modern bathroom with marble tiles",
+            "tags": [
+                "elegant",
+                "urban",
+                "ugc",
+                "realistic",
+                "man"
+            ],
+            "gender": "male",
+            "ageRange": "25-35",
+            "style": "Elegant UGC"
+        },
+        {
+            "id": "elegant_003",
+            "name": "Elegant Woman - Sophisticated",
+            "category": "Elegant Faces",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant-3.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant-3.png",
+            "sceneDescription": "Ultra-realistic UGC style selfie in bright minimalist apartment with natural light",
+            "tags": [
+                "elegant",
+                "sophisticated",
+                "ugc",
+                "realistic",
+                "woman"
+            ],
+            "gender": "female",
+            "ageRange": "25-35",
+            "style": "Elegant UGC"
         }
     ],
     "categories": [
@@ -1694,7 +1748,8 @@
         "Tech",
         "Vlog",
         "Présentation",
-        "Originals"
+        "Originals",
+        "Elegant Faces"
     ],
     "note": "All image URLs point to Cloudflare R2 storage with the Actors/ prefix included."
 }
