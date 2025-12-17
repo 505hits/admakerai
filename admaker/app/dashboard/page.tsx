@@ -241,30 +241,49 @@ export default function DashboardPage() {
                     console.log('✅ Actor created successfully!');
                     console.log('📸 Image URL:', statusData.imageUrl);
 
-                    // Save actor directly to custom_actors table
-                    const { error: saveError } = await supabase
+                    // Check if actor already exists (webhook might have saved it)
+                    console.log('🔍 Checking if actor already exists...');
+                    const { data: existingActor } = await supabase
                         .from('custom_actors')
-                        .insert({
-                            user_id: user.id,
-                            task_id: taskId,
-                            actor_name: actorName || 'Custom Actor',
-                            prompt: actorPrompt,
-                            image_url: statusData.imageUrl,
-                            person_reference_url: personImagePreview,
-                            object_reference_url: objectImagePreview,
-                            decor_reference_url: decorImagePreview,
-                            aspect_ratio: '1:1',
-                            resolution: '1K'
-                        });
+                        .select('id, actor_name')
+                        .eq('task_id', taskId)
+                        .maybeSingle();
 
-                    if (saveError) {
-                        console.error('❌ Error saving actor:', saveError);
-                        setActorCreationError('Failed to save actor: ' + saveError.message);
-                        setIsCreatingActor(false);
-                        return;
+                    if (existingActor) {
+                        console.log('✅ Actor already exists (saved by webhook):', existingActor.actor_name);
+                        console.log('⏭️ Skipping duplicate save');
+                    } else {
+                        // Save actor directly to custom_actors table
+                        console.log('💾 Saving actor to database...');
+                        const { error: saveError } = await supabase
+                            .from('custom_actors')
+                            .insert({
+                                user_id: user.id,
+                                task_id: taskId,
+                                actor_name: actorName || 'Custom Actor',
+                                prompt: actorPrompt,
+                                image_url: statusData.imageUrl,
+                                person_reference_url: personImagePreview,
+                                object_reference_url: objectImagePreview,
+                                decor_reference_url: decorImagePreview,
+                                aspect_ratio: '1:1',
+                                resolution: '1K'
+                            });
+
+                        if (saveError) {
+                            console.error('❌ Error saving actor:', saveError);
+                            // Check if it's a duplicate key error
+                            if (saveError.code === '23505') {
+                                console.log('⚠️ Actor was already saved (race condition with webhook)');
+                            } else {
+                                setActorCreationError('Failed to save actor: ' + saveError.message);
+                                setIsCreatingActor(false);
+                                return;
+                            }
+                        } else {
+                            console.log('💾 Actor saved to database successfully');
+                        }
                     }
-
-                    console.log('💾 Actor saved to database successfully');
 
                     // Reload custom actors
                     const { data: actors } = await supabase
