@@ -250,12 +250,12 @@ export default function DashboardPage() {
                     console.log('🔍 Checking if actor already exists...');
                     const { data: existingActor } = await supabase
                         .from('custom_actors')
-                        .select('id, actor_name')
+                        .select('id, name')
                         .eq('task_id', taskId)
                         .maybeSingle();
 
                     if (existingActor) {
-                        console.log('✅ Actor already exists (saved by webhook):', existingActor.actor_name);
+                        console.log('✅ Actor already exists (saved by webhook):', existingActor.name);
                         console.log('⏭️ Skipping duplicate save');
                     } else {
                         // Save actor directly to custom_actors table
@@ -265,7 +265,7 @@ export default function DashboardPage() {
                             .insert({
                                 user_id: user.id,
                                 task_id: taskId,
-                                actor_name: actorName || 'Custom Actor',
+                                name: actorName || 'Custom Actor',
                                 prompt: actorPrompt,
                                 image_url: statusData.imageUrl,
                                 person_reference_url: personImagePreview,

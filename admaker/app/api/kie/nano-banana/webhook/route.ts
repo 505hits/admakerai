@@ -144,7 +144,7 @@ async function saveActorToDatabase(taskId: string, imageUrl: string) {
         console.log('🔍 Checking if actor already exists...');
         const { data: existingActor, error: checkError } = await supabase
             .from('custom_actors')
-            .select('id, actor_name')
+            .select('id, name')
             .eq('task_id', taskId)
             .maybeSingle();
 
@@ -153,7 +153,7 @@ async function saveActorToDatabase(taskId: string, imageUrl: string) {
         }
 
         if (existingActor) {
-            console.log('✅ Actor already exists:', existingActor.actor_name);
+            console.log('✅ Actor already exists:', existingActor.name);
             console.log('⏭️ Skipping duplicate save');
             console.log('💾 ============================================');
             return;
@@ -183,7 +183,7 @@ async function saveActorToDatabase(taskId: string, imageUrl: string) {
         }
 
         console.log(`✅ Found metadata for user: ${metadata.user_id}`);
-        console.log(`📝 Actor name: ${metadata.actor_name}`);
+        console.log(`📝 Actor name: ${metadata.name || metadata.actor_name}`);
         console.log(`📝 Prompt: ${metadata.prompt}`);
 
         // Download image from Kie
@@ -205,7 +205,7 @@ async function saveActorToDatabase(taskId: string, imageUrl: string) {
             .insert({
                 user_id: metadata.user_id,
                 task_id: taskId,
-                actor_name: metadata.actor_name,
+                name: metadata.name || metadata.actor_name || 'Custom Actor',
                 prompt: metadata.prompt,
                 image_url: r2ImageUrl,
                 person_reference_url: metadata.person_reference_url,
