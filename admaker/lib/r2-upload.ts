@@ -52,6 +52,38 @@ export async function uploadVideoToR2(
 }
 
 /**
+ * Upload an image to Cloudflare R2
+ * @param imageBuffer - The image file buffer
+ * @param fileName - The name to save the file as (e.g., 'actors/actor-id.png')
+ * @param contentType - The MIME type (e.g., 'image/png', 'image/jpeg')
+ * @returns The public URL of the uploaded image
+ */
+export async function uploadImageToR2(
+    imageBuffer: Buffer,
+    fileName: string,
+    contentType: string = 'image/png'
+): Promise<string> {
+    try {
+        const command = new PutObjectCommand({
+            Bucket: R2_BUCKET_NAME,
+            Key: fileName,
+            Body: imageBuffer,
+            ContentType: contentType,
+        });
+
+        await r2Client.send(command);
+
+        // Return the public URL
+        const publicUrl = `${R2_PUBLIC_URL}/${fileName}`;
+        console.log(`✅ Image uploaded to R2: ${publicUrl}`);
+        return publicUrl;
+    } catch (error) {
+        console.error('❌ Error uploading image to R2:', error);
+        throw error;
+    }
+}
+
+/**
  * Download a video from a URL and return as buffer
  * @param url - The URL to download from
  * @returns The video buffer
@@ -72,6 +104,31 @@ export async function downloadVideo(url: string): Promise<Buffer> {
         return buffer;
     } catch (error) {
         console.error('❌ Error downloading video:', error);
+        throw error;
+    }
+}
+
+/**
+ * Download an image from a URL and return as buffer
+ * @param url - The URL to download from
+ * @returns The image buffer
+ */
+export async function downloadImage(url: string): Promise<Buffer> {
+    try {
+        console.log(`📥 Downloading image from: ${url}`);
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error(`Failed to download image: ${response.statusText}`);
+        }
+
+        const arrayBuffer = await response.arrayBuffer();
+        const buffer = Buffer.from(arrayBuffer);
+
+        console.log(`✅ Image downloaded: ${(buffer.length / 1024).toFixed(2)} KB`);
+        return buffer;
+    } catch (error) {
+        console.error('❌ Error downloading image:', error);
         throw error;
     }
 }

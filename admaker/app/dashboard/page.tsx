@@ -37,13 +37,40 @@ export default function DashboardPage() {
     const [isLoadingVideos, setIsLoadingVideos] = useState(false);
     const [videoModalUrl, setVideoModalUrl] = useState<string | null>(null);
 
-    // Load video history from Supabase on mount
+    // Custom Actor creation state
+    const [customActors, setCustomActors] = useState<any[]>([]);
+    const [actorName, setActorName] = useState('');
+    const [actorPrompt, setActorPrompt] = useState('');
+    const [personImage, setPersonImage] = useState<File | null>(null);
+    const [objectImage, setObjectImage] = useState<File | null>(null);
+    const [decorImage, setDecorImage] = useState<File | null>(null);
+    const [personImagePreview, setPersonImagePreview] = useState<string | null>(null);
+    const [objectImagePreview, setObjectImagePreview] = useState<string | null>(null);
+    const [decorImagePreview, setDecorImagePreview] = useState<string | null>(null);
+    const [isCreatingActor, setIsCreatingActor] = useState(false);
+    const [actorCreationError, setActorCreationError] = useState<string | null>(null);
+
+    // Load video history and custom actors from Supabase on mount
     useEffect(() => {
-        const loadVideos = async () => {
+        const loadData = async () => {
             const videos = await getUserVideos(20);
             setVideoHistory(videos);
+
+            // Load custom actors
+            const supabase = createClient();
+            const { data: { user } } = await supabase.auth.getUser();
+            if (user) {
+                const { data: actors } = await supabase
+                    .from('custom_actors')
+                    .select('*')
+                    .eq('user_id', user.id)
+                    .order('created_at', { ascending: false });
+                if (actors) {
+                    setCustomActors(actors);
+                }
+            }
         };
-        loadVideos();
+        loadData();
     }, []);
 
     // Save video to history (Supabase)
@@ -82,27 +109,164 @@ export default function DashboardPage() {
         return duration === 8 ? 1 : 2;
     };
 
-    const handleActorImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleActorImageUpload = (e: React.ChangeEvent<HTMLInputElement>, type: 'person' | 'object' | 'decor') => {
         const file = e.target.files?.[0];
         if (file) {
             // Validate file type
             if (!file.type.startsWith('image/')) {
-                setError('Please upload an image file');
+                setActorCreationError('Please upload an image file');
                 return;
             }
 
-            // Validate file size (max 5MB)
-            if (file.size > 5 * 1024 * 1024) {
-                setError('Image size must be less than 5MB');
+            // Validate file size (max 30MB as per Nano Banana spec)
+            if (file.size > 30 * 1024 * 1024) {
+                setActorCreationError('Image size must be less than 30MB');
                 return;
             }
 
             const reader = new FileReader();
             reader.onloadend = () => {
-                setActorReferenceImage(reader.result as string);
-                setError(null);
+                const preview = reader.result as string;
+                if (type === 'person') {
+                    setPersonImage(file);
+                    setPersonImagePreview(preview);
+                } else if (type === 'object') {
+                    setObjectImage(file);
+                    setObjectImagePreview(preview);
+                } else if (type === 'decor') {
+                    setDecorImage(file);
+                    setDecorImagePreview(preview);
+                }
+                setActorCreationError(null);
             };
             reader.readAsDataURL(file);
+        }
+    };
+
+    const handleCreateActor = async () => {
+        try {
+            setActorCreationError(null);
+
+            // Validate inputs
+            if (!personImage) {
+                setActorCreationError('Please upload a person image');
+                return;
+            }
+
+            if (!actorPrompt.trim()) {
+                setActorCreationError('Please provide a description');
+                return;
+            }
+
+            // Check credits
+            if (actorCredits < 1) {
+                setActorCreationError('Insufficient AI Actor credits');
+                return;
+            }
+
+            setIsCreatingActor(true);
+
+            // Get user
+            const supabase = createClient();
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) {
+                throw new Error('Not authenticated');
+            }
+
+            // Upload reference images to temporary storage (we'll use base64 for now)
+            // In production, you might want to upload to R2 first
+            const personImageUrl = personImagePreview;
+            const objectImageUrl = objectImagePreview;
+            const decorImageUrl = decorImagePreview;
+
+            // Call create actor API
+            const response = await fetch('/api/kie/nano-banana/create-actor', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    userId: user.id,
+                    actorName: actorName || 'Custom Actor',
+                    prompt: actorPrompt,
+                    personImageUrl,
+                    objectImageUrl,
+                    decorImageUrl,
+                    aspectRatio: '1:1',
+                    resolution: '1K'
+                })
+            });
+
+            if (!response.ok) {
+                const error = await response.json();
+                throw new Error(error.error || 'Failed to create actor');
+            }
+
+            const { taskId } = await response.json();
+            console.log('🍌 Actor generation started:', taskId);
+
+            // Deduct credits
+            setActorCredits(prev => prev - 1);
+
+            // Poll for completion (or wait for webhook)
+            let attempts = 0;
+            const maxAttempts = 60; // 60 seconds max
+
+            const pollStatus = async () => {
+                if (attempts >= maxAttempts) {
+                    setIsCreatingActor(false);
+                    setActorCreationError('Generation timeout. Please check "My Actors" in a moment.');
+                    return;
+                }
+
+                attempts++;
+
+                const statusResponse = await fetch(`/api/kie/nano-banana/check-status?taskId=${taskId}`);
+                const statusData = await statusResponse.json();
+
+                if (statusData.state === 'success' && statusData.imageUrl) {
+                    console.log('✅ Actor created successfully!');
+
+                    // Reload custom actors
+                    const { data: actors } = await supabase
+                        .from('custom_actors')
+                        .select('*')
+                        .eq('user_id', user.id)
+                        .order('created_at', { ascending: false });
+                    if (actors) {
+                        setCustomActors(actors);
+                    }
+
+                    setIsCreatingActor(false);
+                    setShowCreateActorModal(false);
+
+                    // Reset form
+                    setActorName('');
+                    setActorPrompt('');
+                    setPersonImage(null);
+                    setObjectImage(null);
+                    setDecorImage(null);
+                    setPersonImagePreview(null);
+                    setObjectImagePreview(null);
+                    setDecorImagePreview(null);
+
+                    // Switch to actors tab
+                    setActiveTab('actors');
+
+                } else if (statusData.state === 'fail') {
+                    setIsCreatingActor(false);
+                    setActorCreationError(statusData.failMsg || 'Generation failed');
+                } else {
+                    // Still waiting, poll again in 1 second
+                    setTimeout(pollStatus, 1000);
+                }
+            };
+
+            // Start polling after 2 seconds
+            setTimeout(pollStatus, 2000);
+
+        } catch (error: any) {
+            console.error('❌ Error creating actor:', error);
+            setActorCreationError(error.message || 'Failed to create actor');
+            setIsCreatingActor(false);
         }
     };
 
@@ -732,14 +896,52 @@ export default function DashboardPage() {
                                 </button>
                             </div>
 
-                            {/* User's custom actors will be displayed here */}
-                            <div className={styles.emptyState}>
-                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
-                                    <path d="M32 32a10 10 0 100-20 10 10 0 000 20zM12 52a20 20 0 0140 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                                </svg>
-                                <h3>No custom actors yet</h3>
-                                <p>Click "Create Actor" to add your first custom AI actor</p>
-                            </div>
+                            {/* User's custom actors */}
+                            {customActors.length === 0 ? (
+                                <div className={styles.emptyState}>
+                                    <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                                        <path d="M32 32a10 10 0 100-20 10 10 0 000 20zM12 52a20 20 0 0140 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                    </svg>
+                                    <h3>No custom actors yet</h3>
+                                    <p>Click "Create Actor" to add your first custom AI actor</p>
+                                </div>
+                            ) : (
+                                <div className={styles.videoGrid}>
+                                    {customActors.map((actor) => (
+                                        <div key={actor.id} className={styles.videoCard}>
+                                            <div className={styles.videoThumbnail}>
+                                                <img
+                                                    src={actor.image_url}
+                                                    alt={actor.actor_name}
+                                                    style={{
+                                                        width: '100%',
+                                                        height: '100%',
+                                                        objectFit: 'cover',
+                                                        borderRadius: '12px'
+                                                    }}
+                                                />
+                                            </div>
+                                            <div className={styles.videoInfo}>
+                                                <p className={styles.videoScript} style={{
+                                                    fontSize: '14px',
+                                                    fontWeight: 600,
+                                                    marginBottom: '4px',
+                                                    color: '#e5e7eb'
+                                                }}>
+                                                    {actor.actor_name}
+                                                </p>
+                                                <p style={{
+                                                    fontSize: '12px',
+                                                    color: '#9ca3af',
+                                                    marginBottom: '12px'
+                                                }}>
+                                                    {actor.prompt}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     )
                 }
@@ -808,6 +1010,9 @@ export default function DashboardPage() {
                                         type="text"
                                         className={styles.formInput}
                                         placeholder="e.g., John Smith"
+                                        value={actorName}
+                                        onChange={(e) => setActorName(e.target.value)}
+                                        disabled={isCreatingActor}
                                     />
                                 </div>
 
@@ -822,14 +1027,15 @@ export default function DashboardPage() {
                                             <input
                                                 type="file"
                                                 accept="image/*"
-                                                onChange={handleActorImageUpload}
+                                                onChange={(e) => handleActorImageUpload(e, 'person')}
                                                 className={styles.fileInput}
                                                 id="personImageInput"
+                                                disabled={isCreatingActor}
                                             />
                                             <label htmlFor="personImageInput" className={styles.uploadLabel}>
-                                                {actorReferenceImage ? (
+                                                {personImagePreview ? (
                                                     <div className={styles.imagePreview}>
-                                                        <img src={actorReferenceImage} alt="Person reference" />
+                                                        <img src={personImagePreview} alt="Person reference" />
                                                         <div className={styles.imageOverlay}>
                                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                                                                 <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -844,7 +1050,7 @@ export default function DashboardPage() {
                                                             <path d="M12 40a12 12 0 0124 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                                                         </svg>
                                                         <span className={styles.uploadText}>Upload Person</span>
-                                                        <span className={styles.uploadHint}>PNG, JPG 5MB</span>
+                                                        <span className={styles.uploadHint}>PNG, JPG 30MB</span>
                                                     </div>
                                                 )}
                                             </label>
@@ -860,17 +1066,31 @@ export default function DashboardPage() {
                                             <input
                                                 type="file"
                                                 accept="image/*"
+                                                onChange={(e) => handleActorImageUpload(e, 'object')}
                                                 className={styles.fileInput}
                                                 id="objectImageInput"
+                                                disabled={isCreatingActor}
                                             />
                                             <label htmlFor="objectImageInput" className={styles.uploadLabel}>
-                                                <div className={styles.uploadPlaceholder}>
-                                                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                                                        <rect x="12" y="12" width="24" height="24" rx="4" stroke="currentColor" strokeWidth="2" />
-                                                    </svg>
-                                                    <span className={styles.uploadText}>Upload Object</span>
-                                                    <span className={styles.uploadHint}>PNG, JPG 5MB</span>
-                                                </div>
+                                                {objectImagePreview ? (
+                                                    <div className={styles.imagePreview}>
+                                                        <img src={objectImagePreview} alt="Object reference" />
+                                                        <div className={styles.imageOverlay}>
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                            </svg>
+                                                            <span>Change</span>
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <div className={styles.uploadPlaceholder}>
+                                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                                            <rect x="12" y="12" width="24" height="24" rx="4" stroke="currentColor" strokeWidth="2" />
+                                                        </svg>
+                                                        <span className={styles.uploadText}>Upload Object</span>
+                                                        <span className={styles.uploadHint}>PNG, JPG 30MB</span>
+                                                    </div>
+                                                )}
                                             </label>
                                         </div>
                                     </div>
@@ -884,40 +1104,89 @@ export default function DashboardPage() {
                                             <input
                                                 type="file"
                                                 accept="image/*"
+                                                onChange={(e) => handleActorImageUpload(e, 'decor')}
                                                 className={styles.fileInput}
                                                 id="decorImageInput"
+                                                disabled={isCreatingActor}
                                             />
                                             <label htmlFor="decorImageInput" className={styles.uploadLabel}>
-                                                <div className={styles.uploadPlaceholder}>
-                                                    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                                                        <path d="M8 8h32v32H8z" stroke="currentColor" strokeWidth="2" />
-                                                        <path d="M16 16h16v16H16z" stroke="currentColor" strokeWidth="2" />
-                                                    </svg>
-                                                    <span className={styles.uploadText}>Upload Decor</span>
-                                                    <span className={styles.uploadHint}>PNG, JPG 5MB</span>
-                                                </div>
+                                                {decorImagePreview ? (
+                                                    <div className={styles.imagePreview}>
+                                                        <img src={decorImagePreview} alt="Decor reference" />
+                                                        <div className={styles.imageOverlay}>
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                            </svg>
+                                                            <span>Change</span>
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <div className={styles.uploadPlaceholder}>
+                                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                                            <path d="M8 8h32v32H8z" stroke="currentColor" strokeWidth="2" />
+                                                            <path d="M16 16h16v16H16z" stroke="currentColor" strokeWidth="2" />
+                                                        </svg>
+                                                        <span className={styles.uploadText}>Upload Decor</span>
+                                                        <span className={styles.uploadHint}>PNG, JPG 30MB</span>
+                                                    </div>
+                                                )}
                                             </label>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div className={styles.formGroup}>
-                                    <label className={styles.formLabel}>Actor & Scene Description</label>
+                                    <label className={styles.formLabel}>Actor & Scene Description *</label>
                                     <textarea
                                         className={styles.formTextarea}
                                         placeholder="Describe the actor's appearance, clothing, setting, and decor... Example: Professional woman in her 30s, wearing business attire, modern office background with plants and natural lighting"
                                         rows={2}
+                                        value={actorPrompt}
+                                        onChange={(e) => setActorPrompt(e.target.value)}
+                                        disabled={isCreatingActor}
                                     />
                                 </div>
 
+                                {/* Error Display */}
+                                {actorCreationError && (
+                                    <div style={{
+                                        padding: '12px',
+                                        background: 'rgba(239, 68, 68, 0.1)',
+                                        border: '1px solid rgba(239, 68, 68, 0.3)',
+                                        borderRadius: '8px',
+                                        color: '#f87171',
+                                        fontSize: '14px',
+                                        marginBottom: '16px'
+                                    }}>
+                                        {actorCreationError}
+                                    </div>
+                                )}
+
                                 <div className={styles.modalActions}>
-                                    <button className={styles.createBtn}>
-                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                            <path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                                        </svg>
-                                        Create Actor
+                                    <button
+                                        className={styles.createBtn}
+                                        onClick={handleCreateActor}
+                                        disabled={isCreatingActor}
+                                    >
+                                        {isCreatingActor ? (
+                                            <>
+                                                <div className={styles.spinner}></div>
+                                                Generating...
+                                            </>
+                                        ) : (
+                                            <>
+                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                    <path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                                </svg>
+                                                Create Actor
+                                            </>
+                                        )}
                                     </button>
-                                    <button onClick={() => setShowCreateActorModal(false)} className={styles.cancelBtn}>
+                                    <button
+                                        onClick={() => setShowCreateActorModal(false)}
+                                        className={styles.cancelBtn}
+                                        disabled={isCreatingActor}
+                                    >
                                         Cancel
                                     </button>
                                 </div>
