@@ -1019,6 +1019,41 @@ export default function DashboardPage() {
                                 </button>
                             </div>
                             <div className={styles.modalBody}>
+                                {/* Generation Time Info */}
+                                <div style={{
+                                    padding: '12px 16px',
+                                    background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.1) 100%)',
+                                    border: '1px solid rgba(59, 130, 246, 0.3)',
+                                    borderRadius: '8px',
+                                    display: 'flex',
+                                    alignItems: 'flex-start',
+                                    gap: '12px',
+                                    marginBottom: '20px'
+                                }}>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: '2px' }}>
+                                        <circle cx="10" cy="10" r="8" stroke="#60a5fa" strokeWidth="2" />
+                                        <path d="M10 6v4l2 2" stroke="#60a5fa" strokeWidth="2" strokeLinecap="round" />
+                                    </svg>
+                                    <div style={{ flex: 1 }}>
+                                        <p style={{
+                                            fontSize: '13px',
+                                            fontWeight: 600,
+                                            color: '#93c5fd',
+                                            marginBottom: '4px'
+                                        }}>
+                                            Generation Time: 2-3 minutes
+                                        </p>
+                                        <p style={{
+                                            fontSize: '12px',
+                                            color: '#9ca3af',
+                                            lineHeight: '1.5',
+                                            margin: 0
+                                        }}>
+                                            AI actor generation takes time. Please be patient while we create your custom actor with the reference images.
+                                        </p>
+                                    </div>
+                                </div>
+
                                 <div className={styles.formGroup}>
                                     <label className={styles.formLabel}>Actor Name</label>
                                     <input
