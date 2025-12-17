@@ -10,9 +10,14 @@ export const config = {
     },
 };
 
+// Cloudflare R2 Configuration (matching r2-upload.ts)
+const R2_ACCOUNT_ID = '1defcdb7b33d256403a1c29fc50d14b4';
+const R2_BUCKET_NAME = 'admakerai-media';
+const R2_PUBLIC_URL = 'https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev';
+
 const s3Client = new S3Client({
     region: 'auto',
-    endpoint: process.env.R2_ENDPOINT!,
+    endpoint: `https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
     credentials: {
         accessKeyId: process.env.R2_ACCESS_KEY_ID!,
         secretAccessKey: process.env.R2_SECRET_ACCESS_KEY!,
@@ -52,7 +57,7 @@ export async function POST(request: NextRequest) {
         // Upload to R2
         await s3Client.send(
             new PutObjectCommand({
-                Bucket: process.env.R2_BUCKET_NAME!,
+                Bucket: R2_BUCKET_NAME,
                 Key: key,
                 Body: buffer,
                 ContentType: 'image/jpeg',
@@ -60,7 +65,7 @@ export async function POST(request: NextRequest) {
         );
 
         // Return public URL
-        const publicUrl = `${process.env.R2_PUBLIC_URL}/${key}`;
+        const publicUrl = `${R2_PUBLIC_URL}/${key}`;
 
         return NextResponse.json({ url: publicUrl });
     } catch (error: any) {
