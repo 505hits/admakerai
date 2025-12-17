@@ -36,88 +36,89 @@ export async function POST(request: NextRequest) {
         console.log('📦 Raw body length:', bodyText.length);
         console.log('📦 Raw body preview:', bodyText.substring(0, 500));
 
-        // Check if body is a URL (plain text) - Kie sends this format
         const trimmedBody = bodyText.trim();
 
-        // Handle plain URL (with or without quotes)
-        const urlMatch = trimmedBody.match(/https?:\/\/[^\s"'\]]+/);
-        if (urlMatch) {
-            const imageUrl = urlMatch[0];
-            console.log('🖼️ ✅ Received URL callback (extracted from text)');
-            console.log(`📸 Image URL: ${imageUrl}`);
+        // Try to parse as JSON FIRST (Nano Banana sends JSON)
+        let body;
+        try {
+            body = JSON.parse(trimmedBody);
+            console.log('🍌 Parsed JSON callback:', JSON.stringify(body, null, 2));
 
-            // Extract taskId from URL
-            const taskIdMatch = imageUrl.match(/\/([a-f0-9-]{36})/);
-            const taskId = taskIdMatch ? taskIdMatch[1] : null;
+            const { code, data } = body;
+            const { taskId, resultJson } = data || {};
 
             if (!taskId) {
-                console.error('❌ Could not extract taskId from URL:', imageUrl);
+                console.log('⚠️ No taskId in JSON callback');
                 console.log('🍌 ============================================');
                 return NextResponse.json(
-                    { success: true, message: 'Could not extract taskId from URL' },
+                    { success: true, message: 'No taskId provided' },
                     { status: 200 }
                 );
             }
 
-            console.log(`🔍 Extracted taskId: ${taskId}`);
+            if (code === 200 && resultJson) {
+                const result = JSON.parse(resultJson);
+                const imageUrl = result.resultUrls?.[0];
 
-            // Save actor image to database
-            await saveActorToDatabase(taskId, imageUrl);
+                if (!imageUrl) {
+                    console.log('⚠️ No image URL in callback');
+                    console.log('🍌 ============================================');
+                    return NextResponse.json(
+                        { success: true, message: 'No image URL provided' },
+                        { status: 200 }
+                    );
+                }
+
+                console.log(`✅ Image completed: ${taskId}`);
+                console.log(`📸 Image URL: ${imageUrl}`);
+
+                await saveActorToDatabase(taskId, imageUrl);
+            } else {
+                console.log(`❌ Image generation failed: ${taskId}, code: ${code}`);
+            }
 
             console.log('🍌 ============================================');
             return NextResponse.json({ success: true }, { status: 200 });
-        }
 
-        // Try to parse as JSON
-        let body;
-        try {
-            body = JSON.parse(trimmedBody);
         } catch (parseError) {
-            console.error('❌ Failed to parse as JSON:', parseError);
+            // If JSON parsing fails, try URL extraction as fallback
+            console.log('⚠️ Not JSON, trying URL extraction...');
+
+            const urlMatch = trimmedBody.match(/https?:\/\/[^\s"'\]]+/);
+            if (urlMatch) {
+                const imageUrl = urlMatch[0];
+                console.log('🖼️ ✅ Received URL callback (extracted from text)');
+                console.log(`📸 Image URL: ${imageUrl}`);
+
+                // Extract taskId from URL
+                const taskIdMatch = imageUrl.match(/\/([a-f0-9-]{36})/);
+                const taskId = taskIdMatch ? taskIdMatch[1] : null;
+
+                if (!taskId) {
+                    console.error('❌ Could not extract taskId from URL:', imageUrl);
+                    console.log('🍌 ============================================');
+                    return NextResponse.json(
+                        { success: true, message: 'Could not extract taskId from URL' },
+                        { status: 200 }
+                    );
+                }
+
+                console.log(`🔍 Extracted taskId: ${taskId}`);
+
+                // Save actor image to database
+                await saveActorToDatabase(taskId, imageUrl);
+
+                console.log('🍌 ============================================');
+                return NextResponse.json({ success: true }, { status: 200 });
+            }
+
+            console.error('❌ Failed to parse as JSON or extract URL:', parseError);
             console.log('🍌 ============================================');
             return NextResponse.json(
                 { success: true, message: 'Received but could not parse' },
                 { status: 200 }
             );
         }
-
-        console.log('🍌 Parsed JSON callback:', JSON.stringify(body, null, 2));
-
-        const { code, data } = body;
-        const { taskId, resultJson } = data || {};
-
-        if (!taskId) {
-            console.log('⚠️ No taskId in callback');
-            console.log('🍌 ============================================');
-            return NextResponse.json(
-                { success: true, message: 'No taskId provided' },
-                { status: 200 }
-            );
-        }
-
-        if (code === 200 && resultJson) {
-            const result = JSON.parse(resultJson);
-            const imageUrl = result.resultUrls?.[0];
-
-            if (!imageUrl) {
-                console.log('⚠️ No image URL in callback');
-                console.log('🍌 ============================================');
-                return NextResponse.json(
-                    { success: true, message: 'No image URL provided' },
-                    { status: 200 }
-                );
-            }
-
-            console.log(`✅ Image completed: ${taskId}`);
-            console.log(`📸 Image URL: ${imageUrl}`);
-
-            await saveActorToDatabase(taskId, imageUrl);
-        } else {
-            console.log(`❌ Image generation failed: ${taskId}, code: ${code}`);
-        }
-
-        console.log('🍌 ============================================');
-        return NextResponse.json({ success: true }, { status: 200 });
 
     } catch (error: any) {
         console.error('❌ Webhook error:', error);
