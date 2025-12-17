@@ -196,11 +196,25 @@ export default function DashboardPage() {
             });
 
             if (!response.ok) {
-                const error = await response.json();
-                throw new Error(error.error || 'Failed to create actor');
+                const errorText = await response.text();
+                console.error('❌ API Error:', errorText);
+                try {
+                    const error = JSON.parse(errorText);
+                    throw new Error(error.error || 'Failed to create actor');
+                } catch (e) {
+                    throw new Error(`Failed to create actor: ${response.status} ${response.statusText}`);
+                }
             }
 
-            const { taskId } = await response.json();
+            const responseData = await response.json();
+            console.log('📦 API Response:', responseData);
+
+            if (!responseData || !responseData.taskId) {
+                console.error('❌ Invalid response:', responseData);
+                throw new Error('Invalid response from server: missing taskId');
+            }
+
+            const taskId = responseData.taskId;
             console.log('🍌 Actor generation started:', taskId);
 
             // Deduct credits
