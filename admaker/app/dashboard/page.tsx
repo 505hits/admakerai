@@ -448,7 +448,6 @@ export default function DashboardPage() {
             setCredits(newCredits);
 
             // Update credits in Supabase
-            const supabase = createClient();
             const { error: updateError } = await supabase
                 .from('profiles')
                 .update({ credits: newCredits })
