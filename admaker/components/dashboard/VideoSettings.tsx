@@ -17,7 +17,7 @@ export default function VideoSettings({
 }: VideoSettingsProps) {
     const getCreditCost = () => {
         // Credits based only on duration
-        return duration === 8 ? 1 : 2;
+        return duration === 8 ? 20 : 40;
     };
 
     return (
@@ -59,14 +59,14 @@ export default function VideoSettings({
                             onClick={() => onDurationChange(8)}
                         >
                             <span className={styles.durationTime}>8s</span>
-                            <span className={styles.durationCost}>1 credit</span>
+                            <span className={styles.durationCost}>20 credits</span>
                         </button>
                         <button
                             className={`${styles.durationButton} ${duration === 16 ? styles.active : ''}`}
                             onClick={() => onDurationChange(16)}
                         >
                             <span className={styles.durationTime}>16s</span>
-                            <span className={styles.durationCost}>2 credits</span>
+                            <span className={styles.durationCost}>40 credits</span>
                         </button>
                     </div>
                     <p className={styles.durationNote}>

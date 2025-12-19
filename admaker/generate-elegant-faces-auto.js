@@ -133,10 +133,31 @@ async function downloadAndUploadToR2(imageUrl, filename) {
 
     console.log(`📤 Uploading to R2: Actors/${filename}...`);
 
-    // Upload to R2 using the existing function
-    const { uploadImageToR2 } = require('./lib/r2-upload');
-    const r2Url = await uploadImageToR2(buffer, `Actors/${filename}`, 'image/png');
+    // Upload to R2 using AWS SDK directly
+    const { S3Client, PutObjectCommand } = require('@aws-sdk/client-s3');
 
+    const R2_ACCOUNT_ID = '1defcdb7b33d256403a1c29fc50d14b4';
+    const R2_BUCKET_NAME = 'admakerai-media';
+
+    const s3Client = new S3Client({
+        region: 'auto',
+        endpoint: `https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+        credentials: {
+            accessKeyId: process.env.R2_ACCESS_KEY_ID,
+            secretAccessKey: process.env.R2_SECRET_ACCESS_KEY,
+        },
+    });
+
+    await s3Client.send(
+        new PutObjectCommand({
+            Bucket: R2_BUCKET_NAME,
+            Key: `Actors/${filename}`,
+            Body: buffer,
+            ContentType: 'image/png',
+        })
+    );
+
+    const r2Url = `${R2_PUBLIC_URL}/Actors/${filename}`;
     console.log(`✅ Uploaded to R2: ${r2Url}`);
     return r2Url;
 }

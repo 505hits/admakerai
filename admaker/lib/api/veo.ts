@@ -92,7 +92,8 @@ export async function generateVideoWithDuration(
     sceneDescription: string,
     format: '16:9' | '9:16',
     duration: 8 | 16, // Keep parameter for compatibility, but only 8s is used
-    productImageUrl?: string
+    productImageUrl?: string,
+    virtualTryOnImageUrl?: string
 ): Promise<{ taskId: string }> {
 
     // Get callback URL
@@ -105,11 +106,11 @@ export async function generateVideoWithDuration(
     }
 
     // Build image URLs array
-    // REFERENCE_2_VIDEO: 1-3 images (actor + optional product)
+    // REFERENCE_2_VIDEO: 1-3 images (actor + optional product + optional virtual try-on)
     // FIRST_AND_LAST_FRAMES_2_VIDEO: 1-2 images
-    const imageUrls = productImageUrl
-        ? [actorImageUrl, productImageUrl]
-        : [actorImageUrl];
+    const imageUrls = [actorImageUrl];
+    if (productImageUrl) imageUrls.push(productImageUrl);
+    if (virtualTryOnImageUrl) imageUrls.push(virtualTryOnImageUrl);
 
     // Mode selection based on aspect ratio
     // REFERENCE_2_VIDEO: Only supports 16:9 with veo3_fast
@@ -129,7 +130,6 @@ export async function generateVideoWithDuration(
         aspectRatio: format,
         generationType: useReferenceMode ? 'REFERENCE_2_VIDEO' : 'FIRST_AND_LAST_FRAMES_2_VIDEO',
         enableTranslation: true, // Auto-translate to English
-        watermark: 'AdMaker AI',
         callBackUrl,
     };
 

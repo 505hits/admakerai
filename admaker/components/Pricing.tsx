@@ -8,14 +8,14 @@ export default function Pricing() {
 
     const pricingData = {
         monthly: {
-            startup: { price: 34.90, videos: 10, customActors: 10 },
-            growth: { price: 59.90, videos: 30, customActors: 50 },
-            pro: { price: 99.90, videos: 30, customActors: 30 }
+            startup: { price: 49, videos: 22, videoCredits: 440, actorCredits: 440 },
+            growth: { price: 69, videos: 60, videoCredits: 1200, actorCredits: 1200 },
+            pro: { price: 99, videos: 110, videoCredits: 2200, actorCredits: 2200 }
         },
         annual: {
-            startup: { price: 27.90, originalPrice: 34.90, videos: 200, customActors: 120, totalBilling: 334.80 },
-            growth: { price: 47.90, originalPrice: 59.90, videos: 600, customActors: 600, totalBilling: 574.80 },
-            pro: { price: 79.90, originalPrice: 99.90, videos: 600, customActors: 360, totalBilling: 958.80 }
+            startup: { price: 39.20, originalPrice: 49, videos: 264, videoCredits: 5280, actorCredits: 5280, totalBilling: 470.40 },
+            growth: { price: 55.20, originalPrice: 69, videos: 720, videoCredits: 14400, actorCredits: 14400, totalBilling: 662.40 },
+            pro: { price: 79.20, originalPrice: 99, videos: 1320, videoCredits: 26400, actorCredits: 26400, totalBilling: 950.40 }
         }
     };
 
@@ -62,39 +62,39 @@ export default function Pricing() {
                         <ul className={styles.pricingFeatures}>
                             <li>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M4 10L8 14L16 6" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M4 10L8 14L16 6" stroke="#ff0844" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
-                                <span>{currentPricing.startup.videos} AI-generated videos{plan === 'annual' ? ' /year' : ' /month'}</span>
+                                <span>{currentPricing.startup.videoCredits} video credits{plan === 'annual' ? ' /year' : ' /month'}</span>
                             </li>
                             <li>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M4 10L8 14L16 6" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M4 10L8 14L16 6" stroke="#ff0844" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
-                                <span>300+ realistic AI actors</span>
+                                <span>Generate up to {currentPricing.startup.videos} videos{plan === 'annual' ? ' /year' : ' /month'}</span>
                             </li>
                             <li>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M4 10L8 14L16 6" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M4 10L8 14L16 6" stroke="#ff0844" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
-                                <span>{currentPricing.startup.customActors} custom AI actors{plan === 'annual' ? ' /year' : ' /month'}</span>
+                                <span>{currentPricing.startup.actorCredits} actor credits{plan === 'annual' ? ' /year' : ' /month'}</span>
                             </li>
                             <li>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M4 10L8 14L16 6" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M4 10L8 14L16 6" stroke="#ff0844" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
-                                <span>Fast 2-min processing</span>
+                                <span>35 languages</span>
                             </li>
                             <li>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M4 10L8 14L16 6" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M4 10L8 14L16 6" stroke="#ff0844" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
-                                <span>Sora 2</span>
+                                <span>Product holding</span>
                             </li>
                             <li>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M4 10L8 14L16 6" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M4 10L8 14L16 6" stroke="#ff0844" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
-                                <span>Product-in-hand</span>
+                                <span>Outfit swapping</span>
                             </li>
                         </ul>
                         <a href="#" className={styles.btnSecondary}>Choose this plan</a>
@@ -117,39 +117,39 @@ export default function Pricing() {
                         <ul className={styles.pricingFeatures}>
                             <li>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M4 10L8 14L16 6" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M4 10L8 14L16 6" stroke="#ff0844" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
-                                <span>{currentPricing.growth.videos} AI-generated videos{plan === 'annual' ? ' /year' : ' /month'}</span>
+                                <span>{currentPricing.growth.videoCredits} video credits{plan === 'annual' ? ' /year' : ' /month'}</span>
                             </li>
                             <li>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M4 10L8 14L16 6" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M4 10L8 14L16 6" stroke="#ff0844" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
-                                <span>300+ realistic AI actors</span>
+                                <span>Generate up to {currentPricing.growth.videos} videos{plan === 'annual' ? ' /year' : ' /month'}</span>
                             </li>
                             <li>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M4 10L8 14L16 6" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M4 10L8 14L16 6" stroke="#ff0844" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
-                                <span>{currentPricing.growth.customActors} custom AI actors{plan === 'annual' ? ' /year' : ' /month'}</span>
+                                <span>{currentPricing.growth.actorCredits} actor credits{plan === 'annual' ? ' /year' : ' /month'}</span>
                             </li>
                             <li>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M4 10L8 14L16 6" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M4 10L8 14L16 6" stroke="#ff0844" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
-                                <span>Fast 2-min processing</span>
+                                <span>35 languages</span>
                             </li>
                             <li>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M4 10L8 14L16 6" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M4 10L8 14L16 6" stroke="#ff0844" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
-                                <span>Sora 2</span>
+                                <span>Product holding</span>
                             </li>
                             <li>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M4 10L8 14L16 6" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M4 10L8 14L16 6" stroke="#ff0844" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
-                                <span>Product-in-hand</span>
+                                <span>Outfit swapping</span>
                             </li>
                         </ul>
                         <a href="#" className={styles.btnPrimary}>Choose this plan</a>
@@ -171,39 +171,39 @@ export default function Pricing() {
                         <ul className={styles.pricingFeatures}>
                             <li>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M4 10L8 14L16 6" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M4 10L8 14L16 6" stroke="#ff0844" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
-                                <span>{currentPricing.pro.videos} AI-generated videos{plan === 'annual' ? ' /year' : ' /month'}</span>
+                                <span>{currentPricing.pro.videoCredits} video credits{plan === 'annual' ? ' /year' : ' /month'}</span>
                             </li>
                             <li>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M4 10L8 14L16 6" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M4 10L8 14L16 6" stroke="#ff0844" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
-                                <span>300+ realistic AI actors</span>
+                                <span>Generate up to {currentPricing.pro.videos} videos{plan === 'annual' ? ' /year' : ' /month'}</span>
                             </li>
                             <li>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M4 10L8 14L16 6" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M4 10L8 14L16 6" stroke="#ff0844" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
-                                <span>{currentPricing.pro.customActors} custom AI actors{plan === 'annual' ? ' /year' : ' /month'}</span>
+                                <span>{currentPricing.pro.actorCredits} actor credits{plan === 'annual' ? ' /year' : ' /month'}</span>
                             </li>
                             <li>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M4 10L8 14L16 6" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M4 10L8 14L16 6" stroke="#ff0844" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
-                                <span>Fast 2-min processing</span>
+                                <span>35 languages</span>
                             </li>
                             <li>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M4 10L8 14L16 6" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M4 10L8 14L16 6" stroke="#ff0844" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
-                                <span>Sora 2</span>
+                                <span>Product holding</span>
                             </li>
                             <li>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M4 10L8 14L16 6" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M4 10L8 14L16 6" stroke="#ff0844" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 </svg>
-                                <span>Product-in-hand</span>
+                                <span>Outfit swapping</span>
                             </li>
                         </ul>
                         <a href="#" className={styles.btnSecondary}>Choose this plan</a>

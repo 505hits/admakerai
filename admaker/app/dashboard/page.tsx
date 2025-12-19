@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import styles from './Dashboard.module.css';
 import ScriptEditor from '@/components/dashboard/ScriptEditor';
 import VideoSettings from '@/components/dashboard/VideoSettings';
-import ProductImageUpload from '@/components/dashboard/ProductImageUpload';
+import CustomUploads from '@/components/dashboard/CustomUploads';
 import AIActorSelector from '@/components/dashboard/AIActorSelector';
 import VideoGenerationLoader from '@/components/dashboard/VideoGenerationLoader';
 import { AIActor } from '@/lib/types/veo';
@@ -22,6 +22,7 @@ export default function DashboardPage() {
     const [script, setScript] = useState('');
     const [sceneDescription, setSceneDescription] = useState('');
     const [productImageUrl, setProductImageUrl] = useState<string | null>(null);
+    const [virtualTryOnImageUrl, setVirtualTryOnImageUrl] = useState<string | null>(null);
     const [format, setFormat] = useState<'16:9' | '9:16'>('16:9');
     const [duration, setDuration] = useState<8 | 16>(8);
     const [isGenerating, setIsGenerating] = useState(false);
@@ -108,7 +109,7 @@ export default function DashboardPage() {
 
     const getCreditCost = () => {
         // Credits based only on duration
-        return duration === 8 ? 1 : 2;
+        return duration === 8 ? 20 : 40;
     };
 
     const handleActorImageUpload = (e: React.ChangeEvent<HTMLInputElement>, type: 'person' | 'object' | 'decor') => {
@@ -392,7 +393,8 @@ export default function DashboardPage() {
                 actualScene,
                 format,
                 duration,
-                productImageUrl || undefined
+                productImageUrl || undefined,
+                virtualTryOnImageUrl || undefined
             );
 
             console.log('✅ Video generation started, taskId:', result.taskId);
@@ -626,8 +628,11 @@ export default function DashboardPage() {
                                     />
                                 </div>
 
-                                {/* Optional Product Image */}
-                                <ProductImageUpload onImageChange={setProductImageUrl} />
+                                {/* Optional Product and Virtual Try-On Images */}
+                                <CustomUploads
+                                    onProductImageChange={setProductImageUrl}
+                                    onVirtualTryOnImageChange={setVirtualTryOnImageUrl}
+                                />
 
                                 {/* Video Settings */}
                                 <VideoSettings
@@ -1378,7 +1383,7 @@ export default function DashboardPage() {
                                     <textarea
                                         className={styles.formTextarea}
                                         placeholder="Describe the actor's appearance, clothing, setting, and decor... Example: Professional woman in her 30s, wearing business attire, modern office background with plants and natural lighting"
-                                        rows={2}
+                                        rows={4}
                                         value={actorPrompt}
                                         onChange={(e) => setActorPrompt(e.target.value)}
                                         disabled={isCreatingActor}

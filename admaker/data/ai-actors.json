@@ -1281,6 +1281,230 @@
             "gender": "neutral",
             "ageRange": "any",
             "style": "Cinematic original"
+        },
+        {
+            "id": "studio_001",
+            "name": "Studio Actor 1",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio1.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio1.png",
+            "sceneDescription": "Professional studio setting",
+            "tags": [
+                "studio",
+                "professional",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
+        },
+        {
+            "id": "studio_002",
+            "name": "Studio Actor 2",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio2.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio2.png",
+            "sceneDescription": "Professional studio setting",
+            "tags": [
+                "studio",
+                "professional",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
+        },
+        {
+            "id": "studio_003",
+            "name": "Studio Actor 3",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio3.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio3.png",
+            "sceneDescription": "Professional studio setting",
+            "tags": [
+                "studio",
+                "professional",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
+        },
+        {
+            "id": "studio_004",
+            "name": "Studio Actor 4",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio4.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio4.png",
+            "sceneDescription": "Professional studio setting",
+            "tags": [
+                "studio",
+                "professional",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
+        },
+        {
+            "id": "studio_005",
+            "name": "Studio Actor 5",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio5.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio5.png",
+            "sceneDescription": "Professional studio setting",
+            "tags": [
+                "studio",
+                "professional",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
+        },
+        {
+            "id": "studio_006",
+            "name": "Studio Actor 6",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio6.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio6.png",
+            "sceneDescription": "Professional studio setting",
+            "tags": [
+                "studio",
+                "professional",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
+        },
+        {
+            "id": "studio_007",
+            "name": "Studio Actor 7",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio7.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio7.png",
+            "sceneDescription": "Professional studio setting",
+            "tags": [
+                "studio",
+                "professional",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
+        },
+        {
+            "id": "studio_008",
+            "name": "Studio Actor 8",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio8.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio8.png",
+            "sceneDescription": "Professional studio setting",
+            "tags": [
+                "studio",
+                "professional",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
+        },
+        {
+            "id": "studio_009",
+            "name": "Studio Actor 9",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio9.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio9.png",
+            "sceneDescription": "Professional studio setting",
+            "tags": [
+                "studio",
+                "professional",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
+        },
+        {
+            "id": "studio_010",
+            "name": "Studio Actor 10",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio10.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio10.png",
+            "sceneDescription": "Professional studio setting",
+            "tags": [
+                "studio",
+                "professional",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
+        },
+        {
+            "id": "studio_011",
+            "name": "Studio Actor 11",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio11.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio11.png",
+            "sceneDescription": "Professional studio setting",
+            "tags": [
+                "studio",
+                "professional",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
+        },
+        {
+            "id": "studio_012",
+            "name": "Studio Actor 12",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio12.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio12.png",
+            "sceneDescription": "Professional studio setting",
+            "tags": [
+                "studio",
+                "professional",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
+        },
+        {
+            "id": "studio_013",
+            "name": "Studio Actor 13",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio13.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio13.png",
+            "sceneDescription": "Professional studio setting",
+            "tags": [
+                "studio",
+                "professional",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
+        },
+        {
+            "id": "studio_014",
+            "name": "Studio Actor 14",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio14.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio14.png",
+            "sceneDescription": "Professional studio setting",
+            "tags": [
+                "studio",
+                "professional",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
         }
     ],
     "categories": [
@@ -1291,6 +1515,7 @@
         "Micro-Content",
         "Sport",
         "Lifestyle",
+        "Studio",
         "Originals"
     ],
     "note": "All image URLs point to Cloudflare R2 storage with the Actors/ prefix included."

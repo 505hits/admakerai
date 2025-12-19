@@ -595,230 +595,6 @@
             "style": "Beauty professional"
         },
         {
-            "id": "product_001",
-            "name": "Product Demo 1",
-            "category": "Product Demo",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product1.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product1.png",
-            "sceneDescription": "Product demonstration setting",
-            "tags": [
-                "product",
-                "demo",
-                "commercial"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Product showcase"
-        },
-        {
-            "id": "product_002",
-            "name": "Product Demo 2",
-            "category": "Product Demo",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product2.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product2.png",
-            "sceneDescription": "Product demonstration setting",
-            "tags": [
-                "product",
-                "demo",
-                "commercial"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Product showcase"
-        },
-        {
-            "id": "product_003",
-            "name": "Product Demo 3",
-            "category": "Product Demo",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product3.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product3.png",
-            "sceneDescription": "Product demonstration setting",
-            "tags": [
-                "product",
-                "demo",
-                "commercial"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Product showcase"
-        },
-        {
-            "id": "product_004",
-            "name": "Product Demo 4",
-            "category": "Product Demo",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product4.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product4.png",
-            "sceneDescription": "Product demonstration setting",
-            "tags": [
-                "product",
-                "demo",
-                "commercial"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Product showcase"
-        },
-        {
-            "id": "product_005",
-            "name": "Product Demo 5",
-            "category": "Product Demo",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product5.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product5.png",
-            "sceneDescription": "Product demonstration setting",
-            "tags": [
-                "product",
-                "demo",
-                "commercial"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Product showcase"
-        },
-        {
-            "id": "product_006",
-            "name": "Product Demo 6",
-            "category": "Product Demo",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product6.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product6.png",
-            "sceneDescription": "Product demonstration setting",
-            "tags": [
-                "product",
-                "demo",
-                "commercial"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Product showcase"
-        },
-        {
-            "id": "product_007",
-            "name": "Product Demo 7",
-            "category": "Product Demo",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product7.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product7.png",
-            "sceneDescription": "Product demonstration setting",
-            "tags": [
-                "product",
-                "demo",
-                "commercial"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Product showcase"
-        },
-        {
-            "id": "product_008",
-            "name": "Product Demo 8",
-            "category": "Product Demo",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product8.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product8.png",
-            "sceneDescription": "Product demonstration setting",
-            "tags": [
-                "product",
-                "demo",
-                "commercial"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Product showcase"
-        },
-        {
-            "id": "product_009",
-            "name": "Product Demo 9",
-            "category": "Product Demo",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product9.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product9.png",
-            "sceneDescription": "Product demonstration setting",
-            "tags": [
-                "product",
-                "demo",
-                "commercial"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Product showcase"
-        },
-        {
-            "id": "product_010",
-            "name": "Product Demo 10",
-            "category": "Product Demo",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product10.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product10.png",
-            "sceneDescription": "Product demonstration setting",
-            "tags": [
-                "product",
-                "demo",
-                "commercial"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Product showcase"
-        },
-        {
-            "id": "product_011",
-            "name": "Product Demo 11",
-            "category": "Product Demo",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product11.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product11.png",
-            "sceneDescription": "Product demonstration setting",
-            "tags": [
-                "product",
-                "demo",
-                "commercial"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Product showcase"
-        },
-        {
-            "id": "product_012",
-            "name": "Product Demo 12",
-            "category": "Product Demo",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product12.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product12.png",
-            "sceneDescription": "Product demonstration setting",
-            "tags": [
-                "product",
-                "demo",
-                "commercial"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Product showcase"
-        },
-        {
-            "id": "product_013",
-            "name": "Product Demo 13",
-            "category": "Product Demo",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product13.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product13.png",
-            "sceneDescription": "Product demonstration setting",
-            "tags": [
-                "product",
-                "demo",
-                "commercial"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Product showcase"
-        },
-        {
-            "id": "product_014",
-            "name": "Product Demo 14",
-            "category": "Product Demo",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product14.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/product14.png",
-            "sceneDescription": "Product demonstration setting",
-            "tags": [
-                "product",
-                "demo",
-                "commercial"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Product showcase"
-        },
-        {
             "id": "micro_001",
             "name": "Micro Content 1",
             "category": "Micro-Content",
@@ -1123,6 +899,566 @@
             "style": "Social media creator"
         },
         {
+            "id": "presentation_002",
+            "name": "Presentation 2",
+            "category": "Presentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation2.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation2.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_003",
+            "name": "Presentation 3",
+            "category": "Presentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation3.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation3.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_004",
+            "name": "Presentation 4",
+            "category": "Presentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation4.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation4.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_005",
+            "name": "Presentation 5",
+            "category": "Presentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation5.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation5.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_006",
+            "name": "Presentation 6",
+            "category": "Presentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation6.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation6.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_007",
+            "name": "Presentation 7",
+            "category": "Presentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation7.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation7.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_008",
+            "name": "Presentation 8",
+            "category": "Presentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation8.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation8.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_009",
+            "name": "Presentation 9",
+            "category": "Presentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation9.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation9.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_010",
+            "name": "Presentation 10",
+            "category": "Presentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation10.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation10.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_011",
+            "name": "Presentation 11",
+            "category": "Presentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation11.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation11.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_012",
+            "name": "Presentation 12",
+            "category": "Presentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation12.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation12.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_013",
+            "name": "Presentation 13",
+            "category": "Presentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation13.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation13.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_014",
+            "name": "Presentation 14",
+            "category": "Presentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation14.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation14.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "presentation_015",
+            "name": "Presentation 15",
+            "category": "Presentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation15.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation15.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
+            "id": "senior_001",
+            "name": "Senior 1",
+            "category": "Senior",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior1.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior1.png",
+            "sceneDescription": "Professional senior setting",
+            "tags": [
+                "senior",
+                "mature",
+                "professional"
+            ],
+            "gender": "neutral",
+            "ageRange": "50-70",
+            "style": "Senior professional"
+        },
+        {
+            "id": "senior_002",
+            "name": "Senior 2",
+            "category": "Senior",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior2.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior2.png",
+            "sceneDescription": "Professional senior setting",
+            "tags": [
+                "senior",
+                "mature",
+                "professional"
+            ],
+            "gender": "neutral",
+            "ageRange": "50-70",
+            "style": "Senior professional"
+        },
+        {
+            "id": "senior_003",
+            "name": "Senior 3",
+            "category": "Senior",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior3.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior3.png",
+            "sceneDescription": "Professional senior setting",
+            "tags": [
+                "senior",
+                "mature",
+                "professional"
+            ],
+            "gender": "neutral",
+            "ageRange": "50-70",
+            "style": "Senior professional"
+        },
+        {
+            "id": "senior_004",
+            "name": "Senior 4",
+            "category": "Senior",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior4.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior4.png",
+            "sceneDescription": "Professional senior setting",
+            "tags": [
+                "senior",
+                "mature",
+                "professional"
+            ],
+            "gender": "neutral",
+            "ageRange": "50-70",
+            "style": "Senior professional"
+        },
+        {
+            "id": "senior_005",
+            "name": "Senior 5",
+            "category": "Senior",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior5.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior5.png",
+            "sceneDescription": "Professional senior setting",
+            "tags": [
+                "senior",
+                "mature",
+                "professional"
+            ],
+            "gender": "neutral",
+            "ageRange": "50-70",
+            "style": "Senior professional"
+        },
+        {
+            "id": "senior_006",
+            "name": "Senior 6",
+            "category": "Senior",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior6.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior6.png",
+            "sceneDescription": "Professional senior setting",
+            "tags": [
+                "senior",
+                "mature",
+                "professional"
+            ],
+            "gender": "neutral",
+            "ageRange": "50-70",
+            "style": "Senior professional"
+        },
+        {
+            "id": "senior_007",
+            "name": "Senior 7",
+            "category": "Senior",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior7.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior7.png",
+            "sceneDescription": "Professional senior setting",
+            "tags": [
+                "senior",
+                "mature",
+                "professional"
+            ],
+            "gender": "neutral",
+            "ageRange": "50-70",
+            "style": "Senior professional"
+        },
+        {
+            "id": "senior_008",
+            "name": "Senior 8",
+            "category": "Senior",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior8.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior8.png",
+            "sceneDescription": "Professional senior setting",
+            "tags": [
+                "senior",
+                "mature",
+                "professional"
+            ],
+            "gender": "neutral",
+            "ageRange": "50-70",
+            "style": "Senior professional"
+        },
+        {
+            "id": "senior_009",
+            "name": "Senior 9",
+            "category": "Senior",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior9.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior9.png",
+            "sceneDescription": "Professional senior setting",
+            "tags": [
+                "senior",
+                "mature",
+                "professional"
+            ],
+            "gender": "neutral",
+            "ageRange": "50-70",
+            "style": "Senior professional"
+        },
+        {
+            "id": "senior_010",
+            "name": "Senior 10",
+            "category": "Senior",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior10.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior10.png",
+            "sceneDescription": "Professional senior setting",
+            "tags": [
+                "senior",
+                "mature",
+                "professional"
+            ],
+            "gender": "neutral",
+            "ageRange": "50-70",
+            "style": "Senior professional"
+        },
+        {
+            "id": "senior_011",
+            "name": "Senior 11",
+            "category": "Senior",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior11.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior11.png",
+            "sceneDescription": "Professional senior setting",
+            "tags": [
+                "senior",
+                "mature",
+                "professional"
+            ],
+            "gender": "neutral",
+            "ageRange": "50-70",
+            "style": "Senior professional"
+        },
+        {
+            "id": "senior_012",
+            "name": "Senior 12",
+            "category": "Senior",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior12.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/senior12.png",
+            "sceneDescription": "Professional senior setting",
+            "tags": [
+                "senior",
+                "mature",
+                "professional"
+            ],
+            "gender": "neutral",
+            "ageRange": "50-70",
+            "style": "Senior professional"
+        },
+        {
+            "id": "sport_001",
+            "name": "Sport Athlete 1",
+            "category": "Sport",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-1.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-1.png",
+            "sceneDescription": "Athletic sports setting",
+            "tags": [
+                "sport",
+                "fitness",
+                "athletic"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Athletic sports"
+        },
+        {
+            "id": "sport_002",
+            "name": "Sport Athlete 2",
+            "category": "Sport",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-2.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-2.png",
+            "sceneDescription": "Athletic sports setting",
+            "tags": [
+                "sport",
+                "fitness",
+                "athletic"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Athletic sports"
+        },
+        {
+            "id": "sport_003",
+            "name": "Sport Athlete 3",
+            "category": "Sport",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-3.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-3.png",
+            "sceneDescription": "Athletic sports setting",
+            "tags": [
+                "sport",
+                "fitness",
+                "athletic"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Athletic sports"
+        },
+        {
+            "id": "sport_004",
+            "name": "Sport Athlete 4",
+            "category": "Sport",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-4.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-4.png",
+            "sceneDescription": "Athletic sports setting",
+            "tags": [
+                "sport",
+                "fitness",
+                "athletic"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Athletic sports"
+        },
+        {
+            "id": "sport_005",
+            "name": "Sport Athlete 5",
+            "category": "Sport",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-5.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-5.png",
+            "sceneDescription": "Athletic sports setting",
+            "tags": [
+                "sport",
+                "fitness",
+                "athletic"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Athletic sports"
+        },
+        {
+            "id": "sport_006",
+            "name": "Sport Athlete 6",
+            "category": "Sport",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-6.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-6.png",
+            "sceneDescription": "Athletic sports setting",
+            "tags": [
+                "sport",
+                "fitness",
+                "athletic"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Athletic sports"
+        },
+        {
+            "id": "sport_007",
+            "name": "Sport Athlete 7",
+            "category": "Sport",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-7.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-7.png",
+            "sceneDescription": "Athletic sports setting",
+            "tags": [
+                "sport",
+                "fitness",
+                "athletic"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Athletic sports"
+        },
+        {
+            "id": "sport_008",
+            "name": "Sport Athlete 8",
+            "category": "Sport",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-8.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-8.png",
+            "sceneDescription": "Athletic sports setting",
+            "tags": [
+                "sport",
+                "fitness",
+                "athletic"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Athletic sports"
+        },
+        {
+            "id": "sport_009",
+            "name": "Sport Athlete 9",
+            "category": "Sport",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-9.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/sport-9.png",
+            "sceneDescription": "Athletic sports setting",
+            "tags": [
+                "sport",
+                "fitness",
+                "athletic"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Athletic sports"
+        },
+        {
             "id": "sport_010",
             "name": "Sport Athlete 10",
             "category": "Sport",
@@ -1347,278 +1683,6 @@
             "style": "Lifestyle creator"
         },
         {
-            "id": "tech_015",
-            "name": "Tech Professional 15",
-            "category": "Tech",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech15.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech15.png",
-            "sceneDescription": "Tech professional setting",
-            "tags": [
-                "tech",
-                "technology",
-                "professional"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Tech professional"
-        },
-        {
-            "id": "tech_016",
-            "name": "Tech Professional 16",
-            "category": "Tech",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech16.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech16.png",
-            "sceneDescription": "Tech professional setting",
-            "tags": [
-                "tech",
-                "technology",
-                "professional"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Tech professional"
-        },
-        {
-            "id": "tech_017",
-            "name": "Tech Professional 17",
-            "category": "Tech",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech17.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech17.png",
-            "sceneDescription": "Tech professional setting",
-            "tags": [
-                "tech",
-                "technology",
-                "professional"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Tech professional"
-        },
-        {
-            "id": "tech_018",
-            "name": "Tech Professional 18",
-            "category": "Tech",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech18.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech18.png",
-            "sceneDescription": "Tech professional setting",
-            "tags": [
-                "tech",
-                "technology",
-                "professional"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Tech professional"
-        },
-        {
-            "id": "tech_019",
-            "name": "Tech Professional 19",
-            "category": "Tech",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech19.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech19.png",
-            "sceneDescription": "Tech professional setting",
-            "tags": [
-                "tech",
-                "technology",
-                "professional"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Tech professional"
-        },
-        {
-            "id": "tech_020",
-            "name": "Tech Professional 20",
-            "category": "Tech",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech20.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech20.png",
-            "sceneDescription": "Tech professional setting",
-            "tags": [
-                "tech",
-                "technology",
-                "professional"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Tech professional"
-        },
-        {
-            "id": "vlog_001",
-            "name": "Vlog Creator 1",
-            "category": "Vlog",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/vlog-actor-1.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/vlog-actor-1.png",
-            "sceneDescription": "Vlog content creation setting",
-            "tags": [
-                "vlog",
-                "content",
-                "creator"
-            ],
-            "gender": "neutral",
-            "ageRange": "20-35",
-            "style": "Vlog creator"
-        },
-        {
-            "id": "vlog_002",
-            "name": "Vlog Creator 2",
-            "category": "Vlog",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/vlog-actor-2.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/vlog-actor-2.png",
-            "sceneDescription": "Vlog content creation setting",
-            "tags": [
-                "vlog",
-                "content",
-                "creator"
-            ],
-            "gender": "neutral",
-            "ageRange": "20-35",
-            "style": "Vlog creator"
-        },
-        {
-            "id": "vlog_003",
-            "name": "Vlog Creator 3",
-            "category": "Vlog",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/vlog-actor-3.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/vlog-actor-3.png",
-            "sceneDescription": "Vlog content creation setting",
-            "tags": [
-                "vlog",
-                "content",
-                "creator"
-            ],
-            "gender": "neutral",
-            "ageRange": "20-35",
-            "style": "Vlog creator"
-        },
-        {
-            "id": "vlog_004",
-            "name": "Vlog Creator 4",
-            "category": "Vlog",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/vlog-actor-4.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/vlog-actor-4.png",
-            "sceneDescription": "Vlog content creation setting",
-            "tags": [
-                "vlog",
-                "content",
-                "creator"
-            ],
-            "gender": "neutral",
-            "ageRange": "20-35",
-            "style": "Vlog creator"
-        },
-        {
-            "id": "presentation_002",
-            "name": "Présentation 2",
-            "category": "Présentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation2.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation2.png",
-            "sceneDescription": "Professional presentation setting",
-            "tags": [
-                "presentation",
-                "professional",
-                "business"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Professional presenter"
-        },
-        {
-            "id": "presentation_009",
-            "name": "Présentation 9",
-            "category": "Présentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation9.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation9.png",
-            "sceneDescription": "Professional presentation setting",
-            "tags": [
-                "presentation",
-                "professional",
-                "business"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Professional presenter"
-        },
-        {
-            "id": "presentation_010",
-            "name": "Présentation 10",
-            "category": "Présentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation10.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation10.png",
-            "sceneDescription": "Professional presentation setting",
-            "tags": [
-                "presentation",
-                "professional",
-                "business"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Professional presenter"
-        },
-        {
-            "id": "presentation_011",
-            "name": "Présentation 11",
-            "category": "Présentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation11.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation11.png",
-            "sceneDescription": "Professional presentation setting",
-            "tags": [
-                "presentation",
-                "professional",
-                "business"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Professional presenter"
-        },
-        {
-            "id": "presentation_012",
-            "name": "Présentation 12",
-            "category": "Présentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation12.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation12.png",
-            "sceneDescription": "Professional presentation setting",
-            "tags": [
-                "presentation",
-                "professional",
-                "business"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Professional presenter"
-        },
-        {
-            "id": "presentation_013",
-            "name": "Présentation 13",
-            "category": "Présentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation13.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation13.png",
-            "sceneDescription": "Professional presentation setting",
-            "tags": [
-                "presentation",
-                "professional",
-                "business"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Professional presenter"
-        },
-        {
-            "id": "presentation_014",
-            "name": "Présentation 14",
-            "category": "Présentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation14.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation14.png",
-            "sceneDescription": "Professional presentation setting",
-            "tags": [
-                "presentation",
-                "professional",
-                "business"
-            ],
-            "gender": "neutral",
-            "ageRange": "25-40",
-            "style": "Professional presenter"
-        },
-        {
             "id": "original_001",
             "name": "Fire Scene",
             "category": "Originals",
@@ -1683,73 +1747,242 @@
             "style": "Cinematic original"
         },
         {
-            "id": "elegant_001",
-            "name": "Elegant Woman - Natural Light",
-            "category": "Elegant Faces",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant-1.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant-1.png",
-            "sceneDescription": "Ultra-realistic UGC style selfie in sunlit modern bedroom with white sheets",
+            "id": "studio_001",
+            "name": "Studio Actor 1",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio1.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio1.png",
+            "sceneDescription": "Professional studio setting",
             "tags": [
-                "elegant",
-                "natural",
-                "ugc",
-                "realistic",
-                "woman"
+                "studio",
+                "professional",
+                "commercial"
             ],
-            "gender": "female",
-            "ageRange": "25-35",
-            "style": "Elegant UGC"
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
         },
         {
-            "id": "elegant_002",
-            "name": "Elegant Man - Urban Style",
-            "category": "Elegant Faces",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant-2.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant-2.png",
-            "sceneDescription": "Ultra-realistic UGC style selfie in dimly lit modern bathroom with marble tiles",
+            "id": "studio_002",
+            "name": "Studio Actor 2",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio2.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio2.png",
+            "sceneDescription": "Professional studio setting",
             "tags": [
-                "elegant",
-                "urban",
-                "ugc",
-                "realistic",
-                "man"
+                "studio",
+                "professional",
+                "commercial"
             ],
-            "gender": "male",
-            "ageRange": "25-35",
-            "style": "Elegant UGC"
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
         },
         {
-            "id": "elegant_003",
-            "name": "Elegant Woman - Sophisticated",
-            "category": "Elegant Faces",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant-3.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant-3.png",
-            "sceneDescription": "Ultra-realistic UGC style selfie in bright minimalist apartment with natural light",
+            "id": "studio_003",
+            "name": "Studio Actor 3",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio3.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio3.png",
+            "sceneDescription": "Professional studio setting",
             "tags": [
-                "elegant",
-                "sophisticated",
-                "ugc",
-                "realistic",
-                "woman"
+                "studio",
+                "professional",
+                "commercial"
             ],
-            "gender": "female",
-            "ageRange": "25-35",
-            "style": "Elegant UGC"
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
+        },
+        {
+            "id": "studio_004",
+            "name": "Studio Actor 4",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio4.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio4.png",
+            "sceneDescription": "Professional studio setting",
+            "tags": [
+                "studio",
+                "professional",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
+        },
+        {
+            "id": "studio_005",
+            "name": "Studio Actor 5",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio5.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio5.png",
+            "sceneDescription": "Professional studio setting",
+            "tags": [
+                "studio",
+                "professional",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
+        },
+        {
+            "id": "studio_006",
+            "name": "Studio Actor 6",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio6.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio6.png",
+            "sceneDescription": "Professional studio setting",
+            "tags": [
+                "studio",
+                "professional",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
+        },
+        {
+            "id": "studio_007",
+            "name": "Studio Actor 7",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio7.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio7.png",
+            "sceneDescription": "Professional studio setting",
+            "tags": [
+                "studio",
+                "professional",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
+        },
+        {
+            "id": "studio_008",
+            "name": "Studio Actor 8",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio8.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio8.png",
+            "sceneDescription": "Professional studio setting",
+            "tags": [
+                "studio",
+                "professional",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
+        },
+        {
+            "id": "studio_009",
+            "name": "Studio Actor 9",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio9.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio9.png",
+            "sceneDescription": "Professional studio setting",
+            "tags": [
+                "studio",
+                "professional",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
+        },
+        {
+            "id": "studio_010",
+            "name": "Studio Actor 10",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio10.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio10.png",
+            "sceneDescription": "Professional studio setting",
+            "tags": [
+                "studio",
+                "professional",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
+        },
+        {
+            "id": "studio_011",
+            "name": "Studio Actor 11",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio11.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio11.png",
+            "sceneDescription": "Professional studio setting",
+            "tags": [
+                "studio",
+                "professional",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
+        },
+        {
+            "id": "studio_012",
+            "name": "Studio Actor 12",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio12.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio12.png",
+            "sceneDescription": "Professional studio setting",
+            "tags": [
+                "studio",
+                "professional",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
+        },
+        {
+            "id": "studio_013",
+            "name": "Studio Actor 13",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio13.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio13.png",
+            "sceneDescription": "Professional studio setting",
+            "tags": [
+                "studio",
+                "professional",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
+        },
+        {
+            "id": "studio_014",
+            "name": "Studio Actor 14",
+            "category": "Studio",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio14.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/studio14.png",
+            "sceneDescription": "Professional studio setting",
+            "tags": [
+                "studio",
+                "professional",
+                "commercial"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Studio professional"
         }
     ],
     "categories": [
         "Business",
         "Casual",
         "Beauty",
-        "Product Demo",
         "Micro-Content",
+        "Presentation",
         "Sport",
         "Lifestyle",
-        "Tech",
-        "Vlog",
-        "Présentation",
+        "Studio",
         "Originals",
-        "Elegant Faces"
+        "Elegant Faces",
+        "Senior"
     ],
     "note": "All image URLs point to Cloudflare R2 storage with the Actors/ prefix included."
 }

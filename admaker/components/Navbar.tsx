@@ -50,8 +50,11 @@ export default function Navbar() {
         <nav className={`${styles.navbar} ${isScrolled ? styles.scrolled : ''}`}>
             <div className="container">
                 <div className={styles.navContent}>
-                    <a href="/" className={styles.logo}>
-                        <img src={getMediaUrl('logo.png')} alt="AdMaker AI" style={{ height: '70px', width: 'auto' }} />
+                    <a href="/" className={styles.logo} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        <img src={getMediaUrl('admaker_ai_logo-removebg-preview.png')} alt="AdMaker AI Logo" style={{ height: '40px', width: 'auto' }} />
+                        <span className={styles.logoText} style={{ fontSize: '24px', fontWeight: '700', color: '#fff' }}>
+                            AdMaker<span style={{ background: 'linear-gradient(135deg, #ff0844 0%, #ff6b6b 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>AI</span>
+                        </span>
                     </a>
                     <div className={`${styles.navLinks} ${isMobileMenuOpen ? styles.active : ''}`}>
                         <a href="#features">Features</a>
