@@ -425,6 +425,141 @@
             "style": "Casual creator"
         },
         {
+            "id": "casual_015",
+            "name": "Casual Creator 15",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual15.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual15.png",
+            "sceneDescription": "Casual lifestyle setting",
+            "tags": [
+                "casual",
+                "lifestyle"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Casual creator"
+        },
+        {
+            "id": "casual_016",
+            "name": "Casual Creator 16",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual16.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual16.png",
+            "sceneDescription": "Casual lifestyle setting",
+            "tags": [
+                "casual",
+                "lifestyle"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Casual creator"
+        },
+        {
+            "id": "casual_017",
+            "name": "Casual Creator 17",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual17.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual17.png",
+            "sceneDescription": "Casual lifestyle setting",
+            "tags": [
+                "casual",
+                "lifestyle"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Casual creator"
+        },
+        {
+            "id": "casual_018",
+            "name": "Casual Creator 18",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual18.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual18.png",
+            "sceneDescription": "Casual lifestyle setting",
+            "tags": [
+                "casual",
+                "lifestyle"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Casual creator"
+        },
+        {
+            "id": "casual_019",
+            "name": "Casual Creator 19",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual19.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual19.png",
+            "sceneDescription": "Casual lifestyle setting",
+            "tags": [
+                "casual",
+                "lifestyle"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Casual creator"
+        },
+        {
+            "id": "casual_020",
+            "name": "Casual Creator 20",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual20.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual20.png",
+            "sceneDescription": "Casual lifestyle setting",
+            "tags": [
+                "casual",
+                "lifestyle"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Casual creator"
+        },
+        {
+            "id": "casual_021",
+            "name": "Casual Creator 21",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual21.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual21.png",
+            "sceneDescription": "Casual lifestyle setting",
+            "tags": [
+                "casual",
+                "lifestyle"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Casual creator"
+        },
+        {
+            "id": "casual_022",
+            "name": "Casual Creator 22",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual22.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual22.png",
+            "sceneDescription": "Casual lifestyle setting",
+            "tags": [
+                "casual",
+                "lifestyle"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Casual creator"
+        },
+        {
+            "id": "casual_023",
+            "name": "Casual Creator 23",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual23.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual23.png",
+            "sceneDescription": "Casual lifestyle setting",
+            "tags": [
+                "casual",
+                "lifestyle"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Casual creator"
+        },
+        {
             "id": "actor_003",
             "name": "Beauty Man - Bathroom Selfie",
             "category": "Beauty",
@@ -899,11 +1034,27 @@
             "style": "Social media creator"
         },
         {
+            "id": "presentation_001",
+            "name": "Presentation 1",
+            "category": "Presentation",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation1.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation1.png",
+            "sceneDescription": "Professional presentation setting",
+            "tags": [
+                "presentation",
+                "professional",
+                "business"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Professional presenter"
+        },
+        {
             "id": "presentation_002",
             "name": "Presentation 2",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation2.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation2.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation2.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation2.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -918,8 +1069,8 @@
             "id": "presentation_003",
             "name": "Presentation 3",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation3.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation3.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation3.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation3.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -934,8 +1085,8 @@
             "id": "presentation_004",
             "name": "Presentation 4",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation4.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation4.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation4.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation4.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -950,8 +1101,8 @@
             "id": "presentation_005",
             "name": "Presentation 5",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation5.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation5.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation5.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation5.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -966,8 +1117,8 @@
             "id": "presentation_006",
             "name": "Presentation 6",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation6.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation6.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation6.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation6.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -982,8 +1133,8 @@
             "id": "presentation_007",
             "name": "Presentation 7",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation7.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation7.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation7.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation7.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -998,8 +1149,8 @@
             "id": "presentation_008",
             "name": "Presentation 8",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation8.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation8.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation8.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation8.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -1014,8 +1165,8 @@
             "id": "presentation_009",
             "name": "Presentation 9",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation9.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation9.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation9.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation9.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -1030,8 +1181,8 @@
             "id": "presentation_010",
             "name": "Presentation 10",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation10.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation10.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation10.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation10.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -1046,8 +1197,8 @@
             "id": "presentation_011",
             "name": "Presentation 11",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation11.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation11.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation11.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation11.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -1062,8 +1213,8 @@
             "id": "presentation_012",
             "name": "Presentation 12",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation12.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation12.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation12.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation12.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -1078,8 +1229,8 @@
             "id": "presentation_013",
             "name": "Presentation 13",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation13.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation13.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation13.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation13.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -1094,8 +1245,8 @@
             "id": "presentation_014",
             "name": "Presentation 14",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation14.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation14.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation14.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation14.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -1110,8 +1261,8 @@
             "id": "presentation_015",
             "name": "Presentation 15",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation15.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation15.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation15.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation15.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
