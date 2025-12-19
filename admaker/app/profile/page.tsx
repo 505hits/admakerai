@@ -52,7 +52,7 @@ export default function ProfilePage() {
                     .from('profiles')
                     .insert([{
                         id: user.id,
-                        credits: 10, // Welcome bonus
+                        credits: 0, // No initial credits
                         subscription_plan: 'free',
                         subscription_status: 'inactive'
                     }])

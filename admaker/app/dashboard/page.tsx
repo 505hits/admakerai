@@ -27,8 +27,8 @@ export default function DashboardPage() {
     const [duration, setDuration] = useState<8 | 16>(8);
     const [isGenerating, setIsGenerating] = useState(false);
     const [generatedVideo, setGeneratedVideo] = useState<string | null>(null);
-    const [credits, setCredits] = useState(10);
-    const [actorCredits, setActorCredits] = useState(10); // AI Actor credits
+    const [credits, setCredits] = useState(0); // Start with 0 credits
+    const [actorCredits, setActorCredits] = useState(0); // AI Actor credits
     const [showCreditsModal, setShowCreditsModal] = useState(false);
     const [showCreateActorModal, setShowCreateActorModal] = useState(false);
     const [showSuccessNotification, setShowSuccessNotification] = useState(false);
@@ -59,10 +59,11 @@ export default function DashboardPage() {
             const videos = await getUserVideos(20);
             setVideoHistory(videos);
 
-            // Load custom actors
+            // Load custom actors and user credits
             const supabase = createClient();
             const { data: { user } } = await supabase.auth.getUser();
             if (user) {
+                // Load custom actors
                 const { data: actors } = await supabase
                     .from('custom_actors')
                     .select('*')
@@ -70,6 +71,18 @@ export default function DashboardPage() {
                     .order('created_at', { ascending: false });
                 if (actors) {
                     setCustomActors(actors);
+                }
+
+                // Load user credits from profiles
+                const { data: profile } = await supabase
+                    .from('profiles')
+                    .select('credits, actor_credits')
+                    .eq('id', user.id)
+                    .single();
+
+                if (profile) {
+                    setCredits(profile.credits || 0);
+                    setActorCredits(profile.actor_credits || 0);
                 }
             }
         };
@@ -161,9 +174,9 @@ export default function DashboardPage() {
                 return;
             }
 
-            // Check credits
-            if (actorCredits < 1) {
-                setActorCreationError('Insufficient AI Actor credits');
+            // Check credits (20 credits per actor)
+            if (actorCredits < 20) {
+                setActorCreationError('Insufficient AI Actor credits (20 credits required)');
                 return;
             }
 
@@ -220,8 +233,19 @@ export default function DashboardPage() {
             const taskId = responseData.taskId;
             console.log('🍌 Actor generation started:', taskId);
 
-            // Deduct credits
-            setActorCredits(prev => prev - 1);
+            // Deduct credits (20 credits per actor)
+            const newActorCredits = actorCredits - 20;
+            setActorCredits(newActorCredits);
+
+            // Update credits in Supabase
+            const { error: updateError } = await supabase
+                .from('profiles')
+                .update({ actor_credits: newActorCredits })
+                .eq('id', user.id);
+
+            if (updateError) {
+                console.error('❌ Error updating actor credits:', updateError);
+            }
 
             // Poll for completion (or wait for webhook)
             // Nano Banana can take 2-5 minutes, so we poll for up to 5 minutes
@@ -420,7 +444,19 @@ export default function DashboardPage() {
             }
 
             // Deduct credits immediately
-            setCredits(prev => prev - cost);
+            const newCredits = credits - cost;
+            setCredits(newCredits);
+
+            // Update credits in Supabase
+            const supabase = createClient();
+            const { error: updateError } = await supabase
+                .from('profiles')
+                .update({ credits: newCredits })
+                .eq('id', userId);
+
+            if (updateError) {
+                console.error('❌ Error updating video credits:', updateError);
+            }
 
             // Show success message and switch to Video History
             setError(null);
@@ -552,16 +588,6 @@ export default function DashboardPage() {
                         My Actors
                     </button>
 
-                    <button
-                        className={`${styles.navItem} ${activeTab === 'settings' ? styles.active : ''}`}
-                        onClick={() => setActiveTab('settings')}
-                    >
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" stroke="currentColor" strokeWidth="2" />
-                            <path d="M16 10a6 6 0 11-12 0 6 6 0 0112 0z" stroke="currentColor" strokeWidth="2" />
-                        </svg>
-                        Settings
-                    </button>
 
                     <a href="/#pricing" className={`${styles.navItem} ${styles.upgradeItem}`}>
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -952,12 +978,12 @@ export default function DashboardPage() {
                                 <button
                                     className={styles.createActorBtn}
                                     onClick={() => setShowCreateActorModal(true)}
-                                    disabled={actorCredits < 1}
+                                    disabled={actorCredits < 20}
                                 >
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                                         <path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                                     </svg>
-                                    Create Actor (1 credit)
+                                    Create Actor (20 credits)
                                 </button>
                             </div>
 
@@ -1086,14 +1112,7 @@ export default function DashboardPage() {
                     )
                 }
 
-                {
-                    activeTab === 'settings' && (
-                        <div className={styles.settingsSection}>
-                            <h1 className={styles.pageTitle}>Settings</h1>
-                            <p className={styles.comingSoon}>Coming soon...</p>
-                        </div>
-                    )
-                }
+
             </main >
 
             {/* Credits Modal */}
@@ -1113,7 +1132,7 @@ export default function DashboardPage() {
                             </p>
                             <div className={styles.modalActions}>
                                 <a href="/#pricing" className={styles.modalUpgradeBtn}>
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
                                         <path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" fill="currentColor" />
                                     </svg>
                                     Upgrade Plan
