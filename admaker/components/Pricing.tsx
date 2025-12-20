@@ -1,10 +1,54 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { createClient } from '@/lib/supabase/client';
 import styles from './Pricing.module.css';
 
 export default function Pricing() {
+    const router = useRouter();
     const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly');
+    const [loading, setLoading] = useState<string | null>(null);
+
+    const handleCheckout = async (plan: typeof plans[0], cycle: 'monthly' | 'annual') => {
+        setLoading(plan.name);
+
+        try {
+            const supabase = createClient();
+            const { data: { user } } = await supabase.auth.getUser();
+
+            if (!user) {
+                router.push('/login');
+                return;
+            }
+
+            // Convert plan name to planType format expected by API
+            const planType = plan.name.toLowerCase() as 'startup' | 'growth' | 'pro';
+
+            const response = await fetch('/api/stripe/checkout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    planType,
+                    billingPeriod: cycle,
+                }),
+            });
+
+            const data = await response.json();
+
+            if (data.url) {
+                window.location.href = data.url;
+            } else {
+                console.error('No checkout URL returned');
+            }
+        } catch (error) {
+            console.error('Error creating checkout session:', error);
+        } finally {
+            setLoading(null);
+        }
+    };
 
     const plans = [
         {
@@ -67,19 +111,19 @@ export default function Pricing() {
                         Choose the perfect plan for your AI UGC video creation needs
                     </p>
 
-                    <div className={styles.billingToggle}>
+                    <div className={styles.pricingToggle}>
                         <button
-                            className={`${styles.toggleButton} ${billingCycle === 'monthly' ? styles.active : ''}`}
+                            className={`${styles.toggleBtn} ${billingCycle === 'monthly' ? styles.active : ''}`}
                             onClick={() => setBillingCycle('monthly')}
                         >
                             Monthly
                         </button>
                         <button
-                            className={`${styles.toggleButton} ${billingCycle === 'annual' ? styles.active : ''}`}
+                            className={`${styles.toggleBtn} ${billingCycle === 'annual' ? styles.active : ''}`}
                             onClick={() => setBillingCycle('annual')}
                         >
                             Annual
-                            <span className={styles.discount}>Save 20%</span>
+                            <span className={styles.discountBadge}>Save 20%</span>
                         </button>
                     </div>
                 </div>
@@ -130,8 +174,12 @@ export default function Pricing() {
                                 ))}
                             </ul>
 
-                            <button className={styles.btnPrimary}>
-                                Get Started
+                            <button
+                                className={styles.btnPrimary}
+                                onClick={() => handleCheckout(plan, billingCycle)}
+                                disabled={loading === plan.name}
+                            >
+                                {loading === plan.name ? 'Loading...' : 'Get Started'}
                             </button>
                         </div>
                     ))}
