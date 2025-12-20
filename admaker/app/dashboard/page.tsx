@@ -716,12 +716,23 @@ export default function DashboardPage() {
 
             console.log('🎬 Starting video replication...');
 
-            // Call Kie.ai API to replicate video
-            const result = await replicateVideoWithActor({
-                videoUrl: uploadedVideoUrl,
-                actorImageUrl: replicatorActor.imageUrl,
-                resolution: '480p',
+            // Call our API route which will call Kie.ai server-side
+            const apiResponse = await fetch('/api/kie/replicate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    videoUrl: uploadedVideoUrl,
+                    actorImageUrl: replicatorActor.thumbnailUrl,
+                    resolution: '480p',
+                }),
             });
+
+            if (!apiResponse.ok) {
+                const errorData = await apiResponse.json();
+                throw new Error(errorData.error || 'Failed to start replication');
+            }
+
+            const result = await apiResponse.json();
 
             console.log('✅ Replication task created:', result.taskId);
 
