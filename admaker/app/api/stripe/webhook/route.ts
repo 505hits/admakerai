@@ -42,7 +42,7 @@ export async function POST(request: NextRequest) {
     try {
         switch (event.type) {
             case 'checkout.session.completed': {
-                const session = event.data.object as Stripe.Checkout.Session;
+                const session = event.data.object as import('stripe').Stripe.Checkout.Session;
 
                 console.log('✅ Payment successful:', session.id);
                 console.log('Metadata:', session.metadata);
@@ -96,7 +96,7 @@ export async function POST(request: NextRequest) {
             }
 
             case 'checkout.session.expired': {
-                const session = event.data.object as Stripe.Checkout.Session;
+                const session = event.data.object as import('stripe').Stripe.Checkout.Session;
                 console.log('⏰ Checkout session expired:', session.id);
                 break;
             }
