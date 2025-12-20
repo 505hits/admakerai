@@ -1,11 +1,11 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import styles from './Success.module.css';
 
-export default function PaymentSuccessPage() {
+function PaymentSuccessContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [credits, setCredits] = useState<{ video: number; actor: number } | null>(null);
@@ -48,7 +48,7 @@ export default function PaymentSuccessPage() {
         }, 1000);
 
         return () => clearInterval(timer);
-    }, [router]);
+    }, [router, searchParams]);
 
     return (
         <div className={styles.container}>
@@ -114,5 +114,22 @@ export default function PaymentSuccessPage() {
                 </button>
             </div>
         </div>
+    );
+}
+
+export default function PaymentSuccessPage() {
+    return (
+        <Suspense fallback={
+            <div className={styles.container}>
+                <div className={styles.background}>
+                    <div className={styles.glow}></div>
+                </div>
+                <div className={styles.card}>
+                    <div className={styles.spinner}></div>
+                </div>
+            </div>
+        }>
+            <PaymentSuccessContent />
+        </Suspense>
     );
 }
