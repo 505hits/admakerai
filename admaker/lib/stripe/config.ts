@@ -16,9 +16,6 @@ export const getStripe = () => {
     return stripeInstance;
 };
 
-// For backward compatibility
-export const stripe = getStripe();
-
 // Pricing plan configuration
 export const PRICING_PLANS = {
     monthly: {
