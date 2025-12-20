@@ -20,6 +20,7 @@ export default function DashboardPage() {
 
     // Variation state
     const [activeVariation, setActiveVariation] = useState(0);
+    const [visibleVariations, setVisibleVariations] = useState(1); // Start with 1 variation visible
     const [variations, setVariations] = useState<VideoVariation[]>([
         { id: 1, script: '', sceneDescription: '', selectedActor: null, productImageUrl: null, virtualTryOnImageUrl: null, format: '16:9', duration: 8, status: 'empty' },
         { id: 2, script: '', sceneDescription: '', selectedActor: null, productImageUrl: null, virtualTryOnImageUrl: null, format: '16:9', duration: 8, status: 'empty' },
@@ -166,9 +167,46 @@ export default function DashboardPage() {
         setDuration(newVariation.duration);
     };
 
+    const handleAddVariation = () => {
+        if (visibleVariations < 4) {
+            setVisibleVariations(prev => prev + 1);
+        }
+    };
+
+    const handleRemoveVariation = (index: number) => {
+        if (visibleVariations > 1) {
+            // Reset the variation being removed
+            setVariations(prev => prev.map((v, i) =>
+                i === index ? { ...v, script: '', sceneDescription: '', selectedActor: null, productImageUrl: null, virtualTryOnImageUrl: null, format: '16:9' as const, duration: 8 as const, status: 'empty' as const } : v
+            ));
+
+            // Decrease visible count
+            setVisibleVariations(prev => prev - 1);
+
+            // If removing the active variation, switch to the first one
+            if (activeVariation === index) {
+                setActiveVariation(0);
+                const firstVariation = variations[0];
+                setScript(firstVariation.script);
+                setSceneDescription(firstVariation.sceneDescription);
+                setSelectedActor(firstVariation.selectedActor);
+                setProductImageUrl(firstVariation.productImageUrl);
+                setVirtualTryOnImageUrl(firstVariation.virtualTryOnImageUrl);
+                setFormat(firstVariation.format);
+                setDuration(firstVariation.duration);
+            }
+        }
+    };
+
     const getCreditCost = () => {
         // Credits based only on duration
         return duration === 8 ? 20 : 40;
+    };
+
+    const getTotalCreditCost = () => {
+        // Calculate total cost for all configured variations
+        const configuredVariations = variations.slice(0, visibleVariations).filter(v => v.selectedActor && v.script.trim());
+        return configuredVariations.reduce((sum, v) => sum + (v.duration === 8 ? 20 : 40), 0);
     };
 
     const handleActorImageUpload = (e: React.ChangeEvent<HTMLInputElement>, type: 'person' | 'object' | 'decor') => {
@@ -785,7 +823,10 @@ export default function DashboardPage() {
                         <VariationTabs
                             variations={variations}
                             activeVariation={activeVariation}
+                            visibleVariations={visibleVariations}
                             onVariationChange={handleVariationChange}
+                            onAddVariation={handleAddVariation}
+                            onRemoveVariation={handleRemoveVariation}
                         />
 
                         {/* AI Actor Selection */}
@@ -852,7 +893,7 @@ export default function DashboardPage() {
                                     </button>
 
                                     {/* Generate All Variations Button */}
-                                    {variations.filter(v => v.selectedActor && v.script.trim()).length > 1 && (
+                                    {variations.slice(0, visibleVariations).filter(v => v.selectedActor && v.script.trim()).length > 1 && (
                                         <button
                                             className={`${styles.generateBtn} ${styles.generateAllBtn}`}
                                             onClick={handleGenerateAllVariations}
@@ -873,7 +914,7 @@ export default function DashboardPage() {
                                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                                                         <path d="M4 4h4v4M16 4h-4v4M4 16h4v-4M16 16h-4v-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                                     </svg>
-                                                    Generate All Variations ({variations.filter(v => v.selectedActor && v.script.trim()).length})
+                                                    Generate All Variations ({variations.slice(0, visibleVariations).filter(v => v.selectedActor && v.script.trim()).length}) - {getTotalCreditCost()} credits
                                                 </>
                                             )}
                                         </button>

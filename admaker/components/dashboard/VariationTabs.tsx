@@ -18,19 +18,46 @@ export interface VideoVariation {
 interface VariationTabsProps {
     variations: VideoVariation[];
     activeVariation: number;
+    visibleVariations: number;
     onVariationChange: (index: number) => void;
+    onAddVariation: () => void;
+    onRemoveVariation: (index: number) => void;
 }
 
-export default function VariationTabs({ variations, activeVariation, onVariationChange }: VariationTabsProps) {
+export default function VariationTabs({
+    variations,
+    activeVariation,
+    visibleVariations,
+    onVariationChange,
+    onAddVariation,
+    onRemoveVariation
+}: VariationTabsProps) {
+    const maxVariations = 4;
+    const canAddMore = visibleVariations < maxVariations;
+    const remainingSlots = maxVariations - visibleVariations;
+
     return (
         <div className={styles.variationTabs}>
             <div className={styles.tabsHeader}>
-                <h3 className={styles.tabsTitle}>Video Variations</h3>
-                <p className={styles.tabsSubtitle}>Create up to 4 variations with different actors and scripts</p>
+                <div>
+                    <h3 className={styles.tabsTitle}>Video Variations</h3>
+                    <p className={styles.tabsSubtitle}>Create multiple variations with different actors and scripts</p>
+                </div>
+                {canAddMore && (
+                    <button
+                        className={styles.addVariationBtn}
+                        onClick={onAddVariation}
+                    >
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M8 3v10M3 8h10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                        </svg>
+                        Add Variation ({remainingSlots} remaining)
+                    </button>
+                )}
             </div>
 
             <div className={styles.tabsContainer}>
-                {variations.map((variation, index) => {
+                {variations.slice(0, visibleVariations).map((variation, index) => {
                     const isActive = activeVariation === index;
                     const isConfigured = variation.selectedActor && variation.script.trim().length > 0;
 
@@ -40,6 +67,19 @@ export default function VariationTabs({ variations, activeVariation, onVariation
                             className={`${styles.tab} ${isActive ? styles.active : ''} ${isConfigured ? styles.configured : ''}`}
                             onClick={() => onVariationChange(index)}
                         >
+                            {visibleVariations > 1 && (
+                                <button
+                                    className={styles.removeBtn}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        onRemoveVariation(index);
+                                    }}
+                                    title="Remove variation"
+                                >
+                                    ×
+                                </button>
+                            )}
+
                             <div className={styles.tabContent}>
                                 <div className={styles.tabHeader}>
                                     <span className={styles.tabNumber}>Variation {index + 1}</span>
