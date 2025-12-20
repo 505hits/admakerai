@@ -3,8 +3,11 @@
 import { useState } from 'react';
 import styles from './Pricing.module.css';
 
+type PlanType = 'startup' | 'growth' | 'pro';
+
 export default function Pricing() {
     const [plan, setPlan] = useState<'monthly' | 'annual'>('monthly');
+    const [loadingPlan, setLoadingPlan] = useState<string | null>(null);
 
     const pricingData = {
         monthly: {
@@ -20,6 +23,47 @@ export default function Pricing() {
     };
 
     const currentPricing = pricingData[plan];
+
+    const handleCheckout = async (planType: PlanType) => {
+        try {
+            setLoadingPlan(`${planType}-${plan}`);
+
+            console.log('🔵 Starting checkout for:', planType, plan);
+
+            // Call API to create checkout session
+            const response = await fetch('/api/stripe/checkout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    planType,
+                    billingPeriod: plan,
+                }),
+            });
+
+            console.log('🔵 Response status:', response.status);
+            const data = await response.json();
+            console.log('🔵 Response data:', data);
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to create checkout session');
+            }
+
+            // Redirect to Stripe Checkout using the session URL
+            console.log('🔵 Redirecting to Stripe Checkout...');
+            if (data.url) {
+                window.location.href = data.url;
+            } else {
+                throw new Error('No checkout URL received from server');
+            }
+        } catch (error) {
+            console.error('❌ Checkout error:', error);
+            alert(`Une erreur est survenue lors du paiement: ${error instanceof Error ? error.message : 'Unknown error'}. Veuillez réessayer.`);
+            setLoadingPlan(null);
+        }
+    };
+
 
     return (
         <section id="pricing" className={styles.pricing}>
@@ -97,7 +141,13 @@ export default function Pricing() {
                                 <span>Outfit swapping</span>
                             </li>
                         </ul>
-                        <a href="#" className={styles.btnSecondary}>Choose this plan</a>
+                        <button
+                            onClick={() => handleCheckout('startup')}
+                            disabled={loadingPlan !== null}
+                            className={styles.btnSecondary}
+                        >
+                            {loadingPlan === `startup-${plan}` ? 'Loading...' : 'Get Started'}
+                        </button>
                     </div>
 
                     {/* Growth Plan */}
@@ -152,7 +202,13 @@ export default function Pricing() {
                                 <span>Outfit swapping</span>
                             </li>
                         </ul>
-                        <a href="#" className={styles.btnPrimary}>Choose this plan</a>
+                        <button
+                            onClick={() => handleCheckout('growth')}
+                            disabled={loadingPlan !== null}
+                            className={styles.btnPrimary}
+                        >
+                            {loadingPlan === `growth-${plan}` ? 'Loading...' : 'Get Started'}
+                        </button>
                     </div>
 
                     {/* Pro Plan */}
@@ -206,7 +262,13 @@ export default function Pricing() {
                                 <span>Outfit swapping</span>
                             </li>
                         </ul>
-                        <a href="#" className={styles.btnSecondary}>Choose this plan</a>
+                        <button
+                            onClick={() => handleCheckout('pro')}
+                            disabled={loadingPlan !== null}
+                            className={styles.btnSecondary}
+                        >
+                            {loadingPlan === `pro-${plan}` ? 'Loading...' : 'Get Started'}
+                        </button>
                     </div>
                 </div>
             </div>
