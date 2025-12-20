@@ -25,18 +25,20 @@ const r2Client = new S3Client({
  * Upload a video to Cloudflare R2
  * @param videoBuffer - The video file buffer
  * @param fileName - The name to save the file as (e.g., 'videos/task-id.mp4')
+ * @param contentType - The MIME type (e.g., 'video/mp4', 'video/quicktime')
  * @returns The public URL of the uploaded video
  */
 export async function uploadVideoToR2(
     videoBuffer: Buffer,
-    fileName: string
+    fileName: string,
+    contentType: string = 'video/mp4'
 ): Promise<string> {
     try {
         const command = new PutObjectCommand({
             Bucket: R2_BUCKET_NAME,
             Key: fileName,
             Body: videoBuffer,
-            ContentType: 'video/mp4',
+            ContentType: contentType,
         });
 
         await r2Client.send(command);

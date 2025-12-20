@@ -1,0 +1,127 @@
+.uploadContainer {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.uploadHeader {
+    margin-bottom: var(--spacing-md);
+}
+
+.uploadTitle {
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 4px;
+}
+
+.uploadDescription {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    line-height: 1.5;
+}
+
+.fileInput {
+    display: none;
+}
+
+.uploadBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-2xl);
+    background: rgba(255, 255, 255, 0.02);
+    border: 2px dashed rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    min-height: 200px;
+}
+
+.uploadBox:hover:not(:has(input:disabled)) {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 8, 68, 0.4);
+}
+
+.uploadBox svg {
+    color: var(--color-text-muted);
+}
+
+.uploadBox span {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.uploadHint {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    margin: 0;
+}
+
+.spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: var(--color-red-primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.preview {
+    position: relative;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.videoPreview {
+    width: 100%;
+    max-height: 400px;
+    display: block;
+}
+
+.removeBtn {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border-radius: var(--radius-full);
+    transition: all var(--transition-base);
+    backdrop-filter: blur(4px);
+    border: none;
+    cursor: pointer;
+}
+
+.removeBtn:hover {
+    background: rgba(255, 8, 68, 0.9);
+    transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+    .uploadBox {
+        min-height: 160px;
+        padding: var(--spacing-xl);
+    }
+
+    .videoPreview {
+        max-height: 300px;
+    }
+}

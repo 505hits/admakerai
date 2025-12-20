@@ -8,11 +8,13 @@ import CustomUploads from '@/components/dashboard/CustomUploads';
 import AIActorSelector from '@/components/dashboard/AIActorSelector';
 import VideoGenerationLoader from '@/components/dashboard/VideoGenerationLoader';
 import VariationTabs, { VideoVariation } from '@/components/dashboard/VariationTabs';
+import VideoUpload from '@/components/dashboard/VideoUpload';
 import { AIActor } from '@/lib/types/veo';
 import { generateVideoWithDuration, veoClient } from '@/lib/api/veo';
 import { getMediaUrl } from '@/lib/cloudflare-config';
 import { saveVideo, getUserVideos } from '@/lib/api/videos';
 import { createClient } from '@/lib/supabase/client';
+import { replicateVideoWithActor } from '@/lib/api/kie';
 
 export default function DashboardPage() {
     const [activeTab, setActiveTab] = useState('create');
@@ -62,7 +64,11 @@ export default function DashboardPage() {
     const [decorImagePreview, setDecorImagePreview] = useState<string | null>(null);
     const [isCreatingActor, setIsCreatingActor] = useState(false);
     const [actorCreationError, setActorCreationError] = useState<string | null>(null);
-    const [viewActorImageUrl, setViewActorImageUrl] = useState<string | null>(null); // For viewing actor in modal
+    const [viewActorImageUrl, setViewActorImageUrl] = useState<string | null>(null);
+
+    // Replicator state
+    const [uploadedVideoUrl, setUploadedVideoUrl] = useState<string | null>(null);
+    const [replicatorActor, setReplicatorActor] = useState<AIActor | null>(null); // For viewing actor in modal
 
     // Load video history and custom actors from Supabase on mount
     useEffect(() => {
@@ -196,6 +202,13 @@ export default function DashboardPage() {
                 setDuration(firstVariation.duration);
             }
         }
+    };
+
+    // Handle actor selection - update both state and current variation
+    const handleActorSelect = (actor: AIActor | null) => {
+        setSelectedActor(actor);
+        // Immediately update the active variation
+        updateCurrentVariation({ selectedActor: actor });
     };
 
     const getCreditCost = () => {
@@ -669,6 +682,100 @@ export default function DashboardPage() {
         }
     };
 
+    const handleReplicateVideo = async () => {
+        if (!uploadedVideoUrl) {
+            setError('Please upload a video first');
+            return;
+        }
+
+        if (!replicatorActor) {
+            setError('Please select an AI actor');
+            return;
+        }
+
+        // Use same cost as regular generation (20 credits for 8s)
+        const cost = 20;
+
+        if (credits < cost) {
+            setShowCreditsModal(true);
+            return;
+        }
+
+        setIsGenerating(true);
+        setError(null);
+
+        try {
+            const supabase = createClient();
+            const { data: { user } } = await supabase.auth.getUser();
+
+            if (!user) {
+                setError('You must be logged in to replicate videos');
+                setIsGenerating(false);
+                return;
+            }
+
+            console.log('🎬 Starting video replication...');
+
+            // Call Kie.ai API to replicate video
+            const result = await replicateVideoWithActor({
+                videoUrl: uploadedVideoUrl,
+                actorImageUrl: replicatorActor.imageUrl,
+                resolution: '480p',
+            });
+
+            console.log('✅ Replication task created:', result.taskId);
+
+            // Store metadata for webhook
+            try {
+                await fetch('/api/veo/store-metadata', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        taskId: result.taskId,
+                        userId: user.id,
+                        actorName: replicatorActor.name,
+                        actorImageUrl: replicatorActor.thumbnailUrl,
+                        script: 'Replicated from winning ad',
+                        sceneDescription: 'Video replication',
+                        duration: 8,
+                        format: '16:9',
+                    }),
+                });
+            } catch (metaErr) {
+                console.error('❌ Metadata storage error:', metaErr);
+            }
+
+            // Deduct credits
+            const newCredits = credits - cost;
+            setCredits(newCredits);
+
+            await supabase
+                .from('profiles')
+                .update({ credits: newCredits })
+                .eq('id', user.id);
+
+            setIsGenerating(false);
+            setActiveTab('history');
+            setShowSuccessNotification(true);
+
+            setTimeout(() => {
+                setShowSuccessNotification(false);
+            }, 5000);
+
+            setTimeout(async () => {
+                const videos = await getUserVideos(20);
+                setVideoHistory(videos);
+            }, 120000);
+
+            console.log('💡 Replicated video will appear in history in 1-3 minutes');
+
+        } catch (err: any) {
+            console.error('❌ Replication error:', err);
+            setError(err.message || 'Failed to start video replication');
+            setIsGenerating(false);
+        }
+    };
+
     return (
         <div className={styles.dashboardContainer}>
             {/* Video Modal */}
@@ -746,6 +853,16 @@ export default function DashboardPage() {
                             <path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                         </svg>
                         Create Video
+                    </button>
+
+                    <button
+                        className={`${styles.navItem} ${activeTab === 'replicator' ? styles.active : ''}`}
+                        onClick={() => setActiveTab('replicator')}
+                    >
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 4h6v6H4zM10 4h6v6h-6zM4 10h6v6H4zM10 10h6v6h-6z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        Winning Ad Replicator
                     </button>
 
                     <button
@@ -830,7 +947,7 @@ export default function DashboardPage() {
                         />
 
                         {/* AI Actor Selection */}
-                        <AIActorSelector onActorSelect={setSelectedActor} customActors={customActors} />
+                        <AIActorSelector onActorSelect={handleActorSelect} customActors={customActors} />
 
                         {/* Show rest of form only if actor is selected */}
                         {selectedActor && (
@@ -899,7 +1016,6 @@ export default function DashboardPage() {
                                             onClick={handleGenerateAllVariations}
                                             disabled={isGenerating}
                                             style={{
-                                                marginTop: 'var(--spacing-md)',
                                                 background: 'linear-gradient(135deg, rgba(255, 8, 68, 0.2) 0%, rgba(0, 0, 0, 0.4) 100%)',
                                                 border: '2px solid rgba(255, 8, 68, 0.5)',
                                             }}
@@ -1364,6 +1480,69 @@ export default function DashboardPage() {
                     </div>
                 )
             }
+
+            {/* Winning Ad Replicator Tab */}
+            {activeTab === 'replicator' && (
+                <div className={styles.createSection}>
+                    <h1 className={styles.pageTitle}>Winning Ad Replicator</h1>
+                    <p className={styles.pageSubtitle}>
+                        Upload a winning ad video and replicate it with a different AI actor
+                    </p>
+
+                    {/* Video Upload */}
+                    <VideoUpload onVideoChange={setUploadedVideoUrl} />
+
+                    {/* Show rest of form only if video is uploaded */}
+                    {uploadedVideoUrl && (
+                        <>
+                            {/* AI Actor Selection */}
+                            <AIActorSelector
+                                onActorSelect={setReplicatorActor}
+                                customActors={customActors}
+                            />
+
+                            {/* Show generate button only if actor is selected */}
+                            {replicatorActor && (
+                                <>
+                                    {/* Error Display */}
+                                    {error && (
+                                        <div className={styles.errorBox}>
+                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                <circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="2" />
+                                                <path d="M10 6v4M10 13h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                            </svg>
+                                            <span>{error}</span>
+                                        </div>
+                                    )}
+
+                                    {/* Generate Button */}
+                                    <div className={styles.generateSection}>
+                                        <button
+                                            className={styles.generateBtn}
+                                            onClick={handleReplicateVideo}
+                                            disabled={isGenerating}
+                                        >
+                                            {isGenerating ? (
+                                                <>
+                                                    <div className={styles.spinner}></div>
+                                                    Replicating video...
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                        <path d="M4 4h6v6H4zM10 4h6v6h-6zM4 10h6v6H4zM10 10h6v6h-6z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                    </svg>
+                                                    Replicate Video (20 credits)
+                                                </>
+                                            )}
+                                        </button>
+                                    </div>
+                                </>
+                            )}
+                        </>
+                    )}
+                </div>
+            )}
 
             {/* Create Actor Modal */}
             {

@@ -41,7 +41,7 @@ export default function VariationTabs({
             <div className={styles.tabsHeader}>
                 <div>
                     <h3 className={styles.tabsTitle}>Video Variations</h3>
-                    <p className={styles.tabsSubtitle}>Create multiple variations with different actors and scripts</p>
+                    <p className={styles.tabsSubtitle}>Create multiple variations with different actors and scripts - Perfect for A/B testing</p>
                 </div>
                 {canAddMore && (
                     <button
@@ -62,10 +62,20 @@ export default function VariationTabs({
                     const isConfigured = variation.selectedActor && variation.script.trim().length > 0;
 
                     return (
-                        <button
+                        <div
                             key={variation.id}
                             className={`${styles.tab} ${isActive ? styles.active : ''} ${isConfigured ? styles.configured : ''}`}
                             onClick={() => onVariationChange(index)}
+                            role="button"
+                            tabIndex={0}
+                            aria-label={`Variation ${index + 1}${isConfigured ? ' (configured)' : ''}`}
+                            aria-pressed={isActive}
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter' || e.key === ' ') {
+                                    e.preventDefault();
+                                    onVariationChange(index);
+                                }
+                            }}
                         >
                             {visibleVariations > 1 && (
                                 <button
@@ -75,6 +85,7 @@ export default function VariationTabs({
                                         onRemoveVariation(index);
                                     }}
                                     title="Remove variation"
+                                    aria-label={`Remove variation ${index + 1}`}
                                 >
                                     ×
                                 </button>
@@ -118,7 +129,7 @@ export default function VariationTabs({
                                     </div>
                                 )}
                             </div>
-                        </button>
+                        </div>
                     );
                 })}
             </div>

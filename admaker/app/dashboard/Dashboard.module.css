@@ -232,7 +232,9 @@
 .generateSection {
     margin-top: var(--spacing-xl);
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md);
 }
 
 .generateBtn {
