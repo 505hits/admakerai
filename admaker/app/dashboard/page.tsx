@@ -7,6 +7,7 @@ import VideoSettings from '@/components/dashboard/VideoSettings';
 import CustomUploads from '@/components/dashboard/CustomUploads';
 import AIActorSelector from '@/components/dashboard/AIActorSelector';
 import VideoGenerationLoader from '@/components/dashboard/VideoGenerationLoader';
+import VariationTabs, { VideoVariation } from '@/components/dashboard/VariationTabs';
 import { AIActor } from '@/lib/types/veo';
 import { generateVideoWithDuration, veoClient } from '@/lib/api/veo';
 import { getMediaUrl } from '@/lib/cloudflare-config';
@@ -16,6 +17,15 @@ import { createClient } from '@/lib/supabase/client';
 export default function DashboardPage() {
     const [activeTab, setActiveTab] = useState('create');
     const [sidebarOpen, setSidebarOpen] = useState(false);
+
+    // Variation state
+    const [activeVariation, setActiveVariation] = useState(0);
+    const [variations, setVariations] = useState<VideoVariation[]>([
+        { id: 1, script: '', sceneDescription: '', selectedActor: null, productImageUrl: null, virtualTryOnImageUrl: null, format: '16:9', duration: 8, status: 'empty' },
+        { id: 2, script: '', sceneDescription: '', selectedActor: null, productImageUrl: null, virtualTryOnImageUrl: null, format: '16:9', duration: 8, status: 'empty' },
+        { id: 3, script: '', sceneDescription: '', selectedActor: null, productImageUrl: null, virtualTryOnImageUrl: null, format: '16:9', duration: 8, status: 'empty' },
+        { id: 4, script: '', sceneDescription: '', selectedActor: null, productImageUrl: null, virtualTryOnImageUrl: null, format: '16:9', duration: 8, status: 'empty' },
+    ]);
 
     // Video generation state
     const [selectedActor, setSelectedActor] = useState<AIActor | null>(null);
@@ -118,6 +128,42 @@ export default function DashboardPage() {
             const newHistory = [savedVideo, ...videoHistory].slice(0, 20);
             setVideoHistory(newHistory);
         }
+    };
+
+    // Helper functions for variation management
+    const updateCurrentVariation = (updates: Partial<VideoVariation>) => {
+        setVariations(prev => prev.map((v, i) =>
+            i === activeVariation ? { ...v, ...updates, status: 'configured' as const } : v
+        ));
+    };
+
+    const getCurrentVariation = () => variations[activeVariation];
+
+    // Sync current variation with form state when switching
+    const handleVariationChange = (index: number) => {
+        // Save current variation state
+        updateCurrentVariation({
+            script,
+            sceneDescription,
+            selectedActor,
+            productImageUrl,
+            virtualTryOnImageUrl,
+            format,
+            duration,
+        });
+
+        // Switch to new variation
+        setActiveVariation(index);
+        const newVariation = variations[index];
+
+        // Load new variation state
+        setScript(newVariation.script);
+        setSceneDescription(newVariation.sceneDescription);
+        setSelectedActor(newVariation.selectedActor);
+        setProductImageUrl(newVariation.productImageUrl);
+        setVirtualTryOnImageUrl(newVariation.virtualTryOnImageUrl);
+        setFormat(newVariation.format);
+        setDuration(newVariation.duration);
     };
 
     const getCreditCost = () => {
@@ -487,6 +533,104 @@ export default function DashboardPage() {
         }
     };
 
+    const handleGenerateAllVariations = async () => {
+        // Save current variation state first
+        updateCurrentVariation({
+            script,
+            sceneDescription,
+            selectedActor,
+            productImageUrl,
+            virtualTryOnImageUrl,
+            format,
+            duration,
+        });
+
+        // Get all configured variations
+        const configuredVariations = variations.filter(v => v.selectedActor && v.script.trim());
+
+        if (configuredVariations.length === 0) {
+            setError('Please configure at least one variation with an actor and script');
+            return;
+        }
+
+        // Calculate total cost
+        const totalCost = configuredVariations.reduce((sum, v) => {
+            return sum + (v.duration === 8 ? 20 : 40);
+        }, 0);
+
+        if (credits < totalCost) {
+            setShowCreditsModal(true);
+            return;
+        }
+
+        setIsGenerating(true);
+        setError(null);
+
+        try {
+            const supabase = createClient();
+            const { data: { user } } = await supabase.auth.getUser();
+
+            if (!user) {
+                setError('You must be logged in to generate videos');
+                setIsGenerating(false);
+                return;
+            }
+
+            // Generate all variations
+            const generationPromises = configuredVariations.map(async (variation) => {
+                const actualScript = variation.script.trim();
+                const actualScene = variation.sceneDescription || 'Professional video presentation';
+
+                return generateVideoWithDuration(
+                    variation.selectedActor!.imageUrl,
+                    actualScript,
+                    actualScene,
+                    variation.format,
+                    variation.duration,
+                    variation.productImageUrl || undefined,
+                    variation.virtualTryOnImageUrl || undefined
+                );
+            });
+
+            const results = await Promise.all(generationPromises);
+
+            console.log(`✅ Started generating ${results.length} variations`);
+
+            // Deduct credits
+            const newCredits = credits - totalCost;
+            setCredits(newCredits);
+
+            await supabase
+                .from('profiles')
+                .update({ credits: newCredits })
+                .eq('id', user.id);
+
+            // Update variation statuses
+            setVariations(prev => prev.map(v => {
+                const wasGenerated = configuredVariations.find(cv => cv.id === v.id);
+                return wasGenerated ? { ...v, status: 'generating' as const } : v;
+            }));
+
+            setIsGenerating(false);
+            setActiveTab('history');
+            setShowSuccessNotification(true);
+
+            setTimeout(() => {
+                setShowSuccessNotification(false);
+            }, 5000);
+
+            setTimeout(async () => {
+                const videos = await getUserVideos(20);
+                setVideoHistory(videos);
+            }, 120000);
+
+        } catch (err: any) {
+            console.error('❌ Batch generation error:', err);
+            setError(err.message || 'Failed to start batch generation');
+            setIsGenerating(false);
+        }
+    };
+
     return (
         <div className={styles.dashboardContainer}>
             {/* Video Modal */}
@@ -637,6 +781,13 @@ export default function DashboardPage() {
                             Select an AI actor, add your script, and generate professional videos in seconds
                         </p>
 
+                        {/* Variation Tabs */}
+                        <VariationTabs
+                            variations={variations}
+                            activeVariation={activeVariation}
+                            onVariationChange={handleVariationChange}
+                        />
+
                         {/* AI Actor Selection */}
                         <AIActorSelector onActorSelect={setSelectedActor} customActors={customActors} />
 
@@ -699,6 +850,34 @@ export default function DashboardPage() {
                                             </>
                                         )}
                                     </button>
+
+                                    {/* Generate All Variations Button */}
+                                    {variations.filter(v => v.selectedActor && v.script.trim()).length > 1 && (
+                                        <button
+                                            className={`${styles.generateBtn} ${styles.generateAllBtn}`}
+                                            onClick={handleGenerateAllVariations}
+                                            disabled={isGenerating}
+                                            style={{
+                                                marginTop: 'var(--spacing-md)',
+                                                background: 'linear-gradient(135deg, rgba(255, 8, 68, 0.2) 0%, rgba(0, 0, 0, 0.4) 100%)',
+                                                border: '2px solid rgba(255, 8, 68, 0.5)',
+                                            }}
+                                        >
+                                            {isGenerating ? (
+                                                <>
+                                                    <div className={styles.spinner}></div>
+                                                    Generating variations...
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                        <path d="M4 4h4v4M16 4h-4v4M4 16h4v-4M16 16h-4v-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                    </svg>
+                                                    Generate All Variations ({variations.filter(v => v.selectedActor && v.script.trim()).length})
+                                                </>
+                                            )}
+                                        </button>
+                                    )}
                                 </div>
                             </>
                         )}
