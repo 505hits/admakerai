@@ -29,24 +29,24 @@ export const PRICING_PLANS = {
     annual: {
         startup: {
             priceId: 'price_1SgSE98qryufLdqNZbAQQB42',
-            amount: 47040, // $470.40 en cents (39.20 * 12)
-            videoCredits: 5280,
-            actorCredits: 5280,
-            videos: 264,
+            amount: 47000, // $470.00 en cents (49 * 12 * 0.8)
+            videoCredits: 5280, // 440 * 12
+            actorCredits: 5280, // 440 * 12
+            videos: 264, // 22 * 12
         },
         growth: {
             priceId: 'price_1SgSHn8qryufLdqNYiDKKrue',
-            amount: 66240, // $662.40 en cents (55.20 * 12)
-            videoCredits: 14400,
-            actorCredits: 14400,
-            videos: 720,
+            amount: 66200, // $662.00 en cents (69 * 12 * 0.8)
+            videoCredits: 14400, // 1200 * 12
+            actorCredits: 14400, // 1200 * 12
+            videos: 720, // 60 * 12
         },
         pro: {
             priceId: 'price_1SgSMQ8qryufLdqNzVXOeYRC',
-            amount: 95040, // $950.40 en cents (79.20 * 12)
-            videoCredits: 26400,
-            actorCredits: 26400,
-            videos: 1320,
+            amount: 95000, // $950.00 en cents (99 * 12 * 0.8)
+            videoCredits: 26400, // 2200 * 12
+            actorCredits: 26400, // 2200 * 12
+            videos: 1320, // 110 * 12
         },
     },
 } as const;

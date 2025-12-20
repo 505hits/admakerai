@@ -145,8 +145,8 @@ export default function Pricing() {
                                     <span className={styles.period}>/month</span>
                                 </div>
                                 {billingCycle === 'annual' && (
-                                    <p className={styles.billedAnnually}>
-                                        Billed ${plan.annualPrice} annually
+                                    <p style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', marginTop: '0.5rem' }}>
+                                        ${plan.annualPrice} billed annually
                                     </p>
                                 )}
                             </div>

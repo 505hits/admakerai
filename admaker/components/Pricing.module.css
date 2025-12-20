@@ -1,24 +1,36 @@
-.pricing {
+.pricingSection {
     padding: 120px 0 var(--spacing-2xl) 0;
 }
 
-.sectionHeader {
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+.header {
     text-align: center;
-    max-width: 700px;
-    margin: 0 auto var(--spacing-xl);
+    max-width: 800px;
+    margin: 0 auto var(--spacing-2xl);
 }
 
-.sectionHeader h2 {
-    font-size: clamp(1.5rem, 3vw, 2rem);
+.title {
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
     font-weight: 900;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
-    margin-bottom: var(--spacing-sm);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: var(--spacing-md);
+    background: linear-gradient(135deg, #fff 0%, rgba(255, 8, 68, 0.8) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-.sectionHeader p {
-    font-size: var(--font-size-lg);
+.subtitle {
+    font-size: var(--font-size-xl);
     color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-xl);
+    line-height: 1.6;
 }
 
 .pricingToggle {
