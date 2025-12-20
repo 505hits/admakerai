@@ -1,14 +1,17 @@
-import Stripe from 'stripe';
+import type Stripe from 'stripe';
 
-// Lazy initialization to avoid build-time errors
+// Lazy initialization with dynamic import to avoid build-time errors
 let stripeInstance: Stripe | null = null;
 
-export const getStripe = () => {
+export const getStripe = async (): Promise<Stripe> => {
     if (!stripeInstance) {
         if (!process.env.STRIPE_SECRET_KEY) {
             throw new Error('Missing STRIPE_SECRET_KEY environment variable');
         }
-        stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY, {
+
+        // Dynamic import to avoid build-time module resolution
+        const { default: StripeConstructor } = await import('stripe');
+        stripeInstance = new StripeConstructor(process.env.STRIPE_SECRET_KEY, {
             apiVersion: '2024-12-18.acacia',
             typescript: true,
         });

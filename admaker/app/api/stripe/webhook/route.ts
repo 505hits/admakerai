@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
 
     try {
         // Verify webhook signature
-        const stripe = getStripe();
+        const stripe = await getStripe();
         event = stripe.webhooks.constructEvent(
             body,
             signature,
