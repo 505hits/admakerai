@@ -84,20 +84,19 @@ export default function Pricing() {
                     </div>
                 </div>
 
-                <div className={styles.plansGrid}>
+                <div className={styles.pricingGrid}>
                     {plans.map((plan) => (
                         <div
                             key={plan.name}
-                            className={`${styles.planCard} ${plan.popular ? styles.popular : ''}`}
+                            className={`${styles.pricingCard} ${plan.popular ? styles.featured : ''}`}
                         >
                             {plan.popular && <div className={styles.popularBadge}>Most Popular</div>}
 
-                            <div className={styles.planHeader}>
-                                <h3 className={styles.planName}>{plan.name}</h3>
-                                <div className={styles.priceWrapper}>
-                                    <span className={styles.currency}>$</span>
+                            <div className={styles.pricingHeader}>
+                                <h3>{plan.name}</h3>
+                                <div className={styles.pricingPrice}>
                                     <span className={styles.price}>
-                                        {billingCycle === 'monthly' ? plan.monthlyPrice : Math.floor(plan.annualPrice / 12)}
+                                        ${billingCycle === 'monthly' ? plan.monthlyPrice : Math.floor(plan.annualPrice / 12)}
                                     </span>
                                     <span className={styles.period}>/month</span>
                                 </div>
@@ -108,7 +107,7 @@ export default function Pricing() {
                                 )}
                             </div>
 
-                            <ul className={styles.featuresList}>
+                            <ul className={styles.pricingFeatures}>
                                 {plan.features.map((feature, index) => (
                                     <li key={index} className={styles.feature}>
                                         <svg
@@ -131,7 +130,7 @@ export default function Pricing() {
                                 ))}
                             </ul>
 
-                            <button className={styles.ctaButton}>
+                            <button className={styles.btnPrimary}>
                                 Get Started
                             </button>
                         </div>
