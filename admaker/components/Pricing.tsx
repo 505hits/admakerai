@@ -140,7 +140,7 @@ export default function Pricing() {
                                 <h3>{plan.name}</h3>
                                 <div className={styles.pricingPrice}>
                                     <span className={styles.price}>
-                                        ${billingCycle === 'monthly' ? plan.monthlyPrice : Math.floor(plan.annualPrice / 12)}
+                                        ${billingCycle === 'monthly' ? plan.monthlyPrice : (plan.annualPrice / 12).toFixed(2)}
                                     </span>
                                     <span className={styles.period}>/month</span>
                                 </div>
