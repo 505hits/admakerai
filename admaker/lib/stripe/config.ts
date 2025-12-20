@@ -1,13 +1,23 @@
 import Stripe from 'stripe';
 
-if (!process.env.STRIPE_SECRET_KEY) {
-    throw new Error('Missing STRIPE_SECRET_KEY environment variable');
-}
+// Lazy initialization to avoid build-time errors
+let stripeInstance: Stripe | null = null;
 
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-    apiVersion: '2024-12-18.acacia',
-    typescript: true,
-});
+export const getStripe = () => {
+    if (!stripeInstance) {
+        if (!process.env.STRIPE_SECRET_KEY) {
+            throw new Error('Missing STRIPE_SECRET_KEY environment variable');
+        }
+        stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY, {
+            apiVersion: '2024-12-18.acacia',
+            typescript: true,
+        });
+    }
+    return stripeInstance;
+};
+
+// For backward compatibility
+export const stripe = getStripe();
 
 // Pricing plan configuration
 export const PRICING_PLANS = {
