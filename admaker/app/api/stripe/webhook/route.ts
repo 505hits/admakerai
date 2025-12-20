@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getStripe } from '@/lib/stripe/config';
 import { createServiceClient } from '@/lib/supabase/service';
-import Stripe from 'stripe';
 
 export async function POST(request: NextRequest) {
     const body = await request.text();
@@ -14,11 +12,19 @@ export async function POST(request: NextRequest) {
         );
     }
 
-    let event: Stripe.Event;
+    // Import Stripe type for type safety
+    type StripeEvent = import('stripe').Stripe.Event;
+    let event: StripeEvent;
 
     try {
+        // Create Stripe instance directly to avoid build-time errors
+        const Stripe = (await import('stripe')).default;
+        const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+            apiVersion: '2024-12-18.acacia',
+            typescript: true,
+        });
+
         // Verify webhook signature
-        const stripe = await getStripe();
         event = stripe.webhooks.constructEvent(
             body,
             signature,

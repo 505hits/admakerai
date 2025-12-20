@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
-import { getStripe, PRICING_PLANS, PlanType, BillingPeriod } from '@/lib/stripe/config';
+import { PRICING_PLANS, PlanType, BillingPeriod } from '@/lib/stripe/config';
 
 export async function POST(request: NextRequest) {
     try {
@@ -64,9 +64,14 @@ export async function POST(request: NextRequest) {
 
         console.log('🔵 User email:', profile?.email || user.email);
 
-        // Create Stripe Checkout Session
+        // Create Stripe instance directly to avoid build-time errors
         console.log('🔵 Creating Stripe session...');
-        const stripe = await getStripe();
+        const Stripe = (await import('stripe')).default;
+        const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+            apiVersion: '2024-12-18.acacia',
+            typescript: true,
+        });
+
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             line_items: [
