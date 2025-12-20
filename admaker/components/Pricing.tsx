@@ -106,9 +106,9 @@ export default function Pricing() {
         <section className={styles.pricingSection} id="pricing">
             <div className={styles.container}>
                 <div className={styles.header}>
-                    <h2 className={styles.title}>Simple, Transparent Pricing</h2>
+                    <h2 className={styles.title}>Choose Your Perfect Plan</h2>
                     <p className={styles.subtitle}>
-                        Choose the perfect plan for your AI UGC video creation needs
+                        Start creating professional AI UGC videos in minutes
                     </p>
 
                     <div className={styles.pricingToggle}>
@@ -183,12 +183,6 @@ export default function Pricing() {
                             </button>
                         </div>
                     ))}
-                </div>
-
-                <div className={styles.footer}>
-                    <p className={styles.footerText}>
-                        Need a custom plan? <a href="#contact" className={styles.btnSecondary}>Contact us</a>
-                    </p>
                 </div>
             </div>
         </section>
