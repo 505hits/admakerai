@@ -5,7 +5,7 @@ const KIE_API_URL = 'https://api.kie.ai/api/v1/jobs';
 
 export async function POST(request: NextRequest) {
     try {
-        const { videoUrl, actorImageUrl, resolution = '480p' } = await request.json();
+        const { videoUrl, actorImageUrl, resolution = '720p' } = await request.json();
 
         if (!videoUrl || !actorImageUrl) {
             return NextResponse.json(

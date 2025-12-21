@@ -43,7 +43,7 @@ interface KieStatusResponse {
 export async function replicateVideoWithActor({
     videoUrl,
     actorImageUrl,
-    resolution = '480p'
+    resolution = '720p'
 }: ReplicateVideoParams): Promise<{ taskId: string }> {
     try {
         console.log('🎬 Creating video replication task...');

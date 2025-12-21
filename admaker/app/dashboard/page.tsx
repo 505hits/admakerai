@@ -723,7 +723,7 @@ export default function DashboardPage() {
                 body: JSON.stringify({
                     videoUrl: uploadedVideoUrl,
                     actorImageUrl: replicatorActor.thumbnailUrl,
-                    resolution: '480p',
+                    resolution: '720p',
                 }),
             });
 
