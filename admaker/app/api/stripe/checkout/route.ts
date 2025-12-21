@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
                         currency: 'usd',
                         product_data: {
                             name: `${planType.charAt(0).toUpperCase() + planType.slice(1)} Plan - ${billingPeriod === 'monthly' ? 'Monthly' : 'Annual'}`,
-                            description: `${plan.videoCredits} video credits, ${plan.actorCredits} actor credits`,
+                            description: `${plan.videoCredits} video credits, ${plan.actorCredits} actor credits${plan.replicatorCredits > 0 ? `, ${plan.replicatorCredits} replicator credits` : ''}`,
                         },
                         unit_amount: plan.amount,
                     },
@@ -97,6 +97,7 @@ export async function POST(request: NextRequest) {
                 billingPeriod,
                 videoCredits: plan.videoCredits.toString(),
                 actorCredits: plan.actorCredits.toString(),
+                replicatorCredits: plan.replicatorCredits.toString(),
             },
         });
 

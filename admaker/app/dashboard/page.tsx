@@ -42,6 +42,7 @@ export default function DashboardPage() {
     const [generatedVideo, setGeneratedVideo] = useState<string | null>(null);
     const [credits, setCredits] = useState(0); // Start with 0 credits
     const [actorCredits, setActorCredits] = useState(0); // AI Actor credits
+    const [replicatorCredits, setReplicatorCredits] = useState(0); // Replicator credits
     const [showCreditsModal, setShowCreditsModal] = useState(false);
     const [showCreateActorModal, setShowCreateActorModal] = useState(false);
     const [showSuccessNotification, setShowSuccessNotification] = useState(false);
@@ -93,13 +94,14 @@ export default function DashboardPage() {
                 // Load user credits from profiles
                 const { data: profile } = await supabase
                     .from('profiles')
-                    .select('credits, actor_credits')
+                    .select('credits, actor_credits, replicator_credits')
                     .eq('id', user.id)
                     .single();
 
                 if (profile) {
                     setCredits(profile.credits || 0);
                     setActorCredits(profile.actor_credits || 0);
+                    setReplicatorCredits(profile.replicator_credits || 0);
                 }
             }
         };
@@ -693,10 +695,11 @@ export default function DashboardPage() {
             return;
         }
 
-        // Use same cost as regular generation (20 credits for 8s)
+        // Cost: 20 replicator credits per use
         const cost = 20;
 
-        if (credits < cost) {
+        if (replicatorCredits < cost) {
+            setError('Insufficient replicator credits. Upgrade to Growth or Pro plan.');
             setShowCreditsModal(true);
             return;
         }
@@ -756,13 +759,13 @@ export default function DashboardPage() {
                 console.error('❌ Metadata storage error:', metaErr);
             }
 
-            // Deduct credits
-            const newCredits = credits - cost;
-            setCredits(newCredits);
+            // Deduct ONLY replicator credits (20 credits)
+            const newReplicatorCredits = replicatorCredits - cost;
+            setReplicatorCredits(newReplicatorCredits);
 
             await supabase
                 .from('profiles')
-                .update({ credits: newCredits })
+                .update({ replicator_credits: newReplicatorCredits })
                 .eq('id', user.id);
 
             setIsGenerating(false);
@@ -778,7 +781,7 @@ export default function DashboardPage() {
                 setVideoHistory(videos);
             }, 120000);
 
-            console.log('💡 Replicated video will appear in history in 2-3 minutes');
+            console.log('💡 Replicated video will appear in history in 10-15 minutes');
 
         } catch (err: any) {
             console.error('❌ Replication error:', err);
@@ -874,6 +877,7 @@ export default function DashboardPage() {
                             <path d="M4 4h6v6H4zM10 4h6v6h-6zM4 10h6v6H4zM10 10h6v6h-6z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         Winning Ad Replicator
+                        <span className={styles.newBadge}>NEW</span>
                     </button>
 
                     <button
@@ -923,6 +927,15 @@ export default function DashboardPage() {
                         <div>
                             <span className={styles.creditsLabel}>AI Actor Credits</span>
                             <span className={styles.creditsValue}>{actorCredits}</span>
+                        </div>
+                    </div>
+                    <div className={styles.creditItem}>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 4h6v6H4zM10 4h6v6h-6zM4 10h6v6H4zM10 10h6v6h-6z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        <div>
+                            <span className={styles.creditsLabel}>Replicator Credits</span>
+                            <span className={styles.creditsValue}>{replicatorCredits}</span>
                         </div>
                     </div>
                 </div>
@@ -1499,6 +1512,11 @@ export default function DashboardPage() {
                     <p className={styles.pageSubtitle}>
                         Upload a winning ad video and replicate it with a different AI actor
                     </p>
+
+                    {/* Warning Banner */}
+                    <div className={styles.warningBanner}>
+                        ⚠️ This feature works best with videos showing a single influencer without products.
+                    </div>
 
                     {/* Video Upload */}
                     <VideoUpload onVideoChange={setUploadedVideoUrl} />

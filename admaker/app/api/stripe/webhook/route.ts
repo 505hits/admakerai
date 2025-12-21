@@ -51,6 +51,7 @@ export async function POST(request: NextRequest) {
                 const userId = session.metadata?.userId;
                 const videoCredits = parseInt(session.metadata?.videoCredits || '0');
                 const actorCredits = parseInt(session.metadata?.actorCredits || '0');
+                const replicatorCredits = parseInt(session.metadata?.replicatorCredits || '0');
 
                 if (!userId) {
                     console.error('❌ Missing userId in session metadata');
@@ -63,7 +64,7 @@ export async function POST(request: NextRequest) {
                 // Get current credits
                 const { data: profile, error: fetchError } = await supabase
                     .from('profiles')
-                    .select('credits, actor_credits')
+                    .select('credits, actor_credits, replicator_credits')
                     .eq('id', userId)
                     .single();
 
@@ -75,12 +76,14 @@ export async function POST(request: NextRequest) {
                 // Add new credits to existing credits
                 const newVideoCredits = (profile?.credits || 0) + videoCredits;
                 const newActorCredits = (profile?.actor_credits || 0) + actorCredits;
+                const newReplicatorCredits = (profile?.replicator_credits || 0) + replicatorCredits;
 
                 const { error: updateError } = await supabase
                     .from('profiles')
                     .update({
                         credits: newVideoCredits,
                         actor_credits: newActorCredits,
+                        replicator_credits: newReplicatorCredits,
                     })
                     .eq('id', userId);
 
@@ -90,6 +93,7 @@ export async function POST(request: NextRequest) {
                     console.log(`✅ Credits updated for user ${userId}:`);
                     console.log(`   Video credits: ${profile?.credits || 0} → ${newVideoCredits} (+${videoCredits})`);
                     console.log(`   Actor credits: ${profile?.actor_credits || 0} → ${newActorCredits} (+${actorCredits})`);
+                    console.log(`   Replicator credits: ${profile?.replicator_credits || 0} → ${newReplicatorCredits} (+${replicatorCredits})`);
                 }
 
                 break;
