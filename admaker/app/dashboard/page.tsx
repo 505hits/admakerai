@@ -714,16 +714,16 @@ export default function DashboardPage() {
                 return;
             }
 
-            console.log('🎬 Starting video replication...');
+            console.log('🎬 Starting video replication with Replicate...');
 
-            // Call our API route which will call Kie.ai server-side
-            const apiResponse = await fetch('/api/kie/replicate', {
+            // Call Replicate API route
+            const apiResponse = await fetch('/api/replicate-video', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     videoUrl: uploadedVideoUrl,
                     actorImageUrl: replicatorActor.thumbnailUrl,
-                    resolution: '720p',
+                    resolution: '720', // Replicate uses '720' not '720p'
                 }),
             });
 
@@ -734,20 +734,20 @@ export default function DashboardPage() {
 
             const result = await apiResponse.json();
 
-            console.log('✅ Replication task created:', result.taskId);
+            console.log('✅ Replicate prediction created:', result.predictionId);
 
-            // Store metadata for webhook
+            // Store metadata for tracking
             try {
                 await fetch('/api/veo/store-metadata', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        taskId: result.taskId,
+                        taskId: result.predictionId, // Use predictionId as taskId
                         userId: user.id,
                         actorName: replicatorActor.name,
                         actorImageUrl: replicatorActor.thumbnailUrl,
                         script: 'Replicated from winning ad',
-                        sceneDescription: 'Video replication',
+                        sceneDescription: 'Video replication with Wan 2.2',
                         duration: 8,
                         format: '16:9',
                     }),
@@ -778,7 +778,7 @@ export default function DashboardPage() {
                 setVideoHistory(videos);
             }, 120000);
 
-            console.log('💡 Replicated video will appear in history in 1-3 minutes');
+            console.log('💡 Replicated video will appear in history in 2-3 minutes');
 
         } catch (err: any) {
             console.error('❌ Replication error:', err);
