@@ -1503,53 +1503,48 @@ export default function DashboardPage() {
                     {/* Video Upload */}
                     <VideoUpload onVideoChange={setUploadedVideoUrl} />
 
-                    {/* Show rest of form only if video is uploaded */}
-                    {uploadedVideoUrl && (
+                    {/* AI Actor Selection - Always visible */}
+                    <AIActorSelector
+                        onActorSelect={setReplicatorActor}
+                        customActors={customActors}
+                    />
+
+                    {/* Show generate button only if both video and actor are selected */}
+                    {uploadedVideoUrl && replicatorActor && (
                         <>
-                            {/* AI Actor Selection */}
-                            <AIActorSelector
-                                onActorSelect={setReplicatorActor}
-                                customActors={customActors}
-                            />
-
-                            {/* Show generate button only if actor is selected */}
-                            {replicatorActor && (
-                                <>
-                                    {/* Error Display */}
-                                    {error && (
-                                        <div className={styles.errorBox}>
-                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                                <circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="2" />
-                                                <path d="M10 6v4M10 13h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                                            </svg>
-                                            <span>{error}</span>
-                                        </div>
-                                    )}
-
-                                    {/* Generate Button */}
-                                    <div className={styles.generateSection}>
-                                        <button
-                                            className={styles.generateBtn}
-                                            onClick={handleReplicateVideo}
-                                            disabled={isGenerating}
-                                        >
-                                            {isGenerating ? (
-                                                <>
-                                                    <div className={styles.spinner}></div>
-                                                    Replicating video...
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                                        <path d="M4 4h6v6H4zM10 4h6v6h-6zM4 10h6v6H4zM10 10h6v6h-6z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                                    </svg>
-                                                    Replicate Video (20 credits)
-                                                </>
-                                            )}
-                                        </button>
-                                    </div>
-                                </>
+                            {/* Error Display */}
+                            {error && (
+                                <div className={styles.errorBox}>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="2" />
+                                        <path d="M10 6v4M10 13h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                    </svg>
+                                    <span>{error}</span>
+                                </div>
                             )}
+
+                            {/* Generate Button */}
+                            <div className={styles.generateSection}>
+                                <button
+                                    className={styles.generateBtn}
+                                    onClick={handleReplicateVideo}
+                                    disabled={isGenerating}
+                                >
+                                    {isGenerating ? (
+                                        <>
+                                            <div className={styles.spinner}></div>
+                                            Replicating video...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                <path d="M4 4h6v6H4zM10 4h6v6h-6zM4 10h6v6H4zM10 10h6v6h-6z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                            </svg>
+                                            Replicate Video (20 credits)
+                                        </>
+                                    )}
+                                </button>
+                            </div>
                         </>
                     )}
                 </div>

@@ -227,6 +227,7 @@
 .createSection {
     max-width: 1200px;
     width: 100%;
+    padding-top: var(--spacing-md);
 }
 
 .generateSection {
