@@ -40,6 +40,8 @@ export async function POST(request: NextRequest) {
                 refert_num: 1,
                 frames_per_second: 24,
             },
+            webhook: `${process.env.NEXT_PUBLIC_APP_URL}/api/replicate-webhook`,
+            webhook_events_filter: ["completed"],
         });
 
         console.log('✅ Replicate prediction created:', prediction.id);
