@@ -1,6 +1,6 @@
 /**
- * OpenAI API Client via Replicate
- * Enhances video scripts for Instagram/TikTok UGC ads
+ * AI Script Enhancement via Replicate
+ * Uses Meta Llama 3.1 405B Instruct to enhance video scripts for Instagram/TikTok UGC ads
  */
 
 import Replicate from 'replicate';
@@ -15,7 +15,7 @@ interface EnhanceScriptParams {
 }
 
 /**
- * Enhance a video script using OpenAI o1 model via Replicate
+ * Enhance a video script using Meta Llama 3.1 405B Instruct via Replicate
  * Optimizes for 8-second Instagram/TikTok UGC ads with catchy hooks
  */
 export async function enhanceScript({
@@ -32,7 +32,7 @@ export async function enhanceScript({
             throw new Error('AI Script Enhancer is not configured. Please add your REPLICATE_API_TOKEN to the environment variables.');
         }
 
-        // Create the prompt for OpenAI
+        // Create the prompt for the AI model
         const prompt = `You are an expert UGC (User Generated Content) ad copywriter specializing in viral Instagram and TikTok ads.
 
 Transform the following script into a highly engaging ${duration}-second UGC ad script optimized for Instagram/TikTok.
@@ -51,15 +51,17 @@ ${originalScript}
 
 Enhanced UGC script:`;
 
-        // Call OpenAI o1 model via Replicate
+        // Call Meta Llama 3.1 405B Instruct model via Replicate
+        // This model is more reliable than openai/o1 and produces consistent output
         // Note: Replicate returns an async iterator for streaming responses
         const output = await replicate.run(
-            "openai/o1" as any,
+            "meta/meta-llama-3.1-405b-instruct" as any,
             {
                 input: {
                     prompt: prompt,
-                    reasoning_effort: "medium",
-                    max_completion_tokens: 500
+                    max_tokens: 500,
+                    temperature: 0.7,
+                    top_p: 0.9,
                 }
             }
         );
