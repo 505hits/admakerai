@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styles from './Dashboard.module.css';
 import ScriptEditor from '@/components/dashboard/ScriptEditor';
 import VideoSettings from '@/components/dashboard/VideoSettings';
@@ -70,6 +70,9 @@ export default function DashboardPage() {
     // Replicator state
     const [uploadedVideoUrl, setUploadedVideoUrl] = useState<string | null>(null);
     const [replicatorActor, setReplicatorActor] = useState<AIActor | null>(null); // For viewing actor in modal
+
+    // Ref to track if we're currently changing variations (prevents useEffect from saving during the change)
+    const isChangingVariation = useRef(false);
 
     // Load video history and custom actors from Supabase on mount
     useEffect(() => {
@@ -148,31 +151,108 @@ export default function DashboardPage() {
 
     const getCurrentVariation = () => variations[activeVariation];
 
+
     // Sync current variation with form state when switching
     const handleVariationChange = (index: number) => {
-        // Save current variation state
-        updateCurrentVariation({
-            script,
-            sceneDescription,
-            selectedActor,
-            productImageUrl,
-            virtualTryOnImageUrl,
-            format,
-            duration,
+        // Don't do anything if clicking on the already active variation
+        if (index === activeVariation) return;
+
+        // Set flag to prevent useEffect from saving during the change
+        isChangingVariation.current = true;
+
+        // Save current values before switching
+        const currentScript = script;
+        const currentSceneDescription = sceneDescription;
+        const currentSelectedActor = selectedActor;
+        const currentProductImageUrl = productImageUrl;
+        const currentVirtualTryOnImageUrl = virtualTryOnImageUrl;
+        const currentFormat = format;
+        const currentDuration = duration;
+        const currentIndex = activeVariation;
+
+        // Update variations array: save current variation and prepare to load new one
+        setVariations(prev => {
+            const updated = prev.map((v, i) => {
+                if (i === currentIndex) {
+                    // Save current variation data
+                    return {
+                        ...v,
+                        script: currentScript,
+                        sceneDescription: currentSceneDescription,
+                        selectedActor: currentSelectedActor,
+                        productImageUrl: currentProductImageUrl,
+                        virtualTryOnImageUrl: currentVirtualTryOnImageUrl,
+                        format: currentFormat,
+                        duration: currentDuration,
+                        status: (currentSelectedActor && currentScript.trim()) ? 'configured' as const : 'empty' as const
+                    };
+                }
+                return v;
+            });
+
+            // Load the new variation data into form
+            const newVariation = updated[index];
+            setScript(newVariation.script);
+            setSceneDescription(newVariation.sceneDescription);
+            setSelectedActor(newVariation.selectedActor);
+            setProductImageUrl(newVariation.productImageUrl);
+            setVirtualTryOnImageUrl(newVariation.virtualTryOnImageUrl);
+            setFormat(newVariation.format);
+            setDuration(newVariation.duration);
+
+            return updated;
         });
 
-        // Switch to new variation
+        // Switch active variation
         setActiveVariation(index);
-        const newVariation = variations[index];
 
-        // Load new variation state
-        setScript(newVariation.script);
-        setSceneDescription(newVariation.sceneDescription);
-        setSelectedActor(newVariation.selectedActor);
-        setProductImageUrl(newVariation.productImageUrl);
-        setVirtualTryOnImageUrl(newVariation.virtualTryOnImageUrl);
-        setFormat(newVariation.format);
-        setDuration(newVariation.duration);
+        // Re-enable auto-save after the change is complete
+        setTimeout(() => {
+            isChangingVariation.current = false;
+        }, 0);
+    };
+
+    // Handlers that update both state and variations array directly
+    const handleScriptChange = (newScript: string) => {
+        setScript(newScript);
+        setVariations(prev => prev.map((v, i) =>
+            i === activeVariation ? { ...v, script: newScript, status: (v.selectedActor && newScript.trim()) ? 'configured' as const : 'empty' as const } : v
+        ));
+    };
+
+    const handleSceneDescriptionChange = (newDescription: string) => {
+        setSceneDescription(newDescription);
+        setVariations(prev => prev.map((v, i) =>
+            i === activeVariation ? { ...v, sceneDescription: newDescription } : v
+        ));
+    };
+
+    const handleProductImageChange = (url: string | null) => {
+        setProductImageUrl(url);
+        setVariations(prev => prev.map((v, i) =>
+            i === activeVariation ? { ...v, productImageUrl: url } : v
+        ));
+    };
+
+    const handleVirtualTryOnChange = (url: string | null) => {
+        setVirtualTryOnImageUrl(url);
+        setVariations(prev => prev.map((v, i) =>
+            i === activeVariation ? { ...v, virtualTryOnImageUrl: url } : v
+        ));
+    };
+
+    const handleFormatChange = (newFormat: '16:9' | '9:16') => {
+        setFormat(newFormat);
+        setVariations(prev => prev.map((v, i) =>
+            i === activeVariation ? { ...v, format: newFormat } : v
+        ));
+    };
+
+    const handleDurationChange = (newDuration: 8 | 16) => {
+        setDuration(newDuration);
+        setVariations(prev => prev.map((v, i) =>
+            i === activeVariation ? { ...v, duration: newDuration } : v
+        ));
     };
 
     const handleAddVariation = () => {
@@ -979,27 +1059,29 @@ export default function DashboardPage() {
                                 {/* Script Editor */}
                                 <div data-next-section>
                                     <ScriptEditor
+                                        script={script}
+                                        sceneDescription={sceneDescription}
                                         showSceneDescription={true}
                                         duration={duration}
-                                        onScriptChange={setScript}
-                                        onSceneChange={setSceneDescription}
+                                        onScriptChange={handleScriptChange}
+                                        onSceneChange={handleSceneDescriptionChange}
                                     />
                                 </div>
 
                                 {/* Optional Product and Virtual Try-On Images */}
                                 <CustomUploads
-                                    onProductImageChange={setProductImageUrl}
-                                    onVirtualTryOnImageChange={setVirtualTryOnImageUrl}
+                                    onProductImageChange={handleProductImageChange}
+                                    onVirtualTryOnImageChange={handleVirtualTryOnChange}
                                 />
 
                                 {/* Video Settings */}
                                 <VideoSettings
                                     format={format}
                                     duration={duration}
-                                    onFormatChange={setFormat}
-                                    onDurationChange={setDuration}
+                                    onFormatChange={handleFormatChange}
+                                    onDurationChange={handleDurationChange}
+                                    credits={getCreditCost()}
                                 />
-
                                 {/* Error Display */}
                                 {error && (
                                     <div className={styles.errorBox}>

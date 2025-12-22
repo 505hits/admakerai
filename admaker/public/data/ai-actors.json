@@ -560,6 +560,21 @@
             "style": "Casual creator"
         },
         {
+            "id": "casual_030",
+            "name": "Casual Creator 30",
+            "category": "Casual",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual30.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/casual30.png",
+            "sceneDescription": "Casual lifestyle setting",
+            "tags": [
+                "casual",
+                "lifestyle"
+            ],
+            "gender": "neutral",
+            "ageRange": "20-35",
+            "style": "Casual creator"
+        },
+        {
             "id": "actor_003",
             "name": "Beauty Man - Bathroom Selfie",
             "category": "Beauty",
@@ -1053,8 +1068,8 @@
             "id": "presentation_002",
             "name": "Presentation 2",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation2.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation2.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation2.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation2.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -1069,8 +1084,8 @@
             "id": "presentation_003",
             "name": "Presentation 3",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation3.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation3.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation3.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation3.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -1085,8 +1100,8 @@
             "id": "presentation_004",
             "name": "Presentation 4",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation4.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation4.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation4.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation4.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -1101,8 +1116,8 @@
             "id": "presentation_005",
             "name": "Presentation 5",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation5.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation5.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation5.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation5.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -1117,8 +1132,8 @@
             "id": "presentation_006",
             "name": "Presentation 6",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation6.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation6.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation6.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation6.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -1133,8 +1148,8 @@
             "id": "presentation_007",
             "name": "Presentation 7",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation7.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation7.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation7.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation7.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -1149,8 +1164,8 @@
             "id": "presentation_008",
             "name": "Presentation 8",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation8.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation8.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation8.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation8.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -1165,8 +1180,8 @@
             "id": "presentation_009",
             "name": "Presentation 9",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation9.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation9.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation9.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation9.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -1181,8 +1196,8 @@
             "id": "presentation_010",
             "name": "Presentation 10",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation10.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation10.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation10.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation10.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -1197,8 +1212,8 @@
             "id": "presentation_011",
             "name": "Presentation 11",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation11.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation11.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation11.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation11.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -1213,8 +1228,8 @@
             "id": "presentation_012",
             "name": "Presentation 12",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation12.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation12.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation12.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation12.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -1229,8 +1244,8 @@
             "id": "presentation_013",
             "name": "Presentation 13",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation13.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation13.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation13.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation13.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -1245,8 +1260,8 @@
             "id": "presentation_014",
             "name": "Presentation 14",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation14.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation14.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation14.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation14.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -1261,8 +1276,8 @@
             "id": "presentation_015",
             "name": "Presentation 15",
             "category": "Presentation",
-            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation15.png",
-            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/Presentation15.png",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation15.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/presentation15.png",
             "sceneDescription": "Professional presentation setting",
             "tags": [
                 "presentation",
@@ -2120,6 +2135,176 @@
             "gender": "neutral",
             "ageRange": "25-40",
             "style": "Studio professional"
+        },
+        {
+            "id": "tech_001",
+            "name": "Tech Influencer 1",
+            "category": "Tech",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech1.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech1.png",
+            "sceneDescription": "Tech review setting with modern gadgets",
+            "tags": [
+                "tech",
+                "review",
+                "gadgets",
+                "influencer"
+            ],
+            "gender": "neutral",
+            "ageRange": "22-35",
+            "style": "Tech reviewer"
+        },
+        {
+            "id": "tech_002",
+            "name": "Tech Influencer 2",
+            "category": "Tech",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech2.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech2.png",
+            "sceneDescription": "Modern tech studio with gadgets",
+            "tags": [
+                "tech",
+                "review",
+                "gadgets",
+                "influencer"
+            ],
+            "gender": "neutral",
+            "ageRange": "22-35",
+            "style": "Tech reviewer"
+        },
+        {
+            "id": "tech_003",
+            "name": "Tech Influencer 3",
+            "category": "Tech",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech3.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech3.png",
+            "sceneDescription": "Tech review environment",
+            "tags": [
+                "tech",
+                "review",
+                "gadgets",
+                "influencer"
+            ],
+            "gender": "neutral",
+            "ageRange": "22-35",
+            "style": "Tech reviewer"
+        },
+        {
+            "id": "tech_004",
+            "name": "Tech Influencer 4",
+            "category": "Tech",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech4.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech4.png",
+            "sceneDescription": "Modern tech setup",
+            "tags": [
+                "tech",
+                "review",
+                "gadgets",
+                "influencer"
+            ],
+            "gender": "neutral",
+            "ageRange": "22-35",
+            "style": "Tech reviewer"
+        },
+        {
+            "id": "tech_005",
+            "name": "Tech Influencer 5",
+            "category": "Tech",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech5.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech5.png",
+            "sceneDescription": "Professional tech review setting",
+            "tags": [
+                "tech",
+                "review",
+                "gadgets",
+                "influencer"
+            ],
+            "gender": "neutral",
+            "ageRange": "22-35",
+            "style": "Tech reviewer"
+        },
+        {
+            "id": "tech_006",
+            "name": "Tech Influencer 6",
+            "category": "Tech",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech6.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech6.png",
+            "sceneDescription": "Tech studio environment",
+            "tags": [
+                "tech",
+                "review",
+                "gadgets",
+                "influencer"
+            ],
+            "gender": "neutral",
+            "ageRange": "22-35",
+            "style": "Tech reviewer"
+        },
+        {
+            "id": "tech_007",
+            "name": "Tech Influencer 7",
+            "category": "Tech",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech7.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech7.png",
+            "sceneDescription": "Modern tech review setup",
+            "tags": [
+                "tech",
+                "review",
+                "gadgets",
+                "influencer"
+            ],
+            "gender": "neutral",
+            "ageRange": "22-35",
+            "style": "Tech reviewer"
+        },
+        {
+            "id": "tech_008",
+            "name": "Tech Influencer 8",
+            "category": "Tech",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech8.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech8.png",
+            "sceneDescription": "Professional tech environment",
+            "tags": [
+                "tech",
+                "review",
+                "gadgets",
+                "influencer"
+            ],
+            "gender": "neutral",
+            "ageRange": "22-35",
+            "style": "Tech reviewer"
+        },
+        {
+            "id": "tech_009",
+            "name": "Tech Influencer 9",
+            "category": "Tech",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech9.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech9.png",
+            "sceneDescription": "Tech review studio",
+            "tags": [
+                "tech",
+                "review",
+                "gadgets",
+                "influencer"
+            ],
+            "gender": "neutral",
+            "ageRange": "22-35",
+            "style": "Tech reviewer"
+        },
+        {
+            "id": "tech_010",
+            "name": "Tech Influencer 10",
+            "category": "Tech",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech10.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/tech10.png",
+            "sceneDescription": "Modern tech content creation",
+            "tags": [
+                "tech",
+                "review",
+                "gadgets",
+                "influencer"
+            ],
+            "gender": "neutral",
+            "ageRange": "22-35",
+            "style": "Tech reviewer"
         }
     ],
     "categories": [
@@ -2131,6 +2316,7 @@
         "Sport",
         "Lifestyle",
         "Studio",
+        "Tech",
         "Originals",
         "Elegant Faces",
         "Senior"

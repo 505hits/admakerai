@@ -173,6 +173,176 @@ export default function Home() {
       {/* Industry Tabs Section */}
       <IndustryTabs />
 
+      {/* Winning Ad Replicator Section */}
+      <section className="replicator-feature" style={{ padding: '100px 0', background: 'linear-gradient(180deg, #000 0%, #0a0a0a 100%)', position: 'relative', overflow: 'hidden' }}>
+        <div className="container">
+          <div className="section-header animate-fade-in-up" style={{ textAlign: 'center', marginBottom: '60px' }}>
+            <div style={{
+              display: 'inline-block',
+              background: 'linear-gradient(135deg, rgba(255, 8, 68, 0.15) 0%, rgba(220, 38, 38, 0.15) 100%)',
+              border: '1px solid rgba(255, 8, 68, 0.3)',
+              borderRadius: '50px',
+              padding: '8px 20px',
+              fontSize: '13px',
+              fontWeight: '700',
+              color: '#ff0844',
+              textTransform: 'uppercase',
+              letterSpacing: '1px',
+              marginBottom: '24px'
+            }}>
+              ✨ New Feature
+            </div>
+            <h2 style={{ fontSize: 'clamp(36px, 5vw, 56px)', fontWeight: '800', marginBottom: '20px', lineHeight: '1.2' }}>
+              Winning Ad <span className="gradient-text-red">Replicator</span>
+            </h2>
+            <p style={{ fontSize: '18px', color: 'rgba(255, 255, 255, 0.7)', maxWidth: '800px', margin: '0 auto', lineHeight: '1.6' }}>
+              Upload any winning ad and replicate it with a different AI actor. Perfect for testing new faces while keeping the same proven script and style.
+            </p>
+          </div>
+
+          {/* Video Comparison */}
+          <div className="animate-fade-in-up stagger-1" style={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: '40px',
+            maxWidth: '1100px',
+            margin: '0 auto',
+            alignItems: 'center',
+            justifyContent: 'center',
+            flexWrap: 'nowrap'
+          }}>
+            {/* Original Video */}
+            <div style={{
+              background: 'rgba(255, 255, 255, 0.03)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              borderRadius: '20px',
+              padding: '24px',
+              textAlign: 'center',
+              transition: 'all 0.3s ease'
+            }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-8px)';
+                e.currentTarget.style.borderColor = 'rgba(255, 8, 68, 0.3)';
+                e.currentTarget.style.boxShadow = '0 12px 40px rgba(255, 8, 68, 0.2)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}>
+              <div style={{
+                position: 'relative',
+                aspectRatio: '9/16',
+                borderRadius: '16px',
+                overflow: 'hidden',
+                background: '#000',
+                marginBottom: '20px'
+              }}>
+                <video
+                  src={getMediaUrl('video podcast.mp4')}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+                <div style={{
+                  position: 'absolute',
+                  top: '12px',
+                  left: '12px',
+                  background: 'rgba(0, 0, 0, 0.8)',
+                  backdropFilter: 'blur(8px)',
+                  padding: '6px 12px',
+                  borderRadius: '8px',
+                  fontSize: '12px',
+                  fontWeight: '600',
+                  color: '#fff'
+                }}>
+                  Original
+                </div>
+              </div>
+              <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#fff', marginBottom: '8px' }}>
+                Your Winning Ad
+              </h3>
+              <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.6)', lineHeight: '1.5' }}>
+                Upload any video that's performing well
+              </p>
+            </div>
+
+            {/* Arrow/Plus Icon */}
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              alignSelf: 'center',
+              color: '#ff0844',
+              fontSize: '32px',
+              fontWeight: '800'
+            }}>
+              →
+            </div>
+
+            {/* Replicated Video */}
+            <div style={{
+              background: 'rgba(255, 255, 255, 0.03)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              borderRadius: '20px',
+              padding: '24px',
+              textAlign: 'center',
+              transition: 'all 0.3s ease'
+            }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-8px)';
+                e.currentTarget.style.borderColor = 'rgba(255, 8, 68, 0.3)';
+                e.currentTarget.style.boxShadow = '0 12px 40px rgba(255, 8, 68, 0.2)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}>
+              <div style={{
+                position: 'relative',
+                aspectRatio: '9/16',
+                borderRadius: '16px',
+                overflow: 'hidden',
+                background: '#000',
+                marginBottom: '20px'
+              }}>
+                <video
+                  src={getMediaUrl('video podcast 2.mp4')}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+                <div style={{
+                  position: 'absolute',
+                  top: '12px',
+                  left: '12px',
+                  background: 'linear-gradient(135deg, #ff0844, #ff6b6b)',
+                  backdropFilter: 'blur(8px)',
+                  padding: '6px 12px',
+                  borderRadius: '8px',
+                  fontSize: '12px',
+                  fontWeight: '600',
+                  color: '#fff'
+                }}>
+                  Replicated
+                </div>
+              </div>
+              <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#fff', marginBottom: '8px' }}>
+                New AI Actor Version
+              </h3>
+              <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.6)', lineHeight: '1.5' }}>
+                Same script, different face, instant results
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Pricing Section */}
       <Pricing />
 

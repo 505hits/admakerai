@@ -1,9 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styles from './ScriptEditor.module.css';
 
 interface ScriptEditorProps {
+    script?: string;
+    sceneDescription?: string;
     showSceneDescription?: boolean;
     duration?: 8 | 16;
     onScriptChange?: (script: string) => void;
@@ -11,14 +13,25 @@ interface ScriptEditorProps {
 }
 
 export default function ScriptEditor({
+    script: externalScript = '',
+    sceneDescription: externalSceneDescription = '',
     showSceneDescription = true,
     duration = 8,
     onScriptChange,
     onSceneChange
 }: ScriptEditorProps) {
-    const [script, setScript] = useState('');
-    const [sceneDescription, setSceneDescription] = useState('');
+    const [script, setScript] = useState(externalScript);
+    const [sceneDescription, setSceneDescription] = useState(externalSceneDescription);
     const [showAIWriter, setShowAIWriter] = useState(false);
+
+    // Sync with external values when they change
+    useEffect(() => {
+        setScript(externalScript);
+    }, [externalScript]);
+
+    useEffect(() => {
+        setSceneDescription(externalSceneDescription);
+    }, [externalSceneDescription]);
 
     // Adjust character limit to 500 characters
     const maxChars = 500;
