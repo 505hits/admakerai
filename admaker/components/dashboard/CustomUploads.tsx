@@ -14,21 +14,69 @@ export default function CustomUploads({ onProductImageChange, onVirtualTryOnImag
     const [isDraggingObject, setIsDraggingObject] = useState(false);
     const [isDraggingVirtual, setIsDraggingVirtual] = useState(false);
 
-    const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>, type: 'object' | 'virtualTryOn') => {
+    const compressImage = (file: File): Promise<string> => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.onload = () => {
+                    // Create canvas for compression
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+
+                    // Calculate new dimensions (max 400px width/height for better compression)
+                    let width = img.width;
+                    let height = img.height;
+                    const maxSize = 400;
+
+                    if (width > height) {
+                        if (width > maxSize) {
+                            height = (height * maxSize) / width;
+                            width = maxSize;
+                        }
+                    } else {
+                        if (height > maxSize) {
+                            width = (width * maxSize) / height;
+                            height = maxSize;
+                        }
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+
+                    // Draw and compress
+                    ctx?.drawImage(img, 0, 0, width, height);
+
+                    // Convert to base64 with compression (0.6 quality for better balance)
+                    const compressedBase64 = canvas.toDataURL('image/jpeg', 0.6);
+                    resolve(compressedBase64);
+                };
+                img.onerror = reject;
+                img.src = e.target?.result as string;
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
+    };
+
+    const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>, type: 'object' | 'virtualTryOn') => {
         const file = e.target.files?.[0];
         if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                const result = reader.result as string;
+            try {
+                // Compress the image before storing
+                const compressedImage = await compressImage(file);
+
                 if (type === 'object') {
-                    setObjectImage(result);
-                    onProductImageChange?.(result);
+                    setObjectImage(compressedImage);
+                    onProductImageChange?.(compressedImage);
                 } else {
-                    setVirtualTryOnImage(result);
-                    onVirtualTryOnImageChange?.(result);
+                    setVirtualTryOnImage(compressedImage);
+                    onVirtualTryOnImageChange?.(compressedImage);
                 }
-            };
-            reader.readAsDataURL(file);
+            } catch (error) {
+                console.error('Error compressing image:', error);
+                alert('Failed to process image. Please try again.');
+            }
         }
     };
 
@@ -52,7 +100,7 @@ export default function CustomUploads({ onProductImageChange, onVirtualTryOnImag
         }
     };
 
-    const handleDrop = (e: React.DragEvent<HTMLLabelElement>, type: 'object' | 'virtualTryOn') => {
+    const handleDrop = async (e: React.DragEvent<HTMLLabelElement>, type: 'object' | 'virtualTryOn') => {
         e.preventDefault();
         e.stopPropagation();
 
@@ -64,18 +112,21 @@ export default function CustomUploads({ onProductImageChange, onVirtualTryOnImag
 
         const file = e.dataTransfer.files?.[0];
         if (file && file.type.startsWith('image/')) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                const result = reader.result as string;
+            try {
+                // Compress the image before storing
+                const compressedImage = await compressImage(file);
+
                 if (type === 'object') {
-                    setObjectImage(result);
-                    onProductImageChange?.(result);
+                    setObjectImage(compressedImage);
+                    onProductImageChange?.(compressedImage);
                 } else {
-                    setVirtualTryOnImage(result);
-                    onVirtualTryOnImageChange?.(result);
+                    setVirtualTryOnImage(compressedImage);
+                    onVirtualTryOnImageChange?.(compressedImage);
                 }
-            };
-            reader.readAsDataURL(file);
+            } catch (error) {
+                console.error('Error compressing image:', error);
+                alert('Failed to process image. Please try again.');
+            }
         } else {
             alert('Please drop a valid image file');
         }
