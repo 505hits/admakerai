@@ -52,6 +52,7 @@ ${originalScript}
 Enhanced UGC script:`;
 
         // Call OpenAI o1 model via Replicate
+        // Note: Replicate returns an async iterator for streaming responses
         const output = await replicate.run(
             "openai/o1" as any,
             {
@@ -65,21 +66,43 @@ Enhanced UGC script:`;
 
         // Log the raw output for debugging
         console.log('🔍 Raw Replicate output type:', typeof output);
-        console.log('🔍 Raw Replicate output:', JSON.stringify(output, null, 2));
         console.log('🔍 Is Array?:', Array.isArray(output));
+        console.log('🔍 Is Iterator?:', output && typeof output === 'object' && Symbol.iterator in output);
+        console.log('🔍 Is Async Iterator?:', output && typeof output === 'object' && Symbol.asyncIterator in output);
 
-        // The output is an array of strings, concatenate them
+        // Collect the output - Replicate often returns an async iterator
         let enhancedScript = '';
-        if (Array.isArray(output)) {
+
+        // Check if it's an async iterator (most common for Replicate)
+        if (output && typeof output === 'object' && Symbol.asyncIterator in output) {
+            console.log('📡 Output is async iterator, collecting chunks...');
+            for await (const chunk of output as any) {
+                console.log('📦 Received chunk:', chunk);
+                enhancedScript += chunk;
+            }
+        }
+        // Check if it's a regular iterator
+        else if (output && typeof output === 'object' && Symbol.iterator in output) {
+            console.log('📡 Output is iterator, collecting chunks...');
+            for (const chunk of output as any) {
+                console.log('📦 Received chunk:', chunk);
+                enhancedScript += chunk;
+            }
+        }
+        // Check if it's an array
+        else if (Array.isArray(output)) {
             console.log('📋 Output is array with length:', output.length);
             enhancedScript = output.join('');
-        } else if (typeof output === 'string') {
+        }
+        // Check if it's a string
+        else if (typeof output === 'string') {
             console.log('📝 Output is string');
             enhancedScript = output;
-        } else if (output && typeof output === 'object') {
-            // Handle object response (might have a 'text' or 'output' property)
+        }
+        // Check if it's an object with common properties
+        else if (output && typeof output === 'object') {
             console.log('📦 Output is object, keys:', Object.keys(output));
-            const possibleKeys = ['text', 'output', 'content', 'response', 'result'];
+            const possibleKeys = ['text', 'output', 'content', 'response', 'result', 'completion', 'message'];
             for (const key of possibleKeys) {
                 if ((output as any)[key]) {
                     console.log(`✅ Found output in key: ${key}`);
@@ -97,6 +120,8 @@ Enhanced UGC script:`;
         if (!enhancedScript || enhancedScript.trim().length === 0) {
             console.error('❌ No enhanced script extracted from output');
             console.error('Full output:', output);
+            console.error('Output type:', typeof output);
+            console.error('Output constructor:', output?.constructor?.name);
             throw new Error('No enhanced script received from AI. Please try again.');
         }
 
