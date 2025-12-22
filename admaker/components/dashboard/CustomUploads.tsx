@@ -74,8 +74,16 @@ export default function CustomUploads({ onProductImageChange, onVirtualTryOnImag
                     onVirtualTryOnImageChange?.(compressedImage);
                 }
             } catch (error) {
-                console.error('Error compressing image:', error);
-                alert('Failed to process image. Please try again.');
+                console.error('Error uploading image:', error);
+                alert('Failed to upload image. Please try again.');
+                // Clear the failed upload
+                if (type === 'object') {
+                    setObjectImage(null);
+                    onProductImageChange?.(null);
+                } else {
+                    setVirtualTryOnImage(null);
+                    onVirtualTryOnImageChange?.(null);
+                }
             }
         }
     };
