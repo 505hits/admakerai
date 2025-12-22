@@ -22,7 +22,8 @@ export default function ScriptEditor({
 }: ScriptEditorProps) {
     const [script, setScript] = useState(externalScript);
     const [sceneDescription, setSceneDescription] = useState(externalSceneDescription);
-    const [showAIWriter, setShowAIWriter] = useState(false);
+    const [isEnhancing, setIsEnhancing] = useState(false);
+    const [enhanceError, setEnhanceError] = useState<string | null>(null);
 
     // Sync with external values when they change
     useEffect(() => {
@@ -47,20 +48,81 @@ export default function ScriptEditor({
         if (onSceneChange) onSceneChange(value);
     };
 
+    const handleEnhanceScript = async () => {
+        if (!script || script.trim().length === 0) {
+            setEnhanceError('Please write a script first');
+            setTimeout(() => setEnhanceError(null), 3000);
+            return;
+        }
+
+        setIsEnhancing(true);
+        setEnhanceError(null);
+
+        try {
+            const response = await fetch('/api/enhance-script', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    script: script,
+                    duration: duration
+                }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to enhance script');
+            }
+
+            // Update the script with the enhanced version
+            handleScriptChange(data.enhancedScript);
+        } catch (error) {
+            console.error('Error enhancing script:', error);
+            setEnhanceError(error instanceof Error ? error.message : 'Failed to enhance script');
+            setTimeout(() => setEnhanceError(null), 5000);
+        } finally {
+            setIsEnhancing(false);
+        }
+    };
+
     return (
         <div className={styles.editorContainer}>
             <div className={styles.editorHeader}>
                 <h2 className={styles.editorTitle}>Describe your video and script</h2>
                 <button
-                    className={styles.aiWriterBtn}
-                    onClick={() => setShowAIWriter(true)}
+                    className={styles.aiEnhancerBtn}
+                    onClick={handleEnhanceScript}
+                    disabled={isEnhancing || !script}
                 >
-                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" fill="currentColor" />
-                    </svg>
-                    AI Script writer
+                    {isEnhancing ? (
+                        <>
+                            <svg className={styles.spinner} width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" strokeOpacity="0.25" />
+                                <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                            </svg>
+                            Enhancing...
+                        </>
+                    ) : (
+                        <>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor" />
+                            </svg>
+                            AI Script Enhancer
+                        </>
+                    )}
                 </button>
             </div>
+
+            {enhanceError && (
+                <div className={styles.errorBanner}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 8V12M12 16H12.01M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                    {enhanceError}
+                </div>
+            )}
 
             {/* Combined Script and Scene Textarea */}
             <div className={styles.editorWrapper}>
@@ -81,41 +143,6 @@ Scene: Enthusiastic presentation, holding product, smiling at camera, modern off
                     {script.length}/{maxChars} characters
                 </div>
             </div>
-
-            {/* AI Writer Modal */}
-            {showAIWriter && (
-                <div className={styles.modalOverlay} onClick={() => setShowAIWriter(false)}>
-                    <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-                        <div className={styles.modalHeader}>
-                            <h3>AI Script Writer</h3>
-                            <button
-                                className={styles.closeBtn}
-                                onClick={() => setShowAIWriter(false)}
-                            >
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M5 5l10 10M5 15L15 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                                </svg>
-                            </button>
-                        </div>
-                        <div className={styles.modalBody}>
-                            <p className={styles.modalDescription}>
-                                Describe what you want your video to be about, and AI will generate a script for you.
-                            </p>
-                            <textarea
-                                className={styles.aiPrompt}
-                                placeholder="E.g., Create a 30-second ad for a new fitness app targeting young professionals..."
-                                rows={6}
-                            />
-                            <button className={styles.generateScriptBtn}>
-                                Generate Script
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                    <path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" fill="currentColor" />
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
         </div>
     );
 }

@@ -249,6 +249,7 @@
 .createSection {
     max-width: 1200px;
     width: 100%;
+    margin: 0 auto;
     padding-top: var(--spacing-md);
     overflow-x: hidden;
     box-sizing: border-box;

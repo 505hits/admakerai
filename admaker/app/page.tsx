@@ -209,7 +209,7 @@ export default function Home() {
             margin: '0 auto',
             alignItems: 'center',
             justifyContent: 'center',
-            flexWrap: 'nowrap'
+            flexWrap: 'wrap'
           }}>
             {/* Original Video */}
             <div style={{
