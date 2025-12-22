@@ -63,15 +63,35 @@ export default function CustomUploads({ onProductImageChange, onVirtualTryOnImag
         const file = e.target.files?.[0];
         if (file) {
             try {
-                // Compress the image before storing
+                // Compress the image before uploading
                 const compressedImage = await compressImage(file);
 
+                // Show preview immediately
                 if (type === 'object') {
                     setObjectImage(compressedImage);
-                    onProductImageChange?.(compressedImage);
                 } else {
                     setVirtualTryOnImage(compressedImage);
-                    onVirtualTryOnImageChange?.(compressedImage);
+                }
+
+                // Upload to R2 in background
+                const response = await fetch('/api/upload-product', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ imageData: compressedImage })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({ error: 'Upload failed' }));
+                    throw new Error(errorData.error || 'Upload failed');
+                }
+
+                const { url } = await response.json();
+
+                // Return R2 URL instead of base64
+                if (type === 'object') {
+                    onProductImageChange?.(url);
+                } else {
+                    onVirtualTryOnImageChange?.(url);
                 }
             } catch (error) {
                 console.error('Error uploading image:', error);
