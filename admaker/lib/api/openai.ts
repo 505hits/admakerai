@@ -63,12 +63,41 @@ Enhanced UGC script:`;
             }
         );
 
+        // Log the raw output for debugging
+        console.log('🔍 Raw Replicate output type:', typeof output);
+        console.log('🔍 Raw Replicate output:', JSON.stringify(output, null, 2));
+        console.log('🔍 Is Array?:', Array.isArray(output));
+
         // The output is an array of strings, concatenate them
         let enhancedScript = '';
         if (Array.isArray(output)) {
+            console.log('📋 Output is array with length:', output.length);
             enhancedScript = output.join('');
         } else if (typeof output === 'string') {
+            console.log('📝 Output is string');
             enhancedScript = output;
+        } else if (output && typeof output === 'object') {
+            // Handle object response (might have a 'text' or 'output' property)
+            console.log('📦 Output is object, keys:', Object.keys(output));
+            const possibleKeys = ['text', 'output', 'content', 'response', 'result'];
+            for (const key of possibleKeys) {
+                if ((output as any)[key]) {
+                    console.log(`✅ Found output in key: ${key}`);
+                    const value = (output as any)[key];
+                    if (Array.isArray(value)) {
+                        enhancedScript = value.join('');
+                    } else {
+                        enhancedScript = String(value);
+                    }
+                    break;
+                }
+            }
+        }
+
+        if (!enhancedScript || enhancedScript.trim().length === 0) {
+            console.error('❌ No enhanced script extracted from output');
+            console.error('Full output:', output);
+            throw new Error('No enhanced script received from AI. Please try again.');
         }
 
         console.log('✅ Script enhanced successfully');
