@@ -236,10 +236,12 @@ export default function Home() {
                 borderRadius: '16px',
                 overflow: 'hidden',
                 background: '#000',
-                marginBottom: '20px'
+                marginBottom: '20px',
+                maxWidth: '280px',
+                width: '100%'
               }}>
                 <video
-                  src={getMediaUrl('landing_winning_1.mp4')}
+                  src={getMediaUrl('landing winning 1.mp4')}
                   autoPlay
                   loop
                   muted
@@ -307,10 +309,12 @@ export default function Home() {
                 borderRadius: '16px',
                 overflow: 'hidden',
                 background: '#000',
-                marginBottom: '20px'
+                marginBottom: '20px',
+                maxWidth: '280px',
+                width: '100%'
               }}>
                 <video
-                  src={getMediaUrl('landing_winning_2.mp4')}
+                  src={getMediaUrl('landing winning 2.mp4')}
                   autoPlay
                   loop
                   muted

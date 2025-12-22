@@ -59,9 +59,9 @@ export default function Pricing() {
             videos: 22,
             actorCredits: 440,
             features: [
-                'Up to 22 videos per month',
                 '440 video credits',
                 '440 actor credits',
+                'Up to 22 videos per month',
                 '35+ languages',
                 'Product holding',
                 'Outfit swapping',
@@ -74,11 +74,11 @@ export default function Pricing() {
             videoCredits: 1200,
             videos: 60,
             actorCredits: 1200,
+            monthlyReplicatorCredits: 100,
             features: [
-                'Up to 60 videos per month',
                 '1200 video credits',
                 '1200 actor credits',
-                '100 replicator credits (5 replications)',
+                'Up to 60 videos per month',
                 '35+ languages',
                 'Product holding',
                 'Outfit swapping',
@@ -92,11 +92,11 @@ export default function Pricing() {
             videoCredits: 2200,
             videos: 110,
             actorCredits: 2200,
+            monthlyReplicatorCredits: 200,
             features: [
-                'Up to 110 videos per month',
                 '2200 video credits',
                 '2200 actor credits',
-                '200 replicator credits (10 replications)',
+                'Up to 110 videos per month',
                 '35+ languages',
                 'Product holding',
                 'Outfit swapping',
@@ -174,6 +174,31 @@ export default function Pricing() {
                                         <span>{feature}</span>
                                     </li>
                                 ))}
+                                {plan.monthlyReplicatorCredits && (
+                                    <li className={styles.feature}>
+                                        <svg
+                                            className={styles.checkIcon}
+                                            width="20"
+                                            height="20"
+                                            viewBox="0 0 20 20"
+                                            fill="none"
+                                        >
+                                            <path
+                                                d="M4 10L8 14L16 6"
+                                                stroke="currentColor"
+                                                strokeWidth="2"
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                            />
+                                        </svg>
+                                        <span>
+                                            {billingCycle === 'annual'
+                                                ? `${plan.monthlyReplicatorCredits * 12} replicator credits (${(plan.monthlyReplicatorCredits * 12) / 20} replications)`
+                                                : `${plan.monthlyReplicatorCredits} replicator credits (${plan.monthlyReplicatorCredits / 20} replications)`
+                                            }
+                                        </span>
+                                    </li>
+                                )}
                             </ul>
 
                             <button
