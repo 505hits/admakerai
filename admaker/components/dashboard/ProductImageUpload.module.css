@@ -71,7 +71,7 @@
 
 .preview {
     position: relative;
-    width: 100%;
+    display: inline-block;
     max-width: 300px;
     border-radius: var(--radius-md);
     overflow: hidden;
@@ -80,7 +80,7 @@
 }
 
 .preview img {
-    width: 100%;
+    max-width: 100%;
     height: auto;
     max-height: 120px;
     object-fit: contain;
