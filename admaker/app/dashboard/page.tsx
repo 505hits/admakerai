@@ -734,6 +734,33 @@ export default function DashboardPage() {
 
             console.log(`✅ Started generating ${results.length} variations`);
 
+            // Store metadata for each variation so webhook can save them
+            for (let i = 0; i < results.length; i++) {
+                const result = results[i];
+                const variation = configuredVariations[i];
+
+                try {
+                    await fetch('/api/veo/store-metadata', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            taskId: result.taskId,
+                            userId: user.id,
+                            actorName: variation.selectedActor!.name,
+                            actorImageUrl: variation.selectedActor!.thumbnailUrl,
+                            script: variation.script.trim(),
+                            sceneDescription: variation.sceneDescription || 'Professional video presentation',
+                            duration: variation.duration,
+                            format: variation.format
+                        })
+                    });
+                    console.log(`✅ Metadata stored for variation ${i + 1}/${results.length}`);
+                } catch (metaErr) {
+                    console.error(`❌ Metadata storage error for variation ${i + 1}:`, metaErr);
+                }
+            }
+
+
             // Deduct credits
             const newCredits = credits - totalCost;
             setCredits(newCredits);
