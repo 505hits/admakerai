@@ -93,7 +93,8 @@ export async function generateVideoWithDuration(
     format: '16:9' | '9:16',
     duration: 8 | 16, // Keep parameter for compatibility, but only 8s is used
     productImageUrl?: string,
-    virtualTryOnImageUrl?: string
+    virtualTryOnImageUrl?: string,
+    accent?: string
 ): Promise<{ taskId: string }> {
 
     // Get callback URL
@@ -117,9 +118,24 @@ export async function generateVideoWithDuration(
     // FIRST_AND_LAST_FRAMES_2_VIDEO: Supports both 16:9 and 9:16
     const useReferenceMode = format === '16:9';
 
-    // Create a natural prompt combining scene and script
-    const naturalPrompt = sceneDescription.trim()
-        ? `${sceneDescription.trim()}. ${script.trim()}`
+    // Build enhanced prompt with accent and product handling
+    let enhancedPrompt = sceneDescription.trim() || '';
+
+    // Add accent if specified
+    if (accent && accent.trim()) {
+        enhancedPrompt += enhancedPrompt ? `. The person speaks with a ${accent} accent` : `The person speaks with a ${accent} accent`;
+    }
+
+    // Add product handling if product image provided
+    // This prevents close-up shots of the product alone and ensures focus stays on the influencer
+    if (productImageUrl) {
+        const productInstruction = '. The influencer holds the product in their hand while presenting it. Always keep the camera focused on the influencer\'s face and body - never show close-up shots or full-screen views of the product alone. The product should only appear as a prop in the influencer\'s hand';
+        enhancedPrompt += productInstruction;
+    }
+
+    // Create final prompt combining enhanced description and script
+    const naturalPrompt = enhancedPrompt
+        ? `${enhancedPrompt}. ${script.trim()}`
         : script.trim();
 
     // Generate 8s video
