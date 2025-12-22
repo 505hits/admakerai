@@ -46,6 +46,12 @@
     border-color: rgba(255, 8, 68, 0.4);
 }
 
+.uploadBox.dragging {
+    background: rgba(255, 8, 68, 0.1);
+    border-color: rgba(255, 8, 68, 0.6);
+    transform: scale(1.02);
+}
+
 .uploadBox svg {
     color: var(--color-text-muted);
     width: 24px;

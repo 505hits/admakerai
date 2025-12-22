@@ -9,6 +9,7 @@ interface ProductImageUploadProps {
 
 export default function ProductImageUpload({ onImageChange }: ProductImageUploadProps) {
     const [productImage, setProductImage] = useState<string | null>(null);
+    const [isDragging, setIsDragging] = useState(false);
 
     const compressImage = (file: File): Promise<string> => {
         return new Promise((resolve, reject) => {
@@ -55,48 +56,77 @@ export default function ProductImageUpload({ onImageChange }: ProductImageUpload
         });
     };
 
+    const processImageFile = async (file: File) => {
+        let compressedImage = '';
+        try {
+            // Compress image first
+            compressedImage = await compressImage(file);
+
+            // Validate compressed size (base64 should be < 5MB for API route)
+            const sizeInBytes = (compressedImage.length * 3) / 4; // Approximate base64 decoded size
+            const sizeInMB = sizeInBytes / (1024 * 1024);
+
+            if (sizeInMB > 5) {
+                throw new Error(`Compressed image is too large (${sizeInMB.toFixed(1)}MB). Please use a smaller image.`);
+            }
+
+            // Show preview immediately
+            setProductImage(compressedImage);
+
+            // Upload to R2 in background
+            const response = await fetch('/api/upload-product', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ imageData: compressedImage })
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({ error: 'Upload failed' }));
+                throw new Error(errorData.error || 'Upload failed');
+            }
+
+            const { url } = await response.json();
+
+            // Return R2 URL instead of base64
+            onImageChange(url);
+        } catch (error: any) {
+            console.error('Image upload failed:', error);
+            alert(error.message || 'Failed to upload image. Please try a smaller image.');
+            // Clear the failed upload
+            setProductImage(null);
+            onImageChange(null);
+        }
+    };
+
     const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
-            let compressedImage = '';
-            try {
-                // Compress image first
-                compressedImage = await compressImage(file);
+            await processImageFile(file);
+        }
+    };
 
-                // Validate compressed size (base64 should be < 5MB for API route)
-                const sizeInBytes = (compressedImage.length * 3) / 4; // Approximate base64 decoded size
-                const sizeInMB = sizeInBytes / (1024 * 1024);
+    const handleDragOver = (e: React.DragEvent<HTMLLabelElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setIsDragging(true);
+    };
 
-                if (sizeInMB > 5) {
-                    throw new Error(`Compressed image is too large (${sizeInMB.toFixed(1)}MB). Please use a smaller image.`);
-                }
+    const handleDragLeave = (e: React.DragEvent<HTMLLabelElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setIsDragging(false);
+    };
 
-                // Show preview immediately
-                setProductImage(compressedImage);
+    const handleDrop = async (e: React.DragEvent<HTMLLabelElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setIsDragging(false);
 
-                // Upload to R2 in background
-                const response = await fetch('/api/upload-product', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ imageData: compressedImage })
-                });
-
-                if (!response.ok) {
-                    const errorData = await response.json().catch(() => ({ error: 'Upload failed' }));
-                    throw new Error(errorData.error || 'Upload failed');
-                }
-
-                const { url } = await response.json();
-
-                // Return R2 URL instead of base64
-                onImageChange(url);
-            } catch (error: any) {
-                console.error('Image upload failed:', error);
-                alert(error.message || 'Failed to upload image. Please try a smaller image.');
-                // Clear the failed upload
-                setProductImage(null);
-                onImageChange(null);
-            }
+        const file = e.dataTransfer.files?.[0];
+        if (file && file.type.startsWith('image/')) {
+            await processImageFile(file);
+        } else {
+            alert('Please drop a valid image file');
         }
     };
 
@@ -128,7 +158,12 @@ export default function ProductImageUpload({ onImageChange }: ProductImageUpload
                     </button>
                 </div>
             ) : (
-                <label className={styles.uploadBox}>
+                <label
+                    className={`${styles.uploadBox} ${isDragging ? styles.dragging : ''}`}
+                    onDragOver={handleDragOver}
+                    onDragLeave={handleDragLeave}
+                    onDrop={handleDrop}
+                >
                     <input
                         type="file"
                         accept="image/*"
@@ -140,7 +175,7 @@ export default function ProductImageUpload({ onImageChange }: ProductImageUpload
                         <circle cx="18" cy="20" r="3" stroke="currentColor" strokeWidth="2" />
                         <path d="M8 30l8-8 6 6 8-8 10 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                     </svg>
-                    <span className={styles.uploadText}>Click to upload product image</span>
+                    <span className={styles.uploadText}>{isDragging ? 'Drop image here' : 'Click to upload or drag & drop'}</span>
                     <span className={styles.uploadHint}>PNG, JPG up to 10MB</span>
                 </label>
             )}

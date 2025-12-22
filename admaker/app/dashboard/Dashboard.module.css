@@ -16,12 +16,32 @@
     bottom: 0;
     z-index: 100;
     transition: transform var(--transition-base);
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .sidebarHeader {
     margin-bottom: var(--spacing-md);
     padding-bottom: var(--spacing-md);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Sidebar Scrollbar */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(255, 8, 68, 0.3);
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 8, 68, 0.5);
 }
 
 /* Sidebar Overlay */
@@ -1391,7 +1411,8 @@
         transform: scale(1);
     }
 }
- / *   N E W   B a d g e   * /
+
+/* NEW Badge */
 
 /* NEW Badge */
 .newBadge {
@@ -1409,9 +1430,12 @@
 }
 
 @keyframes pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 1;
     }
+
     50% {
         opacity: 0.7;
     }
@@ -1431,3 +1455,24 @@
     gap: var(--spacing-sm);
 }
 
+/* Info Banner */
+.infoBanner {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.1) 100%);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.infoBanner svg {
+    margin-top: 2px;
+}
+
+.infoBanner>div {
+    flex: 1;
+    min-width: 0;
+}

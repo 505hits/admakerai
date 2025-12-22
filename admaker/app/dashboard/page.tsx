@@ -1518,6 +1518,40 @@ export default function DashboardPage() {
                         ⚠️ This feature works best with videos showing a single influencer without products.
                     </div>
 
+                    {/* Info Banners */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '24px' }}>
+                        {/* Generation Time Info */}
+                        <div className={styles.infoBanner}>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0 }}>
+                                <circle cx="10" cy="10" r="8" stroke="#60a5fa" strokeWidth="2" />
+                                <path d="M10 6v4l2 2" stroke="#60a5fa" strokeWidth="2" strokeLinecap="round" />
+                            </svg>
+                            <div>
+                                <p style={{ fontSize: '13px', fontWeight: 600, color: '#93c5fd', marginBottom: '4px' }}>
+                                    Final video duration: 5 seconds | Generation time: 10-15 minutes
+                                </p>
+                                <p style={{ fontSize: '12px', color: '#9ca3af', lineHeight: '1.5', margin: 0 }}>
+                                    The replicated video will be automatically trimmed to 5 seconds. Please be patient during generation.
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Actor Selection Guidelines */}
+                        <div className={styles.infoBanner}>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0 }}>
+                                <path d="M10 10a3 3 0 100-6 3 3 0 000 6zM4 18a6 6 0 0112 0" stroke="#60a5fa" strokeWidth="2" strokeLinecap="round" />
+                            </svg>
+                            <div>
+                                <p style={{ fontSize: '13px', fontWeight: 600, color: '#93c5fd', marginBottom: '4px' }}>
+                                    Choose an AI actor with matching characteristics
+                                </p>
+                                <p style={{ fontSize: '12px', color: '#9ca3af', lineHeight: '1.5', margin: 0 }}>
+                                    Select an AI actor of the same gender as the person in your reference video, with a voice that can match the original tone and style.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
                     {/* Video Upload */}
                     <VideoUpload onVideoChange={setUploadedVideoUrl} />
 

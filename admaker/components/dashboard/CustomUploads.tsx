@@ -11,6 +11,8 @@ interface CustomUploadsProps {
 export default function CustomUploads({ onProductImageChange, onVirtualTryOnImageChange }: CustomUploadsProps) {
     const [objectImage, setObjectImage] = useState<string | null>(null);
     const [virtualTryOnImage, setVirtualTryOnImage] = useState<string | null>(null);
+    const [isDraggingObject, setIsDraggingObject] = useState(false);
+    const [isDraggingVirtual, setIsDraggingVirtual] = useState(false);
 
     const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>, type: 'object' | 'virtualTryOn') => {
         const file = e.target.files?.[0];
@@ -27,6 +29,55 @@ export default function CustomUploads({ onProductImageChange, onVirtualTryOnImag
                 }
             };
             reader.readAsDataURL(file);
+        }
+    };
+
+    const handleDragOver = (e: React.DragEvent<HTMLLabelElement>, type: 'object' | 'virtualTryOn') => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (type === 'object') {
+            setIsDraggingObject(true);
+        } else {
+            setIsDraggingVirtual(true);
+        }
+    };
+
+    const handleDragLeave = (e: React.DragEvent<HTMLLabelElement>, type: 'object' | 'virtualTryOn') => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (type === 'object') {
+            setIsDraggingObject(false);
+        } else {
+            setIsDraggingVirtual(false);
+        }
+    };
+
+    const handleDrop = (e: React.DragEvent<HTMLLabelElement>, type: 'object' | 'virtualTryOn') => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (type === 'object') {
+            setIsDraggingObject(false);
+        } else {
+            setIsDraggingVirtual(false);
+        }
+
+        const file = e.dataTransfer.files?.[0];
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const result = reader.result as string;
+                if (type === 'object') {
+                    setObjectImage(result);
+                    onProductImageChange?.(result);
+                } else {
+                    setVirtualTryOnImage(result);
+                    onVirtualTryOnImageChange?.(result);
+                }
+            };
+            reader.readAsDataURL(file);
+        } else {
+            alert('Please drop a valid image file');
         }
     };
 
@@ -61,7 +112,12 @@ export default function CustomUploads({ onProductImageChange, onVirtualTryOnImag
                             </button>
                         </div>
                     ) : (
-                        <label className={styles.uploadBox}>
+                        <label
+                            className={`${styles.uploadBox} ${isDraggingObject ? styles.dragging : ''}`}
+                            onDragOver={(e) => handleDragOver(e, 'object')}
+                            onDragLeave={(e) => handleDragLeave(e, 'object')}
+                            onDrop={(e) => handleDrop(e, 'object')}
+                        >
                             <input
                                 type="file"
                                 accept="image/*"
@@ -73,7 +129,7 @@ export default function CustomUploads({ onProductImageChange, onVirtualTryOnImag
                                 <circle cx="10" cy="12" r="2" stroke="currentColor" strokeWidth="2" />
                                 <path d="M4 17l5-5 4 4 5-5 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                             </svg>
-                            <span>Upload Product</span>
+                            <span>{isDraggingObject ? 'Drop here' : 'Upload Product'}</span>
                         </label>
                     )}
                 </div>
@@ -94,7 +150,12 @@ export default function CustomUploads({ onProductImageChange, onVirtualTryOnImag
                             </button>
                         </div>
                     ) : (
-                        <label className={styles.uploadBox}>
+                        <label
+                            className={`${styles.uploadBox} ${isDraggingVirtual ? styles.dragging : ''}`}
+                            onDragOver={(e) => handleDragOver(e, 'virtualTryOn')}
+                            onDragLeave={(e) => handleDragLeave(e, 'virtualTryOn')}
+                            onDrop={(e) => handleDrop(e, 'virtualTryOn')}
+                        >
                             <input
                                 type="file"
                                 accept="image/*"
@@ -105,7 +166,7 @@ export default function CustomUploads({ onProductImageChange, onVirtualTryOnImag
                                 <path d="M8 6h12M8 6a2 2 0 012-2h8a2 2 0 012 2M8 6v2m12-2v2M8 8h12v12a2 2 0 01-2 2h-8a2 2 0 01-2-2V8z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 <path d="M12 12v6M16 12v6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                             </svg>
-                            <span>Upload Clothing</span>
+                            <span>{isDraggingVirtual ? 'Drop here' : 'Upload Clothing'}</span>
                         </label>
                     )}
                 </div>

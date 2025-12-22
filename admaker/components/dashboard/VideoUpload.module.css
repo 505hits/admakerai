@@ -4,8 +4,10 @@
     border-radius: var(--radius-lg);
     padding: var(--spacing-md);
     margin-bottom: var(--spacing-lg);
+    width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .uploadHeader {
@@ -47,6 +49,12 @@
 .uploadBox:hover:not(:has(input:disabled)) {
     background: rgba(255, 255, 255, 0.04);
     border-color: rgba(255, 8, 68, 0.4);
+}
+
+.uploadBox.dragging {
+    background: rgba(255, 8, 68, 0.1);
+    border-color: rgba(255, 8, 68, 0.6);
+    transform: scale(1.02);
 }
 
 .uploadBox svg {
