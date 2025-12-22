@@ -64,10 +64,11 @@ export async function POST(request: NextRequest) {
             console.log('📹 Received URL callback (extracted from text)');
             console.log(`📺 Veo URL: ${veoVideoUrl}`);
 
-            // Extract taskId from URL - Kie uses UUID format with dashes
-            // Example: /r/45b73df1-b7d6-41d5-98fa-6455de802e58_watermarked.mp4
-            // Or: /r/c3a0d9bd-6ba9-4055-a8cc-a4d2288c4244_watermarked.mp4
-            const taskIdMatch = veoVideoUrl.match(/\/([a-f0-9-]{36})/);
+
+            // Extract taskId from URL - Kie uses hex format WITHOUT dashes
+            // Example: /v/651dfe3a590b77518403c2d2957ef2ae_1766427848.mp4
+            // TaskId is 32 hex characters (no dashes)
+            const taskIdMatch = veoVideoUrl.match(/\/([a-f0-9]{32})(?:_|\.)/);
             const taskId = taskIdMatch ? taskIdMatch[1] : null;
 
             if (!taskId) {
