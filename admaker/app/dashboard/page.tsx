@@ -1080,7 +1080,6 @@ export default function DashboardPage() {
                                     duration={duration}
                                     onFormatChange={handleFormatChange}
                                     onDurationChange={handleDurationChange}
-                                    credits={getCreditCost()}
                                 />
                                 {/* Error Display */}
                                 {error && (
