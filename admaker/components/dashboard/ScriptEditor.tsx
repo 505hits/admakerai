@@ -72,12 +72,21 @@ export default function ScriptEditor({
 
             const data = await response.json();
 
+            console.log('📦 API Response:', data);
+            console.log('📝 Enhanced Script:', data.enhancedScript);
+
             if (!response.ok) {
                 throw new Error(data.error || 'Failed to enhance script');
             }
 
             // Update the script with the enhanced version
-            handleScriptChange(data.enhancedScript);
+            if (data.enhancedScript) {
+                console.log('✅ Updating script with enhanced version');
+                handleScriptChange(data.enhancedScript);
+            } else {
+                console.warn('⚠️ No enhanced script in response');
+                throw new Error('No enhanced script received from API');
+            }
         } catch (error) {
             console.error('Error enhancing script:', error);
             setEnhanceError(error instanceof Error ? error.message : 'Failed to enhance script');

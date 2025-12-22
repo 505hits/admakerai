@@ -63,7 +63,9 @@ export default function ProductImageUpload({ onImageChange }: ProductImageUpload
             compressedImage = await compressImage(file);
 
             // Validate compressed size (base64 should be < 5MB for API route)
-            const sizeInBytes = (compressedImage.length * 3) / 4; // Approximate base64 decoded size
+            // Remove the base64 prefix before calculating size
+            const base64Data = compressedImage.replace(/^data:image\/\w+;base64,/, '');
+            const sizeInBytes = (base64Data.length * 3) / 4; // Approximate base64 decoded size
             const sizeInMB = sizeInBytes / (1024 * 1024);
 
             if (sizeInMB > 5) {

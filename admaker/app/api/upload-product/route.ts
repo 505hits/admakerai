@@ -35,8 +35,11 @@ export async function POST(request: NextRequest) {
             );
         }
 
+        // Convert base64 to buffer first
+        const base64Data = imageData.replace(/^data:image\/\w+;base64,/, '');
+
         // Validate base64 size (should be < 10MB)
-        const sizeInBytes = (imageData.length * 3) / 4;
+        const sizeInBytes = (base64Data.length * 3) / 4;
         const sizeInMB = sizeInBytes / (1024 * 1024);
 
         if (sizeInMB > 10) {
@@ -45,9 +48,6 @@ export async function POST(request: NextRequest) {
                 { status: 413 } // Payload Too Large
             );
         }
-
-        // Convert base64 to buffer
-        const base64Data = imageData.replace(/^data:image\/\w+;base64,/, '');
         const buffer = Buffer.from(base64Data, 'base64');
 
         // Generate unique filename
