@@ -70,6 +70,7 @@ export default function DashboardPage() {
     // Replicator state
     const [uploadedVideoUrl, setUploadedVideoUrl] = useState<string | null>(null);
     const [replicatorActor, setReplicatorActor] = useState<AIActor | null>(null); // For viewing actor in modal
+    const [isReplicatorGeneration, setIsReplicatorGeneration] = useState(false); // Track if current generation is from Replicator
 
     // Ref to track if we're currently changing variations (prevents useEffect from saving during the change)
     const isChangingVariation = useRef(false);
@@ -535,6 +536,10 @@ export default function DashboardPage() {
     };
 
     const handleGenerateVideo = async () => {
+        // Detect if this is a Replicator generation based on active tab
+        const isReplicator = activeTab === 'replicator';
+        setIsReplicatorGeneration(isReplicator);
+
         if (!selectedActor) {
             setError('Please select an AI actor first');
             return;
@@ -1208,7 +1213,7 @@ export default function DashboardPage() {
                                         Génération en cours...
                                     </div>
                                     <div style={{ fontSize: '12px', color: '#9ca3af' }}>
-                                        Votre vidéo sera prête dans 1-2 minutes et apparaîtra automatiquement ici
+                                        Votre vidéo sera prête dans {isReplicatorGeneration ? '10-15 minutes' : '1-2 minutes'} et apparaîtra automatiquement ici
                                     </div>
                                 </div>
                             </div>
@@ -2089,7 +2094,7 @@ export default function DashboardPage() {
                                     Vidéo en cours de génération !
                                 </h3>
                                 <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.8)', margin: 0, lineHeight: 1.5 }}>
-                                    Votre vidéo apparaîtra dans l'historique dans 1-2 minutes.
+                                    Votre vidéo apparaîtra dans l'historique dans {isReplicatorGeneration ? '10-15 minutes' : '1-2 minutes'}.
                                 </p>
                             </div>
                             <button

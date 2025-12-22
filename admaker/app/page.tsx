@@ -239,7 +239,7 @@ export default function Home() {
                 marginBottom: '20px'
               }}>
                 <video
-                  src={getMediaUrl('video podcast.mp4')}
+                  src={getMediaUrl('landing_winning_1.mp4')}
                   autoPlay
                   loop
                   muted
@@ -310,7 +310,7 @@ export default function Home() {
                 marginBottom: '20px'
               }}>
                 <video
-                  src={getMediaUrl('video podcast 2.mp4')}
+                  src={getMediaUrl('landing_winning_2.mp4')}
                   autoPlay
                   loop
                   muted
