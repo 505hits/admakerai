@@ -1,7 +1,7 @@
 import styles from './Testimonials.module.css';
 
 interface TestimonialsProps {
-    lang?: 'en' | 'fr';
+    lang?: 'en' | 'fr' | 'es';
 }
 
 export default function Testimonials({ lang = 'en' }: TestimonialsProps) {
@@ -82,7 +82,7 @@ export default function Testimonials({ lang = 'en' }: TestimonialsProps) {
         }
     };
 
-    const t = content[lang];
+    const t = content[lang] || content['en'];
 
     return (
         <section className={styles.testimonials}>

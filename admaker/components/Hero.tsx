@@ -1,7 +1,7 @@
 import styles from './Hero.module.css';
 
 interface HeroProps {
-    lang?: 'en' | 'fr';
+    lang?: 'en' | 'fr' | 'es';
 }
 
 export default function Hero({ lang = 'en' }: HeroProps) {
@@ -29,10 +29,22 @@ export default function Hero({ lang = 'en' }: HeroProps) {
             stat1: '100k+ vidéos générées',
             stat2: '2.8x ROAS',
             stat3: '95% de satisfaction client'
+        },
+        es: {
+            socialProof: 'Confiado por más de 20,000 jugadores y equipos de e-commerce',
+            title: 'Crea videos UGC con IA para un',
+            titleHighlight: 'crecimiento explosivo',
+            subtitle: 'La forma más rápida de crear anuncios de video con IA',
+            description: 'Escribe tu guión → Elige un avatar → Genera tu video',
+            ctaPrimary: 'Crea tu primer anuncio',
+            ctaSecondary: 'Ver demo',
+            stat1: '100k+ videos generados',
+            stat2: '2.8x ROAS',
+            stat3: '95% Satisfacción del Cliente'
         }
     };
 
-    const t = content[lang];
+    const t = content[lang] || content['en'];
 
     return (
         <section className={styles.hero}>

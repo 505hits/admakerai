@@ -9,7 +9,7 @@ interface FAQItem {
 }
 
 interface FAQProps {
-    lang?: 'en' | 'fr';
+    lang?: 'en' | 'fr' | 'es';
 }
 
 export default function FAQ({ lang = 'en' }: FAQProps) {
@@ -72,7 +72,7 @@ export default function FAQ({ lang = 'en' }: FAQProps) {
         }
     };
 
-    const t = content[lang];
+    const t = content[lang] || content['en'];
 
     const toggleFAQ = (index: number) => {
         setActiveIndex(activeIndex === index ? null : index);

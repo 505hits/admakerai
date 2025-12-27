@@ -6,7 +6,7 @@ import { createClient } from '@/lib/supabase/client';
 import styles from './Pricing.module.css';
 
 interface PricingProps {
-    lang?: 'en' | 'fr';
+    lang?: 'en' | 'fr' | 'es';
 }
 
 export default function Pricing({ lang = 'en' }: PricingProps) {
@@ -56,10 +56,31 @@ export default function Pricing({ lang = 'en' }: PricingProps) {
             outfitSwapping: 'Changement de tenue',
             replicatorCredits: 'crédits réplicateur',
             replications: 'réplications'
+        },
+        es: {
+                  "title": "Elige Tu Plan",
+                  "subtitle": "Comienza a crear videos UGC IA profesionales en minutos",
+                  "monthly": "Mensual",
+                  "annual": "Anual",
+                  "save": "Ahorra",
+                  "popular": "Más Popular",
+                  "perMonth": "/mes",
+                  "billedAnnually": "facturado anualmente",
+                  "getStarted": "Comenzar",
+                  "loading": "Cargando...",
+                  "videoCredits": "créditos de video",
+                  "actorCredits": "créditos de actor",
+                  "upTo": "Hasta",
+                  "videosPerMonth": "videos por mes",
+                  "languages": "35+ idiomas",
+                  "productHolding": "Sostener producto",
+                  "outfitSwapping": "Cambio de vestuario",
+                  "replicatorCredits": "créditos de replicador",
+                  "replications": "replicaciones"
         }
     };
 
-    const t = content[lang];
+    const t = content[lang] || content['en'];
 
     const handleCheckout = async (plan: typeof plans[0], cycle: 'monthly' | 'annual') => {
         setLoading(plan.name);
