@@ -119,10 +119,64 @@ export default function IndustryTabs({ lang = 'en' }: IndustryTabsProps) {
                     ]
                 }
             ]
+        },
+        es: {
+            badge: 'Plataforma UGC IA',
+            title: 'Perfecto para cada industria',
+            industries: [
+                {
+                    id: 'ecommerce',
+                    name: 'E-commerce',
+                    title: 'Impulsa tus ventas con videos UGC auténticos',
+                    description: 'Crea videos de productos convincentes que conviertan navegadores en compradores',
+                    features: [
+                        'Demostraciones de productos',
+                        'Testimonios de clientes',
+                        'Videos de unboxing',
+                        'Comparaciones de productos'
+                    ]
+                },
+                {
+                    id: 'saas',
+                    name: 'SaaS',
+                    title: 'Muestra tu software en acción',
+                    description: 'Crea tutoriales atractivos y videos explicativos que simplifiquen características complejas',
+                    features: [
+                        'Tutoriales de productos',
+                        'Videos de incorporación',
+                        'Actualizaciones de características',
+                        'Historias de éxito de clientes'
+                    ]
+                },
+                {
+                    id: 'agencies',
+                    name: 'Agencias',
+                    title: 'Escala la producción de contenido para clientes',
+                    description: 'Produce videos de alta calidad para múltiples clientes sin los costos tradicionales de producción',
+                    features: [
+                        'Campañas de marca',
+                        'Contenido de redes sociales',
+                        'Anuncios de video',
+                        'Narrativa de marca'
+                    ]
+                },
+                {
+                    id: 'influencer',
+                    name: 'Influencer',
+                    title: 'Amplifica tu alcance con contenido IA',
+                    description: 'Crea contenido consistente y de alta calidad que resuene con tu audiencia',
+                    features: [
+                        'Contenido diario',
+                        'Colaboraciones de marca',
+                        'Reseñas de productos',
+                        'Vlogs de estilo de vida'
+                    ]
+                }
+            ]
         }
     };
 
-    const content = translations[lang];
+    const content = translations[lang] || translations['en'];
     const industries = content.industries;
     const activeIndustry = industries.find(ind => ind.id === activeTab) || industries[0];
 
