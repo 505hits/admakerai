@@ -1,0 +1,99 @@
+{
+    "login": {
+        "title": "Verifique su email",
+        "emailSent": "Le hemos enviado un enlace temporal.",
+        "checkInbox": "Por favor, revise su bandeja de entrada en",
+        "back": "Volver",
+        "joinCreators": "Únete a más de 50,000 creadores",
+        "continueWithGoogle": "Continuar con Google",
+        "or": "O",
+        "emailPlaceholder": "Ingrese su email",
+        "continue": "Continuar",
+        "sending": "Enviando...",
+        "loading": "Cargando...",
+        "termsText": "Al hacer clic en \"Continuar\" o \"Continuar con Google\", acepta nuestros",
+        "termsLink": "Términos de uso",
+        "and": "y",
+        "privacyLink": "Política de privacidad",
+        "showcaseTitle": "Más de 50,000 creadores usan AdMaker AI diariamente",
+        "aiGenerated": "Generado por IA",
+        "testimonial1": "AdMaker AI transformó mi creación de contenido. ¡Ahora genero más de 20 videos por semana!",
+        "testimonial1Author": "Sarah M., Creadora de Contenido",
+        "testimonial2": "Los actores IA son increíblemente realistas. ¡Mi engagement aumentó un 300%!",
+        "testimonial2Author": "Mike R., Propietario E-commerce",
+        "testimonial3": "Mejor inversión para mi negocio. ¡El ROI fue positivo desde el primer mes!",
+        "testimonial3Author": "Jessica L., Gerente de Marketing"
+    },
+    "dashboard": {
+        "tabs": {
+            "createVideo": "Crear un Video",
+            "videoHistory": "Historial de Videos",
+            "myActors": "Mis Actores",
+            "replicator": "Replicador de Anuncio Ganador"
+        },
+        "videoCreation": {
+            "selectActor": "Seleccionar un Actor IA",
+            "chooseActor": "Elige un actor",
+            "searchActors": "Buscar actores...",
+            "categories": "Categorías",
+            "all": "Todos",
+            "myCustomActors": "Mis Actores Personalizados",
+            "script": "Guión",
+            "scriptPlaceholder": "Describe tu video y el guión...",
+            "sceneDescription": "Descripción de la Escena",
+            "sceneDescriptionPlaceholder": "Describe la escena (opcional)...",
+            "productImage": "Imagen del Producto",
+            "uploadProduct": "Subir Producto",
+            "virtualTryOn": "Prueba Virtual",
+            "uploadClothing": "Subir Ropa",
+            "videoSettings": "Configuración de Video",
+            "format": "Formato",
+            "duration": "Duración",
+            "seconds": "segundos",
+            "accent": "Acento",
+            "aiScriptEnhancer": "Mejorador de Guión IA",
+            "enhance": "Mejorar",
+            "enhancing": "Mejorando...",
+            "generateVideo": "Generar el Video",
+            "generating": "Generando..."
+        },
+        "variations": {
+            "variation": "Variación",
+            "addVariation": "+ Agregar una Variación",
+            "remove": "Eliminar",
+            "generateAll": "Generar Todas las Variaciones",
+            "totalCost": "Costo Total"
+        },
+        "videoHistory": {
+            "title": "Historial de Videos",
+            "loading": "Cargando videos...",
+            "noVideos": "No hay videos por el momento",
+            "startCreating": "Comienza a crear tus primeros videos IA",
+            "generatedOn": "Generado el",
+            "download": "Descargar"
+        },
+        "actors": {
+            "title": "Mis Actores Personalizados",
+            "createNew": "Crear un Nuevo Actor",
+            "noActors": "No hay actores personalizados por el momento",
+            "createFirst": "Crea tu primer actor IA personalizado",
+            "viewImage": "Ver la Imagen"
+        },
+        "replicator": {
+            "title": "Replicador de Anuncio Ganador",
+            "description": "Sube un video ganador y nuestro IA lo recreará con un nuevo actor",
+            "uploadVideo": "Subir Video",
+            "selectActor": "Seleccionar Actor",
+            "replicate": "Replicar",
+            "replicating": "Replicando...",
+            "warning": "Esta función funciona mejor con influencers sin productos",
+            "estimatedTime": "Tiempo estimado: 10-15 minutos",
+            "creditsRequired": "20 créditos requeridos"
+        },
+        "credits": {
+            "videoCredits": "Créditos de Video",
+            "actorCredits": "Créditos de Actor",
+            "replicatorCredits": "Créditos de Replicador"
+        }
+    }
+}
