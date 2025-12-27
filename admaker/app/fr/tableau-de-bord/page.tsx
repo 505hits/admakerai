@@ -396,7 +396,7 @@ export default function DashboardPage() {
                 console.error('❌ API Error:', errorText);
                 try {
                     const error = JSON.parse(errorText);
-                    throw new Error(error.error || 'Échec de la création de l'acteur');
+                    throw new Error(error.error || 'Échec de la création de l\'acteur');
                 } catch (e) {
                     throw new Error(`Failed to create actor: ${response.status} ${response.statusText}`);
                 }
@@ -530,7 +530,7 @@ export default function DashboardPage() {
 
         } catch (error: any) {
             console.error('❌ Error creating actor:', error);
-            setActorCreationError(error.message || 'Échec de la création de l'acteur');
+            setActorCreationError(error.message || 'Échec de la création de l\'acteur');
             setIsCreatingActor(false);
         }
     };
@@ -1466,7 +1466,7 @@ export default function DashboardPage() {
                                         <path d="M32 32a10 10 0 100-20 10 10 0 000 20zM12 52a20 20 0 0140 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                                     </svg>
                                     <h3>Aucun acteur personnalisé pour le moment</h3>
-                                    <p>Click "Créer l'Acteur" to add your first custom AI actor</p>
+                                    <p>Click "Créer l\'Acteur" to add your first custom AI actor</p>
                                 </div>
                             ) : (
                                 <div className={styles.videoGrid}>
@@ -1768,7 +1768,7 @@ export default function DashboardPage() {
                                 </div>
 
                                 <div className={styles.formGroup}>
-                                    <label className={styles.formLabel}>Nom de l'Acteur</label>
+                                    <label className={styles.formLabel}>Nom de l\'Acteur</label>
                                     <input
                                         type="text"
                                         className={styles.formInput}
