@@ -7,7 +7,7 @@ import { getMediaUrl } from '../lib/cloudflare-config';
 import { createClient } from '@/lib/supabase/client';
 
 interface NavbarProps {
-    lang?: 'en' | 'fr';
+    lang?: 'en' | 'fr' | 'es';
 }
 
 export default function Navbar({ lang = 'en' }: NavbarProps) {
