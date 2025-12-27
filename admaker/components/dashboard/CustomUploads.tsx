@@ -6,9 +6,33 @@ import styles from './CustomUploads.module.css';
 interface CustomUploadsProps {
     onProductImageChange?: (imageUrl: string | null) => void;
     onVirtualTryOnImageChange?: (imageUrl: string | null) => void;
+    lang?: 'en' | 'fr';
 }
 
-export default function CustomUploads({ onProductImageChange, onVirtualTryOnImageChange }: CustomUploadsProps) {
+export default function CustomUploads({ onProductImageChange, onVirtualTryOnImageChange, lang = 'en' }: CustomUploadsProps) {
+    const translations = {
+        en: {
+            title: 'Custom Elements (Optional)',
+            addProduct: 'Add Product',
+            virtualTryOn: 'Virtual Try-On',
+            uploadProduct: 'Upload Product',
+            uploadClothing: 'Upload Clothing',
+            dropHere: 'Drop here',
+            uploadFailed: 'Failed to upload image. Please try again.',
+            invalidFile: 'Please drop a valid image file'
+        },
+        fr: {
+            title: 'Éléments Personnalisés (Optionnel)',
+            addProduct: 'Ajouter un Produit',
+            virtualTryOn: 'Essayage Virtuel',
+            uploadProduct: 'Télécharger Produit',
+            uploadClothing: 'Télécharger Vêtement',
+            dropHere: 'Déposer ici',
+            uploadFailed: 'Échec du téléchargement de l\'image. Veuillez réessayer.',
+            invalidFile: 'Veuillez déposer un fichier image valide'
+        }
+    };
+    const t = translations[lang];
     const [objectImage, setObjectImage] = useState<string | null>(null);
     const [virtualTryOnImage, setVirtualTryOnImage] = useState<string | null>(null);
     const [isDraggingObject, setIsDraggingObject] = useState(false);
@@ -95,7 +119,7 @@ export default function CustomUploads({ onProductImageChange, onVirtualTryOnImag
                 }
             } catch (error) {
                 console.error('Error uploading image:', error);
-                alert('Failed to upload image. Please try again.');
+                alert(t.uploadFailed);
                 // Clear the failed upload
                 if (type === 'object') {
                     setObjectImage(null);
@@ -173,7 +197,7 @@ export default function CustomUploads({ onProductImageChange, onVirtualTryOnImag
                 }
             } catch (error) {
                 console.error('Error uploading image:', error);
-                alert('Failed to upload image. Please try again.');
+                alert(t.uploadFailed);
                 // Clear the failed upload
                 if (type === 'object') {
                     setObjectImage(null);
@@ -184,7 +208,7 @@ export default function CustomUploads({ onProductImageChange, onVirtualTryOnImag
                 }
             }
         } else {
-            alert('Please drop a valid image file');
+            alert(t.invalidFile);
         }
     };
 
@@ -200,12 +224,12 @@ export default function CustomUploads({ onProductImageChange, onVirtualTryOnImag
 
     return (
         <div className={styles.uploadsContainer}>
-            <h3 className={styles.uploadsTitle}>Custom Elements (Optional)</h3>
+            <h3 className={styles.uploadsTitle}>{t.title}</h3>
 
             <div className={styles.uploadsGrid}>
                 {/* Product Upload */}
                 <div className={styles.uploadItem}>
-                    <label className={styles.uploadLabel}>Add Product</label>
+                    <label className={styles.uploadLabel}>{t.addProduct}</label>
                     {objectImage ? (
                         <div className={styles.preview}>
                             <img src={objectImage} alt="Product" />
@@ -236,14 +260,14 @@ export default function CustomUploads({ onProductImageChange, onVirtualTryOnImag
                                 <circle cx="10" cy="12" r="2" stroke="currentColor" strokeWidth="2" />
                                 <path d="M4 17l5-5 4 4 5-5 6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                             </svg>
-                            <span>{isDraggingObject ? 'Drop here' : 'Upload Product'}</span>
+                            <span>{isDraggingObject ? t.dropHere : t.uploadProduct}</span>
                         </label>
                     )}
                 </div>
 
                 {/* Virtual Try-On Upload */}
                 <div className={styles.uploadItem}>
-                    <label className={styles.uploadLabel}>Virtual Try-On</label>
+                    <label className={styles.uploadLabel}>{t.virtualTryOn}</label>
                     {virtualTryOnImage ? (
                         <div className={styles.preview}>
                             <img src={virtualTryOnImage} alt="Clothing" />
@@ -273,7 +297,7 @@ export default function CustomUploads({ onProductImageChange, onVirtualTryOnImag
                                 <path d="M8 6h12M8 6a2 2 0 012-2h8a2 2 0 012 2M8 6v2m12-2v2M8 8h12v12a2 2 0 01-2 2h-8a2 2 0 01-2-2V8z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                 <path d="M12 12v6M16 12v6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                             </svg>
-                            <span>{isDraggingVirtual ? 'Drop here' : 'Upload Clothing'}</span>
+                            <span>{isDraggingVirtual ? t.dropHere : t.uploadClothing}</span>
                         </label>
                     )}
                 </div>
