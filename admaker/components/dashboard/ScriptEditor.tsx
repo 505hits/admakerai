@@ -24,6 +24,7 @@ interface ScriptEditorProps {
     onScriptChange?: (script: string) => void;
     onSceneChange?: (scene: string) => void;
     onAccentChange?: (accent: string) => void;
+    lang?: 'en' | 'fr';
 }
 
 export default function ScriptEditor({
@@ -34,8 +35,32 @@ export default function ScriptEditor({
     accent: externalAccent = '',
     onScriptChange,
     onSceneChange,
-    onAccentChange
+    onAccentChange,
+    lang = 'en'
 }: ScriptEditorProps) {
+    const translations = {
+        en: {
+            title: 'Describe your video and script',
+            aiEnhancer: 'AI Script Enhancer',
+            enhancing: 'Enhancing...',
+            accentLabel: 'Accent (optional)',
+            noAccent: 'No specific accent',
+            placeholder: (dur: number) => `Write your script and describe the scene... (Selected duration: ${dur}s - Adjust your text length accordingly)\n\nExample:\nScript: "Hi! I'm excited to show you this amazing product that will change your life!"\n\nScene: Enthusiastic presentation, holding product, smiling at camera, modern office background with natural lighting`,
+            characters: 'characters',
+            errorWriteFirst: 'Please write a script first'
+        },
+        fr: {
+            title: 'Décrivez votre vidéo et le script',
+            aiEnhancer: 'Améliorateur de Script IA',
+            enhancing: 'Amélioration...',
+            accentLabel: 'Accent (optionnel)',
+            noAccent: 'Aucun accent spécifique',
+            placeholder: (dur: number) => `Écrivez votre script et décrivez la scène... (Durée sélectionnée : ${dur}s - Ajustez la longueur de votre texte en conséquence)\n\nExemple :\nScript : "Salut ! Je suis ravi de vous montrer ce produit incroyable qui va changer votre vie !"\n\nScène : Présentation enthousiaste, tenant le produit, souriant à la caméra, arrière-plan de bureau moderne avec éclairage naturel`,
+            characters: 'caractères',
+            errorWriteFirst: 'Veuillez d\'abord écrire un script'
+        }
+    };
+    const t = translations[lang];
     const [script, setScript] = useState(externalScript);
     const [sceneDescription, setSceneDescription] = useState(externalSceneDescription);
     const [accent, setAccent] = useState(externalAccent);
@@ -76,7 +101,7 @@ export default function ScriptEditor({
 
     const handleEnhanceScript = async () => {
         if (!script || script.trim().length === 0) {
-            setEnhanceError('Please write a script first');
+            setEnhanceError(t.errorWriteFirst);
             setTimeout(() => setEnhanceError(null), 3000);
             return;
         }
@@ -125,7 +150,7 @@ export default function ScriptEditor({
     return (
         <div className={styles.editorContainer}>
             <div className={styles.editorHeader}>
-                <h2 className={styles.editorTitle}>Describe your video and script</h2>
+                <h2 className={styles.editorTitle}>{t.title}</h2>
                 <button
                     className={styles.aiEnhancerBtn}
                     onClick={handleEnhanceScript}
@@ -137,14 +162,14 @@ export default function ScriptEditor({
                                 <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" strokeOpacity="0.25" />
                                 <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
                             </svg>
-                            Enhancing...
+                            {t.enhancing}
                         </>
                     ) : (
                         <>
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                                 <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor" />
                             </svg>
-                            AI Script Enhancer
+                            {t.aiEnhancer}
                         </>
                     )}
                 </button>
@@ -165,14 +190,14 @@ export default function ScriptEditor({
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="currentColor" />
                     </svg>
-                    Accent (optional)
+                    {t.accentLabel}
                 </label>
                 <select
                     value={accent}
                     onChange={(e) => handleAccentChange(e.target.value)}
                     className={styles.accentSelect}
                 >
-                    <option value="">No specific accent</option>
+                    <option value="">{t.noAccent}</option>
                     {ACCENTS.map(acc => (
                         <option key={acc} value={acc}>{acc}</option>
                     ))}
@@ -183,19 +208,14 @@ export default function ScriptEditor({
             <div className={styles.editorWrapper}>
                 <textarea
                     className={styles.scriptTextarea}
-                    placeholder={`Write your script and describe the scene... (Selected duration: ${duration}s - Adjust your text length accordingly)
-
-Example:
-Script: "Hi! I'm excited to show you this amazing product that will change your life!"
-
-Scene: Enthusiastic presentation, holding product, smiling at camera, modern office background with natural lighting`}
+                    placeholder={t.placeholder(duration)}
                     value={script}
                     onChange={(e) => handleScriptChange(e.target.value.slice(0, maxChars))}
                     maxLength={maxChars}
                     rows={8}
                 />
                 <div className={styles.charCounter}>
-                    {script.length}/{maxChars} characters
+                    {script.length}/{maxChars} {t.characters}
                 </div>
             </div>
         </div>

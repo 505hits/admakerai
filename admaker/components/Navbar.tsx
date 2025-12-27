@@ -102,8 +102,8 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
 
                         {!isLoggedIn ? (
                             <>
-                                <a href={`${langPrefix}/connexion`} className={styles.btnSecondary}>{t.signIn}</a>
-                                <a href={`${langPrefix}/connexion`} className={styles.btnPrimary}>{t.getStarted}</a>
+                                <a href={lang === 'fr' ? '/fr/connexion' : '/login'} className={styles.btnSecondary}>{t.signIn}</a>
+                                <a href={lang === 'fr' ? '/fr/connexion' : '/login'} className={styles.btnPrimary}>{t.getStarted}</a>
                             </>
                         ) : (
                             <div className={styles.userMenu}>

@@ -7,14 +7,39 @@ interface VideoSettingsProps {
     duration: 8 | 16;
     onFormatChange: (format: '16:9' | '9:16') => void;
     onDurationChange: (duration: 8 | 16) => void;
+    lang?: 'en' | 'fr';
 }
 
 export default function VideoSettings({
     format,
     duration,
     onFormatChange,
-    onDurationChange
+    onDurationChange,
+    lang = 'en'
 }: VideoSettingsProps) {
+    const translations = {
+        en: {
+            title: 'Video Settings',
+            format: 'Format',
+            duration: 'Duration',
+            credits: 'credits',
+            credit: 'credit',
+            totalCost: 'Total Cost',
+            durationNote: '16s videos are created by extending 8s videos',
+            modelInfo: 'Using Veo 3.1 Fast model for quick generation'
+        },
+        fr: {
+            title: 'Paramètres Vidéo',
+            format: 'Format',
+            duration: 'Durée',
+            credits: 'crédits',
+            credit: 'crédit',
+            totalCost: 'Coût Total',
+            durationNote: 'Les vidéos de 16s sont créées en étendant les vidéos de 8s',
+            modelInfo: 'Utilisation du modèle Veo 3.1 Fast pour une génération rapide'
+        }
+    };
+    const t = translations[lang];
     const getCreditCost = () => {
         // Credits based only on duration
         return duration === 8 ? 20 : 40;
@@ -22,12 +47,12 @@ export default function VideoSettings({
 
     return (
         <div className={styles.settingsContainer}>
-            <h3 className={styles.settingsTitle}>Video Settings</h3>
+            <h3 className={styles.settingsTitle}>{t.title}</h3>
 
             <div className={styles.settingsGrid}>
                 {/* Format Selector */}
                 <div className={styles.settingGroup}>
-                    <label className={styles.settingLabel}>Format</label>
+                    <label className={styles.settingLabel}>{t.format}</label>
                     <div className={styles.formatButtons}>
                         <button
                             className={`${styles.formatButton} ${format === '16:9' ? styles.active : ''}`}
@@ -52,38 +77,38 @@ export default function VideoSettings({
 
                 {/* Duration Selector */}
                 <div className={styles.settingGroup}>
-                    <label className={styles.settingLabel}>Duration</label>
+                    <label className={styles.settingLabel}>{t.duration}</label>
                     <div className={styles.durationButtons}>
                         <button
                             className={`${styles.durationButton} ${duration === 8 ? styles.active : ''}`}
                             onClick={() => onDurationChange(8)}
                         >
                             <span className={styles.durationTime}>8s</span>
-                            <span className={styles.durationCost}>20 credits</span>
+                            <span className={styles.durationCost}>20 {t.credits}</span>
                         </button>
                         <button
                             className={`${styles.durationButton} ${duration === 16 ? styles.active : ''}`}
                             onClick={() => onDurationChange(16)}
                         >
                             <span className={styles.durationTime}>16s</span>
-                            <span className={styles.durationCost}>40 credits</span>
+                            <span className={styles.durationCost}>40 {t.credits}</span>
                         </button>
                     </div>
                     <p className={styles.durationNote}>
-                        16s videos are created by extending 8s videos
+                        {t.durationNote}
                     </p>
                 </div>
 
                 {/* Credit Cost Summary */}
                 <div className={styles.settingGroup}>
-                    <label className={styles.settingLabel}>Total Cost</label>
+                    <label className={styles.settingLabel}>{t.totalCost}</label>
                     <div className={styles.creditCost}>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
                             <path d="M12 6v6l4 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                         </svg>
                         <span className={styles.costValue}>{getCreditCost()}</span>
-                        <span className={styles.costLabel}>credit{getCreditCost() > 1 ? 's' : ''}</span>
+                        <span className={styles.costLabel}>{getCreditCost() > 1 ? t.credits : t.credit}</span>
                     </div>
                 </div>
             </div>
@@ -93,7 +118,7 @@ export default function VideoSettings({
                     <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="1.5" />
                     <path d="M8 4v4M8 10h.01" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
-                <span>Using Veo 3.1 Fast model for quick generation</span>
+                <span>{t.modelInfo}</span>
             </div>
         </div>
     );

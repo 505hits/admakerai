@@ -8,14 +8,35 @@ import { getMediaUrl } from '@/lib/cloudflare-config';
 interface AIActorSelectorProps {
     onActorSelect: (actor: AIActor) => void;
     customActors?: any[]; // Custom actors from Supabase
+    lang?: 'en' | 'fr';
 }
 
-export default function AIActorSelector({ onActorSelect, customActors = [] }: AIActorSelectorProps) {
+export default function AIActorSelector({ onActorSelect, customActors = [], lang = 'en' }: AIActorSelectorProps) {
+    const translations = {
+        en: {
+            title: 'Select Your AI Actor',
+            description: 'Choose from our library of pre-made AI actors with professional scenes',
+            loading: 'Loading AI actors...',
+            all: 'All',
+            myActors: 'My Actors',
+            noActors: 'No actors found in this category'
+        },
+        fr: {
+            title: 'Sélectionnez Votre Acteur IA',
+            description: 'Choisissez parmi notre bibliothèque d\'acteurs IA pré-faits avec des scènes professionnelles',
+            loading: 'Chargement des acteurs IA...',
+            all: 'Tous',
+            myActors: 'Mes Acteurs',
+            noActors: 'Aucun acteur trouvé dans cette catégorie'
+        }
+    };
+    const t = translations[lang];
+
     const [actors, setActors] = useState<AIActor[]>([]);
     const [selectedActor, setSelectedActor] = useState<string | null>(null);
-    const [selectedCategory, setSelectedCategory] = useState<string>('All');
+    const [selectedCategory, setSelectedCategory] = useState<string>(t.all);
     const [loading, setLoading] = useState(true);
-    const [categories, setCategories] = useState<string[]>(['All', 'My Actors']);
+    const [categories, setCategories] = useState<string[]>([t.all, t.myActors]);
 
     useEffect(() => {
         // Load actors from JSON file
@@ -42,7 +63,7 @@ export default function AIActorSelector({ onActorSelect, customActors = [] }: AI
 
                 // Set categories dynamically from JSON
                 if (data.categories) {
-                    setCategories(['All', 'My Actors', ...data.categories]);
+                    setCategories([t.all, t.myActors, ...data.categories]);
                 }
                 setLoading(false);
             })
@@ -52,9 +73,9 @@ export default function AIActorSelector({ onActorSelect, customActors = [] }: AI
             });
     }, [customActors]);
 
-    const filteredActors = selectedCategory === 'All'
+    const filteredActors = selectedCategory === t.all
         ? actors
-        : selectedCategory === 'My Actors'
+        : selectedCategory === t.myActors
             ? actors.filter(actor => actor.category === 'Custom') // Custom actors created by user
             : actors.filter(actor => actor.category === selectedCategory);
 
@@ -66,7 +87,7 @@ export default function AIActorSelector({ onActorSelect, customActors = [] }: AI
     if (loading) {
         return (
             <div className={styles.selectorContainer}>
-                <div className={styles.loading}>Loading AI actors...</div>
+                <div className={styles.loading}>{t.loading}</div>
             </div>
         );
     }
@@ -75,9 +96,9 @@ export default function AIActorSelector({ onActorSelect, customActors = [] }: AI
         <div className={styles.selectorContainer}>
             <div className={styles.selectorHeader}>
                 <div>
-                    <h3 className={styles.selectorTitle}>Select Your AI Actor</h3>
+                    <h3 className={styles.selectorTitle}>{t.title}</h3>
                     <p className={styles.selectorDescription}>
-                        Choose from our library of pre-made AI actors with professional scenes
+                        {t.description}
                     </p>
                 </div>
                 <div className={styles.categoryTabs}>
@@ -129,7 +150,7 @@ export default function AIActorSelector({ onActorSelect, customActors = [] }: AI
 
             {filteredActors.length === 0 && (
                 <div className={styles.emptyState}>
-                    <p>No actors found in this category</p>
+                    <p>{t.noActors}</p>
                 </div>
             )}
         </div>
