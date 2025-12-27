@@ -1083,7 +1083,7 @@ export default function DashboardPage() {
                         />
 
                         {/* AI Actor Selection */}
-                        <AIActorSelector onActorSelect={handleActorSelect} customActors={customActors} />
+                        <AIActorSelector onActorSelect={handleActorSelect} customActors={customActors} lang="fr" />
 
                         {/* Show rest of form only if actor is selected */}
                         {selectedActor && (
@@ -1104,6 +1104,7 @@ export default function DashboardPage() {
                                 <CustomUploads
                                     onProductImageChange={handleProductImageChange}
                                     onVirtualTryOnImageChange={handleVirtualTryOnChange}
+                                    lang="fr"
                                 />
 
                                 {/* Video Settings */}
@@ -1112,6 +1113,7 @@ export default function DashboardPage() {
                                     duration={duration}
                                     onFormatChange={handleFormatChange}
                                     onDurationChange={handleDurationChange}
+                                    lang="fr"
                                 />
                                 {/* Error Display */}
                                 {error && (
