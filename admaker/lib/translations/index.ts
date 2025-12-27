@@ -10,8 +10,8 @@ export function getTranslation<T extends TranslationKey>(
     key: NestedTranslationKey<T>,
     lang: 'en' | 'fr' | 'es' = 'en'
 ): string {
-    const translations = lang === 'fr' ? frTranslations : lang === 'es' ? esTranslations : enTranslations;
-    return (translations[section] as any)[key] || (enTranslations[section] as any)[key];
+    const translations: any = lang === 'fr' ? frTranslations : lang === 'es' ? esTranslations : enTranslations;
+    return translations[section]?.[key] || (enTranslations[section] as any)[key];
 }
 
 export function useTranslation(lang: 'en' | 'fr' | 'es' = 'en') {
