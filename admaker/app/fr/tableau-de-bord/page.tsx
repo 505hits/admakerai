@@ -316,7 +316,7 @@ export default function DashboardPage() {
 
             // Validate file size (max 30MB as per Nano Banana spec)
             if (file.size > 30 * 1024 * 1024) {
-                setActorCreationError('La taille de l'image doit être inférieure à 30 Mo');
+                setActorCreationError('La taille de l\'image doit être inférieure à 30 Mo');
                 return;
             }
 
