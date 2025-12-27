@@ -60,6 +60,14 @@ export default function Navbar() {
                         <a href="#features">Features</a>
                         <a href="#pricing">Pricing</a>
                         <a href="/blog">Blog</a>
+
+                        {/* Language Selector */}
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '0 12px' }}>
+                            <a href="/" style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '14px', fontWeight: '500', textDecoration: 'none' }}>EN</a>
+                            <span style={{ color: 'rgba(255, 255, 255, 0.3)' }}>|</span>
+                            <a href="/fr" style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '14px', fontWeight: '500', textDecoration: 'none' }}>FR</a>
+                        </div>
+
                         {!isLoggedIn ? (
                             <>
                                 <a href="/login" className={styles.btnSecondary}>Sign in</a>

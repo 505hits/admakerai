@@ -7,6 +7,7 @@ export interface VideoVariation {
     id: number;
     script: string;
     sceneDescription: string;
+    accent: string;
     selectedActor: any | null;
     productImageUrl: string | null;
     virtualTryOnImageUrl: string | null;

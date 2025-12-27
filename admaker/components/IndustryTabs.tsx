@@ -106,7 +106,7 @@ export default function IndustryTabs() {
                             {activeTab === 'ecommerce' && (
                                 <video
                                     className={styles.mockupPlaceholder}
-                                    src={getMediaUrl('ecommerce.mp4')}
+                                    src={getMediaUrl('ecommerce (2).mp4')}
                                     autoPlay
                                     loop
                                     muted
@@ -115,14 +115,20 @@ export default function IndustryTabs() {
                                 />
                             )}
                             {activeTab === 'saas' && (
-                                <div className={styles.mockupPlaceholder}>
-                                    <div className={styles.playIcon}>▶</div>
-                                </div>
+                                <video
+                                    className={styles.mockupPlaceholder}
+                                    src={getMediaUrl('saas.mp4')}
+                                    autoPlay
+                                    loop
+                                    muted
+                                    playsInline
+                                    style={{ objectFit: 'cover' }}
+                                />
                             )}
                             {activeTab === 'agencies' && (
                                 <video
                                     className={styles.mockupPlaceholder}
-                                    src={getMediaUrl('agency.mp4')}
+                                    src={getMediaUrl('agency (2).mp4')}
                                     autoPlay
                                     loop
                                     muted
@@ -133,7 +139,7 @@ export default function IndustryTabs() {
                             {activeTab === 'influencer' && (
                                 <video
                                     className={styles.mockupPlaceholder}
-                                    src={getMediaUrl('influencer.mp4')}
+                                    src={getMediaUrl('influenceur.mp4')}
                                     autoPlay
                                     loop
                                     muted

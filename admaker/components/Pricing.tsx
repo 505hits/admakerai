@@ -5,10 +5,61 @@ import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import styles from './Pricing.module.css';
 
-export default function Pricing() {
+interface PricingProps {
+    lang?: 'en' | 'fr';
+}
+
+export default function Pricing({ lang = 'en' }: PricingProps) {
     const router = useRouter();
     const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly');
     const [loading, setLoading] = useState<string | null>(null);
+
+    const content = {
+        en: {
+            title: 'Choose Your Perfect Plan',
+            subtitle: 'Start creating professional AI UGC videos in minutes',
+            monthly: 'Monthly',
+            annual: 'Annual',
+            save: 'Save 20%',
+            popular: 'Most Popular',
+            perMonth: '/month',
+            billedAnnually: 'billed annually',
+            getStarted: 'Get Started',
+            loading: 'Loading...',
+            videoCredits: 'video credits',
+            actorCredits: 'actor credits',
+            upTo: 'Up to',
+            videosPerMonth: 'videos per month',
+            languages: '35+ languages',
+            productHolding: 'Product holding',
+            outfitSwapping: 'Outfit swapping',
+            replicatorCredits: 'replicator credits',
+            replications: 'replications'
+        },
+        fr: {
+            title: 'Choisissez Votre Plan Parfait',
+            subtitle: 'Commencez à créer des vidéos UGC IA professionnelles en quelques minutes',
+            monthly: 'Mensuel',
+            annual: 'Annuel',
+            save: 'Économisez 20%',
+            popular: 'Le Plus Populaire',
+            perMonth: '/mois',
+            billedAnnually: 'facturé annuellement',
+            getStarted: 'Commencer',
+            loading: 'Chargement...',
+            videoCredits: 'crédits vidéo',
+            actorCredits: 'crédits acteur',
+            upTo: 'Jusqu\'à',
+            videosPerMonth: 'vidéos par mois',
+            languages: '35+ langues',
+            productHolding: 'Tenue de produit',
+            outfitSwapping: 'Changement de tenue',
+            replicatorCredits: 'crédits réplicateur',
+            replications: 'réplications'
+        }
+    };
+
+    const t = content[lang];
 
     const handleCheckout = async (plan: typeof plans[0], cycle: 'monthly' | 'annual') => {
         setLoading(plan.name);
@@ -22,7 +73,6 @@ export default function Pricing() {
                 return;
             }
 
-            // Convert plan name to planType format expected by API
             const planType = plan.name.toLowerCase() as 'startup' | 'growth' | 'pro';
 
             const response = await fetch('/api/stripe/checkout', {
@@ -54,52 +104,52 @@ export default function Pricing() {
         {
             name: 'Startup',
             monthlyPrice: 49,
-            annualPrice: 470, // 20% discount
+            annualPrice: 470,
             videoCredits: 440,
             videos: 22,
             actorCredits: 440,
             features: [
-                '440 video credits',
-                '440 actor credits',
-                'Up to 22 videos per month',
-                '35+ languages',
-                'Product holding',
-                'Outfit swapping',
+                `440 ${t.videoCredits}`,
+                `440 ${t.actorCredits}`,
+                `${t.upTo} 22 ${t.videosPerMonth}`,
+                t.languages,
+                t.productHolding,
+                t.outfitSwapping,
             ],
         },
         {
             name: 'Growth',
             monthlyPrice: 69,
-            annualPrice: 662, // 20% discount
+            annualPrice: 662,
             videoCredits: 1200,
             videos: 60,
             actorCredits: 1200,
             monthlyReplicatorCredits: 100,
             features: [
-                '1200 video credits',
-                '1200 actor credits',
-                'Up to 60 videos per month',
-                '35+ languages',
-                'Product holding',
-                'Outfit swapping',
+                `1200 ${t.videoCredits}`,
+                `1200 ${t.actorCredits}`,
+                `${t.upTo} 60 ${t.videosPerMonth}`,
+                t.languages,
+                t.productHolding,
+                t.outfitSwapping,
             ],
             popular: true,
         },
         {
             name: 'Pro',
             monthlyPrice: 99,
-            annualPrice: 950, // 20% discount
+            annualPrice: 950,
             videoCredits: 2200,
             videos: 110,
             actorCredits: 2200,
             monthlyReplicatorCredits: 200,
             features: [
-                '2200 video credits',
-                '2200 actor credits',
-                'Up to 110 videos per month',
-                '35+ languages',
-                'Product holding',
-                'Outfit swapping',
+                `2200 ${t.videoCredits}`,
+                `2200 ${t.actorCredits}`,
+                `${t.upTo} 110 ${t.videosPerMonth}`,
+                t.languages,
+                t.productHolding,
+                t.outfitSwapping,
             ],
         },
     ];
@@ -108,9 +158,9 @@ export default function Pricing() {
         <section className={styles.pricingSection} id="pricing">
             <div className={styles.container}>
                 <div className={styles.header}>
-                    <h2 className={styles.title}>Choose Your Perfect Plan</h2>
+                    <h2 className={styles.title}>{t.title}</h2>
                     <p className={styles.subtitle}>
-                        Start creating professional AI UGC videos in minutes
+                        {t.subtitle}
                     </p>
 
                     <div className={styles.pricingToggle}>
@@ -118,14 +168,14 @@ export default function Pricing() {
                             className={`${styles.toggleBtn} ${billingCycle === 'monthly' ? styles.active : ''}`}
                             onClick={() => setBillingCycle('monthly')}
                         >
-                            Monthly
+                            {t.monthly}
                         </button>
                         <button
                             className={`${styles.toggleBtn} ${billingCycle === 'annual' ? styles.active : ''}`}
                             onClick={() => setBillingCycle('annual')}
                         >
-                            Annual
-                            <span className={styles.discountBadge}>Save 20%</span>
+                            {t.annual}
+                            <span className={styles.discountBadge}>{t.save}</span>
                         </button>
                     </div>
                 </div>
@@ -136,7 +186,7 @@ export default function Pricing() {
                             key={plan.name}
                             className={`${styles.pricingCard} ${plan.popular ? styles.featured : ''}`}
                         >
-                            {plan.popular && <div className={styles.popularBadge}>Most Popular</div>}
+                            {plan.popular && <div className={styles.popularBadge}>{t.popular}</div>}
 
                             <div className={styles.pricingHeader}>
                                 <h3>{plan.name}</h3>
@@ -144,11 +194,11 @@ export default function Pricing() {
                                     <span className={styles.price}>
                                         ${billingCycle === 'monthly' ? plan.monthlyPrice : (plan.annualPrice / 12).toFixed(2)}
                                     </span>
-                                    <span className={styles.period}>/month</span>
+                                    <span className={styles.period}>{t.perMonth}</span>
                                 </div>
                                 {billingCycle === 'annual' && (
                                     <p style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', marginTop: '0.5rem' }}>
-                                        ${plan.annualPrice} billed annually
+                                        ${plan.annualPrice} {t.billedAnnually}
                                     </p>
                                 )}
                             </div>
@@ -193,8 +243,8 @@ export default function Pricing() {
                                         </svg>
                                         <span>
                                             {billingCycle === 'annual'
-                                                ? `${plan.monthlyReplicatorCredits * 12} replicator credits (${(plan.monthlyReplicatorCredits * 12) / 20} replications)`
-                                                : `${plan.monthlyReplicatorCredits} replicator credits (${plan.monthlyReplicatorCredits / 20} replications)`
+                                                ? `${plan.monthlyReplicatorCredits * 12} ${t.replicatorCredits} (${(plan.monthlyReplicatorCredits * 12) / 20} ${t.replications})`
+                                                : `${plan.monthlyReplicatorCredits} ${t.replicatorCredits} (${plan.monthlyReplicatorCredits / 20} ${t.replications})`
                                             }
                                         </span>
                                     </li>
@@ -206,7 +256,7 @@ export default function Pricing() {
                                 onClick={() => handleCheckout(plan, billingCycle)}
                                 disabled={loading === plan.name}
                             >
-                                {loading === plan.name ? 'Loading...' : 'Get Started'}
+                                {loading === plan.name ? t.loading : t.getStarted}
                             </button>
                         </div>
                     ))}

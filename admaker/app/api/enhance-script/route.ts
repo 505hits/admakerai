@@ -18,6 +18,33 @@ export async function POST(request: NextRequest) {
             );
         }
 
+        // Check AI script uses remaining
+        const { data: profile, error: profileError } = await supabase
+            .from('profiles')
+            .select('ai_script_uses')
+            .eq('id', user.id)
+            .single();
+
+        if (profileError) {
+            console.error('❌ Error fetching profile:', profileError);
+            return NextResponse.json(
+                { error: 'Failed to check usage limit' },
+                { status: 500 }
+            );
+        }
+
+        const remainingUses = profile?.ai_script_uses ?? 0;
+
+        if (remainingUses <= 0) {
+            console.log('❌ User has no AI script uses remaining');
+            return NextResponse.json(
+                { error: 'You have used all 50 AI script enhancements. This feature is limited to 50 uses per account.' },
+                { status: 403 }
+            );
+        }
+
+        console.log(`✅ User has ${remainingUses} AI script uses remaining`);
+
         // Parse request body
         const body = await request.json();
         const { script, duration = 8 } = body as {
@@ -48,6 +75,20 @@ export async function POST(request: NextRequest) {
             originalScript: script,
             duration
         });
+
+        // Decrement ai_script_uses
+        const newUsesRemaining = remainingUses - 1;
+        const { error: updateError } = await supabase
+            .from('profiles')
+            .update({ ai_script_uses: newUsesRemaining })
+            .eq('id', user.id);
+
+        if (updateError) {
+            console.error('❌ Error updating ai_script_uses:', updateError);
+            // Don't fail the request, just log the error
+        } else {
+            console.log(`✅ AI script uses decremented: ${remainingUses} → ${newUsesRemaining}`);
+        }
 
         console.log('✅ Script enhanced successfully');
         return NextResponse.json({

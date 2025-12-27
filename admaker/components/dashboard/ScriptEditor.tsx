@@ -3,13 +3,27 @@
 import { useState, useEffect } from 'react';
 import styles from './ScriptEditor.module.css';
 
+// List of available accents
+const ACCENTS = [
+    'American', 'British', 'Australian', 'Canadian',
+    'French', 'German', 'Spanish', 'Italian',
+    'Portuguese', 'Russian', 'Chinese', 'Japanese',
+    'Korean', 'Indian', 'Arabic', 'Turkish',
+    'Dutch', 'Swedish', 'Norwegian', 'Danish',
+    'Polish', 'Greek', 'Irish', 'Scottish',
+    'South African', 'New Zealand', 'Mexican', 'Brazilian',
+    'Argentinian', 'Colombian'
+];
+
 interface ScriptEditorProps {
     script?: string;
     sceneDescription?: string;
     showSceneDescription?: boolean;
     duration?: 8 | 16;
+    accent?: string;
     onScriptChange?: (script: string) => void;
     onSceneChange?: (scene: string) => void;
+    onAccentChange?: (accent: string) => void;
 }
 
 export default function ScriptEditor({
@@ -17,11 +31,14 @@ export default function ScriptEditor({
     sceneDescription: externalSceneDescription = '',
     showSceneDescription = true,
     duration = 8,
+    accent: externalAccent = '',
     onScriptChange,
-    onSceneChange
+    onSceneChange,
+    onAccentChange
 }: ScriptEditorProps) {
     const [script, setScript] = useState(externalScript);
     const [sceneDescription, setSceneDescription] = useState(externalSceneDescription);
+    const [accent, setAccent] = useState(externalAccent);
     const [isEnhancing, setIsEnhancing] = useState(false);
     const [enhanceError, setEnhanceError] = useState<string | null>(null);
 
@@ -33,6 +50,10 @@ export default function ScriptEditor({
     useEffect(() => {
         setSceneDescription(externalSceneDescription);
     }, [externalSceneDescription]);
+
+    useEffect(() => {
+        setAccent(externalAccent);
+    }, [externalAccent]);
 
     // Adjust character limit to 500 characters
     const maxChars = 500;
@@ -46,6 +67,11 @@ export default function ScriptEditor({
     const handleSceneChange = (value: string) => {
         setSceneDescription(value);
         if (onSceneChange) onSceneChange(value);
+    };
+
+    const handleAccentChange = (value: string) => {
+        setAccent(value);
+        if (onAccentChange) onAccentChange(value);
     };
 
     const handleEnhanceScript = async () => {
@@ -132,6 +158,26 @@ export default function ScriptEditor({
                     {enhanceError}
                 </div>
             )}
+
+            {/* Accent Selector */}
+            <div className={styles.accentSelector}>
+                <label className={styles.accentLabel}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z" fill="currentColor" />
+                    </svg>
+                    Accent (optional)
+                </label>
+                <select
+                    value={accent}
+                    onChange={(e) => handleAccentChange(e.target.value)}
+                    className={styles.accentSelect}
+                >
+                    <option value="">No specific accent</option>
+                    {ACCENTS.map(acc => (
+                        <option key={acc} value={acc}>{acc}</option>
+                    ))}
+                </select>
+            </div>
 
             {/* Combined Script and Scene Textarea */}
             <div className={styles.editorWrapper}>
