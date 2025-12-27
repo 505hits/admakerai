@@ -2,7 +2,7 @@ import Navbar from '@/components/Navbar';
 import Pricing from '@/components/Pricing';
 import Testimonials from '@/components/Testimonials';
 import FAQ from '@/components/FAQ';
-import styles from '../payment/Payment.module.css';
+import styles from '../../payment/Payment.module.css';
 import { getMediaUrl } from '@/lib/cloudflare-config';
 
 export default function PaymentPageEs() {
