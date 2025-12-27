@@ -25,24 +25,114 @@
         "testimonial3Author": "Jessica L., Responsable Marketing"
     },
     "dashboard": {
-        "createVideo": "Créer une Vidéo",
-        "replicator": "Réplicateur de Pub Gagnante",
-        "history": "Historique",
-        "selectActor": "Sélectionner un Acteur IA",
-        "script": "Script",
-        "sceneDescription": "Description de la Scène",
-        "format": "Format",
-        "duration": "Durée",
-        "generateVideo": "Générer la Vidéo",
-        "generating": "Génération...",
-        "credits": "Crédits",
-        "actorCredits": "Crédits Acteur",
-        "replicatorCredits": "Crédits Réplicateur",
-        "outOfCredits": "Plus de Crédits",
-        "buyCredits": "Acheter des Crédits",
-        "videoGenerated": "Vidéo Générée avec Succès !",
-        "downloadVideo": "Télécharger la Vidéo",
-        "createNewVideo": "Créer une Nouvelle Vidéo"
+        "tabs": {
+            "createVideo": "Créer une Vidéo",
+            "videoHistory": "Historique Vidéos",
+            "myActors": "Mes Acteurs",
+            "replicator": "Réplicateur de Pub Gagnante"
+        },
+        "videoCreation": {
+            "selectActor": "Sélectionner un Acteur IA",
+            "chooseActor": "Choisissez un acteur",
+            "searchActors": "Rechercher des acteurs...",
+            "categories": "Catégories",
+            "all": "Tous",
+            "myCustomActors": "Mes Acteurs Personnalisés",
+            "script": "Script",
+            "scriptPlaceholder": "Décrivez votre vidéo et le script...",
+            "sceneDescription": "Description de la Scène",
+            "sceneDescriptionPlaceholder": "Décrivez la scène (optionnel)...",
+            "productImage": "Image du Produit",
+            "uploadProduct": "Télécharger Produit",
+            "virtualTryOn": "Essayage Virtuel",
+            "uploadClothing": "Télécharger Vêtement",
+            "videoSettings": "Paramètres Vidéo",
+            "format": "Format",
+            "duration": "Durée",
+            "seconds": "secondes",
+            "accent": "Accent",
+            "aiScriptEnhancer": "Améliorateur de Script IA",
+            "enhance": "Améliorer",
+            "enhancing": "Amélioration...",
+            "generateVideo": "Générer la Vidéo",
+            "generating": "Génération..."
+        },
+        "variations": {
+            "variation": "Variation",
+            "addVariation": "+ Ajouter une Variation",
+            "remove": "Retirer",
+            "generateAll": "Générer Toutes les Variations",
+            "totalCost": "Coût Total"
+        },
+        "videoHistory": {
+            "title": "Historique des Vidéos",
+            "loading": "Chargement des vidéos...",
+            "noVideos": "Aucune vidéo pour le moment",
+            "startCreating": "Commencez à créer vos premières vidéos IA",
+            "generatedOn": "Généré le",
+            "download": "Télécharger"
+        },
+        "actors": {
+            "title": "Mes Acteurs Personnalisés",
+            "createNew": "Créer un Nouvel Acteur",
+            "noActors": "Aucun acteur personnalisé pour le moment",
+            "createFirst": "Créez votre premier acteur IA personnalisé",
+            "viewImage": "Voir l'Image"
+        },
+        "actorCreation": {
+            "title": "Créer un Acteur IA Personnalisé",
+            "personImage": "Image de la Personne",
+            "personImageRequired": "Requis",
+            "objectImage": "Image de l'Objet",
+            "objectImageOptional": "Optionnel",
+            "decorImage": "Image du Décor",
+            "decorImageOptional": "Optionnel",
+            "actorName": "Nom de l'Acteur",
+            "namePlaceholder": "Entrez le nom de l'acteur...",
+            "description": "Description",
+            "descriptionPlaceholder": "Décrivez l'apparence et le style de l'acteur...",
+            "aspectRatio": "Ratio d'Aspect",
+            "cost": "Coût : 20 crédits acteur",
+            "cancel": "Annuler",
+            "createActor": "Créer l'Acteur",
+            "creating": "Création..."
+        },
+        "replicator": {
+            "title": "Réplicateur de Pub Gagnante",
+            "new": "NOUVEAU",
+            "warning": "Fonctionne mieux avec des influenceurs sans produits",
+            "estimatedTime": "Temps estimé : 10-15 minutes",
+            "availableCredits": "Crédits disponibles",
+            "uploadVideo": "Télécharger Vidéo",
+            "uploadYourVideo": "Téléchargez votre vidéo",
+            "selectNewActor": "Sélectionner un Nouvel Acteur",
+            "replicate": "Répliquer",
+            "replicating": "Réplication..."
+        },
+        "credits": {
+            "videoCredits": "Crédits Vidéo",
+            "actorCredits": "Crédits Acteur",
+            "replicatorCredits": "Crédits Réplicateur",
+            "outOfCredits": "Plus de Crédits",
+            "buyMoreCredits": "Acheter Plus de Crédits",
+            "creditsRequired": "crédits requis"
+        },
+        "notifications": {
+            "success": "Succès",
+            "error": "Erreur",
+            "videoGenerated": "Vidéo Générée avec Succès !",
+            "videoGenerating": "Votre vidéo est en cours de génération",
+            "checkHistory": "Elle apparaîtra dans l'historique dans 1-3 minutes",
+            "actorCreated": "Acteur créé avec succès !"
+        },
+        "errors": {
+            "selectActor": "Veuillez sélectionner un acteur IA",
+            "enterScript": "Veuillez décrire votre vidéo et le script",
+            "insufficientCredits": "Crédits insuffisants",
+            "loginRequired": "Vous devez être connecté",
+            "generationFailed": "Échec de la génération",
+            "uploadFailed": "Échec du téléchargement"
+        }
     },
     "payment": {
         "chooseYourPlan": "Choisissez Votre Plan",

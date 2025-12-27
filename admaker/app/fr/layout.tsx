@@ -24,6 +24,12 @@ export default function FrenchLayout({
                 <link rel="alternate" hrefLang="en" href="https://admakerai.co/" />
                 <link rel="alternate" hrefLang="fr" href="https://admakerai.co/fr" />
                 <link rel="alternate" hrefLang="x-default" href="https://admakerai.co/" />
+                <link rel="alternate" hrefLang="en" href="https://admakerai.co/login" />
+                <link rel="alternate" hrefLang="fr" href="https://admakerai.co/fr/connexion" />
+                <link rel="alternate" hrefLang="en" href="https://admakerai.co/payment" />
+                <link rel="alternate" hrefLang="fr" href="https://admakerai.co/fr/paiement" />
+                <link rel="alternate" hrefLang="en" href="https://admakerai.co/dashboard" />
+                <link rel="alternate" hrefLang="fr" href="https://admakerai.co/fr/tableau-de-bord" />
             </head>
             <body className={inter.className}>
                 {children}

@@ -1,37 +1,2154 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect, useRef } from 'react';
+import styles from './Dashboard.module.css';
+import ScriptEditor from '@/components/dashboard/ScriptEditor';
+import VideoSettings from '@/components/dashboard/VideoSettings';
+import CustomUploads from '@/components/dashboard/CustomUploads';
+import AIActorSelector from '@/components/dashboard/AIActorSelector';
+import VideoGenerationLoader from '@/components/dashboard/VideoGenerationLoader';
+import VariationTabs, { VideoVariation } from '@/components/dashboard/VariationTabs';
+import VideoUpload from '@/components/dashboard/VideoUpload';
+import { AIActor } from '@/lib/types/veo';
+import { generateVideoWithDuration, veoClient } from '@/lib/api/veo';
+import { getMediaUrl } from '@/lib/cloudflare-config';
+import { saveVideo, getUserVideos } from '@/lib/api/videos';
 import { createClient } from '@/lib/supabase/client';
+import { replicateVideoWithActor } from '@/lib/api/kie';
 
-export default function DashboardPageFr() {
-    const router = useRouter();
-    const supabase = createClient();
+export default function DashboardPage() {
+    const [activeTab, setActiveTab] = useState('create');
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
+    // Variation state
+    const [activeVariation, setActiveVariation] = useState(0);
+    const [visibleVariations, setVisibleVariations] = useState(1); // Start with 1 variation visible
+    const [variations, setVariations] = useState<VideoVariation[]>([
+        { id: 1, script: '', sceneDescription: '', selectedActor: null, productImageUrl: null, virtualTryOnImageUrl: null, format: '16:9', duration: 8, status: 'empty', accent: '' },
+        { id: 2, script: '', sceneDescription: '', selectedActor: null, productImageUrl: null, virtualTryOnImageUrl: null, format: '16:9', duration: 8, status: 'empty', accent: '' },
+        { id: 3, script: '', sceneDescription: '', selectedActor: null, productImageUrl: null, virtualTryOnImageUrl: null, format: '16:9', duration: 8, status: 'empty', accent: '' },
+        { id: 4, script: '', sceneDescription: '', selectedActor: null, productImageUrl: null, virtualTryOnImageUrl: null, format: '16:9', duration: 8, status: 'empty', accent: '' },
+    ]);
+
+    // Video generation state
+    const [selectedActor, setSelectedActor] = useState<AIActor | null>(null);
+    const [script, setScript] = useState('');
+    const [sceneDescription, setSceneDescription] = useState('');
+    const [productImageUrl, setProductImageUrl] = useState<string | null>(null);
+    const [virtualTryOnImageUrl, setVirtualTryOnImageUrl] = useState<string | null>(null);
+    const [format, setFormat] = useState<'16:9' | '9:16'>('16:9');
+    const [duration, setDuration] = useState<8 | 16>(8);
+    const [isGenerating, setIsGenerating] = useState(false);
+    const [generatedVideo, setGeneratedVideo] = useState<string | null>(null);
+    const [credits, setCredits] = useState(0); // Start with 0 credits
+    const [actorCredits, setActorCredits] = useState(0); // AI Actor credits
+    const [replicatorCredits, setReplicatorCredits] = useState(0); // Replicator credits
+    const [showCreditsModal, setShowCreditsModal] = useState(false);
+    const [showCreateActorModal, setShowCreateActorModal] = useState(false);
+    const [showSuccessNotification, setShowSuccessNotification] = useState(false);
+    const [actorReferenceImage, setActorReferenceImage] = useState<string | null>(null);
+    const [error, setError] = useState<string | null>(null);
+    const [videoHistory, setVideoHistory] = useState<any[]>([]);
+    const [isLoadingVideos, setIsLoadingVideos] = useState(false);
+    const [videoModalUrl, setVideoModalUrl] = useState<string | null>(null);
+
+    // Custom Actor creation state
+    const [customActors, setCustomActors] = useState<any[]>([]);
+    const [actorName, setActorName] = useState('');
+    const [actorPrompt, setActorPrompt] = useState('');
+    const [actorAspectRatio, setActorAspectRatio] = useState<'1:1' | '9:16' | '16:9'>('9:16'); // Default to mobile format
+    const [personImage, setPersonImage] = useState<File | null>(null);
+    const [objectImage, setObjectImage] = useState<File | null>(null);
+    const [decorImage, setDecorImage] = useState<File | null>(null);
+    const [personImagePreview, setPersonImagePreview] = useState<string | null>(null);
+    const [objectImagePreview, setObjectImagePreview] = useState<string | null>(null);
+    const [decorImagePreview, setDecorImagePreview] = useState<string | null>(null);
+    const [isCreatingActor, setIsCreatingActor] = useState(false);
+    const [actorCreationError, setActorCreationError] = useState<string | null>(null);
+    const [viewActorImageUrl, setViewActorImageUrl] = useState<string | null>(null);
+
+    // Replicator state
+    const [uploadedVideoUrl, setUploadedVideoUrl] = useState<string | null>(null);
+    const [replicatorActor, setReplicatorActor] = useState<AIActor | null>(null); // For viewing actor in modal
+    const [isReplicatorGeneration, setIsReplicatorGeneration] = useState(false); // Track if current generation is from Replicator
+
+    // Ref to track if we're currently changing variations (prevents useEffect from saving during the change)
+    const isChangingVariation = useRef(false);
+
+    // Load video history and custom actors from Supabase on mount
     useEffect(() => {
-        const checkAuthAndRedirect = async () => {
-            const { data: { session } } = await supabase.auth.getSession();
-            if (!session) {
-                router.push('/fr/connexion');
-            } else {
-                // Redirect to English dashboard
-                // Full French translation coming soon
-                router.push('/dashboard');
+        const loadData = async () => {
+            const videos = await getUserVideos(20);
+            setVideoHistory(videos);
+
+            // Load custom actors and user credits
+            const supabase = createClient();
+            const { data: { user } } = await supabase.auth.getUser();
+            if (user) {
+                // Load custom actors
+                const { data: actors } = await supabase
+                    .from('custom_actors')
+                    .select('*')
+                    .eq('user_id', user.id)
+                    .order('created_at', { ascending: false });
+                if (actors) {
+                    setCustomActors(actors);
+                }
+
+                // Load user credits from profiles
+                const { data: profile } = await supabase
+                    .from('profiles')
+                    .select('credits, actor_credits, replicator_credits')
+                    .eq('id', user.id)
+                    .single();
+
+                if (profile) {
+                    setCredits(profile.credits || 0);
+                    setActorCredits(profile.actor_credits || 0);
+                    setReplicatorCredits(profile.replicator_credits || 0);
+                }
             }
         };
-        checkAuthAndRedirect();
-    }, [router]);
+        loadData();
+    }, []);
+
+    // Save video to history (Supabase)
+    const saveVideoToHistory = async (video: any) => {
+        const supabase = createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+
+        if (!user) {
+            console.error('No user found, cannot save video');
+            return;
+        }
+
+        // Save to Supabase
+        const savedVideo = await saveVideo({
+            user_id: user.id,
+            task_id: video.id,
+            video_url: video.videoUrl,
+            actor_name: video.actorName,
+            actor_image_url: video.actorImage,
+            script: video.script,
+            scene_description: sceneDescription,
+            duration: video.duration,
+            format: video.format,
+            status: 'completed',
+        });
+
+        if (savedVideo) {
+            // Update local state
+            const newHistory = [savedVideo, ...videoHistory].slice(0, 20);
+            setVideoHistory(newHistory);
+        }
+    };
+
+    // Helper functions for variation management
+    const updateCurrentVariation = (updates: Partial<VideoVariation>) => {
+        setVariations(prev => prev.map((v, i) =>
+            i === activeVariation ? { ...v, ...updates, status: 'configured' as const } : v
+        ));
+    };
+
+    const getCurrentVariation = () => variations[activeVariation];
+
+
+    // Sync current variation with form state when switching
+    const handleVariationChange = (index: number) => {
+        // Don't do anything if clicking on the already active variation
+        if (index === activeVariation) return;
+
+        // Set flag to prevent useEffect from saving during the change
+        isChangingVariation.current = true;
+
+        // Save current values before switching
+        const currentScript = script;
+        const currentSceneDescription = sceneDescription;
+        const currentSelectedActor = selectedActor;
+        const currentProductImageUrl = productImageUrl;
+        const currentVirtualTryOnImageUrl = virtualTryOnImageUrl;
+        const currentFormat = format;
+        const currentDuration = duration;
+        const currentIndex = activeVariation;
+
+        // Update variations array: save current variation and prepare to load new one
+        setVariations(prev => {
+            const updated = prev.map((v, i) => {
+                if (i === currentIndex) {
+                    // Save current variation data
+                    return {
+                        ...v,
+                        script: currentScript,
+                        sceneDescription: currentSceneDescription,
+                        selectedActor: currentSelectedActor,
+                        productImageUrl: currentProductImageUrl,
+                        virtualTryOnImageUrl: currentVirtualTryOnImageUrl,
+                        format: currentFormat,
+                        duration: currentDuration,
+                        status: (currentSelectedActor && currentScript.trim()) ? 'configured' as const : 'empty' as const
+                    };
+                }
+                return v;
+            });
+
+            // Load the new variation data into form
+            const newVariation = updated[index];
+            setScript(newVariation.script);
+            setSceneDescription(newVariation.sceneDescription);
+            setSelectedActor(newVariation.selectedActor);
+            setProductImageUrl(newVariation.productImageUrl);
+            setVirtualTryOnImageUrl(newVariation.virtualTryOnImageUrl);
+            setFormat(newVariation.format);
+            setDuration(newVariation.duration);
+
+            return updated;
+        });
+
+        // Switch active variation
+        setActiveVariation(index);
+
+        // Re-enable auto-save after the change is complete
+        setTimeout(() => {
+            isChangingVariation.current = false;
+        }, 0);
+    };
+
+    // Handlers that update both state and variations array directly
+    const handleScriptChange = (newScript: string) => {
+        setScript(newScript);
+        setVariations(prev => prev.map((v, i) =>
+            i === activeVariation ? { ...v, script: newScript, status: (v.selectedActor && newScript.trim()) ? 'configured' as const : 'empty' as const } : v
+        ));
+    };
+
+    const handleSceneDescriptionChange = (newDescription: string) => {
+        setSceneDescription(newDescription);
+        setVariations(prev => prev.map((v, i) =>
+            i === activeVariation ? { ...v, sceneDescription: newDescription } : v
+        ));
+    };
+
+    const handleProductImageChange = (url: string | null) => {
+        setProductImageUrl(url);
+        setVariations(prev => prev.map((v, i) =>
+            i === activeVariation ? { ...v, productImageUrl: url } : v
+        ));
+    };
+
+    const handleVirtualTryOnChange = (url: string | null) => {
+        setVirtualTryOnImageUrl(url);
+        setVariations(prev => prev.map((v, i) =>
+            i === activeVariation ? { ...v, virtualTryOnImageUrl: url } : v
+        ));
+    };
+
+    const handleFormatChange = (newFormat: '16:9' | '9:16') => {
+        setFormat(newFormat);
+        setVariations(prev => prev.map((v, i) =>
+            i === activeVariation ? { ...v, format: newFormat } : v
+        ));
+    };
+
+    const handleDurationChange = (newDuration: 8 | 16) => {
+        setDuration(newDuration);
+        setVariations(prev => prev.map((v, i) =>
+            i === activeVariation ? { ...v, duration: newDuration } : v
+        ));
+    };
+
+    const handleAddVariation = () => {
+        if (visibleVariations < 4) {
+            setVisibleVariations(prev => prev + 1);
+        }
+    };
+
+    const handleRemoveVariation = (index: number) => {
+        if (visibleVariations > 1) {
+            // Reset the variation being removed
+            setVariations(prev => prev.map((v, i) =>
+                i === index ? { ...v, script: '', sceneDescription: '', selectedActor: null, productImageUrl: null, virtualTryOnImageUrl: null, format: '16:9' as const, duration: 8 as const, status: 'empty' as const } : v
+            ));
+
+            // Decrease visible count
+            setVisibleVariations(prev => prev - 1);
+
+            // If removing the active variation, switch to the first one
+            if (activeVariation === index) {
+                setActiveVariation(0);
+                const firstVariation = variations[0];
+                setScript(firstVariation.script);
+                setSceneDescription(firstVariation.sceneDescription);
+                setSelectedActor(firstVariation.selectedActor);
+                setProductImageUrl(firstVariation.productImageUrl);
+                setVirtualTryOnImageUrl(firstVariation.virtualTryOnImageUrl);
+                setFormat(firstVariation.format);
+                setDuration(firstVariation.duration);
+            }
+        }
+    };
+
+    // Handle actor selection - update both state and current variation
+    const handleActorSelect = (actor: AIActor | null) => {
+        setSelectedActor(actor);
+        // Immediately update the active variation
+        updateCurrentVariation({ selectedActor: actor });
+    };
+
+    const getCreditCost = () => {
+        // Credits based only on duration
+        return duration === 8 ? 20 : 40;
+    };
+
+    const getTotalCreditCost = () => {
+        // Calculate total cost for all configured variations
+        const configuredVariations = variations.slice(0, visibleVariations).filter(v => v.selectedActor && v.script.trim());
+        return configuredVariations.reduce((sum, v) => sum + (v.duration === 8 ? 20 : 40), 0);
+    };
+
+    const handleActorImageUpload = (e: React.ChangeEvent<HTMLInputElement>, type: 'person' | 'object' | 'decor') => {
+        const file = e.target.files?.[0];
+        if (file) {
+            // Validate file type
+            if (!file.type.startsWith('image/')) {
+                setActorCreationError('Veuillez télécharger un fichier image');
+                return;
+            }
+
+            // Validate file size (max 30MB as per Nano Banana spec)
+            if (file.size > 30 * 1024 * 1024) {
+                setActorCreationError('La taille de l'image doit être inférieure à 30 Mo');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                const preview = reader.result as string;
+                if (type === 'person') {
+                    setPersonImage(file);
+                    setPersonImagePreview(preview);
+                } else if (type === 'object') {
+                    setObjectImage(file);
+                    setObjectImagePreview(preview);
+                } else if (type === 'decor') {
+                    setDecorImage(file);
+                    setDecorImagePreview(preview);
+                }
+                setActorCreationError(null);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
+    const handleCreateActor = async () => {
+        try {
+            setActorCreationError(null);
+
+            // Validate inputs
+            if (!personImage) {
+                setActorCreationError('Veuillez télécharger une image de personne');
+                return;
+            }
+
+            if (!actorPrompt.trim()) {
+                setActorCreationError('Veuillez fournir une description');
+                return;
+            }
+
+            // Check credits (20 credits per actor)
+            if (actorCredits < 20) {
+                setActorCreationError('Crédits Acteur IA insuffisants (20 crédits requis)');
+                return;
+            }
+
+            setIsCreatingActor(true);
+
+            // Get user
+            const supabase = createClient();
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) {
+                throw new Error('Non authentifié');
+            }
+
+            // Upload reference images to temporary storage (we'll use base64 for now)
+            // In production, you might want to upload to R2 first
+            const personImageUrl = personImagePreview;
+            const objectImageUrl = objectImagePreview;
+            const decorImageUrl = decorImagePreview;
+
+            // Call create actor API
+            const response = await fetch('/api/kie/nano-banana/create-actor', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    userId: user.id,
+                    actorName: actorName || 'Custom Actor',
+                    prompt: actorPrompt,
+                    personImageUrl,
+                    objectImageUrl,
+                    decorImageUrl,
+                    aspectRatio: actorAspectRatio,
+                    resolution: '1K'
+                })
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('❌ API Error:', errorText);
+                try {
+                    const error = JSON.parse(errorText);
+                    throw new Error(error.error || 'Échec de la création de l'acteur');
+                } catch (e) {
+                    throw new Error(`Failed to create actor: ${response.status} ${response.statusText}`);
+                }
+            }
+
+            const responseData = await response.json();
+            console.log('📦 API Response:', responseData);
+
+            if (!responseData || !responseData.taskId) {
+                console.error('❌ Invalid response:', responseData);
+                throw new Error('Invalid response from server: missing taskId');
+            }
+
+            const taskId = responseData.taskId;
+            console.log('🍌 Actor generation started:', taskId);
+
+            // Deduct credits (20 credits per actor)
+            const newActorCredits = actorCredits - 20;
+            setActorCredits(newActorCredits);
+
+            // Update credits in Supabase
+            const { error: updateError } = await supabase
+                .from('profiles')
+                .update({ actor_credits: newActorCredits })
+                .eq('id', user.id);
+
+            if (updateError) {
+                console.error('❌ Error updating actor credits:', updateError);
+            }
+
+            // Poll for completion (or wait for webhook)
+            // Nano Banana can take 2-5 minutes, so we poll for up to 5 minutes
+            let attempts = 0;
+            const maxAttempts = 300; // 300 seconds = 5 minutes
+
+            const pollStatus = async () => {
+                if (attempts >= maxAttempts) {
+                    console.log('⏱️ Polling timeout reached after 5 minutes');
+                    setIsCreatingActor(false);
+                    setActorCreationError('Generation is taking longer than expected. The actor will appear in "Mes Acteurs" when ready (usually within 5-10 minutes).');
+
+                    // Close modal and switch to actors tab so user can see when it appears
+                    setShowCreateActorModal(false);
+                    setActiveTab('actors');
+                    return;
+                }
+
+                attempts++;
+
+                const statusResponse = await fetch(`/api/kie/nano-banana/check-status?taskId=${taskId}`);
+                const statusData = await statusResponse.json();
+
+                if (statusData.state === 'success' && statusData.imageUrl) {
+                    console.log('✅ Actor created successfully!');
+                    console.log('📸 Image URL:', statusData.imageUrl);
+
+                    // Save actor directly to custom_actors table (in case webhook didn't fire)
+                    console.log('💾 Saving actor to database...');
+                    const { error: saveError } = await supabase
+                        .from('custom_actors')
+                        .insert({
+                            user_id: user.id,
+                            name: actorName || 'Custom Actor',
+                            description: actorPrompt || '',
+                            reference_image_url: statusData.imageUrl,
+                            metadata: {
+                                task_id: taskId,
+                                prompt: actorPrompt,
+                                image_url: statusData.imageUrl,
+                                person_reference_url: personImagePreview,
+                                object_reference_url: objectImagePreview,
+                                decor_reference_url: decorImagePreview,
+                                aspect_ratio: actorAspectRatio,
+                                resolution: '1K',
+                                generated_at: new Date().toISOString()
+                            }
+                        });
+
+                    if (saveError) {
+                        console.error('❌ Error saving actor:', saveError);
+                        // Check if it's a duplicate key error
+                        if (saveError.code === '23505') {
+                            console.log('⚠️ Actor was already saved (race condition with webhook)');
+                        } else {
+                            setActorCreationError('Failed to save actor: ' + saveError.message);
+                            setIsCreatingActor(false);
+                            return;
+                        }
+                    } else {
+                        console.log('💾 Actor saved to database successfully');
+                    }
+
+                    // Reload custom actors
+                    const { data: actors } = await supabase
+                        .from('custom_actors')
+                        .select('*')
+                        .eq('user_id', user.id)
+                        .order('created_at', { ascending: false });
+                    if (actors) {
+                        setCustomActors(actors);
+                    }
+
+                    setIsCreatingActor(false);
+                    setShowCreateActorModal(false);
+
+                    // Reset form
+                    setActorName('');
+                    setActorPrompt('');
+                    setActorAspectRatio('9:16');
+                    setPersonImage(null);
+                    setObjectImage(null);
+                    setDecorImage(null);
+                    setPersonImagePreview(null);
+                    setObjectImagePreview(null);
+                    setDecorImagePreview(null);
+
+                    // Switch to actors tab
+                    setActiveTab('actors');
+
+                } else if (statusData.state === 'fail') {
+                    setIsCreatingActor(false);
+                    setActorCreationError(statusData.failMsg || 'Échec de la génération');
+                } else {
+                    // Still waiting, poll again in 1 second
+                    setTimeout(pollStatus, 1000);
+                }
+            };
+
+            // Start polling after 2 seconds
+            setTimeout(pollStatus, 2000);
+
+        } catch (error: any) {
+            console.error('❌ Error creating actor:', error);
+            setActorCreationError(error.message || 'Échec de la création de l'acteur');
+            setIsCreatingActor(false);
+        }
+    };
+
+    const handleGenerateVideo = async () => {
+        // Detect if this is a Replicator generation based on active tab
+        const isReplicator = activeTab === 'replicator';
+        setIsReplicatorGeneration(isReplicator);
+
+        if (!selectedActor) {
+            setError('Veuillez sélectionner un acteur IA');
+            return;
+        }
+
+        if (!script.trim()) {
+            setError('Veuillez décrire votre vidéo et le script');
+            return;
+        }
+
+        // Parse the combined script to extract script and scene description
+        // Expected format: "Script: ... \n\nScene: ..."
+        let actualScript = script;
+        let actualScene = sceneDescription || 'Professional video presentation';
+
+        // Try to parse if user followed the format
+        const scriptMatch = script.match(/Script:\s*([^]*?)(?=\n\nScene:|$)/i);
+        const sceneMatch = script.match(/Scene:\s*([^]*)$/i);
+
+        if (scriptMatch && scriptMatch[1]) {
+            actualScript = scriptMatch[1].trim();
+        }
+        if (sceneMatch && sceneMatch[1]) {
+            actualScene = sceneMatch[1].trim();
+        }
+
+        // If no explicit format, use the whole text as script and default scene
+        if (!scriptMatch && !sceneMatch) {
+            actualScript = script.trim();
+        }
+
+        const cost = getCreditCost();
+        if (credits < cost) {
+            setShowCreditsModal(true);
+            return;
+        }
+
+        setIsGenerating(true);
+        setError(null);
+        setGeneratedVideo(null);
+
+        try {
+            const supabase = createClient();
+            const { data: { user } } = await supabase.auth.getUser();
+
+            // Require authentication
+            if (!user) {
+                setError('Vous devez être connecté pour générer des vidéos');
+                setIsGenerating(false);
+                return;
+            }
+
+            const userId = user.id;
+
+            // Call Veo API (simplified - only returns taskId)
+            const result = await generateVideoWithDuration(
+                selectedActor.imageUrl,
+                actualScript,
+                actualScene,
+                format,
+                duration,
+                productImageUrl || undefined,
+                virtualTryOnImageUrl || undefined
+            );
+
+            console.log('✅ Video generation started, taskId:', result.taskId);
+
+            // Store metadata for webhook
+            try {
+                await fetch('/api/veo/store-metadata', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        taskId: result.taskId,
+                        userId: userId,
+                        actorName: selectedActor.name,
+                        actorImageUrl: selectedActor.thumbnailUrl,
+                        script: actualScript,
+                        sceneDescription: actualScene,
+                        duration,
+                        format
+                    })
+                });
+            } catch (metaErr) {
+                console.error('❌ Metadata storage error:', metaErr);
+            }
+
+            // Deduct credits immediately
+            const newCredits = credits - cost;
+            setCredits(newCredits);
+
+            // Update credits in Supabase
+            const { error: updateError } = await supabase
+                .from('profiles')
+                .update({ credits: newCredits })
+                .eq('id', userId);
+
+            if (updateError) {
+                console.error('❌ Error updating video credits:', updateError);
+            }
+
+            // Show success message and switch to Video History
+            setError(null);
+            setIsGenerating(false);
+
+            // Switch to Video History tab
+            setActiveTab('history');
+
+            // Show success notification
+            setShowSuccessNotification(true);
+
+            // Auto-hide notification after 5 seconds
+            setTimeout(() => {
+                setShowSuccessNotification(false);
+            }, 5000);
+
+            // Reload videos after 2 minutes to catch the new video
+            setTimeout(async () => {
+                const videos = await getUserVideos(20);
+                setVideoHistory(videos);
+            }, 120000); // 2 minutes
+
+            console.log('💡 Video will appear in history in 1-3 minutes');
+
+        } catch (err: any) {
+            console.error('❌ Generation error:', err);
+            setError(err.message || 'Échec du démarrage de la génération vidéo');
+            setIsGenerating(false);
+        }
+    };
+
+    const handleGenerateAllVariations = async () => {
+        // Save current variation state first
+        updateCurrentVariation({
+            script,
+            sceneDescription,
+            selectedActor,
+            productImageUrl,
+            virtualTryOnImageUrl,
+            format,
+            duration,
+        });
+
+        // Get all configured variations
+        const configuredVariations = variations.filter(v => v.selectedActor && v.script.trim());
+
+        if (configuredVariations.length === 0) {
+            setError('Veuillez configurer au moins une variation avec un acteur et un script');
+            return;
+        }
+
+        // Calculate total cost
+        const totalCost = configuredVariations.reduce((sum, v) => {
+            return sum + (v.duration === 8 ? 20 : 40);
+        }, 0);
+
+        if (credits < totalCost) {
+            setShowCreditsModal(true);
+            return;
+        }
+
+        setIsGenerating(true);
+        setError(null);
+
+        try {
+            const supabase = createClient();
+            const { data: { user } } = await supabase.auth.getUser();
+
+            if (!user) {
+                setError('Vous devez être connecté pour générer des vidéos');
+                setIsGenerating(false);
+                return;
+            }
+
+            // Generate all variations
+            const generationPromises = configuredVariations.map(async (variation) => {
+                const actualScript = variation.script.trim();
+                const actualScene = variation.sceneDescription || 'Professional video presentation';
+
+                return generateVideoWithDuration(
+                    variation.selectedActor!.imageUrl,
+                    actualScript,
+                    actualScene,
+                    variation.format,
+                    variation.duration,
+                    variation.productImageUrl || undefined,
+                    variation.virtualTryOnImageUrl || undefined
+                );
+            });
+
+            const results = await Promise.all(generationPromises);
+
+            console.log(`✅ Started generating ${results.length} variations`);
+
+            // Store metadata for each variation so webhook can save them
+            for (let i = 0; i < results.length; i++) {
+                const result = results[i];
+                const variation = configuredVariations[i];
+
+                try {
+                    await fetch('/api/veo/store-metadata', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            taskId: result.taskId,
+                            userId: user.id,
+                            actorName: variation.selectedActor!.name,
+                            actorImageUrl: variation.selectedActor!.thumbnailUrl,
+                            script: variation.script.trim(),
+                            sceneDescription: variation.sceneDescription || 'Professional video presentation',
+                            duration: variation.duration,
+                            format: variation.format
+                        })
+                    });
+                    console.log(`✅ Metadata stored for variation ${i + 1}/${results.length}`);
+                } catch (metaErr) {
+                    console.error(`❌ Metadata storage error for variation ${i + 1}:`, metaErr);
+                }
+            }
+
+
+            // Deduct credits
+            const newCredits = credits - totalCost;
+            setCredits(newCredits);
+
+            await supabase
+                .from('profiles')
+                .update({ credits: newCredits })
+                .eq('id', user.id);
+
+            // Update variation statuses
+            setVariations(prev => prev.map(v => {
+                const wasGenerated = configuredVariations.find(cv => cv.id === v.id);
+                return wasGenerated ? { ...v, status: 'generating' as const } : v;
+            }));
+
+            setIsGenerating(false);
+            setActiveTab('history');
+            setShowSuccessNotification(true);
+
+            setTimeout(() => {
+                setShowSuccessNotification(false);
+            }, 5000);
+
+            setTimeout(async () => {
+                const videos = await getUserVideos(20);
+                setVideoHistory(videos);
+            }, 120000);
+
+        } catch (err: any) {
+            console.error('❌ Batch generation error:', err);
+            setError(err.message || 'Échec du démarrage de la génération par lots');
+            setIsGenerating(false);
+        }
+    };
+
+    const handleReplicateVideo = async () => {
+        if (!uploadedVideoUrl) {
+            setError('Please upload a video first');
+            return;
+        }
+
+        if (!replicatorActor) {
+            setError('Please select an AI actor');
+            return;
+        }
+
+        // Cost: 20 replicator credits per use
+        const cost = 20;
+
+        if (replicatorCredits < cost) {
+            setError('Insufficient replicator credits. Upgrade to Growth or Pro plan.');
+            setShowCreditsModal(true);
+            return;
+        }
+
+        setIsGenerating(true);
+        setError(null);
+
+        try {
+            const supabase = createClient();
+            const { data: { user } } = await supabase.auth.getUser();
+
+            if (!user) {
+                setError('You must be logged in to replicate videos');
+                setIsGenerating(false);
+                return;
+            }
+
+            console.log('🎬 Starting video replication with Replicate...');
+
+            // Call Replicate API route
+            const apiResponse = await fetch('/api/replicate-video', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    videoUrl: uploadedVideoUrl,
+                    actorImageUrl: replicatorActor.thumbnailUrl,
+                    resolution: '720', // Replicate uses '720' not '720p'
+                }),
+            });
+
+            if (!apiResponse.ok) {
+                const errorData = await apiResponse.json();
+                throw new Error(errorData.error || 'Failed to start replication');
+            }
+
+            const result = await apiResponse.json();
+
+            console.log('✅ Replicate prediction created:', result.predictionId);
+
+            // Store metadata for tracking
+            try {
+                await fetch('/api/veo/store-metadata', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        taskId: result.predictionId, // Use predictionId as taskId
+                        userId: user.id,
+                        actorName: replicatorActor.name,
+                        actorImageUrl: replicatorActor.thumbnailUrl,
+                        script: 'Replicated from winning ad',
+                        sceneDescription: 'Video replication with Wan 2.2',
+                        duration: 8,
+                        format: '16:9',
+                    }),
+                });
+            } catch (metaErr) {
+                console.error('❌ Metadata storage error:', metaErr);
+            }
+
+            // Deduct ONLY replicator credits (20 credits)
+            const newReplicatorCredits = replicatorCredits - cost;
+            setReplicatorCredits(newReplicatorCredits);
+
+            await supabase
+                .from('profiles')
+                .update({ replicator_credits: newReplicatorCredits })
+                .eq('id', user.id);
+
+            setIsGenerating(false);
+            setActiveTab('history');
+            setShowSuccessNotification(true);
+
+            setTimeout(() => {
+                setShowSuccessNotification(false);
+            }, 5000);
+
+            setTimeout(async () => {
+                const videos = await getUserVideos(20);
+                setVideoHistory(videos);
+            }, 120000);
+
+            console.log('💡 Replicated video will appear in history in 10-15 minutes');
+
+        } catch (err: any) {
+            console.error('❌ Replication error:', err);
+            setError(err.message || 'Failed to start video replication');
+            setIsGenerating(false);
+        }
+    };
 
     return (
-        <div style={{
-            minHeight: '100vh',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            background: '#000',
-            color: '#fff'
-        }}>
-            <p>Chargement...</p>
+        <div className={styles.dashboardContainer}>
+            {/* Video Modal */}
+            {videoModalUrl && (
+                <div
+                    style={{
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background: 'rgba(0, 0, 0, 0.95)',
+                        zIndex: 9999,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        padding: '20px'
+                    }}
+                    onClick={() => setVideoModalUrl(null)}
+                >
+                    <div style={{ position: 'relative', maxWidth: '90vw', maxHeight: '90vh' }}>
+                        <button
+                            onClick={() => setVideoModalUrl(null)}
+                            style={{
+                                position: 'absolute',
+                                top: '-40px',
+                                right: '0',
+                                background: 'rgba(255, 255, 255, 0.1)',
+                                border: 'none',
+                                color: 'white',
+                                width: '32px',
+                                height: '32px',
+                                borderRadius: '50%',
+                                cursor: 'pointer',
+                                fontSize: '20px'
+                            }}
+                        >
+                            ×
+                        </button>
+                        <video
+                            src={videoModalUrl}
+                            controls
+                            autoPlay
+                            style={{
+                                maxWidth: '100%',
+                                maxHeight: '90vh',
+                                borderRadius: '12px'
+                            }}
+                            onClick={(e) => e.stopPropagation()}
+                        />
+                    </div>
+                </div>
+            )}
+
+            {/* Sidebar Overlay */}
+            <div
+                className={`${styles.sidebarOverlay} ${sidebarOpen ? styles.open : ''}`}
+                onClick={() => setSidebarOpen(false)}
+            />
+
+            {/* Sidebar */}
+            <aside className={`${styles.sidebar} ${sidebarOpen ? styles.open : ''}`}>
+                <div className={styles.sidebarHeader}>
+                    <a href="/" className={styles.logo}>
+                        <img src={getMediaUrl('logo.png')} alt="AdMaker AI" />
+                    </a>
+                </div>
+
+                <nav className={styles.sidebarNav}>
+                    <button
+                        className={`${styles.navItem} ${activeTab === 'create' ? styles.active : ''}`}
+                        onClick={() => setActiveTab('create')}
+                    >
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                        </svg>
+                        Create Video
+                    </button>
+
+                    <button
+                        className={`${styles.navItem} ${activeTab === 'replicator' ? styles.active : ''}`}
+                        onClick={() => setActiveTab('replicator')}
+                    >
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 4h6v6H4zM10 4h6v6h-6zM4 10h6v6H4zM10 10h6v6h-6z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        Winning Ad Replicator
+                        <span className={styles.newBadge}>NEW</span>
+                    </button>
+
+                    <button
+                        className={`${styles.navItem} ${activeTab === 'history' ? styles.active : ''}`}
+                        onClick={() => setActiveTab('history')}
+                    >
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 18a8 8 0 100-16 8 8 0 000 16z" stroke="currentColor" strokeWidth="2" />
+                            <path d="M10 6v4l3 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                        </svg>
+                        Video History
+                    </button>
+
+                    <button
+                        className={`${styles.navItem} ${activeTab === 'actors' ? styles.active : ''}`}
+                        onClick={() => setActiveTab('actors')}
+                    >
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 10a3 3 0 100-6 3 3 0 000 6zM4 18a6 6 0 0112 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                        </svg>
+                        My Actors
+                    </button>
+
+
+                    <a href="/#pricing" className={`${styles.navItem} ${styles.upgradeItem}`}>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" fill="currentColor" />
+                        </svg>
+                        Upgrade Plan
+                    </a>
+                </nav>
+
+                <div className={styles.creditsDisplay}>
+                    <div className={styles.creditItem}>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" fill="currentColor" />
+                        </svg>
+                        <div>
+                            <span className={styles.creditsLabel}>Crédits Vidéo</span>
+                            <span className={styles.creditsValue}>{credits}</span>
+                        </div>
+                    </div>
+                    <div className={styles.creditItem}>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M10 10a3 3 0 100-6 3 3 0 000 6zM4 18a6 6 0 0112 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                        </svg>
+                        <div>
+                            <span className={styles.creditsLabel}>Crédits Acteur IA</span>
+                            <span className={styles.creditsValue}>{actorCredits}</span>
+                        </div>
+                    </div>
+                    <div className={styles.creditItem}>
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M4 4h6v6H4zM10 4h6v6h-6zM4 10h6v6H4zM10 10h6v6h-6z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                        <div>
+                            <span className={styles.creditsLabel}>Crédits Réplicateur</span>
+                            <span className={styles.creditsValue}>{replicatorCredits}</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            {/* Mobile Menu Toggle */}
+            <button
+                className={styles.mobileMenuBtn}
+                onClick={() => setSidebarOpen(!sidebarOpen)}
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            {/* Main Content */}
+            <main className={styles.mainContent}>
+                {activeTab === 'create' && (
+                    <div className={styles.createSection}>
+                        <h1 className={styles.pageTitle}>Create Your Video</h1>
+                        <p className={styles.pageSubtitle}>
+                            Select an AI actor, add your script, and generate professional videos in seconds
+                        </p>
+
+                        {/* Variation Tabs */}
+                        <VariationTabs
+                            variations={variations}
+                            activeVariation={activeVariation}
+                            visibleVariations={visibleVariations}
+                            onVariationChange={handleVariationChange}
+                            onAddVariation={handleAddVariation}
+                            onRemoveVariation={handleRemoveVariation}
+                        />
+
+                        {/* AI Actor Selection */}
+                        <AIActorSelector onActorSelect={handleActorSelect} customActors={customActors} />
+
+                        {/* Show rest of form only if actor is selected */}
+                        {selectedActor && (
+                            <>
+                                {/* Script Editor */}
+                                <div data-next-section>
+                                    <ScriptEditor
+                                        script={script}
+                                        sceneDescription={sceneDescription}
+                                        showSceneDescription={true}
+                                        duration={duration}
+                                        onScriptChange={handleScriptChange}
+                                        onSceneChange={handleSceneDescriptionChange}
+                                    />
+                                </div>
+
+                                {/* Optional Product and Virtual Try-On Images */}
+                                <CustomUploads
+                                    onProductImageChange={handleProductImageChange}
+                                    onVirtualTryOnImageChange={handleVirtualTryOnChange}
+                                />
+
+                                {/* Video Settings */}
+                                <VideoSettings
+                                    format={format}
+                                    duration={duration}
+                                    onFormatChange={handleFormatChange}
+                                    onDurationChange={handleDurationChange}
+                                />
+                                {/* Error Display */}
+                                {error && (
+                                    <div className={styles.errorBox}>
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                            <circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="2" />
+                                            <path d="M10 6v4M10 13h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                        </svg>
+                                        <span>{error}</span>
+                                    </div>
+                                )}
+
+                                {/* Generate Button */}
+                                <div className={styles.generateSection}>
+                                    <button
+                                        className={styles.generateBtn}
+                                        onClick={handleGenerateVideo}
+                                        disabled={isGenerating}
+                                    >
+                                        {isGenerating ? (
+                                            <>
+                                                <div className={styles.spinner}></div>
+                                                Generating {duration}s video...
+                                            </>
+                                        ) : (
+                                            <>
+                                                Generate Video
+                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                    <path d="M5 10l5 5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                </svg>
+                                            </>
+                                        )}
+                                    </button>
+
+                                    {/* Generate All Variations Button */}
+                                    {variations.slice(0, visibleVariations).filter(v => v.selectedActor && v.script.trim()).length > 1 && (
+                                        <button
+                                            className={`${styles.generateBtn} ${styles.generateAllBtn}`}
+                                            onClick={handleGenerateAllVariations}
+                                            disabled={isGenerating}
+                                            style={{
+                                                background: 'linear-gradient(135deg, rgba(255, 8, 68, 0.2) 0%, rgba(0, 0, 0, 0.4) 100%)',
+                                                border: '2px solid rgba(255, 8, 68, 0.5)',
+                                            }}
+                                        >
+                                            {isGenerating ? (
+                                                <>
+                                                    <div className={styles.spinner}></div>
+                                                    Generating variations...
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                        <path d="M4 4h4v4M16 4h-4v4M4 16h4v-4M16 16h-4v-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                    </svg>
+                                                    Generate All Variations ({variations.slice(0, visibleVariations).filter(v => v.selectedActor && v.script.trim()).length}) - {getTotalCreditCost()} credits
+                                                </>
+                                            )}
+                                        </button>
+                                    )}
+                                </div>
+                            </>
+                        )}
+
+                        {/* Video Result */}
+                        {generatedVideo && (
+                            <div className={styles.videoResult}>
+                                <h3 className={styles.resultTitle}>Your Video is Ready!</h3>
+                                <div className={styles.videoPlayer}>
+                                    <video controls className={styles.video}>
+                                        <source src={generatedVideo} type="video/mp4" />
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                                <div className={styles.resultActions}>
+                                    <a
+                                        href={generatedVideo}
+                                        download="admaker-video.mp4"
+                                        className={styles.downloadBtn}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                            <path d="M10 3v10m0 0l-4-4m4 4l4-4M3 17h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                        </svg>
+                                        Download
+                                    </a>
+                                    <button className={styles.shareBtn}>
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                            <path d="M15 7a3 3 0 100-6 3 3 0 000 6zM5 13a3 3 0 100-6 3 3 0 000 6zM15 19a3 3 0 100-6 3 3 0 000 6zM6.5 11.5l7-3M6.5 14.5l7 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                        </svg>
+                                        Share
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                )}
+
+                {activeTab === 'history' && (
+                    <div className={styles.historySection}>
+                        <h1 className={styles.pageTitle}>Historique Vidéos</h1>
+
+                        {/* Generation in Progress Indicator */}
+                        {isGenerating && (
+                            <div style={{
+                                padding: '16px 20px',
+                                background: 'linear-gradient(135deg, rgba(255, 8, 68, 0.1) 0%, rgba(0, 0, 0, 0.3) 100%)',
+                                borderRadius: '12px',
+                                border: '1px solid rgba(255, 8, 68, 0.3)',
+                                marginBottom: '24px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '12px'
+                            }}>
+                                <div style={{
+                                    width: '20px',
+                                    height: '20px',
+                                    border: '3px solid rgba(255, 8, 68, 0.3)',
+                                    borderTop: '3px solid #ff0844',
+                                    borderRadius: '50%',
+                                    animation: 'spin 1s linear infinite'
+                                }} />
+                                <div>
+                                    <div style={{ fontSize: '14px', fontWeight: 600, color: '#e5e7eb', marginBottom: '4px' }}>
+                                        Génération en cours...
+                                    </div>
+                                    <div style={{ fontSize: '12px', color: '#9ca3af' }}>
+                                        Votre vidéo sera prête dans {isReplicatorGeneration ? '10-15 minutes' : '1-2 minutes'} et apparaîtra automatiquement ici
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {videoHistory.length === 0 ? (
+                            <div className={styles.emptyState}>
+                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                                    <path d="M32 56a24 24 0 100-48 24 24 0 000 48z" stroke="currentColor" strokeWidth="2" />
+                                    <path d="M26 28l12 8-12 8V28z" fill="currentColor" />
+                                </svg>
+                                <h3>Aucune vidéo pour le moment</h3>
+                                <p>Create your first video to see it here</p>
+                            </div>
+                        ) : (
+                            <div className={styles.videoGrid}>
+                                {videoHistory.map((video) => {
+                                    // Calculate days until expiration
+                                    const expiresAt = video.expires_at ? new Date(video.expires_at) : null;
+                                    const now = new Date();
+                                    const daysUntilExpiration = expiresAt
+                                        ? Math.ceil((expiresAt.getTime() - now.getTime()) / (1000 * 60 * 60 * 24))
+                                        : null;
+                                    const isExpiringSoon = daysUntilExpiration !== null && daysUntilExpiration <= 7;
+                                    const isExpired = daysUntilExpiration !== null && daysUntilExpiration <= 0;
+
+                                    return (
+                                        <div key={video.id} className={styles.videoCard}>
+                                            <div className={styles.videoThumbnail}>
+                                                {/* Video Preview - Clearer Image */}
+                                                <div style={{
+                                                    position: 'relative',
+                                                    width: '100%',
+                                                    height: '100%',
+                                                    borderRadius: '12px',
+                                                    overflow: 'hidden',
+                                                    cursor: 'pointer'
+                                                }}
+                                                    onClick={() => setVideoModalUrl(video.video_url)}
+                                                >
+                                                    {/* Actor Image - Less Blur, More Visible */}
+                                                    <img
+                                                        src={video.actor_image_url}
+                                                        alt={video.actor_name}
+                                                        style={{
+                                                            width: '100%',
+                                                            height: '100%',
+                                                            objectFit: 'cover'
+                                                        }}
+                                                    />
+
+                                                    {/* Dark Overlay for Better Contrast */}
+                                                    <div style={{
+                                                        position: 'absolute',
+                                                        top: 0,
+                                                        left: 0,
+                                                        right: 0,
+                                                        bottom: 0,
+                                                        background: 'linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%)'
+                                                    }} />
+
+                                                    {/* Play Button */}
+                                                    <div style={{
+                                                        position: 'absolute',
+                                                        top: '50%',
+                                                        left: '50%',
+                                                        transform: 'translate(-50%, -50%)',
+                                                        zIndex: 2,
+                                                        width: '64px',
+                                                        height: '64px',
+                                                        borderRadius: '50%',
+                                                        background: 'rgba(255, 8, 68, 0.9)',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        justifyContent: 'center',
+                                                        boxShadow: '0 4px 16px rgba(255, 8, 68, 0.4)',
+                                                        transition: 'transform 0.2s ease, background 0.2s ease'
+                                                    }}
+                                                        onMouseEnter={(e) => {
+                                                            e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1.1)';
+                                                            e.currentTarget.style.background = 'rgba(255, 8, 68, 1)';
+                                                        }}
+                                                        onMouseLeave={(e) => {
+                                                            e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1)';
+                                                            e.currentTarget.style.background = 'rgba(255, 8, 68, 0.9)';
+                                                        }}
+                                                    >
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                            <path d="M8 5l13 7-13 7V5z" fill="white" />
+                                                        </svg>
+                                                    </div>
+
+                                                    {/* Expiration Badge */}
+                                                    {isExpired && (
+                                                        <div style={{
+                                                            position: 'absolute',
+                                                            top: '12px',
+                                                            right: '12px',
+                                                            padding: '6px 12px',
+                                                            background: '#ef4444',
+                                                            borderRadius: '6px',
+                                                            fontSize: '12px',
+                                                            fontWeight: 600,
+                                                            color: 'white',
+                                                            zIndex: 3
+                                                        }}>
+                                                            Expired
+                                                        </div>
+                                                    )}
+                                                    {!isExpired && isExpiringSoon && (
+                                                        <div style={{
+                                                            position: 'absolute',
+                                                            top: '12px',
+                                                            right: '12px',
+                                                            padding: '6px 12px',
+                                                            background: '#f59e0b',
+                                                            borderRadius: '6px',
+                                                            fontSize: '12px',
+                                                            fontWeight: 600,
+                                                            color: 'white',
+                                                            zIndex: 3
+                                                        }}>
+                                                            {daysUntilExpiration}d left
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            </div>
+
+                                            {/* Video Info - Simplified */}
+                                            <div className={styles.videoInfo}>
+                                                <p className={styles.videoScript} style={{
+                                                    fontSize: '14px',
+                                                    lineHeight: '1.5',
+                                                    marginBottom: '8px',
+                                                    color: '#e5e7eb'
+                                                }}>
+                                                    {video.script}
+                                                </p>
+
+                                                {/* Expiration Date */}
+                                                {expiresAt && (
+                                                    <div style={{
+                                                        fontSize: '12px',
+                                                        color: '#9ca3af',
+                                                        marginBottom: '12px',
+                                                        display: 'flex',
+                                                        alignItems: 'center',
+                                                        gap: '4px'
+                                                    }}>
+                                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                                                            <circle cx="7" cy="7" r="6" stroke="currentColor" strokeWidth="1.5" />
+                                                            <path d="M7 3v4l2 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                                                        </svg>
+                                                        Expires {expiresAt.toLocaleDateString()}
+                                                    </div>
+                                                )}
+
+                                                {/* Action Buttons */}
+                                                <div className={styles.videoActions}>
+                                                    <button
+                                                        onClick={() => setVideoModalUrl(video.video_url)}
+                                                        className={styles.viewBtn}
+                                                        disabled={isExpired}
+                                                    >
+                                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                            <path d="M8 3C4.5 3 1.7 5.3 1 8c.7 2.7 3.5 5 7 5s6.3-2.3 7-5c-.7-2.7-3.5-5-7-5z" stroke="currentColor" strokeWidth="2" />
+                                                            <circle cx="8" cy="8" r="2" fill="currentColor" />
+                                                        </svg>
+                                                        View
+                                                    </button>
+                                                    <a
+                                                        href={video.video_url}
+                                                        download={`video-${video.task_id}.mp4`}
+                                                        className={styles.downloadBtn}
+                                                    >
+                                                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                            <path d="M8 2v8m0 0l-3-3m3 3l3-3M2 14h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                                        </svg>
+                                                        Download
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        )}
+                    </div>
+                )}
+
+                {
+                    activeTab === 'actors' && (
+                        <div className={styles.actorsSection}>
+                            <div className={styles.actorsHeader}>
+                                <div>
+                                    <h1 className={styles.pageTitle}>Mes Acteurs</h1>
+                                    <p className={styles.pageSubtitle}>
+                                        Create custom AI actors with your own images and settings
+                                    </p>
+                                </div>
+                                <div className={styles.actorCreditsInfo}>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <path d="M10 10a3 3 0 100-6 3 3 0 000 6zM4 18a6 6 0 0112 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                    </svg>
+                                    <span>{actorCredits} AI Actor Credits Remaining</span>
+                                </div>
+                                <button
+                                    className={styles.createActorBtn}
+                                    onClick={() => setShowCreateActorModal(true)}
+                                    disabled={actorCredits < 20}
+                                >
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                    </svg>
+                                    Create Actor (20 credits)
+                                </button>
+                            </div>
+
+                            {/* User's custom actors */}
+                            {customActors.length === 0 ? (
+                                <div className={styles.emptyState}>
+                                    <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                                        <path d="M32 32a10 10 0 100-20 10 10 0 000 20zM12 52a20 20 0 0140 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                    </svg>
+                                    <h3>Aucun acteur personnalisé pour le moment</h3>
+                                    <p>Click "Créer l'Acteur" to add your first custom AI actor</p>
+                                </div>
+                            ) : (
+                                <div className={styles.videoGrid}>
+                                    {customActors.map((actor) => (
+                                        <div key={actor.id} className={styles.videoCard}>
+                                            <div className={styles.videoThumbnail} style={{ position: 'relative' }}>
+                                                <img
+                                                    src={actor.reference_image_url}
+                                                    alt={actor.name}
+                                                    style={{
+                                                        width: '100%',
+                                                        height: '100%',
+                                                        objectFit: 'cover',
+                                                        borderRadius: '12px'
+                                                    }}
+                                                />
+                                                {/* Action Buttons */}
+                                                <div style={{
+                                                    position: 'absolute',
+                                                    top: '8px',
+                                                    right: '8px',
+                                                    display: 'flex',
+                                                    gap: '8px'
+                                                }}>
+                                                    {/* View Button */}
+                                                    <button
+                                                        onClick={() => setViewActorImageUrl(actor.reference_image_url)}
+                                                        style={{
+                                                            width: '36px',
+                                                            height: '36px',
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            justifyContent: 'center',
+                                                            background: 'rgba(0, 0, 0, 0.7)',
+                                                            backdropFilter: 'blur(8px)',
+                                                            border: '1px solid rgba(255, 255, 255, 0.1)',
+                                                            borderRadius: '8px',
+                                                            color: '#fff',
+                                                            cursor: 'pointer',
+                                                            transition: 'all 0.2s',
+                                                            opacity: 0.8
+                                                        }}
+                                                        onMouseEnter={(e) => {
+                                                            e.currentTarget.style.opacity = '1';
+                                                            e.currentTarget.style.background = 'rgba(102, 126, 234, 0.9)';
+                                                        }}
+                                                        onMouseLeave={(e) => {
+                                                            e.currentTarget.style.opacity = '0.8';
+                                                            e.currentTarget.style.background = 'rgba(0, 0, 0, 0.7)';
+                                                        }}
+                                                    >
+                                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                            <path d="M10 3C5 3 1.73 6.11 1 10c.73 3.89 4 7 9 7s8.27-3.11 9-7c-.73-3.89-4-7-9-7z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                            <circle cx="10" cy="10" r="3" stroke="currentColor" strokeWidth="2" />
+                                                        </svg>
+                                                    </button>
+
+                                                    {/* Download Button */}
+                                                    <a
+                                                        href={actor.reference_image_url}
+                                                        download={`${actor.name || 'actor'}.png`}
+                                                        style={{
+                                                            width: '36px',
+                                                            height: '36px',
+                                                            display: 'flex',
+                                                            alignItems: 'center',
+                                                            justifyContent: 'center',
+                                                            background: 'rgba(0, 0, 0, 0.7)',
+                                                            backdropFilter: 'blur(8px)',
+                                                            border: '1px solid rgba(255, 255, 255, 0.1)',
+                                                            borderRadius: '8px',
+                                                            color: '#fff',
+                                                            cursor: 'pointer',
+                                                            transition: 'all 0.2s',
+                                                            opacity: 0.8,
+                                                            textDecoration: 'none'
+                                                        }}
+                                                        onMouseEnter={(e) => {
+                                                            e.currentTarget.style.opacity = '1';
+                                                            e.currentTarget.style.background = 'rgba(102, 126, 234, 0.9)';
+                                                        }}
+                                                        onMouseLeave={(e) => {
+                                                            e.currentTarget.style.opacity = '0.8';
+                                                            e.currentTarget.style.background = 'rgba(0, 0, 0, 0.7)';
+                                                        }}
+                                                    >
+                                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                            <path d="M10 3v10M10 13l-3-3M10 13l3-3M4 17h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                        </svg>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div className={styles.videoInfo}>
+                                                <p className={styles.videoScript} style={{
+                                                    fontSize: '14px',
+                                                    fontWeight: 600,
+                                                    marginBottom: '4px',
+                                                    color: '#e5e7eb'
+                                                }}>
+                                                    {actor.name}
+                                                </p>
+                                                <p style={{
+                                                    fontSize: '12px',
+                                                    color: '#9ca3af',
+                                                    marginBottom: '12px'
+                                                }}>
+                                                    {actor.description || actor.prompt}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    )
+                }
+
+
+            </main >
+
+            {/* Credits Modal */}
+            {
+                showCreditsModal && (
+                    <div className={styles.modalOverlay} onClick={() => setShowCreditsModal(false)}>
+                        <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+                            <div className={styles.modalIcon}>
+                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+                                    <circle cx="32" cy="32" r="30" stroke="currentColor" strokeWidth="3" />
+                                    <path d="M32 16v16l12 8" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                                </svg>
+                            </div>
+                            <h2 className={styles.modalTitle}>Out of Credits!</h2>
+                            <p className={styles.modalDescription}>
+                                You need {getCreditCost()} credits to generate this video. Upgrade your plan to get more credits.
+                            </p>
+                            <div className={styles.modalActions}>
+                                <a href="/#pricing" className={styles.modalUpgradeBtn}>
+                                    <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+                                        <path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" fill="currentColor" />
+                                    </svg>
+                                    Upgrade Plan
+                                </a>
+                                <button onClick={() => setShowCreditsModal(false)} className={styles.modalCloseBtn}>
+                                    Maybe Later
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
+
+            {/* Winning Ad Replicator Tab */}
+            {activeTab === 'replicator' && (
+                <div className={styles.createSection}>
+                    <h1 className={styles.pageTitle}>Réplicateur de Pub Gagnante</h1>
+                    <p className={styles.pageSubtitle}>
+                        Upload a winning ad video and replicate it with a different AI actor
+                    </p>
+
+                    {/* Warning Banner */}
+                    <div className={styles.warningBanner}>
+                        ⚠️ This feature works best with videos showing a single influencer without products.
+                    </div>
+
+                    {/* Info Banners */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '24px' }}>
+                        {/* Generation Time Info */}
+                        <div className={styles.infoBanner}>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0 }}>
+                                <circle cx="10" cy="10" r="8" stroke="#60a5fa" strokeWidth="2" />
+                                <path d="M10 6v4l2 2" stroke="#60a5fa" strokeWidth="2" strokeLinecap="round" />
+                            </svg>
+                            <div>
+                                <p style={{ fontSize: '13px', fontWeight: 600, color: '#93c5fd', marginBottom: '4px' }}>
+                                    Final video duration: 5 seconds | Generation time: 10-15 minutes
+                                </p>
+                                <p style={{ fontSize: '12px', color: '#9ca3af', lineHeight: '1.5', margin: 0 }}>
+                                    The replicated video will be automatically trimmed to 5 seconds. Please be patient during generation.
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Actor Selection Guidelines */}
+                        <div className={styles.infoBanner}>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0 }}>
+                                <path d="M10 10a3 3 0 100-6 3 3 0 000 6zM4 18a6 6 0 0112 0" stroke="#60a5fa" strokeWidth="2" strokeLinecap="round" />
+                            </svg>
+                            <div>
+                                <p style={{ fontSize: '13px', fontWeight: 600, color: '#93c5fd', marginBottom: '4px' }}>
+                                    Choose an AI actor with matching characteristics
+                                </p>
+                                <p style={{ fontSize: '12px', color: '#9ca3af', lineHeight: '1.5', margin: 0 }}>
+                                    Select an AI actor of the same gender as the person in your reference video, with a voice that can match the original tone and style.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Video Upload */}
+                    <VideoUpload onVideoChange={setUploadedVideoUrl} />
+
+                    {/* AI Actor Selection - Always visible */}
+                    <AIActorSelector
+                        onActorSelect={setReplicatorActor}
+                        customActors={customActors}
+                    />
+
+                    {/* Show generate button only if both video and actor are selected */}
+                    {uploadedVideoUrl && replicatorActor && (
+                        <>
+                            {/* Error Display */}
+                            {error && (
+                                <div className={styles.errorBox}>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="2" />
+                                        <path d="M10 6v4M10 13h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                    </svg>
+                                    <span>{error}</span>
+                                </div>
+                            )}
+
+                            {/* Generate Button */}
+                            <div className={styles.generateSection}>
+                                <button
+                                    className={styles.generateBtn}
+                                    onClick={handleReplicateVideo}
+                                    disabled={isGenerating}
+                                >
+                                    {isGenerating ? (
+                                        <>
+                                            <div className={styles.spinner}></div>
+                                            Replicating video...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                <path d="M4 4h6v6H4zM10 4h6v6h-6zM4 10h6v6H4zM10 10h6v6h-6z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                            </svg>
+                                            Replicate Video (20 credits)
+                                        </>
+                                    )}
+                                </button>
+                            </div>
+                        </>
+                    )}
+                </div>
+            )}
+
+            {/* Create Actor Modal */}
+            {
+                showCreateActorModal && (
+                    <div className={styles.modalOverlay} onClick={() => setShowCreateActorModal(false)}>
+                        <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+                            <div className={styles.modalHeader}>
+                                <h2 className={styles.modalTitle}>Créer un Acteur IA Personnalisé</h2>
+                                <button
+                                    className={styles.closeBtn}
+                                    onClick={() => setShowCreateActorModal(false)}
+                                >
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <path d="M5 5l10 10M5 15L15 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div className={styles.modalBody}>
+                                {/* Generation Time Info */}
+                                <div style={{
+                                    padding: '12px 16px',
+                                    background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(37, 99, 235, 0.1) 100%)',
+                                    border: '1px solid rgba(59, 130, 246, 0.3)',
+                                    borderRadius: '8px',
+                                    display: 'flex',
+                                    alignItems: 'flex-start',
+                                    gap: '12px',
+                                    marginBottom: '20px'
+                                }}>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0, marginTop: '2px' }}>
+                                        <circle cx="10" cy="10" r="8" stroke="#60a5fa" strokeWidth="2" />
+                                        <path d="M10 6v4l2 2" stroke="#60a5fa" strokeWidth="2" strokeLinecap="round" />
+                                    </svg>
+                                    <div style={{ flex: 1 }}>
+                                        <p style={{
+                                            fontSize: '13px',
+                                            fontWeight: 600,
+                                            color: '#93c5fd',
+                                            marginBottom: '4px'
+                                        }}>
+                                            Generation Time: 2-3 minutes
+                                        </p>
+                                        <p style={{
+                                            fontSize: '12px',
+                                            color: '#9ca3af',
+                                            lineHeight: '1.5',
+                                            margin: 0
+                                        }}>
+                                            AI actor generation takes time. Please be patient while we create your custom actor with the reference images.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div className={styles.formGroup}>
+                                    <label className={styles.formLabel}>Nom de l'Acteur</label>
+                                    <input
+                                        type="text"
+                                        className={styles.formInput}
+                                        placeholder="e.g., John Smith"
+                                        value={actorName}
+                                        onChange={(e) => setActorName(e.target.value)}
+                                        disabled={isCreatingActor}
+                                    />
+                                </div>
+
+                                {/* Aspect Ratio Selector */}
+                                <div className={styles.formGroup}>
+                                    <label className={styles.formLabel}>Image Format</label>
+                                    <div style={{
+                                        display: 'grid',
+                                        gridTemplateColumns: 'repeat(3, 1fr)',
+                                        gap: '12px'
+                                    }}>
+                                        <button
+                                            type="button"
+                                            onClick={() => setActorAspectRatio('1:1')}
+                                            disabled={isCreatingActor}
+                                            style={{
+                                                padding: '12px',
+                                                background: actorAspectRatio === '1:1' ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : 'rgba(255, 255, 255, 0.05)',
+                                                border: actorAspectRatio === '1:1' ? '2px solid #667eea' : '1px solid rgba(255, 255, 255, 0.1)',
+                                                borderRadius: '8px',
+                                                color: '#fff',
+                                                fontSize: '14px',
+                                                fontWeight: 600,
+                                                cursor: isCreatingActor ? 'not-allowed' : 'pointer',
+                                                transition: 'all 0.2s',
+                                                opacity: isCreatingActor ? 0.5 : 1
+                                            }}
+                                        >
+                                            1:1<br /><span style={{ fontSize: '11px', opacity: 0.7 }}>Square</span>
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => setActorAspectRatio('9:16')}
+                                            disabled={isCreatingActor}
+                                            style={{
+                                                padding: '12px',
+                                                background: actorAspectRatio === '9:16' ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : 'rgba(255, 255, 255, 0.05)',
+                                                border: actorAspectRatio === '9:16' ? '2px solid #667eea' : '1px solid rgba(255, 255, 255, 0.1)',
+                                                borderRadius: '8px',
+                                                color: '#fff',
+                                                fontSize: '14px',
+                                                fontWeight: 600,
+                                                cursor: isCreatingActor ? 'not-allowed' : 'pointer',
+                                                transition: 'all 0.2s',
+                                                opacity: isCreatingActor ? 0.5 : 1
+                                            }}
+                                        >
+                                            9:16<br /><span style={{ fontSize: '11px', opacity: 0.7 }}>Mobile</span>
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => setActorAspectRatio('16:9')}
+                                            disabled={isCreatingActor}
+                                            style={{
+                                                padding: '12px',
+                                                background: actorAspectRatio === '16:9' ? 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' : 'rgba(255, 255, 255, 0.05)',
+                                                border: actorAspectRatio === '16:9' ? '2px solid #667eea' : '1px solid rgba(255, 255, 255, 0.1)',
+                                                borderRadius: '8px',
+                                                color: '#fff',
+                                                fontSize: '14px',
+                                                fontWeight: 600,
+                                                cursor: isCreatingActor ? 'not-allowed' : 'pointer',
+                                                transition: 'all 0.2s',
+                                                opacity: isCreatingActor ? 0.5 : 1
+                                            }}
+                                        >
+                                            16:9<br /><span style={{ fontSize: '11px', opacity: 0.7 }}>Landscape</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                {/* Image Uploads Grid */}
+                                <div className={styles.imageUploadsGrid}>
+                                    {/* Person Reference Image */}
+                                    <div className={styles.formGroup}>
+                                        <label className={styles.formLabel}>
+                                            Person *
+                                        </label>
+                                        <div className={styles.imageUploadContainer}>
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                onChange={(e) => handleActorImageUpload(e, 'person')}
+                                                className={styles.fileInput}
+                                                id="personImageInput"
+                                                disabled={isCreatingActor}
+                                            />
+                                            <label htmlFor="personImageInput" className={styles.uploadLabel}>
+                                                {personImagePreview ? (
+                                                    <div className={styles.imagePreview}>
+                                                        <img src={personImagePreview} alt="Person reference" />
+                                                        <div className={styles.imageOverlay}>
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                            </svg>
+                                                            <span>Change</span>
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <div className={styles.uploadPlaceholder}>
+                                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                                            <circle cx="24" cy="18" r="8" stroke="currentColor" strokeWidth="2" />
+                                                            <path d="M12 40a12 12 0 0124 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                                        </svg>
+                                                        <span className={styles.uploadText}>Upload Person</span>
+                                                        <span className={styles.uploadHint}>PNG, JPG 30MB</span>
+                                                    </div>
+                                                )}
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    {/* Object Reference Image */}
+                                    <div className={styles.formGroup}>
+                                        <label className={styles.formLabel}>
+                                            Object
+                                        </label>
+                                        <div className={styles.imageUploadContainer}>
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                onChange={(e) => handleActorImageUpload(e, 'object')}
+                                                className={styles.fileInput}
+                                                id="objectImageInput"
+                                                disabled={isCreatingActor}
+                                            />
+                                            <label htmlFor="objectImageInput" className={styles.uploadLabel}>
+                                                {objectImagePreview ? (
+                                                    <div className={styles.imagePreview}>
+                                                        <img src={objectImagePreview} alt="Object reference" />
+                                                        <div className={styles.imageOverlay}>
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                            </svg>
+                                                            <span>Change</span>
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <div className={styles.uploadPlaceholder}>
+                                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                                            <rect x="12" y="12" width="24" height="24" rx="4" stroke="currentColor" strokeWidth="2" />
+                                                        </svg>
+                                                        <span className={styles.uploadText}>Upload Object</span>
+                                                        <span className={styles.uploadHint}>PNG, JPG 30MB</span>
+                                                    </div>
+                                                )}
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    {/* Decor Reference Image */}
+                                    <div className={styles.formGroup}>
+                                        <label className={styles.formLabel}>
+                                            Decor
+                                        </label>
+                                        <div className={styles.imageUploadContainer}>
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                onChange={(e) => handleActorImageUpload(e, 'decor')}
+                                                className={styles.fileInput}
+                                                id="decorImageInput"
+                                                disabled={isCreatingActor}
+                                            />
+                                            <label htmlFor="decorImageInput" className={styles.uploadLabel}>
+                                                {decorImagePreview ? (
+                                                    <div className={styles.imagePreview}>
+                                                        <img src={decorImagePreview} alt="Decor reference" />
+                                                        <div className={styles.imageOverlay}>
+                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M17 8l-5-5-5 5M12 3v12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                            </svg>
+                                                            <span>Change</span>
+                                                        </div>
+                                                    </div>
+                                                ) : (
+                                                    <div className={styles.uploadPlaceholder}>
+                                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                                            <path d="M8 8h32v32H8z" stroke="currentColor" strokeWidth="2" />
+                                                            <path d="M16 16h16v16H16z" stroke="currentColor" strokeWidth="2" />
+                                                        </svg>
+                                                        <span className={styles.uploadText}>Upload Decor</span>
+                                                        <span className={styles.uploadHint}>PNG, JPG 30MB</span>
+                                                    </div>
+                                                )}
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className={styles.formGroup}>
+                                    <label className={styles.formLabel}>Actor & Scene Description *</label>
+                                    <textarea
+                                        className={styles.formTextarea}
+                                        placeholder="Describe the actor's appearance, clothing, setting, and decor... Example: Professional woman in her 30s, wearing business attire, modern office background with plants and natural lighting"
+                                        rows={4}
+                                        value={actorPrompt}
+                                        onChange={(e) => setActorPrompt(e.target.value)}
+                                        disabled={isCreatingActor}
+                                    />
+                                </div>
+
+                                {/* Error Display */}
+                                {actorCreationError && (
+                                    <div style={{
+                                        padding: '12px',
+                                        background: 'rgba(239, 68, 68, 0.1)',
+                                        border: '1px solid rgba(239, 68, 68, 0.3)',
+                                        borderRadius: '8px',
+                                        color: '#f87171',
+                                        fontSize: '14px',
+                                        marginBottom: '16px'
+                                    }}>
+                                        {actorCreationError}
+                                    </div>
+                                )}
+
+                                <div className={styles.modalActions}>
+                                    <button
+                                        className={styles.createBtn}
+                                        onClick={handleCreateActor}
+                                        disabled={isCreatingActor}
+                                    >
+                                        {isCreatingActor ? (
+                                            <>
+                                                <div className={styles.spinner}></div>
+                                                Generating...
+                                            </>
+                                        ) : (
+                                            <>
+                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                    <path d="M10 4v12M4 10h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                                </svg>
+                                                Create Actor
+                                            </>
+                                        )}
+                                    </button>
+                                    <button
+                                        onClick={() => setShowCreateActorModal(false)}
+                                        className={styles.cancelBtn}
+                                        disabled={isCreatingActor}
+                                    >
+                                        Cancel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
+
+            {/* Actor Image View Modal */}
+            {
+                viewActorImageUrl && (
+                    <div
+                        style={{
+                            position: 'fixed',
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            background: 'rgba(0, 0, 0, 0.95)',
+                            zIndex: 4000,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            padding: '20px'
+                        }}
+                        onClick={() => setViewActorImageUrl(null)}
+                    >
+                        <button
+                            onClick={() => setViewActorImageUrl(null)}
+                            style={{
+                                position: 'absolute',
+                                top: '20px',
+                                right: '20px',
+                                width: '48px',
+                                height: '48px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                background: 'rgba(255, 255, 255, 0.1)',
+                                backdropFilter: 'blur(8px)',
+                                border: '1px solid rgba(255, 255, 255, 0.2)',
+                                borderRadius: '50%',
+                                color: '#fff',
+                                cursor: 'pointer',
+                                transition: 'all 0.2s',
+                                zIndex: 4001
+                            }}
+                        >
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M6 6l12 12M6 18L18 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                            </svg>
+                        </button>
+                        <img
+                            src={viewActorImageUrl}
+                            alt="Actor preview"
+                            style={{
+                                maxWidth: '90%',
+                                maxHeight: '90%',
+                                objectFit: 'contain',
+                                borderRadius: '12px',
+                                boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)'
+                            }}
+                            onClick={(e) => e.stopPropagation()}
+                        />
+                    </div>
+                )
+            }
+
+            {/* Success Notification */}
+            {
+                showSuccessNotification && (
+                    <div style={{
+                        position: 'fixed',
+                        top: '24px',
+                        right: '24px',
+                        zIndex: 3000,
+                        animation: 'slideInRight 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)'
+                    }}>
+                        <div style={{
+                            display: 'flex',
+                            alignItems: 'flex-start',
+                            gap: '16px',
+                            padding: '20px 24px',
+                            background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(5, 150, 105, 0.15) 100%)',
+                            border: '1px solid rgba(16, 185, 129, 0.3)',
+                            borderRadius: '16px',
+                            boxShadow: '0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(16, 185, 129, 0.1)',
+                            backdropFilter: 'blur(12px)',
+                            minWidth: '360px',
+                            maxWidth: '420px'
+                        }}>
+                            <div style={{ flexShrink: 0 }}>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <circle cx="12" cy="12" r="10" fill="#10b981" />
+                                    <path d="M8 12l2 2 4-4" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </div>
+                            <div style={{ flex: 1 }}>
+                                <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#10b981', margin: '0 0 6px 0', lineHeight: 1.4 }}>
+                                    Vidéo en cours de génération !
+                                </h3>
+                                <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.8)', margin: 0, lineHeight: 1.5 }}>
+                                    Votre vidéo apparaîtra dans l'historique dans {isReplicatorGeneration ? '10-15 minutes' : '1-2 minutes'}.
+                                </p>
+                            </div>
+                            <button
+                                onClick={() => setShowSuccessNotification(false)}
+                                style={{
+                                    flexShrink: 0,
+                                    width: '28px',
+                                    height: '28px',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    background: 'rgba(255, 255, 255, 0.05)',
+                                    border: 'none',
+                                    borderRadius: '50%',
+                                    color: 'rgba(255, 255, 255, 0.6)',
+                                    cursor: 'pointer',
+                                    transition: 'all 0.2s ease'
+                                }}
+                            >
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M5 5l10 10M5 15L15 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                )
+            }
         </div>
     );
 }

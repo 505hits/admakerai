@@ -41,7 +41,7 @@ export default function HomeFr() {
 
     return (
         <main>
-            <Navbar />
+            <Navbar lang="fr" />
             <Hero lang="fr" />
 
             {/* Examples Slider Section */}
@@ -165,7 +165,7 @@ export default function HomeFr() {
             </section>
 
             {/* Industry Tabs Section */}
-            <IndustryTabs />
+            <IndustryTabs lang="fr" />
 
             {/* Pricing Section */}
             <Pricing lang="fr" />
