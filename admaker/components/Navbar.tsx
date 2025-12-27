@@ -109,12 +109,14 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                             <a href="/" style={{ color: lang === 'en' ? '#fff' : 'rgba(255, 255, 255, 0.7)', fontSize: '14px', fontWeight: '500', textDecoration: 'none' }}>EN</a>
                             <span style={{ color: 'rgba(255, 255, 255, 0.3)' }}>|</span>
                             <a href="/fr" style={{ color: lang === 'fr' ? '#fff' : 'rgba(255, 255, 255, 0.7)', fontSize: '14px', fontWeight: '500', textDecoration: 'none' }}>FR</a>
+                            <span style={{ color: 'rgba(255, 255, 255, 0.3)' }}>|</span>
+                            <a href="/es" style={{ color: lang === 'es' ? '#fff' : 'rgba(255, 255, 255, 0.7)', fontSize: '14px', fontWeight: '500', textDecoration: 'none' }}>ES</a>
                         </div>
 
                         {!isLoggedIn ? (
                             <>
-                                <a href={lang === 'fr' ? '/fr/connexion' : '/login'} className={styles.btnSecondary}>{t.signIn}</a>
-                                <a href={lang === 'fr' ? '/fr/connexion' : '/login'} className={styles.btnPrimary}>{t.getStarted}</a>
+                                <a href={lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : '/login'} className={styles.btnSecondary}>{t.signIn}</a>
+                                <a href={lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : '/login'} className={styles.btnPrimary}>{t.getStarted}</a>
                             </>
                         ) : (
                             <div className={styles.userMenu}>
@@ -135,7 +137,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                                             </svg>
                                             {t.profile}
                                         </a>
-                                        <a href={lang === 'fr' ? '/fr/tableau-de-bord' : '/dashboard'} className={styles.dropdownItem}>
+                                        <a href={lang === 'fr' ? '/fr/tableau-de-bord' : lang === 'es' ? '/es/panel' : '/dashboard'} className={styles.dropdownItem}>
                                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                                                 <rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
                                                 <rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
