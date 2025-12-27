@@ -40,11 +40,22 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
             profile: 'Profil',
             dashboard: 'Tableau de bord',
             logout: 'Déconnexion',
+        },
+        es: {
+            features: 'Características',
+            pricing: 'Precios',
+            blog: 'Blog',
+            signIn: 'Iniciar Sesión',
+            getStarted: 'Comenzar',
+            user: 'Usuario',
+            profile: 'Perfil',
+            dashboard: 'Panel',
+            logout: 'Cerrar Sesión',
         }
     };
 
-    const t = translations[lang];
-    const langPrefix = lang === 'fr' ? '/fr' : '';
+    const t = translations[lang] || translations['en'];
+    const langPrefix = lang === 'fr' ? '/fr' : lang === 'es' ? '/es' : '';
 
     useEffect(() => {
         const handleScroll = () => {
