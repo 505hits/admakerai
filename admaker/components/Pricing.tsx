@@ -58,231 +58,216 @@ export default function Pricing({ lang = 'en' }: PricingProps) {
             replications: 'réplications'
         },
         es: {
-                  "title": "Elige Tu Plan",
-                  "subtitle": "Comienza a crear videos UGC IA profesionales en minutos",
-                  "monthly": "Mensual",
-                  "annual": "Anual",
-                  "save": "Ahorra",
-                  "popular": "Más Popular",
-                  "perMonth": "/mes",
-                  "billedAnnually": "facturado anualmente",
-                  "getStarted": "Comenzar",
-                  "loading": "Cargando...",
-                  "videoCredits": "créditos de video",
-                  "actorCredits": "créditos de actor",
-                  "upTo": "Hasta",
-                  "videosPerMonth": "videos por mes",
-                  "languages": "35+ idiomas",
-                  "productHolding": "Sostener producto",
-                  "outfitSwapping": "Cambio de vestuario",
-                  "replicatorCredits": "créditos de replicador",
-                  "replications": "replicaciones"
+            "title": "Elige Tu Plan",
+            "subtitle": "Comienza a crear videos UGC IA profesionales en minutos",
+            "monthly": "Mensual",
+            "annual": "Anual",
+            "save": "Ahorra",
+            "popular": "Más Popular",
+            "perMonth": "/mes",
+            "billedAnnually": "facturado anualmente",
+            "getStarted": "Comenzar",
+            "loading": "Cargando...",
+            "videoCredits": "créditos de video",
+            "actorCredits": "créditos de actor",
+            "upTo": "Hasta",
+            "videosPerMonth": "videos por mes",
+            "languages": "35+ idiomas",
+            "productHolding": "Sostener producto",
+            "outfitSwapping": "Cambio de vestuario",
+            "replicatorCredits": "créditos de replicador",
+            "replications": "replicaciones"
         }
     };
 
     const t = content[lang] || content['en'];
 
     const handleCheckout = async (plan: typeof plans[0], cycle: 'monthly' | 'annual') => {
-        setLoading(plan.name);
-
-        try {
-            const supabase = createClient();
-            const { data: { user } } = await supabase.auth.getUser();
-
-            if (!user) {
-                router.push('/login');
-                return;
-            }
-
-            const planType = plan.name.toLowerCase() as 'startup' | 'growth' | 'pro';
-
-            const response = await fetch('/api/stripe/checkout', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
+        headers: {
+            'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    planType,
-                    billingPeriod: cycle,
-                }),
+        body: JSON.stringify({
+            planType,
+            billingPeriod: cycle,
+        }),
             });
 
-            const data = await response.json();
+    const data = await response.json();
 
-            if (data.url) {
-                window.location.href = data.url;
-            } else {
-                console.error('No checkout URL returned');
-            }
-        } catch (error) {
-            console.error('Error creating checkout session:', error);
-        } finally {
-            setLoading(null);
-        }
+    if (data.url) {
+        window.location.href = data.url;
+    } else {
+        console.error('No checkout URL returned');
+    }
+} catch (error) {
+    console.error('Error creating checkout session:', error);
+} finally {
+    setLoading(null);
+}
     };
 
-    const plans = [
-        {
-            name: 'Startup',
-            monthlyPrice: 49,
-            annualPrice: 470,
-            videoCredits: 440,
-            videos: 22,
-            actorCredits: 440,
-            features: [
-                `440 ${t.videoCredits}`,
-                `440 ${t.actorCredits}`,
-                `${t.upTo} 22 ${t.videosPerMonth}`,
-                t.languages,
-                t.productHolding,
-                t.outfitSwapping,
-            ],
-        },
-        {
-            name: 'Growth',
-            monthlyPrice: 69,
-            annualPrice: 662,
-            videoCredits: 1200,
-            videos: 60,
-            actorCredits: 1200,
-            monthlyReplicatorCredits: 100,
-            features: [
-                `1200 ${t.videoCredits}`,
-                `1200 ${t.actorCredits}`,
-                `${t.upTo} 60 ${t.videosPerMonth}`,
-                t.languages,
-                t.productHolding,
-                t.outfitSwapping,
-            ],
-            popular: true,
-        },
-        {
-            name: 'Pro',
-            monthlyPrice: 99,
-            annualPrice: 950,
-            videoCredits: 2200,
-            videos: 110,
-            actorCredits: 2200,
-            monthlyReplicatorCredits: 200,
-            features: [
-                `2200 ${t.videoCredits}`,
-                `2200 ${t.actorCredits}`,
-                `${t.upTo} 110 ${t.videosPerMonth}`,
-                t.languages,
-                t.productHolding,
-                t.outfitSwapping,
-            ],
-        },
-    ];
+const plans = [
+    {
+        name: 'Startup',
+        monthlyPrice: 49,
+        annualPrice: 470,
+        videoCredits: 440,
+        videos: 22,
+        actorCredits: 440,
+        features: [
+            `440 ${t.videoCredits}`,
+            `440 ${t.actorCredits}`,
+            `${t.upTo} 22 ${t.videosPerMonth}`,
+            t.languages,
+            t.productHolding,
+            t.outfitSwapping,
+        ],
+    },
+    {
+        name: 'Growth',
+        monthlyPrice: 69,
+        annualPrice: 662,
+        videoCredits: 1200,
+        videos: 60,
+        actorCredits: 1200,
+        monthlyReplicatorCredits: 100,
+        features: [
+            `1200 ${t.videoCredits}`,
+            `1200 ${t.actorCredits}`,
+            `${t.upTo} 60 ${t.videosPerMonth}`,
+            t.languages,
+            t.productHolding,
+            t.outfitSwapping,
+        ],
+        popular: true,
+    },
+    {
+        name: 'Pro',
+        monthlyPrice: 99,
+        annualPrice: 950,
+        videoCredits: 2200,
+        videos: 110,
+        actorCredits: 2200,
+        monthlyReplicatorCredits: 200,
+        features: [
+            `2200 ${t.videoCredits}`,
+            `2200 ${t.actorCredits}`,
+            `${t.upTo} 110 ${t.videosPerMonth}`,
+            t.languages,
+            t.productHolding,
+            t.outfitSwapping,
+        ],
+    },
+];
 
-    return (
-        <section className={styles.pricingSection} id="pricing">
-            <div className={styles.container}>
-                <div className={styles.header}>
-                    <h2 className={styles.title}>{t.title}</h2>
-                    <p className={styles.subtitle}>
-                        {t.subtitle}
-                    </p>
+return (
+    <section className={styles.pricingSection} id="pricing">
+        <div className={styles.container}>
+            <div className={styles.header}>
+                <h2 className={styles.title}>{t.title}</h2>
+                <p className={styles.subtitle}>
+                    {t.subtitle}
+                </p>
 
-                    <div className={styles.pricingToggle}>
-                        <button
-                            className={`${styles.toggleBtn} ${billingCycle === 'monthly' ? styles.active : ''}`}
-                            onClick={() => setBillingCycle('monthly')}
-                        >
-                            {t.monthly}
-                        </button>
-                        <button
-                            className={`${styles.toggleBtn} ${billingCycle === 'annual' ? styles.active : ''}`}
-                            onClick={() => setBillingCycle('annual')}
-                        >
-                            {t.annual}
-                            <span className={styles.discountBadge}>{t.save}</span>
-                        </button>
-                    </div>
-                </div>
-
-                <div className={styles.pricingGrid}>
-                    {plans.map((plan) => (
-                        <div
-                            key={plan.name}
-                            className={`${styles.pricingCard} ${plan.popular ? styles.featured : ''}`}
-                        >
-                            {plan.popular && <div className={styles.popularBadge}>{t.popular}</div>}
-
-                            <div className={styles.pricingHeader}>
-                                <h3>{plan.name}</h3>
-                                <div className={styles.pricingPrice}>
-                                    <span className={styles.price}>
-                                        ${billingCycle === 'monthly' ? plan.monthlyPrice : (plan.annualPrice / 12).toFixed(2)}
-                                    </span>
-                                    <span className={styles.period}>{t.perMonth}</span>
-                                </div>
-                                {billingCycle === 'annual' && (
-                                    <p style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', marginTop: '0.5rem' }}>
-                                        ${plan.annualPrice} {t.billedAnnually}
-                                    </p>
-                                )}
-                            </div>
-
-                            <ul className={styles.pricingFeatures}>
-                                {plan.features.map((feature, index) => (
-                                    <li key={index} className={styles.feature}>
-                                        <svg
-                                            className={styles.checkIcon}
-                                            width="20"
-                                            height="20"
-                                            viewBox="0 0 20 20"
-                                            fill="none"
-                                        >
-                                            <path
-                                                d="M4 10L8 14L16 6"
-                                                stroke="currentColor"
-                                                strokeWidth="2"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                        </svg>
-                                        <span>{feature}</span>
-                                    </li>
-                                ))}
-                                {plan.monthlyReplicatorCredits && (
-                                    <li className={styles.feature}>
-                                        <svg
-                                            className={styles.checkIcon}
-                                            width="20"
-                                            height="20"
-                                            viewBox="0 0 20 20"
-                                            fill="none"
-                                        >
-                                            <path
-                                                d="M4 10L8 14L16 6"
-                                                stroke="currentColor"
-                                                strokeWidth="2"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                        </svg>
-                                        <span>
-                                            {billingCycle === 'annual'
-                                                ? `${plan.monthlyReplicatorCredits * 12} ${t.replicatorCredits} (${(plan.monthlyReplicatorCredits * 12) / 20} ${t.replications})`
-                                                : `${plan.monthlyReplicatorCredits} ${t.replicatorCredits} (${plan.monthlyReplicatorCredits / 20} ${t.replications})`
-                                            }
-                                        </span>
-                                    </li>
-                                )}
-                            </ul>
-
-                            <button
-                                className={styles.btnPrimary}
-                                onClick={() => handleCheckout(plan, billingCycle)}
-                                disabled={loading === plan.name}
-                            >
-                                {loading === plan.name ? t.loading : t.getStarted}
-                            </button>
-                        </div>
-                    ))}
+                <div className={styles.pricingToggle}>
+                    <button
+                        className={`${styles.toggleBtn} ${billingCycle === 'monthly' ? styles.active : ''}`}
+                        onClick={() => setBillingCycle('monthly')}
+                    >
+                        {t.monthly}
+                    </button>
+                    <button
+                        className={`${styles.toggleBtn} ${billingCycle === 'annual' ? styles.active : ''}`}
+                        onClick={() => setBillingCycle('annual')}
+                    >
+                        {t.annual}
+                        <span className={styles.discountBadge}>{t.save}</span>
+                    </button>
                 </div>
             </div>
-        </section>
-    );
+
+            <div className={styles.pricingGrid}>
+                {plans.map((plan) => (
+                    <div
+                        key={plan.name}
+                        className={`${styles.pricingCard} ${plan.popular ? styles.featured : ''}`}
+                    >
+                        {plan.popular && <div className={styles.popularBadge}>{t.popular}</div>}
+
+                        <div className={styles.pricingHeader}>
+                            <h3>{plan.name}</h3>
+                            <div className={styles.pricingPrice}>
+                                <span className={styles.price}>
+                                    ${billingCycle === 'monthly' ? plan.monthlyPrice : (plan.annualPrice / 12).toFixed(2)}
+                                </span>
+                                <span className={styles.period}>{t.perMonth}</span>
+                            </div>
+                            {billingCycle === 'annual' && (
+                                <p style={{ fontSize: '0.875rem', color: 'var(--color-text-secondary)', marginTop: '0.5rem' }}>
+                                    ${plan.annualPrice} {t.billedAnnually}
+                                </p>
+                            )}
+                        </div>
+
+                        <ul className={styles.pricingFeatures}>
+                            {plan.features.map((feature, index) => (
+                                <li key={index} className={styles.feature}>
+                                    <svg
+                                        className={styles.checkIcon}
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 20 20"
+                                        fill="none"
+                                    >
+                                        <path
+                                            d="M4 10L8 14L16 6"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                    <span>{feature}</span>
+                                </li>
+                            ))}
+                            {plan.monthlyReplicatorCredits && (
+                                <li className={styles.feature}>
+                                    <svg
+                                        className={styles.checkIcon}
+                                        width="20"
+                                        height="20"
+                                        viewBox="0 0 20 20"
+                                        fill="none"
+                                    >
+                                        <path
+                                            d="M4 10L8 14L16 6"
+                                            stroke="currentColor"
+                                            strokeWidth="2"
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                        />
+                                    </svg>
+                                    <span>
+                                        {billingCycle === 'annual'
+                                            ? `${plan.monthlyReplicatorCredits * 12} ${t.replicatorCredits} (${(plan.monthlyReplicatorCredits * 12) / 20} ${t.replications})`
+                                            : `${plan.monthlyReplicatorCredits} ${t.replicatorCredits} (${plan.monthlyReplicatorCredits / 20} ${t.replications})`
+                                        }
+                                    </span>
+                                </li>
+                            )}
+                        </ul>
+
+                        <button
+                            className={styles.btnPrimary}
+                            onClick={() => handleCheckout(plan, billingCycle)}
+                            disabled={loading === plan.name}
+                        >
+                            {loading === plan.name ? t.loading : t.getStarted}
+                        </button>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+);
 }
