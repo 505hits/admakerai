@@ -79,6 +79,43 @@ export default function Testimonials({ lang = 'en' }: TestimonialsProps) {
                     text: "Enfin, une plateforme d'avatar IA fiable pour les grandes organisations ! Tester 20 variantes A/B est maintenant possible en un après-midi !"
                 }
             ]
+        },
+        es: {
+            title: 'Lo Que Los Marketers Dicen Sobre Nuestra',
+            titleHighlight: 'Plataforma de Video UGC IA',
+            subtitle: 'Únete a más de 20,000 marketers que cambiaron a la plataforma mejor calificada para anuncios de video UGC rápidos.',
+            testimonials: [
+                {
+                    name: "Jessica Martinez",
+                    role: "Propietaria de Agencia de Marketing",
+                    text: "Después de probar todos los principales generadores de avatares IA, AdMaker AI es sin duda el mejor. Creamos más de 50 anuncios de video UGC mensuales para nuestros clientes. ¡Los actores IA son tan realistas que las tasas de engagement se triplicaron!"
+                },
+                {
+                    name: "Michael Chen",
+                    role: "Consultor de Crecimiento E-Commerce",
+                    text: "Como startup, encontrar soluciones de avatar IA asequibles era crucial. AdMaker AI ofrece calidad comercial a precios de startup. La función de producto en mano es revolucionaria para nuestros clientes de e-commerce."
+                },
+                {
+                    name: "Sarah Thompson",
+                    role: "Directora de Redes Sociales, Fortune 500",
+                    text: "¡Un cambio total! Nuestro sistema IA de creatividad publicitaria produce contenido UGC viral consistentemente. ¡El ROI aumentó 400%!"
+                },
+                {
+                    name: "David Rodriguez",
+                    role: "Gerente de Marketing de Contenido",
+                    text: "Crear videos de testimonios IA es sin esfuerzo. El generador de influencers IA nos ayuda a escalar contenido 10x más rápido que contratar creadores reales."
+                },
+                {
+                    name: "Emma Williams",
+                    role: "Propietaria de Marca TikTok Shop",
+                    text: "Creamos contenido estilo UGC para TikTok que obtiene millones de vistas. ¡Mejor inversión jamás hecha!"
+                },
+                {
+                    name: "Robert Johnson",
+                    role: "VP de Marketing Digital",
+                    text: "¡Finalmente, una plataforma de avatar IA confiable para grandes organizaciones! ¡Probar 20 variantes A/B ahora es posible en una tarde!"
+                }
+            ]
         }
     };
 
