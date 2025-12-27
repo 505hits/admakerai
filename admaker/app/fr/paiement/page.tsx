@@ -33,10 +33,6 @@ export default function PaymentPageFr() {
 
     return (
         <div className={styles.paymentContainer}>
-            <div className={styles.paymentHeader}>
-                <h1>Choisissez Votre Plan</h1>
-                <p>Commencez à créer des vidéos UGC IA professionnelles en quelques minutes</p>
-            </div>
             <Pricing lang="fr" />
         </div>
     );
