@@ -10,7 +10,7 @@ import TypedText from '@/components/TypedText';
 import Testimonials from '@/components/Testimonials';
 import { getMediaUrl } from '@/lib/cloudflare-config';
 
-export default function HomeEs() {
+export default function HomeFr() {
     useEffect(() => {
         const handleScroll = () => {
             const tiltImage = document.querySelector('.feature-image-tilt img') as HTMLElement;
@@ -41,8 +41,8 @@ export default function HomeEs() {
 
     return (
         <main>
-            <Navbar lang="es" />
-            <Hero lang="es" />
+            <Navbar lang="fr" />
+            <Hero lang="fr" />
 
             {/* Examples Slider Section */}
             <section className="examples-slider">
@@ -165,7 +165,7 @@ export default function HomeEs() {
             </section>
 
             {/* Industry Tabs Section */}
-            <IndustryTabs lang="es" />
+            <IndustryTabs lang="fr" />
 
             {/* Winning Ad Replicator Section */}
             <section className="replicator-feature" style={{ padding: '100px 0', background: 'linear-gradient(180deg, #000 0%, #0a0a0a 100%)', position: 'relative', overflow: 'hidden' }}>
@@ -327,7 +327,7 @@ export default function HomeEs() {
                                 </div>
                             </div>
                             <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#fff', marginBottom: '8px' }}>
-                                Nueva Versi�n con Actor IA
+                                Nouvelle Version avec Acteur IA
                             </h3>
                             <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.6)', lineHeight: '1.5' }}>
                                 Même script, visage différent, résultats instantanés
@@ -338,10 +338,10 @@ export default function HomeEs() {
             </section>
 
             {/* Pricing Section */}
-            <Pricing lang="es" />
+            <Pricing lang="fr" />
 
             {/* Testimonials Section */}
-            <Testimonials lang="es" />
+            <Testimonials lang="fr" />
 
             {/* Why AdMaker AI Section */}
             <section className="features" style={{ paddingTop: '80px', paddingBottom: '80px', background: '#000' }}>
@@ -419,7 +419,7 @@ export default function HomeEs() {
                                 </svg>
                             </div>
                             <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#fff', marginBottom: '12px' }}>
-                                Publicar en TikTok y Youtube
+                                Publier sur TikTok & Youtube
                             </h3>
                             <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.7)', lineHeight: '1.6', margin: 0 }}>
                                 Publiez vos vidéos directement depuis l'application.
@@ -491,10 +491,10 @@ export default function HomeEs() {
                                 </svg>
                             </div>
                             <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#fff', marginBottom: '12px' }}>
-                                M�sica de fondo
+                                Musique de fond
                             </h3>
                             <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.7)', lineHeight: '1.6', margin: 0 }}>
-                                Ajoutez de la M�sica de fondo à vos vidéos. Nous avons une bibliothèque de milliers de chansons.
+                                Ajoutez de la musique de fond à vos vidéos. Nous avons une bibliothèque de milliers de chansons.
                             </p>
                         </div>
 
@@ -514,10 +514,10 @@ export default function HomeEs() {
                                 </svg>
                             </div>
                             <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#fff', marginBottom: '12px' }}>
-                                Exportaci�n multi-formato
+                                Export multi-format
                             </h3>
                             <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.7)', lineHeight: '1.6', margin: 0 }}>
-                                Exporta en 9:16, 1:1 o 16:9 para TikTok, Instagram Reels y YouTube.
+                                Exportez en 9:16, 1:1 ou 16:9 pour TikTok, Instagram Reels et YouTube.
                             </p>
                         </div>
 
@@ -538,7 +538,7 @@ export default function HomeEs() {
                                 </svg>
                             </div>
                             <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#fff', marginBottom: '12px' }}>
-                                Y mucho m�s...
+                                Et bien plus encore...
                             </h3>
                             <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.7)', lineHeight: '1.6', margin: 0 }}>
                                 AdMaker AI évolue constamment. Nous ajoutons de nouvelles fonctionnalités chaque semaine.
@@ -549,7 +549,7 @@ export default function HomeEs() {
             </section>
 
             {/* FAQ Section */}
-            <FAQ lang="es" />
+            <FAQ lang="fr" />
 
             {/* CTA Section */}
             <section className="cta" style={{ padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
@@ -636,4 +636,3 @@ export default function HomeEs() {
         </main>
     );
 }
-
