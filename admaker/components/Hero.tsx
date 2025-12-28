@@ -1,7 +1,7 @@
 import styles from './Hero.module.css';
 
 interface HeroProps {
-    lang?: 'en' | 'fr' | 'es';
+    lang?: 'en' | 'fr' | 'es' | 'pt';
 }
 
 export default function Hero({ lang = 'en' }: HeroProps) {
@@ -41,13 +41,25 @@ export default function Hero({ lang = 'en' }: HeroProps) {
             stat1: '100k+ videos generados',
             stat2: '2.8x ROAS',
             stat3: '95% Satisfacción del Cliente'
+        },
+        pt: {
+            socialProof: 'Confiado por mais de 20.000 jogadores e equipes de e-commerce',
+            title: 'Crie vídeos UGC com IA para um',
+            titleHighlight: 'crescimento explosivo',
+            subtitle: 'A maneira mais rápida de criar anúncios de vídeo com IA',
+            description: 'Escreva seu script → Escolha um avatar → Gere seu vídeo',
+            ctaPrimary: 'Crie seu primeiro anúncio',
+            ctaSecondary: 'Ver demo',
+            stat1: '100k+ vídeos gerados',
+            stat2: '2.8x ROAS',
+            stat3: '95% Satisfação do Cliente'
         }
     };
 
     const t = content[lang] || content['en'];
 
     // Determine the login URL based on language
-    const loginUrl = lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : '/login';
+    const loginUrl = lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : lang === 'pt' ? '/pt/conexao' : '/login';
 
     return (
         <section className={styles.hero}>
