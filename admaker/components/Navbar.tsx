@@ -115,16 +115,36 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                         <a href={`${langPrefix}/blog`}>{t.blog}</a>
 
                         {/* Language Selector */}
-                        <div className={styles.languageSelector}>
+                        <div
+                            className={styles.languageSelector}
+                            onMouseEnter={() => setShowLangDropdown(true)}
+                            onMouseLeave={() => setShowLangDropdown(false)}
+                        >
                             <button
                                 className={styles.langBtn}
                                 onClick={() => setShowLangDropdown(!showLangDropdown)}
-                                onMouseEnter={() => setShowLangDropdown(true)}
-                                onMouseLeave={() => setShowLangDropdown(false)}
                             >
-                                <span className={styles.flagIcon}>
-                                    {lang === 'fr' ? '🇫🇷' : lang === 'es' ? '🇪🇸' : '🇬🇧'}
-                                </span>
+                                {lang === 'fr' ? (
+                                    <svg width="20" height="20" viewBox="0 0 20 20" className={styles.flagIcon}>
+                                        <rect width="6.67" height="20" fill="#002395" />
+                                        <rect x="6.67" width="6.67" height="20" fill="#FFFFFF" />
+                                        <rect x="13.33" width="6.67" height="20" fill="#ED2939" />
+                                    </svg>
+                                ) : lang === 'es' ? (
+                                    <svg width="20" height="20" viewBox="0 0 20 20" className={styles.flagIcon}>
+                                        <rect width="20" height="5" fill="#AA151B" />
+                                        <rect y="5" width="20" height="10" fill="#F1BF00" />
+                                        <rect y="15" width="20" height="5" fill="#AA151B" />
+                                    </svg>
+                                ) : (
+                                    <svg width="20" height="20" viewBox="0 0 20 20" className={styles.flagIcon}>
+                                        <rect width="20" height="20" fill="#012169" />
+                                        <path d="M0 0l20 20M20 0L0 20" stroke="#FFFFFF" strokeWidth="4" />
+                                        <path d="M0 0l20 20M20 0L0 20" stroke="#C8102E" strokeWidth="2.4" />
+                                        <path d="M10 0v20M0 10h20" stroke="#FFFFFF" strokeWidth="6.67" />
+                                        <path d="M10 0v20M0 10h20" stroke="#C8102E" strokeWidth="4" />
+                                    </svg>
+                                )}
                                 <span className={styles.langCode}>
                                     {lang === 'fr' ? 'FR' : lang === 'es' ? 'ES' : 'EN'}
                                 </span>
@@ -133,21 +153,31 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                                 </svg>
                             </button>
                             {showLangDropdown && (
-                                <div
-                                    className={styles.langDropdown}
-                                    onMouseEnter={() => setShowLangDropdown(true)}
-                                    onMouseLeave={() => setShowLangDropdown(false)}
-                                >
+                                <div className={styles.langDropdown}>
                                     <a href="/" className={styles.langOption}>
-                                        <span className={styles.flagIcon}>🇬🇧</span>
+                                        <svg width="20" height="20" viewBox="0 0 20 20" className={styles.flagIcon}>
+                                            <rect width="20" height="20" fill="#012169" />
+                                            <path d="M0 0l20 20M20 0L0 20" stroke="#FFFFFF" strokeWidth="4" />
+                                            <path d="M0 0l20 20M20 0L0 20" stroke="#C8102E" strokeWidth="2.4" />
+                                            <path d="M10 0v20M0 10h20" stroke="#FFFFFF" strokeWidth="6.67" />
+                                            <path d="M10 0v20M0 10h20" stroke="#C8102E" strokeWidth="4" />
+                                        </svg>
                                         <span>English</span>
                                     </a>
                                     <a href="/fr" className={styles.langOption}>
-                                        <span className={styles.flagIcon}>🇫🇷</span>
+                                        <svg width="20" height="20" viewBox="0 0 20 20" className={styles.flagIcon}>
+                                            <rect width="6.67" height="20" fill="#002395" />
+                                            <rect x="6.67" width="6.67" height="20" fill="#FFFFFF" />
+                                            <rect x="13.33" width="6.67" height="20" fill="#ED2939" />
+                                        </svg>
                                         <span>Français</span>
                                     </a>
                                     <a href="/es" className={styles.langOption}>
-                                        <span className={styles.flagIcon}>🇪🇸</span>
+                                        <svg width="20" height="20" viewBox="0 0 20 20" className={styles.flagIcon}>
+                                            <rect width="20" height="5" fill="#AA151B" />
+                                            <rect y="5" width="20" height="10" fill="#F1BF00" />
+                                            <rect y="15" width="20" height="5" fill="#AA151B" />
+                                        </svg>
                                         <span>Español</span>
                                     </a>
                                 </div>
