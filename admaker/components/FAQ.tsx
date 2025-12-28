@@ -123,6 +123,33 @@ export default function FAQ({ lang = 'en' }: FAQProps) {
                     answer: "Absolutamente! O AdMaker AI oferece otimização automática para formato vertical 9:16. Exporte seus vídeos UGC IA no formato TikTok, Instagram Reels, YouTube Shorts ou Facebook com um clique."
                 }
             ]
+        },
+        ko: {
+            title: 'AI UGC 비디오 제작에 대한',
+            titleHighlight: '자주 묻는 질문',
+            subtitle: 'AI UGC 비디오 제작, 최고의 AI 아바타 생성기 선택, 비디오 광고 ROI 극대화에 대해 알아야 할 모든 것.',
+            faqs: [
+                {
+                    question: "AdMaker AI가 최고의 AI UGC 비디오 플랫폼인 이유는 무엇인가요?",
+                    answer: "AdMaker AI는 최첨단 AI 액터 기술과 사용자 친화적인 디자인을 결합하여 UGC 비디오 콘텐츠 생성을 위한 최고의 AI 도구입니다. 기본 딥페이크 크리에이터와 달리, 300개 이상의 사실적인 아바타, 손에 제품 통합, 2분 생성 시간을 제공합니다."
+                },
+                {
+                    question: "스크립트에서 AI 비디오 크리에이터는 어떻게 작동하나요?",
+                    answer: "스크립트에서 AI 비디오 크리에이터는 고급 자연어 처리 및 컴퓨터 비전을 사용합니다. 광고 스크립트를 붙여넣고 AI 액터를 선택하면 시스템이 2분 이내에 완전히 동기화된 사실적인 UGC 비디오를 생성합니다."
+                },
+                {
+                    question: "손에 제품 기능이란 무엇인가요?",
+                    answer: "이 혁신적인 기능을 사용하면 AI 아바타가 비디오에서 제품을 물리적으로 들고, 보여주거나 사용할 수 있습니다. 제품 이미지를 업로드하기만 하면 고급 AI가 장면에 완벽하게 통합합니다."
+                },
+                {
+                    question: "AI 액터와 아바타는 얼마나 사실적인가요?",
+                    answer: "AI 액터는 최첨단 기술을 사용합니다. 자연스러운 표정, 사실적인 눈 움직임, 여러 언어로 완벽한 립싱크, 진정한 신체 언어를 특징으로 합니다."
+                },
+                {
+                    question: "TikTok 및 Instagram Reels용 UGC 비디오를 만들 수 있나요?",
+                    answer: "물론입니다! AdMaker AI는 세로 9:16 형식에 대한 자동 최적화를 제공합니다. 클릭 한 번으로 TikTok, Instagram Reels, YouTube Shorts 또는 Facebook 형식으로 AI UGC 비디오를 내보낼 수 있습니다."
+                }
+            ]
         }
     };
 

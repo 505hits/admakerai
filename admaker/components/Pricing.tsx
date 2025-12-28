@@ -98,10 +98,33 @@ export default function Pricing({ lang = 'en' }: PricingProps) {
             outfitSwapping: 'Troca de roupa',
             replicatorCredits: 'créditos de replicador',
             replications: 'replicações'
+        },
+        ko: {
+            title: '완벽한 플랜 선택',
+            subtitle: '모든 플랜에는 무료 평가판이 포함되어 있습니다. 언제든지 취소하세요.',
+            monthly: '월간',
+            annual: '연간',
+            save: '20% 절약',
+            popular: '가장 인기있는',
+            perMonth: '/월',
+            billedAnnually: '연간 청구',
+            getStarted: '시작하기',
+            loading: '로딩 중...',
+            videoCredits: '비디오 크레딧',
+            actorCredits: '액터 크레딧',
+            upTo: '최대',
+            videosPerMonth: '월별 비디오',
+            languages: '35+ 언어',
+            productHolding: '제품 들기',
+            outfitSwapping: '의상 교체',
+            replicatorCredits: '복제기 크레딧',
+            replications: '복제'
         }
     };
 
     const t = content[lang] || content['en'];
+
+    const loginUrl = lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : lang === 'pt' ? '/pt/conexao' : lang === 'ko' ? '/ko/login' : '/login';
 
     const handleCheckout = async (plan: typeof plans[0], cycle: 'monthly' | 'annual') => {
         setLoading(plan.name);

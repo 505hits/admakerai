@@ -153,6 +153,43 @@ export default function Testimonials({ lang = 'en' }: TestimonialsProps) {
                     text: "Finalmente, uma plataforma de avatar IA confiável para grandes organizações! Testar 20 variantes A/B agora é possível em uma tarde!"
                 }
             ]
+        },
+        ko: {
+            title: '마케터들이 우리의',
+            titleHighlight: 'AI UGC 비디오 플랫폼에 대해 말하는 것',
+            subtitle: '빠른 UGC 비디오 광고를 위한 최고 등급 플랫폼으로 전환한 20,000명 이상의 마케터와 함께하세요.',
+            testimonials: [
+                {
+                    name: "Jessica Martinez",
+                    role: "마케팅 에이전시 소유자",
+                    text: "모든 주요 AI 아바타 생성기를 테스트한 후 AdMaker AI가 단연 최고입니다. 고객을 위해 매월 50개 이상의 UGC 비디오 광고를 만듭니다. AI 액터가 너무 사실적이어서 참여율이 3배 증가했습니다!"
+                },
+                {
+                    name: "Michael Chen",
+                    role: "전자상거래 성장 컨설턴트",
+                    text: "스타트업으로서 저렴한 AI 아바타 솔루션을 찾는 것이 중요했습니다. AdMaker AI는 스타트업 가격으로 상업적 품질을 제공합니다. 손에 제품 기능은 전자상거래 고객에게 혁신적입니다."
+                },
+                {
+                    name: "Sarah Thompson",
+                    role: "소셜 미디어 이사, Fortune 500",
+                    text: "완전한 게임 체인저! AI 광고 크리에이티브 시스템이 일관되게 바이럴 UGC 콘텐츠를 생산합니다. ROI가 400% 증가했습니다!"
+                },
+                {
+                    name: "David Rodriguez",
+                    role: "콘텐츠 마케팅 매니저",
+                    text: "AI 추천 비디오 만들기가 쉽습니다. AI 인플루언서 생성기는 실제 크리에이터를 고용하는 것보다 10배 빠르게 콘텐츠를 확장하는 데 도움이 됩니다."
+                },
+                {
+                    name: "Emma Williams",
+                    role: "TikTok Shop 브랜드 소유자",
+                    text: "수백만 조회수를 얻는 TikTok용 UGC 스타일 콘텐츠를 만듭니다. 최고의 투자입니다!"
+                },
+                {
+                    name: "Robert Johnson",
+                    role: "디지털 마케팅 VP",
+                    text: "마침내 대규모 조직을 위한 신뢰할 수 있는 AI 아바타 플랫폼! 이제 오후에 20개의 A/B 변형을 테스트할 수 있습니다!"
+                }
+            ]
         }
     };
 

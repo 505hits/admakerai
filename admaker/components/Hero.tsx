@@ -48,18 +48,30 @@ export default function Hero({ lang = 'en' }: HeroProps) {
             titleHighlight: 'crescimento explosivo',
             subtitle: 'A maneira mais rápida de criar anúncios de vídeo com IA',
             description: 'Escreva seu script → Escolha um avatar → Gere seu vídeo',
-            ctaPrimary: 'Crie seu primeiro anúncio',
-            ctaSecondary: 'Ver demo',
+            ctaPrimary: 'Começar gratuitamente',
+            ctaSecondary: 'Ver demonstração',
             stat1: '100k+ vídeos gerados',
             stat2: '2.8x ROAS',
             stat3: '95% Satisfação do Cliente'
+        },
+        ko: {
+            socialProof: '20,000명 이상의 플레이어와 전자상거래 팀이 신뢰합니다',
+            title: '폭발적인 성장을 위한',
+            titleHighlight: 'AI UGC 비디오 제작',
+            subtitle: 'AI 비디오 광고를 만드는 가장 빠른 방법',
+            description: '스크립트 작성 → 아바타 선택 → 비디오 생성',
+            ctaPrimary: '무료로 시작하기',
+            ctaSecondary: '데모 보기',
+            stat1: '100k+ 생성된 비디오',
+            stat2: '2.8x ROAS',
+            stat3: '95% 고객 만족도'
         }
     };
 
     const t = content[lang] || content['en'];
 
     // Determine the login URL based on language
-    const loginUrl = lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : lang === 'pt' ? '/pt/conexao' : '/login';
+    const loginUrl = lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : lang === 'pt' ? '/pt/conexao' : lang === 'ko' ? '/ko/login' : '/login';
 
     return (
         <section className={styles.hero}>
