@@ -7,7 +7,7 @@ import { getMediaUrl } from '../lib/cloudflare-config';
 import { createClient } from '@/lib/supabase/client';
 
 interface NavbarProps {
-    lang?: 'en' | 'fr' | 'es' | 'pt';
+    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko';
 }
 
 export default function Navbar({ lang = 'en' }: NavbarProps) {
@@ -64,15 +64,26 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
             profile: 'Perfil',
             dashboard: 'Painel',
             logout: 'Sair',
+        },
+        ko: {
+            features: '기능',
+            pricing: '가격',
+            blog: '블로그',
+            signIn: '로그인',
+            getStarted: '시작하기',
+            user: '사용자',
+            profile: '프로필',
+            dashboard: '대시보드',
+            logout: '로그아웃',
         }
     };
 
     const t = translations[lang] || translations['en'];
-    const langPrefix = lang === 'fr' ? '/fr' : lang === 'es' ? '/es' : lang === 'pt' ? '/pt' : '';
+    const langPrefix = lang === 'fr' ? '/fr' : lang === 'es' ? '/es' : lang === 'pt' ? '/pt' : lang === 'ko' ? '/ko' : '';
     const pathname = usePathname();
 
     // Function to get the equivalent URL in a different language
-    const getLanguageUrl = (targetLang: 'en' | 'fr' | 'es' | 'pt') => {
+    const getLanguageUrl = (targetLang: 'en' | 'fr' | 'es' | 'pt' | 'ko') => {
         if (!pathname) return targetLang === 'en' ? '/' : `/${targetLang}`;
 
         // Remove current language prefix
@@ -80,29 +91,31 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
         if (pathname.startsWith('/fr/')) cleanPath = pathname.substring(3);
         else if (pathname.startsWith('/es/')) cleanPath = pathname.substring(3);
         else if (pathname.startsWith('/pt/')) cleanPath = pathname.substring(3);
+        else if (pathname.startsWith('/ko/')) cleanPath = pathname.substring(3);
         else if (pathname.startsWith('/fr')) cleanPath = pathname.substring(3) || '/';
         else if (pathname.startsWith('/es')) cleanPath = pathname.substring(3) || '/';
         else if (pathname.startsWith('/pt')) cleanPath = pathname.substring(3) || '/';
+        else if (pathname.startsWith('/ko')) cleanPath = pathname.substring(3) || '/';
 
         // Map paths to their equivalents in different languages
         const pathMappings: { [key: string]: { [key: string]: string } } = {
-            '/': { en: '/', fr: '/fr', es: '/es', pt: '/pt' },
-            '/login': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao' },
-            '/connexion': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao' },
-            '/iniciar-sesion': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao' },
-            '/conexao': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao' },
-            '/payment': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento' },
-            '/paiement': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento' },
-            '/pago': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento' },
-            '/pagamento': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento' },
-            '/profile': { en: '/profile', fr: '/fr/profil', es: '/es/perfil', pt: '/pt/perfil' },
-            '/profil': { en: '/profile', fr: '/fr/profil', es: '/es/perfil', pt: '/pt/perfil' },
-            '/perfil': { en: '/profile', fr: '/fr/profil', es: '/es/perfil', pt: '/pt/perfil' },
-            '/dashboard': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel' },
-            '/tableau-de-bord': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel' },
-            '/panel': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel' },
-            '/painel': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel' },
-            '/blog': { en: '/blog', fr: '/fr/blog', es: '/es/blog', pt: '/pt/blog' },
+            '/': { en: '/', fr: '/fr', es: '/es', pt: '/pt', ko: '/ko' },
+            '/login': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao', ko: '/ko/login' },
+            '/connexion': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao', ko: '/ko/login' },
+            '/iniciar-sesion': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao', ko: '/ko/login' },
+            '/conexao': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao', ko: '/ko/login' },
+            '/payment': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento', ko: '/ko/payment' },
+            '/paiement': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento', ko: '/ko/payment' },
+            '/pago': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento', ko: '/ko/payment' },
+            '/pagamento': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento', ko: '/ko/payment' },
+            '/profile': { en: '/profile', fr: '/fr/profil', es: '/es/perfil', pt: '/pt/perfil', ko: '/ko/profile' },
+            '/profil': { en: '/profile', fr: '/fr/profil', es: '/es/perfil', pt: '/pt/perfil', ko: '/ko/profile' },
+            '/perfil': { en: '/profile', fr: '/fr/profil', es: '/es/perfil', pt: '/pt/perfil', ko: '/ko/profile' },
+            '/dashboard': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel', ko: '/ko/dashboard' },
+            '/tableau-de-bord': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel', ko: '/ko/dashboard' },
+            '/panel': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel', ko: '/ko/dashboard' },
+            '/painel': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel', ko: '/ko/dashboard' },
+            '/blog': { en: '/blog', fr: '/fr/blog', es: '/es/blog', pt: '/pt/blog', ko: '/ko/blog' },
         };
 
         // Find the mapping for the current clean path
@@ -253,6 +266,22 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                                         </svg>
                                         <span>Português</span>
                                     </a>
+                                    <a href={getLanguageUrl('ko')} className={styles.langOption}>
+                                        <svg width="20" height="20" viewBox="0 0 20 20" className={styles.flagIcon}>
+                                            <rect width="20" height="20" fill="#FFFFFF" />
+                                            <circle cx="10" cy="10" r="6" fill="#CD2E3A" />
+                                            <path d="M10 4 A6 6 0 0 1 10 16 A6 6 0 0 0 10 4" fill="#0047A0" />
+                                            <g stroke="#000000" strokeWidth="0.8">
+                                                <line x1="14" y1="6" x2="16" y2="4" />
+                                                <line x1="14.5" y1="5" x2="16.5" y2="3" />
+                                                <line x1="15" y1="6" x2="17" y2="4" />
+                                                <line x1="4" y1="14" x2="6" y2="16" />
+                                                <line x1="3" y1="14.5" x2="5" y2="16.5" />
+                                                <line x1="4" y1="15" x2="6" y2="17" />
+                                            </g>
+                                        </svg>
+                                        <span>한국어</span>
+                                    </a>
                                 </div>
                             )}
                         </div>
@@ -279,30 +308,30 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                                 </button>
                                 {showUserDropdown && (
                                     <div className={styles.dropdown}>
-                                        <div className={styles.dropdownHeader}>
-                                            <img src={getMediaUrl('admaker_ai_logo-removebg-preview.png')} alt="AdMaker AI" className={styles.dropdownLogo} />
+                                        <div className={styles.userDropdown}>
+                                            <a href={`${langPrefix}/profile`} className={styles.dropdownItem}>
+                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                    <path d="M10 10C12.7614 10 15 7.76142 15 5C15 2.23858 12.7614 0 10 0C7.23858 0 5 2.23858 5 5C5 7.76142 7.23858 10 10 10Z" fill="currentColor" />
+                                                    <path d="M10 12.5C5.58172 12.5 2 14.5817 2 17.5V20H18V17.5C18 14.5817 14.4183 12.5 10 12.5Z" fill="currentColor" />
+                                                </svg>
+                                                {t.profile}
+                                            </a>
+                                            <a href={lang === 'fr' ? '/fr/tableau-de-bord' : lang === 'es' ? '/es/panel' : lang === 'pt' ? '/pt/painel' : '/dashboard'} className={styles.dropdownItem}>
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                    <rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                                    <rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                                    <rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                                    <rect x="9" y="9" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                                </svg>
+                                                {t.dashboard}
+                                            </a>
+                                            <button onClick={handleLogout} className={styles.dropdownItem}>
+                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                    <path d="M6 14H3a1 1 0 01-1-1V3a1 1 0 011-1h3M11 11l3-3-3-3M14 8H6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                                </svg>
+                                                {t.logout}
+                                            </button>
                                         </div>
-                                        <a href={lang === 'fr' ? '/fr/profil' : lang === 'es' ? '/es/perfil' : lang === 'pt' ? '/pt/perfil' : '/profile'} className={styles.dropdownItem}>
-                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                <path d="M8 8a3 3 0 100-6 3 3 0 000 6zM3 14a5 5 0 0110 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                                            </svg>
-                                            {t.profile}
-                                        </a>
-                                        <a href={lang === 'fr' ? '/fr/tableau-de-bord' : lang === 'es' ? '/es/panel' : lang === 'pt' ? '/pt/painel' : '/dashboard'} className={styles.dropdownItem}>
-                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                <rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
-                                                <rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
-                                                <rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
-                                                <rect x="9" y="9" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
-                                            </svg>
-                                            {t.dashboard}
-                                        </a>
-                                        <button onClick={handleLogout} className={styles.dropdownItem}>
-                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                <path d="M6 14H3a1 1 0 01-1-1V3a1 1 0 011-1h3M11 11l3-3-3-3M14 8H6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                                            </svg>
-                                            {t.logout}
-                                        </button>
                                     </div>
                                 )}
                             </div>
