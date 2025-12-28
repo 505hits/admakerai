@@ -1,7 +1,8 @@
+```
 import styles from './Hero.module.css';
 
 interface HeroProps {
-    lang?: 'en' | 'fr' | 'es' | 'pt';
+    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko';
 }
 
 export default function Hero({ lang = 'en' }: HeroProps) {

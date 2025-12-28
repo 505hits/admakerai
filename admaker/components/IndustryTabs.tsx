@@ -13,7 +13,7 @@ interface Industry {
 }
 
 interface IndustryTabsProps {
-    lang?: 'en' | 'fr' | 'es' | 'pt';
+    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko';
 }
 
 export default function IndustryTabs({ lang = 'en' }: IndustryTabsProps) {

@@ -6,7 +6,7 @@ import { createClient } from '@/lib/supabase/client';
 import styles from './Pricing.module.css';
 
 interface PricingProps {
-    lang?: 'en' | 'fr' | 'es' | 'pt';
+    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko';
 }
 
 export default function Pricing({ lang = 'en' }: PricingProps) {
