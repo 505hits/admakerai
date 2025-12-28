@@ -8,8 +8,8 @@ export default function Hero({ lang = 'en' }: HeroProps) {
     const content = {
         en: {
             socialProof: 'Trusted by 20,000+ ecom players & teams',
-            title: 'Create UGC videos with AI for',
-            titleHighlight: 'explosive growth',
+            title: 'Create AI UGC Ads',
+            titleHighlight: 'in Minutes',
             subtitle: 'The fastest way to create AI video ads',
             description: 'Write your script → Choose an avatar → Generate your video',
             ctaPrimary: 'Create your first ad',
@@ -20,8 +20,8 @@ export default function Hero({ lang = 'en' }: HeroProps) {
         },
         fr: {
             socialProof: 'Approuvé par plus de 20 000 e-commerçants et équipes',
-            title: 'Créez des vidéos UGC avec l\'IA pour une',
-            titleHighlight: 'croissance explosive',
+            title: 'Créez des Publicités UGC IA',
+            titleHighlight: 'en Minutes',
             subtitle: 'Le moyen le plus rapide de créer des publicités vidéo IA',
             description: 'Écrivez votre script → Choisissez un avatar → Générez votre vidéo',
             ctaPrimary: 'Créez votre première pub',
@@ -32,8 +32,8 @@ export default function Hero({ lang = 'en' }: HeroProps) {
         },
         es: {
             socialProof: 'Confiado por más de 20,000 jugadores y equipos de e-commerce',
-            title: 'Crea videos UGC con IA para un',
-            titleHighlight: 'crecimiento explosivo',
+            title: 'Crea Anuncios UGC con IA',
+            titleHighlight: 'en Minutos',
             subtitle: 'La forma más rápida de crear anuncios de video con IA',
             description: 'Escribe tu guión → Elige un avatar → Genera tu video',
             ctaPrimary: 'Crea tu primer anuncio',
@@ -44,8 +44,8 @@ export default function Hero({ lang = 'en' }: HeroProps) {
         },
         pt: {
             socialProof: 'Confiado por mais de 20.000 jogadores e equipes de e-commerce',
-            title: 'Crie vídeos UGC com IA para um',
-            titleHighlight: 'crescimento explosivo',
+            title: 'Crie Anúncios UGC com IA',
+            titleHighlight: 'em Minutos',
             subtitle: 'A maneira mais rápida de criar anúncios de vídeo com IA',
             description: 'Escreva seu script → Escolha um avatar → Gere seu vídeo',
             ctaPrimary: 'Começar gratuitamente',
@@ -56,8 +56,8 @@ export default function Hero({ lang = 'en' }: HeroProps) {
         },
         ko: {
             socialProof: '20,000명 이상의 플레이어와 전자상거래 팀이 신뢰합니다',
-            title: '폭발적인 성장을 위한',
-            titleHighlight: 'AI UGC 비디오 제작',
+            title: 'AI UGC 광고를',
+            titleHighlight: '몇 분 안에 제작',
             subtitle: 'AI 비디오 광고를 만드는 가장 빠른 방법',
             description: '스크립트 작성 → 아바타 선택 → 비디오 생성',
             ctaPrimary: '무료로 시작하기',
