@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- English Pages -->
+  <url>
+    <loc>https://admakerai.vercel.app/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://admakerai.vercel.app/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://admakerai.vercel.app/fr" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://admakerai.vercel.app/es" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://admakerai.vercel.app/pt" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://admakerai.vercel.app/ko" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://admakerai.vercel.app/" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>https://admakerai.vercel.app/login</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://admakerai.vercel.app/payment</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://admakerai.vercel.app/dashboard</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://admakerai.vercel.app/profile</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://admakerai.vercel.app/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- French Pages -->
+  <url>
+    <loc>https://admakerai.vercel.app/fr</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://admakerai.vercel.app/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://admakerai.vercel.app/fr" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://admakerai.vercel.app/es" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://admakerai.vercel.app/pt" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://admakerai.vercel.app/ko" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://admakerai.vercel.app/" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>https://admakerai.vercel.app/fr/connexion</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://admakerai.vercel.app/fr/paiement</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://admakerai.vercel.app/fr/tableau-de-bord</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://admakerai.vercel.app/fr/profil</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://admakerai.vercel.app/fr/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Spanish Pages -->
+  <url>
+    <loc>https://admakerai.vercel.app/es</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://admakerai.vercel.app/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://admakerai.vercel.app/fr" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://admakerai.vercel.app/es" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://admakerai.vercel.app/pt" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://admakerai.vercel.app/ko" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://admakerai.vercel.app/" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>https://admakerai.vercel.app/es/iniciar-sesion</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://admakerai.vercel.app/es/pago</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://admakerai.vercel.app/es/panel</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://admakerai.vercel.app/es/perfil</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://admakerai.vercel.app/es/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Portuguese Pages -->
+  <url>
+    <loc>https://admakerai.vercel.app/pt</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://admakerai.vercel.app/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://admakerai.vercel.app/fr" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://admakerai.vercel.app/es" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://admakerai.vercel.app/pt" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://admakerai.vercel.app/ko" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://admakerai.vercel.app/" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>https://admakerai.vercel.app/pt/conexao</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://admakerai.vercel.app/pt/pagamento</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://admakerai.vercel.app/pt/painel</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://admakerai.vercel.app/pt/perfil</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://admakerai.vercel.app/pt/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Korean Pages -->
+  <url>
+    <loc>https://admakerai.vercel.app/ko</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://admakerai.vercel.app/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://admakerai.vercel.app/fr" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://admakerai.vercel.app/es" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://admakerai.vercel.app/pt" />
+    <xhtml:link rel="alternate" hreflang="ko" href="https://admakerai.vercel.app/ko" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://admakerai.vercel.app/" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>https://admakerai.vercel.app/ko/login</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://admakerai.vercel.app/ko/payment</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <url>
+    <loc>https://admakerai.vercel.app/ko/dashboard</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>https://admakerai.vercel.app/ko/profile</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://admakerai.vercel.app/ko/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+</urlset>

@@ -20,16 +20,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Hreflang tags for SEO */}
-        <link rel="alternate" hrefLang="en" href="https://admakerai.co/" />
-        <link rel="alternate" hrefLang="fr" href="https://admakerai.co/fr" />
-        <link rel="alternate" hrefLang="x-default" href="https://admakerai.co/" />
-        <link rel="alternate" hrefLang="en" href="https://admakerai.co/login" />
-        <link rel="alternate" hrefLang="fr" href="https://admakerai.co/fr/connexion" />
-        <link rel="alternate" hrefLang="en" href="https://admakerai.co/payment" />
-        <link rel="alternate" hrefLang="fr" href="https://admakerai.co/fr/paiement" />
-        <link rel="alternate" hrefLang="en" href="https://admakerai.co/dashboard" />
-        <link rel="alternate" hrefLang="fr" href="https://admakerai.co/fr/tableau-de-bord" />
+        {/* Canonical URL */}
+        <link rel="canonical" href="https://admakerai.vercel.app/" />
+
+        {/* Hreflang tags for multilingual SEO */}
+        <link rel="alternate" hrefLang="en" href="https://admakerai.vercel.app/" />
+        <link rel="alternate" hrefLang="fr" href="https://admakerai.vercel.app/fr" />
+        <link rel="alternate" hrefLang="es" href="https://admakerai.vercel.app/es" />
+        <link rel="alternate" hrefLang="pt" href="https://admakerai.vercel.app/pt" />
+        <link rel="alternate" hrefLang="ko" href="https://admakerai.vercel.app/ko" />
+        <link rel="alternate" hrefLang="x-default" href="https://admakerai.vercel.app/" />
       </head>
       <body className={inter.className}>
         {/* Temporarily removed AuthProvider for testing */}

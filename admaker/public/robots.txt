@@ -1,0 +1,10 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+Allow: /fr/
+Allow: /es/
+Allow: /pt/
+Allow: /ko/
+
+# Sitemap
+Sitemap: https://admakerai.vercel.app/sitemap.xml
