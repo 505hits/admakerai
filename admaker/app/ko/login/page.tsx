@@ -1,11 +1,12 @@
 'use client';
 
+import { Suspense } from 'react';
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { getMediaUrl } from '@/lib/cloudflare-config';
 
-export default function LoginKo() {
+function LoginContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const [isLoading, setIsLoading] = useState(false);
@@ -144,5 +145,24 @@ export default function LoginKo() {
                 </p>
             </div>
         </div>
+    );
+}
+
+export default function LoginKo() {
+    return (
+        <Suspense fallback={
+            <div style={{
+                minHeight: '100vh',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: '#0a0a0a',
+                color: 'white'
+            }}>
+                로딩 중...
+            </div>
+        }>
+            <LoginContent />
+        </Suspense>
     );
 }
