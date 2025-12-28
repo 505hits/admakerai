@@ -6,7 +6,7 @@ import { createClient } from '@/lib/supabase/client';
 import styles from './Pricing.module.css';
 
 interface PricingProps {
-    lang?: 'en' | 'fr' | 'es';
+    lang?: 'en' | 'fr' | 'es' | 'pt';
 }
 
 export default function Pricing({ lang = 'en' }: PricingProps) {
@@ -77,6 +77,27 @@ export default function Pricing({ lang = 'en' }: PricingProps) {
             "outfitSwapping": "Cambio de vestuario",
             "replicatorCredits": "créditos de replicador",
             "replications": "replicaciones"
+        },
+        pt: {
+            title: 'Escolha Seu Plano Perfeito',
+            subtitle: 'Comece a criar vídeos UGC de IA profissionais em minutos',
+            monthly: 'Mensal',
+            annual: 'Anual',
+            save: 'Economize 20%',
+            popular: 'Mais Popular',
+            perMonth: '/mês',
+            billedAnnually: 'cobrado anualmente',
+            getStarted: 'Começar',
+            loading: 'Carregando...',
+            videoCredits: 'créditos de vídeo',
+            actorCredits: 'créditos de ator',
+            upTo: 'Até',
+            videosPerMonth: 'vídeos por mês',
+            languages: '35+ idiomas',
+            productHolding: 'Segurar produto',
+            outfitSwapping: 'Troca de roupa',
+            replicatorCredits: 'créditos de replicador',
+            replications: 'replicações'
         }
     };
 
@@ -90,7 +111,7 @@ export default function Pricing({ lang = 'en' }: PricingProps) {
             const { data: { user } } = await supabase.auth.getUser();
 
             if (!user) {
-                const loginUrl = lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : '/login';
+                const loginUrl = lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : lang === 'pt' ? '/pt/conexao' : '/login';
                 router.push(loginUrl);
                 return;
             }

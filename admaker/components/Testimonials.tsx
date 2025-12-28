@@ -1,7 +1,7 @@
 import styles from './Testimonials.module.css';
 
 interface TestimonialsProps {
-    lang?: 'en' | 'fr' | 'es';
+    lang?: 'en' | 'fr' | 'es' | 'pt';
 }
 
 export default function Testimonials({ lang = 'en' }: TestimonialsProps) {
