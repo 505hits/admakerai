@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import styles from './Navbar.module.css';
 import { getMediaUrl } from '../lib/cloudflare-config';
 import { createClient } from '@/lib/supabase/client';
@@ -69,6 +69,54 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
 
     const t = translations[lang] || translations['en'];
     const langPrefix = lang === 'fr' ? '/fr' : lang === 'es' ? '/es' : lang === 'pt' ? '/pt' : '';
+    const pathname = usePathname();
+
+    // Function to get the equivalent URL in a different language
+    const getLanguageUrl = (targetLang: 'en' | 'fr' | 'es' | 'pt') => {
+        if (!pathname) return targetLang === 'en' ? '/' : `/${targetLang}`;
+
+        // Remove current language prefix
+        let cleanPath = pathname;
+        if (pathname.startsWith('/fr/')) cleanPath = pathname.substring(3);
+        else if (pathname.startsWith('/es/')) cleanPath = pathname.substring(3);
+        else if (pathname.startsWith('/pt/')) cleanPath = pathname.substring(3);
+        else if (pathname.startsWith('/fr')) cleanPath = pathname.substring(3) || '/';
+        else if (pathname.startsWith('/es')) cleanPath = pathname.substring(3) || '/';
+        else if (pathname.startsWith('/pt')) cleanPath = pathname.substring(3) || '/';
+
+        // Map paths to their equivalents in different languages
+        const pathMappings: { [key: string]: { [key: string]: string } } = {
+            '/': { en: '/', fr: '/fr', es: '/es', pt: '/pt' },
+            '/login': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao' },
+            '/connexion': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao' },
+            '/iniciar-sesion': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao' },
+            '/conexao': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao' },
+            '/payment': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento' },
+            '/paiement': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento' },
+            '/pago': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento' },
+            '/pagamento': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento' },
+            '/profile': { en: '/profile', fr: '/fr/profil', es: '/es/perfil', pt: '/pt/perfil' },
+            '/profil': { en: '/profile', fr: '/fr/profil', es: '/es/perfil', pt: '/pt/perfil' },
+            '/perfil': { en: '/profile', fr: '/fr/profil', es: '/es/perfil', pt: '/pt/perfil' },
+            '/dashboard': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel' },
+            '/tableau-de-bord': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel' },
+            '/panel': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel' },
+            '/painel': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel' },
+            '/blog': { en: '/blog', fr: '/fr/blog', es: '/es/blog', pt: '/pt/blog' },
+        };
+
+        // Find the mapping for the current clean path
+        const mapping = pathMappings[cleanPath];
+        if (mapping && mapping[targetLang]) {
+            return mapping[targetLang];
+        }
+
+        // Default: just add language prefix
+        if (targetLang === 'en') {
+            return cleanPath === '/' ? '/' : cleanPath;
+        }
+        return `/${targetLang}${cleanPath === '/' ? '' : cleanPath}`;
+    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -171,7 +219,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                             </button>
                             {showLangDropdown && (
                                 <div className={styles.langDropdown}>
-                                    <a href="/" className={styles.langOption}>
+                                    <a href={getLanguageUrl('en')} className={styles.langOption}>
                                         <svg width="20" height="20" viewBox="0 0 20 20" className={styles.flagIcon}>
                                             <rect width="20" height="20" fill="#012169" />
                                             <path d="M0 0l20 20M20 0L0 20" stroke="#FFFFFF" strokeWidth="4" />
@@ -181,7 +229,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                                         </svg>
                                         <span>English</span>
                                     </a>
-                                    <a href="/fr" className={styles.langOption}>
+                                    <a href={getLanguageUrl('fr')} className={styles.langOption}>
                                         <svg width="20" height="20" viewBox="0 0 20 20" className={styles.flagIcon}>
                                             <rect width="6.67" height="20" fill="#002395" />
                                             <rect x="6.67" width="6.67" height="20" fill="#FFFFFF" />
@@ -189,7 +237,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                                         </svg>
                                         <span>Français</span>
                                     </a>
-                                    <a href="/es" className={styles.langOption}>
+                                    <a href={getLanguageUrl('es')} className={styles.langOption}>
                                         <svg width="20" height="20" viewBox="0 0 20 20" className={styles.flagIcon}>
                                             <rect width="20" height="5" fill="#AA151B" />
                                             <rect y="5" width="20" height="10" fill="#F1BF00" />
@@ -197,7 +245,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                                         </svg>
                                         <span>Español</span>
                                     </a>
-                                    <a href="/pt" className={styles.langOption}>
+                                    <a href={getLanguageUrl('pt')} className={styles.langOption}>
                                         <svg width="20" height="20" viewBox="0 0 20 20" className={styles.flagIcon}>
                                             <rect width="8" height="20" fill="#006600" />
                                             <rect x="8" width="12" height="20" fill="#FF0000" />
