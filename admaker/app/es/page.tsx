@@ -58,21 +58,21 @@ export default function HomeEs() {
                         ];
 
                         const titles = [
-                            'Publicité Beauté',
-                            'Lancement Produit',
-                            'Campagne Boisson',
+                            'Publicidad de Belleza',
+                            'Lanzamiento de Producto',
+                            'Campaña de Bebidas',
                             'Podcast UGC',
-                            'Témoignage Client',
-                            'Fitness & Sport'
+                            'Testimonio de Cliente',
+                            'Fitness y Deporte'
                         ];
 
                         const stats = [
-                            'Conversion +250%',
-                            '10M+ vues',
+                            'Conversión +250%',
+                            '10M+ vistas',
                             'ROI x5',
                             'Engagement +180%',
                             'CTR +320%',
-                            'Portée x3'
+                            'Alcance x3'
                         ];
 
                         const videoIndex = i % 6;
