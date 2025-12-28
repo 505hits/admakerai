@@ -1,6 +1,7 @@
 import enTranslations from './en.json';
 import frTranslations from './fr.json';
 import esTranslations from './es.json';
+import ptTranslations from './pt.json';
 
 type TranslationKey = keyof typeof enTranslations;
 type NestedTranslationKey<T extends TranslationKey> = keyof typeof enTranslations[T];
@@ -8,13 +9,13 @@ type NestedTranslationKey<T extends TranslationKey> = keyof typeof enTranslation
 export function getTranslation<T extends TranslationKey>(
     section: T,
     key: NestedTranslationKey<T>,
-    lang: 'en' | 'fr' | 'es' = 'en'
+    lang: 'en' | 'fr' | 'es' | 'pt' = 'en'
 ): string {
-    const translations: any = lang === 'fr' ? frTranslations : lang === 'es' ? esTranslations : enTranslations;
+    const translations: any = lang === 'fr' ? frTranslations : lang === 'es' ? esTranslations : lang === 'pt' ? ptTranslations : enTranslations;
     return translations[section]?.[key] || (enTranslations[section] as any)[key];
 }
 
-export function useTranslation(lang: 'en' | 'fr' | 'es' = 'en') {
+export function useTranslation(lang: 'en' | 'fr' | 'es' | 'pt' = 'en') {
     return {
         t: <T extends TranslationKey>(section: T, key: NestedTranslationKey<T>) =>
             getTranslation(section, key, lang)

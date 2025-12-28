@@ -1,0 +1,27 @@
+{
+    "login": {
+        "title": "Entrar",
+        "emailSent": "Email enviado!",
+        "checkInbox": "Verifique sua caixa de entrada e clique no link mágico que enviamos para você.",
+        "back": "Voltar",
+        "joinCreators": "Junte-se a mais de 20.000 criadores",
+        "loading": "Carregando...",
+        "continueWithGoogle": "Continuar com Google",
+        "or": "OU",
+        "emailPlaceholder": "seu@email.com",
+        "sending": "Enviando...",
+        "continue": "Continuar",
+        "termsText": "Ao continuar, você concorda com nossos",
+        "termsLink": "Termos de Serviço",
+        "and": "e",
+        "privacyLink": "Política de Privacidade",
+        "testimonial1": "AdMaker AI transformou meu negócio! Agora posso criar anúncios de vídeo profissionais em minutos.",
+        "testimonial1Author": "Sarah M., Proprietária de E-commerce",
+        "testimonial2": "A qualidade dos vídeos gerados por IA é incrível. Meus clientes não conseguem distinguir do conteúdo real!",
+        "testimonial2Author": "Michael R., Gerente de Marketing",
+        "testimonial3": "Finalmente, uma ferramenta que torna a criação de conteúdo UGC rápida e acessível. Altamente recomendado!",
+        "testimonial3Author": "Emma L., Criadora de Conteúdo",
+        "showcaseTitle": "Veja o que você pode criar",
+        "aiGenerated": "Gerado por IA"
+    }
+}
