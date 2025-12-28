@@ -15,6 +15,8 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [showUserDropdown, setShowUserDropdown] = useState(false);
+    const [showLangDropdown, setShowLangDropdown] = useState(false);
+    const [userAvatar, setUserAvatar] = useState<string | null>(null);
     const router = useRouter();
     const supabase = createClient();
 
@@ -66,6 +68,9 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
         const checkLoginStatus = async () => {
             const { data: { session } } = await supabase.auth.getSession();
             setIsLoggedIn(!!session);
+            if (session?.user) {
+                setUserAvatar(session.user.user_metadata?.avatar_url || null);
+            }
         };
 
         checkLoginStatus();
@@ -74,6 +79,11 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
         // Listen for auth changes
         const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
             setIsLoggedIn(!!session);
+            if (session?.user) {
+                setUserAvatar(session.user.user_metadata?.avatar_url || null);
+            } else {
+                setUserAvatar(null);
+            }
         });
 
         return () => {
@@ -105,12 +115,43 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                         <a href={`${langPrefix}/blog`}>{t.blog}</a>
 
                         {/* Language Selector */}
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '0 12px' }}>
-                            <a href="/" style={{ color: lang === 'en' ? '#fff' : 'rgba(255, 255, 255, 0.7)', fontSize: '14px', fontWeight: '500', textDecoration: 'none' }}>EN</a>
-                            <span style={{ color: 'rgba(255, 255, 255, 0.3)' }}>|</span>
-                            <a href="/fr" style={{ color: lang === 'fr' ? '#fff' : 'rgba(255, 255, 255, 0.7)', fontSize: '14px', fontWeight: '500', textDecoration: 'none' }}>FR</a>
-                            <span style={{ color: 'rgba(255, 255, 255, 0.3)' }}>|</span>
-                            <a href="/es" style={{ color: lang === 'es' ? '#fff' : 'rgba(255, 255, 255, 0.7)', fontSize: '14px', fontWeight: '500', textDecoration: 'none' }}>ES</a>
+                        <div className={styles.languageSelector}>
+                            <button
+                                className={styles.langBtn}
+                                onClick={() => setShowLangDropdown(!showLangDropdown)}
+                                onMouseEnter={() => setShowLangDropdown(true)}
+                                onMouseLeave={() => setShowLangDropdown(false)}
+                            >
+                                <span className={styles.flagIcon}>
+                                    {lang === 'fr' ? '🇫🇷' : lang === 'es' ? '🇪🇸' : '🇬🇧'}
+                                </span>
+                                <span className={styles.langCode}>
+                                    {lang === 'fr' ? 'FR' : lang === 'es' ? 'ES' : 'EN'}
+                                </span>
+                                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                    <path d="M3 5l3 3 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </button>
+                            {showLangDropdown && (
+                                <div
+                                    className={styles.langDropdown}
+                                    onMouseEnter={() => setShowLangDropdown(true)}
+                                    onMouseLeave={() => setShowLangDropdown(false)}
+                                >
+                                    <a href="/" className={styles.langOption}>
+                                        <span className={styles.flagIcon}>🇬🇧</span>
+                                        <span>English</span>
+                                    </a>
+                                    <a href="/fr" className={styles.langOption}>
+                                        <span className={styles.flagIcon}>🇫🇷</span>
+                                        <span>Français</span>
+                                    </a>
+                                    <a href="/es" className={styles.langOption}>
+                                        <span className={styles.flagIcon}>🇪🇸</span>
+                                        <span>Español</span>
+                                    </a>
+                                </div>
+                            )}
                         </div>
 
                         {!isLoggedIn ? (
@@ -124,14 +165,21 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                                     className={styles.userBtn}
                                     onClick={() => setShowUserDropdown(!showUserDropdown)}
                                 >
-                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                        <path d="M10 10a3 3 0 100-6 3 3 0 000 6zM4 18a6 6 0 0112 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                                    </svg>
+                                    {userAvatar ? (
+                                        <img src={userAvatar} alt="User" className={styles.userAvatar} />
+                                    ) : (
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                            <path d="M10 10a3 3 0 100-6 3 3 0 000 6zM4 18a6 6 0 0112 0" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                        </svg>
+                                    )}
                                     {t.user}
                                 </button>
                                 {showUserDropdown && (
                                     <div className={styles.dropdown}>
-                                        <a href={`${langPrefix}/profile`} className={styles.dropdownItem}>
+                                        <div className={styles.dropdownHeader}>
+                                            <img src={getMediaUrl('admaker_ai_logo-removebg-preview.png')} alt="AdMaker AI" className={styles.dropdownLogo} />
+                                        </div>
+                                        <a href={lang === 'fr' ? '/fr/profil' : lang === 'es' ? '/es/perfil' : '/profile'} className={styles.dropdownItem}>
                                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                                                 <path d="M8 8a3 3 0 100-6 3 3 0 000 6zM3 14a5 5 0 0110 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                                             </svg>
