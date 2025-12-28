@@ -46,6 +46,9 @@ export default function Hero({ lang = 'en' }: HeroProps) {
 
     const t = content[lang] || content['en'];
 
+    // Determine the login URL based on language
+    const loginUrl = lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : '/login';
+
     return (
         <section className={styles.hero}>
             <div className={styles.heroGlow}></div>
@@ -98,7 +101,7 @@ export default function Hero({ lang = 'en' }: HeroProps) {
                         {t.description}
                     </p>
                     <div className={styles.heroCta}>
-                        <a href="/login" className={styles.btnPrimaryLarge}>
+                        <a href={loginUrl} className={styles.btnPrimaryLarge}>
                             {t.ctaPrimary}
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
