@@ -214,6 +214,20 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                                         <rect x="8" width="12" height="20" fill="#FF0000" />
                                         <circle cx="8" cy="10" r="3" fill="#FFFF00" stroke="#0000FF" strokeWidth="0.5" />
                                     </svg>
+                                ) : lang === 'ko' ? (
+                                    <svg width="20" height="20" viewBox="0 0 20 20" className={styles.flagIcon}>
+                                        <rect width="20" height="20" fill="#FFFFFF" />
+                                        <circle cx="10" cy="10" r="6" fill="#CD2E3A" />
+                                        <path d="M10 4 A6 6 0 0 1 10 16 A6 6 0 0 0 10 4" fill="#0047A0" />
+                                        <g stroke="#000000" strokeWidth="0.8">
+                                            <line x1="14" y1="6" x2="16" y2="4" />
+                                            <line x1="14.5" y1="5" x2="16.5" y2="3" />
+                                            <line x1="15" y1="6" x2="17" y2="4" />
+                                            <line x1="4" y1="14" x2="6" y2="16" />
+                                            <line x1="3" y1="14.5" x2="5" y2="16.5" />
+                                            <line x1="4" y1="15" x2="6" y2="17" />
+                                        </g>
+                                    </svg>
                                 ) : (
                                     <svg width="20" height="20" viewBox="0 0 20 20" className={styles.flagIcon}>
                                         <rect width="20" height="20" fill="#012169" />
@@ -224,7 +238,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                                     </svg>
                                 )}
                                 <span className={styles.langCode}>
-                                    {lang === 'fr' ? 'FR' : lang === 'es' ? 'ES' : lang === 'pt' ? 'PT' : 'EN'}
+                                    {lang === 'fr' ? 'FR' : lang === 'es' ? 'ES' : lang === 'pt' ? 'PT' : lang === 'ko' ? 'KO' : 'EN'}
                                 </span>
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                                     <path d="M3 5l3 3 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
