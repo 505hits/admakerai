@@ -103,30 +103,34 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
         else if (pathname.startsWith('/es/')) cleanPath = pathname.substring(3);
         else if (pathname.startsWith('/pt/')) cleanPath = pathname.substring(3);
         else if (pathname.startsWith('/ko/')) cleanPath = pathname.substring(3);
+        else if (pathname.startsWith('/de/')) cleanPath = pathname.substring(3);
         else if (pathname.startsWith('/fr')) cleanPath = pathname.substring(3) || '/';
         else if (pathname.startsWith('/es')) cleanPath = pathname.substring(3) || '/';
         else if (pathname.startsWith('/pt')) cleanPath = pathname.substring(3) || '/';
         else if (pathname.startsWith('/ko')) cleanPath = pathname.substring(3) || '/';
+        else if (pathname.startsWith('/de')) cleanPath = pathname.substring(3) || '/';
 
         // Map paths to their equivalents in different languages
         const pathMappings: { [key: string]: { [key: string]: string } } = {
-            '/': { en: '/', fr: '/fr', es: '/es', pt: '/pt', ko: '/ko' },
-            '/login': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao', ko: '/ko/login' },
-            '/connexion': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao', ko: '/ko/login' },
-            '/iniciar-sesion': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao', ko: '/ko/login' },
-            '/conexao': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao', ko: '/ko/login' },
-            '/payment': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento', ko: '/ko/payment' },
-            '/paiement': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento', ko: '/ko/payment' },
-            '/pago': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento', ko: '/ko/payment' },
-            '/pagamento': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento', ko: '/ko/payment' },
-            '/profile': { en: '/profile', fr: '/fr/profil', es: '/es/perfil', pt: '/pt/perfil', ko: '/ko/profile' },
-            '/profil': { en: '/profile', fr: '/fr/profil', es: '/es/perfil', pt: '/pt/perfil', ko: '/ko/profile' },
-            '/perfil': { en: '/profile', fr: '/fr/profil', es: '/es/perfil', pt: '/pt/perfil', ko: '/ko/profile' },
-            '/dashboard': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel', ko: '/ko/dashboard' },
-            '/tableau-de-bord': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel', ko: '/ko/dashboard' },
-            '/panel': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel', ko: '/ko/dashboard' },
-            '/painel': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel', ko: '/ko/dashboard' },
-            '/blog': { en: '/blog', fr: '/fr/blog', es: '/es/blog', pt: '/pt/blog', ko: '/ko/blog' },
+            '/': { en: '/', fr: '/fr', es: '/es', pt: '/pt', ko: '/ko', de: '/de' },
+            '/login': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao', ko: '/ko/login', de: '/de/anmelden' },
+            '/connexion': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao', ko: '/ko/login', de: '/de/anmelden' },
+            '/iniciar-sesion': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao', ko: '/ko/login', de: '/de/anmelden' },
+            '/conexao': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao', ko: '/ko/login', de: '/de/anmelden' },
+            '/anmelden': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao', ko: '/ko/login', de: '/de/anmelden' },
+            '/payment': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento', ko: '/ko/payment', de: '/de/zahlung' },
+            '/paiement': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento', ko: '/ko/payment', de: '/de/zahlung' },
+            '/pago': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento', ko: '/ko/payment', de: '/de/zahlung' },
+            '/pagamento': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento', ko: '/ko/payment', de: '/de/zahlung' },
+            '/zahlung': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento', ko: '/ko/payment', de: '/de/zahlung' },
+            '/profile': { en: '/profile', fr: '/fr/profil', es: '/es/perfil', pt: '/pt/perfil', ko: '/ko/profile', de: '/de/profil' },
+            '/profil': { en: '/profile', fr: '/fr/profil', es: '/es/perfil', pt: '/pt/perfil', ko: '/ko/profile', de: '/de/profil' },
+            '/perfil': { en: '/profile', fr: '/fr/profil', es: '/es/perfil', pt: '/pt/perfil', ko: '/ko/profile', de: '/de/profil' },
+            '/dashboard': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel', ko: '/ko/dashboard', de: '/de/dashboard' },
+            '/tableau-de-bord': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel', ko: '/ko/dashboard', de: '/de/dashboard' },
+            '/panel': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel', ko: '/ko/dashboard', de: '/de/dashboard' },
+            '/painel': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel', ko: '/ko/dashboard', de: '/de/dashboard' },
+            '/blog': { en: '/blog', fr: '/fr/blog', es: '/es/blog', pt: '/pt/blog', ko: '/ko/blog', de: '/de/blog' },
         };
 
         // Find the mapping for the current clean path
@@ -238,6 +242,12 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                                             <line x1="3" y1="14.5" x2="5" y2="16.5" />
                                             <line x1="4" y1="15" x2="6" y2="17" />
                                         </g>
+                                    </svg>
+                                ) : lang === 'de' ? (
+                                    <svg width="20" height="20" viewBox="0 0 20 20" className={styles.flagIcon}>
+                                        <rect width="20" height="6.67" fill="#000000" />
+                                        <rect y="6.67" width="20" height="6.67" fill="#DD0000" />
+                                        <rect y="13.33" width="20" height="6.67" fill="#FFCE00" />
                                     </svg>
                                 ) : (
                                     <svg width="20" height="20" viewBox="0 0 20 20" className={styles.flagIcon}>
