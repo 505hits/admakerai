@@ -7,7 +7,7 @@ import { getMediaUrl } from '../lib/cloudflare-config';
 import { createClient } from '@/lib/supabase/client';
 
 interface NavbarProps {
-    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko';
+    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko' | 'de';
 }
 
 export default function Navbar({ lang = 'en' }: NavbarProps) {
@@ -75,15 +75,26 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
             profile: '프로필',
             dashboard: '대시보드',
             logout: '로그아웃',
+        },
+        de: {
+            features: 'Funktionen',
+            pricing: 'Preise',
+            blog: 'Blog',
+            signIn: 'Anmelden',
+            getStarted: 'Loslegen',
+            user: 'Benutzer',
+            profile: 'Profil',
+            dashboard: 'Dashboard',
+            logout: 'Abmelden',
         }
     };
 
     const t = translations[lang] || translations['en'];
-    const langPrefix = lang === 'fr' ? '/fr' : lang === 'es' ? '/es' : lang === 'pt' ? '/pt' : lang === 'ko' ? '/ko' : '';
+    const langPrefix = lang === 'fr' ? '/fr' : lang === 'es' ? '/es' : lang === 'pt' ? '/pt' : lang === 'ko' ? '/ko' : lang === 'de' ? '/de' : '';
     const pathname = usePathname();
 
     // Function to get the equivalent URL in a different language
-    const getLanguageUrl = (targetLang: 'en' | 'fr' | 'es' | 'pt' | 'ko') => {
+    const getLanguageUrl = (targetLang: 'en' | 'fr' | 'es' | 'pt' | 'ko' | 'de') => {
         if (!pathname) return targetLang === 'en' ? '/' : `/${targetLang}`;
 
         // Remove current language prefix
@@ -238,7 +249,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                                     </svg>
                                 )}
                                 <span className={styles.langCode}>
-                                    {lang === 'fr' ? 'FR' : lang === 'es' ? 'ES' : lang === 'pt' ? 'PT' : lang === 'ko' ? 'KO' : 'EN'}
+                                    {lang === 'fr' ? 'FR' : lang === 'es' ? 'ES' : lang === 'pt' ? 'PT' : lang === 'ko' ? 'KO' : lang === 'de' ? 'DE' : 'EN'}
                                 </span>
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                                     <path d="M3 5l3 3 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -296,14 +307,22 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                                         </svg>
                                         <span>한국어</span>
                                     </a>
+                                    <a href={getLanguageUrl('de')} className={styles.langOption}>
+                                        <svg width="20" height="20" viewBox="0 0 20 20" className={styles.flagIcon}>
+                                            <rect width="20" height="6.67" fill="#000000" />
+                                            <rect y="6.67" width="20" height="6.67" fill="#DD0000" />
+                                            <rect y="13.33" width="20" height="6.67" fill="#FFCE00" />
+                                        </svg>
+                                        <span>Deutsch</span>
+                                    </a>
                                 </div>
                             )}
                         </div>
 
                         {!isLoggedIn ? (
                             <>
-                                <a href={lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : lang === 'pt' ? '/pt/conexao' : '/login'} className={styles.btnSecondary}>{t.signIn}</a>
-                                <a href={lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : lang === 'pt' ? '/pt/conexao' : '/login'} className={styles.btnPrimary}>{t.getStarted}</a>
+                                <a href={lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : lang === 'pt' ? '/pt/conexao' : lang === 'de' ? '/de/anmelden' : '/login'} className={styles.btnSecondary}>{t.signIn}</a>
+                                <a href={lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : lang === 'pt' ? '/pt/conexao' : lang === 'de' ? '/de/anmelden' : '/login'} className={styles.btnPrimary}>{t.getStarted}</a>
                             </>
                         ) : (
                             <div className={styles.userMenu}>
@@ -330,7 +349,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                                                 </svg>
                                                 {t.profile}
                                             </a>
-                                            <a href={lang === 'fr' ? '/fr/tableau-de-bord' : lang === 'es' ? '/es/panel' : lang === 'pt' ? '/pt/painel' : '/dashboard'} className={styles.dropdownItem}>
+                                            <a href={lang === 'fr' ? '/fr/tableau-de-bord' : lang === 'es' ? '/es/panel' : lang === 'pt' ? '/pt/painel' : lang === 'de' ? '/de/dashboard' : '/dashboard'} className={styles.dropdownItem}>
                                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                                                     <rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
                                                     <rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />

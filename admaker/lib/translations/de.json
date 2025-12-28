@@ -1,0 +1,148 @@
+{
+    "login": {
+        "title": "Verifizieren Sie Ihre E-Mail",
+        "emailSent": "Wir haben Ihnen einen temporären Link gesendet.",
+        "checkInbox": "Bitte überprüfen Sie Ihr Postfach unter",
+        "back": "Zurück",
+        "joinCreators": "Schließen Sie sich 50.000+ Kreativen an",
+        "continueWithGoogle": "Mit Google fortfahren",
+        "or": "ODER",
+        "emailPlaceholder": "Geben Sie Ihre E-Mail ein",
+        "continue": "Fortfahren",
+        "sending": "Wird gesendet...",
+        "loading": "Lädt...",
+        "termsText": "Indem Sie auf \"Fortfahren\" oder \"Mit Google fortfahren\" klicken, stimmen Sie unseren",
+        "termsLink": "Nutzungsbedingungen",
+        "and": "&",
+        "privacyLink": "Datenschutzrichtlinie",
+        "showcaseTitle": "Über 50.000 Kreative nutzen AdMaker AI täglich",
+        "aiGenerated": "KI-generiert",
+        "testimonial1": "AdMaker AI hat meine Content-Erstellung transformiert. Ich erstelle jetzt über 20 Videos pro Woche!",
+        "testimonial1Author": "Sarah M., Content-Erstellerin",
+        "testimonial2": "Die KI-Schauspieler sind unglaublich realistisch. Mein Engagement ist um 300% gestiegen!",
+        "testimonial2Author": "Mike R., E-Commerce-Inhaber",
+        "testimonial3": "Beste Investition für mein Geschäft. Der ROI war bereits im ersten Monat positiv!",
+        "testimonial3Author": "Jessica L., Marketing-Managerin"
+    },
+    "dashboard": {
+        "tabs": {
+            "createVideo": "Video Erstellen",
+            "videoHistory": "Video-Verlauf",
+            "myActors": "Meine Schauspieler",
+            "replicator": "Gewinner-Anzeigen-Replikator"
+        },
+        "videoCreation": {
+            "selectActor": "KI-Schauspieler Auswählen",
+            "chooseActor": "Wählen Sie einen Schauspieler",
+            "searchActors": "Schauspieler suchen...",
+            "categories": "Kategorien",
+            "all": "Alle",
+            "myCustomActors": "Meine Benutzerdefinierten Schauspieler",
+            "script": "Skript",
+            "scriptPlaceholder": "Beschreiben Sie Ihr Video und das Skript...",
+            "sceneDescription": "Szenenbeschreibung",
+            "sceneDescriptionPlaceholder": "Beschreiben Sie die Szene (optional)...",
+            "productImage": "Produktbild",
+            "uploadProduct": "Produkt Hochladen",
+            "virtualTryOn": "Virtuelles Anprobieren",
+            "uploadClothing": "Kleidung Hochladen",
+            "videoSettings": "Video-Einstellungen",
+            "format": "Format",
+            "duration": "Dauer",
+            "seconds": "Sekunden",
+            "accent": "Akzent",
+            "aiScriptEnhancer": "KI-Skript-Verbesserer",
+            "enhance": "Verbessern",
+            "enhancing": "Wird verbessert...",
+            "generateVideo": "Video Generieren",
+            "generating": "Wird generiert..."
+        },
+        "variations": {
+            "variation": "Variation",
+            "addVariation": "+ Variation Hinzufügen",
+            "remove": "Entfernen",
+            "generateAll": "Alle Variationen Generieren",
+            "totalCost": "Gesamtkosten"
+        },
+        "videoHistory": {
+            "title": "Video-Verlauf",
+            "loading": "Videos werden geladen...",
+            "noVideos": "Noch keine Videos",
+            "startCreating": "Beginnen Sie mit der Erstellung Ihrer ersten KI-Videos",
+            "generatedOn": "Generiert am",
+            "download": "Herunterladen"
+        },
+        "actors": {
+            "title": "Meine Benutzerdefinierten Schauspieler",
+            "createNew": "Neuen Schauspieler Erstellen",
+            "noActors": "Noch keine benutzerdefinierten Schauspieler",
+            "createFirst": "Erstellen Sie Ihren ersten benutzerdefinierten KI-Schauspieler",
+            "viewImage": "Bild Ansehen"
+        },
+        "actorCreation": {
+            "title": "Benutzerdefinierten KI-Schauspieler Erstellen",
+            "personImage": "Personenbild",
+            "personImageRequired": "Erforderlich",
+            "objectImage": "Objektbild",
+            "objectImageOptional": "Optional",
+            "decorImage": "Dekorbild",
+            "decorImageOptional": "Optional",
+            "actorName": "Schauspielername",
+            "namePlaceholder": "Geben Sie den Namen des Schauspielers ein...",
+            "description": "Beschreibung",
+            "descriptionPlaceholder": "Beschreiben Sie das Aussehen und den Stil des Schauspielers...",
+            "aspectRatio": "Seitenverhältnis",
+            "cost": "Kosten: 20 Schauspieler-Credits",
+            "cancel": "Abbrechen",
+            "createActor": "Schauspieler Erstellen",
+            "creating": "Wird erstellt..."
+        },
+        "replicator": {
+            "title": "Gewinner-Anzeigen-Replikator",
+            "new": "NEU",
+            "warning": "Funktioniert am besten mit Influencern ohne Produkte",
+            "estimatedTime": "Geschätzte Zeit: 10-15 Minuten",
+            "availableCredits": "Verfügbare Credits",
+            "uploadVideo": "Video Hochladen",
+            "uploadYourVideo": "Laden Sie Ihr Video hoch",
+            "selectNewActor": "Neuen Schauspieler Auswählen",
+            "replicate": "Replizieren",
+            "replicating": "Wird repliziert..."
+        },
+        "credits": {
+            "videoCredits": "Video-Credits",
+            "actorCredits": "Schauspieler-Credits",
+            "replicatorCredits": "Replikator-Credits",
+            "outOfCredits": "Keine Credits Mehr",
+            "buyMoreCredits": "Mehr Credits Kaufen",
+            "creditsRequired": "Credits erforderlich"
+        },
+        "notifications": {
+            "success": "Erfolg",
+            "error": "Fehler",
+            "videoGenerated": "Video Erfolgreich Generiert!",
+            "videoGenerating": "Ihr Video wird generiert",
+            "checkHistory": "Es wird in 1-3 Minuten im Verlauf erscheinen",
+            "actorCreated": "Schauspieler erfolgreich erstellt!"
+        },
+        "errors": {
+            "selectActor": "Bitte wählen Sie einen KI-Schauspieler aus",
+            "enterScript": "Bitte beschreiben Sie Ihr Video und das Skript",
+            "insufficientCredits": "Unzureichende Credits",
+            "loginRequired": "Sie müssen angemeldet sein",
+            "generationFailed": "Generierung fehlgeschlagen",
+            "uploadFailed": "Upload fehlgeschlagen"
+        }
+    },
+    "payment": {
+        "chooseYourPlan": "Wählen Sie Ihren Plan",
+        "monthly": "Monatlich",
+        "annual": "Jährlich",
+        "save20": "20% Sparen",
+        "mostPopular": "Am Beliebtesten",
+        "perMonth": "/Monat",
+        "billedAnnually": "jährlich abgerechnet",
+        "getStarted": "Loslegen",
+        "processing": "Wird verarbeitet..."
+    }
+}

@@ -1,7 +1,7 @@
 import styles from './Testimonials.module.css';
 
 interface TestimonialsProps {
-    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko';
+    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko' | 'de';
 }
 
 export default function Testimonials({ lang = 'en' }: TestimonialsProps) {
@@ -188,6 +188,43 @@ export default function Testimonials({ lang = 'en' }: TestimonialsProps) {
                     name: "Robert Johnson",
                     role: "디지털 마케팅 VP",
                     text: "마침내 대규모 조직을 위한 신뢰할 수 있는 AI 아바타 플랫폼! 이제 오후에 20개의 A/B 변형을 테스트할 수 있습니다!"
+                }
+            ]
+        },
+        de: {
+            title: 'Was Digital-Marketer Über Unsere',
+            titleHighlight: 'KI-UGC-Videoplattform Sagen',
+            subtitle: 'Schließen Sie sich über 20.000 Marketern an, die zur bestbewerteten Plattform für schnelle UGC-Produktvideoanzeigen gewechselt sind.',
+            testimonials: [
+                {
+                    name: "Jessica Martinez",
+                    role: "Inhaberin einer Performance-Marketing-Agentur",
+                    text: "Nach dem Testen aller großen KI-Avatar-Generatoren ist AdMaker AI zweifellos der Beste. Wir erstellen monatlich über 50 UGC-Videoanzeigen für unsere Kunden. Die KI-Schauspieler sind so realistisch, dass sich die Engagement-Raten verdreifacht haben!"
+                },
+                {
+                    name: "Michael Chen",
+                    role: "E-Commerce-Wachstumsberater",
+                    text: "Als Startup war es entscheidend, erschwingliche KI-Avatar-Lösungen zu finden. AdMaker AI liefert kommerzielle Qualität zu Startup-Preisen. Die Produkt-in-Hand-Funktion ist revolutionär für unsere E-Commerce-Kunden."
+                },
+                {
+                    name: "Sarah Thompson",
+                    role: "Social Media Direktorin, Fortune 500",
+                    text: "Ein echter Game Changer! Unser KI-Werbekreativ-System produziert konsistent viralen UGC-Content. Der ROI stieg um 400%!"
+                },
+                {
+                    name: "David Rodriguez",
+                    role: "Content Marketing Manager",
+                    text: "KI-Testimonial-Videos zu erstellen ist mühelos. Der KI-Influencer-Generator hilft uns, Content 10x schneller zu skalieren als echte Creator einzustellen."
+                },
+                {
+                    name: "Emma Williams",
+                    role: "TikTok Shop Markeninhaberin",
+                    text: "Wir erstellen UGC-Style-Content für TikTok, der Millionen von Views bekommt. Beste Investition aller Zeiten!"
+                },
+                {
+                    name: "Robert Johnson",
+                    role: "VP Digital Marketing",
+                    text: "Endlich eine zuverlässige KI-Avatar-Plattform für große Organisationen! A/B-Tests mit 20 Varianten sind jetzt an einem Nachmittag möglich!"
                 }
             ]
         }

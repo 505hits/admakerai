@@ -9,7 +9,7 @@ interface FAQItem {
 }
 
 interface FAQProps {
-    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko';
+    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko' | 'de';
 }
 
 export default function FAQ({ lang = 'en' }: FAQProps) {
@@ -148,6 +148,33 @@ export default function FAQ({ lang = 'en' }: FAQProps) {
                 {
                     question: "TikTok 및 Instagram Reels용 UGC 비디오를 만들 수 있나요?",
                     answer: "물론입니다! AdMaker AI는 세로 9:16 형식에 대한 자동 최적화를 제공합니다. 클릭 한 번으로 TikTok, Instagram Reels, YouTube Shorts 또는 Facebook 형식으로 AI UGC 비디오를 내보낼 수 있습니다."
+                }
+            ]
+        },
+        de: {
+            title: 'Häufig Gestellte Fragen Zur',
+            titleHighlight: 'KI-UGC-Videoerstellung',
+            subtitle: 'Alles, was Sie über die Erstellung von KI-gestützten UGC-Videos, die Auswahl des besten KI-Avatar-Generators und die Maximierung Ihres Video-Werbe-ROI wissen müssen.',
+            faqs: [
+                {
+                    question: "Was macht AdMaker AI zur besten KI-UGC-Videoplattform?",
+                    answer: "AdMaker AI kombiniert modernste KI-Schauspieler-Technologie mit benutzerfreundlichem Design und ist damit das beste KI-Tool zur Generierung von UGC-Videoinhalten. Im Gegensatz zu einfachen Deepfake-Erstellern bieten wir über 300 realistische Avatare, Produkt-in-Hand-Integration und 2-Minuten-Generierungszeiten."
+                },
+                {
+                    question: "Wie funktioniert der KI-Videoersteller aus Skript?",
+                    answer: "Unser KI-Videoersteller aus Skript verwendet fortschrittliche natürliche Sprachverarbeitung und Computer Vision. Fügen Sie einfach Ihr Werbeskript ein, wählen Sie einen KI-Schauspieler aus, und unser System generiert in weniger als 2 Minuten ein vollständig lippensynchrones, realistisches UGC-Video."
+                },
+                {
+                    question: "Was ist die Produkt-in-Hand-Funktion?",
+                    answer: "Diese revolutionäre Funktion ermöglicht es Ihrem KI-Avatar, Ihr Produkt im Video physisch zu halten, zu präsentieren oder zu tragen. Laden Sie einfach ein Produktbild hoch, und unsere fortschrittliche KI integriert es nahtlos in die Szene."
+                },
+                {
+                    question: "Wie realistisch sind die KI-Schauspieler und Avatare?",
+                    answer: "Unsere KI-Schauspieler verwenden modernste Technologie. Sie verfügen über natürliche Gesichtsausdrücke, realistische Augenbewegungen, perfekte Lippensynchronisation in mehreren Sprachen und authentische Körpersprache."
+                },
+                {
+                    question: "Kann ich UGC-Videos für TikTok und Instagram Reels erstellen?",
+                    answer: "Absolut! AdMaker AI bietet automatische Optimierung für das vertikale 9:16-Format. Exportieren Sie Ihre KI-UGC-Videos mit einem Klick im TikTok-, Instagram Reels-, YouTube Shorts- oder Facebook-Format."
                 }
             ]
         }

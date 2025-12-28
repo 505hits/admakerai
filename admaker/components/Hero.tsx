@@ -1,14 +1,14 @@
 import styles from './Hero.module.css';
 
 interface HeroProps {
-    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko';
+    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko' | 'de';
 }
 
 export default function Hero({ lang = 'en' }: HeroProps) {
     const content = {
         en: {
             socialProof: 'Trusted by 20,000+ ecom players & teams',
-            title: 'Create AI UGC Ads',
+            title: 'Create AI UGC Ads ',
             titleHighlight: 'in Minutes',
             subtitle: 'The fastest way to create AI video ads',
             description: 'Write your script → Choose an avatar → Generate your video',
@@ -20,8 +20,8 @@ export default function Hero({ lang = 'en' }: HeroProps) {
         },
         fr: {
             socialProof: 'Approuvé par plus de 20 000 e-commerçants et équipes',
-            title: 'Créez des Publicités UGC IA',
-            titleHighlight: 'en Minutes',
+            title: 'Créez des Publicités UGC IA ',
+            titleHighlight: 'Rapidement',
             subtitle: 'Le moyen le plus rapide de créer des publicités vidéo IA',
             description: 'Écrivez votre script → Choisissez un avatar → Générez votre vidéo',
             ctaPrimary: 'Créez votre première pub',
@@ -32,7 +32,7 @@ export default function Hero({ lang = 'en' }: HeroProps) {
         },
         es: {
             socialProof: 'Confiado por más de 20,000 jugadores y equipos de e-commerce',
-            title: 'Crea Anuncios UGC con IA',
+            title: 'Crea Anuncios UGC con IA ',
             titleHighlight: 'en Minutos',
             subtitle: 'La forma más rápida de crear anuncios de video con IA',
             description: 'Escribe tu guión → Elige un avatar → Genera tu video',
@@ -44,7 +44,7 @@ export default function Hero({ lang = 'en' }: HeroProps) {
         },
         pt: {
             socialProof: 'Confiado por mais de 20.000 jogadores e equipes de e-commerce',
-            title: 'Crie Anúncios UGC com IA',
+            title: 'Crie Anúncios UGC com IA ',
             titleHighlight: 'em Minutos',
             subtitle: 'A maneira mais rápida de criar anúncios de vídeo com IA',
             description: 'Escreva seu script → Escolha um avatar → Gere seu vídeo',
@@ -56,7 +56,7 @@ export default function Hero({ lang = 'en' }: HeroProps) {
         },
         ko: {
             socialProof: '20,000명 이상의 플레이어와 전자상거래 팀이 신뢰합니다',
-            title: 'AI UGC 광고를',
+            title: 'AI UGC 광고를 ',
             titleHighlight: '몇 분 안에 제작',
             subtitle: 'AI 비디오 광고를 만드는 가장 빠른 방법',
             description: '스크립트 작성 → 아바타 선택 → 비디오 생성',
@@ -65,13 +65,25 @@ export default function Hero({ lang = 'en' }: HeroProps) {
             stat1: '100k+ 생성된 비디오',
             stat2: '2.8x ROAS',
             stat3: '95% 고객 만족도'
+        },
+        de: {
+            socialProof: 'Vertraut von über 20.000 E-Commerce-Akteuren & Teams',
+            title: 'Erstellen Sie KI-UGC-Anzeigen ',
+            titleHighlight: 'in Minuten',
+            subtitle: 'Der schnellste Weg, KI-Videoanzeigen zu erstellen',
+            description: 'Schreiben Sie Ihr Skript → Wählen Sie einen Avatar → Generieren Sie Ihr Video',
+            ctaPrimary: 'Erstellen Sie Ihre erste Anzeige',
+            ctaSecondary: 'Demo ansehen',
+            stat1: '100k+ generierte Videos',
+            stat2: '2.8x ROAS',
+            stat3: '95% Kundenzufriedenheit'
         }
     };
 
     const t = content[lang] || content['en'];
 
     // Determine the login URL based on language
-    const loginUrl = lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : lang === 'pt' ? '/pt/conexao' : lang === 'ko' ? '/ko/login' : '/login';
+    const loginUrl = lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : lang === 'pt' ? '/pt/conexao' : lang === 'ko' ? '/ko/login' : lang === 'de' ? '/de/anmelden' : '/login';
 
     return (
         <section className={styles.hero}>

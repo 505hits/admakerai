@@ -6,7 +6,7 @@ import { createClient } from '@/lib/supabase/client';
 import styles from './Pricing.module.css';
 
 interface PricingProps {
-    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko';
+    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko' | 'de';
 }
 
 export default function Pricing({ lang = 'en' }: PricingProps) {
@@ -119,12 +119,33 @@ export default function Pricing({ lang = 'en' }: PricingProps) {
             outfitSwapping: '의상 교체',
             replicatorCredits: '복제기 크레딧',
             replications: '복제'
+        },
+        de: {
+            title: 'Wählen Sie Ihren Perfekten Plan',
+            subtitle: 'Beginnen Sie in Minuten mit der Erstellung professioneller KI-UGC-Videos',
+            monthly: 'Monatlich',
+            annual: 'Jährlich',
+            save: '20% Sparen',
+            popular: 'Am Beliebtesten',
+            perMonth: '/Monat',
+            billedAnnually: 'jährlich abgerechnet',
+            getStarted: 'Loslegen',
+            loading: 'Lädt...',
+            videoCredits: 'Video-Credits',
+            actorCredits: 'Schauspieler-Credits',
+            upTo: 'Bis zu',
+            videosPerMonth: 'Videos pro Monat',
+            languages: '35+ Sprachen',
+            productHolding: 'Produkt halten',
+            outfitSwapping: 'Outfit-Wechsel',
+            replicatorCredits: 'Replikator-Credits',
+            replications: 'Replikationen'
         }
     };
 
     const t = content[lang] || content['en'];
 
-    const loginUrl = lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : lang === 'pt' ? '/pt/conexao' : lang === 'ko' ? '/ko/login' : '/login';
+    const loginUrl = lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : lang === 'pt' ? '/pt/conexao' : lang === 'ko' ? '/ko/login' : lang === 'de' ? '/de/anmelden' : '/login';
 
     const handleCheckout = async (plan: typeof plans[0], cycle: 'monthly' | 'annual') => {
         setLoading(plan.name);

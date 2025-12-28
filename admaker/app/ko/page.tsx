@@ -133,7 +133,7 @@ export default function HomeKo() {
                             <h3 style={{ fontSize: '24px', marginBottom: '12px', color: '#fff', fontWeight: '600' }}>배우 선택</h3>
                             <p style={{ color: 'rgba(255, 255, 255, 0.7)', lineHeight: '1.6', marginBottom: '24px', fontSize: '15px' }}>라이브러리를 사용하거나 이미지를 업로드하거나 사실적인 AI 이미지 생성기를 사용하세요.</p>
                             <div style={{ background: 'rgba(255, 255, 255, 0.05)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
-                                <img src={getMediaUrl('step1.jpg')} alt="Selecionar um Ator de IA" style={{ width: '100%', borderRadius: '8px' }} />
+                                <img src={getMediaUrl('step1.jpg')} alt="AI 배우 선택" style={{ width: '100%', borderRadius: '8px' }} />
                             </div>
                         </div>
 
@@ -145,7 +145,7 @@ export default function HomeKo() {
                             <h3 style={{ fontSize: '24px', marginBottom: '12px', color: '#fff', fontWeight: '600' }}>스크립트 작성</h3>
                             <p style={{ color: 'rgba(255, 255, 255, 0.7)', lineHeight: '1.6', marginBottom: '24px', fontSize: '15px' }}>스마트 AI 작성으로 아이디어를 촬영 준비가 된 광고로 변환하세요.</p>
                             <div style={{ background: 'rgba(255, 255, 255, 0.05)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
-                                <img src={getMediaUrl('Step2.png')} alt="Escrever o Script" style={{ width: '100%', borderRadius: '8px' }} />
+                                <img src={getMediaUrl('Step2.png')} alt="스크립트 작성" style={{ width: '100%', borderRadius: '8px' }} />
                             </div>
                         </div>
 
@@ -157,7 +157,7 @@ export default function HomeKo() {
                             <h3 style={{ fontSize: '24px', marginBottom: '12px', color: '#fff', fontWeight: '600' }}>비디오 생성</h3>
                             <p style={{ color: 'rgba(255, 255, 255, 0.7)', lineHeight: '1.6', marginBottom: '24px', fontSize: '15px' }}>분 단위로 놀라운 사실적인 UGC로 모든 것을 생동감 있게 만드세요.</p>
                             <div style={{ background: 'rgba(255, 255, 255, 0.05)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
-                                <img src={getMediaUrl('step3.jpg')} alt="Gerar o Vídeo" style={{ width: '100%', borderRadius: '8px' }} />
+                                <img src={getMediaUrl('step3.jpg')} alt="비디오 생성" style={{ width: '100%', borderRadius: '8px' }} />
                             </div>
                         </div>
                     </div>
@@ -179,7 +179,7 @@ export default function HomeKo() {
                         <div style={{ background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '20px', padding: '24px', textAlign: 'center', transition: 'all 0.3s ease' }} onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-8px)'; e.currentTarget.style.borderColor = 'rgba(255, 8, 68, 0.3)'; e.currentTarget.style.boxShadow = '0 12px 40px rgba(255, 8, 68, 0.2)'; }} onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)'; e.currentTarget.style.boxShadow = 'none'; }}>
                             <div style={{ position: 'relative', aspectRatio: '9/16', borderRadius: '16px', overflow: 'hidden', background: '#000', marginBottom: '20px', maxWidth: '280px', width: '100%' }}>
                                 <video src={getMediaUrl('landing winning 1.mp4')} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                                <div style={{ position: 'absolute', top: '12px', left: '12px', background: 'rgba(0, 0, 0, 0.8)', backdropFilter: 'blur(8px)', padding: '6px 12px', borderRadius: '8px', fontSize: '12px', fontWeight: '600', color: '#fff' }}>Original</div>
+                                <div style={{ position: 'absolute', top: '12px', left: '12px', background: 'rgba(0, 0, 0, 0.8)', backdropFilter: 'blur(8px)', padding: '6px 12px', borderRadius: '8px', fontSize: '12px', fontWeight: '600', color: '#fff' }}>원본</div>
                             </div>
                             <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#fff', marginBottom: '8px' }}>성공한 광고</h3>
                             <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.6)', lineHeight: '1.5' }}>성과가 좋은 비디오를 업로드하세요</p>
@@ -188,7 +188,7 @@ export default function HomeKo() {
                         <div style={{ background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '20px', padding: '24px', textAlign: 'center', transition: 'all 0.3s ease' }} onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-8px)'; e.currentTarget.style.borderColor = 'rgba(255, 8, 68, 0.3)'; e.currentTarget.style.boxShadow = '0 12px 40px rgba(255, 8, 68, 0.2)'; }} onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)'; e.currentTarget.style.boxShadow = 'none'; }}>
                             <div style={{ position: 'relative', aspectRatio: '9/16', borderRadius: '16px', overflow: 'hidden', background: '#000', marginBottom: '20px', maxWidth: '280px', width: '100%' }}>
                                 <video src={getMediaUrl('landing winning 2.mp4')} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                                <div style={{ position: 'absolute', top: '12px', left: '12px', background: 'linear-gradient(135deg, #ff0844, #ff6b6b)', backdropFilter: 'blur(8px)', padding: '6px 12px', borderRadius: '8px', fontSize: '12px', fontWeight: '600', color: '#fff' }}>Replicado</div>
+                                <div style={{ position: 'absolute', top: '12px', left: '12px', background: 'linear-gradient(135deg, #ff0844, #ff6b6b)', backdropFilter: 'blur(8px)', padding: '6px 12px', borderRadius: '8px', fontSize: '12px', fontWeight: '600', color: '#fff' }}>복제됨</div>
                             </div>
                             <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#fff', marginBottom: '8px' }}>AI 배우 새 버전</h3>
                             <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.6)', lineHeight: '1.5' }}>동일한 스크립트, 다른 얼굴, 즉각적인 결과</p>

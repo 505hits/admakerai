@@ -13,7 +13,7 @@ interface Industry {
 }
 
 interface IndustryTabsProps {
-    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko';
+    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko' | 'de';
 }
 
 export default function IndustryTabs({ lang = 'en' }: IndustryTabsProps) {
@@ -270,6 +270,56 @@ export default function IndustryTabs({ lang = 'en' }: IndustryTabsProps) {
                         '다양한 AI 액터 라이브러리',
                         '진정한 UGC 스타일 콘텐츠',
                         '브랜드 거래를 위한 빠른 배송'
+                    ]
+                }
+            ]
+        },
+        de: {
+            badge: 'KI-UGC-Plattform',
+            title: 'Perfekt für jede Branche',
+            industries: [
+                {
+                    id: 'ecommerce',
+                    name: 'E-Commerce',
+                    title: 'Machen Sie Ihre Produkte viral',
+                    description: 'Wählen Sie aus Hunderten realistischer Schauspieler oder generieren Sie Ihren eigenen von Grund auf. Fügen Sie dann Ihr Produkt mit einem Klick hinzu und beschreiben Sie, wie Ihr Schauspieler damit interagieren soll, um in Minuten ein vollständiges Werbevideo zu erhalten.',
+                    features: [
+                        'Produkthinzufügung mit einem Klick',
+                        'Funktioniert mit jedem Produkttyp',
+                        'Konsistente Produktgröße, -form und -text'
+                    ]
+                },
+                {
+                    id: 'saas',
+                    name: 'SaaS',
+                    title: 'Skalieren Sie Ihr Software-Marketing',
+                    description: 'Erstellen Sie professionelle Erklärvideos und Produktdemos mit KI-Präsentatoren. Generieren Sie authentische Testimonials und Feature-Ankündigungen, die Vertrauen aufbauen und Ihren Verkaufszyklus beschleunigen.',
+                    features: [
+                        'Professionelle KI-Präsentatoren für Demos',
+                        'Authentische Testimonial-Generierung',
+                        'Mehrsprachiger Support für globale Reichweite'
+                    ]
+                },
+                {
+                    id: 'agencies',
+                    name: 'Agenturen',
+                    title: 'Liefern Sie mehr Kampagnen schneller',
+                    description: 'Produzieren Sie in Minuten unbegrenzte Anzeigenvariationen für Ihre Kunden. Testen Sie mehrere kreative Konzepte, Schauspieler und Botschaften ohne teure Produktionskosten oder lange Zeitpläne.',
+                    features: [
+                        'Schnelle A/B-Test-Funktionen',
+                        'Unbegrenzte kreative Variationen',
+                        'White-Label-fähige Ausgaben'
+                    ]
+                },
+                {
+                    id: 'influencer',
+                    name: 'Influencer',
+                    title: 'Erstellen Sie Content im großen Maßstab',
+                    description: 'Generieren Sie konsistenten, hochwertigen UGC-Content für Ihre Markenpartnerschaften. Erstellen Sie gesponserten Content, Produktbewertungen und Markenkooperationen mit KI-Schauspielern, die zu Ihrem Publikum passen.',
+                    features: [
+                        'Vielfältige KI-Schauspieler-Bibliothek',
+                        'Authentischer UGC-Style-Content',
+                        'Schnelle Lieferung für Markendeals'
                     ]
                 }
             ]
