@@ -173,6 +173,56 @@ export default function IndustryTabs({ lang = 'en' }: IndustryTabsProps) {
                     ]
                 }
             ]
+        },
+        pt: {
+            badge: 'Plataforma UGC IA',
+            title: 'Perfeito para cada indústria',
+            industries: [
+                {
+                    id: 'ecommerce',
+                    name: 'E-commerce',
+                    title: 'Torne seus produtos virais',
+                    description: 'Selecione entre centenas de atores realistas ou gere o seu do zero. Em seguida, adicione seu produto com um clique e descreva como deseja que seu ator interaja com ele para obter um vídeo publicitário completo em minutos.',
+                    features: [
+                        'Adição de produto com um clique',
+                        'Funciona com qualquer tipo de produto',
+                        'Tamanho, forma e texto do produto consistentes'
+                    ]
+                },
+                {
+                    id: 'saas',
+                    name: 'SaaS',
+                    title: 'Escale seu marketing de software',
+                    description: 'Crie vídeos explicativos profissionais e demos de produtos com apresentadores IA. Gere depoimentos autênticos e anúncios de recursos que constroem confiança e aceleram seu ciclo de vendas.',
+                    features: [
+                        'Apresentadores IA profissionais para demos',
+                        'Geração de depoimentos autênticos',
+                        'Suporte multilíngue para alcance global'
+                    ]
+                },
+                {
+                    id: 'agencies',
+                    name: 'Agências',
+                    title: 'Entregue mais campanhas mais rápido',
+                    description: 'Produza variações ilimitadas de anúncios para seus clientes em minutos. Teste vários conceitos criativos, atores e mensagens sem custos de produção caros ou prazos longos.',
+                    features: [
+                        'Capacidades de teste A/B rápido',
+                        'Variações criativas ilimitadas',
+                        'Saídas prontas para marca branca'
+                    ]
+                },
+                {
+                    id: 'influencer',
+                    name: 'Influenciador',
+                    title: 'Crie conteúdo em escala',
+                    description: 'Gere conteúdo UGC consistente e de alta qualidade para suas parcerias de marca. Crie conteúdo patrocinado, análises de produtos e colaborações de marca com atores IA que correspondem ao seu público.',
+                    features: [
+                        'Biblioteca diversificada de atores IA',
+                        'Conteúdo autêntico estilo UGC',
+                        'Entrega rápida para acordos de marca'
+                    ]
+                }
+            ]
         }
     };
 

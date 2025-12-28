@@ -96,6 +96,33 @@ export default function FAQ({ lang = 'en' }: FAQProps) {
                     answer: "¡Absolutamente! AdMaker AI ofrece optimización automática para formato vertical 9:16. Exporta tus videos UGC IA en formato TikTok, Instagram Reels, YouTube Shorts o Facebook con un clic."
                 }
             ]
+        },
+        pt: {
+            title: 'Perguntas Frequentes Sobre',
+            titleHighlight: 'Criação de Vídeos UGC com IA',
+            subtitle: 'Tudo o que você precisa saber sobre criação de vídeos UGC com IA, escolher o melhor gerador de avatares IA e maximizar seu ROI publicitário em vídeo.',
+            faqs: [
+                {
+                    question: "O que torna o AdMaker AI a melhor plataforma de vídeos UGC com IA?",
+                    answer: "O AdMaker AI combina tecnologia de atores IA de ponta com design fácil de usar, tornando-o a melhor ferramenta IA para gerar conteúdo de vídeo UGC. Ao contrário dos criadores básicos de deepfake, oferecemos mais de 300 avatares realistas, integração de produto na mão e tempos de geração de 2 minutos."
+                },
+                {
+                    question: "Como funciona o criador de vídeos IA a partir de script?",
+                    answer: "Nosso criador de vídeos IA a partir de script usa processamento avançado de linguagem natural e visão computacional. Simplesmente cole seu script publicitário, selecione um ator IA, e nosso sistema gera um vídeo UGC realista completamente sincronizado em menos de 2 minutos."
+                },
+                {
+                    question: "O que é o recurso de produto na mão?",
+                    answer: "Este recurso revolucionário permite que seu avatar IA segure fisicamente, mostre ou use seu produto no vídeo. Simplesmente faça upload de uma imagem do produto, e nossa IA avançada o integra perfeitamente na cena."
+                },
+                {
+                    question: "Quão realistas são os atores e avatares IA?",
+                    answer: "Nossos atores IA usam tecnologia de última geração. Eles apresentam expressões faciais naturais, movimentos oculares realistas, sincronização labial perfeita em vários idiomas e linguagem corporal autêntica."
+                },
+                {
+                    question: "Posso criar vídeos UGC para TikTok e Instagram Reels?",
+                    answer: "Absolutamente! O AdMaker AI oferece otimização automática para formato vertical 9:16. Exporte seus vídeos UGC IA no formato TikTok, Instagram Reels, YouTube Shorts ou Facebook com um clique."
+                }
+            ]
         }
     };
 
