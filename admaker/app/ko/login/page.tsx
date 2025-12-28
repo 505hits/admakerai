@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { getMediaUrl } from '@/lib/cloudflare-config';
-import { useTranslation } from '@/lib/translations';
 
 function LoginContent() {
     const router = useRouter();
@@ -15,14 +14,13 @@ function LoginContent() {
     const [emailSent, setEmailSent] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const supabase = createClient();
-    const t = useTranslation('login', 'ko');
 
     useEffect(() => {
         const errorParam = searchParams.get('error');
         if (errorParam) {
-            setError(t.authError || '인증 실패. 다시 시도해주세요.');
+            setError('인증 실패. 다시 시도해주세요.');
         }
-    }, [searchParams, t.authError]);
+    }, [searchParams]);
 
     const handleGoogleLogin = async () => {
         setIsLoading(true);
@@ -39,7 +37,7 @@ function LoginContent() {
             if (error) throw error;
         } catch (error) {
             console.error('Login error:', error);
-            setError(t.loginError || '로그인 중 오류가 발생했습니다.');
+            setError('로그인 중 오류가 발생했습니다.');
             setIsLoading(false);
         }
     };
@@ -61,7 +59,7 @@ function LoginContent() {
             setEmailSent(true);
         } catch (error) {
             console.error('Email login error:', error);
-            setError(t.emailError || '이메일 전송 중 오류가 발생했습니다.');
+            setError('이메일 전송 중 오류가 발생했습니다.');
             setIsLoading(false);
         }
     };
@@ -87,10 +85,10 @@ function LoginContent() {
                 }}>
                     <div style={{ fontSize: '48px', marginBottom: '20px' }}>📧</div>
                     <h2 style={{ fontSize: '24px', color: 'white', marginBottom: '10px' }}>
-                        {t.checkEmail || '이메일을 확인하세요'}
+                        이메일을 확인하세요
                     </h2>
                     <p style={{ color: 'rgba(255, 255, 255, 0.7)', lineHeight: '1.6' }}>
-                        {t.emailSentMessage || `${email}로 로그인 링크를 보냈습니다. 이메일을 확인하고 링크를 클릭하여 로그인하세요.`}
+                        {email}로 로그인 링크를 보냈습니다. 이메일을 확인하고 링크를 클릭하여 로그인하세요.
                     </p>
                 </div>
             </div>
@@ -126,7 +124,7 @@ function LoginContent() {
                             style={{ height: '60px', marginBottom: '20px' }}
                         />
                         <h1 style={{ fontSize: '24px', color: 'white', marginBottom: '10px' }}>
-                            {t.title || '20,000명 이상의 크리에이터와 함께하세요'}
+                            20,000명 이상의 크리에이터와 함께하세요
                         </h1>
                     </div>
 
@@ -171,7 +169,7 @@ function LoginContent() {
                             <path d="M4.405 11.9c-.2-.6-.314-1.24-.314-1.9 0-.66.114-1.3.314-1.9V5.51H1.064A9.996 9.996 0 000 10c0 1.614.386 3.14 1.064 4.49l3.34-2.59z" fill="#FBBC05" />
                             <path d="M10 3.977c1.468 0 2.786.505 3.823 1.496l2.868-2.868C14.959.99 12.695 0 10 0 6.09 0 2.71 2.24 1.064 5.51l3.34 2.59C5.19 5.736 7.395 3.977 10 3.977z" fill="#EA4335" />
                         </svg>
-                        {isLoading ? (t.loading || '로딩 중...') : (t.googleButton || 'Google로 계속하기')}
+                        {isLoading ? '로딩 중...' : 'Google로 계속하기'}
                     </button>
 
                     <div style={{
@@ -185,7 +183,7 @@ function LoginContent() {
                             padding: '0 10px',
                             position: 'relative',
                             zIndex: 1
-                        }}>{t.or || '또는'}</span>
+                        }}>또는</span>
                         <div style={{
                             position: 'absolute',
                             top: '50%',
@@ -202,7 +200,7 @@ function LoginContent() {
                             type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            placeholder={t.emailPlaceholder || '이메일 주소'}
+                            placeholder="이메일 주소"
                             required
                             style={{
                                 width: '100%',
@@ -233,7 +231,7 @@ function LoginContent() {
                                 transition: 'transform 0.2s'
                             }}
                         >
-                            {isLoading ? (t.loading || '로딩 중...') : (t.emailButton || '이메일로 계속하기')}
+                            {isLoading ? '로딩 중...' : '이메일로 계속하기'}
                         </button>
                     </form>
 
@@ -244,7 +242,7 @@ function LoginContent() {
                         lineHeight: '1.5',
                         marginTop: '20px'
                     }}>
-                        {t.terms || '"계속"을 클릭하면'} <a href="/terms" style={{ color: '#ff0844' }}>{t.termsLink || '서비스 약관'}</a> {t.and || '및'} <a href="/privacy" style={{ color: '#ff0844' }}>{t.privacyLink || '개인정보 보호정책'}</a>{t.termsAgree || '에 동의하는 것입니다'}
+                        "계속"을 클릭하면 <a href="/terms" style={{ color: '#ff0844' }}>서비스 약관</a> 및 <a href="/privacy" style={{ color: '#ff0844' }}>개인정보 보호정책</a>에 동의하는 것입니다
                     </p>
                 </div>
             </div>
@@ -260,7 +258,7 @@ function LoginContent() {
                 gap: '20px'
             }}>
                 <h2 style={{ fontSize: '20px', color: 'white', marginBottom: '10px' }}>
-                    {t.testimonialsTitle || '크리에이터들의 이야기'}
+                    크리에이터들의 이야기
                 </h2>
 
                 <div style={{
