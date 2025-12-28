@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { getMediaUrl } from '@/lib/cloudflare-config';
-import styles from '../../login/Login.module.css';
 
 export default function LoginKo() {
     const router = useRouter();
@@ -41,19 +40,43 @@ export default function LoginKo() {
     };
 
     return (
-        <div className={styles.loginContainer}>
-            <div className={styles.loginCard}>
-                <div className={styles.loginHeader}>
+        <div style={{
+            minHeight: '100vh',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            background: '#0a0a0a',
+            padding: '20px'
+        }}>
+            <div style={{
+                background: 'rgba(255, 255, 255, 0.03)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                borderRadius: '20px',
+                padding: '40px',
+                maxWidth: '450px',
+                width: '100%'
+            }}>
+                <div style={{ textAlign: 'center', marginBottom: '30px' }}>
                     <img
                         src={getMediaUrl('admaker_ai_logo-removebg-preview.png')}
                         alt="AdMaker AI"
-                        className={styles.logo}
+                        style={{ height: '60px', marginBottom: '20px' }}
                     />
-                    <h1>20,000명 이상의 크리에이터와 함께하세요</h1>
+                    <h1 style={{ fontSize: '24px', color: 'white', marginBottom: '10px' }}>
+                        20,000명 이상의 크리에이터와 함께하세요
+                    </h1>
                 </div>
 
                 {error && (
-                    <div className={styles.errorMessage}>
+                    <div style={{
+                        background: 'rgba(255, 0, 0, 0.1)',
+                        border: '1px solid rgba(255, 0, 0, 0.3)',
+                        borderRadius: '8px',
+                        padding: '12px',
+                        marginBottom: '20px',
+                        color: '#ff6b6b',
+                        textAlign: 'center'
+                    }}>
                         {error}
                     </div>
                 )}
@@ -61,7 +84,23 @@ export default function LoginKo() {
                 <button
                     onClick={handleGoogleLogin}
                     disabled={isLoading}
-                    className={styles.googleButton}
+                    style={{
+                        width: '100%',
+                        padding: '14px',
+                        background: 'white',
+                        color: '#000',
+                        border: 'none',
+                        borderRadius: '10px',
+                        fontSize: '16px',
+                        fontWeight: '600',
+                        cursor: isLoading ? 'not-allowed' : 'pointer',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        gap: '10px',
+                        transition: 'transform 0.2s',
+                        opacity: isLoading ? 0.7 : 1
+                    }}
                 >
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M19.6 10.227c0-.709-.064-1.39-.182-2.045H10v3.868h5.382a4.6 4.6 0 01-1.996 3.018v2.51h3.232c1.891-1.742 2.982-4.305 2.982-7.35z" fill="#4285F4" />
@@ -72,12 +111,36 @@ export default function LoginKo() {
                     {isLoading ? '로딩 중...' : 'Google로 계속하기'}
                 </button>
 
-                <div className={styles.divider}>
-                    <span>또는</span>
+                <div style={{
+                    margin: '20px 0',
+                    textAlign: 'center',
+                    color: 'rgba(255, 255, 255, 0.5)',
+                    position: 'relative'
+                }}>
+                    <span style={{
+                        background: '#0a0a0a',
+                        padding: '0 10px',
+                        position: 'relative',
+                        zIndex: 1
+                    }}>또는</span>
+                    <div style={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: 0,
+                        right: 0,
+                        height: '1px',
+                        background: 'rgba(255, 255, 255, 0.1)',
+                        zIndex: 0
+                    }}></div>
                 </div>
 
-                <p className={styles.terms}>
-                    "계속"을 클릭하면 <a href="/terms">서비스 약관</a> 및 <a href="/privacy">개인정보 보호정책</a>에 동의하는 것입니다
+                <p style={{
+                    fontSize: '12px',
+                    color: 'rgba(255, 255, 255, 0.6)',
+                    textAlign: 'center',
+                    lineHeight: '1.5'
+                }}>
+                    "계속"을 클릭하면 <a href="/terms" style={{ color: '#ff0844' }}>서비스 약관</a> 및 <a href="/privacy" style={{ color: '#ff0844' }}>개인정보 보호정책</a>에 동의하는 것입니다
                 </p>
             </div>
         </div>
