@@ -1,16 +1,46 @@
 'use client';
 
+import { useEffect } from 'react';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import Pricing from '@/components/Pricing';
 import IndustryTabs from '@/components/IndustryTabs';
-import Testimonials from '@/components/Testimonials';
+import Pricing from '@/components/Pricing';
 import FAQ from '@/components/FAQ';
+import TypedText from '@/components/TypedText';
+import Testimonials from '@/components/Testimonials';
 import { getMediaUrl } from '@/lib/cloudflare-config';
 
 export default function HomeKo() {
+    useEffect(() => {
+        const handleScroll = () => {
+            const tiltImage = document.querySelector('.feature-image-tilt img') as HTMLElement;
+            if (!tiltImage) return;
+
+            const rect = tiltImage.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            const imageCenter = rect.top + rect.height / 2;
+            const viewportCenter = windowHeight / 2;
+
+            const distanceFromCenter = (imageCenter - viewportCenter) / viewportCenter;
+
+            if (rect.top < windowHeight && rect.bottom > 0) {
+                const rotateY = distanceFromCenter * 15;
+                const rotateX = distanceFromCenter * -5;
+                const scale = 1 - Math.abs(distanceFromCenter) * 0.05;
+
+                tiltImage.style.transform = `perspective(1000px) rotateY(${rotateY}deg) rotateX(${rotateX}deg) scale(${scale})`;
+                tiltImage.style.transition = 'transform 0.1s ease-out';
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        handleScroll();
+
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
-        <>
+        <main>
             <Navbar lang="ko" />
             <Hero lang="ko" />
 
@@ -31,7 +61,7 @@ export default function HomeKo() {
                             '뷰티 광고',
                             '제품 출시',
                             '음료 캠페인',
-                            'UGC 팟캐스트',
+                            'UGC 팟캠스트',
                             '고객 후기',
                             '피트니스 & 스포츠'
                         ];
@@ -69,7 +99,73 @@ export default function HomeKo() {
                 </div>
             </section>
 
-            <IndustryTabs lang="ko" />
+            {/* Features Section */}
+            <section id="features" className="features">
+                <div className="container">
+                    <div className="feature-row">
+                        <div className="feature-content">
+                            <h3>당신의 <TypedText /></h3>
+                            <p>2분 이내에 전문적인 비디오 광고를 만드세요. 우리의 고급 AI가 스크립트를 즉시 바이럴 콘텐츠로 변환합니다.</p>
+                            <ul className="feature-list">
+                                <li>✓ 300개 이상의 배우 모델 사용 가능</li>
+                                <li>✓ 2분 이내에 비디오 생성</li>
+                                <li>✓ AI 스크립트 최적화</li>
+                                <li>✓ 즉각적인 바이럴 콘텐츠 제작</li>
+                            </ul>
+                        </div>
+                        <div className="feature-image feature-image-tilt">
+                            <img src={getMediaUrl('ultra-fast-generation.jpg')} alt="Exemplos de Vídeos UGC" />
+                        </div>
+                    </div>
+
+                    {/* Step by Step Guide */}
+                    <div className="section-header" style={{ marginTop: '80px' }}>
+                        <h2>AI UGC 비디오를 <span className="gradient-text-red">3단계</span>로 제작하는 방법</h2>
+                        <p>스크립트로 전문적인 UGC 비디오 광고를 분 단위로 생성하는 AI 비디오 제작기입니다.</p>
+                    </div>
+
+                    <div className="steps-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '30px', marginTop: '50px' }}>
+                        {/* Step 1 */}
+                        <div className="step-card animate-fade-in-up stagger-1" style={{ background: 'rgba(255, 255, 255, 0.03)', borderRadius: '20px', padding: '30px', border: '1px solid rgba(255, 255, 255, 0.1)', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }} onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-8px)'; e.currentTarget.style.boxShadow = '0 12px 40px rgba(255, 8, 68, 0.2)'; }} onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>
+                            <div style={{ background: 'rgba(255, 8, 68, 0.15)', color: '#ff0844', padding: '8px 20px', borderRadius: '50px', fontSize: '14px', fontWeight: '600', marginBottom: '20px', display: 'inline-block' }}>
+                                단계 1
+                            </div>
+                            <h3 style={{ fontSize: '24px', marginBottom: '12px', color: '#fff', fontWeight: '600' }}>배우 선택</h3>
+                            <p style={{ color: 'rgba(255, 255, 255, 0.7)', lineHeight: '1.6', marginBottom: '24px', fontSize: '15px' }}>라이브러리를 사용하거나 이미지를 업로드하거나 사실적인 AI 이미지 생성기를 사용하세요.</p>
+                            <div style={{ background: 'rgba(255, 255, 255, 0.05)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
+                                <img src={getMediaUrl('step1.jpg')} alt="Selecionar um Ator de IA" style={{ width: '100%', borderRadius: '8px' }} />
+                            </div>
+                        </div>
+
+                        {/* Step 2 */}
+                        <div className="step-card animate-fade-in-up stagger-2" style={{ background: 'rgba(255, 255, 255, 0.03)', borderRadius: '20px', padding: '30px', border: '1px solid rgba(255, 255, 255, 0.1)', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }} onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-8px)'; e.currentTarget.style.boxShadow = '0 12px 40px rgba(255, 107, 107, 0.2)'; }} onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>
+                            <div style={{ background: 'rgba(255, 107, 107, 0.15)', color: '#ff6b6b', padding: '8px 20px', borderRadius: '50px', fontSize: '14px', fontWeight: '600', marginBottom: '20px', display: 'inline-block' }}>
+                                단계 2
+                            </div>
+                            <h3 style={{ fontSize: '24px', marginBottom: '12px', color: '#fff', fontWeight: '600' }}>스크립트 작성</h3>
+                            <p style={{ color: 'rgba(255, 255, 255, 0.7)', lineHeight: '1.6', marginBottom: '24px', fontSize: '15px' }}>스마트 AI 작성으로 아이디어를 촬영 준비가 된 광고로 변환하세요.</p>
+                            <div style={{ background: 'rgba(255, 255, 255, 0.05)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
+                                <img src={getMediaUrl('Step2.png')} alt="Escrever o Script" style={{ width: '100%', borderRadius: '8px' }} />
+                            </div>
+                        </div>
+
+                        {/* Step 3 */}
+                        <div className="step-card animate-fade-in-up stagger-3" style={{ background: 'rgba(255, 255, 255, 0.03)', borderRadius: '20px', padding: '30px', border: '1px solid rgba(255, 255, 255, 0.1)', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }} onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-8px)'; e.currentTarget.style.boxShadow = '0 12px 40px rgba(255, 26, 90, 0.2)'; }} onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; }}>
+                            <div style={{ background: 'rgba(255, 26, 90, 0.15)', color: '#ff1a5a', padding: '8px 20px', borderRadius: '50px', fontSize: '14px', fontWeight: '600', marginBottom: '20px', display: 'inline-block' }}>
+                                단계 3
+                            </div>
+                            <h3 style={{ fontSize: '24px', marginBottom: '12px', color: '#fff', fontWeight: '600' }}>비디오 생성</h3>
+                            <p style={{ color: 'rgba(255, 255, 255, 0.7)', lineHeight: '1.6', marginBottom: '24px', fontSize: '15px' }}>분 단위로 놀라운 사실적인 UGC로 모든 것을 생동감 있게 만드세요.</p>
+                            <div style={{ background: 'rgba(255, 255, 255, 0.05)', borderRadius: '12px', padding: '20px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
+                                <img src={getMediaUrl('step3.jpg')} alt="Gerar o Vídeo" style={{ width: '100%', borderRadius: '8px' }} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Industry Tabs Section */}
+            <IndustryTabs lang="pt" />
 
             {/* Winning Ad Replicator Section */}
             <section className="replicator-feature" style={{ padding: '100px 0', background: 'linear-gradient(180deg, #000 0%, #0a0a0a 100%)', position: 'relative', overflow: 'hidden' }}>
@@ -83,7 +179,7 @@ export default function HomeKo() {
                         <div style={{ background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '20px', padding: '24px', textAlign: 'center', transition: 'all 0.3s ease' }} onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-8px)'; e.currentTarget.style.borderColor = 'rgba(255, 8, 68, 0.3)'; e.currentTarget.style.boxShadow = '0 12px 40px rgba(255, 8, 68, 0.2)'; }} onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)'; e.currentTarget.style.boxShadow = 'none'; }}>
                             <div style={{ position: 'relative', aspectRatio: '9/16', borderRadius: '16px', overflow: 'hidden', background: '#000', marginBottom: '20px', maxWidth: '280px', width: '100%' }}>
                                 <video src={getMediaUrl('landing winning 1.mp4')} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                                <div style={{ position: 'absolute', top: '12px', left: '12px', background: 'rgba(0, 0, 0, 0.8)', backdropFilter: 'blur(8px)', padding: '6px 12px', borderRadius: '8px', fontSize: '12px', fontWeight: '600', color: '#fff' }}>원본</div>
+                                <div style={{ position: 'absolute', top: '12px', left: '12px', background: 'rgba(0, 0, 0, 0.8)', backdropFilter: 'blur(8px)', padding: '6px 12px', borderRadius: '8px', fontSize: '12px', fontWeight: '600', color: '#fff' }}>Original</div>
                             </div>
                             <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#fff', marginBottom: '8px' }}>성공한 광고</h3>
                             <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.6)', lineHeight: '1.5' }}>성과가 좋은 비디오를 업로드하세요</p>
@@ -92,7 +188,7 @@ export default function HomeKo() {
                         <div style={{ background: 'rgba(255, 255, 255, 0.03)', border: '1px solid rgba(255, 255, 255, 0.1)', borderRadius: '20px', padding: '24px', textAlign: 'center', transition: 'all 0.3s ease' }} onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateY(-8px)'; e.currentTarget.style.borderColor = 'rgba(255, 8, 68, 0.3)'; e.currentTarget.style.boxShadow = '0 12px 40px rgba(255, 8, 68, 0.2)'; }} onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)'; e.currentTarget.style.boxShadow = 'none'; }}>
                             <div style={{ position: 'relative', aspectRatio: '9/16', borderRadius: '16px', overflow: 'hidden', background: '#000', marginBottom: '20px', maxWidth: '280px', width: '100%' }}>
                                 <video src={getMediaUrl('landing winning 2.mp4')} autoPlay loop muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                                <div style={{ position: 'absolute', top: '12px', left: '12px', background: 'linear-gradient(135deg, #ff0844, #ff6b6b)', backdropFilter: 'blur(8px)', padding: '6px 12px', borderRadius: '8px', fontSize: '12px', fontWeight: '600', color: '#fff' }}>복제됨</div>
+                                <div style={{ position: 'absolute', top: '12px', left: '12px', background: 'linear-gradient(135deg, #ff0844, #ff6b6b)', backdropFilter: 'blur(8px)', padding: '6px 12px', borderRadius: '8px', fontSize: '12px', fontWeight: '600', color: '#fff' }}>Replicado</div>
                             </div>
                             <h3 style={{ fontSize: '18px', fontWeight: '700', color: '#fff', marginBottom: '8px' }}>AI 배우 새 버전</h3>
                             <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.6)', lineHeight: '1.5' }}>동일한 스크립트, 다른 얼굴, 즉각적인 결과</p>
@@ -101,8 +197,11 @@ export default function HomeKo() {
                 </div>
             </section>
 
-            <Pricing lang="ko" />
-            <Testimonials lang="ko" />
+            {/* Pricing Section */}
+            <Pricing lang="pt" />
+
+            {/* Testimonials Section */}
+            <Testimonials lang="pt" />
 
             {/* Why AdMaker AI Section */}
             <section className="features" style={{ paddingTop: '80px', paddingBottom: '80px', background: '#000' }}>
@@ -121,10 +220,91 @@ export default function HomeKo() {
                 </div>
             </section>
 
-            <Pricing lang="ko" />
-            <IndustryTabs lang="ko" />
-            <Testimonials lang="ko" />
-            <FAQ lang="ko" />
-        </>
+            {/* FAQ Section */}
+            <FAQ lang="pt" />
+
+            {/* CTA Section */}
+            <section className="cta" style={{ padding: '120px 0', position: 'relative', overflow: 'hidden' }}>
+                <div className="cta-glow"></div>
+                <div className="container">
+                    <div style={{
+                        maxWidth: '900px',
+                        margin: '0 auto',
+                        background: 'rgba(255, 255, 255, 0.03)',
+                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                        borderRadius: '32px',
+                        padding: '80px 60px',
+                        textAlign: 'center',
+                        position: 'relative',
+                        backdropFilter: 'blur(10px)'
+                    }} className="animate-fade-in-up">
+                        <h2 style={{
+                            fontSize: 'clamp(32px, 5vw, 56px)',
+                            fontWeight: '800',
+                            marginBottom: '24px',
+                            lineHeight: '1.2'
+                        }}>
+                            지루한 비디오에 작별을 고하세요 👋
+                        </h2>
+                        <p style={{
+                            fontSize: '18px',
+                            color: 'rgba(255, 255, 255, 0.7)',
+                            marginBottom: '40px',
+                            maxWidth: '600px',
+                            margin: '0 auto 40px',
+                            lineHeight: '1.6'
+                        }}>
+                            오늘 AdMaker AI로 시작하여 TikTok, Instagram Reels, YouTube용 매력적인 UGC 비디오를 자동으로 제작하세요.
+                        </p>
+                        <a
+                            href="/ko/login"
+                            className="btn-primary btn-large"
+                            style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '10px',
+                                padding: '18px 40px',
+                                fontSize: '18px',
+                                fontWeight: '600',
+                                background: 'linear-gradient(135deg, #ff0844 0%, #ff6b6b 100%)',
+                                color: '#fff',
+                                borderRadius: '50px',
+                                border: 'none',
+                                cursor: 'pointer',
+                                transition: 'all 0.3s ease',
+                                boxShadow: '0 8px 30px rgba(255, 8, 68, 0.4)'
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.transform = 'translateY(-3px)';
+                                e.currentTarget.style.boxShadow = '0 12px 40px rgba(255, 8, 68, 0.5)';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.transform = 'translateY(0)';
+                                e.currentTarget.style.boxShadow = '0 8px 30px rgba(255, 8, 68, 0.4)';
+                            }}
+                        >
+                            시작하기
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            {/* Footer */}
+            <footer className="footer">
+                <div className="container">
+                    <div className="footer-content">
+                        <div className="footer-brand">
+                            <div className="logo">
+                                <span className="logo-text">AdMaker<span className="gradient-text">AI</span></span>
+                            </div>
+                            <p>분 단위로 AI 비디오 광고를 제작하는 1위 플랫폼.</p>
+                        </div>
+                    </div>
+                    <div className="footer-bottom">
+                        <p>© 2024 AdMaker AI. All rights reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        </main>
     );
 }
