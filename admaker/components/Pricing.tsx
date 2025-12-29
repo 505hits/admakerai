@@ -140,6 +140,27 @@ export default function Pricing({ lang = 'en' }: PricingProps) {
             outfitSwapping: 'Outfit-Wechsel',
             replicatorCredits: 'Replikator-Credits',
             replications: 'Replikationen'
+        },
+        ja: {
+            title: '完璧なプランを選択',
+            subtitle: '数分でプロフェッショナルなAI UGC動画の作成を開始',
+            monthly: '月額',
+            annual: '年額',
+            save: '20%節約',
+            popular: '最も人気',
+            perMonth: '/月',
+            billedAnnually: '年間請求',
+            getStarted: '始める',
+            loading: '読み込み中...',
+            videoCredits: '動画クレジット',
+            actorCredits: 'アクタークレジット',
+            upTo: '最大',
+            videosPerMonth: '月間動画',
+            languages: '35以上の言語',
+            productHolding: '製品保持',
+            outfitSwapping: '衣装交換',
+            replicatorCredits: 'レプリケータークレジット',
+            replications: 'レプリケーション'
         }
     };
 

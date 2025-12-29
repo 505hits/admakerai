@@ -227,6 +227,43 @@ export default function Testimonials({ lang = 'en' }: TestimonialsProps) {
                     text: "Endlich eine zuverlässige KI-Avatar-Plattform für große Organisationen! A/B-Tests mit 20 Varianten sind jetzt an einem Nachmittag möglich!"
                 }
             ]
+        },
+        ja: {
+            title: 'デジタルマーケターが私たちの',
+            titleHighlight: 'AI UGC動画プラットフォームについて語ること',
+            subtitle: '迅速なUGC製品広告動画のための最高評価のプラットフォームに切り替えた20,000人以上のマーケターに参加してください。',
+            testimonials: [
+                {
+                    name: "Jessica Martinez",
+                    role: "パフォーマンスマーケティングエージェンシーオーナー",
+                    text: "すべての主要なAIアバタージェネレーターをテストした後、AdMaker AIは間違いなく最高です。クライアント向けに毎月50以上のUGC動画広告を作成しています。AIアクターは非常にリアルで、エンゲージメント率が3倍になりました！"
+                },
+                {
+                    name: "Michael Chen",
+                    role: "Eコマース成長コンサルタント",
+                    text: "スタートアップとして、手頃な価格のAIアバターソリューションを見つけることが重要でした。AdMaker AIはスタートアップ価格で商業品質を提供します。手に製品を持つ機能は、Eコマースクライアントにとって革命的です。"
+                },
+                {
+                    name: "Sarah Thompson",
+                    role: "ソーシャルメディアディレクター、Fortune 500",
+                    text: "ゲームチェンジャー！私たちの広告クリエイティブAIシステムは、一貫してバイラルUGCコンテンツを生成します。ROIが400%増加しました！"
+                },
+                {
+                    name: "David Rodriguez",
+                    role: "コンテンツマーケティングマネージャー",
+                    text: "AI推薦動画の作成は簡単です。AIインフルエンサージェネレーターは、実際のクリエイターを雇うよりも10倍速くコンテンツを拡大するのに役立ちます。"
+                },
+                {
+                    name: "Emma Williams",
+                    role: "TikTok Shopブランドオーナー",
+                    text: "数百万回の再生を獲得するTikTok用のUGCスタイルコンテンツを作成しています。最高の投資です！"
+                },
+                {
+                    name: "Robert Johnson",
+                    role: "デジタルマーケティングVP",
+                    text: "ついに、大規模組織向けの信頼できるAIアバタープラットフォーム！午後に20のA/Bバリアントをテストすることが可能になりました！"
+                }
+            ]
         }
     };
 
