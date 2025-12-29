@@ -2509,6 +2509,176 @@
             "gender": "neutral",
             "ageRange": "28-45",
             "style": "Real estate professional"
+        },
+        {
+            "id": "elegant_001",
+            "name": "Elegant Face 1",
+            "category": "Elegant Faces",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant1.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant1.png",
+            "sceneDescription": "Elegant and sophisticated portrait",
+            "tags": [
+                "elegant",
+                "sophisticated",
+                "professional",
+                "portrait"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Elegant portrait"
+        },
+        {
+            "id": "elegant_002",
+            "name": "Elegant Face 2",
+            "category": "Elegant Faces",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant2.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant2.png",
+            "sceneDescription": "Elegant and sophisticated portrait",
+            "tags": [
+                "elegant",
+                "sophisticated",
+                "professional",
+                "portrait"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Elegant portrait"
+        },
+        {
+            "id": "elegant_003",
+            "name": "Elegant Face 3",
+            "category": "Elegant Faces",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant3.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant3.png",
+            "sceneDescription": "Elegant and sophisticated portrait",
+            "tags": [
+                "elegant",
+                "sophisticated",
+                "professional",
+                "portrait"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Elegant portrait"
+        },
+        {
+            "id": "elegant_004",
+            "name": "Elegant Face 4",
+            "category": "Elegant Faces",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant4.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant4.png",
+            "sceneDescription": "Elegant and sophisticated portrait",
+            "tags": [
+                "elegant",
+                "sophisticated",
+                "professional",
+                "portrait"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Elegant portrait"
+        },
+        {
+            "id": "elegant_005",
+            "name": "Elegant Face 5",
+            "category": "Elegant Faces",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant5.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant5.png",
+            "sceneDescription": "Elegant and sophisticated portrait",
+            "tags": [
+                "elegant",
+                "sophisticated",
+                "professional",
+                "portrait"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Elegant portrait"
+        },
+        {
+            "id": "elegant_006",
+            "name": "Elegant Face 6",
+            "category": "Elegant Faces",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant6.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant6.png",
+            "sceneDescription": "Elegant and sophisticated portrait",
+            "tags": [
+                "elegant",
+                "sophisticated",
+                "professional",
+                "portrait"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Elegant portrait"
+        },
+        {
+            "id": "elegant_007",
+            "name": "Elegant Face 7",
+            "category": "Elegant Faces",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant7.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant7.png",
+            "sceneDescription": "Elegant and sophisticated portrait",
+            "tags": [
+                "elegant",
+                "sophisticated",
+                "professional",
+                "portrait"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Elegant portrait"
+        },
+        {
+            "id": "elegant_008",
+            "name": "Elegant Face 8",
+            "category": "Elegant Faces",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant8.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant8.png",
+            "sceneDescription": "Elegant and sophisticated portrait",
+            "tags": [
+                "elegant",
+                "sophisticated",
+                "professional",
+                "portrait"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Elegant portrait"
+        },
+        {
+            "id": "elegant_009",
+            "name": "Elegant Face 9",
+            "category": "Elegant Faces",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant9.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant9.png",
+            "sceneDescription": "Elegant and sophisticated portrait",
+            "tags": [
+                "elegant",
+                "sophisticated",
+                "professional",
+                "portrait"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Elegant portrait"
+        },
+        {
+            "id": "elegant_010",
+            "name": "Elegant Face 10",
+            "category": "Elegant Faces",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant10.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant10.png",
+            "sceneDescription": "Elegant and sophisticated portrait",
+            "tags": [
+                "elegant",
+                "sophisticated",
+                "professional",
+                "portrait"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Elegant portrait"
         }
     ],
     "categories": [
