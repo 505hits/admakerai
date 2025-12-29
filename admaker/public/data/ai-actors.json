@@ -2305,6 +2305,210 @@
             "gender": "neutral",
             "ageRange": "22-35",
             "style": "Tech reviewer"
+        },
+        {
+            "id": "realestate_001",
+            "name": "Real Estate Professional 1",
+            "category": "Real Estate",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/1.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/1.jpg",
+            "sceneDescription": "Professional real estate agent in modern property setting",
+            "tags": [
+                "real estate",
+                "property",
+                "professional",
+                "agent"
+            ],
+            "gender": "neutral",
+            "ageRange": "28-45",
+            "style": "Real estate professional"
+        },
+        {
+            "id": "realestate_002",
+            "name": "Real Estate Professional 2",
+            "category": "Real Estate",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/2.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/2.jpg",
+            "sceneDescription": "Professional real estate agent showcasing luxury property",
+            "tags": [
+                "real estate",
+                "luxury",
+                "professional",
+                "agent"
+            ],
+            "gender": "neutral",
+            "ageRange": "28-45",
+            "style": "Real estate professional"
+        },
+        {
+            "id": "realestate_003",
+            "name": "Real Estate Professional 3",
+            "category": "Real Estate",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/3.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/3.jpg",
+            "sceneDescription": "Real estate expert presenting property features",
+            "tags": [
+                "real estate",
+                "property",
+                "expert",
+                "presentation"
+            ],
+            "gender": "neutral",
+            "ageRange": "28-45",
+            "style": "Real estate expert"
+        },
+        {
+            "id": "realestate_004",
+            "name": "Real Estate Professional 4",
+            "category": "Real Estate",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/4.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/4.jpg",
+            "sceneDescription": "Professional real estate agent in upscale property",
+            "tags": [
+                "real estate",
+                "upscale",
+                "professional",
+                "agent"
+            ],
+            "gender": "neutral",
+            "ageRange": "28-45",
+            "style": "Real estate professional"
+        },
+        {
+            "id": "realestate_005",
+            "name": "Real Estate Professional 5",
+            "category": "Real Estate",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/5.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/5.jpg",
+            "sceneDescription": "Real estate specialist showcasing modern home",
+            "tags": [
+                "real estate",
+                "modern",
+                "specialist",
+                "home"
+            ],
+            "gender": "neutral",
+            "ageRange": "28-45",
+            "style": "Real estate specialist"
+        },
+        {
+            "id": "realestate_006",
+            "name": "Real Estate Professional 6",
+            "category": "Real Estate",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/6.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/6.jpg",
+            "sceneDescription": "Professional real estate agent in contemporary setting",
+            "tags": [
+                "real estate",
+                "contemporary",
+                "professional",
+                "agent"
+            ],
+            "gender": "neutral",
+            "ageRange": "28-45",
+            "style": "Real estate professional"
+        },
+        {
+            "id": "realestate_007",
+            "name": "Real Estate Professional 7",
+            "category": "Real Estate",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/7.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/7.jpg",
+            "sceneDescription": "Real estate expert in premium property location",
+            "tags": [
+                "real estate",
+                "premium",
+                "expert",
+                "location"
+            ],
+            "gender": "neutral",
+            "ageRange": "28-45",
+            "style": "Real estate expert"
+        },
+        {
+            "id": "realestate_008",
+            "name": "Real Estate Professional 8",
+            "category": "Real Estate",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/8.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/8.jpg",
+            "sceneDescription": "Professional real estate agent presenting property details",
+            "tags": [
+                "real estate",
+                "property",
+                "professional",
+                "details"
+            ],
+            "gender": "neutral",
+            "ageRange": "28-45",
+            "style": "Real estate professional"
+        },
+        {
+            "id": "realestate_009",
+            "name": "Real Estate Professional 9",
+            "category": "Real Estate",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/9.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/9.jpg",
+            "sceneDescription": "Real estate specialist in elegant property setting",
+            "tags": [
+                "real estate",
+                "elegant",
+                "specialist",
+                "property"
+            ],
+            "gender": "neutral",
+            "ageRange": "28-45",
+            "style": "Real estate specialist"
+        },
+        {
+            "id": "realestate_010",
+            "name": "Real Estate Professional 10",
+            "category": "Real Estate",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/10.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/10.jpg",
+            "sceneDescription": "Professional real estate agent in high-end property",
+            "tags": [
+                "real estate",
+                "high-end",
+                "professional",
+                "agent"
+            ],
+            "gender": "neutral",
+            "ageRange": "28-45",
+            "style": "Real estate professional"
+        },
+        {
+            "id": "realestate_011",
+            "name": "Real Estate Professional 11",
+            "category": "Real Estate",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/11.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/11.jpg",
+            "sceneDescription": "Real estate expert showcasing exclusive property",
+            "tags": [
+                "real estate",
+                "exclusive",
+                "expert",
+                "showcase"
+            ],
+            "gender": "neutral",
+            "ageRange": "28-45",
+            "style": "Real estate expert"
+        },
+        {
+            "id": "realestate_012",
+            "name": "Real Estate Professional 12",
+            "category": "Real Estate",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/12.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/12.jpg",
+            "sceneDescription": "Professional real estate agent in sophisticated setting",
+            "tags": [
+                "real estate",
+                "sophisticated",
+                "professional",
+                "agent"
+            ],
+            "gender": "neutral",
+            "ageRange": "28-45",
+            "style": "Real estate professional"
         }
     ],
     "categories": [
@@ -2319,7 +2523,8 @@
         "Tech",
         "Originals",
         "Elegant Faces",
-        "Senior"
+        "Senior",
+        "Real Estate"
     ],
     "note": "All image URLs point to Cloudflare R2 storage with the Actors/ prefix included."
 }

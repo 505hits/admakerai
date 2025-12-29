@@ -1625,6 +1625,210 @@
             "gender": "neutral",
             "ageRange": "25-40",
             "style": "Studio professional"
+        },
+        {
+            "id": "realestate_001",
+            "name": "Real Estate Agent - Professional Woman",
+            "category": "Real Estate",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/1.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/1.jpg",
+            "sceneDescription": "Professional real estate agent in modern office setting, ready to showcase properties",
+            "tags": [
+                "real estate",
+                "property",
+                "professional",
+                "agent"
+            ],
+            "gender": "female",
+            "ageRange": "30-40",
+            "style": "Professional real estate agent"
+        },
+        {
+            "id": "realestate_002",
+            "name": "Real Estate Agent - Luxury Specialist",
+            "category": "Real Estate",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/2.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/2.jpg",
+            "sceneDescription": "Luxury real estate specialist presenting high-end properties with confidence",
+            "tags": [
+                "real estate",
+                "luxury",
+                "property",
+                "professional"
+            ],
+            "gender": "male",
+            "ageRange": "35-45",
+            "style": "Luxury property specialist"
+        },
+        {
+            "id": "realestate_003",
+            "name": "Real Estate Agent - Residential Expert",
+            "category": "Real Estate",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/3.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/3.jpg",
+            "sceneDescription": "Friendly residential real estate agent specializing in family homes",
+            "tags": [
+                "real estate",
+                "residential",
+                "family homes",
+                "agent"
+            ],
+            "gender": "female",
+            "ageRange": "28-38",
+            "style": "Residential specialist"
+        },
+        {
+            "id": "realestate_004",
+            "name": "Real Estate Agent - Commercial Properties",
+            "category": "Real Estate",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/4.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/4.jpg",
+            "sceneDescription": "Commercial real estate expert presenting business properties and investments",
+            "tags": [
+                "real estate",
+                "commercial",
+                "investment",
+                "professional"
+            ],
+            "gender": "male",
+            "ageRange": "32-42",
+            "style": "Commercial property expert"
+        },
+        {
+            "id": "realestate_005",
+            "name": "Real Estate Agent - Modern Homes",
+            "category": "Real Estate",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/5.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/5.jpg",
+            "sceneDescription": "Contemporary real estate agent showcasing modern architectural properties",
+            "tags": [
+                "real estate",
+                "modern",
+                "contemporary",
+                "architecture"
+            ],
+            "gender": "female",
+            "ageRange": "25-35",
+            "style": "Modern property specialist"
+        },
+        {
+            "id": "realestate_006",
+            "name": "Real Estate Agent - Investment Advisor",
+            "category": "Real Estate",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/6.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/6.jpg",
+            "sceneDescription": "Real estate investment advisor presenting profitable property opportunities",
+            "tags": [
+                "real estate",
+                "investment",
+                "advisor",
+                "professional"
+            ],
+            "gender": "male",
+            "ageRange": "30-40",
+            "style": "Investment property advisor"
+        },
+        {
+            "id": "realestate_007",
+            "name": "Real Estate Agent - Neighborhood Expert",
+            "category": "Real Estate",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/7.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/7.jpg",
+            "sceneDescription": "Local neighborhood expert sharing insights about community and lifestyle",
+            "tags": [
+                "real estate",
+                "neighborhood",
+                "local expert",
+                "community"
+            ],
+            "gender": "female",
+            "ageRange": "28-38",
+            "style": "Neighborhood specialist"
+        },
+        {
+            "id": "realestate_008",
+            "name": "Real Estate Agent - First-Time Buyers",
+            "category": "Real Estate",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/8.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/8.jpg",
+            "sceneDescription": "Friendly agent helping first-time homebuyers navigate the market",
+            "tags": [
+                "real estate",
+                "first-time buyers",
+                "friendly",
+                "helpful"
+            ],
+            "gender": "male",
+            "ageRange": "26-36",
+            "style": "First-time buyer specialist"
+        },
+        {
+            "id": "realestate_009",
+            "name": "Real Estate Agent - Luxury Condos",
+            "category": "Real Estate",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/9.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/9.jpg",
+            "sceneDescription": "Sophisticated agent presenting luxury condominiums and penthouses",
+            "tags": [
+                "real estate",
+                "luxury",
+                "condos",
+                "penthouses"
+            ],
+            "gender": "female",
+            "ageRange": "30-40",
+            "style": "Luxury condo specialist"
+        },
+        {
+            "id": "realestate_010",
+            "name": "Real Estate Agent - Property Tours",
+            "category": "Real Estate",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/10.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/10.jpg",
+            "sceneDescription": "Energetic agent conducting engaging property tours and walkthroughs",
+            "tags": [
+                "real estate",
+                "property tours",
+                "walkthrough",
+                "energetic"
+            ],
+            "gender": "male",
+            "ageRange": "28-38",
+            "style": "Property tour specialist"
+        },
+        {
+            "id": "realestate_011",
+            "name": "Real Estate Agent - Market Analyst",
+            "category": "Real Estate",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/11.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/11.jpg",
+            "sceneDescription": "Professional market analyst explaining real estate trends and opportunities",
+            "tags": [
+                "real estate",
+                "market analysis",
+                "trends",
+                "professional"
+            ],
+            "gender": "female",
+            "ageRange": "32-42",
+            "style": "Market analyst"
+        },
+        {
+            "id": "realestate_012",
+            "name": "Real Estate Agent - Relocation Specialist",
+            "category": "Real Estate",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/12.jpg",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/12.jpg",
+            "sceneDescription": "Relocation expert helping clients find their perfect home in a new city",
+            "tags": [
+                "real estate",
+                "relocation",
+                "moving",
+                "specialist"
+            ],
+            "gender": "male",
+            "ageRange": "30-40",
+            "style": "Relocation specialist"
         }
     ],
     "categories": [
@@ -1636,7 +1840,8 @@
         "Sport",
         "Lifestyle",
         "Studio",
-        "Originals"
+        "Originals",
+        "Real Estate"
     ],
     "note": "All image URLs point to Cloudflare R2 storage with the Actors/ prefix included."
 }

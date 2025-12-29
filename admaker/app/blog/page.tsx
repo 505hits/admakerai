@@ -2,6 +2,8 @@
 
 import Navbar from '@/components/Navbar';
 import styles from './Blog.module.css';
+import Link from 'next/link';
+import Image from 'next/image';
 
 export default function BlogPage() {
     return (
@@ -13,53 +15,27 @@ export default function BlogPage() {
                     <p className={styles.subtitle}>Latest news and insights from AdMaker AI</p>
 
                     <div className={styles.blogGrid}>
-                        <article className={styles.blogCard}>
+                        <Link href="/blog/best-ugc-video-creation-service-for-real-estate-marketing" className={styles.blogCard}>
                             <div className={styles.cardImage}>
-                                <div className={styles.imagePlaceholder}>📝</div>
+                                <Image
+                                    src="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/2.jpg"
+                                    alt="Best UGC Video Creation Service for Real Estate Marketing"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
                             </div>
                             <div className={styles.cardContent}>
-                                <span className={styles.category}>Product Updates</span>
-                                <h2 className={styles.cardTitle}>Welcome to AdMaker AI Blog</h2>
+                                <span className={styles.category}>Real Estate Marketing</span>
+                                <h2 className={styles.cardTitle}>Best UGC Video Creation Service for Real Estate Marketing</h2>
                                 <p className={styles.cardExcerpt}>
-                                    Stay tuned for the latest updates, tips, and insights on creating amazing AI-powered video ads.
+                                    Discover the best UGC video creation service for real estate marketing. Compare top platforms, pricing, and features. Generate property videos in 45 seconds.
                                 </p>
                                 <div className={styles.cardMeta}>
-                                    <span>Coming Soon</span>
+                                    <span>December 2024</span>
                                 </div>
                             </div>
-                        </article>
-
-                        <article className={styles.blogCard}>
-                            <div className={styles.cardImage}>
-                                <div className={styles.imagePlaceholder}>🎬</div>
-                            </div>
-                            <div className={styles.cardContent}>
-                                <span className={styles.category}>Tips & Tricks</span>
-                                <h2 className={styles.cardTitle}>How to Create Engaging UGC Videos</h2>
-                                <p className={styles.cardExcerpt}>
-                                    Learn the best practices for creating user-generated content that converts.
-                                </p>
-                                <div className={styles.cardMeta}>
-                                    <span>Coming Soon</span>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article className={styles.blogCard}>
-                            <div className={styles.cardImage}>
-                                <div className={styles.imagePlaceholder}>🚀</div>
-                            </div>
-                            <div className={styles.cardContent}>
-                                <span className={styles.category}>Industry News</span>
-                                <h2 className={styles.cardTitle}>The Future of AI in Video Marketing</h2>
-                                <p className={styles.cardExcerpt}>
-                                    Discover how AI is transforming the video marketing landscape.
-                                </p>
-                                <div className={styles.cardMeta}>
-                                    <span>Coming Soon</span>
-                                </div>
-                            </div>
-                        </article>
+                        </Link>
                     </div>
                 </div>
             </div>
