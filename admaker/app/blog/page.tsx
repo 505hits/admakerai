@@ -36,6 +36,28 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
+
+                        <Link href="/blog/top-ai-platforms-creating-ugc-brand-videos" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=500&fit=crop"
+                                    alt="Top AI Platforms for Creating UGC Brand Videos"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AI Video Platforms</span>
+                                <h2 className={styles.cardTitle}>Top AI Platforms for Creating UGC Brand Videos (2025 Guide)</h2>
+                                <p className={styles.cardExcerpt}>
+                                    Discover the best AI platforms for creating authentic UGC brand videos. Compare features, pricing, and capabilities of top solutions including AdMaker AI, Synthesia, HeyGen, and more.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>December 2024</span>
+                                </div>
+                            </div>
+                        </Link>
                     </div>
                 </div>
             </div>
