@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import LangUpdater from "@/components/LangUpdater";
 import "../globals.css";
 
 export const metadata: Metadata = {
@@ -24,8 +25,9 @@ export default function KoreanLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="ko">
-            <body>{children}</body>
-        </html>
+        <>
+            <LangUpdater lang="ko" />
+            {children}
+        </>
     );
 }

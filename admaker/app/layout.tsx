@@ -32,7 +32,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* Temporarily removed AuthProvider for testing */}
         {children}
       </body>
     </html>
