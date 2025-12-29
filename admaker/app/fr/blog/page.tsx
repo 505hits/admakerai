@@ -36,6 +36,28 @@ export default function BlogPageFR() {
                                 </div>
                             </div>
                         </Link>
+
+                        <Link href="/fr/blog/meilleures-plateformes-ia-creation-videos-ugc-marque" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=500&fit=crop"
+                                    alt="Meilleures Plateformes IA pour Créer des Vidéos UGC de Marque"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>Plateformes IA Vidéo</span>
+                                <h2 className={styles.cardTitle}>Meilleures Plateformes IA pour Créer des Vidéos UGC de Marque (Guide 2025)</h2>
+                                <p className={styles.cardExcerpt}>
+                                    Découvrez les meilleures plateformes IA pour créer des vidéos UGC de marque authentiques. Comparez les fonctionnalités, les prix et les capacités des meilleures solutions incluant AdMaker AI, Synthesia, HeyGen et plus.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>Décembre 2024</span>
+                                </div>
+                            </div>
+                        </Link>
                     </div>
                 </div>
             </div>
