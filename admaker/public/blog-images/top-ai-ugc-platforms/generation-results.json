@@ -1,0 +1,52 @@
+[
+  {
+    "name": "hero-ai-platforms-dashboard.png",
+    "error": "API Error: You do not have access permissions",
+    "success": false
+  },
+  {
+    "name": "decision-flowchart.png",
+    "error": "API Error: You do not have access permissions",
+    "success": false
+  },
+  {
+    "name": "platform-comparison-chart.png",
+    "error": "API Error: You do not have access permissions",
+    "success": false
+  },
+  {
+    "name": "ecommerce-unboxing-ugc.png",
+    "error": "API Error: You do not have access permissions",
+    "success": false
+  },
+  {
+    "name": "fitness-testimonial-video.png",
+    "error": "API Error: You do not have access permissions",
+    "success": false
+  },
+  {
+    "name": "ai-vs-real-ugc-comparison.png",
+    "error": "API Error: You do not have access permissions",
+    "success": false
+  },
+  {
+    "name": "troubleshooting-solutions.png",
+    "error": "API Error: You do not have access permissions",
+    "success": false
+  },
+  {
+    "name": "legal-rights-management.png",
+    "error": "API Error: You do not have access permissions",
+    "success": false
+  },
+  {
+    "name": "before-after-campaign.png",
+    "error": "API Error: You do not have access permissions",
+    "success": false
+  },
+  {
+    "name": "getting-started-cta.png",
+    "error": "API Error: You do not have access permissions",
+    "success": false
+  }
+]
