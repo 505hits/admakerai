@@ -5,34 +5,34 @@ import styles from '../../blog/Blog.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export default function BlogPageKO() {
+export default function BlogPageFR() {
     return (
         <>
-            <Navbar lang="ko" />
+            <Navbar lang="fr" />
             <div className={styles.blogContainer}>
                 <div className="container">
-                    <h1 className={styles.pageTitle}>블로그</h1>
-                    <p className={styles.subtitle}>AdMaker AI의 최신 뉴스 및 인사이트</p>
+                    <h1 className={styles.pageTitle}>Blog</h1>
+                    <p className={styles.subtitle}>Dernières actualités et insights d'AdMaker AI</p>
 
                     <div className={styles.blogGrid}>
-                        <Link href="/ko/blog/best-ugc-video-creation-service-real-estate-marketing" className={styles.blogCard}>
+                        <Link href="/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/2.jpg"
-                                    alt="부동산 마케팅을 위한 최고의 UGC 비디오 제작 서비스"
+                                    alt="Meilleur Service de Création de Vidéo UGC pour le Marketing Immobilier"
                                     width={400}
                                     height={250}
                                     style={{ objectFit: 'cover' }}
                                 />
                             </div>
                             <div className={styles.cardContent}>
-                                <span className={styles.category}>부동산 마케팅</span>
-                                <h2 className={styles.cardTitle}>부동산 마케팅을 위한 최고의 UGC 비디오 제작 서비스</h2>
+                                <span className={styles.category}>Marketing Immobilier</span>
+                                <h2 className={styles.cardTitle}>Meilleur Service de Création de Vidéo UGC pour le Marketing Immobilier</h2>
                                 <p className={styles.cardExcerpt}>
-                                    부동산 마케팅을 위한 최고의 UGC 비디오 제작 서비스를 알아보세요. 최고의 플랫폼, 가격 및 기능을 비교하세요. 45초 만에 부동산 비디오를 생성하세요.
+                                    Découvrez le meilleur service de création de vidéo UGC pour le marketing immobilier. Comparez les meilleures plateformes, tarifs et fonctionnalités. Générez des vidéos immobilières en 45 secondes.
                                 </p>
                                 <div className={styles.cardMeta}>
-                                    <span>2024년 12월</span>
+                                    <span>Décembre 2024</span>
                                 </div>
                             </div>
                         </Link>

@@ -1,7 +1,7 @@
 import styles from './Hero.module.css';
 
 interface HeroProps {
-    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko' | 'de';
+    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko' | 'de' | 'ja';
 }
 
 export default function Hero({ lang = 'en' }: HeroProps) {
@@ -77,13 +77,25 @@ export default function Hero({ lang = 'en' }: HeroProps) {
             stat1: '100k+ generierte Videos',
             stat2: '2.8x ROAS',
             stat3: '95% Kundenzufriedenheit'
+        },
+        ja: {
+            socialProof: '20,000人以上のeコマースプレイヤーとチームから信頼されています',
+            title: 'AI UGC広告を',
+            titleHighlight: '数分で作成',
+            subtitle: 'AI動画広告を作成する最速の方法',
+            description: 'スクリプトを書く → アバターを選択 → 動画を生成',
+            ctaPrimary: '最初の広告を作成',
+            ctaSecondary: 'デモを見る',
+            stat1: '100k以上の動画を生成',
+            stat2: '2.8x ROAS',
+            stat3: '95% 顧客満足度'
         }
     };
 
     const t = content[lang] || content['en'];
 
     // Determine the login URL based on language
-    const loginUrl = lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : lang === 'pt' ? '/pt/conexao' : lang === 'ko' ? '/ko/login' : lang === 'de' ? '/de/anmelden' : '/login';
+    const loginUrl = lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : lang === 'pt' ? '/pt/conexao' : lang === 'ko' ? '/ko/login' : lang === 'de' ? '/de/anmelden' : lang === 'ja' ? '/ja/login' : '/login';
 
     return (
         <section className={styles.hero}>
@@ -142,9 +154,6 @@ export default function Hero({ lang = 'en' }: HeroProps) {
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>
-                        </a>
-                        <a href="#demo" className={styles.btnGhostLarge}>
-                            {t.ctaSecondary}
                         </a>
                     </div>
 

@@ -1,35 +1,41 @@
 'use client';
 
 import Navbar from '@/components/Navbar';
+import styles from '../../blog/Blog.module.css';
+import Link from 'next/link';
+import Image from 'next/image';
 
-export default function BlogPt() {
+export default function BlogPagePT() {
     return (
         <>
             <Navbar lang="pt" />
-            <div style={{
-                minHeight: '100vh',
-                background: '#0a0a0a',
-                color: 'white',
-                padding: '120px 20px 60px',
-            }}>
-                <div className="container" style={{ maxWidth: '1200px', margin: '0 auto' }}>
-                    <h1 style={{ fontSize: '48px', fontWeight: '800', marginBottom: '20px', textAlign: 'center' }}>
-                        Blog - AdMaker AI
-                    </h1>
-                    <p style={{ fontSize: '18px', color: 'rgba(255, 255, 255, 0.7)', textAlign: 'center', marginBottom: '60px' }}>
-                        Em breve: Artigos e tutoriais sobre criação de anúncios com IA
-                    </p>
-                    <div style={{
-                        background: 'rgba(255, 255, 255, 0.03)',
-                        border: '1px solid rgba(255, 255, 255, 0.1)',
-                        borderRadius: '20px',
-                        padding: '60px',
-                        textAlign: 'center'
-                    }}>
-                        <h2 style={{ fontSize: '32px', marginBottom: '20px' }}>🚀 Em Construção</h2>
-                        <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.6)' }}>
-                            Estamos preparando conteúdo incrível para você. Volte em breve!
-                        </p>
+            <div className={styles.blogContainer}>
+                <div className="container">
+                    <h1 className={styles.pageTitle}>Blog</h1>
+                    <p className={styles.subtitle}>Últimas notícias e insights da AdMaker AI</p>
+
+                    <div className={styles.blogGrid}>
+                        <Link href="/pt/blog/melhor-servico-criacao-video-ugc-marketing-imobiliario" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/2.jpg"
+                                    alt="Melhor Serviço de Criação de Vídeo UGC para Marketing Imobiliário"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>Marketing Imobiliário</span>
+                                <h2 className={styles.cardTitle}>Melhor Serviço de Criação de Vídeo UGC para Marketing Imobiliário</h2>
+                                <p className={styles.cardExcerpt}>
+                                    Descubra o melhor serviço de criação de vídeo UGC para marketing imobiliário. Compare as melhores plataformas, preços e recursos. Gere vídeos imobiliários em 45 segundos.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>Dezembro 2024</span>
+                                </div>
+                            </div>
+                        </Link>
                     </div>
                 </div>
             </div>

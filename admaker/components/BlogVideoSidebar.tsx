@@ -30,6 +30,48 @@ export default function BlogVideoSidebar({ locale = 'en' }: BlogVideoSidebarProp
         getMediaUrl('influ auth 3.mp4')
     ];
 
+    // Translations
+    const translations: Record<string, { title: string; badge: string; cta: string; subtext: string }> = {
+        'en': {
+            title: 'See What You Can Create',
+            badge: 'AI Generated',
+            cta: 'Start Creating Videos Free',
+            subtext: 'No credit card required • 3 free videos'
+        },
+        'fr': {
+            title: 'Voyez Ce Que Vous Pouvez Créer',
+            badge: 'Généré par IA',
+            cta: 'Commencez à Créer des Vidéos Gratuitement',
+            subtext: 'Aucune carte bancaire requise • 3 vidéos gratuites'
+        },
+        'es': {
+            title: 'Mira Lo Que Puedes Crear',
+            badge: 'Generado por IA',
+            cta: 'Comienza a Crear Videos Gratis',
+            subtext: 'No se requiere tarjeta de crédito • 3 videos gratis'
+        },
+        'de': {
+            title: 'Sehen Sie, Was Sie Erstellen Können',
+            badge: 'KI-Generiert',
+            cta: 'Kostenlos Videos Erstellen',
+            subtext: 'Keine Kreditkarte erforderlich • 3 kostenlose Videos'
+        },
+        'pt': {
+            title: 'Veja O Que Você Pode Criar',
+            badge: 'Gerado por IA',
+            cta: 'Comece a Criar Vídeos Grátis',
+            subtext: 'Sem cartão de crédito • 3 vídeos grátis'
+        },
+        'ko': {
+            title: '만들 수 있는 것을 확인하세요',
+            badge: 'AI 생성',
+            cta: '무료로 비디오 만들기 시작',
+            subtext: '신용카드 불필요 • 무료 비디오 3개'
+        }
+    };
+
+    const t = translations[locale] || translations['en'];
+
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentVideo((prev) => (prev + 1) % videos.length);
@@ -40,10 +82,10 @@ export default function BlogVideoSidebar({ locale = 'en' }: BlogVideoSidebarProp
     return (
         <div className={styles.sidebar}>
             <div className={styles.stickyContent}>
-                <h3 className={styles.title}>See What You Can Create</h3>
+                <h3 className={styles.title}>{t.title}</h3>
 
                 <div className={styles.videoContainer}>
-                    <div className={styles.aiGeneratedBadge}>AI Generated</div>
+                    <div className={styles.aiGeneratedBadge}>{t.badge}</div>
                     {videos.map((video, index) => (
                         <video
                             key={index}
@@ -68,15 +110,15 @@ export default function BlogVideoSidebar({ locale = 'en' }: BlogVideoSidebarProp
                     ))}
                 </div>
 
-                <a href={getLoginUrl(locale)} className={styles.ctaButton}>
-                    Start Creating Videos Free
+                <a href={locale === 'en' ? '/' : `/${locale}`} className={styles.ctaButton}>
+                    {t.cta}
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                 </a>
 
                 <p className={styles.ctaSubtext}>
-                    No credit card required • 3 free videos
+                    {t.subtext}
                 </p>
             </div>
         </div>

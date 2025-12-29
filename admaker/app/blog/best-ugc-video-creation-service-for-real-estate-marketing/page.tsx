@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Head from 'next/head';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import Navbar from '@/components/Navbar';
 import styles from './Article.module.css';
@@ -30,7 +31,69 @@ export default function RealEstateUGCArticle() {
 
     return (
         <>
-            <Navbar />
+            <Head>
+                {/* Primary Meta Tags */}
+                <title>Best UGC Video Creation Service for Real Estate Marketing | AdMaker AI</title>
+                <meta name="description" content="Discover the best UGC video creation service for real estate marketing. Compare top platforms, pricing, and features. Generate professional property videos in 45 seconds with AI." />
+                <meta name="keywords" content="UGC video creation, real estate marketing, AI video generator, property videos, real estate UGC, video marketing service" />
+
+                {/* Canonical URL */}
+                <link rel="canonical" href="https://admaker.ai/blog/best-ugc-video-creation-service-for-real-estate-marketing" />
+
+                {/* Hreflang Tags */}
+                <link rel="alternate" hrefLang="en" href="https://admaker.ai/blog/best-ugc-video-creation-service-for-real-estate-marketing" />
+                <link rel="alternate" hrefLang="fr" href="https://admaker.ai/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier" />
+                <link rel="alternate" hrefLang="x-default" href="https://admaker.ai/blog/best-ugc-video-creation-service-for-real-estate-marketing" />
+
+                {/* Open Graph / Facebook */}
+                <meta property="og:type" content="article" />
+                <meta property="og:title" content="Best UGC Video Creation Service for Real Estate Marketing" />
+                <meta property="og:description" content="Discover the best UGC video creation service for real estate marketing. Compare top platforms, pricing, and features. Generate professional property videos in 45 seconds with AI." />
+                <meta property="og:image" content="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/2.jpg" />
+                <meta property="og:url" content="https://admaker.ai/blog/best-ugc-video-creation-service-for-real-estate-marketing" />
+                <meta property="og:locale" content="en_US" />
+                <meta property="og:locale:alternate" content="fr_FR" />
+                <meta property="og:site_name" content="AdMaker AI" />
+                <meta property="article:published_time" content="2024-12-01T00:00:00Z" />
+                <meta property="article:modified_time" content="2024-12-29T00:00:00Z" />
+                <meta property="article:author" content="AdMaker AI" />
+
+                {/* Twitter Card */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Best UGC Video Creation Service for Real Estate Marketing" />
+                <meta name="twitter:description" content="Discover the best UGC video creation service for real estate marketing. Compare top platforms, pricing, and features. Generate professional property videos in 45 seconds with AI." />
+                <meta name="twitter:image" content="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/2.jpg" />
+
+                {/* JSON-LD Structured Data */}
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Article",
+                        "headline": "Best UGC Video Creation Service for Real Estate Marketing",
+                        "image": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/2.jpg",
+                        "author": {
+                            "@type": "Organization",
+                            "name": "AdMaker AI"
+                        },
+                        "publisher": {
+                            "@type": "Organization",
+                            "name": "AdMaker AI",
+                            "logo": {
+                                "@type": "ImageObject",
+                                "url": "https://admaker.ai/logo.png"
+                            }
+                        },
+                        "datePublished": "2024-12-01",
+                        "dateModified": "2024-12-29",
+                        "description": "Discover the best UGC video creation service for real estate marketing. Compare top platforms, pricing, and features. Generate professional property videos in 45 seconds with AI.",
+                        "mainEntityOfPage": {
+                            "@type": "WebPage",
+                            "@id": "https://admaker.ai/blog/best-ugc-video-creation-service-for-real-estate-marketing"
+                        }
+                    })}
+                </script>
+            </Head>
+            <Navbar lang="en" />
             <div className={styles.pageContainer}>
                 <div className={styles.contentWrapper}>
                     <article className={styles.articleContent}>

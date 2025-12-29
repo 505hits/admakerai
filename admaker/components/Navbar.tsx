@@ -7,7 +7,7 @@ import { getMediaUrl } from '../lib/cloudflare-config';
 import { createClient } from '@/lib/supabase/client';
 
 interface NavbarProps {
-    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko' | 'de';
+    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko' | 'de' | 'ja';
 }
 
 export default function Navbar({ lang = 'en' }: NavbarProps) {
@@ -86,15 +86,26 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
             profile: 'Profil',
             dashboard: 'Dashboard',
             logout: 'Abmelden',
+        },
+        ja: {
+            features: '機能',
+            pricing: '価格',
+            blog: 'ブログ',
+            signIn: 'ログイン',
+            getStarted: '始める',
+            user: 'ユーザー',
+            profile: 'プロフィール',
+            dashboard: 'ダッシュボード',
+            logout: 'ログアウト',
         }
     };
 
     const t = translations[lang] || translations['en'];
-    const langPrefix = lang === 'fr' ? '/fr' : lang === 'es' ? '/es' : lang === 'pt' ? '/pt' : lang === 'ko' ? '/ko' : lang === 'de' ? '/de' : '';
+    const langPrefix = lang === 'fr' ? '/fr' : lang === 'es' ? '/es' : lang === 'pt' ? '/pt' : lang === 'ko' ? '/ko' : lang === 'de' ? '/de' : lang === 'ja' ? '/ja' : '';
     const pathname = usePathname();
 
     // Function to get the equivalent URL in a different language
-    const getLanguageUrl = (targetLang: 'en' | 'fr' | 'es' | 'pt' | 'ko' | 'de') => {
+    const getLanguageUrl = (targetLang: 'en' | 'fr' | 'es' | 'pt' | 'ko' | 'de' | 'ja') => {
         if (!pathname) return targetLang === 'en' ? '/' : `/${targetLang}`;
 
         // Remove current language prefix
@@ -104,33 +115,85 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
         else if (pathname.startsWith('/pt/')) cleanPath = pathname.substring(3);
         else if (pathname.startsWith('/ko/')) cleanPath = pathname.substring(3);
         else if (pathname.startsWith('/de/')) cleanPath = pathname.substring(3);
+        else if (pathname.startsWith('/ja/')) cleanPath = pathname.substring(3);
         else if (pathname.startsWith('/fr')) cleanPath = pathname.substring(3) || '/';
         else if (pathname.startsWith('/es')) cleanPath = pathname.substring(3) || '/';
         else if (pathname.startsWith('/pt')) cleanPath = pathname.substring(3) || '/';
         else if (pathname.startsWith('/ko')) cleanPath = pathname.substring(3) || '/';
         else if (pathname.startsWith('/de')) cleanPath = pathname.substring(3) || '/';
+        else if (pathname.startsWith('/ja')) cleanPath = pathname.substring(3) || '/';
 
         // Map paths to their equivalents in different languages
         const pathMappings: { [key: string]: { [key: string]: string } } = {
-            '/': { en: '/', fr: '/fr', es: '/es', pt: '/pt', ko: '/ko', de: '/de' },
-            '/login': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao', ko: '/ko/login', de: '/de/anmelden' },
-            '/connexion': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao', ko: '/ko/login', de: '/de/anmelden' },
-            '/iniciar-sesion': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao', ko: '/ko/login', de: '/de/anmelden' },
-            '/conexao': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao', ko: '/ko/login', de: '/de/anmelden' },
-            '/anmelden': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao', ko: '/ko/login', de: '/de/anmelden' },
-            '/payment': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento', ko: '/ko/payment', de: '/de/zahlung' },
-            '/paiement': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento', ko: '/ko/payment', de: '/de/zahlung' },
-            '/pago': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento', ko: '/ko/payment', de: '/de/zahlung' },
-            '/pagamento': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento', ko: '/ko/payment', de: '/de/zahlung' },
-            '/zahlung': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento', ko: '/ko/payment', de: '/de/zahlung' },
-            '/profile': { en: '/profile', fr: '/fr/profil', es: '/es/perfil', pt: '/pt/perfil', ko: '/ko/profile', de: '/de/profil' },
-            '/profil': { en: '/profile', fr: '/fr/profil', es: '/es/perfil', pt: '/pt/perfil', ko: '/ko/profile', de: '/de/profil' },
-            '/perfil': { en: '/profile', fr: '/fr/profil', es: '/es/perfil', pt: '/pt/perfil', ko: '/ko/profile', de: '/de/profil' },
-            '/dashboard': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel', ko: '/ko/dashboard', de: '/de/dashboard' },
-            '/tableau-de-bord': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel', ko: '/ko/dashboard', de: '/de/dashboard' },
-            '/panel': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel', ko: '/ko/dashboard', de: '/de/dashboard' },
-            '/painel': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel', ko: '/ko/dashboard', de: '/de/dashboard' },
-            '/blog': { en: '/blog', fr: '/fr/blog', es: '/es/blog', pt: '/pt/blog', ko: '/ko/blog', de: '/de/blog' },
+            '/': { en: '/', fr: '/fr', es: '/es', pt: '/pt', ko: '/ko', de: '/de', ja: '/ja' },
+            '/login': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao', ko: '/ko/login', de: '/de/anmelden', ja: '/ja/login' },
+            '/connexion': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao', ko: '/ko/login', de: '/de/anmelden', ja: '/ja/login' },
+            '/iniciar-sesion': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao', ko: '/ko/login', de: '/de/anmelden', ja: '/ja/login' },
+            '/conexao': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao', ko: '/ko/login', de: '/de/anmelden', ja: '/ja/login' },
+            '/anmelden': { en: '/login', fr: '/fr/connexion', es: '/es/iniciar-sesion', pt: '/pt/conexao', ko: '/ko/login', de: '/de/anmelden', ja: '/ja/login' },
+            '/payment': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento', ko: '/ko/payment', de: '/de/zahlung', ja: '/ja/payment' },
+            '/paiement': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento', ko: '/ko/payment', de: '/de/zahlung', ja: '/ja/payment' },
+            '/pago': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento', ko: '/ko/payment', de: '/de/zahlung', ja: '/ja/payment' },
+            '/pagamento': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento', ko: '/ko/payment', de: '/de/zahlung', ja: '/ja/payment' },
+            '/zahlung': { en: '/payment', fr: '/fr/paiement', es: '/es/pago', pt: '/pt/pagamento', ko: '/ko/payment', de: '/de/zahlung', ja: '/ja/payment' },
+            '/profile': { en: '/profile', fr: '/fr/profil', es: '/es/perfil', pt: '/pt/perfil', ko: '/ko/profile', de: '/de/profil', ja: '/ja/profile' },
+            '/profil': { en: '/profile', fr: '/fr/profil', es: '/es/perfil', pt: '/pt/perfil', ko: '/ko/profile', de: '/de/profil', ja: '/ja/profile' },
+            '/perfil': { en: '/profile', fr: '/fr/profil', es: '/es/perfil', pt: '/pt/perfil', ko: '/ko/profile', de: '/de/profil', ja: '/ja/profile' },
+            '/dashboard': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel', ko: '/ko/dashboard', de: '/de/dashboard', ja: '/ja/dashboard' },
+            '/tableau-de-bord': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel', ko: '/ko/dashboard', de: '/de/dashboard', ja: '/ja/dashboard' },
+            '/panel': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel', ko: '/ko/dashboard', de: '/de/dashboard', ja: '/ja/dashboard' },
+            '/painel': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel', ko: '/ko/dashboard', de: '/de/dashboard', ja: '/ja/dashboard' },
+            '/blog': { en: '/blog', fr: '/fr/blog', es: '/es/blog', pt: '/pt/blog', ko: '/ko/blog', de: '/de/blog', ja: '/ja/blog' },
+            // Blog article mappings
+            '/blog/best-ugc-video-creation-service-for-real-estate-marketing': {
+                en: '/blog/best-ugc-video-creation-service-for-real-estate-marketing',
+                fr: '/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier',
+                es: '/es/blog/mejor-servicio-creacion-video-ugc-marketing-inmobiliario',
+                pt: '/pt/blog/melhor-servico-criacao-video-ugc-marketing-imobiliario',
+                ko: '/ko/blog/best-ugc-video-creation-service-real-estate-marketing',
+                de: '/de/blog/bester-ugc-video-erstellungsservice-immobilienmarketing',
+                ja: '/ja/blog/best-ugc-video-creation-service-real-estate-marketing'
+            },
+            '/blog/meilleur-service-creation-video-ugc-marketing-immobilier': {
+                en: '/blog/best-ugc-video-creation-service-for-real-estate-marketing',
+                fr: '/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier',
+                es: '/es/blog/mejor-servicio-creacion-video-ugc-marketing-inmobiliario',
+                pt: '/pt/blog/melhor-servico-criacao-video-ugc-marketing-imobiliario',
+                ko: '/ko/blog/best-ugc-video-creation-service-real-estate-marketing',
+                de: '/de/blog/bester-ugc-video-erstellungsservice-immobilienmarketing'
+            },
+            '/blog/mejor-servicio-creacion-video-ugc-marketing-inmobiliario': {
+                en: '/blog/best-ugc-video-creation-service-for-real-estate-marketing',
+                fr: '/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier',
+                es: '/es/blog/mejor-servicio-creacion-video-ugc-marketing-inmobiliario',
+                pt: '/pt/blog/melhor-servico-criacao-video-ugc-marketing-imobiliario',
+                ko: '/ko/blog/best-ugc-video-creation-service-real-estate-marketing',
+                de: '/de/blog/bester-ugc-video-erstellungsservice-immobilienmarketing'
+            },
+            '/blog/bester-ugc-video-erstellungsservice-immobilienmarketing': {
+                en: '/blog/best-ugc-video-creation-service-for-real-estate-marketing',
+                fr: '/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier',
+                es: '/es/blog/mejor-servicio-creacion-video-ugc-marketing-inmobiliario',
+                pt: '/pt/blog/melhor-servico-criacao-video-ugc-marketing-imobiliario',
+                ko: '/ko/blog/best-ugc-video-creation-service-real-estate-marketing',
+                de: '/de/blog/bester-ugc-video-erstellungsservice-immobilienmarketing'
+            },
+            '/blog/best-ugc-video-creation-service-real-estate-marketing': {
+                en: '/blog/best-ugc-video-creation-service-for-real-estate-marketing',
+                fr: '/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier',
+                es: '/es/blog/mejor-servicio-creacion-video-ugc-marketing-inmobiliario',
+                pt: '/pt/blog/melhor-servico-criacao-video-ugc-marketing-imobiliario',
+                ko: '/ko/blog/best-ugc-video-creation-service-real-estate-marketing',
+                de: '/de/blog/bester-ugc-video-erstellungsservice-immobilienmarketing'
+            },
+            '/blog/melhor-servico-criacao-video-ugc-marketing-imobiliario': {
+                en: '/blog/best-ugc-video-creation-service-for-real-estate-marketing',
+                fr: '/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier',
+                es: '/es/blog/mejor-servicio-creacion-video-ugc-marketing-inmobiliario',
+                pt: '/pt/blog/melhor-servico-criacao-video-ugc-marketing-imobiliario',
+                ko: '/ko/blog/best-ugc-video-creation-service-real-estate-marketing',
+                de: '/de/blog/bester-ugc-video-erstellungsservice-immobilienmarketing'
+            },
         };
 
         // Find the mapping for the current clean path
@@ -259,7 +322,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                                     </svg>
                                 )}
                                 <span className={styles.langCode}>
-                                    {lang === 'fr' ? 'FR' : lang === 'es' ? 'ES' : lang === 'pt' ? 'PT' : lang === 'ko' ? 'KO' : lang === 'de' ? 'DE' : 'EN'}
+                                    {lang === 'fr' ? 'FR' : lang === 'es' ? 'ES' : lang === 'pt' ? 'PT' : lang === 'ko' ? 'KO' : lang === 'de' ? 'DE' : lang === 'ja' ? 'JA' : 'EN'}
                                 </span>
                                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                                     <path d="M3 5l3 3 3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -325,14 +388,21 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                                         </svg>
                                         <span>Deutsch</span>
                                     </a>
+                                    <a href={getLanguageUrl('ja')} className={styles.langOption}>
+                                        <svg width="20" height="20" viewBox="0 0 20 20" className={styles.flagIcon}>
+                                            <rect width="20" height="20" fill="#FFFFFF" />
+                                            <circle cx="10" cy="10" r="6" fill="#BC002D" />
+                                        </svg>
+                                        <span>日本語</span>
+                                    </a>
                                 </div>
                             )}
                         </div>
 
                         {!isLoggedIn ? (
                             <>
-                                <a href={lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : lang === 'pt' ? '/pt/conexao' : lang === 'de' ? '/de/anmelden' : '/login'} className={styles.btnSecondary}>{t.signIn}</a>
-                                <a href={lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : lang === 'pt' ? '/pt/conexao' : lang === 'de' ? '/de/anmelden' : '/login'} className={styles.btnPrimary}>{t.getStarted}</a>
+                                <a href={lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : lang === 'pt' ? '/pt/conexao' : lang === 'de' ? '/de/anmelden' : lang === 'ja' ? '/ja/login' : '/login'} className={styles.btnSecondary}>{t.signIn}</a>
+                                <a href={lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : lang === 'pt' ? '/pt/conexao' : lang === 'de' ? '/de/anmelden' : lang === 'ja' ? '/ja/login' : '/login'} className={styles.btnPrimary}>{t.getStarted}</a>
                             </>
                         ) : (
                             <div className={styles.userMenu}>
@@ -359,7 +429,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                                                 </svg>
                                                 {t.profile}
                                             </a>
-                                            <a href={lang === 'fr' ? '/fr/tableau-de-bord' : lang === 'es' ? '/es/panel' : lang === 'pt' ? '/pt/painel' : lang === 'de' ? '/de/dashboard' : '/dashboard'} className={styles.dropdownItem}>
+                                            <a href={lang === 'fr' ? '/fr/tableau-de-bord' : lang === 'es' ? '/es/panel' : lang === 'pt' ? '/pt/painel' : lang === 'de' ? '/de/dashboard' : lang === 'ja' ? '/ja/dashboard' : '/dashboard'} className={styles.dropdownItem}>
                                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                                                     <rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
                                                     <rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
