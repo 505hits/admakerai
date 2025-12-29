@@ -1,4 +1,6 @@
-import { Metadata } from 'next';
+'use client';
+
+import { useState, useEffect } from 'react';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import Navbar from '@/components/Navbar';
 import styles from './Article.module.css';
@@ -10,31 +12,21 @@ function getLandingPageUrl(locale: string = 'en'): string {
     return `/${locale}`;
 }
 
-export const metadata: Metadata = {
-    title: 'Best UGC Video Creation Service for Real Estate Marketing | AdMaker AI',
-    description: 'Discover the best UGC video creation service for real estate marketing. Compare top platforms, pricing, and features. Generate property videos in 45 seconds. Try free.',
-    keywords: 'UGC video creation, real estate marketing, property videos, AI video generator, real estate content, listing videos',
-    openGraph: {
-        title: 'Best UGC Video Creation Service for Real Estate Marketing',
-        description: 'Discover the best UGC video creation service for real estate marketing. Compare top platforms, pricing, and features. Generate property videos in 45 seconds. Try free.',
-        type: 'article',
-        images: [{
-            url: 'https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/2.jpg',
-            width: 1200,
-            height: 630,
-            alt: 'Professional real estate agent for video marketing'
-        }]
-    },
-    twitter: {
-        card: 'summary_large_image',
-        title: 'Best UGC Video Creation Service for Real Estate Marketing',
-        description: 'Compare top platforms, pricing, and features. Generate property videos in 45 seconds.',
-    }
-};
+
 
 export default function RealEstateUGCArticle() {
     const locale = 'en'; // Current article is in English
     const landingPageUrl = getLandingPageUrl(locale);
+    const [showStickyCta, setShowStickyCta] = useState(false);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setShowStickyCta(window.scrollY > 300);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     return (
         <>
@@ -106,15 +98,6 @@ export default function RealEstateUGCArticle() {
                                 <Image
                                     src="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/3.jpg"
                                     alt="confident real estate agent explaining platform selection for property video marketing"
-                                    width={1280}
-                                    height={720}
-                                />
-                            </div>
-
-                            <div className={styles.imageWrapper}>
-                                <Image
-                                    src="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/5.jpg"
-                                    alt="real estate agent showcasing modern homes and contemporary properties with UGC video marketing"
                                     width={1280}
                                     height={720}
                                 />
@@ -249,6 +232,15 @@ export default function RealEstateUGCArticle() {
                             <h3>3. Agent Introduction Videos</h3>
                             <p>60-second intro outperforms written bios. Use on homepage, email signature, LinkedIn.</p>
 
+                            <div className={styles.imageWrapper}>
+                                <Image
+                                    src="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/5.jpg"
+                                    alt="real estate agent showcasing modern homes and contemporary properties with UGC video marketing"
+                                    width={1280}
+                                    height={720}
+                                />
+                            </div>
+
                             <h3>4. Open House Promotions</h3>
                             <p>Video invitations generate 2-3x more attendees. <a href={landingPageUrl}>AdMaker AI</a> users averaged 14 attendees vs 8 with photos.</p>
                         </section>
@@ -334,15 +326,6 @@ export default function RealEstateUGCArticle() {
                                     height={720}
                                 />
                             </div>
-
-                            <div className={styles.imageWrapper}>
-                                <Image
-                                    src="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/12.jpg"
-                                    alt="real estate professional reviewing legal compliance and ethical guidelines for AI video marketing"
-                                    width={1280}
-                                    height={720}
-                                />
-                            </div>
                         </section>
 
                         <section id="faq" className={styles.section}>
@@ -417,6 +400,15 @@ export default function RealEstateUGCArticle() {
                                 <h3 className={styles.faqQuestion}>Can real estate teams use this service?</h3>
                                 <p className={styles.faqAnswer}>Yes. Agency plan ($99/month) for teams: multiple user accounts, centralized billing, shared templates, white-label options, usage analytics, bulk creation. Many brokerages use as recruiting tool—offering agents professional video creation worth thousands annually.</p>
                             </div>
+
+                            <div className={styles.imageWrapper}>
+                                <Image
+                                    src="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/12.jpg"
+                                    alt="real estate professional reviewing legal compliance and ethical guidelines for AI video marketing"
+                                    width={1280}
+                                    height={720}
+                                />
+                            </div>
                         </section>
 
                         <section className={styles.section}>
@@ -452,6 +444,15 @@ export default function RealEstateUGCArticle() {
                         <BlogVideoSidebar locale={locale} />
                     </aside>
                 </div>
+
+                {/* Sticky Mobile CTA */}
+                <a
+                    href={landingPageUrl}
+                    className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
+                    aria-label="Create your real estate video"
+                >
+                    🎬 Create Your Video Now
+                </a>
             </div>
         </>
     );

@@ -343,3 +343,55 @@
         font-size: 28px;
     }
 }
+
+/* Sticky Mobile CTA */
+.stickyCta {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #ff0844 0%, #ff5478 100%);
+    color: white;
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(255, 8, 68, 0.4);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    display: none;
+}
+
+.stickyCtaVisible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.stickyCta:hover {
+    transform: translateX(-50%) translateY(-2px);
+    box-shadow: 0 12px 32px rgba(255, 8, 68, 0.5);
+    background: linear-gradient(135deg, #ff5478 0%, #ff0844 100%);
+}
+
+.stickyCta:active {
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Show sticky CTA only on mobile */
+@media (max-width: 768px) {
+    .stickyCta {
+        display: block;
+    }
+}
+
+@media (max-width: 480px) {
+    .stickyCta {
+        font-size: 14px;
+        padding: 14px 24px;
+        bottom: 16px;
+    }
+}
