@@ -189,6 +189,61 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                 ko: '/ko/blog/best-ugc-video-creation-service-real-estate-marketing',
                 de: '/de/blog/bester-ugc-video-erstellungsservice-immobilienmarketing'
             },
+            // Top AI Platforms article mappings
+            '/blog/top-ai-platforms-creating-ugc-brand-videos': {
+                en: '/blog/top-ai-platforms-creating-ugc-brand-videos',
+                fr: '/fr/blog/meilleures-plateformes-ia-creation-videos-ugc-marque',
+                es: '/es/blog/mejores-plataformas-ia-crear-videos-ugc-marca',
+                pt: '/pt/blog/melhores-plataformas-ia-crear-videos-ugc-marca',
+                ko: '/ko/blog/brand-ugc-video-ai-platforms',
+                de: '/de/blog/beste-ki-plattformen-ugc-markenvideos',
+                ja: '/ja/blog/brand-ugc-video-ai-platforms'
+            },
+            '/blog/meilleures-plateformes-ia-creation-videos-ugc-marque': {
+                en: '/blog/top-ai-platforms-creating-ugc-brand-videos',
+                fr: '/fr/blog/meilleures-plateformes-ia-creation-videos-ugc-marque',
+                es: '/es/blog/mejores-plataformas-ia-crear-videos-ugc-marca',
+                pt: '/pt/blog/melhores-plataformes-ia-crear-videos-ugc-marca',
+                ko: '/ko/blog/brand-ugc-video-ai-platforms',
+                de: '/de/blog/beste-ki-plattformen-ugc-markenvideos',
+                ja: '/ja/blog/brand-ugc-video-ai-platforms'
+            },
+            '/blog/mejores-plataformas-ia-crear-videos-ugc-marca': {
+                en: '/blog/top-ai-platforms-creating-ugc-brand-videos',
+                fr: '/fr/blog/meilleures-plateformes-ia-creation-videos-ugc-marque',
+                es: '/es/blog/mejores-plataformas-ia-crear-videos-ugc-marca',
+                pt: '/pt/blog/melhores-plataformas-ia-crear-videos-ugc-marca',
+                ko: '/ko/blog/brand-ugc-video-ai-platforms',
+                de: '/de/blog/beste-ki-plattformen-ugc-markenvideos',
+                ja: '/ja/blog/brand-ugc-video-ai-platforms'
+            },
+            '/blog/melhores-plataformas-ia-crear-videos-ugc-marca': {
+                en: '/blog/top-ai-platforms-creating-ugc-brand-videos',
+                fr: '/fr/blog/meilleures-plateformes-ia-creation-videos-ugc-marque',
+                es: '/es/blog/mejores-plataformas-ia-crear-videos-ugc-marca',
+                pt: '/pt/blog/melhores-plataformas-ia-crear-videos-ugc-marca',
+                ko: '/ko/blog/brand-ugc-video-ai-platforms',
+                de: '/de/blog/beste-ki-plattformen-ugc-markenvideos',
+                ja: '/ja/blog/brand-ugc-video-ai-platforms'
+            },
+            '/blog/brand-ugc-video-ai-platforms': {
+                en: '/blog/top-ai-platforms-creating-ugc-brand-videos',
+                fr: '/fr/blog/meilleures-plateformes-ia-creation-videos-ugc-marque',
+                es: '/es/blog/mejores-plataformas-ia-crear-videos-ugc-marca',
+                pt: '/pt/blog/melhores-plataformas-ia-crear-videos-ugc-marca',
+                ko: '/ko/blog/brand-ugc-video-ai-platforms',
+                de: '/de/blog/beste-ki-plattformen-ugc-markenvideos',
+                ja: '/ja/blog/brand-ugc-video-ai-platforms'
+            },
+            '/blog/beste-ki-plattformen-ugc-markenvideos': {
+                en: '/blog/top-ai-platforms-creating-ugc-brand-videos',
+                fr: '/fr/blog/meilleures-plateformes-ia-creation-videos-ugc-marque',
+                es: '/es/blog/mejores-plataformas-ia-crear-videos-ugc-marca',
+                pt: '/pt/blog/melhores-plataformas-ia-crear-videos-ugc-marca',
+                ko: '/ko/blog/brand-ugc-video-ai-platforms',
+                de: '/de/blog/beste-ki-plattformen-ugc-markenvideos',
+                ja: '/ja/blog/brand-ugc-video-ai-platforms'
+            },
         };
 
         // Find the mapping for the current clean path
