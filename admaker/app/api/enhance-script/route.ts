@@ -1,10 +1,27 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { enhanceScript } from '@/lib/api/openai';
+import { rateLimit, rateLimitConfigs, getClientIp, getRateLimitHeaders } from '@/lib/security/rate-limit';
+import { schemas, containsMaliciousContent } from '@/lib/security/validation';
+import { handleError, ValidationError, AuthenticationError } from '@/lib/security/error-handler';
 
 export async function POST(request: NextRequest) {
     try {
         console.log('🤖 Script enhancement API called');
+
+        // Rate limiting - 30 requests per hour per IP
+        const clientIp = getClientIp(request);
+        const rateLimitResult = rateLimit(clientIp, rateLimitConfigs.enhance);
+
+        if (!rateLimitResult.success) {
+            return NextResponse.json(
+                { error: 'Too many requests. Please try again later' },
+                {
+                    status: 429,
+                    headers: getRateLimitHeaders(rateLimitResult),
+                }
+            );
+        }
 
         // Get authenticated user
         const supabase = await createClient();
@@ -12,10 +29,7 @@ export async function POST(request: NextRequest) {
 
         if (authError || !user) {
             console.log('❌ Unauthorized - No user found');
-            return NextResponse.json(
-                { error: 'Unauthorized' },
-                { status: 401 }
-            );
+            throw new AuthenticationError();
         }
 
         // Check AI script uses remaining
@@ -45,7 +59,7 @@ export async function POST(request: NextRequest) {
 
         console.log(`✅ User has ${remainingUses} AI script uses remaining`);
 
-        // Parse request body
+        // Parse and validate request body
         const body = await request.json();
         const { script, duration = 8 } = body as {
             script: string;
@@ -55,19 +69,21 @@ export async function POST(request: NextRequest) {
         console.log('📝 Original script:', script);
         console.log('⏱️ Duration:', duration);
 
-        // Validate input
-        if (!script || script.trim().length === 0) {
-            return NextResponse.json(
-                { error: 'Script is required' },
-                { status: 400 }
-            );
+        // Validate script input
+        const scriptValidation = schemas.script.safeParse(script);
+        if (!scriptValidation.success) {
+            throw new ValidationError(scriptValidation.error.issues[0].message);
         }
 
-        if (script.length > 500) {
-            return NextResponse.json(
-                { error: 'Script is too long (max 500 characters)' },
-                { status: 400 }
-            );
+        // Check for malicious content
+        if (containsMaliciousContent(script)) {
+            throw new ValidationError('Script contains potentially malicious content');
+        }
+
+        // Validate duration
+        const durationValidation = schemas.duration.safeParse(duration);
+        if (!durationValidation.success) {
+            throw new ValidationError('Duration must be between 5 and 60 seconds');
         }
 
         // Enhance the script using OpenAI
@@ -91,19 +107,21 @@ export async function POST(request: NextRequest) {
         }
 
         console.log('✅ Script enhanced successfully');
-        return NextResponse.json({
-            enhancedScript,
-            success: true
-        });
+        return NextResponse.json(
+            {
+                enhancedScript,
+                success: true
+            },
+            { headers: getRateLimitHeaders(rateLimitResult) }
+        );
 
     } catch (error) {
         console.error('❌ Error enhancing script:', error);
+        const secureError = handleError(error, 'enhance-script');
+
         return NextResponse.json(
-            {
-                error: 'Failed to enhance script',
-                details: error instanceof Error ? error.message : 'Unknown error'
-            },
-            { status: 500 }
+            { error: secureError.message },
+            { status: secureError.statusCode }
         );
     }
 }

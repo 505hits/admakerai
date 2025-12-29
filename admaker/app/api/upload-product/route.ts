@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
+import { rateLimit, rateLimitConfigs, getClientIp, getRateLimitHeaders } from '@/lib/security/rate-limit';
+import { validateBase64Image, generateSafeFilename, getExtensionFromMimeType } from '@/lib/security/file-validation';
+import { handleError, ValidationError } from '@/lib/security/error-handler';
 
 // Configure route to accept larger payloads
 export const config = {
@@ -26,32 +29,43 @@ const s3Client = new S3Client({
 
 export async function POST(request: NextRequest) {
     try {
+        // Rate limiting - 10 uploads per hour per IP
+        const clientIp = getClientIp(request);
+        const rateLimitResult = rateLimit(clientIp, rateLimitConfigs.upload);
+
+        if (!rateLimitResult.success) {
+            return NextResponse.json(
+                { error: 'Too many upload requests. Please try again later' },
+                {
+                    status: 429,
+                    headers: getRateLimitHeaders(rateLimitResult),
+                }
+            );
+        }
+
         const { imageData } = await request.json();
 
         if (!imageData) {
-            return NextResponse.json(
-                { error: 'No image data provided' },
-                { status: 400 }
-            );
+            throw new ValidationError('No image data provided');
         }
 
-        // Convert base64 to buffer first
+        // Validate image data
+        const validation = validateBase64Image(imageData);
+        if (!validation.valid) {
+            throw new ValidationError(validation.error || 'Invalid image');
+        }
+
+        // Convert base64 to buffer
         const base64Data = imageData.replace(/^data:image\/\w+;base64,/, '');
-
-        // Validate base64 size (should be < 10MB)
-        const sizeInBytes = (base64Data.length * 3) / 4;
-        const sizeInMB = sizeInBytes / (1024 * 1024);
-
-        if (sizeInMB > 10) {
-            return NextResponse.json(
-                { error: `Image too large (${sizeInMB.toFixed(1)}MB). Maximum size is 10MB.` },
-                { status: 413 } // Payload Too Large
-            );
-        }
         const buffer = Buffer.from(base64Data, 'base64');
 
-        // Generate unique filename
-        const filename = `product-${Date.now()}.jpg`;
+        // Extract MIME type
+        const mimeTypeMatch = imageData.match(/^data:([^;]+);base64,/);
+        const mimeType = mimeTypeMatch ? mimeTypeMatch[1] : 'image/jpeg';
+        const extension = getExtensionFromMimeType(mimeType);
+
+        // Generate safe filename
+        const filename = generateSafeFilename(extension);
         const key = `products/${filename}`;
 
         // Upload to R2
@@ -60,28 +74,24 @@ export async function POST(request: NextRequest) {
                 Bucket: R2_BUCKET_NAME,
                 Key: key,
                 Body: buffer,
-                ContentType: 'image/jpeg',
+                ContentType: mimeType,
             })
         );
 
         // Return public URL
         const publicUrl = `${R2_PUBLIC_URL}/${key}`;
 
-        return NextResponse.json({ url: publicUrl });
-    } catch (error: any) {
+        return NextResponse.json(
+            { url: publicUrl },
+            { headers: getRateLimitHeaders(rateLimitResult) }
+        );
+    } catch (error: unknown) {
         console.error('Product image upload error:', error);
-
-        // Handle specific error types
-        if (error.message?.includes('size') || error.message?.includes('large')) {
-            return NextResponse.json(
-                { error: 'Image size exceeds limit. Please use a smaller image.' },
-                { status: 413 }
-            );
-        }
+        const secureError = handleError(error, 'upload-product');
 
         return NextResponse.json(
-            { error: error.message || 'Failed to upload image' },
-            { status: 500 }
+            { error: secureError.message },
+            { status: secureError.statusCode }
         );
     }
 }

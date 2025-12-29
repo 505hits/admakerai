@@ -2,12 +2,14 @@ import { updateSession } from '@/lib/supabase/middleware'
 import { type NextRequest, NextResponse } from 'next/server'
 
 export async function middleware(request: NextRequest) {
-    // Temporarily disabled Supabase auth for testing
-    // Uncomment the line below when you're ready to enable authentication
-    // return await updateSession(request)
+    // Security: Enable Supabase authentication
+    // This validates user sessions and refreshes tokens
+    const response = await updateSession(request)
 
-    // For now, just pass through all requests
-    return NextResponse.next()
+    // Additional security checks can be added here
+    // For example: rate limiting, IP blocking, etc.
+
+    return response
 }
 
 export const config = {
@@ -22,3 +24,4 @@ export const config = {
         '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
     ],
 }
+
