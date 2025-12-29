@@ -1,7 +1,7 @@
 import styles from './Hero.module.css';
 
 interface HeroProps {
-    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko' | 'de' | 'ja';
+    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko' | 'de' | 'ja' | 'ar';
 }
 
 export default function Hero({ lang = 'en' }: HeroProps) {
@@ -89,13 +89,25 @@ export default function Hero({ lang = 'en' }: HeroProps) {
             stat1: '100k以上の動画を生成',
             stat2: '2.8x ROAS',
             stat3: '95% 顧客満足度'
+        },
+        ar: {
+            socialProof: 'موثوق به من قبل أكثر من 20,000 لاعب وفريق في التجارة الإلكترونية',
+            title: 'إنشاء إعلانات UGC بالذكاء الاصطناعي ',
+            titleHighlight: 'في دقائق',
+            subtitle: 'أسرع طريقة لإنشاء إعلانات فيديو بالذكاء الاصطناعي',
+            description: 'اكتب النص → اختر الصورة الرمزية → أنشئ الفيديو',
+            ctaPrimary: 'إنشاء أول إعلان',
+            ctaSecondary: 'مشاهدة العرض التوضيحي',
+            stat1: 'أكثر من 100 ألف فيديو تم إنشاؤه',
+            stat2: '2.8x عائد على الإنفاق الإعلاني',
+            stat3: '95% رضا العملاء'
         }
     };
 
     const t = content[lang] || content['en'];
 
     // Determine the login URL based on language
-    const loginUrl = lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : lang === 'pt' ? '/pt/conexao' : lang === 'ko' ? '/ko/login' : lang === 'de' ? '/de/anmelden' : lang === 'ja' ? '/ja/login' : '/login';
+    const loginUrl = lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : lang === 'pt' ? '/pt/conexao' : lang === 'ko' ? '/ko/login' : lang === 'de' ? '/de/anmelden' : lang === 'ja' ? '/ja/login' : lang === 'ar' ? '/ar/login' : '/login';
 
     return (
         <section className={styles.hero}>
