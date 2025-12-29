@@ -13,7 +13,7 @@ interface Industry {
 }
 
 interface IndustryTabsProps {
-    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko' | 'de' | 'ja' | 'ar';
+    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko' | 'de' | 'ja';
 }
 
 export default function IndustryTabs({ lang = 'en' }: IndustryTabsProps) {
@@ -320,6 +320,56 @@ export default function IndustryTabs({ lang = 'en' }: IndustryTabsProps) {
                         'Vielfältige KI-Schauspieler-Bibliothek',
                         'Authentischer UGC-Style-Content',
                         'Schnelle Lieferung für Markendeals'
+                    ]
+                }
+            ]
+        },
+        ja: {
+            badge: 'AI UGCプラットフォーム',
+            title: 'あらゆる業界に最適',
+            industries: [
+                {
+                    id: 'ecommerce',
+                    name: 'Eコマース',
+                    title: '製品をバイラルにする',
+                    description: '数百のリアルなアクターから選択するか、ゼロから生成します。次に、ワンクリックで製品を追加し、アクターが製品とどのように相互作用するかを説明して、数分で完全な広告動画を取得します。',
+                    features: [
+                        'ワンクリックで製品追加',
+                        'あらゆる製品タイプで動作',
+                        '一貫した製品サイズ、形状、テキスト'
+                    ]
+                },
+                {
+                    id: 'saas',
+                    name: 'SaaS',
+                    title: 'ソフトウェアマーケティングを拡大',
+                    description: 'AIプレゼンターを使用して、プロフェッショナルな説明動画と製品デモを作成します。信頼を構築し、販売サイクルを加速する本物の推薦と機能発表を生成します。',
+                    features: [
+                        'デモ用のプロフェッショナルAIプレゼンター',
+                        '本物の推薦生成',
+                        'グローバルリーチのための多言語サポート'
+                    ]
+                },
+                {
+                    id: 'agencies',
+                    name: 'エージェンシー',
+                    title: 'より多くのキャンペーンをより速く提供',
+                    description: '数分でクライアント向けの無制限の広告バリエーションを制作します。高額な制作コストや長い納期なしで、複数のクリエイティブコンセプト、アクター、メッセージをテストします。',
+                    features: [
+                        '迅速なA/Bテスト機能',
+                        '無制限のクリエイティブバリエーション',
+                        'ホワイトラベル対応の出力'
+                    ]
+                },
+                {
+                    id: 'influencer',
+                    name: 'インフルエンサー',
+                    title: '大規模にコンテンツを作成',
+                    description: 'ブランドパートナーシップのための一貫した高品質のUGCコンテンツを生成します。オーディエンスに合ったAIアクターでスポンサードコンテンツ、製品レビュー、ブランドコラボレーションを作成します。',
+                    features: [
+                        '多様なAIアクターライブラリ',
+                        '本物のUGCスタイルコンテンツ',
+                        'ブランド取引のための迅速な配信'
                     ]
                 }
             ]

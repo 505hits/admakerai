@@ -7,7 +7,7 @@ import { getMediaUrl } from '../lib/cloudflare-config';
 import { createClient } from '@/lib/supabase/client';
 
 interface NavbarProps {
-    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko' | 'de' | 'ja' | 'ar';
+    lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko' | 'de' | 'ja';
 }
 
 export default function Navbar({ lang = 'en' }: NavbarProps) {
@@ -97,26 +97,15 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
             profile: 'プロフィール',
             dashboard: 'ダッシュボード',
             logout: 'ログアウト',
-        },
-        ar: {
-            features: 'الميزات',
-            pricing: 'الأسعار',
-            blog: 'المدونة',
-            signIn: 'تسجيل الدخول',
-            getStarted: 'ابدأ الآن',
-            user: 'المستخدم',
-            profile: 'الملف الشخصي',
-            dashboard: 'لوحة التحكم',
-            logout: 'تسجيل الخروج',
         }
     };
 
     const t = translations[lang] || translations['en'];
-    const langPrefix = lang === 'fr' ? '/fr' : lang === 'es' ? '/es' : lang === 'pt' ? '/pt' : lang === 'ko' ? '/ko' : lang === 'de' ? '/de' : lang === 'ja' ? '/ja' : lang === 'ar' ? '/ar' : '';
+    const langPrefix = lang === 'fr' ? '/fr' : lang === 'es' ? '/es' : lang === 'pt' ? '/pt' : lang === 'ko' ? '/ko' : lang === 'de' ? '/de' : lang === 'ja' ? '/ja' : '';
     const pathname = usePathname();
 
     // Function to get the equivalent URL in a different language
-    const getLanguageUrl = (targetLang: 'en' | 'fr' | 'es' | 'pt' | 'ko' | 'de' | 'ja' | 'ar') => {
+    const getLanguageUrl = (targetLang: 'en' | 'fr' | 'es' | 'pt' | 'ko' | 'de' | 'ja') => {
         if (!pathname) return targetLang === 'en' ? '/' : `/${targetLang}`;
 
         // Remove current language prefix
@@ -127,14 +116,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
         else if (pathname.startsWith('/ko/')) cleanPath = pathname.substring(3);
         else if (pathname.startsWith('/de/')) cleanPath = pathname.substring(3);
         else if (pathname.startsWith('/ja/')) cleanPath = pathname.substring(3);
-        else if (pathname.startsWith('/ar/')) cleanPath = pathname.substring(3);
-        else if (pathname.startsWith('/fr')) cleanPath = pathname.substring(3) || '/';
-        else if (pathname.startsWith('/es')) cleanPath = pathname.substring(3) || '/';
-        else if (pathname.startsWith('/pt')) cleanPath = pathname.substring(3) || '/';
-        else if (pathname.startsWith('/ko')) cleanPath = pathname.substring(3) || '/';
-        else if (pathname.startsWith('/de')) cleanPath = pathname.substring(3) || '/';
         else if (pathname.startsWith('/ja')) cleanPath = pathname.substring(3) || '/';
-        else if (pathname.startsWith('/ar')) cleanPath = pathname.substring(3) || '/';
 
         // Map paths to their equivalents in different languages
         const pathMappings: { [key: string]: { [key: string]: string } } = {
