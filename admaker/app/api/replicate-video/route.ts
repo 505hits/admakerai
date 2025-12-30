@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Replicate from 'replicate';
+import { rateLimit, rateLimitConfigs, getClientIp, getRateLimitHeaders } from '@/lib/security/rate-limit';
 
 const replicate = new Replicate({
     auth: process.env.REPLICATE_API_TOKEN,
@@ -7,6 +8,20 @@ const replicate = new Replicate({
 
 export async function POST(request: NextRequest) {
     try {
+        // Rate limiting for video generation
+        const clientIp = getClientIp(request);
+        const rateLimitResult = rateLimit(clientIp, rateLimitConfigs.videoGeneration);
+
+        if (!rateLimitResult.success) {
+            return NextResponse.json(
+                { error: 'Too many video generation requests. Please try again later' },
+                {
+                    status: 429,
+                    headers: getRateLimitHeaders(rateLimitResult),
+                }
+            );
+        }
+
         const { videoUrl, actorImageUrl, resolution = '720' } = await request.json();
 
         if (!videoUrl || !actorImageUrl) {
@@ -45,10 +60,13 @@ export async function POST(request: NextRequest) {
         });
 
         console.log('✅ Replicate prediction created:', prediction.id);
-        return NextResponse.json({
-            predictionId: prediction.id,
-            status: prediction.status
-        });
+        return NextResponse.json(
+            {
+                predictionId: prediction.id,
+                status: prediction.status
+            },
+            { headers: getRateLimitHeaders(rateLimitResult) }
+        );
 
     } catch (error: any) {
         console.error('❌ Error creating Replicate prediction:', error);

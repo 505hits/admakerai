@@ -36,6 +36,28 @@ export default function BlogPageDE() {
                                 </div>
                             </div>
                         </Link>
+
+                        <Link href="/de/blog/beste-ki-plattformen-ugc-markenvideos" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=500&fit=crop"
+                                    alt="Beste KI-Plattformen für UGC-Markenvideos"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>KI-Video-Plattformen</span>
+                                <h2 className={styles.cardTitle}>Beste KI-Plattformen für UGC-Markenvideos (2025 Leitfaden)</h2>
+                                <p className={styles.cardExcerpt}>
+                                    Entdecken Sie die besten KI-Plattformen zur Erstellung authentischer UGC-Markenvideos. Vergleichen Sie Funktionen, Preise und Fähigkeiten der Top-Lösungen einschließlich AdMaker AI, Synthesia, HeyGen und mehr.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>Dezember 2024</span>
+                                </div>
+                            </div>
+                        </Link>
                     </div>
                 </div>
             </div>

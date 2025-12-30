@@ -37,6 +37,18 @@ export const rateLimitConfigs = {
 
     // Script enhancement - moderate limits (costs money)
     enhance: { windowMs: 60 * 60 * 1000, maxRequests: 30 }, // 30 requests per hour
+
+    // Video generation - moderate limits (costs money)
+    videoGeneration: { windowMs: 60 * 60 * 1000, maxRequests: 50 }, // 50 requests per hour
+
+    // Stripe checkout - prevent abuse
+    checkout: { windowMs: 60 * 60 * 1000, maxRequests: 20 }, // 20 requests per hour
+
+    // Actor creation - strict limits (costs money)
+    actorCreation: { windowMs: 60 * 60 * 1000, maxRequests: 10 }, // 10 requests per hour
+
+    // Webhooks - high limit to avoid blocking legitimate callbacks
+    webhook: { windowMs: 15 * 60 * 1000, maxRequests: 500 }, // 500 requests per 15 minutes
 };
 
 export function rateLimit(identifier: string, config: RateLimitConfig): {

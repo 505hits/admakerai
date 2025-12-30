@@ -1,28 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from '@/lib/supabase/server';
 import { createNanoBananaTask } from '@/lib/api/kie-nano-banana';
 import { uploadImageToR2 } from '@/lib/r2-upload';
+import { rateLimit, rateLimitConfigs, getClientIp, getRateLimitHeaders } from '@/lib/security/rate-limit';
+import { validateUserAgent } from '@/lib/security/bot-detection';
+import { createServiceClient } from '@/lib/supabase/service';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 export const maxDuration = 60;
-
-// Helper function to create Supabase service client
-function createServiceClient() {
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-
-    if (!supabaseUrl || !supabaseServiceKey) {
-        throw new Error('Missing Supabase environment variables');
-    }
-
-    return createClient(supabaseUrl, supabaseServiceKey, {
-        auth: {
-            autoRefreshToken: false,
-            persistSession: false
-        }
-    });
-}
 
 // Helper to convert base64 to buffer
 function base64ToBuffer(base64: string): Buffer {
@@ -33,7 +19,34 @@ function base64ToBuffer(base64: string): Buffer {
 
 export async function POST(request: NextRequest) {
     try {
-        console.log('🍌 Create Actor API called');
+        console.log('🎭 Create Nano-Banana Actor API called');
+
+        // Rate limiting for actor creation (costs money)
+        const clientIp = getClientIp(request);
+        const rateLimitResult = rateLimit(clientIp, rateLimitConfigs.actorCreation);
+
+        if (!rateLimitResult.success) {
+            return NextResponse.json(
+                { error: 'Too many actor creation requests. Please try again later' },
+                {
+                    status: 429,
+                    headers: getRateLimitHeaders(rateLimitResult),
+                }
+            );
+        }
+
+        // Bot detection
+        const uaValidation = validateUserAgent(request);
+        if (!uaValidation.valid) {
+            console.warn('❌ Suspicious User-Agent blocked:', {
+                userAgent: uaValidation.userAgent,
+                reason: uaValidation.reason,
+            });
+            return NextResponse.json(
+                { error: 'Suspicious bot activity detected' },
+                { status: 403 }
+            );
+        }
 
         const apiKey = process.env.KIE_API_KEY;
         if (!apiKey) {

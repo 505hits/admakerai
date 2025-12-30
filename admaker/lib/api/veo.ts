@@ -1,7 +1,9 @@
 import { VeoGenerateRequest, VeoResponse } from '@/lib/types/veo';
 
 const API_BASE_URL = 'https://api.kie.ai';
-const API_KEY = process.env.NEXT_PUBLIC_VEO_API_KEY || '';
+// SECURITY: This key should NEVER be exposed to the client
+// It's only used server-side in API routes
+const API_KEY = process.env.VEO_API_KEY || '';
 
 // Get the callback URL - always use the production URL from env
 const getCallbackUrl = () => {

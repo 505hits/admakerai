@@ -1,7 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/service';
+import { rateLimit, rateLimitConfigs, getClientIp, getRateLimitHeaders } from '@/lib/security/rate-limit';
 
 export async function POST(request: NextRequest) {
+    // Rate limiting for webhooks (DDoS protection)
+    const clientIp = getClientIp(request);
+    const rateLimitResult = rateLimit(clientIp, rateLimitConfigs.webhook);
+
+    if (!rateLimitResult.success) {
+        return NextResponse.json(
+            { error: 'Too many webhook requests' },
+            {
+                status: 429,
+                headers: getRateLimitHeaders(rateLimitResult),
+            }
+        );
+    }
+
     const body = await request.text();
     const signature = request.headers.get('stripe-signature');
 

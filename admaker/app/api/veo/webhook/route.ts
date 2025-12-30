@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createClient } from '@supabase/supabase-js';
+import { createServiceClient } from '@/lib/supabase/service';
 import { downloadVideo, uploadVideoToR2 } from '@/lib/r2-upload';
+import { rateLimit, rateLimitConfigs, getClientIp, getRateLimitHeaders } from '@/lib/security/rate-limit';
+import { getSecretFromRequest } from '@/lib/security/webhook-validation';
 
 /**
  * Callback endpoint for Veo API
@@ -11,23 +13,6 @@ import { downloadVideo, uploadVideoToR2 } from '@/lib/r2-upload';
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 export const maxDuration = 60; // 60 seconds max
-
-// Helper function to create Supabase service client
-function createServiceClient() {
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-    const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-
-    if (!supabaseUrl || !supabaseServiceKey) {
-        throw new Error('Missing Supabase environment variables');
-    }
-
-    return createClient(supabaseUrl, supabaseServiceKey, {
-        auth: {
-            autoRefreshToken: false,
-            persistSession: false
-        }
-    });
-}
 
 // In-memory storage for task metadata (user_id, actor info, etc.)
 // This is populated before video generation and used by the webhook
@@ -46,6 +31,39 @@ export async function POST(request: NextRequest) {
     try {
         console.log('📹 Veo Callback POST received - Build: 2025-12-16-14:38');
         console.log('🔄 SIMPLIFIED ARCHITECTURE - Direct Kie URL storage');
+
+        // Rate limiting for webhooks
+        const clientIp = getClientIp(request);
+        const rateLimitResult = rateLimit(clientIp, rateLimitConfigs.webhook);
+
+        if (!rateLimitResult.success) {
+            return NextResponse.json(
+                { error: 'Too many webhook requests' },
+                {
+                    status: 429,
+                    headers: getRateLimitHeaders(rateLimitResult),
+                }
+            );
+        }
+
+        // Webhook security: Verify secret token
+        const secret = getSecretFromRequest(request);
+        const expectedSecret = process.env.VEO_WEBHOOK_SECRET;
+
+        if (expectedSecret && secret !== expectedSecret) {
+            console.warn('❌ Unauthorized webhook attempt:', {
+                ip: clientIp,
+                hasSecret: !!secret,
+            });
+            return NextResponse.json(
+                { error: 'Unauthorized' },
+                { status: 401 }
+            );
+        }
+
+        if (!expectedSecret) {
+            console.warn('⚠️ VEO_WEBHOOK_SECRET not configured - webhook is unsecured!');
+        }
 
         const contentType = request.headers.get('content-type') || '';
         console.log('Content-Type:', contentType);

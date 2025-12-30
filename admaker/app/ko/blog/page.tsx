@@ -36,6 +36,28 @@ export default function BlogPageKO() {
                                 </div>
                             </div>
                         </Link>
+
+                        <Link href="/ko/blog/brand-ugc-video-ai-platforms" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=500&fit=crop"
+                                    alt="브랜드 UGC 비디오를 위한 최고의 AI 플랫폼"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AI 비디오 플랫폼</span>
+                                <h2 className={styles.cardTitle}>브랜드 UGC 비디오 제작을 위한 최고의 AI 플랫폼 (2025 가이드)</h2>
+                                <p className={styles.cardExcerpt}>
+                                    진정한 브랜드 UGC 비디오를 만들기 위한 최고의 AI 플랫폼을 알아보세요. AdMaker AI, Synthesia, HeyGen 등 최고의 솔루션의 기능, 가격 및 기능을 비교하세요.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>2024년 12월</span>
+                                </div>
+                            </div>
+                        </Link>
                     </div>
                 </div>
             </div>

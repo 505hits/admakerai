@@ -35,16 +35,74 @@ export async function updateSession(request: NextRequest) {
         data: { user },
     } = await supabase.auth.getUser()
 
+    // Helper function to extract language prefix from pathname
+    const getLanguagePrefix = (pathname: string): string | null => {
+        const supportedLanguages = ['fr', 'es', 'pt', 'ko', 'de', 'ja']
+        for (const lang of supportedLanguages) {
+            if (pathname === `/${lang}` || pathname.startsWith(`/${lang}/`)) {
+                return lang
+            }
+        }
+        return null
+    }
+
+    // Helper function to normalize localized route names to English equivalents
+    const normalizeLocalizedPath = (pathname: string): string => {
+        const lang = getLanguagePrefix(pathname)
+        if (!lang) return pathname
+
+        // Remove language prefix
+        const pathWithoutLang = pathname.substring(lang.length + 1) || '/'
+
+        // Map localized route names to English equivalents
+        const routeMappings: { [key: string]: string } = {
+            '/connexion': '/login',
+            '/iniciar-sesion': '/login',
+            '/conexao': '/login',
+            '/anmelden': '/login',
+            '/tableau-de-bord': '/dashboard',
+            '/panel': '/dashboard',
+            '/painel': '/dashboard',
+            '/profil': '/profile',
+            '/perfil': '/profile',
+            '/paiement': '/payment',
+            '/pago': '/payment',
+            '/pagamento': '/payment',
+            '/zahlung': '/payment',
+        }
+
+        return routeMappings[pathWithoutLang] || pathWithoutLang
+    }
+
     // Public routes that don't require authentication
-    const publicRoutes = ['/', '/login', '/auth', '/dashboard']
+    const publicRoutes = ['/', '/login', '/auth', '/dashboard', '/blog']
+
+    // Normalize the pathname to check against public routes
+    const normalizedPath = normalizeLocalizedPath(request.nextUrl.pathname)
     const isPublicRoute = publicRoutes.some(route =>
-        request.nextUrl.pathname === route || request.nextUrl.pathname.startsWith(route + '/')
+        normalizedPath === route || normalizedPath.startsWith(route + '/')
     )
 
     if (!user && !isPublicRoute) {
-        // no user, redirect to login page
+        // no user, redirect to login page with language consideration
         const url = request.nextUrl.clone()
-        url.pathname = '/login'
+        const lang = getLanguagePrefix(request.nextUrl.pathname)
+
+        // Redirect to localized login page if on a localized route
+        if (lang) {
+            const loginPaths: { [key: string]: string } = {
+                'fr': '/fr/connexion',
+                'es': '/es/iniciar-sesion',
+                'pt': '/pt/conexao',
+                'ko': '/ko/login',
+                'de': '/de/anmelden',
+                'ja': '/ja/login',
+            }
+            url.pathname = loginPaths[lang] || '/login'
+        } else {
+            url.pathname = '/login'
+        }
+
         return NextResponse.redirect(url)
     }
 

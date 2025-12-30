@@ -1,10 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { rateLimit, rateLimitConfigs, getClientIp, getRateLimitHeaders } from '@/lib/security/rate-limit';
 
 const KIE_API_KEY = process.env.KIE_API_KEY;
 const KIE_API_URL = 'https://api.kie.ai/api/v1/jobs';
 
 export async function POST(request: NextRequest) {
     try {
+        // Rate limiting for video generation
+        const clientIp = getClientIp(request);
+        const rateLimitResult = rateLimit(clientIp, rateLimitConfigs.videoGeneration);
+
+        if (!rateLimitResult.success) {
+            return NextResponse.json(
+                { error: 'Too many video generation requests. Please try again later' },
+                {
+                    status: 429,
+                    headers: getRateLimitHeaders(rateLimitResult),
+                }
+            );
+        }
+
         const { videoUrl, actorImageUrl, resolution = '720p' } = await request.json();
 
         if (!videoUrl || !actorImageUrl) {

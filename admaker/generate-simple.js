@@ -1,8 +1,15 @@
 // Simplified script - just generates and downloads images
 const fs = require('fs');
 
-const API_KEY = process.env.KIE_API_KEY || "c4f6b75bed7509d71118cc425052b88f";
+// SECURITY: Never hardcode API keys!
+const API_KEY = process.env.KIE_API_KEY;
 const BASE_URL = 'https://api.kie.ai';
+
+if (!API_KEY) {
+    console.error('❌ KIE_API_KEY environment variable not set!');
+    console.error('Please set it in your .env.local file');
+    process.exit(1);
+}
 
 const actors = [
     {

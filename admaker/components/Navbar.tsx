@@ -109,14 +109,23 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
         if (!pathname) return targetLang === 'en' ? '/' : `/${targetLang}`;
 
         // Remove current language prefix
+        const languages = ['fr', 'es', 'pt', 'ko', 'de', 'ja'];
         let cleanPath = pathname;
-        if (pathname.startsWith('/fr/')) cleanPath = pathname.substring(3);
-        else if (pathname.startsWith('/es/')) cleanPath = pathname.substring(3);
-        else if (pathname.startsWith('/pt/')) cleanPath = pathname.substring(3);
-        else if (pathname.startsWith('/ko/')) cleanPath = pathname.substring(3);
-        else if (pathname.startsWith('/de/')) cleanPath = pathname.substring(3);
-        else if (pathname.startsWith('/ja/')) cleanPath = pathname.substring(3);
-        else if (pathname.startsWith('/ja')) cleanPath = pathname.substring(3) || '/';
+
+        for (const lang of languages) {
+            if (pathname.startsWith(`/${lang}/`)) {
+                cleanPath = pathname.substring(lang.length + 1); // Remove /{lang}
+                break;
+            } else if (pathname === `/${lang}`) {
+                cleanPath = '/';
+                break;
+            }
+        }
+
+        // Ensure cleanPath always starts with /
+        if (!cleanPath.startsWith('/')) {
+            cleanPath = '/' + cleanPath;
+        }
 
         // Map paths to their equivalents in different languages
         const pathMappings: { [key: string]: { [key: string]: string } } = {

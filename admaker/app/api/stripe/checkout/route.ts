@@ -1,10 +1,39 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/supabase/server';
 import { PRICING_PLANS, PlanType, BillingPeriod } from '@/lib/stripe/config';
+import { rateLimit, rateLimitConfigs, getClientIp, getRateLimitHeaders } from '@/lib/security/rate-limit';
+import { validateUserAgent } from '@/lib/security/bot-detection';
 
 export async function POST(request: NextRequest) {
     try {
         console.log('🔵 Stripe checkout API called');
+
+        // Rate limiting - prevent checkout spam
+        const clientIp = getClientIp(request);
+        const rateLimitResult = rateLimit(clientIp, rateLimitConfigs.checkout);
+
+        if (!rateLimitResult.success) {
+            return NextResponse.json(
+                { error: 'Too many checkout requests. Please try again later' },
+                {
+                    status: 429,
+                    headers: getRateLimitHeaders(rateLimitResult),
+                }
+            );
+        }
+
+        // Bot detection
+        const uaValidation = validateUserAgent(request);
+        if (!uaValidation.valid) {
+            console.warn('❌ Suspicious User-Agent blocked:', {
+                userAgent: uaValidation.userAgent,
+                reason: uaValidation.reason,
+            });
+            return NextResponse.json(
+                { error: 'Suspicious bot activity detected' },
+                { status: 403 }
+            );
+        }
 
         // Get authenticated user
         const supabase = await createClient();
@@ -102,7 +131,10 @@ export async function POST(request: NextRequest) {
         });
 
         console.log('✅ Stripe session created:', session.id);
-        return NextResponse.json({ url: session.url });
+        return NextResponse.json(
+            { url: session.url },
+            { headers: getRateLimitHeaders(rateLimitResult) }
+        );
     } catch (error) {
         console.error('❌ Error creating checkout session:', error);
         return NextResponse.json(
