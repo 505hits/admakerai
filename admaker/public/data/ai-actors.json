@@ -2679,6 +2679,57 @@
             "gender": "neutral",
             "ageRange": "25-40",
             "style": "Elegant portrait"
+        },
+        {
+            "id": "elegant_012",
+            "name": "Elegant Face 12",
+            "category": "Elegant Faces",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant12.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant12.png",
+            "sceneDescription": "Elegant and sophisticated portrait",
+            "tags": [
+                "elegant",
+                "sophisticated",
+                "professional",
+                "portrait"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Elegant portrait"
+        },
+        {
+            "id": "elegant_013",
+            "name": "Elegant Face 13",
+            "category": "Elegant Faces",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant13.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant13.png",
+            "sceneDescription": "Elegant and sophisticated portrait",
+            "tags": [
+                "elegant",
+                "sophisticated",
+                "professional",
+                "portrait"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Elegant portrait"
+        },
+        {
+            "id": "elegant_014",
+            "name": "Elegant Face 14",
+            "category": "Elegant Faces",
+            "imageUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant14.png",
+            "thumbnailUrl": "https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/elegant14.png",
+            "sceneDescription": "Elegant and sophisticated portrait",
+            "tags": [
+                "elegant",
+                "sophisticated",
+                "professional",
+                "portrait"
+            ],
+            "gender": "neutral",
+            "ageRange": "25-40",
+            "style": "Elegant portrait"
         }
     ],
     "categories": [
