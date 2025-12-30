@@ -17,6 +17,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
     const [showUserDropdown, setShowUserDropdown] = useState(false);
     const [showLangDropdown, setShowLangDropdown] = useState(false);
     const [userAvatar, setUserAvatar] = useState<string | null>(null);
+    const [hasAccess, setHasAccess] = useState(false);
     const router = useRouter();
     const supabase = createClient();
 
@@ -212,7 +213,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                 en: '/blog/top-ai-platforms-creating-ugc-brand-videos',
                 fr: '/fr/blog/meilleures-plateformes-ia-creation-videos-ugc-marque',
                 es: '/es/blog/mejores-plataformas-ia-crear-videos-ugc-marca',
-                pt: '/pt/blog/melhores-plataformes-ia-crear-videos-ugc-marca',
+                pt: '/pt/blog/melhores-plataformas-ia-crear-videos-ugc-marca',
                 ko: '/ko/blog/brand-ugc-video-ai-platforms',
                 de: '/de/blog/beste-ki-plattformen-ugc-markenvideos',
                 ja: '/ja/blog/brand-ugc-video-ai-platforms'
@@ -273,12 +274,30 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
             setIsScrolled(window.scrollY > 100);
         };
 
-        // Check login status with Supabase
+        // Check login status and user access with Supabase
         const checkLoginStatus = async () => {
             const { data: { session } } = await supabase.auth.getSession();
             setIsLoggedIn(!!session);
             if (session?.user) {
                 setUserAvatar(session.user.user_metadata?.avatar_url || null);
+
+                // Load user profile to check access
+                const { data: profile } = await supabase
+                    .from('profiles')
+                    .select('credits, actor_credits, replicator_credits, subscription_status')
+                    .eq('id', session.user.id)
+                    .single();
+
+                if (profile) {
+                    // User has access if they have an active subscription OR any credits > 0
+                    const hasCredits = (profile.credits || 0) > 0 ||
+                        (profile.actor_credits || 0) > 0 ||
+                        (profile.replicator_credits || 0) > 0;
+                    const hasActiveSubscription = profile.subscription_status === 'active';
+                    setHasAccess(hasActiveSubscription || hasCredits);
+                }
+            } else {
+                setHasAccess(false);
             }
         };
 
@@ -286,12 +305,28 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
         window.addEventListener('scroll', handleScroll);
 
         // Listen for auth changes
-        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
             setIsLoggedIn(!!session);
             if (session?.user) {
                 setUserAvatar(session.user.user_metadata?.avatar_url || null);
+
+                // Reload user profile when auth changes
+                const { data: profile } = await supabase
+                    .from('profiles')
+                    .select('credits, actor_credits, replicator_credits, subscription_status')
+                    .eq('id', session.user.id)
+                    .single();
+
+                if (profile) {
+                    const hasCredits = (profile.credits || 0) > 0 ||
+                        (profile.actor_credits || 0) > 0 ||
+                        (profile.replicator_credits || 0) > 0;
+                    const hasActiveSubscription = profile.subscription_status === 'active';
+                    setHasAccess(hasActiveSubscription || hasCredits);
+                }
             } else {
                 setUserAvatar(null);
+                setHasAccess(false);
             }
         });
 
@@ -488,15 +523,17 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                                                 </svg>
                                                 {t.profile}
                                             </a>
-                                            <a href={lang === 'fr' ? '/fr/tableau-de-bord' : lang === 'es' ? '/es/panel' : lang === 'pt' ? '/pt/painel' : lang === 'de' ? '/de/dashboard' : lang === 'ja' ? '/ja/dashboard' : '/dashboard'} className={styles.dropdownItem}>
-                                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                    <rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
-                                                    <rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
-                                                    <rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
-                                                    <rect x="9" y="9" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
-                                                </svg>
-                                                {t.dashboard}
-                                            </a>
+                                            {hasAccess && (
+                                                <a href={lang === 'fr' ? '/fr/tableau-de-bord' : lang === 'es' ? '/es/panel' : lang === 'pt' ? '/pt/painel' : lang === 'de' ? '/de/dashboard' : lang === 'ja' ? '/ja/dashboard' : '/dashboard'} className={styles.dropdownItem}>
+                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                        <rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                                        <rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                                        <rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                                        <rect x="9" y="9" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                                    </svg>
+                                                    {t.dashboard}
+                                                </a>
+                                            )}
                                             <button onClick={handleLogout} className={styles.dropdownItem}>
                                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                                                     <path d="M6 14H3a1 1 0 01-1-1V3a1 1 0 011-1h3M11 11l3-3-3-3M14 8H6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

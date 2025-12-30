@@ -10,11 +10,11 @@ import VideoGenerationLoader from '@/components/dashboard/VideoGenerationLoader'
 import VariationTabs, { VideoVariation } from '@/components/dashboard/VariationTabs';
 import VideoUpload from '@/components/dashboard/VideoUpload';
 import { AIActor } from '@/lib/types/veo';
-import { generateVideoWithDuration, veoClient } from '@/lib/api/veo';
 import { getMediaUrl } from '@/lib/cloudflare-config';
 import { saveVideo, getUserVideos } from '@/lib/api/videos';
 import { createClient } from '@/lib/supabase/client';
 import { replicateVideoWithActor } from '@/lib/api/kie';
+import { secureFetch } from '@/lib/api/client';
 
 export default function DashboardPage() {
     const [activeTab, setActiveTab] = useState('create');
@@ -85,6 +85,31 @@ export default function DashboardPage() {
             const supabase = createClient();
             const { data: { user } } = await supabase.auth.getUser();
             if (user) {
+                // Load user profile to check access
+                const { data: profile } = await supabase
+                    .from('profiles')
+                    .select('credits, actor_credits, replicator_credits, subscription_status')
+                    .eq('id', user.id)
+                    .single();
+
+                if (profile) {
+                    setCredits(profile.credits || 0);
+                    setActorCredits(profile.actor_credits || 0);
+                    setReplicatorCredits(profile.replicator_credits || 0);
+
+                    // Check if user has access (active subscription OR any credits > 0)
+                    const hasCredits = (profile.credits || 0) > 0 ||
+                        (profile.actor_credits || 0) > 0 ||
+                        (profile.replicator_credits || 0) > 0;
+                    const hasActiveSubscription = profile.subscription_status === 'active';
+
+                    // Redirect to payment if no access
+                    if (!hasActiveSubscription && !hasCredits) {
+                        window.location.href = '/payment';
+                        return;
+                    }
+                }
+
                 // Load custom actors
                 const { data: actors } = await supabase
                     .from('custom_actors')
@@ -94,19 +119,9 @@ export default function DashboardPage() {
                 if (actors) {
                     setCustomActors(actors);
                 }
-
-                // Load user credits from profiles
-                const { data: profile } = await supabase
-                    .from('profiles')
-                    .select('credits, actor_credits, replicator_credits')
-                    .eq('id', user.id)
-                    .single();
-
-                if (profile) {
-                    setCredits(profile.credits || 0);
-                    setActorCredits(profile.actor_credits || 0);
-                    setReplicatorCredits(profile.replicator_credits || 0);
-                }
+            } else {
+                // Not logged in, redirect to login
+                window.location.href = '/login';
             }
         };
         loadData();
@@ -594,17 +609,28 @@ export default function DashboardPage() {
 
             const userId = user.id;
 
-            // Call Veo API (simplified - only returns taskId)
-            const result = await generateVideoWithDuration(
-                selectedActor.imageUrl,
-                actualScript,
-                actualScene,
-                format,
-                duration,
-                productImageUrl || undefined,
-                virtualTryOnImageUrl || undefined
-            );
+            // Call our API route (server-side) with CSRF protection
+            const response = await secureFetch('/api/veo/generate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    userId,
+                    actorImageUrl: selectedActor.imageUrl,
+                    script: actualScript,
+                    sceneDescription: actualScene,
+                    format,
+                    duration,
+                    productImageUrl: productImageUrl || undefined,
+                    virtualTryOnImageUrl: virtualTryOnImageUrl || undefined
+                })
+            });
 
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.error || 'Failed to start video generation');
+            }
+
+            const result = await response.json();
             console.log('✅ Video generation started, taskId:', result.taskId);
 
             // Store metadata for webhook
@@ -714,20 +740,32 @@ export default function DashboardPage() {
                 return;
             }
 
-            // Generate all variations
+            // Generate all variations using API route
             const generationPromises = configuredVariations.map(async (variation) => {
                 const actualScript = variation.script.trim();
                 const actualScene = variation.sceneDescription || 'Professional video presentation';
 
-                return generateVideoWithDuration(
-                    variation.selectedActor!.imageUrl,
-                    actualScript,
-                    actualScene,
-                    variation.format,
-                    variation.duration,
-                    variation.productImageUrl || undefined,
-                    variation.virtualTryOnImageUrl || undefined
-                );
+                const response = await secureFetch('/api/veo/generate', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        userId: user.id,
+                        actorImageUrl: variation.selectedActor!.imageUrl,
+                        script: actualScript,
+                        sceneDescription: actualScene,
+                        format: variation.format,
+                        duration: variation.duration,
+                        productImageUrl: variation.productImageUrl || undefined,
+                        virtualTryOnImageUrl: variation.virtualTryOnImageUrl || undefined
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Failed to start video generation');
+                }
+
+                return response.json();
             });
 
             const results = await Promise.all(generationPromises);
