@@ -9,10 +9,15 @@ function getCsrfToken(): string | null {
         return null;
     }
 
+    const allCookies = document.cookie;
+    console.log('🍪 All cookies:', allCookies);
+
     const cookieValue = document.cookie
         .split('; ')
         .find(row => row.startsWith('csrf_token='))
         ?.split('=')[1];
+
+    console.log('🔑 CSRF token from cookie:', cookieValue ? 'found' : 'NOT FOUND');
 
     return cookieValue || null;
 }
@@ -27,11 +32,16 @@ export async function secureFetch(
 ): Promise<Response> {
     const csrfToken = getCsrfToken();
 
+    console.log('🔒 secureFetch called:', { url, hasToken: !!csrfToken });
+
     const headers = new Headers(options.headers);
 
     // Add CSRF token if available
     if (csrfToken) {
         headers.set('x-csrf-token', csrfToken);
+        console.log('✅ CSRF token added to headers');
+    } else {
+        console.warn('⚠️ No CSRF token available to add to headers');
     }
 
     // Add Content-Type if not set and body is JSON
