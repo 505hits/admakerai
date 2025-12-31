@@ -338,9 +338,26 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
 
 
     const handleLogout = async () => {
-        await supabase.auth.signOut();
-        setShowUserDropdown(false);
-        router.push(langPrefix || '/');
+        try {
+            console.log('🔄 Logging out...');
+            const { error } = await supabase.auth.signOut();
+
+            if (error) {
+                console.error('❌ Logout error:', error);
+                return;
+            }
+
+            console.log('✅ Logged out successfully');
+            setShowUserDropdown(false);
+            setIsLoggedIn(false);
+            setUserAvatar(null);
+            setHasAccess(false);
+
+            // Redirect to home page
+            router.push(langPrefix || '/');
+        } catch (err) {
+            console.error('❌ Logout exception:', err);
+        }
     };
 
     return (
