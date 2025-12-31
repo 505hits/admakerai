@@ -147,8 +147,8 @@ export async function POST(request: NextRequest) {
                         quantity: 1,
                     },
                 ],
-                mode: 'payment',
-                success_url: `${appUrl}/payment/success`,
+                mode: 'subscription', // Changed from 'payment' to 'subscription' for recurring prices
+                success_url: `${appUrl}/payment/success?session_id={CHECKOUT_SESSION_ID}`,
                 cancel_url: `${appUrl}/payment?payment=cancelled`,
                 customer_email: profile?.email || user.email,
                 metadata: {
