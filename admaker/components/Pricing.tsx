@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
+import { secureFetch } from '@/lib/api/client';
 import styles from './Pricing.module.css';
 
 interface PricingProps {
@@ -183,7 +184,7 @@ export default function Pricing({ lang = 'en' }: PricingProps) {
 
             const planType = plan.name.toLowerCase() as 'startup' | 'growth' | 'pro';
 
-            const response = await fetch('/api/stripe/checkout', {
+            const response = await secureFetch('/api/stripe/checkout', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
