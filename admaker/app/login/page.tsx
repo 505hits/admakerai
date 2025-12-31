@@ -59,17 +59,17 @@ function LoginContent() {
 
                         // Detect language from URL param or referrer
                         const lang = searchParams.get('lang');
-                        const dashboardUrl = lang === 'fr' ? '/fr/tableau-de-bord' :
-                            lang === 'es' ? '/es/panel' :
-                                lang === 'pt' ? '/pt/painel' :
-                                    lang === 'de' ? '/de/dashboard' :
-                                        lang === 'ja' ? '/ja/dashboard' :
-                                            lang === 'ko' ? '/ko/dashboard' :
-                                                '/dashboard';
+                        const paymentUrl = lang === 'fr' ? '/fr/paiement' :
+                            lang === 'es' ? '/es/pago' :
+                                lang === 'pt' ? '/pt/pagamento' :
+                                    lang === 'de' ? '/de/zahlung' :
+                                        lang === 'ja' ? '/ja/payment' :
+                                            lang === 'ko' ? '/ko/payment' :
+                                                '/payment';
 
                         // Clear URL params
                         window.history.replaceState(null, '', '/login');
-                        router.push(dashboardUrl);
+                        router.push(paymentUrl);
                     }
                 } catch (err) {
                     console.error('Code exchange error:', err);
@@ -87,16 +87,16 @@ function LoginContent() {
         const checkAuth = async () => {
             const { data: { session } } = await supabase.auth.getSession();
             if (session) {
-                console.log('Already logged in, redirecting to dashboard');
+                console.log('Already logged in, redirecting to payment');
                 const lang = searchParams.get('lang');
-                const dashboardUrl = lang === 'fr' ? '/fr/tableau-de-bord' :
-                    lang === 'es' ? '/es/panel' :
-                        lang === 'pt' ? '/pt/painel' :
-                            lang === 'de' ? '/de/dashboard' :
-                                lang === 'ja' ? '/ja/dashboard' :
-                                    lang === 'ko' ? '/ko/dashboard' :
-                                        '/dashboard';
-                router.push(dashboardUrl);
+                const paymentUrl = lang === 'fr' ? '/fr/paiement' :
+                    lang === 'es' ? '/es/pago' :
+                        lang === 'pt' ? '/pt/pagamento' :
+                            lang === 'de' ? '/de/zahlung' :
+                                lang === 'ja' ? '/ja/payment' :
+                                    lang === 'ko' ? '/ko/payment' :
+                                        '/payment';
+                router.push(paymentUrl);
             }
         };
 
@@ -134,6 +134,9 @@ function LoginContent() {
                 provider: 'google',
                 options: {
                     redirectTo: `${window.location.origin}/auth/callback`,
+                    queryParams: {
+                        prompt: 'select_account', // Force Google account selection
+                    },
                 },
             });
 
