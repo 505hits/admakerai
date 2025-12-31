@@ -3,6 +3,23 @@ import { createClient } from '@/lib/supabase/server';
 import { PRICING_PLANS, PlanType, BillingPeriod } from '@/lib/stripe/config';
 import { rateLimit, rateLimitConfigs, getClientIp, getRateLimitHeaders } from '@/lib/security/rate-limit';
 import { validateUserAgent } from '@/lib/security/bot-detection';
+import Stripe from 'stripe';
+
+// Initialize Stripe instance lazily
+let stripeInstance: Stripe | undefined;
+
+const getStripe = () => {
+    if (!stripeInstance) {
+        if (!process.env.STRIPE_SECRET_KEY) {
+            throw new Error('STRIPE_SECRET_KEY is missing');
+        }
+        stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY, {
+            apiVersion: '2025-12-15.clover' as any,
+            typescript: true,
+        });
+    }
+    return stripeInstance;
+};
 
 export async function POST(request: NextRequest) {
     try {
@@ -93,13 +110,12 @@ export async function POST(request: NextRequest) {
 
         console.log('🔵 User email:', profile?.email || user.email);
 
-        // Create Stripe instance directly to avoid build-time errors
+        // Create Stripe checkout session
         console.log('🔵 Creating Stripe session...');
-        const Stripe = (await import('stripe')).default;
-        const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-            apiVersion: '2025-12-15.clover' as any,
-            typescript: true,
-        });
+        const stripe = getStripe();
+
+        // Ensure app URL is valid
+        const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
 
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
@@ -117,8 +133,8 @@ export async function POST(request: NextRequest) {
                 },
             ],
             mode: 'payment',
-            success_url: `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/payment/success`,
-            cancel_url: `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/payment?payment=cancelled`,
+            success_url: `${appUrl}/payment/success`,
+            cancel_url: `${appUrl}/payment?payment=cancelled`,
             customer_email: profile?.email || user.email,
             metadata: {
                 userId: user.id,
