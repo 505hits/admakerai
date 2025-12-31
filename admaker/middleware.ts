@@ -1,18 +1,16 @@
 import { updateSession } from '@/lib/supabase/middleware'
-import { requireCsrfToken, generateCsrfToken } from '@/lib/security/csrf'
+import { requireCsrfToken } from '@/lib/security/csrf'
 import { type NextRequest, NextResponse } from 'next/server'
+import { randomBytes } from 'crypto'
 
 export async function middleware(request: NextRequest) {
-    // Get or create CSRF token for this session
-    const { cookies } = await import('next/headers');
-    const cookieStore = await cookies();
-    const existingToken = cookieStore.get('csrf_token');
+    // Check if CSRF token exists in cookies
+    const existingToken = request.cookies.get('csrf_token');
+    let newToken: string | null = null;
 
     // Generate token if it doesn't exist
     if (!existingToken) {
-        const newToken = generateCsrfToken();
-        // We'll set this token in the response below
-        request.headers.set('x-new-csrf-token', newToken);
+        newToken = randomBytes(32).toString('hex');
     }
 
     // Security: CSRF Protection for API routes
@@ -26,6 +24,8 @@ export async function middleware(request: NextRequest) {
                 console.warn('❌ CSRF validation failed:', {
                     path: request.nextUrl.pathname,
                     error: csrfCheck.error,
+                    hasToken: !!existingToken,
+                    headerToken: request.headers.get('x-csrf-token') ? 'present' : 'missing'
                 });
                 return NextResponse.json(
                     { error: csrfCheck.error || 'CSRF validation failed' },
@@ -40,7 +40,6 @@ export async function middleware(request: NextRequest) {
     const response = await updateSession(request)
 
     // Add CSRF token to response if we generated a new one
-    const newToken = request.headers.get('x-new-csrf-token');
     if (newToken) {
         response.cookies.set('csrf_token', newToken, {
             httpOnly: true,
@@ -66,4 +65,3 @@ export const config = {
         '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
     ],
 }
-
