@@ -48,7 +48,31 @@ export async function middleware(request: NextRequest) {
         }
     }
 
-    // Security: Enable Supabase authentication
+    // Skip Supabase session validation for webhooks
+    // Webhooks are external callbacks that don't have user sessions
+    const isWebhook = request.nextUrl.pathname.includes('/webhook');
+
+    if (isWebhook) {
+        console.log('🪝 Webhook detected - skipping Supabase session validation');
+        // Create a simple NextResponse for webhooks without session validation
+        const response = NextResponse.next();
+
+        // Still set CSRF token if needed (not required for webhooks but doesn't hurt)
+        if (newToken) {
+            console.log('🍪 Setting CSRF cookie on response');
+            response.cookies.set('csrf_token', newToken, {
+                httpOnly: false,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'lax',
+                path: '/',
+                maxAge: 60 * 60 * 24 * 7, // 7 days
+            });
+        }
+
+        return response;
+    }
+
+    // Security: Enable Supabase authentication for non-webhook routes
     // This validates user sessions and refreshes tokens
     const response = await updateSession(request)
 
