@@ -2,12 +2,14 @@ import Navbar from '@/components/Navbar';
 import Pricing from '@/components/Pricing';
 import Testimonials from '@/components/Testimonials';
 import FAQ from '@/components/FAQ';
+import SessionRefresh from '@/components/SessionRefresh';
 import styles from './Payment.module.css';
 import { getMediaUrl } from '@/lib/cloudflare-config';
 
 export default function PaymentPage() {
     return (
         <main>
+            <SessionRefresh />
             <Navbar />
 
             {/* Pricing Section */}
