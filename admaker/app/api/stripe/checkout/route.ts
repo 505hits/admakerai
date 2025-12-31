@@ -143,14 +143,7 @@ export async function POST(request: NextRequest) {
                 payment_method_types: ['card'],
                 line_items: [
                     {
-                        price_data: {
-                            currency: 'usd',
-                            product_data: {
-                                name: `${planType.charAt(0).toUpperCase() + planType.slice(1)} Plan - ${billingPeriod === 'monthly' ? 'Monthly' : 'Annual'}`,
-                                description: `${plan.videoCredits} video credits, ${plan.actorCredits} actor credits${plan.replicatorCredits > 0 ? `, ${plan.replicatorCredits} replicator credits` : ''}`,
-                            },
-                            unit_amount: plan.amount,
-                        },
+                        price: plan.priceId, // Use predefined Price ID from Stripe
                         quantity: 1,
                     },
                 ],
