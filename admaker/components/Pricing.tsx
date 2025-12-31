@@ -184,7 +184,13 @@ export default function Pricing({ lang = 'en' }: PricingProps) {
 
             const planType = plan.name.toLowerCase() as 'startup' | 'growth' | 'pro';
 
-            const response = await secureFetch('/api/stripe/checkout', {
+            // Create a timeout promise to prevent infinite loading
+            const timeoutPromise = new Promise((_, reject) => {
+                setTimeout(() => reject(new Error('Request timed out')), 20000); // 20s client timeout
+            });
+
+            // Actual fetch request
+            const fetchPromise = secureFetch('/api/stripe/checkout', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -195,15 +201,26 @@ export default function Pricing({ lang = 'en' }: PricingProps) {
                 }),
             });
 
+            // Race against timeout
+            const response = await Promise.race([fetchPromise, timeoutPromise]) as Response;
+
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.error || 'Payment initialization failed');
+            }
+
             const data = await response.json();
 
             if (data.url) {
                 window.location.href = data.url;
             } else {
                 console.error('No checkout URL returned');
+                alert('An error occurred. Please try again.');
             }
         } catch (error) {
             console.error('Error creating checkout session:', error);
+            // More user friendly error
+            alert('Could not initialize payment. Please check your connection or try again.');
         } finally {
             setLoading(null);
         }

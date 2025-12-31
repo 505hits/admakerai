@@ -16,6 +16,8 @@ const getStripe = () => {
         stripeInstance = new Stripe(process.env.STRIPE_SECRET_KEY, {
             apiVersion: '2025-12-15.clover' as any,
             typescript: true,
+            maxNetworkRetries: 2, // Retry network errors automatically
+            timeout: 10000, // Client-side timeout (10s)
         });
     }
     return stripeInstance;
@@ -67,7 +69,13 @@ export async function POST(request: NextRequest) {
         }
 
         // Parse request body
-        const body = await request.json();
+        let body;
+        try {
+            body = await request.json();
+        } catch (e) {
+            return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
+        }
+
         const { planType, billingPeriod } = body as {
             planType: PlanType;
             billingPeriod: BillingPeriod;
@@ -99,6 +107,16 @@ export async function POST(request: NextRequest) {
 
         // Get plan details
         const plan = PRICING_PLANS[billingPeriod][planType];
+
+        // Safety check for plan existance
+        if (!plan || !plan.amount) {
+            console.error('❌ Plan details missing for:', planType, billingPeriod);
+            return NextResponse.json(
+                { error: 'Plan configuration error' },
+                { status: 500 }
+            );
+        }
+
         console.log('🔵 Plan details:', plan);
 
         // Get user email from profile
@@ -112,47 +130,77 @@ export async function POST(request: NextRequest) {
 
         // Create Stripe checkout session
         console.log('🔵 Creating Stripe session...');
-        const stripe = getStripe();
 
-        // Ensure app URL is valid
-        const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+        try {
+            const stripe = getStripe();
 
-        const session = await stripe.checkout.sessions.create({
-            payment_method_types: ['card'],
-            line_items: [
-                {
-                    price_data: {
-                        currency: 'usd',
-                        product_data: {
-                            name: `${planType.charAt(0).toUpperCase() + planType.slice(1)} Plan - ${billingPeriod === 'monthly' ? 'Monthly' : 'Annual'}`,
-                            description: `${plan.videoCredits} video credits, ${plan.actorCredits} actor credits${plan.replicatorCredits > 0 ? `, ${plan.replicatorCredits} replicator credits` : ''}`,
+            // Ensure app URL is valid and doesn't have trailing slash
+            let appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+            appUrl = appUrl.replace(/\/$/, '');
+
+            // Use Promise.race to enforce a strict server-side timeout
+            const createSessionPromise = stripe.checkout.sessions.create({
+                payment_method_types: ['card'],
+                line_items: [
+                    {
+                        price_data: {
+                            currency: 'usd',
+                            product_data: {
+                                name: `${planType.charAt(0).toUpperCase() + planType.slice(1)} Plan - ${billingPeriod === 'monthly' ? 'Monthly' : 'Annual'}`,
+                                description: `${plan.videoCredits} video credits, ${plan.actorCredits} actor credits${plan.replicatorCredits > 0 ? `, ${plan.replicatorCredits} replicator credits` : ''}`,
+                            },
+                            unit_amount: plan.amount,
                         },
-                        unit_amount: plan.amount,
+                        quantity: 1,
                     },
-                    quantity: 1,
+                ],
+                mode: 'payment',
+                success_url: `${appUrl}/payment/success`,
+                cancel_url: `${appUrl}/payment?payment=cancelled`,
+                customer_email: profile?.email || user.email,
+                metadata: {
+                    userId: user.id,
+                    planType,
+                    billingPeriod,
+                    videoCredits: plan.videoCredits.toString(),
+                    actorCredits: plan.actorCredits.toString(),
+                    replicatorCredits: plan.replicatorCredits.toString(),
                 },
-            ],
-            mode: 'payment',
-            success_url: `${appUrl}/payment/success`,
-            cancel_url: `${appUrl}/payment?payment=cancelled`,
-            customer_email: profile?.email || user.email,
-            metadata: {
-                userId: user.id,
-                planType,
-                billingPeriod,
-                videoCredits: plan.videoCredits.toString(),
-                actorCredits: plan.actorCredits.toString(),
-                replicatorCredits: plan.replicatorCredits.toString(),
-            },
-        });
+            });
 
-        console.log('✅ Stripe session created:', session.id);
-        return NextResponse.json(
-            { url: session.url },
-            { headers: getRateLimitHeaders(rateLimitResult) }
-        );
+            // 15 second timeout barrier
+            const timeoutPromise = new Promise<{ timeout: true }>((resolve) => {
+                setTimeout(() => resolve({ timeout: true }), 15000);
+            });
+
+            const result = await Promise.race([createSessionPromise, timeoutPromise]);
+
+            if ('timeout' in result) {
+                console.error('❌ Stripe API timed out after 15s');
+                return NextResponse.json(
+                    { error: 'Payment service timed out. Please try again.' },
+                    { status: 504 }
+                );
+            }
+
+            const session = result as Stripe.Checkout.Session;
+            console.log('✅ Stripe session created:', session.id);
+
+            return NextResponse.json(
+                { url: session.url },
+                { headers: getRateLimitHeaders(rateLimitResult) }
+            );
+
+        } catch (stripeError: any) {
+            console.error('❌ Stripe SDK Error:', stripeError);
+            return NextResponse.json(
+                { error: 'Payment initialization failed', details: stripeError.message },
+                { status: 502 }
+            );
+        }
+
     } catch (error) {
-        console.error('❌ Error creating checkout session:', error);
+        console.error('❌ Error in checkout route:', error);
         return NextResponse.json(
             { error: 'Internal server error', details: error instanceof Error ? error.message : 'Unknown error' },
             { status: 500 }
