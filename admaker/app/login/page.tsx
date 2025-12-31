@@ -2,19 +2,37 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { createClient } from '@/lib/supabase/client';
 import styles from '../login/Auth.module.css';
 import { getMediaUrl } from '@/lib/cloudflare-config';
 
 export default function LoginPage() {
     const router = useRouter();
+    const supabase = createClient();
     const [email, setEmail] = useState('');
     const [isEmailSent, setIsEmailSent] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
-    const handleGoogleLogin = () => {
-        // Handle Google OAuth
-        console.log('Google login');
-        // After successful Google auth, redirect to payment
-        router.push('/payment');
+    const handleGoogleLogin = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+
+            const { error } = await supabase.auth.signInWithOAuth({
+                provider: 'google',
+                options: {
+                    redirectTo: `${window.location.origin}/auth/callback`,
+                },
+            });
+
+            if (error) throw error;
+            // User will be redirected by Supabase
+        } catch (err) {
+            console.error('Google login error:', err);
+            setError('Failed to sign in with Google. Please try again.');
+            setLoading(false);
+        }
     };
 
     const handleEmailSubmit = (e: React.FormEvent) => {
