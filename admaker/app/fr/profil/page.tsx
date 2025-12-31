@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import Navbar from '@/components/Navbar';
 import styles from '../../profile/Profile.module.css';
-import { getMediaUrl } from '@/lib/cloudflare-config';
 
 interface UserProfile {
     id: string;
@@ -29,7 +28,6 @@ export default function ProfilPage() {
 
     const loadUserData = async () => {
         try {
-            // Get current user
             const { data: { user }, error: userError } = await supabase.auth.getUser();
 
             if (userError || !user) {
@@ -39,7 +37,6 @@ export default function ProfilPage() {
 
             setUserEmail(user.email || '');
 
-            // Get user profile from database
             const { data: profileData, error: profileError } = await supabase
                 .from('profiles')
                 .select('*')
@@ -48,7 +45,6 @@ export default function ProfilPage() {
 
             if (profileError) {
                 console.error('Error loading profile:', profileError);
-                // Create default profile if doesn't exist
                 const { data: newProfile } = await supabase
                     .from('profiles')
                     .insert([{
@@ -132,10 +128,7 @@ export default function ProfilPage() {
                 <div className="container">
                     <div className={styles.profileCard}>
                         <div className={styles.header}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                                <img src={getMediaUrl('admaker_ai_logo-removebg-preview.png')} alt="AdMaker AI" style={{ height: '48px', width: 'auto' }} />
-                                <h1 className={styles.pageTitle}>Mon Profil</h1>
-                            </div>
+                            <h1 className={styles.pageTitle}>Mon Compte</h1>
                             <span className={`${styles.planBadge} ${styles.large} ${isActive ? styles.active : ''}`}>
                                 {planName}
                             </span>

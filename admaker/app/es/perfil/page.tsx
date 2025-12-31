@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import Navbar from '@/components/Navbar';
 import styles from '../../profile/Profile.module.css';
-import { getMediaUrl } from '@/lib/cloudflare-config';
 
 interface UserProfile {
     id: string;
@@ -29,7 +28,6 @@ export default function PerfilPage() {
 
     const loadUserData = async () => {
         try {
-            // Get current user
             const { data: { user }, error: userError } = await supabase.auth.getUser();
 
             if (userError || !user) {
@@ -39,7 +37,6 @@ export default function PerfilPage() {
 
             setUserEmail(user.email || '');
 
-            // Get user profile from database
             const { data: profileData, error: profileError } = await supabase
                 .from('profiles')
                 .select('*')
@@ -48,7 +45,6 @@ export default function PerfilPage() {
 
             if (profileError) {
                 console.error('Error loading profile:', profileError);
-                // Create default profile if doesn't exist
                 const { data: newProfile } = await supabase
                     .from('profiles')
                     .insert([{
@@ -132,10 +128,7 @@ export default function PerfilPage() {
                 <div className="container">
                     <div className={styles.profileCard}>
                         <div className={styles.header}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                                <img src={getMediaUrl('admaker_ai_logo-removebg-preview.png')} alt="AdMaker AI" style={{ height: '48px', width: 'auto' }} />
-                                <h1 className={styles.pageTitle}>Mi Perfil</h1>
-                            </div>
+                            <h1 className={styles.pageTitle}>Mi Cuenta</h1>
                             <span className={`${styles.planBadge} ${styles.large} ${isActive ? styles.active : ''}`}>
                                 {planName}
                             </span>
@@ -148,7 +141,7 @@ export default function PerfilPage() {
                                     <path d="M10 10a2 2 0 100-4 2 2 0 000 4z" stroke="currentColor" strokeWidth="1.5" />
                                 </svg>
                                 <div>
-                                    <span className={styles.label}>Correo</span>
+                                    <span className={styles.label}>Email</span>
                                     <span className={styles.value}>{userEmail}</span>
                                 </div>
                             </div>
@@ -215,7 +208,7 @@ export default function PerfilPage() {
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                                         <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                                     </svg>
-                                    <span>Cancelar Suscripción</span>
+                                    <span>Cancelar suscripción</span>
                                 </button>
                             )}
                         </div>
