@@ -173,15 +173,6 @@ export default function Pricing({ lang = 'en' }: PricingProps) {
         setLoading(plan.name);
 
         try {
-            const supabase = createClient();
-            const { data: { user } } = await supabase.auth.getUser();
-
-            if (!user) {
-                const loginUrl = lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : lang === 'pt' ? '/pt/conexao' : '/login';
-                router.push(loginUrl);
-                return;
-            }
-
             const planType = plan.name.toLowerCase() as 'startup' | 'growth' | 'pro';
 
             // Create a timeout promise to prevent infinite loading
@@ -205,6 +196,12 @@ export default function Pricing({ lang = 'en' }: PricingProps) {
             const response = await Promise.race([fetchPromise, timeoutPromise]) as Response;
 
             if (!response.ok) {
+                if (response.status === 401) {
+                    // Server says unauthorized - redirect to login
+                    const loginUrl = lang === 'fr' ? '/fr/connexion' : lang === 'es' ? '/es/iniciar-sesion' : lang === 'pt' ? '/pt/conexao' : '/login';
+                    router.push(loginUrl);
+                    return;
+                }
                 const errorData = await response.json().catch(() => ({}));
                 throw new Error(errorData.error || 'Payment initialization failed');
             }
