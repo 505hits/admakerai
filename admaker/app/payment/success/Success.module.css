@@ -3,19 +3,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #000000 0%, #1a0000 50%, #000000 100%);
     padding: 20px;
 }
 
 .card {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(20, 20, 20, 0.95);
     backdrop-filter: blur(10px);
     border-radius: 24px;
     padding: 60px 40px;
     max-width: 500px;
     width: 100%;
     text-align: center;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 60px rgba(255, 8, 68, 0.3);
+    border: 1px solid rgba(255, 8, 68, 0.2);
     animation: slideUp 0.6s ease-out;
 }
 
@@ -128,21 +129,21 @@
 
 .countdown p {
     font-size: 16px;
-    color: #888;
+    color: #999;
     margin: 0;
 }
 
 .countdownNumber {
     font-size: 24px;
     font-weight: 700;
-    color: #667eea;
+    color: #ff0844;
     display: inline-block;
     min-width: 30px;
 }
 
 /* Dashboard Button */
 .dashboardButton {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #ff0844 0%, #ff6b6b 100%);
     color: white;
     border: none;
     padding: 14px 32px;
@@ -152,12 +153,12 @@
     cursor: pointer;
     transition: all 0.3s ease;
     animation: fadeIn 0.6s ease-out 0.9s both;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 4px 15px rgba(255, 8, 68, 0.4);
 }
 
 .dashboardButton:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+    box-shadow: 0 6px 20px rgba(255, 8, 68, 0.6);
 }
 
 .dashboardButton:active {
