@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/service';
-import { downloadVideo, uploadVideoToR2 } from '@/lib/r2-upload';
 import { rateLimit, rateLimitConfigs, getClientIp, getRateLimitHeaders } from '@/lib/security/rate-limit';
 import { getSecretFromRequest } from '@/lib/security/webhook-validation';
 
@@ -224,29 +223,20 @@ async function saveVideoToDatabase(taskId: string, videoUrl: string) {
             return;
         }
 
-        // Download video from Kie
-        console.log('📥 Downloading video from Kie...');
-        const videoBuffer = await downloadVideo(videoUrl);
+        // Store Kie URL directly (no download/upload needed)
+        console.log('💾 Storing Kie URL directly...');
 
-        // Upload to Cloudflare R2
-        console.log('☁️ Uploading video to Cloudflare R2...');
-        const fileName = `videos/${taskId}.mp4`;
-        const r2VideoUrl = await uploadVideoToR2(videoBuffer, fileName);
-
-        console.log(`✅ Video uploaded to R2: ${r2VideoUrl}`);
-
-        // Videos on R2 don't expire (unlike Kie URLs)
-        // But we can set a far future date for consistency
+        // Kie URLs are valid for a long time
         const expiresAt = new Date();
-        expiresAt.setFullYear(expiresAt.getFullYear() + 10); // 10 years
+        expiresAt.setFullYear(expiresAt.getFullYear() + 1); // 1 year
 
-        // Insert video record into Supabase with R2 URL
+        // Insert video record into Supabase with Kie URL
         const { error: insertError } = await supabase
             .from('videos')
             .insert({
                 user_id: metadata.user_id,
                 task_id: taskId,
-                video_url: r2VideoUrl, // R2 URL instead of Kie URL
+                video_url: videoUrl, // Store Kie URL directly
                 actor_name: metadata.actor_name,
                 actor_image_url: metadata.actor_image_url,
                 script: metadata.script,
@@ -264,7 +254,7 @@ async function saveVideoToDatabase(taskId: string, videoUrl: string) {
 
         console.log('✅ Video saved to Supabase successfully');
         console.log(`📊 Video details: user=${metadata.user_id}, actor=${metadata.actor_name}, duration=${metadata.duration}s`);
-        console.log(`🔗 R2 URL: ${r2VideoUrl}`);
+        console.log(`🔗 Kie URL: ${videoUrl}`);
 
         // Clean up metadata after successful save
         await supabase
