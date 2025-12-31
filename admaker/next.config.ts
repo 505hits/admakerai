@@ -29,7 +29,7 @@ const nextConfig: NextConfig = {
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "img-src 'self' data: https: blob:",
               "font-src 'self' https://fonts.gstatic.com",
-              "media-src 'self' https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev",
+              "media-src 'self' https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev https://tempfile.aiquickdraw.com",
               "connect-src 'self' https://*.supabase.co https://api.stripe.com https://api.replicate.com https://api.openai.com https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev",
               "frame-src 'self' https://js.stripe.com https://challenges.cloudflare.com",
               "object-src 'none'",
