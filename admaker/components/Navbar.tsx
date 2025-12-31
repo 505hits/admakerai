@@ -340,23 +340,38 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
     const handleLogout = async () => {
         try {
             console.log('🔄 Logging out...');
-            const { error } = await supabase.auth.signOut();
 
-            if (error) {
-                console.error('❌ Logout error:', error);
-                return;
-            }
-
-            console.log('✅ Logged out successfully');
+            // Clear UI state immediately for better UX
             setShowUserDropdown(false);
             setIsLoggedIn(false);
             setUserAvatar(null);
             setHasAccess(false);
 
-            // Redirect to home page
+            // Try to sign out with Supabase with a timeout
+            const timeoutPromise = new Promise((_, reject) =>
+                setTimeout(() => reject(new Error('Logout timeout')), 3000)
+            );
+
+            const signOutPromise = supabase.auth.signOut();
+
+            try {
+                const { error } = await Promise.race([signOutPromise, timeoutPromise]) as any;
+
+                if (error) {
+                    console.error('❌ Logout error:', error);
+                } else {
+                    console.log('✅ Logged out successfully');
+                }
+            } catch (timeoutError) {
+                console.warn('⚠️ Logout timed out, forcing local logout');
+            }
+
+            // Redirect to home page regardless of Supabase response
             router.push(langPrefix || '/');
         } catch (err) {
             console.error('❌ Logout exception:', err);
+            // Force redirect even on error
+            router.push(langPrefix || '/');
         }
     };
 
