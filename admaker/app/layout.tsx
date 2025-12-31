@@ -10,6 +10,11 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "AdMaker AI | Create AI Ads in Minutes",
   description: "The #1 platform to create AI video ads. Write your script, choose your actors, and generate your video in 2 minutes.",
+  icons: {
+    icon: "https://pub-e75d3f83986f4cb6b3f1d1d8f8a8c214.r2.dev/logo%20favicon.png",
+    shortcut: "https://pub-e75d3f83986f4cb6b3f1d1d8f8a8c214.r2.dev/logo%20favicon.png",
+    apple: "https://pub-e75d3f83986f4cb6b3f1d1d8f8a8c214.r2.dev/logo%20favicon.png",
+  },
   alternates: {
     canonical: "https://admakerai.vercel.app/",
     languages: {
