@@ -185,9 +185,20 @@ export async function POST(request: NextRequest) {
             );
 
         } catch (stripeError: any) {
-            console.error('❌ Stripe SDK Error:', stripeError);
+            console.error('❌ Stripe SDK Error:', {
+                message: stripeError.message,
+                type: stripeError.type,
+                code: stripeError.code,
+                statusCode: stripeError.statusCode,
+                raw: stripeError.raw,
+                priceId: plan.priceId,
+            });
             return NextResponse.json(
-                { error: 'Payment initialization failed', details: stripeError.message },
+                {
+                    error: 'Payment initialization failed',
+                    details: stripeError.message,
+                    stripeCode: stripeError.code
+                },
                 { status: 502 }
             );
         }
