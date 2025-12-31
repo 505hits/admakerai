@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
     const token_hash = searchParams.get('token_hash')
     const type = searchParams.get('type')
     const code = searchParams.get('code')
-    const next = searchParams.get('next') ?? '/payment'
+    const next = searchParams.get('next') ?? '/dashboard' // Redirect to dashboard after login
 
     console.log('🔄 Auth Callback triggered', { type, hasCode: !!code, next });
 

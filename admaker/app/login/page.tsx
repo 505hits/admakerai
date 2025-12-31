@@ -59,17 +59,17 @@ function LoginContent() {
 
                         // Detect language from URL param or referrer
                         const lang = searchParams.get('lang');
-                        const paymentUrl = lang === 'fr' ? '/fr/paiement' :
-                            lang === 'es' ? '/es/pago' :
-                                lang === 'pt' ? '/pt/pagamento' :
-                                    lang === 'de' ? '/de/zahlung' :
-                                        lang === 'ja' ? '/ja/payment' :
-                                            lang === 'ko' ? '/ko/payment' :
-                                                '/payment';
+                        const dashboardUrl = lang === 'fr' ? '/fr/tableau-de-bord' :
+                            lang === 'es' ? '/es/panel' :
+                                lang === 'pt' ? '/pt/painel' :
+                                    lang === 'de' ? '/de/dashboard' :
+                                        lang === 'ja' ? '/ja/dashboard' :
+                                            lang === 'ko' ? '/ko/dashboard' :
+                                                '/dashboard';
 
                         // Clear URL params
                         window.history.replaceState(null, '', '/login');
-                        router.push(paymentUrl);
+                        router.push(dashboardUrl);
                     }
                 } catch (err) {
                     console.error('Code exchange error:', err);
@@ -89,14 +89,14 @@ function LoginContent() {
             if (session) {
                 console.log('Already logged in, redirecting to dashboard');
                 const lang = searchParams.get('lang');
-                const paymentUrl = lang === 'fr' ? '/fr/paiement' :
-                    lang === 'es' ? '/es/pago' :
-                        lang === 'pt' ? '/pt/pagamento' :
-                            lang === 'de' ? '/de/zahlung' :
-                                lang === 'ja' ? '/ja/payment' :
-                                    lang === 'ko' ? '/ko/payment' :
-                                        '/payment';
-                router.push(paymentUrl);
+                const dashboardUrl = lang === 'fr' ? '/fr/tableau-de-bord' :
+                    lang === 'es' ? '/es/panel' :
+                        lang === 'pt' ? '/pt/painel' :
+                            lang === 'de' ? '/de/dashboard' :
+                                lang === 'ja' ? '/ja/dashboard' :
+                                    lang === 'ko' ? '/ko/dashboard' :
+                                        '/dashboard';
+                router.push(dashboardUrl);
             }
         };
 
