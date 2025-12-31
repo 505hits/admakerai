@@ -28,11 +28,18 @@ export const taskMetadata = new Map<string, {
 
 export async function POST(request: NextRequest) {
     try {
-        console.log('📹 Veo Callback POST received - Build: 2025-12-16-14:38');
+        console.log('==========================================');
+        console.log('🎯 VEO WEBHOOK CALLED - Timestamp:', new Date().toISOString());
+        console.log('🔗 URL:', request.url);
+        console.log('🌍 Method:', request.method);
+        console.log('==========================================');
+
+        console.log('📹 Veo Callback POST received - Build: 2025-12-31-12:20');
         console.log('🔄 SIMPLIFIED ARCHITECTURE - Direct Kie URL storage');
 
         // Rate limiting for webhooks
         const clientIp = getClientIp(request);
+        console.log('🔍 Client IP:', clientIp);
         const rateLimitResult = rateLimit(clientIp, rateLimitConfigs.webhook);
 
         if (!rateLimitResult.success) {
@@ -48,6 +55,10 @@ export async function POST(request: NextRequest) {
         // Webhook security: Verify secret token
         const secret = getSecretFromRequest(request);
         const expectedSecret = process.env.VEO_WEBHOOK_SECRET;
+
+        console.log('🔐 Webhook security check:');
+        console.log('   - Has secret in request:', !!secret);
+        console.log('   - Has expected secret configured:', !!expectedSecret);
 
         if (expectedSecret && secret !== expectedSecret) {
             console.warn('❌ Unauthorized webhook attempt:', {
@@ -65,11 +76,11 @@ export async function POST(request: NextRequest) {
         }
 
         const contentType = request.headers.get('content-type') || '';
-        console.log('Content-Type:', contentType);
+        console.log('📋 Content-Type:', contentType);
 
         const bodyText = await request.text();
-        console.log('Raw body length:', bodyText.length);
-        console.log('Raw body preview:', bodyText.substring(0, 200));
+        console.log('📦 Raw body length:', bodyText.length);
+        console.log('📦 Raw body preview:', bodyText.substring(0, 300));
 
         // Check if body is a URL (plain text) - Kie sends this format
         const trimmedBody = bodyText.trim();
