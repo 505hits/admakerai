@@ -32,6 +32,7 @@ export default function ProfilePage() {
             const { data: { user }, error: userError } = await supabase.auth.getUser();
 
             if (userError || !user) {
+                setLoading(false);
                 router.push('/login');
                 return;
             }
@@ -75,7 +76,7 @@ export default function ProfilePage() {
     };
 
     const handleCancelSubscription = async () => {
-        if (!confirm('Êtes-vous sûr de vouloir annuler votre abonnement ? Vous perdrez l\'accès aux fonctionnalités premium.')) {
+        if (!confirm('Are you sure you want to cancel your subscription? You will lose access to premium features.')) {
             return;
         }
 
@@ -93,21 +94,21 @@ export default function ProfilePage() {
 
             if (error) throw error;
 
-            alert('Votre abonnement a été annulé. Vous conservez l\'accès jusqu\'à la fin de la période payée.');
+            alert('Your subscription has been cancelled. You will retain access until the end of the paid period.');
             loadUserData(); // Reload data
         } catch (error) {
             console.error('Error cancelling subscription:', error);
-            alert('Erreur lors de l\'annulation de l\'abonnement');
+            alert('Error cancelling subscription');
         }
     };
 
     if (loading) {
         return (
             <>
-                <Navbar />
+                <Navbar lang="en" />
                 <div className={styles.profileContainer}>
                     <div className="container">
-                        <div className={styles.loading}>Chargement...</div>
+                        <div className={styles.loading}>Loading...</div>
                     </div>
                 </div>
             </>
@@ -115,13 +116,13 @@ export default function ProfilePage() {
     }
 
     const planNames: { [key: string]: string } = {
-        'free': 'Gratuit',
+        'free': 'Free',
         'startup': 'Startup',
         'growth': 'Growth',
         'pro': 'Pro'
     };
 
-    const planName = planNames[profile?.subscription_plan || 'free'] || 'Gratuit';
+    const planName = planNames[profile?.subscription_plan || 'free'] || 'Free';
     const isActive = profile?.subscription_status === 'active';
 
     return (
@@ -131,7 +132,7 @@ export default function ProfilePage() {
                 <div className="container">
                     <div className={styles.profileCard}>
                         <div className={styles.header}>
-                            <h1 className={styles.pageTitle}>Mon Compte</h1>
+                            <h1 className={styles.pageTitle}>My Account</h1>
                             <span className={`${styles.planBadge} ${styles.large} ${isActive ? styles.active : ''}`}>
                                 {planName}
                             </span>
@@ -154,8 +155,8 @@ export default function ProfilePage() {
                                     <path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" fill="currentColor" />
                                 </svg>
                                 <div>
-                                    <span className={styles.label}>Crédits</span>
-                                    <span className={styles.value}>{profile?.credits || 0} crédits</span>
+                                    <span className={styles.label}>Credits</span>
+                                    <span className={styles.value}>{profile?.credits || 0} credits</span>
                                 </div>
                             </div>
 
@@ -165,9 +166,9 @@ export default function ProfilePage() {
                                     <path d="M3 8h14" stroke="currentColor" strokeWidth="1.5" />
                                 </svg>
                                 <div>
-                                    <span className={styles.label}>Statut</span>
+                                    <span className={styles.label}>Status</span>
                                     <span className={styles.value}>
-                                        {isActive ? '✅ Actif' : '❌ Inactif'}
+                                        {isActive ? '✅ Active' : '❌ Inactive'}
                                     </span>
                                 </div>
                             </div>
@@ -179,9 +180,9 @@ export default function ProfilePage() {
                                         <path d="M10 6v4l3 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                                     </svg>
                                     <div>
-                                        <span className={styles.label}>Renouvellement</span>
+                                        <span className={styles.label}>Renewal</span>
                                         <span className={styles.value}>
-                                            {new Date(profile.subscription_end_date).toLocaleDateString('fr-FR')}
+                                            {new Date(profile.subscription_end_date).toLocaleDateString('en-US')}
                                         </span>
                                     </div>
                                 </div>
@@ -211,7 +212,7 @@ export default function ProfilePage() {
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                                         <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                                     </svg>
-                                    <span>Annuler l'abonnement</span>
+                                    <span>Cancel Subscription</span>
                                 </button>
                             )}
                         </div>

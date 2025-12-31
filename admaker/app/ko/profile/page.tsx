@@ -32,6 +32,7 @@ export default function ProfileKo() {
             const { data: { user }, error: userError } = await supabase.auth.getUser();
 
             if (userError || !user) {
+                setLoading(false);
                 router.push('/ko/login');
                 return;
             }
@@ -196,7 +197,7 @@ export default function ProfileKo() {
                                 <span>플랜 업그레이드</span>
                             </button>
 
-                            <a href="/dashboard" className={styles.actionCard}>
+                            <a href="/ko/dashboard" className={styles.actionCard}>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                                     <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
                                     <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
