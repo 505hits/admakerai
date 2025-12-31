@@ -28,6 +28,7 @@ export default function ProfilPage() {
 
     const loadUserData = async () => {
         try {
+            // Get current user
             const { data: { user }, error: userError } = await supabase.auth.getUser();
 
             if (userError || !user) {
@@ -37,6 +38,7 @@ export default function ProfilPage() {
 
             setUserEmail(user.email || '');
 
+            // Get user profile from database
             const { data: profileData, error: profileError } = await supabase
                 .from('profiles')
                 .select('*')
@@ -45,11 +47,12 @@ export default function ProfilPage() {
 
             if (profileError) {
                 console.error('Error loading profile:', profileError);
+                // Create default profile if doesn't exist
                 const { data: newProfile } = await supabase
                     .from('profiles')
                     .insert([{
                         id: user.id,
-                        credits: 0,
+                        credits: 0, // No initial credits
                         subscription_plan: 'free',
                         subscription_status: 'inactive'
                     }])
@@ -91,7 +94,7 @@ export default function ProfilPage() {
             if (error) throw error;
 
             alert('Votre abonnement a été annulé. Vous conservez l\'accès jusqu\'à la fin de la période payée.');
-            loadUserData();
+            loadUserData(); // Reload data
         } catch (error) {
             console.error('Error cancelling subscription:', error);
             alert('Erreur lors de l\'annulation de l\'abonnement');
@@ -193,7 +196,7 @@ export default function ProfilPage() {
                                 <span>Améliorer le Plan</span>
                             </button>
 
-                            <a href="/fr/tableau-de-bord" className={styles.actionCard}>
+                            <a href="/dashboard" className={styles.actionCard}>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                                     <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
                                     <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
@@ -218,3 +221,4 @@ export default function ProfilPage() {
         </>
     );
 }
+

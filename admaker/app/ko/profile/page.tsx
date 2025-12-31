@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import Navbar from '@/components/Navbar';
 import styles from '../../profile/Profile.module.css';
-import { getMediaUrl } from '@/lib/cloudflare-config';
 
 interface UserProfile {
     id: string;
@@ -29,6 +28,7 @@ export default function ProfileKo() {
 
     const loadUserData = async () => {
         try {
+            // Get current user
             const { data: { user }, error: userError } = await supabase.auth.getUser();
 
             if (userError || !user) {
@@ -38,6 +38,7 @@ export default function ProfileKo() {
 
             setUserEmail(user.email || '');
 
+            // Get user profile from database
             const { data: profileData, error: profileError } = await supabase
                 .from('profiles')
                 .select('*')
@@ -46,11 +47,12 @@ export default function ProfileKo() {
 
             if (profileError) {
                 console.error('Error loading profile:', profileError);
+                // Create default profile if doesn't exist
                 const { data: newProfile } = await supabase
                     .from('profiles')
                     .insert([{
                         id: user.id,
-                        credits: 0,
+                        credits: 0, // No initial credits
                         subscription_plan: 'free',
                         subscription_status: 'inactive'
                     }])
@@ -92,7 +94,7 @@ export default function ProfileKo() {
             if (error) throw error;
 
             alert('구독이 취소되었습니다. 결제 기간이 끝날 때까지 액세스 권한이 유지됩니다.');
-            loadUserData();
+            loadUserData(); // Reload data
         } catch (error) {
             console.error('Error cancelling subscription:', error);
             alert('구독 취소 중 오류가 발생했습니다');
@@ -129,10 +131,7 @@ export default function ProfileKo() {
                 <div className="container">
                     <div className={styles.profileCard}>
                         <div className={styles.header}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                                <img src={getMediaUrl('admaker_ai_logo-removebg-preview.png')} alt="AdMaker AI" style={{ height: '48px', width: 'auto' }} />
-                                <h1 className={styles.pageTitle}>내 프로필</h1>
-                            </div>
+                            <h1 className={styles.pageTitle}>내 프로필</h1>
                             <span className={`${styles.planBadge} ${styles.large} ${isActive ? styles.active : ''}`}>
                                 {planName}
                             </span>
@@ -197,7 +196,7 @@ export default function ProfileKo() {
                                 <span>플랜 업그레이드</span>
                             </button>
 
-                            <a href="/ko/dashboard" className={styles.actionCard}>
+                            <a href="/dashboard" className={styles.actionCard}>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                                     <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
                                     <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />

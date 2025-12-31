@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import Navbar from '@/components/Navbar';
 import styles from '../../profile/Profile.module.css';
-import { getMediaUrl } from '@/lib/cloudflare-config';
 
 interface UserProfile {
     id: string;
@@ -15,7 +14,7 @@ interface UserProfile {
     subscription_end_date: string | null;
 }
 
-export default function ProfilPageDe() {
+export default function ProfilPage() {
     const router = useRouter();
     const supabase = createClient();
 
@@ -29,6 +28,7 @@ export default function ProfilPageDe() {
 
     const loadUserData = async () => {
         try {
+            // Get current user
             const { data: { user }, error: userError } = await supabase.auth.getUser();
 
             if (userError || !user) {
@@ -38,6 +38,7 @@ export default function ProfilPageDe() {
 
             setUserEmail(user.email || '');
 
+            // Get user profile from database
             const { data: profileData, error: profileError } = await supabase
                 .from('profiles')
                 .select('*')
@@ -46,11 +47,12 @@ export default function ProfilPageDe() {
 
             if (profileError) {
                 console.error('Error loading profile:', profileError);
+                // Create default profile if doesn't exist
                 const { data: newProfile } = await supabase
                     .from('profiles')
                     .insert([{
                         id: user.id,
-                        credits: 0,
+                        credits: 0, // No initial credits
                         subscription_plan: 'free',
                         subscription_status: 'inactive'
                     }])
@@ -92,7 +94,7 @@ export default function ProfilPageDe() {
             if (error) throw error;
 
             alert('Ihr Abonnement wurde gekündigt. Sie behalten den Zugriff bis zum Ende des bezahlten Zeitraums.');
-            loadUserData();
+            loadUserData(); // Reload data
         } catch (error) {
             console.error('Error cancelling subscription:', error);
             alert('Fehler beim Kündigen des Abonnements');
@@ -105,7 +107,7 @@ export default function ProfilPageDe() {
                 <Navbar lang="de" />
                 <div className={styles.profileContainer}>
                     <div className="container">
-                        <div className={styles.loading}>Lädt...</div>
+                        <div className={styles.loading}>Laden...</div>
                     </div>
                 </div>
             </>
@@ -129,10 +131,7 @@ export default function ProfilPageDe() {
                 <div className="container">
                     <div className={styles.profileCard}>
                         <div className={styles.header}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                                <img src={getMediaUrl('admaker_ai_logo-removebg-preview.png')} alt="AdMaker AI" style={{ height: '48px', width: 'auto' }} />
-                                <h1 className={styles.pageTitle}>Mein Profil</h1>
-                            </div>
+                            <h1 className={styles.pageTitle}>Mein Konto</h1>
                             <span className={`${styles.planBadge} ${styles.large} ${isActive ? styles.active : ''}`}>
                                 {planName}
                             </span>
@@ -145,7 +144,7 @@ export default function ProfilPageDe() {
                                     <path d="M10 10a2 2 0 100-4 2 2 0 000 4z" stroke="currentColor" strokeWidth="1.5" />
                                 </svg>
                                 <div>
-                                    <span className={styles.label}>E-Mail</span>
+                                    <span className={styles.label}>Email</span>
                                     <span className={styles.value}>{userEmail}</span>
                                 </div>
                             </div>
@@ -180,7 +179,7 @@ export default function ProfilPageDe() {
                                         <path d="M10 6v4l3 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                                     </svg>
                                     <div>
-                                        <span className={styles.label}>Verlängerung</span>
+                                        <span className={styles.label}>Erneuerung</span>
                                         <span className={styles.value}>
                                             {new Date(profile.subscription_end_date).toLocaleDateString('de-DE')}
                                         </span>
@@ -197,7 +196,7 @@ export default function ProfilPageDe() {
                                 <span>Plan Upgraden</span>
                             </button>
 
-                            <a href="/de/dashboard" className={styles.actionCard}>
+                            <a href="/dashboard" className={styles.actionCard}>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                                     <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
                                     <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />

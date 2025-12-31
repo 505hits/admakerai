@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import Navbar from '@/components/Navbar';
 import styles from '../../profile/Profile.module.css';
-import { getMediaUrl } from '@/lib/cloudflare-config';
 
 interface UserProfile {
     id: string;
@@ -53,7 +52,7 @@ export default function PerfilPage() {
                     .from('profiles')
                     .insert([{
                         id: user.id,
-                        credits: 0,
+                        credits: 0, // No initial credits
                         subscription_plan: 'free',
                         subscription_status: 'inactive'
                     }])
@@ -94,8 +93,8 @@ export default function PerfilPage() {
 
             if (error) throw error;
 
-            alert('Sua assinatura foi cancelada. Você mantém o acesso até o final do período pago.');
-            loadUserData();
+            alert('Sua assinatura foi cancelada. Você manterá o acesso até o final do período pago.');
+            loadUserData(); // Reload data
         } catch (error) {
             console.error('Error cancelling subscription:', error);
             alert('Erro ao cancelar a assinatura');
@@ -116,13 +115,13 @@ export default function PerfilPage() {
     }
 
     const planNames: { [key: string]: string } = {
-        'free': 'Gratuito',
-        'startup': 'Inicial',
-        'growth': 'Crescimento',
-        'pro': 'Profissional'
+        'free': 'Grátis',
+        'startup': 'Startup',
+        'growth': 'Growth',
+        'pro': 'Pro'
     };
 
-    const planName = planNames[profile?.subscription_plan || 'free'] || 'Gratuito';
+    const planName = planNames[profile?.subscription_plan || 'free'] || 'Grátis';
     const isActive = profile?.subscription_status === 'active';
 
     return (
@@ -132,10 +131,7 @@ export default function PerfilPage() {
                 <div className="container">
                     <div className={styles.profileCard}>
                         <div className={styles.header}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                                <img src={getMediaUrl('admaker_ai_logo-removebg-preview.png')} alt="AdMaker AI" style={{ height: '48px', width: 'auto' }} />
-                                <h1 className={styles.pageTitle}>Meu Perfil</h1>
-                            </div>
+                            <h1 className={styles.pageTitle}>Minha Conta</h1>
                             <span className={`${styles.planBadge} ${styles.large} ${isActive ? styles.active : ''}`}>
                                 {planName}
                             </span>
@@ -200,7 +196,7 @@ export default function PerfilPage() {
                                 <span>Melhorar Plano</span>
                             </button>
 
-                            <a href="/pt/painel" className={styles.actionCard}>
+                            <a href="/dashboard" className={styles.actionCard}>
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                                     <rect x="3" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
                                     <rect x="14" y="3" width="7" height="7" rx="1" stroke="currentColor" strokeWidth="2" />
@@ -215,7 +211,7 @@ export default function PerfilPage() {
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                                         <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                                     </svg>
-                                    <span>Cancelar Assinatura</span>
+                                    <span>Cancelar assinatura</span>
                                 </button>
                             )}
                         </div>
