@@ -9,6 +9,8 @@ export async function GET(request: NextRequest) {
     const code = searchParams.get('code')
     const next = searchParams.get('next') ?? '/payment'
 
+    console.log('🔄 Auth Callback triggered', { type, hasCode: !!code, next });
+
     // Handle Magic Link (email OTP)
     if (token_hash && type) {
         const supabase = await createClient()
@@ -18,17 +20,26 @@ export async function GET(request: NextRequest) {
         })
 
         if (!error) {
+            console.log('✅ OTP Verified successfully');
             return NextResponse.redirect(`${origin}${next}`)
+        } else {
+            console.error('❌ OTP Verification failed:', error);
         }
     }
 
     // Handle OAuth callback
     if (code) {
         const supabase = await createClient()
-        const { error } = await supabase.auth.exchangeCodeForSession(code)
-        if (!error) {
+
+        console.log('🔄 Exchanging OAuth code for session...');
+        const { data, error } = await supabase.auth.exchangeCodeForSession(code)
+
+        if (!error && data?.session) {
+            console.log('✅ Session established for user:', data.user?.id);
+
             const forwardedHost = request.headers.get('x-forwarded-host')
             const isLocalEnv = process.env.NODE_ENV === 'development'
+
             if (isLocalEnv) {
                 return NextResponse.redirect(`${origin}${next}`)
             } else if (forwardedHost) {
@@ -36,9 +47,14 @@ export async function GET(request: NextRequest) {
             } else {
                 return NextResponse.redirect(`${origin}${next}`)
             }
+        } else {
+            console.error('❌ Code exchange failed:', error);
+            // Redirect to login with specific error
+            return NextResponse.redirect(`${origin}/login?error=oauth_exchange_failed`)
         }
     }
 
     // return the user to an error page with instructions
+    console.warn('⚠️ Invalid auth callback parameters');
     return NextResponse.redirect(`${origin}/login?error=auth_failed`)
 }
