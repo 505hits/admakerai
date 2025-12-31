@@ -1,4 +1,3 @@
-```typescript
 import { updateSession } from '@/lib/supabase/middleware'
 import { requireCsrfToken } from '@/lib/security/csrf'
 import { type NextRequest, NextResponse } from 'next/server'
