@@ -1,7 +1,14 @@
+```typescript
 import { updateSession } from '@/lib/supabase/middleware'
 import { requireCsrfToken } from '@/lib/security/csrf'
 import { type NextRequest, NextResponse } from 'next/server'
-import { randomBytes } from 'crypto'
+
+// Generate CSRF token using Web Crypto API (Edge Runtime compatible)
+function generateCsrfToken(): string {
+    const array = new Uint8Array(32);
+    crypto.getRandomValues(array);
+    return Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('');
+}
 
 export async function middleware(request: NextRequest) {
     // Check if CSRF token exists in cookies
@@ -10,7 +17,7 @@ export async function middleware(request: NextRequest) {
 
     // Generate token if it doesn't exist
     if (!existingToken) {
-        newToken = randomBytes(32).toString('hex');
+        newToken = generateCsrfToken();
     }
 
     // Security: CSRF Protection for API routes
