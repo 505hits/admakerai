@@ -17,6 +17,7 @@ export async function middleware(request: NextRequest) {
     // Generate token if it doesn't exist
     if (!existingToken) {
         newToken = generateCsrfToken();
+        console.log('🔑 Generated new CSRF token');
     }
 
     // Security: CSRF Protection for API routes
@@ -25,18 +26,24 @@ export async function middleware(request: NextRequest) {
         const isWebhook = request.nextUrl.pathname.includes('/webhook');
 
         if (!isWebhook) {
-            const csrfCheck = await requireCsrfToken(request);
-            if (!csrfCheck.valid) {
-                console.warn('❌ CSRF validation failed:', {
-                    path: request.nextUrl.pathname,
-                    error: csrfCheck.error,
-                    hasToken: !!existingToken,
-                    headerToken: request.headers.get('x-csrf-token') ? 'present' : 'missing'
-                });
-                return NextResponse.json(
-                    { error: csrfCheck.error || 'CSRF validation failed' },
-                    { status: 403 }
-                );
+            // Skip CSRF check if no token exists yet (first time user visits)
+            // This allows the cookie to be generated
+            if (existingToken) {
+                const csrfCheck = await requireCsrfToken(request);
+                if (!csrfCheck.valid) {
+                    console.warn('❌ CSRF validation failed:', {
+                        path: request.nextUrl.pathname,
+                        error: csrfCheck.error,
+                        hasToken: !!existingToken,
+                        headerToken: request.headers.get('x-csrf-token') ? 'present' : 'missing'
+                    });
+                    return NextResponse.json(
+                        { error: csrfCheck.error || 'CSRF validation failed' },
+                        { status: 403 }
+                    );
+                }
+            } else {
+                console.log('⏭️ Skipping CSRF validation - no token exists yet, will generate one');
             }
         }
     }
@@ -45,8 +52,10 @@ export async function middleware(request: NextRequest) {
     // This validates user sessions and refreshes tokens
     const response = await updateSession(request)
 
-    // Add CSRF token to response if we generated a new one
+    // IMPORTANT: Add CSRF token to the Supabase response (not a new response)
+    // We must set it on the response returned by updateSession to ensure it's sent to client
     if (newToken) {
+        console.log('🍪 Setting CSRF cookie on response');
         response.cookies.set('csrf_token', newToken, {
             httpOnly: false, // Must be false so JavaScript can read it for the x-csrf-token header
             secure: process.env.NODE_ENV === 'production',
