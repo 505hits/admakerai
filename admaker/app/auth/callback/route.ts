@@ -40,13 +40,24 @@ export async function GET(request: NextRequest) {
             const forwardedHost = request.headers.get('x-forwarded-host')
             const isLocalEnv = process.env.NODE_ENV === 'development'
 
+            // Determine redirect URL
+            let redirectUrl: string;
             if (isLocalEnv) {
-                return NextResponse.redirect(`${origin}${next}`)
+                redirectUrl = `${origin}${next}`
             } else if (forwardedHost) {
-                return NextResponse.redirect(`https://${forwardedHost}${next}`)
+                redirectUrl = `https://${forwardedHost}${next}`
             } else {
-                return NextResponse.redirect(`${origin}${next}`)
+                redirectUrl = `${origin}${next}`
             }
+
+            // Create response with redirect
+            const response = NextResponse.redirect(redirectUrl)
+
+            // The cookies are already set by the createClient() call above
+            // But we need to ensure they're included in the response
+            // This is handled automatically by the Supabase SSR client
+
+            return response
         } else {
             console.error('❌ Code exchange failed:', error);
             // Redirect to login with specific error
