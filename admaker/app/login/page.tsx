@@ -56,9 +56,20 @@ function LoginContent() {
 
                     if (data.session) {
                         console.log('Session created, redirecting...');
+
+                        // Detect language from URL param or referrer
+                        const lang = searchParams.get('lang');
+                        const paymentUrl = lang === 'fr' ? '/fr/paiement' :
+                            lang === 'es' ? '/es/pago' :
+                                lang === 'pt' ? '/pt/pagamento' :
+                                    lang === 'de' ? '/de/zahlung' :
+                                        lang === 'ja' ? '/ja/payment' :
+                                            lang === 'ko' ? '/ko/payment' :
+                                                '/payment';
+
                         // Clear URL params
                         window.history.replaceState(null, '', '/login');
-                        router.push('/payment');
+                        router.push(paymentUrl);
                     }
                 } catch (err) {
                     console.error('Code exchange error:', err);
@@ -77,12 +88,20 @@ function LoginContent() {
             const { data: { session } } = await supabase.auth.getSession();
             if (session) {
                 console.log('Already logged in, redirecting to dashboard');
-                router.push('/payment');
+                const lang = searchParams.get('lang');
+                const paymentUrl = lang === 'fr' ? '/fr/paiement' :
+                    lang === 'es' ? '/es/pago' :
+                        lang === 'pt' ? '/pt/pagamento' :
+                            lang === 'de' ? '/de/zahlung' :
+                                lang === 'ja' ? '/ja/payment' :
+                                    lang === 'ko' ? '/ko/payment' :
+                                        '/payment';
+                router.push(paymentUrl);
             }
         };
 
         checkAuth();
-    }, [router]);
+    }, [router, searchParams]);
 
     // Listen for auth state changes
     useEffect(() => {
@@ -91,12 +110,20 @@ function LoginContent() {
 
             if (event === 'SIGNED_IN' && session) {
                 console.log('User signed in:', session.user.email);
-                router.push('/payment');
+                const lang = searchParams.get('lang');
+                const paymentUrl = lang === 'fr' ? '/fr/paiement' :
+                    lang === 'es' ? '/es/pago' :
+                        lang === 'pt' ? '/pt/pagamento' :
+                            lang === 'de' ? '/de/zahlung' :
+                                lang === 'ja' ? '/ja/payment' :
+                                    lang === 'ko' ? '/ko/payment' :
+                                        '/payment';
+                router.push(paymentUrl);
             }
         });
 
         return () => subscription.unsubscribe();
-    }, [router]);
+    }, [router, searchParams]);
 
     const handleGoogleLogin = async () => {
         try {
