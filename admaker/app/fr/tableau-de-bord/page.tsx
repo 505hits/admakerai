@@ -15,6 +15,7 @@ import { getMediaUrl } from '@/lib/cloudflare-config';
 import { saveVideo, getUserVideos } from '@/lib/api/videos';
 import { createClient } from '@/lib/supabase/client';
 import { replicateVideoWithActor } from '@/lib/api/kie';
+import { secureFetch } from '@/lib/api/client';
 
 export default function DashboardPage() {
     const [activeTab, setActiveTab] = useState('create');
@@ -609,7 +610,7 @@ export default function DashboardPage() {
 
             // Store metadata for webhook
             try {
-                await fetch('/api/veo/store-metadata', {
+                await secureFetch('/api/veo/store-metadata', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -740,7 +741,7 @@ export default function DashboardPage() {
                 const variation = configuredVariations[i];
 
                 try {
-                    await fetch('/api/veo/store-metadata', {
+                    await secureFetch('/api/veo/store-metadata', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({
@@ -853,7 +854,7 @@ export default function DashboardPage() {
 
             // Store metadata for tracking
             try {
-                await fetch('/api/veo/store-metadata', {
+                await secureFetch('/api/veo/store-metadata', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
