@@ -48,7 +48,7 @@ export async function middleware(request: NextRequest) {
     // Add CSRF token to response if we generated a new one
     if (newToken) {
         response.cookies.set('csrf_token', newToken, {
-            httpOnly: true,
+            httpOnly: false, // Must be false so JavaScript can read it for the x-csrf-token header
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'lax',
             path: '/',
