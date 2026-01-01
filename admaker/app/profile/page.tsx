@@ -59,17 +59,22 @@ export default function ProfilePage() {
                 console.log(`🔍 [Profile] Auth query took ${authTime}s`);
             } catch (timeoutError) {
                 console.error('🔍 [Profile] Auth query timed out, trying session fallback...');
-                // Fallback: try to get session instead
-                const { data: { session } } = await supabase.auth.getSession();
-                user = session?.user;
-                if (!user) {
-                    console.log('🔍 [Profile] No session found either');
-                    clearTimeout(timeoutId);
-                    setLoading(false);
-                    router.push('/login');
-                    return;
+
+                // Fallback: getSession with 2s timeout
+                const getSessionPromise = supabase.auth.getSession();
+                const sessionTimeoutPromise = new Promise((_, reject) =>
+                    setTimeout(() => reject(new Error('Session timeout')), 2000)
+                );
+
+                try {
+                    console.log('🔍 [Profile] Calling getSession...');
+                    const sessionResult = await Promise.race([getSessionPromise, sessionTimeoutPromise]) as any;
+                    const { data: { session } } = sessionResult;
+                    user = session?.user;
+                    if (user) console.log('🔍 [Profile] Got user from session fallback');
+                } catch (e) {
+                    console.error('🔍 [Profile] Session fallback ALSO timed out or failed:', e);
                 }
-                console.log('🔍 [Profile] Got user from session fallback');
             }
 
             if (userError || !user) {

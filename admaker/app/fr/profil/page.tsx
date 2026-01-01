@@ -27,18 +27,54 @@ export default function ProfilPage() {
     }, []);
 
     const loadUserData = async () => {
+        const startTime = performance.now();
         console.log('🔍 [Profil] Début du chargement des données utilisateur...');
 
-        // Timeout de sécurité pour éviter le chargement infini (réduit à 3s)
+        // Timeout de sécurité (10s)
         const timeoutId = setTimeout(() => {
-            console.warn('⚠️ [Profil] Le chargement a expiré après 3 secondes. Désactivation forcée du chargement.');
+            const elapsed = ((performance.now() - startTime) / 1000).toFixed(2);
+            console.warn(`⚠️ [Profil] Le chargement a expiré après ${elapsed} secondes. Désactivation forcée.`);
             setLoading(false);
-        }, 3000);
+        }, 10000);
 
         try {
-            // Get current user
             console.log('🔍 [Profil] Récupération de l\'utilisateur depuis Supabase...');
-            const { data: { user }, error: userError } = await supabase.auth.getUser();
+            const authStart = performance.now();
+
+            // 1. Try getUser with 5s timeout
+            const getUserPromise = supabase.auth.getUser();
+            const timeoutPromise = new Promise((_, reject) =>
+                setTimeout(() => reject(new Error('Auth timeout')), 5000)
+            );
+
+            let user;
+            let userError;
+
+            try {
+                const result = await Promise.race([getUserPromise, timeoutPromise]) as any;
+                user = result.data?.user;
+                userError = result.error;
+                const authTime = ((performance.now() - authStart) / 1000).toFixed(2);
+                console.log(`🔍 [Profil] Auth query took ${authTime}s`);
+            } catch (timeoutError) {
+                console.error('🔍 [Profil] Timeout auth, tentative fallback session...');
+
+                // 2. Fallback: getSession with 2s timeout
+                const getSessionPromise = supabase.auth.getSession();
+                const sessionTimeoutPromise = new Promise((_, reject) =>
+                    setTimeout(() => reject(new Error('Session timeout')), 2000)
+                );
+
+                try {
+                    console.log('🔍 [Profil] Appel getSession...');
+                    const sessionResult = await Promise.race([getSessionPromise, sessionTimeoutPromise]) as any;
+                    const { data: { session } } = sessionResult;
+                    user = session?.user;
+                    if (user) console.log('🔍 [Profil] Utilisateur récupéré depuis fallback session');
+                } catch (e) {
+                    console.error('🔍 [Profil] Fallback session a aussi échoué/timeout:', e);
+                }
+            }
 
             if (userError || !user) {
                 console.log('🔍 [Profil] Pas d\'utilisateur ou erreur:', userError);
@@ -53,11 +89,14 @@ export default function ProfilPage() {
 
             // Get user profile from database with explicit field selection
             console.log('🔍 [Profil] Récupération du profil depuis la DB pour ID:', user.id);
+            const profileStart = performance.now();
             const { data: profileData, error: profileError } = await supabase
                 .from('profiles')
                 .select('id, credits, actor_credits, subscription_plan, subscription_status, subscription_end_date, created_at, updated_at')
                 .eq('id', user.id)
                 .maybeSingle();
+            const profileTime = ((performance.now() - profileStart) / 1000).toFixed(2);
+            console.log(`🔍 [Profil] Profile query took ${profileTime}s`);
 
             console.log('🔍 [Profil] Données de profil brutes reçues:', profileData);
             console.log('🔍 [Profil] Valeur des crédits:', profileData?.credits);
@@ -99,7 +138,8 @@ export default function ProfilPage() {
         } catch (error) {
             console.error('🔍 [Profil] Erreur critique dans loadUserData:', error);
         } finally {
-            console.log('🔍 [Profil] Processus de chargement terminé, nettoyage du timeout et de l\'état.');
+            const totalTime = ((performance.now() - startTime) / 1000).toFixed(2);
+            console.log(`🔍 [Profil] Chargement terminé en ${totalTime}s, nettoyage.`);
             clearTimeout(timeoutId);
             setLoading(false);
         }
@@ -136,18 +176,8 @@ export default function ProfilPage() {
         }
     };
 
-    if (loading) {
-        return (
-            <>
-                <Navbar lang="fr" />
-                <div className={styles.profileContainer}>
-                    <div className="container">
-                        <div className={styles.loading}>Chargement...</div>
-                    </div>
-                </div>
-            </>
-        );
-    }
+    // Afficher l'indicateur de chargement mais ne pas bloquer la page entière
+    const isLoading = loading && !profile;
 
     const planNames: { [key: string]: string } = {
         'free': 'Gratuit',
@@ -166,7 +196,9 @@ export default function ProfilPage() {
                 <div className="container">
                     <div className={styles.profileCard}>
                         <div className={styles.header}>
-                            <h1 className={styles.pageTitle}>Mon Compte</h1>
+                            <h1 className={styles.pageTitle}>
+                                Mon Compte {isLoading && <span style={{ fontSize: '14px', opacity: 0.7 }}>Chargement...</span>}
+                            </h1>
                             <span className={`${styles.planBadge} ${styles.large} ${isActive ? styles.active : ''}`}>
                                 {planName}
                             </span>
