@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client'
-import { getUserData } from '@/app/actions/profile';
+import { getUserData } from '@/app/actions/profile'
+import { cancelSubscription } from '@/app/actions/stripe';
 import Navbar from '@/components/Navbar';
 import styles from './Profile.module.css';
 
@@ -67,31 +68,28 @@ export default function ProfilePage() {
     };
 
     const handleCancelSubscription = async () => {
-        if (!confirm('Are you sure you want to cancel your subscription? You will lose access to premium features.')) {
+        if (!confirm('Are you sure you want to cancel your subscription? You will retain access until the end of the current billing period.')) {
             return;
         }
 
+        setLoading(true);
         try {
-            const { data: { user } } = await supabase.auth.getUser();
-            if (!user) return;
-
-            const { error } = await supabase
-                .from('profiles')
-                .update({
-                    subscription_status: 'cancelled',
-                    subscription_plan: 'free'
-                })
-                .eq('id', user.id);
-
-            if (error) throw error;
-
-            alert('Your subscription has been cancelled. You will retain access until the end of the paid period.');
-            loadUserData(); // Reload data
+            const result = await cancelSubscription();
+            if (result.success) {
+                alert('Subscription canceled successfully. Access available until: ' + (result.endDate || 'Period end'));
+                // Refresh profile data
+                loadUserData();
+            } else {
+                alert('Error canceling subscription: ' + result.error);
+            }
         } catch (error) {
-            console.error('Error cancelling subscription:', error);
-            alert('Error cancelling subscription');
+            console.error('Cancellation error:', error);
+            alert('An unexpected error occurred.');
+        } finally {
+            setLoading(false);
         }
     };
+
 
     // Show loading indicator but don't block the entire page
     const isLoading = loading && !profile;

@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client'
-import { getUserData } from '@/app/actions/profile';
+import { getUserData } from '@/app/actions/profile'
+import { cancelSubscription } from '@/app/actions/stripe';
 import Navbar from '@/components/Navbar';
 import styles from '../../profile/Profile.module.css';
 
@@ -67,31 +68,29 @@ export default function ProfilPage() {
     };
 
     const handleCancelSubscription = async () => {
-        if (!confirm('Êtes-vous sûr de vouloir annuler votre abonnement ? Vous perdrez l\'accès aux fonctionnalités premium.')) {
+        if (!confirm('Êtes-vous sûr de vouloir annuler votre abonnement ? Vous conserverez vos avantages jusqu\'à la fin de la période en cours.')) {
             return;
         }
 
+        setLoading(true);
         try {
-            const { data: { user } } = await supabase.auth.getUser();
-            if (!user) return;
-
-            const { error } = await supabase
-                .from('profiles')
-                .update({
-                    subscription_status: 'cancelled',
-                    subscription_plan: 'free'
-                })
-                .eq('id', user.id);
-
-            if (error) throw error;
-
-            alert('Votre abonnement a été annulé. Vous conservez l\'accès jusqu\'à la fin de la période payée.');
-            loadUserData(); // Reload data
+            const result = await cancelSubscription();
+            if (result.success) {
+                alert('Votre abonnement a été annulé avec succès. Il prendra fin le : ' + (result.endDate || 'Fin de la période'));
+                // Refresh profile data to update UI (though status remains until period end)
+                loadUserData();
+            } else {
+                alert('Erreur lors de l\'annulation : ' + result.error);
+            }
         } catch (error) {
-            console.error('Error cancelling subscription:', error);
-            alert('Erreur lors de l\'annulation de l\'abonnement');
+            console.error('Erreur annulation :', error);
+            alert('Une erreur est survenue.');
+        } finally {
+            setLoading(false);
         }
     };
+
+
 
     // Afficher l'indicateur de chargement mais ne pas bloquer la page entière
     const isLoading = loading && !profile;
