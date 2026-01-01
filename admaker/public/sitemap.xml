@@ -18,30 +18,6 @@
   </url>
   
   <url>
-    <loc>https://admakerai.app/login</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://admakerai.app/payment</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <url>
-    <loc>https://admakerai.app/dashboard</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://admakerai.app/profile</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://admakerai.app/blog</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -60,30 +36,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://admakerai.app/" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-  </url>
-  
-  <url>
-    <loc>https://admakerai.app/fr/connexion</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://admakerai.app/fr/paiement</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <url>
-    <loc>https://admakerai.app/fr/tableau-de-bord</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://admakerai.app/fr/profil</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
   
   <url>
@@ -108,30 +60,6 @@
   </url>
   
   <url>
-    <loc>https://admakerai.app/es/iniciar-sesion</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://admakerai.app/es/pago</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <url>
-    <loc>https://admakerai.app/es/panel</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://admakerai.app/es/perfil</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://admakerai.app/es/blog</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -150,30 +78,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://admakerai.app/" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-  </url>
-  
-  <url>
-    <loc>https://admakerai.app/pt/conexao</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://admakerai.app/pt/pagamento</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <url>
-    <loc>https://admakerai.app/pt/painel</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://admakerai.app/pt/perfil</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
   
   <url>
@@ -196,30 +100,6 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  
-  <url>
-    <loc>https://admakerai.app/de/login</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://admakerai.app/de/payment</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <url>
-    <loc>https://admakerai.app/de/dashboard</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://admakerai.app/de/profile</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
 
   <url>
     <loc>https://admakerai.app/de/blog</loc>
@@ -241,30 +121,6 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
-  
-  <url>
-    <loc>https://admakerai.app/ko/login</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://admakerai.app/ko/payment</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <url>
-    <loc>https://admakerai.app/ko/dashboard</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://admakerai.app/ko/profile</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
 
   <url>
     <loc>https://admakerai.app/ko/blog</loc>
@@ -285,30 +141,6 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://admakerai.app/" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-  </url>
-  
-  <url>
-    <loc>https://admakerai.app/ja/login</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  
-  <url>
-    <loc>https://admakerai.app/ja/payment</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <url>
-    <loc>https://admakerai.app/ja/dashboard</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  
-  <url>
-    <loc>https://admakerai.app/ja/profile</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
 
   <url>
