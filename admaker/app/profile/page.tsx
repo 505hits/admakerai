@@ -30,7 +30,7 @@ export default function ProfilePage() {
         const startTime = performance.now();
         console.log('🔍 [Profile] Starting to load user data...');
 
-        // Add a safety timeout to prevent infinite loading (increased to 10s for debugging)
+        // Add a safety timeout to prevent infinite loading
         const timeoutId = setTimeout(() => {
             const elapsed = ((performance.now() - startTime) / 1000).toFixed(2);
             console.warn(`⚠️ [Profile] Loading timed out after ${elapsed} seconds. Forcing loading to false.`);
@@ -38,12 +38,39 @@ export default function ProfilePage() {
         }, 10000);
 
         try {
-            // Get current user
+            // Get current user with timeout
             console.log('🔍 [Profile] Getting user from Supabase auth...');
             const authStart = performance.now();
-            const { data: { user }, error: userError } = await supabase.auth.getUser();
-            const authTime = ((performance.now() - authStart) / 1000).toFixed(2);
-            console.log(`🔍 [Profile] Auth query took ${authTime}s`);
+
+            // Create a promise that times out after 5 seconds
+            const getUserPromise = supabase.auth.getUser();
+            const timeoutPromise = new Promise((_, reject) =>
+                setTimeout(() => reject(new Error('Auth timeout')), 5000)
+            );
+
+            let user;
+            let userError;
+
+            try {
+                const result = await Promise.race([getUserPromise, timeoutPromise]) as any;
+                user = result.data?.user;
+                userError = result.error;
+                const authTime = ((performance.now() - authStart) / 1000).toFixed(2);
+                console.log(`🔍 [Profile] Auth query took ${authTime}s`);
+            } catch (timeoutError) {
+                console.error('🔍 [Profile] Auth query timed out, trying session fallback...');
+                // Fallback: try to get session instead
+                const { data: { session } } = await supabase.auth.getSession();
+                user = session?.user;
+                if (!user) {
+                    console.log('🔍 [Profile] No session found either');
+                    clearTimeout(timeoutId);
+                    setLoading(false);
+                    router.push('/login');
+                    return;
+                }
+                console.log('🔍 [Profile] Got user from session fallback');
+            }
 
             if (userError || !user) {
                 console.log('🔍 [Profile] No user or error:', userError);
