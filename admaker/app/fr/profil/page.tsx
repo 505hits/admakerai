@@ -190,14 +190,17 @@ export default function ProfilPage() {
                                 <span>Tableau de Bord</span>
                             </a>
 
-                            {isActive && (
-                                <button onClick={handleCancelSubscription} className={`${styles.actionCard} ${styles.danger}`}>
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                                    </svg>
-                                    <span>Annuler l'abonnement</span>
-                                </button>
-                            )}
+                            <button
+                                onClick={handleCancelSubscription}
+                                className={`${styles.actionCard} ${styles.danger}`}
+                                disabled={!isActive}
+                                style={!isActive ? { opacity: 0.5, cursor: 'not-allowed' } : {}}
+                            >
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                                </svg>
+                                <span>Annuler l'abonnement</span>
+                            </button>
                         </div>
                     </div>
                 </div>
