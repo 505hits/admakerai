@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { createClient } from '@/lib/supabase/client';
+import { createClient } from '@/lib/supabase/client'
+import { getUserData } from '@/app/actions/profile';
 import Navbar from '@/components/Navbar';
 import styles from '../../profile/Profile.module.css';
 
@@ -27,120 +28,36 @@ export default function ProfilPage() {
     }, []);
 
     const loadUserData = async () => {
+        setLoading(true);
+        console.log('🔍 [Profil] Chargement des données via Server Action...');
         const startTime = performance.now();
-        console.log('🔍 [Profil] Début du chargement des données utilisateur...');
-
-        // Timeout de sécurité (10s)
-        const timeoutId = setTimeout(() => {
-            const elapsed = ((performance.now() - startTime) / 1000).toFixed(2);
-            console.warn(`⚠️ [Profil] Le chargement a expiré après ${elapsed} secondes. Désactivation forcée.`);
-            setLoading(false);
-        }, 10000);
 
         try {
-            console.log('🔍 [Profil] Récupération de l\'utilisateur depuis Supabase...');
-            const authStart = performance.now();
+            const { user, profile, error } = await getUserData();
 
-            // 1. Try getUser with 5s timeout
-            const getUserPromise = supabase.auth.getUser();
-            const timeoutPromise = new Promise((_, reject) =>
-                setTimeout(() => reject(new Error('Auth timeout')), 5000)
-            );
-
-            let user;
-            let userError;
-
-            try {
-                const result = await Promise.race([getUserPromise, timeoutPromise]) as any;
-                user = result.data?.user;
-                userError = result.error;
-                const authTime = ((performance.now() - authStart) / 1000).toFixed(2);
-                console.log(`🔍 [Profil] Auth query took ${authTime}s`);
-            } catch (timeoutError) {
-                console.error('🔍 [Profil] Timeout auth, tentative fallback session...');
-
-                // 2. Fallback: getSession with 2s timeout
-                const getSessionPromise = supabase.auth.getSession();
-                const sessionTimeoutPromise = new Promise((_, reject) =>
-                    setTimeout(() => reject(new Error('Session timeout')), 2000)
-                );
-
-                try {
-                    console.log('🔍 [Profil] Appel getSession...');
-                    const sessionResult = await Promise.race([getSessionPromise, sessionTimeoutPromise]) as any;
-                    const { data: { session } } = sessionResult;
-                    user = session?.user;
-                    if (user) console.log('🔍 [Profil] Utilisateur récupéré depuis fallback session');
-                } catch (e) {
-                    console.error('🔍 [Profil] Fallback session a aussi échoué/timeout:', e);
+            if (error) {
+                console.error('🔍 [Profil] Erreur Server Action:', error);
+                if (typeof error === 'string' && (error.includes('No user') || !user)) {
+                    router.push('/fr/connexion');
+                    return;
                 }
             }
 
-            if (userError || !user) {
-                console.log('🔍 [Profil] Pas d\'utilisateur ou erreur:', userError);
-                clearTimeout(timeoutId);
-                setLoading(false);
-                router.push('/fr/connexion');
-                return;
+            if (user) {
+                console.log('🔍 [Profil] Utilisateur trouvé:', user.email);
+                setUserEmail(user.email || '');
             }
 
-            console.log('🔍 [Profil] Utilisateur trouvé:', user.email);
-            setUserEmail(user.email || '');
-
-            // Get user profile from database with explicit field selection
-            console.log('🔍 [Profil] Récupération du profil depuis la DB pour ID:', user.id);
-            const profileStart = performance.now();
-            const { data: profileData, error: profileError } = await supabase
-                .from('profiles')
-                .select('id, credits, actor_credits, subscription_plan, subscription_status, subscription_end_date, created_at, updated_at')
-                .eq('id', user.id)
-                .maybeSingle();
-            const profileTime = ((performance.now() - profileStart) / 1000).toFixed(2);
-            console.log(`🔍 [Profil] Profile query took ${profileTime}s`);
-
-            console.log('🔍 [Profil] Données de profil brutes reçues:', profileData);
-            console.log('🔍 [Profil] Valeur des crédits:', profileData?.credits);
-            console.log('🔍 [Profil] Valeur des crédits acteur:', profileData?.actor_credits);
-
-            if (profileError) {
-                console.error('🔍 [Profil] Erreur de profil:', profileError);
-                clearTimeout(timeoutId);
-                setLoading(false);
-                return;
+            if (profile) {
+                console.log('🔍 [Profil] Profil chargé:', profile);
+                console.log('🔍 [Profil] Crédits:', profile.credits);
+                setProfile(profile);
             }
-
-            if (!profileData) {
-                console.log('🔍 [Profil] Aucun profil trouvé, tentative de création d\'un profil par défaut');
-                // Create default profile if doesn't exist
-                const { data: newProfile, error: insertError } = await supabase
-                    .from('profiles')
-                    .insert([{
-                        id: user.id,
-                        credits: 0,
-                        actor_credits: 0,
-                        subscription_plan: 'free',
-                        subscription_status: 'inactive'
-                    }])
-                    .select()
-                    .single();
-
-                if (insertError) {
-                    console.error('🔍 [Profil] Échec de la création du profil par défaut:', insertError);
-                } else {
-                    console.log('🔍 [Profil] Profil par défaut créé:', newProfile);
-                    setProfile(newProfile);
-                }
-            } else {
-                console.log('🔍 [Profil] Données de profil chargées avec succès');
-                console.log('🔍 [Profil] Définition du profil avec crédits:', profileData.credits);
-                setProfile(profileData);
-            }
-        } catch (error) {
-            console.error('🔍 [Profil] Erreur critique dans loadUserData:', error);
+        } catch (e) {
+            console.error('🔍 [Profil] Erreur inattendue:', e);
         } finally {
             const totalTime = ((performance.now() - startTime) / 1000).toFixed(2);
-            console.log(`🔍 [Profil] Chargement terminé en ${totalTime}s, nettoyage.`);
-            clearTimeout(timeoutId);
+            console.log(`🔍 [Profil] Chargement terminé en ${totalTime}s`);
             setLoading(false);
         }
     };
