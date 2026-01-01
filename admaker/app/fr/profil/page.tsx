@@ -11,6 +11,8 @@ import styles from '../../profile/Profile.module.css';
 interface UserProfile {
     id: string;
     credits: number;
+    actor_credits: number;
+    replicator_credits?: number;
     subscription_plan: string;
     subscription_status: string;
     subscription_end_date: string | null;
@@ -141,6 +143,31 @@ export default function ProfilPage() {
                                     <span className={styles.value}>{profile?.credits || 0} crédits</span>
                                 </div>
                             </div>
+
+                            <div className={styles.infoItem}>
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M12 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                                </svg>
+                                <div>
+                                    <span className={styles.label}>Crédits Acteur</span>
+                                    <span className={styles.value}>{profile?.actor_credits || 0} crédits</span>
+                                </div>
+                            </div>
+
+                            {profile?.replicator_credits !== undefined && profile?.replicator_credits > 0 && (
+                                <div className={styles.infoItem}>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <rect x="3" y="3" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                        <rect x="11" y="3" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                        <rect x="3" y="11" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                        <rect x="11" y="11" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                    </svg>
+                                    <div>
+                                        <span className={styles.label}>Crédits Réplicateur</span>
+                                        <span className={styles.value}>{profile?.replicator_credits} crédits</span>
+                                    </div>
+                                </div>
+                            )}
 
                             <div className={styles.infoItem}>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">

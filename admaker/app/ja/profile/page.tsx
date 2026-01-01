@@ -3,12 +3,15 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
+import { cancelSubscription } from '@/app/actions/stripe';
 import Navbar from '@/components/Navbar';
 import styles from '../../profile/Profile.module.css';
 
 interface UserProfile {
     id: string;
     credits: number;
+    actor_credits: number;
+    replicator_credits?: number;
     subscription_plan: string;
     subscription_status: string;
     subscription_end_date: string | null;
@@ -29,7 +32,7 @@ export default function ProfileJa() {
     const loadUserData = async () => {
         console.log('🔍 [Profile] ユーザーデータの読み込みを開始します...');
 
-        // 無限読み込みを防止するためのセーフティタイムアウト (3秒に短縮)
+        // 無限読み込みを防止するためのセーフティタイムアウト
         const timeoutId = setTimeout(() => {
             console.warn('⚠️ [Profile] 3秒経過しても読み込みが完了しません。読み込み状態を強制解除します。');
             setLoading(false);
@@ -37,31 +40,23 @@ export default function ProfileJa() {
 
         try {
             // Get current user
-            console.log('🔍 [Profile] Supabase authからユーザーを取得しています...');
             const { data: { user }, error: userError } = await supabase.auth.getUser();
 
             if (userError || !user) {
-                console.log('🔍 [Profile] ユーザーが見つからないかエラーが発生しました:', userError);
                 clearTimeout(timeoutId);
                 setLoading(false);
                 router.push('/ja/login');
                 return;
             }
 
-            console.log('🔍 [Profile] ユーザーが見つかりました:', user.email);
             setUserEmail(user.email || '');
 
             // Get user profile from database with explicit field selection
-            console.log('🔍 [Profile] DBからプロファイルデータを取得しています ID:', user.id);
             const { data: profileData, error: profileError } = await supabase
                 .from('profiles')
-                .select('id, credits, actor_credits, subscription_plan, subscription_status, subscription_end_date, created_at, updated_at')
+                .select('id, credits, actor_credits, replicator_credits, subscription_plan, subscription_status, subscription_end_date, created_at, updated_at')
                 .eq('id', user.id)
                 .maybeSingle();
-
-            console.log('🔍 [Profile] 生のプロファイルデータを受信:', profileData);
-            console.log('🔍 [Profile] クレジット値:', profileData?.credits);
-            console.log('🔍 [Profile] アクタークレジット値:', profileData?.actor_credits);
 
             if (profileError) {
                 console.error('🔍 [Profile] プロファイルエラー:', profileError);
@@ -71,7 +66,6 @@ export default function ProfileJa() {
             }
 
             if (!profileData) {
-                console.log('🔍 [Profile] プロファイルが見つかりません。デフォルトプロファイルの作成を試みます');
                 // Create default profile if doesn't exist
                 const { data: newProfile, error: insertError } = await supabase
                     .from('profiles')
@@ -88,18 +82,14 @@ export default function ProfileJa() {
                 if (insertError) {
                     console.error('🔍 [Profile] デフォルトプロファイルの作成に失敗しました:', insertError);
                 } else {
-                    console.log('🔍 [Profile] デフォルトプロファイルが作成されました:', newProfile);
                     setProfile(newProfile);
                 }
             } else {
-                console.log('🔍 [Profile] プロファイルデータの読み込みに成功しました');
-                console.log('🔍 [Profile] クレジットでプロファイルを設定:', profileData.credits);
                 setProfile(profileData);
             }
         } catch (error) {
             console.error('🔍 [Profile] loadUserDataで重大なエラーが発生しました:', error);
         } finally {
-            console.log('🔍 [Profile] 読み込みプロセスが終了しました。タイムアウトをクリアし、読み込み状態を解除します。');
             clearTimeout(timeoutId);
             setLoading(false);
         }
@@ -115,24 +105,17 @@ export default function ProfileJa() {
         }
 
         try {
-            const { data: { user } } = await supabase.auth.getUser();
-            if (!user) return;
+            const result = await cancelSubscription();
 
-            const { error } = await supabase
-                .from('profiles')
-                .update({
-                    subscription_status: 'cancelled',
-                    subscription_plan: 'free'
-                })
-                .eq('id', user.id);
-
-            if (error) throw error;
-
-            alert('サブスクリプションがキャンセルされました。支払い期間が終了するまでアクセスできます。');
-            loadUserData(); // Reload data
+            if (result.success) {
+                alert('サブスクリプションがキャンセルされました。支払い期間が終了するまでアクセスできます。');
+                loadUserData(); // Reload data
+            } else {
+                throw new Error(result.error);
+            }
         } catch (error) {
             console.error('Error cancelling subscription:', error);
-            alert('サブスクリプションのキャンセル中にエラーが発生しました');
+            alert('サブスクリプションのキャンセル中にエラーが発生しました: ' + error);
         }
     };
 
@@ -189,10 +172,35 @@ export default function ProfileJa() {
                                     <path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" fill="currentColor" />
                                 </svg>
                                 <div>
-                                    <span className={styles.label}>クレジット</span>
+                                    <span className={styles.label}>動画クレジット</span>
                                     <span className={styles.value}>{profile?.credits || 0} クレジット</span>
                                 </div>
                             </div>
+
+                            <div className={styles.infoItem}>
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M12 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                                </svg>
+                                <div>
+                                    <span className={styles.label}>AI俳優クレジット</span>
+                                    <span className={styles.value}>{profile?.actor_credits || 0} クレジット</span>
+                                </div>
+                            </div>
+
+                            {profile?.replicator_credits !== undefined && profile?.replicator_credits > 0 && (
+                                <div className={styles.infoItem}>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <rect x="3" y="3" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                        <rect x="11" y="3" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                        <rect x="3" y="11" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                        <rect x="11" y="11" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                    </svg>
+                                    <div>
+                                        <span className={styles.label}>レプリケータークレジット</span>
+                                        <span className={styles.value}>{profile?.replicator_credits} クレジット</span>
+                                    </div>
+                                </div>
+                            )}
 
                             <div className={styles.infoItem}>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">

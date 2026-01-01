@@ -15,7 +15,7 @@ export async function getUserData() {
         // Get user profile from database with explicit field selection
         const { data: profile, error: profileError } = await supabase
             .from('profiles')
-            .select('id, credits, actor_credits, subscription_plan, subscription_status, subscription_end_date, created_at, updated_at')
+            .select('id, credits, actor_credits, replicator_credits, subscription_plan, subscription_status, subscription_end_date, created_at, updated_at')
             .eq('id', user.id)
             .maybeSingle()
 

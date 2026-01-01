@@ -3,12 +3,15 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
+import { cancelSubscription } from '@/app/actions/stripe';
 import Navbar from '@/components/Navbar';
 import styles from '../../profile/Profile.module.css';
 
 interface UserProfile {
     id: string;
     credits: number;
+    actor_credits: number;
+    replicator_credits?: number;
     subscription_plan: string;
     subscription_status: string;
     subscription_end_date: string | null;
@@ -29,7 +32,7 @@ export default function ProfileKo() {
     const loadUserData = async () => {
         console.log('🔍 [Profile] 로딩 시작...');
 
-        // 무한 로딩 방지를 위한 안전 타임아웃 (3초로 감소)
+        // 무한 로딩 방지를 위한 안전 타임아웃
         const timeoutId = setTimeout(() => {
             console.warn('⚠️ [Profile] 3초 후 로딩 시간 초과. 로딩 상태 강제 해제.');
             setLoading(false);
@@ -37,31 +40,23 @@ export default function ProfileKo() {
 
         try {
             // Get current user
-            console.log('🔍 [Profile] Supabase auth에서 사용자 가져오는 중...');
             const { data: { user }, error: userError } = await supabase.auth.getUser();
 
             if (userError || !user) {
-                console.log('🔍 [Profile] 사용자 없음 또는 에러:', userError);
                 clearTimeout(timeoutId);
                 setLoading(false);
                 router.push('/ko/login');
                 return;
             }
 
-            console.log('🔍 [Profile] 사용자 찾음:', user.email);
             setUserEmail(user.email || '');
 
             // Get user profile from database with explicit field selection
-            console.log('🔍 [Profile] ID에 대한 DB 프로필 데이터 가져오는 중:', user.id);
             const { data: profileData, error: profileError } = await supabase
                 .from('profiles')
-                .select('id, credits, actor_credits, subscription_plan, subscription_status, subscription_end_date, created_at, updated_at')
+                .select('id, credits, actor_credits, replicator_credits, subscription_plan, subscription_status, subscription_end_date, created_at, updated_at')
                 .eq('id', user.id)
                 .maybeSingle();
-
-            console.log('🔍 [Profile] 원시 프로필 데이터 수신:', profileData);
-            console.log('🔍 [Profile] 크레딧 값:', profileData?.credits);
-            console.log('🔍 [Profile] 액터 크레딧 값:', profileData?.actor_credits);
 
             if (profileError) {
                 console.error('🔍 [Profile] 프로필 에러:', profileError);
@@ -71,7 +66,6 @@ export default function ProfileKo() {
             }
 
             if (!profileData) {
-                console.log('🔍 [Profile] 프로필을 찾을 수 없음, 기본 프로필 생성 시도');
                 // Create default profile if doesn't exist
                 const { data: newProfile, error: insertError } = await supabase
                     .from('profiles')
@@ -88,18 +82,14 @@ export default function ProfileKo() {
                 if (insertError) {
                     console.error('🔍 [Profile] 기본 프로필 생성 실패:', insertError);
                 } else {
-                    console.log('🔍 [Profile] 기본 프로필 생성됨:', newProfile);
                     setProfile(newProfile);
                 }
             } else {
-                console.log('🔍 [Profile] 프로필 데이터 로드 성공');
-                console.log('🔍 [Profile] 크레딧으로 프로필 설정:', profileData.credits);
                 setProfile(profileData);
             }
         } catch (error) {
             console.error('🔍 [Profile] loadUserData의 심각한 에러:', error);
         } finally {
-            console.log('🔍 [Profile] 로드 프로세스 완료, 타임아웃 지우고 로딩 상태 해제.');
             clearTimeout(timeoutId);
             setLoading(false);
         }
@@ -115,24 +105,17 @@ export default function ProfileKo() {
         }
 
         try {
-            const { data: { user } } = await supabase.auth.getUser();
-            if (!user) return;
+            const result = await cancelSubscription();
 
-            const { error } = await supabase
-                .from('profiles')
-                .update({
-                    subscription_status: 'cancelled',
-                    subscription_plan: 'free'
-                })
-                .eq('id', user.id);
-
-            if (error) throw error;
-
-            alert('구독이 취소되었습니다. 결제 기간이 끝날 때까지 액세스 권한이 유지됩니다.');
-            loadUserData(); // Reload data
+            if (result.success) {
+                alert('구독이 취소되었습니다. 결제 기간이 끝날 때까지 액세스 권한이 유지됩니다.');
+                loadUserData(); // Reload data
+            } else {
+                throw new Error(result.error);
+            }
         } catch (error) {
             console.error('Error cancelling subscription:', error);
-            alert('구독 취소 중 오류가 발생했습니다');
+            alert('구독 취소 중 오류가 발생했습니다: ' + error);
         }
     };
 
@@ -189,10 +172,35 @@ export default function ProfileKo() {
                                     <path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" fill="currentColor" />
                                 </svg>
                                 <div>
-                                    <span className={styles.label}>크레딧</span>
+                                    <span className={styles.label}>비디오 크레딧</span>
                                     <span className={styles.value}>{profile?.credits || 0} 크레딧</span>
                                 </div>
                             </div>
+
+                            <div className={styles.infoItem}>
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M12 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                                </svg>
+                                <div>
+                                    <span className={styles.label}>AI 배우 크레딧</span>
+                                    <span className={styles.value}>{profile?.actor_credits || 0} 크레딧</span>
+                                </div>
+                            </div>
+
+                            {profile?.replicator_credits !== undefined && profile?.replicator_credits > 0 && (
+                                <div className={styles.infoItem}>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <rect x="3" y="3" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                        <rect x="11" y="3" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                        <rect x="3" y="11" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                        <rect x="11" y="11" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                    </svg>
+                                    <div>
+                                        <span className={styles.label}>레플리케이터 크레딧</span>
+                                        <span className={styles.value}>{profile?.replicator_credits} 크레딧</span>
+                                    </div>
+                                </div>
+                            )}
 
                             <div className={styles.infoItem}>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">

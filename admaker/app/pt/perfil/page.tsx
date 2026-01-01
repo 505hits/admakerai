@@ -3,12 +3,15 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
+import { cancelSubscription } from '@/app/actions/stripe';
 import Navbar from '@/components/Navbar';
 import styles from '../../profile/Profile.module.css';
 
 interface UserProfile {
     id: string;
     credits: number;
+    actor_credits: number;
+    replicator_credits?: number;
     subscription_plan: string;
     subscription_status: string;
     subscription_end_date: string | null;
@@ -29,7 +32,7 @@ export default function PerfilPage() {
     const loadUserData = async () => {
         console.log('🔍 [Perfil] Iniciando carregamento de dados do usuário...');
 
-        // Timeout de segurança para evitar carregamento infinito (reduzido para 3s)
+        // Timeout de segurança para evitar carregamento infinito
         const timeoutId = setTimeout(() => {
             console.warn('⚠️ [Perfil] O carregamento expirou após 3 segundos. Forçando fim do carregamento.');
             setLoading(false);
@@ -37,31 +40,23 @@ export default function PerfilPage() {
 
         try {
             // Get current user
-            console.log('🔍 [Perfil] Obtendo usuário do Supabase...');
             const { data: { user }, error: userError } = await supabase.auth.getUser();
 
             if (userError || !user) {
-                console.log('🔍 [Perfil] Sem usuário ou erro:', userError);
                 clearTimeout(timeoutId);
                 setLoading(false);
                 router.push('/pt/conexao');
                 return;
             }
 
-            console.log('🔍 [Perfil] Usuário encontrado:', user.email);
             setUserEmail(user.email || '');
 
             // Get user profile from database with explicit field selection
-            console.log('🔍 [Perfil] Buscando dados do perfil no DB para ID:', user.id);
             const { data: profileData, error: profileError } = await supabase
                 .from('profiles')
-                .select('id, credits, actor_credits, subscription_plan, subscription_status, subscription_end_date, created_at, updated_at')
+                .select('id, credits, actor_credits, replicator_credits, subscription_plan, subscription_status, subscription_end_date, created_at, updated_at')
                 .eq('id', user.id)
                 .maybeSingle();
-
-            console.log('🔍 [Perfil] Dados de perfil brutos recebidos:', profileData);
-            console.log('🔍 [Perfil] Valor dos créditos:', profileData?.credits);
-            console.log('🔍 [Perfil] Valor dos créditos de ator:', profileData?.actor_credits);
 
             if (profileError) {
                 console.error('🔍 [Perfil] Erro de perfil:', profileError);
@@ -71,7 +66,6 @@ export default function PerfilPage() {
             }
 
             if (!profileData) {
-                console.log('🔍 [Perfil] Nenhum perfil encontrado, tentando criar perfil padrão');
                 // Create default profile if doesn't exist
                 const { data: newProfile, error: insertError } = await supabase
                     .from('profiles')
@@ -88,18 +82,14 @@ export default function PerfilPage() {
                 if (insertError) {
                     console.error('🔍 [Perfil] Erro ao criar perfil padrão:', insertError);
                 } else {
-                    console.log('🔍 [Perfil] Perfil padrão criado:', newProfile);
                     setProfile(newProfile);
                 }
             } else {
-                console.log('🔍 [Perfil] Perfil carregado com sucesso');
-                console.log('🔍 [Perfil] Definindo perfil com créditos:', profileData.credits);
                 setProfile(profileData);
             }
         } catch (error) {
             console.error('🔍 [Perfil] Erro crítico no loadUserData:', error);
         } finally {
-            console.log('🔍 [Perfil] Processo de carregamento finalizado, limpando timeout e estado.');
             clearTimeout(timeoutId);
             setLoading(false);
         }
@@ -115,24 +105,17 @@ export default function PerfilPage() {
         }
 
         try {
-            const { data: { user } } = await supabase.auth.getUser();
-            if (!user) return;
+            const result = await cancelSubscription();
 
-            const { error } = await supabase
-                .from('profiles')
-                .update({
-                    subscription_status: 'cancelled',
-                    subscription_plan: 'free'
-                })
-                .eq('id', user.id);
-
-            if (error) throw error;
-
-            alert('Sua assinatura foi cancelada. Você manterá o acesso até o final do período pago.');
-            loadUserData(); // Reload data
+            if (result.success) {
+                alert('Sua assinatura foi cancelada. Você manterá o acesso até o final do período pago.');
+                loadUserData(); // Reload data
+            } else {
+                throw new Error(result.error);
+            }
         } catch (error) {
             console.error('Error cancelling subscription:', error);
-            alert('Erro ao cancelar a assinatura');
+            alert('Erro ao cancelar a assinatura: ' + error);
         }
     };
 
@@ -189,10 +172,35 @@ export default function PerfilPage() {
                                     <path d="M10 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" fill="currentColor" />
                                 </svg>
                                 <div>
-                                    <span className={styles.label}>Créditos</span>
+                                    <span className={styles.label}>Créditos de Vídeo</span>
                                     <span className={styles.value}>{profile?.credits || 0} créditos</span>
                                 </div>
                             </div>
+
+                            <div className={styles.infoItem}>
+                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                    <path d="M12 2l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+                                </svg>
+                                <div>
+                                    <span className={styles.label}>Créditos de Ator</span>
+                                    <span className={styles.value}>{profile?.actor_credits || 0} créditos</span>
+                                </div>
+                            </div>
+
+                            {profile?.replicator_credits !== undefined && profile?.replicator_credits > 0 && (
+                                <div className={styles.infoItem}>
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <rect x="3" y="3" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                        <rect x="11" y="3" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                        <rect x="3" y="11" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                        <rect x="11" y="11" width="6" height="6" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                    </svg>
+                                    <div>
+                                        <span className={styles.label}>Créditos de Replicador</span>
+                                        <span className={styles.value}>{profile?.replicator_credits} créditos</span>
+                                    </div>
+                                </div>
+                            )}
 
                             <div className={styles.infoItem}>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
