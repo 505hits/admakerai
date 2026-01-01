@@ -38,19 +38,24 @@ export default function ArticleImmobilierUGC() {
                 <meta name="keywords" content="création vidéo UGC, marketing immobilier, générateur vidéo IA, vidéos immobilières, UGC immobilier, service marketing vidéo" />
 
                 {/* Canonical URL */}
-                <link rel="canonical" href="https://admaker.ai/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier" />
+                <link rel="canonical" href="https://admakerai.app/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier" />
 
                 {/* Hreflang Tags */}
-                <link rel="alternate" hrefLang="en" href="https://admaker.ai/blog/best-ugc-video-creation-service-for-real-estate-marketing" />
-                <link rel="alternate" hrefLang="fr" href="https://admaker.ai/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier" />
-                <link rel="alternate" hrefLang="x-default" href="https://admaker.ai/blog/best-ugc-video-creation-service-for-real-estate-marketing" />
+                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/best-ugc-video-creation-service-for-real-estate-marketing" />
+                <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier" />
+                <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/mejor-servicio-creacion-video-ugc-marketing-inmobiliario" />
+                <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/melhor-servico-criacao-video-ugc-marketing-imobiliario" />
+                <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/bester-ugc-video-erstellungsservice-immobilienmarketing" />
+                <link rel="alternate" hrefLang="ko" href="https://admakerai.app/ko/blog/best-ugc-video-creation-service-real-estate-marketing" />
+                <link rel="alternate" hrefLang="ja" href="https://admakerai.app/ja/blog/best-ugc-video-creation-service-real-estate-marketing" />
+                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/best-ugc-video-creation-service-for-real-estate-marketing" />
 
                 {/* Open Graph / Facebook */}
                 <meta property="og:type" content="article" />
                 <meta property="og:title" content="Meilleur Service de Création de Vidéo UGC pour le Marketing Immobilier" />
                 <meta property="og:description" content="Découvrez le meilleur service de création de vidéo UGC pour le marketing immobilier. Comparez les meilleures plateformes, tarifs et fonctionnalités. Générez des vidéos immobilières professionnelles en 45 secondes avec l'IA." />
                 <meta property="og:image" content="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/2.jpg" />
-                <meta property="og:url" content="https://admaker.ai/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier" />
+                <meta property="og:url" content="https://admakerai.app/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier" />
                 <meta property="og:locale" content="fr_FR" />
                 <meta property="og:locale:alternate" content="en_US" />
                 <meta property="og:site_name" content="AdMaker AI" />
@@ -80,7 +85,7 @@ export default function ArticleImmobilierUGC() {
                             "name": "AdMaker AI",
                             "logo": {
                                 "@type": "ImageObject",
-                                "url": "https://admaker.ai/logo.png"
+                                "url": "https://admakerai.app/logo.png"
                             }
                         },
                         "datePublished": "2024-12-01",
@@ -88,7 +93,7 @@ export default function ArticleImmobilierUGC() {
                         "description": "Découvrez le meilleur service de création de vidéo UGC pour le marketing immobilier. Comparez les meilleures plateformes, tarifs et fonctionnalités. Générez des vidéos immobilières professionnelles en 45 secondes avec l'IA.",
                         "mainEntityOfPage": {
                             "@type": "WebPage",
-                            "@id": "https://admaker.ai/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier"
+                            "@id": "https://admakerai.app/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier"
                         },
                         "inLanguage": "fr-FR"
                     })}

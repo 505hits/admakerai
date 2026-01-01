@@ -38,22 +38,24 @@ export default function KoreanRealEstateUGCArticle() {
                 <meta name="keywords" content="UGC 비디오 제작, 부동산 마케팅, AI 비디오 생성기, 부동산 비디오, UGC 부동산, 비디오 마케팅 서비스" />
 
                 {/* Canonical URL */}
-                <link rel="canonical" href="https://admaker.ai/ko/blog/best-ugc-video-creation-service-real-estate-marketing" />
+                <link rel="canonical" href="https://admakerai.app/ko/blog/best-ugc-video-creation-service-real-estate-marketing" />
 
                 {/* Hreflang Tags */}
-                <link rel="alternate" hrefLang="en" href="https://admaker.ai/blog/best-ugc-video-creation-service-for-real-estate-marketing" />
-                <link rel="alternate" hrefLang="fr" href="https://admaker.ai/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier" />
-                <link rel="alternate" hrefLang="es" href="https://admaker.ai/es/blog/mejor-servicio-creacion-video-ugc-marketing-inmobiliario" />
-                <link rel="alternate" hrefLang="de" href="https://admaker.ai/de/blog/bester-ugc-video-erstellungsservice-immobilienmarketing" />
-                <link rel="alternate" hrefLang="ko" href="https://admaker.ai/ko/blog/best-ugc-video-creation-service-real-estate-marketing" />
-                <link rel="alternate" hrefLang="x-default" href="https://admaker.ai/blog/best-ugc-video-creation-service-for-real-estate-marketing" />
+                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/best-ugc-video-creation-service-for-real-estate-marketing" />
+                <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier" />
+                <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/mejor-servicio-creacion-video-ugc-marketing-inmobiliario" />
+                <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/melhor-servico-criacao-video-ugc-marketing-imobiliario" />
+                <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/bester-ugc-video-erstellungsservice-immobilienmarketing" />
+                <link rel="alternate" hrefLang="ko" href="https://admakerai.app/ko/blog/best-ugc-video-creation-service-real-estate-marketing" />
+                <link rel="alternate" hrefLang="ja" href="https://admakerai.app/ja/blog/best-ugc-video-creation-service-real-estate-marketing" />
+                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/best-ugc-video-creation-service-for-real-estate-marketing" />
 
                 {/* Open Graph / Facebook */}
                 <meta property="og:type" content="article" />
                 <meta property="og:title" content="부동산 마케팅을 위한 최고의 UGC 비디오 제작 서비스" />
                 <meta property="og:description" content="부동산 마케팅을 위한 최고의 UGC 비디오 제작 서비스를 알아보세요. 최고의 플랫폼, 가격 및 기능을 비교하세요. AI로 45초 만에 전문 부동산 비디오를 생성하세요." />
                 <meta property="og:image" content="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/2.jpg" />
-                <meta property="og:url" content="https://admaker.ai/ko/blog/best-ugc-video-creation-service-real-estate-marketing" />
+                <meta property="og:url" content="https://admakerai.app/ko/blog/best-ugc-video-creation-service-real-estate-marketing" />
                 <meta property="og:locale" content="ko_KR" />
                 <meta property="og:locale:alternate" content="en_US" />
                 <meta property="og:locale:alternate" content="fr_FR" />
@@ -86,7 +88,7 @@ export default function KoreanRealEstateUGCArticle() {
                             "name": "AdMaker AI",
                             "logo": {
                                 "@type": "ImageObject",
-                                "url": "https://admaker.ai/logo.png"
+                                "url": "https://admakerai.app/logo.png"
                             }
                         },
                         "datePublished": "2024-12-01",
@@ -94,7 +96,7 @@ export default function KoreanRealEstateUGCArticle() {
                         "description": "부동산 마케팅을 위한 최고의 UGC 비디오 제작 서비스를 알아보세요. 최고의 플랫폼, 가격 및 기능을 비교하세요. AI로 45초 만에 전문 부동산 비디오를 생성하세요.",
                         "mainEntityOfPage": {
                             "@type": "WebPage",
-                            "@id": "https://admaker.ai/ko/blog/best-ugc-video-creation-service-real-estate-marketing"
+                            "@id": "https://admakerai.app/ko/blog/best-ugc-video-creation-service-real-estate-marketing"
                         },
                         "inLanguage": "ko-KR"
                     })}

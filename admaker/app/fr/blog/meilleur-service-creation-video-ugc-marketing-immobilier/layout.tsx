@@ -9,10 +9,11 @@ export const metadata: Metadata = {
         languages: {
             'en': "https://admakerai.app/blog/best-ugc-video-creation-service-for-real-estate-marketing",
             'fr': "https://admakerai.app/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier",
-            'es': "https://admakerai.app/es",
-            'pt': "https://admakerai.app/pt",
-            'ko': "https://admakerai.app/ko",
-            'de': "https://admakerai.app/de",
+            'es': "https://admakerai.app/es/blog/mejor-servicio-creacion-video-ugc-marketing-inmobiliario",
+            'pt': "https://admakerai.app/pt/blog/melhor-servico-criacao-video-ugc-marketing-imobiliario",
+            'de': "https://admakerai.app/de/blog/bester-ugc-video-erstellungsservice-immobilienmarketing",
+            'ko': "https://admakerai.app/ko/blog/best-ugc-video-creation-service-real-estate-marketing",
+            'ja': "https://admakerai.app/ja/blog/best-ugc-video-creation-service-real-estate-marketing",
             'x-default': "https://admakerai.app/blog/best-ugc-video-creation-service-for-real-estate-marketing",
         }
     },

@@ -17,13 +17,16 @@ export const metadata: Metadata = {
         images: ['https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/2.jpg'],
     },
     alternates: {
-        canonical: '/de/blog/bester-ugc-video-erstellungsservice-immobilienmarketing',
+        canonical: "https://admakerai.app/de/blog/bester-ugc-video-erstellungsservice-immobilienmarketing",
         languages: {
-            'en': '/blog/best-ugc-video-creation-service-for-real-estate-marketing',
-            'fr': '/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier',
-            'es': '/es/blog/mejor-servicio-creacion-video-ugc-marketing-inmobiliario',
-            'de': '/de/blog/bester-ugc-video-erstellungsservice-immobilienmarketing',
-            'x-default': '/blog/best-ugc-video-creation-service-for-real-estate-marketing'
+            'en': "https://admakerai.app/blog/best-ugc-video-creation-service-for-real-estate-marketing",
+            'fr': "https://admakerai.app/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier",
+            'es': "https://admakerai.app/es/blog/mejor-servicio-creacion-video-ugc-marketing-inmobiliario",
+            'pt': "https://admakerai.app/pt/blog/melhor-servico-criacao-video-ugc-marketing-imobiliario",
+            'de': "https://admakerai.app/de/blog/bester-ugc-video-erstellungsservice-immobilienmarketing",
+            'ko': "https://admakerai.app/ko/blog/best-ugc-video-creation-service-real-estate-marketing",
+            'ja': "https://admakerai.app/ja/blog/best-ugc-video-creation-service-real-estate-marketing",
+            'x-default': "https://admakerai.app/blog/best-ugc-video-creation-service-for-real-estate-marketing",
         }
     }
 };

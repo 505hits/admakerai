@@ -5,15 +5,16 @@ export const metadata: Metadata = {
     description: 'Discover the best UGC video creation service for real estate marketing. Compare top platforms, pricing, and features. Generate property videos in 45 seconds. Try free.',
     keywords: 'UGC video creation, real estate marketing, property videos, AI video generator, real estate content, listing videos',
     alternates: {
-        canonical: "https://admakerai.vercel.app/blog/best-ugc-video-creation-service-for-real-estate-marketing",
+        canonical: "https://admakerai.app/blog/best-ugc-video-creation-service-for-real-estate-marketing",
         languages: {
-            'en': "https://admakerai.vercel.app/blog/best-ugc-video-creation-service-for-real-estate-marketing",
-            'fr': "https://admakerai.vercel.app/fr",
-            'es': "https://admakerai.vercel.app/es",
-            'pt': "https://admakerai.vercel.app/pt",
-            'ko': "https://admakerai.vercel.app/ko",
-            'de': "https://admakerai.vercel.app/de",
-            'x-default': "https://admakerai.vercel.app/blog/best-ugc-video-creation-service-for-real-estate-marketing",
+            'en': "https://admakerai.app/blog/best-ugc-video-creation-service-for-real-estate-marketing",
+            'fr': "https://admakerai.app/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier",
+            'es': "https://admakerai.app/es/blog/mejor-servicio-creacion-video-ugc-marketing-inmobiliario",
+            'pt': "https://admakerai.app/pt/blog/melhor-servico-criacao-video-ugc-marketing-imobiliario",
+            'de': "https://admakerai.app/de/blog/bester-ugc-video-erstellungsservice-immobilienmarketing",
+            'ko': "https://admakerai.app/ko/blog/best-ugc-video-creation-service-real-estate-marketing",
+            'ja': "https://admakerai.app/ja/blog/best-ugc-video-creation-service-real-estate-marketing",
+            'x-default': "https://admakerai.app/blog/best-ugc-video-creation-service-for-real-estate-marketing",
         }
     },
     openGraph: {

@@ -135,7 +135,7 @@ export async function POST(request: NextRequest) {
             const stripe = getStripe();
 
             // Ensure app URL is valid and doesn't have trailing slash
-            let appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+            let appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://admakerai.app';
             appUrl = appUrl.replace(/\/$/, '');
 
             // Use Promise.race to enforce a strict server-side timeout

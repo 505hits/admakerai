@@ -36,19 +36,24 @@ export default function TopAIPlatformsUGCArticle() {
                 <meta name="keywords" content="plataformas IA UGC, criação vídeo marca, gerador vídeo IA, conteúdo UGC, vídeos marca autênticos, ferramentas marketing IA" />
 
                 {/* Canonical URL */}
-                <link rel="canonical" href="https://admaker.ai/pt/blog/melhores-plataformas-ia-criar-videos-ugc-marca" />
+                <link rel="canonical" href="https://admakerai.app/pt/blog/melhores-plataformas-ia-criar-videos-ugc-marca" />
 
                 {/* Hreflang Tags */}
-                <link rel="alternate" hrefLang="pt" href="https://admaker.ai/pt/blog/melhores-plataformas-ia-criar-videos-ugc-marca" />
-                <link rel="alternate" hrefLang="en" href="https://admaker.ai/blog/top-ai-platforms-creating-ugc-brand-videos" />
-                <link rel="alternate" hrefLang="x-default" href="https://admaker.ai/blog/top-ai-platforms-creating-ugc-brand-videos" />
+                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/top-ai-platforms-creating-ugc-brand-videos" />
+                <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/meilleures-plateformes-ia-creation-videos-ugc-marque" />
+                <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/mejores-plataformas-ia-crear-videos-ugc-marca" />
+                <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/melhores-plataformas-ia-criar-videos-ugc-marca" />
+                <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/beste-ki-plattformen-ugc-markenvideos" />
+                <link rel="alternate" hrefLang="ko" href="https://admakerai.app/ko/blog/brand-ugc-video-ai-platforms" />
+                <link rel="alternate" hrefLang="ja" href="https://admakerai.app/ja/blog/brand-ugc-video-ai-platforms" />
+                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/top-ai-platforms-creating-ugc-brand-videos" />
 
                 {/* Open Graph / Facebook */}
                 <meta property="og:type" content="article" />
                 <meta property="og:title" content="Melhores Plataformas de IA para Criar Vídeos UGC de Marca (Guia 2025)" />
                 <meta property="og:description" content="Descubra as melhores plataformas de IA para criar vídeos UGC de marca. Compare recursos, preços e resultados. Gere conteúdo autêntico de marca em segundos." />
                 <meta property="og:image" content="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1280&h=720&fit=crop" />
-                <meta property="og:url" content="https://admaker.ai/pt/blog/melhores-plataformas-ia-criar-videos-ugc-marca" />
+                <meta property="og:url" content="https://admakerai.app/pt/blog/melhores-plataformas-ia-criar-videos-ugc-marca" />
                 <meta property="og:locale" content="pt_BR" />
                 <meta property="og:site_name" content="AdMaker AI" />
                 <meta property="article:published_time" content="2024-12-29T00:00:00Z" />
@@ -77,7 +82,7 @@ export default function TopAIPlatformsUGCArticle() {
                             "name": "AdMaker AI",
                             "logo": {
                                 "@type": "ImageObject",
-                                "url": "https://admaker.ai/logo.png"
+                                "url": "https://admakerai.app/logo.png"
                             }
                         },
                         "datePublished": "2024-12-29",
@@ -85,7 +90,7 @@ export default function TopAIPlatformsUGCArticle() {
                         "description": "Descubra as melhores plataformas de IA para criar vídeos UGC de marca. Compare recursos, preços e resultados. Gere conteúdo autêntico de marca em segundos.",
                         "mainEntityOfPage": {
                             "@type": "WebPage",
-                            "@id": "https://admaker.ai/pt/blog/melhores-plataformas-ia-criar-videos-ugc-marca"
+                            "@id": "https://admakerai.app/pt/blog/melhores-plataformas-ia-criar-videos-ugc-marca"
                         }
                     })}
                 </script>

@@ -36,19 +36,24 @@ export default function RealEstateUGCArticleJA() {
                 <meta name="keywords" content="UGC動画作成, 不動産マーケティング, AI動画ジェネレーター, 物件動画, 不動産UGC, 動画マーケティングサービス" />
 
                 {/* Canonical URL */}
-                <link rel="canonical" href="https://admaker.ai/ja/blog/best-ugc-video-creation-service-real-estate-marketing" />
+                <link rel="canonical" href="https://admakerai.app/ja/blog/best-ugc-video-creation-service-real-estate-marketing" />
 
                 {/* Hreflang Tags */}
-                <link rel="alternate" hrefLang="ja" href="https://admaker.ai/ja/blog/best-ugc-video-creation-service-real-estate-marketing" />
-                <link rel="alternate" hrefLang="en" href="https://admaker.ai/blog/best-ugc-video-creation-service-for-real-estate-marketing" />
-                <link rel="alternate" hrefLang="x-default" href="https://admaker.ai/blog/best-ugc-video-creation-service-for-real-estate-marketing" />
+                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/best-ugc-video-creation-service-for-real-estate-marketing" />
+                <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier" />
+                <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/mejor-servicio-creacion-video-ugc-marketing-inmobiliario" />
+                <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/melhor-servico-criacao-video-ugc-marketing-imobiliario" />
+                <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/bester-ugc-video-erstellungsservice-immobilienmarketing" />
+                <link rel="alternate" hrefLang="ko" href="https://admakerai.app/ko/blog/best-ugc-video-creation-service-real-estate-marketing" />
+                <link rel="alternate" hrefLang="ja" href="https://admakerai.app/ja/blog/best-ugc-video-creation-service-real-estate-marketing" />
+                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/best-ugc-video-creation-service-for-real-estate-marketing" />
 
                 {/* Open Graph / Facebook */}
                 <meta property="og:type" content="article" />
                 <meta property="og:title" content="不動産マーケティングに最適なUGC動画作成サービス" />
                 <meta property="og:description" content="不動産マーケティングに最適なUGC動画作成サービスを発見。トッププラットフォーム、価格、機能を比較。AIで45秒でプロフェッショナルな不動産動画を生成。" />
                 <meta property="og:image" content="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/2.jpg" />
-                <meta property="og:url" content="https://admaker.ai/ja/blog/best-ugc-video-creation-service-real-estate-marketing" />
+                <meta property="og:url" content="https://admakerai.app/ja/blog/best-ugc-video-creation-service-real-estate-marketing" />
                 <meta property="og:locale" content="ja_JP" />
                 <meta property="og:site_name" content="AdMaker AI" />
 

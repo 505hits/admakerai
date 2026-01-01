@@ -36,19 +36,25 @@ export default function TopAIPlatformsUGCArticle() {
                 <meta name="keywords" content="AI UGC 플랫폼, 브랜드 영상 제작, AI 비디오 생성기, UGC 콘텐츠, 진정성 있는 브랜드 영상, AI 마케팅 도구" />
 
                 {/* Canonical URL */}
-                <link rel="canonical" href="https://admaker.ai/ko/blog/brand-ugc-video-ai-platforms" />
+                {/* Canonical URL */}
+                <link rel="canonical" href="https://admakerai.app/ko/blog/brand-ugc-video-ai-platforms" />
 
                 {/* Hreflang Tags */}
-                <link rel="alternate" hrefLang="ko" href="https://admaker.ai/ko/blog/brand-ugc-video-ai-platforms" />
-                <link rel="alternate" hrefLang="en" href="https://admaker.ai/blog/top-ai-platforms-creating-ugc-brand-videos" />
-                <link rel="alternate" hrefLang="x-default" href="https://admaker.ai/blog/top-ai-platforms-creating-ugc-brand-videos" />
+                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/top-ai-platforms-creating-ugc-brand-videos" />
+                <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/meilleures-plateformes-ia-creation-videos-ugc-marque" />
+                <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/mejores-plataformas-ia-crear-videos-ugc-marca" />
+                <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/melhores-plataformas-ia-criar-videos-ugc-marca" />
+                <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/beste-ki-plattformen-ugc-markenvideos" />
+                <link rel="alternate" hrefLang="ko" href="https://admakerai.app/ko/blog/brand-ugc-video-ai-platforms" />
+                <link rel="alternate" hrefLang="ja" href="https://admakerai.app/ja/blog/brand-ugc-video-ai-platforms" />
+                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/top-ai-platforms-creating-ugc-brand-videos" />
 
                 {/* Open Graph / Facebook */}
                 <meta property="og:type" content="article" />
                 <meta property="og:title" content="UGC 브랜드 영상 제작을 위한 최고의 AI 플랫폼 (2025 가이드)" />
                 <meta property="og:description" content="UGC 브랜드 영상 제작을 위한 최고의 AI 플랫폼을 찾아보세요. 기능, 가격, 결과를 비교하세요. 몇 초 만에 진정성 있는 브랜드 콘텐츠를 생성하세요." />
                 <meta property="og:image" content="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1280&h=720&fit=crop" />
-                <meta property="og:url" content="https://admaker.ai/ko/blog/brand-ugc-video-ai-platforms" />
+                <meta property="og:url" content="https://admakerai.app/ko/blog/brand-ugc-video-ai-platforms" />
                 <meta property="og:locale" content="ko_KR" />
                 <meta property="og:site_name" content="AdMaker AI" />
                 <meta property="article:published_time" content="2024-12-29T00:00:00Z" />
@@ -77,7 +83,7 @@ export default function TopAIPlatformsUGCArticle() {
                             "name": "AdMaker AI",
                             "logo": {
                                 "@type": "ImageObject",
-                                "url": "https://admaker.ai/logo.png"
+                                "url": "https://admakerai.app/logo.png"
                             }
                         },
                         "datePublished": "2024-12-29",
@@ -85,7 +91,7 @@ export default function TopAIPlatformsUGCArticle() {
                         "description": "UGC 브랜드 영상 제작을 위한 최고의 AI 플랫폼을 찾아보세요. 기능, 가격, 결과를 비교하세요. 몇 초 만에 진정성 있는 브랜드 콘텐츠를 생성하세요.",
                         "mainEntityOfPage": {
                             "@type": "WebPage",
-                            "@id": "https://admaker.ai/ko/blog/brand-ugc-video-ai-platforms"
+                            "@id": "https://admakerai.app/ko/blog/brand-ugc-video-ai-platforms"
                         }
                     })}
                 </script>

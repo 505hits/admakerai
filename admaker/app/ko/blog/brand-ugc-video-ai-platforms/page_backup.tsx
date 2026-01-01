@@ -36,18 +36,18 @@ export default function TopAIPlatformsUGCArticle() {
                 <meta name="keywords" content="AI UGC platforms, brand video creation, AI video generator, UGC content, authentic brand videos, AI marketing tools" />
 
                 {/* Canonical URL */}
-                <link rel="canonical" href="https://admaker.ai/blog/top-ai-platforms-creating-ugc-brand-videos" />
+                <link rel="canonical" href="https://admakerai.app/blog/top-ai-platforms-creating-ugc-brand-videos" />
 
                 {/* Hreflang Tags */}
-                <link rel="alternate" hrefLang="en" href="https://admaker.ai/blog/top-ai-platforms-creating-ugc-brand-videos" />
-                <link rel="alternate" hrefLang="x-default" href="https://admaker.ai/blog/top-ai-platforms-creating-ugc-brand-videos" />
+                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/top-ai-platforms-creating-ugc-brand-videos" />
+                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/top-ai-platforms-creating-ugc-brand-videos" />
 
                 {/* Open Graph / Facebook */}
                 <meta property="og:type" content="article" />
                 <meta property="og:title" content="Top AI Platforms for Creating UGC Brand Videos (2025 Guide)" />
                 <meta property="og:description" content="Discover the top AI platforms for creating UGC brand videos. Compare features, pricing, and results. Generate authentic brand content in seconds." />
                 <meta property="og:image" content="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1280&h=720&fit=crop" />
-                <meta property="og:url" content="https://admaker.ai/blog/top-ai-platforms-creating-ugc-brand-videos" />
+                <meta property="og:url" content="https://admakerai.app/blog/top-ai-platforms-creating-ugc-brand-videos" />
                 <meta property="og:locale" content="en_US" />
                 <meta property="og:site_name" content="AdMaker AI" />
                 <meta property="article:published_time" content="2024-12-29T00:00:00Z" />
@@ -76,7 +76,7 @@ export default function TopAIPlatformsUGCArticle() {
                             "name": "AdMaker AI",
                             "logo": {
                                 "@type": "ImageObject",
-                                "url": "https://admaker.ai/logo.png"
+                                "url": "https://admakerai.app/logo.png"
                             }
                         },
                         "datePublished": "2024-12-29",
@@ -84,7 +84,7 @@ export default function TopAIPlatformsUGCArticle() {
                         "description": "Discover the top AI platforms for creating UGC brand videos. Compare features, pricing, and results. Generate authentic brand content in seconds.",
                         "mainEntityOfPage": {
                             "@type": "WebPage",
-                            "@id": "https://admaker.ai/blog/top-ai-platforms-creating-ugc-brand-videos"
+                            "@id": "https://admakerai.app/blog/top-ai-platforms-creating-ugc-brand-videos"
                         }
                     })}
                 </script>

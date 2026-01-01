@@ -121,7 +121,7 @@ export async function POST(request: NextRequest) {
         console.log(`🖼️ Reference images uploaded: ${imageInput.length}`);
 
         // Get callback URL for webhook
-        const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://admakerai.vercel.app';
+        const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://admakerai.app';
         const callBackUrl = `${baseUrl}/api/kie/nano-banana/webhook`;
 
         console.log('🔗 Callback URL configuration:');

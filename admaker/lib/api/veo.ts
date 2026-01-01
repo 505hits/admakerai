@@ -10,7 +10,7 @@ const getCallbackUrl = () => {
     // Always use NEXT_PUBLIC_APP_URL to ensure callbacks work
     // even when testing on preview deployments
     const appUrl = process.env.NEXT_PUBLIC_APP_URL ||
-        (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000');
+        (typeof window !== 'undefined' ? window.location.origin : 'https://admakerai.app');
     return `${appUrl}/api/veo/webhook`;
 };
 
