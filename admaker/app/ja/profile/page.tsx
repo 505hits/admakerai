@@ -27,18 +27,32 @@ export default function ProfileJa() {
     }, []);
 
     const loadUserData = async () => {
+        console.log('🔍 [Profile] ユーザーデータの読み込みを開始します...');
+
+        // 無限読み込みを防止するためのセーフティタイムアウト
+        const timeoutId = setTimeout(() => {
+            console.warn('⚠️ [Profile] 5秒経過しても読み込みが完了しません。読み込み状態を強制解除します。');
+            setLoading(false);
+        }, 5000);
+
         try {
             // Get current user
+            console.log('🔍 [Profile] Supabase authからユーザーを取得しています...');
             const { data: { user }, error: userError } = await supabase.auth.getUser();
 
             if (userError || !user) {
+                console.log('🔍 [Profile] ユーザーが見つからないかエラーが発生しました:', userError);
+                clearTimeout(timeoutId);
+                setLoading(false);
                 router.push('/ja/login');
                 return;
             }
 
+            console.log('🔍 [Profile] ユーザーが見つかりました:', user.email);
             setUserEmail(user.email || '');
 
             // Get user profile from database
+            console.log('🔍 [Profile] DBからプロファイルデータを取得しています ID:', user.id);
             const { data: profileData, error: profileError } = await supabase
                 .from('profiles')
                 .select('*')
@@ -46,9 +60,9 @@ export default function ProfileJa() {
                 .single();
 
             if (profileError) {
-                console.error('Error loading profile:', profileError);
+                console.log('🔍 [Profile] プロファイルエラー。デフォルトプロファイルの作成を試みます:', profileError);
                 // Create default profile if doesn't exist
-                const { data: newProfile } = await supabase
+                const { data: newProfile, error: insertError } = await supabase
                     .from('profiles')
                     .insert([{
                         id: user.id,
@@ -59,13 +73,21 @@ export default function ProfileJa() {
                     .select()
                     .single();
 
+                if (insertError) {
+                    console.error('🔍 [Profile] デフォルトプロファイルの作成に失敗しました:', insertError);
+                }
+
+                console.log('🔍 [Profile] デフォルトプロファイルが作成/設定されました:', newProfile);
                 setProfile(newProfile);
             } else {
+                console.log('🔍 [Profile] プロファイルデータの読み込みに成功しました:', profileData);
                 setProfile(profileData);
             }
         } catch (error) {
-            console.error('Error:', error);
+            console.error('🔍 [Profile] loadUserDataで重大なエラーが発生しました:', error);
         } finally {
+            console.log('🔍 [Profile] 読み込みプロセスが終了しました。タイムアウトをクリアし、読み込み状態を解除します。');
+            clearTimeout(timeoutId);
             setLoading(false);
         }
     };

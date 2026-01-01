@@ -27,19 +27,32 @@ export default function ProfileKo() {
     }, []);
 
     const loadUserData = async () => {
+        console.log('🔍 [Profile] 로딩 시작...');
+
+        // 무한 로딩 방지를 위한 안전 타임아웃
+        const timeoutId = setTimeout(() => {
+            console.warn('⚠️ [Profile] 5초 후 로딩 시간 초과. 로딩 상태 강제 해제.');
+            setLoading(false);
+        }, 5000);
+
         try {
             // Get current user
+            console.log('🔍 [Profile] Supabase auth에서 사용자 가져오는 중...');
             const { data: { user }, error: userError } = await supabase.auth.getUser();
 
             if (userError || !user) {
+                console.log('🔍 [Profile] 사용자 없음 또는 에러:', userError);
+                clearTimeout(timeoutId);
                 setLoading(false);
                 router.push('/ko/login');
                 return;
             }
 
+            console.log('🔍 [Profile] 사용자 찾음:', user.email);
             setUserEmail(user.email || '');
 
             // Get user profile from database
+            console.log('🔍 [Profile] ID에 대한 DB 프로필 데이터 가져오는 중:', user.id);
             const { data: profileData, error: profileError } = await supabase
                 .from('profiles')
                 .select('*')
@@ -47,9 +60,9 @@ export default function ProfileKo() {
                 .single();
 
             if (profileError) {
-                console.error('Error loading profile:', profileError);
+                console.log('🔍 [Profile] 프로필 에러, 기본 프로필 생성 시도:', profileError);
                 // Create default profile if doesn't exist
-                const { data: newProfile } = await supabase
+                const { data: newProfile, error: insertError } = await supabase
                     .from('profiles')
                     .insert([{
                         id: user.id,
@@ -60,13 +73,21 @@ export default function ProfileKo() {
                     .select()
                     .single();
 
+                if (insertError) {
+                    console.error('🔍 [Profile] 기본 프로필 생성 실패:', insertError);
+                }
+
+                console.log('🔍 [Profile] 기본 프로필 생성/설정됨:', newProfile);
                 setProfile(newProfile);
             } else {
+                console.log('🔍 [Profile] 프로필 데이터 로드 성공:', profileData);
                 setProfile(profileData);
             }
         } catch (error) {
-            console.error('Error:', error);
+            console.error('🔍 [Profile] loadUserData의 심각한 에러:', error);
         } finally {
+            console.log('🔍 [Profile] 로드 프로세스 완료, 타임아웃 지우고 로딩 상태 해제.');
+            clearTimeout(timeoutId);
             setLoading(false);
         }
     };

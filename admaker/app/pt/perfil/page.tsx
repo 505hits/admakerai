@@ -27,18 +27,32 @@ export default function PerfilPage() {
     }, []);
 
     const loadUserData = async () => {
+        console.log('🔍 [Perfil] Iniciando carregamento de dados do usuário...');
+
+        // Timeout de segurança para evitar carregamento infinito
+        const timeoutId = setTimeout(() => {
+            console.warn('⚠️ [Perfil] O carregamento expirou após 5 segundos. Forçando fim do carregamento.');
+            setLoading(false);
+        }, 5000);
+
         try {
             // Get current user
+            console.log('🔍 [Perfil] Obtendo usuário do Supabase...');
             const { data: { user }, error: userError } = await supabase.auth.getUser();
 
             if (userError || !user) {
+                console.log('🔍 [Perfil] Sem usuário ou erro:', userError);
+                clearTimeout(timeoutId);
+                setLoading(false);
                 router.push('/pt/conexao');
                 return;
             }
 
+            console.log('🔍 [Perfil] Usuário encontrado:', user.email);
             setUserEmail(user.email || '');
 
             // Get user profile from database
+            console.log('🔍 [Perfil] Buscando dados do perfil no DB para ID:', user.id);
             const { data: profileData, error: profileError } = await supabase
                 .from('profiles')
                 .select('*')
@@ -46,9 +60,9 @@ export default function PerfilPage() {
                 .single();
 
             if (profileError) {
-                console.error('Error loading profile:', profileError);
+                console.log('🔍 [Perfil] Erro de perfil, tentando criar perfil padrão:', profileError);
                 // Create default profile if doesn't exist
-                const { data: newProfile } = await supabase
+                const { data: newProfile, error: insertError } = await supabase
                     .from('profiles')
                     .insert([{
                         id: user.id,
@@ -59,13 +73,21 @@ export default function PerfilPage() {
                     .select()
                     .single();
 
+                if (insertError) {
+                    console.error('🔍 [Perfil] Erro ao criar perfil padrão:', insertError);
+                }
+
+                console.log('🔍 [Perfil] Perfil padrão criado:', newProfile);
                 setProfile(newProfile);
             } else {
+                console.log('🔍 [Perfil] Perfil carregado com sucesso:', profileData);
                 setProfile(profileData);
             }
         } catch (error) {
-            console.error('Error:', error);
+            console.error('🔍 [Perfil] Erro crítico no loadUserData:', error);
         } finally {
+            console.log('🔍 [Perfil] Processo de carregamento finalizado, limpando timeout e estado.');
+            clearTimeout(timeoutId);
             setLoading(false);
         }
     };
