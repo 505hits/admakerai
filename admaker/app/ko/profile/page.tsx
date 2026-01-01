@@ -29,11 +29,11 @@ export default function ProfileKo() {
     const loadUserData = async () => {
         console.log('🔍 [Profile] 로딩 시작...');
 
-        // 무한 로딩 방지를 위한 안전 타임아웃
+        // 무한 로딩 방지를 위한 안전 타임아웃 (3초로 감소)
         const timeoutId = setTimeout(() => {
-            console.warn('⚠️ [Profile] 5초 후 로딩 시간 초과. 로딩 상태 강제 해제.');
+            console.warn('⚠️ [Profile] 3초 후 로딩 시간 초과. 로딩 상태 강제 해제.');
             setLoading(false);
-        }, 5000);
+        }, 3000);
 
         try {
             // Get current user
@@ -51,22 +51,34 @@ export default function ProfileKo() {
             console.log('🔍 [Profile] 사용자 찾음:', user.email);
             setUserEmail(user.email || '');
 
-            // Get user profile from database
+            // Get user profile from database with explicit field selection
             console.log('🔍 [Profile] ID에 대한 DB 프로필 데이터 가져오는 중:', user.id);
             const { data: profileData, error: profileError } = await supabase
                 .from('profiles')
-                .select('*')
+                .select('id, credits, actor_credits, subscription_plan, subscription_status, subscription_end_date, created_at, updated_at')
                 .eq('id', user.id)
-                .single();
+                .maybeSingle();
+
+            console.log('🔍 [Profile] 원시 프로필 데이터 수신:', profileData);
+            console.log('🔍 [Profile] 크레딧 값:', profileData?.credits);
+            console.log('🔍 [Profile] 액터 크레딧 값:', profileData?.actor_credits);
 
             if (profileError) {
-                console.log('🔍 [Profile] 프로필 에러, 기본 프로필 생성 시도:', profileError);
+                console.error('🔍 [Profile] 프로필 에러:', profileError);
+                clearTimeout(timeoutId);
+                setLoading(false);
+                return;
+            }
+
+            if (!profileData) {
+                console.log('🔍 [Profile] 프로필을 찾을 수 없음, 기본 프로필 생성 시도');
                 // Create default profile if doesn't exist
                 const { data: newProfile, error: insertError } = await supabase
                     .from('profiles')
                     .insert([{
                         id: user.id,
-                        credits: 0, // No initial credits
+                        credits: 0,
+                        actor_credits: 0,
                         subscription_plan: 'free',
                         subscription_status: 'inactive'
                     }])
@@ -75,12 +87,13 @@ export default function ProfileKo() {
 
                 if (insertError) {
                     console.error('🔍 [Profile] 기본 프로필 생성 실패:', insertError);
+                } else {
+                    console.log('🔍 [Profile] 기본 프로필 생성됨:', newProfile);
+                    setProfile(newProfile);
                 }
-
-                console.log('🔍 [Profile] 기본 프로필 생성/설정됨:', newProfile);
-                setProfile(newProfile);
             } else {
-                console.log('🔍 [Profile] 프로필 데이터 로드 성공:', profileData);
+                console.log('🔍 [Profile] 프로필 데이터 로드 성공');
+                console.log('🔍 [Profile] 크레딧으로 프로필 설정:', profileData.credits);
                 setProfile(profileData);
             }
         } catch (error) {

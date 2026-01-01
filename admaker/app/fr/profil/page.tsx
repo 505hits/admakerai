@@ -29,11 +29,11 @@ export default function ProfilPage() {
     const loadUserData = async () => {
         console.log('🔍 [Profil] Début du chargement des données utilisateur...');
 
-        // Timeout de sécurité pour éviter le chargement infini
+        // Timeout de sécurité pour éviter le chargement infini (réduit à 3s)
         const timeoutId = setTimeout(() => {
-            console.warn('⚠️ [Profil] Le chargement a expiré après 5 secondes. Désactivation forcée du chargement.');
+            console.warn('⚠️ [Profil] Le chargement a expiré après 3 secondes. Désactivation forcée du chargement.');
             setLoading(false);
-        }, 5000);
+        }, 3000);
 
         try {
             // Get current user
@@ -51,22 +51,34 @@ export default function ProfilPage() {
             console.log('🔍 [Profil] Utilisateur trouvé:', user.email);
             setUserEmail(user.email || '');
 
-            // Get user profile from database
+            // Get user profile from database with explicit field selection
             console.log('🔍 [Profil] Récupération du profil depuis la DB pour ID:', user.id);
             const { data: profileData, error: profileError } = await supabase
                 .from('profiles')
-                .select('*')
+                .select('id, credits, actor_credits, subscription_plan, subscription_status, subscription_end_date, created_at, updated_at')
                 .eq('id', user.id)
-                .single();
+                .maybeSingle();
+
+            console.log('🔍 [Profil] Données de profil brutes reçues:', profileData);
+            console.log('🔍 [Profil] Valeur des crédits:', profileData?.credits);
+            console.log('🔍 [Profil] Valeur des crédits acteur:', profileData?.actor_credits);
 
             if (profileError) {
-                console.log('🔍 [Profil] Erreur de profil, tentative de création d\'un profil par défaut:', profileError);
+                console.error('🔍 [Profil] Erreur de profil:', profileError);
+                clearTimeout(timeoutId);
+                setLoading(false);
+                return;
+            }
+
+            if (!profileData) {
+                console.log('🔍 [Profil] Aucun profil trouvé, tentative de création d\'un profil par défaut');
                 // Create default profile if doesn't exist
                 const { data: newProfile, error: insertError } = await supabase
                     .from('profiles')
                     .insert([{
                         id: user.id,
-                        credits: 0, // No initial credits
+                        credits: 0,
+                        actor_credits: 0,
                         subscription_plan: 'free',
                         subscription_status: 'inactive'
                     }])
@@ -75,12 +87,13 @@ export default function ProfilPage() {
 
                 if (insertError) {
                     console.error('🔍 [Profil] Échec de la création du profil par défaut:', insertError);
+                } else {
+                    console.log('🔍 [Profil] Profil par défaut créé:', newProfile);
+                    setProfile(newProfile);
                 }
-
-                console.log('🔍 [Profil] Profil par défaut créé:', newProfile);
-                setProfile(newProfile);
             } else {
-                console.log('🔍 [Profil] Données de profil chargées avec succès:', profileData);
+                console.log('🔍 [Profil] Données de profil chargées avec succès');
+                console.log('🔍 [Profil] Définition du profil avec crédits:', profileData.credits);
                 setProfile(profileData);
             }
         } catch (error) {
