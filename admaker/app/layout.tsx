@@ -16,15 +16,16 @@ export const metadata: Metadata = {
     apple: "https://pub-e75d3f83986f4cb6b3f1d1d8f8a8c214.r2.dev/logo%20favicon.png",
   },
   alternates: {
-    canonical: "https://admakerai.vercel.app/",
+    canonical: "https://admakerai.app/",
     languages: {
-      'en': "https://admakerai.vercel.app/",
-      'fr': "https://admakerai.vercel.app/fr",
-      'es': "https://admakerai.vercel.app/es",
-      'pt': "https://admakerai.vercel.app/pt",
-      'ko': "https://admakerai.vercel.app/ko",
-      'de': "https://admakerai.vercel.app/de",
-      'x-default': "https://admakerai.vercel.app/",
+      'en': "https://admakerai.app/",
+      'fr': "https://admakerai.app/fr",
+      'es': "https://admakerai.app/es",
+      'pt': "https://admakerai.app/pt",
+      'ko': "https://admakerai.app/ko",
+      'de': "https://admakerai.app/de",
+      'ja': "https://admakerai.app/ja",
+      'x-default': "https://admakerai.app/",
     }
   }
 };

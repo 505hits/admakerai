@@ -6,15 +6,16 @@ export const metadata: Metadata = {
     title: "AdMaker AI | Erstellen Sie KI-Anzeigen in Minuten",
     description: "Die #1 Plattform zur Erstellung von KI-Videoanzeigen. Schreiben Sie Ihr Skript, wählen Sie Ihre Schauspieler und generieren Sie Ihr Video in 2 Minuten.",
     alternates: {
-        canonical: "https://admakerai.vercel.app/de",
+        canonical: "https://admakerai.app/de",
         languages: {
-            'en': "https://admakerai.vercel.app/",
-            'fr': "https://admakerai.vercel.app/fr",
-            'es': "https://admakerai.vercel.app/es",
-            'pt': "https://admakerai.vercel.app/pt",
-            'ko': "https://admakerai.vercel.app/ko",
-            'de': "https://admakerai.vercel.app/de",
-            'x-default': "https://admakerai.vercel.app/",
+            'en': "https://admakerai.app/",
+            'fr': "https://admakerai.app/fr",
+            'es': "https://admakerai.app/es",
+            'pt': "https://admakerai.app/pt",
+            'ko': "https://admakerai.app/ko",
+            'de': "https://admakerai.app/de",
+            'ja': "https://admakerai.app/ja",
+            'x-default': "https://admakerai.app/",
         }
     }
 };

@@ -5,15 +5,15 @@ export const metadata: Metadata = {
     description: 'Découvrez le meilleur service de création de vidéo UGC pour le marketing immobilier. Comparez les meilleures plateformes, tarifs et fonctionnalités. Générez des vidéos immobilières en 45 secondes. Essai gratuit.',
     keywords: 'création vidéo UGC, marketing immobilier, vidéos immobilières, générateur vidéo IA, contenu immobilier, vidéos annonces',
     alternates: {
-        canonical: "https://admakerai.vercel.app/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier",
+        canonical: "https://admakerai.app/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier",
         languages: {
-            'en': "https://admakerai.vercel.app/blog/best-ugc-video-creation-service-for-real-estate-marketing",
-            'fr': "https://admakerai.vercel.app/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier",
-            'es': "https://admakerai.vercel.app/es",
-            'pt': "https://admakerai.vercel.app/pt",
-            'ko': "https://admakerai.vercel.app/ko",
-            'de': "https://admakerai.vercel.app/de",
-            'x-default': "https://admakerai.vercel.app/blog/best-ugc-video-creation-service-for-real-estate-marketing",
+            'en': "https://admakerai.app/blog/best-ugc-video-creation-service-for-real-estate-marketing",
+            'fr': "https://admakerai.app/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier",
+            'es': "https://admakerai.app/es",
+            'pt': "https://admakerai.app/pt",
+            'ko': "https://admakerai.app/ko",
+            'de': "https://admakerai.app/de",
+            'x-default': "https://admakerai.app/blog/best-ugc-video-creation-service-for-real-estate-marketing",
         }
     },
     openGraph: {

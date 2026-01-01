@@ -16,16 +16,16 @@ export const metadata: Metadata = {
         description: 'AIで数秒でプロフェッショナルなUGC動画を作成',
     },
     alternates: {
-        canonical: '/ja',
+        canonical: "https://admakerai.app/ja",
         languages: {
-            'en': '/',
-            'fr': '/fr',
-            'es': '/es',
-            'de': '/de',
-            'ko': '/ko',
-            'pt': '/pt',
-            'ja': '/ja',
-            'x-default': '/'
+            'en': "https://admakerai.app/",
+            'fr': "https://admakerai.app/fr",
+            'es': "https://admakerai.app/es",
+            'pt': "https://admakerai.app/pt",
+            'ko': "https://admakerai.app/ko",
+            'de': "https://admakerai.app/de",
+            'ja': "https://admakerai.app/ja",
+            'x-default': "https://admakerai.app/"
         }
     }
 };
