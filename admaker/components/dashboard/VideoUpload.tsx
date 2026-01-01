@@ -12,10 +12,22 @@ export default function VideoUpload({ onVideoChange }: VideoUploadProps) {
     const [isUploading, setIsUploading] = useState(false);
     const [isDragging, setIsDragging] = useState(false);
 
-    const handleVideoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (!file) return;
+    const getVideoDuration = (file: File): Promise<number> => {
+        return new Promise((resolve, reject) => {
+            const video = document.createElement('video');
+            video.preload = 'metadata';
+            video.onloadedmetadata = () => {
+                window.URL.revokeObjectURL(video.src);
+                resolve(video.duration);
+            };
+            video.onerror = () => {
+                reject("Invalid video file");
+            }
+            video.src = URL.createObjectURL(file);
+        });
+    };
 
+    const processFile = async (file: File) => {
         // Validate file type
         const validTypes = ['video/mp4', 'video/quicktime', 'video/x-matroska', 'video/webm'];
         if (!validTypes.includes(file.type)) {
@@ -30,9 +42,17 @@ export default function VideoUpload({ onVideoChange }: VideoUploadProps) {
             return;
         }
 
-        setIsUploading(true);
-
         try {
+            // Validate video duration (max 5 seconds, allowing small buffer up to 6s)
+            const duration = await getVideoDuration(file);
+            console.log("Video duration:", duration);
+            if (duration > 6) {
+                alert(`Video is too long (${duration.toFixed(1)}s). Please upload a video shorter than 5 seconds.`);
+                return;
+            }
+
+            setIsUploading(true);
+
             // Upload video to R2
             const formData = new FormData();
             formData.append('file', file);
@@ -56,13 +76,19 @@ export default function VideoUpload({ onVideoChange }: VideoUploadProps) {
             // Pass R2 URL to parent component
             onVideoChange?.(url);
         } catch (error: any) {
-            console.error('Video upload failed:', error);
+            console.error('Video upload/validation failed:', error);
             alert(error.message || 'Failed to upload video. Please try again.');
             setVideoUrl(null);
             onVideoChange?.(null);
         } finally {
             setIsUploading(false);
         }
+    };
+
+    const handleVideoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        await processFile(file);
     };
 
     const handleDragOver = (e: React.DragEvent<HTMLLabelElement>) => {
@@ -84,51 +110,7 @@ export default function VideoUpload({ onVideoChange }: VideoUploadProps) {
 
         const file = e.dataTransfer.files?.[0];
         if (!file) return;
-
-        // Validate file type
-        const validTypes = ['video/mp4', 'video/quicktime', 'video/x-matroska', 'video/webm'];
-        if (!validTypes.includes(file.type)) {
-            alert('Please upload a valid video file (MP4, MOV, MKV, or WebM)');
-            return;
-        }
-
-        // Validate file size (max 10MB)
-        const maxSize = 10 * 1024 * 1024;
-        if (file.size > maxSize) {
-            alert('Video file size must be less than 10MB');
-            return;
-        }
-
-        setIsUploading(true);
-
-        try {
-            const formData = new FormData();
-            formData.append('file', file);
-
-            const response = await fetch('/api/upload/video', {
-                method: 'POST',
-                body: formData,
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(errorData.error || 'Upload failed');
-            }
-
-            const { url } = await response.json();
-
-            const previewUrl = URL.createObjectURL(file);
-            setVideoUrl(previewUrl);
-
-            onVideoChange?.(url);
-        } catch (error: any) {
-            console.error('Video upload failed:', error);
-            alert(error.message || 'Failed to upload video. Please try again.');
-            setVideoUrl(null);
-            onVideoChange?.(null);
-        } finally {
-            setIsUploading(false);
-        }
+        await processFile(file);
     };
 
     const removeVideo = () => {
@@ -191,7 +173,7 @@ export default function VideoUpload({ onVideoChange }: VideoUploadProps) {
                                 <path d="M8 36h32" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                             </svg>
                             <span>{isDragging ? 'Drop video here' : 'Click to upload or drag & drop'}</span>
-                            <p className={styles.uploadHint}>MP4, MOV, MKV or WebM (max 10MB)</p>
+                            <p className={styles.uploadHint}>MP4, MOV, MKV or WebM (max 10MB) - Max 5 seconds</p>
                         </>
                     )}
                 </label>
