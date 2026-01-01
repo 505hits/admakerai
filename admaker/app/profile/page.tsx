@@ -27,18 +27,23 @@ export default function ProfilePage() {
     }, []);
 
     const loadUserData = async () => {
+        const startTime = performance.now();
         console.log('🔍 [Profile] Starting to load user data...');
 
-        // Add a safety timeout to prevent infinite loading (reduced to 3s)
+        // Add a safety timeout to prevent infinite loading (increased to 10s for debugging)
         const timeoutId = setTimeout(() => {
-            console.warn('⚠️ [Profile] Loading timed out after 3 seconds. Forcing loading to false.');
+            const elapsed = ((performance.now() - startTime) / 1000).toFixed(2);
+            console.warn(`⚠️ [Profile] Loading timed out after ${elapsed} seconds. Forcing loading to false.`);
             setLoading(false);
-        }, 3000);
+        }, 10000);
 
         try {
             // Get current user
             console.log('🔍 [Profile] Getting user from Supabase auth...');
+            const authStart = performance.now();
             const { data: { user }, error: userError } = await supabase.auth.getUser();
+            const authTime = ((performance.now() - authStart) / 1000).toFixed(2);
+            console.log(`🔍 [Profile] Auth query took ${authTime}s`);
 
             if (userError || !user) {
                 console.log('🔍 [Profile] No user or error:', userError);
@@ -53,11 +58,14 @@ export default function ProfilePage() {
 
             // Get user profile from database with explicit field selection
             console.log('🔍 [Profile] Fetching profile data from DB for ID:', user.id);
+            const profileStart = performance.now();
             const { data: profileData, error: profileError } = await supabase
                 .from('profiles')
                 .select('id, credits, actor_credits, subscription_plan, subscription_status, subscription_end_date, created_at, updated_at')
                 .eq('id', user.id)
                 .maybeSingle();
+            const profileTime = ((performance.now() - profileStart) / 1000).toFixed(2);
+            console.log(`🔍 [Profile] Profile query took ${profileTime}s`);
 
             console.log('🔍 [Profile] Raw profile data received:', profileData);
             console.log('🔍 [Profile] Credits value:', profileData?.credits);
@@ -99,7 +107,8 @@ export default function ProfilePage() {
         } catch (error) {
             console.error('🔍 [Profile] Critical error in loadUserData:', error);
         } finally {
-            console.log('🔍 [Profile] Load process finished, clearing timeout and loading state.');
+            const totalTime = ((performance.now() - startTime) / 1000).toFixed(2);
+            console.log(`🔍 [Profile] Load process finished in ${totalTime}s, clearing timeout and loading state.`);
             clearTimeout(timeoutId);
             setLoading(false);
         }
@@ -136,18 +145,8 @@ export default function ProfilePage() {
         }
     };
 
-    if (loading) {
-        return (
-            <>
-                <Navbar lang="en" />
-                <div className={styles.profileContainer}>
-                    <div className="container">
-                        <div className={styles.loading}>Loading...</div>
-                    </div>
-                </div>
-            </>
-        );
-    }
+    // Show loading indicator but don't block the entire page
+    const isLoading = loading && !profile;
 
     const planNames: { [key: string]: string } = {
         'free': 'Free',
@@ -166,7 +165,9 @@ export default function ProfilePage() {
                 <div className="container">
                     <div className={styles.profileCard}>
                         <div className={styles.header}>
-                            <h1 className={styles.pageTitle}>My Account</h1>
+                            <h1 className={styles.pageTitle}>
+                                My Account {isLoading && <span style={{ fontSize: '14px', opacity: 0.7 }}>Loading...</span>}
+                            </h1>
                             <span className={`${styles.planBadge} ${styles.large} ${isActive ? styles.active : ''}`}>
                                 {planName}
                             </span>
