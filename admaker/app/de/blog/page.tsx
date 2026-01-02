@@ -58,6 +58,28 @@ export default function BlogPageDE() {
                                 </div>
                             </div>
                         </Link>
+
+                        <Link href="/de/blog/preise-vergleichen-ugc-video-produktionstools" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=500&fit=crop"
+                                    alt="Preisvergleich für UGC-Videoproduktionstools"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>Videoproduktion</span>
+                                <h2 className={styles.cardTitle}>Preisvergleich für UGC-Videoproduktionstools</h2>
+                                <p className={styles.cardExcerpt}>
+                                    Entdecken Sie den ultimativen Preisvergleich für UGC-Videoproduktionstools. Wir analysieren Kosten, versteckte Gebühren und den ROI von 15 führenden Plattformen.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>Januar 2025</span>
+                                </div>
+                            </div>
+                        </Link>
                     </div>
                 </div>
             </div>
