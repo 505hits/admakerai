@@ -115,50 +115,50 @@ export default function ComparePricingUGCArticleFR() {
                         </header>
 
                         <nav className={styles.tableOfContents}>
-                            <h2>Table of Contents</h2>
+                            <h2>Table des Matières</h2>
                             <ol>
-                                <li><a href="#understanding">Understanding UGC Video Production Tool Pricing</a></li>
-                                <li><a href="#evaluate">How to Evaluate Video Production Tool Costs</a></li>
-                                <li><a href="#comparison">Pricing Comparison: 15 UGC Video Tools</a></li>
-                                <li><a href="#hidden-costs">Hidden Costs in Video Production Tools</a></li>
-                                <li><a href="#roi-analysis">ROI Analysis by Business Type</a></li>
-                                <li><a href="#free-vs-paid">Free vs Paid Tool Comparison</a></li>
-                                <li><a href="#optimization">Cost Optimization Strategies</a></li>
+                                <li><a href="#understanding">Comprendre la tarification des outils de production UGC</a></li>
+                                <li><a href="#evaluate">Comment évaluer les coûts des outils de production vidéo</a></li>
+                                <li><a href="#comparison">Comparaison des tarifs : 15 outils vidéo UGC</a></li>
+                                <li><a href="#hidden-costs">Les coûts cachés des outils de production vidéo</a></li>
+                                <li><a href="#roi-analysis">Analyse du ROI par type d'entreprise</a></li>
+                                <li><a href="#free-vs-paid">Comparaison : Outils gratuits vs payants</a></li>
+                                <li><a href="#optimization">Stratégies d'optimisation des coûts</a></li>
                                 <li><a href="#faq">FAQ</a></li>
                             </ol>
                         </nav>
 
                         <section id="understanding" className={styles.section}>
-                            <h2>Understanding UGC Video Production Tool Pricing</h2>
+                            <h2>Comprendre la tarification des outils de production UGC</h2>
 
-                            <p>When evaluating costs for user-generated content creation platforms, pricing structures vary significantly across the market. Understanding these differences helps businesses make informed decisions aligned with their budget and content volume needs.</p>
+                            <p>Lors de l'évaluation des coûts des plateformes de création de contenu généré par les utilisateurs (UGC), les structures de prix varient considérablement sur le marché. Comprendre ces différences aide les entreprises à prendre des décisions éclairées, alignées sur leur budget et leurs besoins en volume de contenu.</p>
 
-                            <p>The landscape includes traditional creator marketplaces charging $150-500 per video, AI-powered generation tools with monthly subscriptions, and hybrid models combining software with creator services. This guide examines actual pricing data from 15 platforms collected in January 2025.</p>
+                            <p>Le paysage actuel comprend des places de marché de créateurs traditionnelles facturant entre 150 et 500 $ par vidéo, des outils de génération par IA avec des abonnements mensuels, et des modèles hybrides combinant logiciel et services de créateurs. Ce guide examine les données tarifaires réelles de 15 plateformes collectées en janvier 2025.</p>
 
-                            <p><strong>Pricing model categories:</strong></p>
+                            <p><strong>Catégories de modèles de tarification :</strong></p>
 
-                            <p><strong>Per-video pricing:</strong> Pay for each completed video, typically $50-500 depending on complexity and creator tier. Common in creator marketplaces like Aspire, Cohley, and #paid.</p>
+                            <p><strong>Paiement à la vidéo :</strong> Payez pour chaque vidéo terminée, généralement entre 50 et 500 $ selon la complexité et le niveau du créateur. Courant sur des plateformes comme Aspire, Cohley et #paid.</p>
 
-                            <p><strong>Monthly subscription:</strong> Unlimited or capped video generation for flat monthly fee, ranging $29-299. Standard for AI platforms including AdMaker AI, Creatify, Arcads, and similar tools.</p>
+                            <p><strong>Abonnement mensuel :</strong> Génération de vidéos illimitée ou plafonnée pour un forfait mensuel fixe, allant de 29 à 299 $. C'est la norme pour les plateformes d'IA comme <a href={landingPageUrl}>AdMaker AI</a>, Creatify ou Arcads.</p>
 
-                            <p><strong>Credit systems:</strong> Purchase credits used per video generation, with bulk discounts. Each video costs 1-10 credits depending on length and features.</p>
+                            <p><strong>Systèmes de crédits :</strong> Achat de crédits utilisés par génération de vidéo, avec des remises sur volume. Chaque vidéo coûte de 1 à 10 crédits selon la durée et les options.</p>
 
-                            <p><strong>Enterprise custom:</strong> Negotiated pricing for high-volume needs, typically starting $1,000+ monthly with dedicated support and custom features.</p>
+                            <p><strong>Sur mesure (Enterprise) :</strong> Tarifs négociés pour des besoins à haut volume, commençant généralement à plus de 1 000 $/mois avec un support dédié.</p>
 
-                            <p><strong>Industry benchmark data</strong> from 200+ e-commerce and marketing teams surveyed:</p>
+                            <p><strong>Données de référence du secteur</strong> (Sondage auprès de 200+ équipes marketing) :</p>
                             <ul>
-                                <li>Average monthly UGC budget: $2,400</li>
-                                <li>Videos produced monthly: 12-40 (varies by business size)</li>
-                                <li>Cost per video target: $30-60 for sustainable scaling</li>
-                                <li>Acceptable ROI threshold: 3-5x return on content investment</li>
+                                <li>Budget UGC mensuel moyen : 2 400 $</li>
+                                <li>Vidéos produites par mois : 12 à 40 (varie selon la taille de l'entreprise)</li>
+                                <li>Coût cible par vidéo : 30 à 60 $ pour une croissance durable</li>
+                                <li>Seuil de ROI acceptable : Retour de 3 à 5 fois l'investissement</li>
                             </ul>
 
-                            <p>Understanding your specific requirements—video volume, quality standards, turnaround time needs—determines which pricing model offers best value.</p>
+                            <p>Comprendre vos besoins spécifiques—volume de vidéos, standards de qualité, délais de livraison—détermine quel modèle tarifaire offre le meilleur rapport qualité-prix.</p>
 
                             <div className={styles.imageWrapper}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1280&h=720&fit=crop"
-                                    alt="person analyzing pricing data on laptop screen"
+                                    alt="personne analysant des données de tarification sur un écran d'ordinateur portable"
                                     width={1280}
                                     height={720}
                                 />
