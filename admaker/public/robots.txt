@@ -7,4 +7,4 @@ Allow: /pt/
 Allow: /ko/
 
 # Sitemap
-Sitemap: https://admakerai.vercel.app/sitemap.xml
+Sitemap: https://admakerai.app/sitemap.xml
