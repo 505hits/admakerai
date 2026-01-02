@@ -150,6 +150,60 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
             '/painel': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel', ko: '/ko/dashboard', de: '/de/dashboard', ja: '/ja/dashboard' },
             '/blog': { en: '/blog', fr: '/fr/blog', es: '/es/blog', pt: '/pt/blog', ko: '/ko/blog', de: '/de/blog', ja: '/ja/blog' },
             // Blog article mappings
+            '/blog/compare-pricing-ugc-video-production-tools': {
+                en: '/blog/compare-pricing-ugc-video-production-tools',
+                fr: '/fr/blog/comparer-prix-outils-production-video-ugc',
+                es: '/es/blog/comparar-precios-herramientas-produccion-video-ugc',
+                pt: '/pt/blog/comparar-precos-ferramentas-producao-video-ugc',
+                ko: '/ko/blog/ugc-video-production-tools-pricing-comparison',
+                de: '/de/blog/preise-vergleichen-ugc-video-produktionstools',
+                ja: '/ja/blog/ugc-video-production-tools-pricing-comparison'
+            },
+            '/blog/comparer-prix-outils-production-video-ugc': {
+                en: '/blog/compare-pricing-ugc-video-production-tools',
+                fr: '/fr/blog/comparer-prix-outils-production-video-ugc',
+                es: '/es/blog/comparar-precios-herramientas-produccion-video-ugc',
+                pt: '/pt/blog/comparar-precos-ferramentas-producao-video-ugc',
+                ko: '/ko/blog/ugc-video-production-tools-pricing-comparison',
+                de: '/de/blog/preise-vergleichen-ugc-video-produktionstools',
+                ja: '/ja/blog/ugc-video-production-tools-pricing-comparison'
+            },
+            '/blog/comparar-precios-herramientas-produccion-video-ugc': {
+                en: '/blog/compare-pricing-ugc-video-production-tools',
+                fr: '/fr/blog/comparer-prix-outils-production-video-ugc',
+                es: '/es/blog/comparar-precios-herramientas-produccion-video-ugc',
+                pt: '/pt/blog/comparar-precos-ferramentas-producao-video-ugc',
+                ko: '/ko/blog/ugc-video-production-tools-pricing-comparison',
+                de: '/de/blog/preise-vergleichen-ugc-video-produktionstools',
+                ja: '/ja/blog/ugc-video-production-tools-pricing-comparison'
+            },
+            '/blog/comparar-precos-ferramentas-producao-video-ugc': {
+                en: '/blog/compare-pricing-ugc-video-production-tools',
+                fr: '/fr/blog/comparer-prix-outils-production-video-ugc',
+                es: '/es/blog/comparar-precios-herramientas-produccion-video-ugc',
+                pt: '/pt/blog/comparar-precos-ferramentas-producao-video-ugc',
+                ko: '/ko/blog/ugc-video-production-tools-pricing-comparison',
+                de: '/de/blog/preise-vergleichen-ugc-video-produktionstools',
+                ja: '/ja/blog/ugc-video-production-tools-pricing-comparison'
+            },
+            '/blog/preise-vergleichen-ugc-video-produktionstools': {
+                en: '/blog/compare-pricing-ugc-video-production-tools',
+                fr: '/fr/blog/comparer-prix-outils-production-video-ugc',
+                es: '/es/blog/comparar-precios-herramientas-produccion-video-ugc',
+                pt: '/pt/blog/comparar-precos-ferramentas-producao-video-ugc',
+                ko: '/ko/blog/ugc-video-production-tools-pricing-comparison',
+                de: '/de/blog/preise-vergleichen-ugc-video-produktionstools',
+                ja: '/ja/blog/ugc-video-production-tools-pricing-comparison'
+            },
+            '/blog/ugc-video-production-tools-pricing-comparison': {
+                en: '/blog/compare-pricing-ugc-video-production-tools',
+                fr: '/fr/blog/comparer-prix-outils-production-video-ugc',
+                es: '/es/blog/comparar-precios-herramientas-produccion-video-ugc',
+                pt: '/pt/blog/comparar-precos-ferramentas-producao-video-ugc',
+                ko: '/ko/blog/ugc-video-production-tools-pricing-comparison',
+                de: '/de/blog/preise-vergleichen-ugc-video-produktionstools',
+                ja: '/ja/blog/ugc-video-production-tools-pricing-comparison'
+            },
             '/blog/best-ugc-video-creation-service-for-real-estate-marketing': {
                 en: '/blog/best-ugc-video-creation-service-for-real-estate-marketing',
                 fr: '/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier',
