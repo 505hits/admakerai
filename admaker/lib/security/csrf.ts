@@ -1,14 +1,15 @@
 // CSRF Protection Utility
 import { cookies } from 'next/headers';
-import { randomBytes } from 'crypto';
 
 const CSRF_TOKEN_LENGTH = 32;
 const CSRF_COOKIE_NAME = 'csrf_token';
 const CSRF_HEADER_NAME = 'x-csrf-token';
 
-// Generate a new CSRF token
+// Generate a new CSRF token using Web Crypto API (Edge Runtime compatible)
 export function generateCsrfToken(): string {
-    return randomBytes(CSRF_TOKEN_LENGTH).toString('hex');
+    const array = new Uint8Array(CSRF_TOKEN_LENGTH);
+    crypto.getRandomValues(array);
+    return Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('');
 }
 
 // Set CSRF token in cookie
