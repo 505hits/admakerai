@@ -461,6 +461,11 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                                         <rect y="6.67" width="20" height="6.67" fill="#DD0000" />
                                         <rect y="13.33" width="20" height="6.67" fill="#FFCE00" />
                                     </svg>
+                                ) : lang === 'ja' ? (
+                                    <svg width="20" height="20" viewBox="0 0 20 20" className={styles.flagIcon}>
+                                        <rect width="20" height="20" fill="#FFFFFF" />
+                                        <circle cx="10" cy="10" r="6" fill="#BC002D" />
+                                    </svg>
                                 ) : (
                                     <svg width="20" height="20" viewBox="0 0 20 20" className={styles.flagIcon}>
                                         <rect width="20" height="20" fill="#012169" />

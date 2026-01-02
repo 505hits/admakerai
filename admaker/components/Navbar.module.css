@@ -298,21 +298,74 @@
 
     .navLinks {
         position: fixed;
-        top: 70px;
+        top: 60px;
         left: 0;
         right: 0;
         flex-direction: column;
         background: rgba(0, 0, 0, 0.98);
+        backdrop-filter: blur(20px);
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
         padding: var(--spacing-lg);
+        gap: var(--spacing-md);
+        max-height: calc(100vh - 60px);
+        overflow-y: auto;
         transform: translateY(-100%);
         opacity: 0;
         pointer-events: none;
-        transition: all var(--transition-base);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
     }
 
     .navLinks.active {
         transform: translateY(0);
         opacity: 1;
         pointer-events: all;
+    }
+
+    .navLinks a {
+        padding: var(--spacing-md);
+        border-radius: var(--radius-md);
+        text-align: center;
+        font-size: var(--font-size-base);
+    }
+
+    .navLinks a:hover {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .btnPrimary,
+    .btnSecondary {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .languageSelector {
+        width: 100%;
+    }
+
+    .langBtn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .langDropdown {
+        position: static;
+        margin-top: var(--spacing-sm);
+        width: 100%;
+    }
+
+    .userMenu {
+        width: 100%;
+    }
+
+    .userBtn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .dropdown {
+        position: static;
+        margin-top: var(--spacing-sm);
+        width: 100%;
     }
 }
