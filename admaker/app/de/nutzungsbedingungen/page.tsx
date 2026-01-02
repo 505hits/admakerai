@@ -19,161 +19,161 @@ export default function Nutzungsbedingungen() {
                         <p className={styles.lastUpdated}>Letzte Aktualisierung: 2. Januar 2026</p>
 
                         <p className={styles.intro}>
-                            Les présentes Conditions d'utilisation ("Conditions") régissent votre accès et votre utilisation de tous les services, plateformes, sites web, logiciels et outils (collectivement, les "Services") fournis par AdMaker AI ("nous", "notre" ou "nos"). En accédant ou en utilisant l'un de nos Services, vous acceptez d'être lié par ces Conditions et de vous conformer à toutes les lois et réglementations applicables. Si vous n'acceptez pas une partie de ces Conditions, vous ne devez pas utiliser les Services.
+                            Diese Nutzungsbedingungen ("Bedingungen") regeln Ihren Zugriff auf und die Nutzung aller Dienste, Plattformen, Websites, Software und Tools (zusammen die "Dienste"), die von AdMaker AI ("wir", "unser" oder "uns") bereitgestellt werden. Durch den Zugriff auf oder die Nutzung unserer Dienste erklären Sie sich mit diesen Bedingungen einverstanden und verpflichten sich, alle geltenden Gesetze und Vorschriften einzuhalten. Wenn Sie mit einem Teil dieser Bedingungen nicht einverstanden sind, dürfen Sie die Dienste nicht nutzen.
                         </p>
 
                         <section>
-                            <h2>1. Nature des Services et Clause de non-responsabilité légale</h2>
+                            <h2>1. Art der Dienste und rechtlicher Haftungsausschluss</h2>
                             <p>
-                                AdMaker AI fournit une plateforme de création vidéo alimentée par l'IA qui permet aux utilisateurs de générer du contenu marketing, y compris des vidéos de style UGC, en utilisant l'intelligence artificielle générative. Tout le contenu généré via les Services est produit automatiquement par des systèmes d'apprentissage automatique.
+                                AdMaker AI bietet eine KI-gestützte Videoerstellungsplattform, die es Benutzern ermöglicht, Marketinginhalte, einschließlich UGC-Videos, mithilfe generativer künstlicher Intelligenz zu erstellen. Alle über die Dienste generierten Inhalte werden automatisch von maschinellen Lernsystemen erstellt.
                             </p>
                             <p>
-                                Vous reconnaissez que les résultats de la plateforme sont générés par machine et qu'il est de votre responsabilité de vous assurer que toute utilisation de ce contenu est conforme aux lois applicables, aux normes publicitaires, aux directives des plateformes et aux réglementations du secteur.
+                                Sie erkennen an, dass die Ausgaben der Plattform maschinell generiert sind und dass es in Ihrer Verantwortung liegt sicherzustellen, dass jede Nutzung solcher Inhalte den geltenden Gesetzen, Werbestandards, Plattformrichtlinien und Branchenvorschriften entspricht.
                             </p>
                             <p>
-                                Nous ne garantissons pas l'exactitude factuelle, la conformité légale ou l'adéquation commerciale de tout contenu généré par l'IA. Vous êtes seul responsable de tout contenu que vous créez, publiez ou distribuez en utilisant AdMaker AI.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h2>2. Licence et Exigences d'abonnement</h2>
-                            <p>
-                                Tout accès au contenu généré par AdMaker AI—y compris, mais sans s'y limiter, les scripts, vidéos, avatars ou données connexes—est subordonné à un abonnement payant actif ou à des crédits disponibles.
-                            </p>
-                            <p>
-                                Tant que votre abonnement est actif ou que vous disposez de crédits disponibles, vous bénéficiez d'une licence limitée, non exclusive et révocable pour utiliser le contenu généré conformément à ces Conditions. Cette licence prend fin immédiatement en cas d'annulation, d'expiration ou de suspension de votre abonnement et d'épuisement de tous les crédits.
-                            </p>
-                            <p>
-                                Aucun droit, licence ou autorisation n'est accordé aux utilisateurs sans abonnement actif ou crédits disponibles, sauf indication contraire dans un accord commercial écrit.
+                                Wir geben keine Garantien hinsichtlich der sachlichen Richtigkeit, rechtlichen Konformität oder kommerziellen Eignung von KI-generierten Inhalten. Sie sind allein verantwortlich für alle Inhalte, die Sie mit AdMaker AI erstellen, veröffentlichen oder verbreiten.
                             </p>
                         </section>
 
                         <section>
-                            <h2>3. Éligibilité et Responsabilité du compte</h2>
+                            <h2>2. Lizenzierung und Abonnementanforderungen</h2>
                             <p>
-                                Pour utiliser les Services, vous devez avoir au moins 13 ans ou l'âge minimum légal dans votre juridiction. Si vous avez moins de 18 ans, vous devez avoir l'autorisation et la supervision d'un parent ou d'un tuteur légal, qui accepte ces Conditions en votre nom.
+                                Der gesamte Zugriff auf von AdMaker AI generierte Inhalte—einschließlich, aber nicht beschränkt auf Skripte, Videos, Avatare oder zugehörige Daten—ist an ein aktives, bezahltes Abonnement oder verfügbare Credits gebunden.
                             </p>
                             <p>
-                                Vous acceptez de fournir des informations exactes et à jour lors de la création d'un compte AdMaker AI. Vous êtes seul responsable de la sécurité de vos identifiants de connexion et de toute activité effectuée via votre compte. Le partage de votre compte ou de vos identifiants de connexion avec des tiers est interdit.
+                                Solange Ihr Abonnement aktiv ist oder Sie über verfügbare Credits verfügen, wird Ihnen eine eingeschränkte, nicht-exklusive, widerrufliche Lizenz zur Nutzung der generierten Inhalte gemäß diesen Bedingungen gewährt. Diese Lizenz endet sofort bei Kündigung, Ablauf oder Aussetzung Ihres Abonnements und Erschöpfung aller Credits.
                             </p>
                             <p>
-                                Si vous vous inscrivez au nom d'une entreprise ou d'une organisation, vous confirmez que vous avez l'autorité d'accepter ces Conditions en son nom.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h2>4. Propriété du contenu et Propriété intellectuelle</h2>
-                            <p>
-                                Vous conservez tous les droits sur tout matériel que vous téléchargez sur la plateforme en tant qu'entrée ("Input"). Sous réserve de ces Conditions, et dans la mesure permise par la loi, AdMaker AI vous cède tous les droits qu'elle pourrait détenir sur le contenu généré par l'IA résultant ("Output").
-                            </p>
-                            <p>
-                                En raison de la nature de l'IA générative, un contenu similaire ou identique peut être produit pour d'autres utilisateurs. Nous ne garantissons pas que tout Output sera unique. Toute propriété intellectuelle associée aux Services—y compris la plateforme, le code source, les modèles, les données et l'image de marque—reste la propriété exclusive d'AdMaker AI.
+                                Benutzern ohne aktives Abonnement oder verfügbare Credits werden keine Rechte, Lizenzen oder Genehmigungen gewährt, sofern nicht anders in einer schriftlichen Geschäftsvereinbarung angegeben.
                             </p>
                         </section>
 
                         <section>
-                            <h2>5. Utilisation éthique de l'IA, Droits à l'image et Conformité aux plateformes</h2>
+                            <h2>3. Berechtigung und Kontoverantwortung</h2>
                             <p>
-                                En utilisant la plateforme AdMaker AI, vous acceptez d'utiliser tout contenu généré par l'IA de manière éthique, légale et conformément aux réglementations applicables. Vous ne pouvez télécharger, modifier ou générer des images, vidéos ou ressemblances qui ne représentent ou ne ressemblent pas à une personne réelle et identifiable, sauf si vous avez obtenu le consentement explicite, éclairé et vérifiable de cette personne pour chaque utilisation et chaque génération.
+                                Um die Dienste zu nutzen, müssen Sie mindestens 13 Jahre alt sein oder das gesetzliche Mindestalter in Ihrer Gerichtsbarkeit erreicht haben. Wenn Sie unter 18 Jahre alt sind, müssen Sie die Erlaubnis und Aufsicht eines Elternteils oder Erziehungsberechtigten haben, der diesen Bedingungen in Ihrem Namen zustimmt.
                             </p>
                             <p>
-                                Vous déclarez et garantissez que vous détenez tous les droits, autorisations et autorité légale nécessaires pour utiliser toute ressemblance, image ou donnée personnelle soumise ou générée via la plateforme.
+                                Sie verpflichten sich, bei der Erstellung eines AdMaker AI-Kontos genaue und aktuelle Informationen anzugeben. Sie sind allein verantwortlich für die Sicherheit Ihrer Anmeldedaten und für alle Aktivitäten, die über Ihr Konto durchgeführt werden. Das Teilen Ihres Kontos oder Ihrer Anmeldedaten mit Dritten ist verboten.
                             </p>
                             <p>
-                                Vous acceptez en outre que vous êtes seul responsable de vous assurer que tout contenu généré par l'IA créé à l'aide d'AdMaker AI est conforme aux règles, politiques et exigences de divulgation de toute plateforme tierce sur laquelle ce contenu est publié, y compris, mais sans s'y limiter, les exigences d'étiquetage ou de catégorisation du contenu comme généré par l'IA, synthétique ou modifié numériquement.
-                            </p>
-                            <p>
-                                AdMaker AI se réserve le droit de suspendre ou de résilier l'accès en cas de détection ou de suspicion raisonnable d'utilisation abusive, de contenu non consensuel, d'usurpation d'identité ou de non-conformité réglementaire.
+                                Wenn Sie sich im Namen eines Unternehmens oder einer Organisation registrieren, bestätigen Sie, dass Sie befugt sind, diese Bedingungen in deren Namen zu akzeptieren.
                             </p>
                         </section>
 
                         <section>
-                            <h2>6. Facturation, Paiements et Conditions d'abonnement</h2>
+                            <h2>4. Inhaltseigentum und geistiges Eigentum</h2>
                             <p>
-                                Tous les tarifs des Services sont clairement affichés au moment de l'achat. En vous abonnant, vous autorisez les frais récurrents sur votre mode de paiement sélectionné en fonction de votre cycle de facturation choisi.
+                                Sie behalten alle Rechte an allen Materialien, die Sie als Eingabe ("Input") auf die Plattform hochladen. Vorbehaltlich dieser Bedingungen und soweit gesetzlich zulässig, überträgt AdMaker AI Ihnen alle Rechte, die es möglicherweise an den resultierenden KI-generierten Inhalten ("Output") hat.
                             </p>
                             <p>
-                                Les frais ne sont pas remboursables sauf si la loi l'exige. Nous pouvons réviser nos tarifs à tout moment, mais tous les tarifs seront clairement étiquetés sur la plateforme, et aucun frais au nouveau tarif ne sera appliqué sans notification et confirmation. Vous pouvez annuler votre abonnement avant le prochain cycle de facturation si vous n'acceptez pas le nouveau prix.
-                            </p>
-                            <p>
-                                Si votre paiement échoue ou est annulé, votre compte peut être suspendu jusqu'à ce que le paiement soit résolu. Vous êtes responsable de toutes les taxes applicables. Nous pouvons engager des poursuites judiciaires pour recouvrer les montants en souffrance.
+                                Aufgrund der Natur generativer KI können ähnliche oder identische Inhalte für andere Benutzer produziert werden. Wir garantieren nicht, dass ein Output einzigartig sein wird. Alle mit den Diensten verbundenen geistigen Eigentumsrechte—einschließlich Plattform, Quellcode, Modelle, Daten und Markenbildung—bleiben alleiniges Eigentum von AdMaker AI.
                             </p>
                         </section>
 
                         <section>
-                            <h2>7. Disponibilité du service et Résiliation</h2>
+                            <h2>5. Ethische Nutzung von KI, Bildrechte und Plattform-Compliance</h2>
                             <p>
-                                Nous nous réservons le droit de modifier, suspendre ou interrompre toute partie des Services à tout moment. Si vous détenez un abonnement actif, vous pouvez être éligible à un remboursement au prorata lorsque la loi l'exige.
+                                Durch die Nutzung der AdMaker AI-Plattform verpflichten Sie sich, alle KI-generierten Inhalte ethisch, rechtmäßig und in Übereinstimmung mit geltenden Vorschriften zu verwenden. Sie dürfen nur Bilder, Videos oder Ähnlichkeiten hochladen, bearbeiten oder generieren, die keine echte, identifizierbare Person darstellen oder ihr ähneln, es sei denn, Sie haben die ausdrückliche, informierte und überprüfbare Zustimmung dieser Person für jede Nutzung und jede Generierung erhalten.
                             </p>
                             <p>
-                                Nous pouvons suspendre ou résilier votre accès à tout moment si nous déterminons que vous avez violé ces Conditions, utilisé abusivement la plateforme ou créé un risque juridique, technique ou de réputation indu.
+                                Sie erklären und garantieren, dass Sie alle erforderlichen Rechte, Genehmigungen und rechtlichen Befugnisse besitzen, um jede Ähnlichkeit, jedes Bild oder jede persönliche Daten zu verwenden, die über die Plattform eingereicht oder generiert werden.
                             </p>
                             <p>
-                                Nous nous réservons également le droit de résilier les comptes inactifs après 12 mois d'inactivité sans abonnement actif. Vous pouvez fermer votre compte à tout moment via votre tableau de bord de compte ou en contactant notre équipe d'assistance.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h2>8. Clause de non-responsabilité et Limitation de responsabilité</h2>
-                            <p>
-                                Les Services sont fournis "tels quels" et "selon disponibilité". Dans toute la mesure permise par la loi, AdMaker AI décline toutes garanties, expresses ou implicites, y compris l'adéquation à un usage particulier, la qualité marchande et la non-violation.
+                                Sie stimmen ferner zu, dass Sie allein dafür verantwortlich sind sicherzustellen, dass alle mit AdMaker AI erstellten KI-generierten Inhalte den Regeln, Richtlinien und Offenlegungsanforderungen jeder Drittplattform entsprechen, auf der solche Inhalte veröffentlicht werden, einschließlich, aber nicht beschränkt auf Anforderungen zur Kennzeichnung oder Kategorisierung von Inhalten als KI-generiert, synthetisch oder digital verändert.
                             </p>
                             <p>
-                                Nous ne garantissons pas que les Services ou tout contenu généré par l'IA seront précis, ininterrompus ou exempts d'erreurs. Dans la mesure maximale permise par la loi, nous ne serons pas responsables de toute perte indirecte, accessoire ou consécutive, y compris la perte de profits, de données ou d'opportunités commerciales.
-                            </p>
-                            <p>
-                                Notre responsabilité totale ne dépassera pas le montant le plus élevé entre 100 $ ou le montant que vous avez payé à AdMaker AI au cours des 12 mois précédant la réclamation.
+                                AdMaker AI behält sich das Recht vor, den Zugang auszusetzen oder zu beenden, wenn Missbrauch, nicht einvernehmliche Inhalte, Identitätsdiebstahl oder Nichteinhaltung von Vorschriften festgestellt oder vernünftigerweise vermutet wird.
                             </p>
                         </section>
 
                         <section>
-                            <h2>9. Indemnisation</h2>
+                            <h2>6. Abrechnung, Zahlungen und Abonnementbedingungen</h2>
                             <p>
-                                Si vous utilisez AdMaker AI au nom d'une entreprise ou d'une organisation, vous acceptez d'indemniser et de dégager de toute responsabilité AdMaker AI et les membres de son équipe de toute réclamation, dommage, coût ou frais juridiques découlant de :
+                                Alle Preise für Dienste werden am Kaufpunkt klar angezeigt. Durch das Abonnieren autorisieren Sie wiederkehrende Gebühren an Ihre ausgewählte Zahlungsmethode basierend auf Ihrem gewählten Abrechnungszyklus.
+                            </p>
+                            <p>
+                                Gebühren sind nicht erstattungsfähig, es sei denn, dies ist gesetzlich vorgeschrieben. Wir können unsere Preise jederzeit überarbeiten, aber alle Preise werden auf der Plattform klar gekennzeichnet, und es werden keine Gebühren zum neuen Tarif ohne Benachrichtigung und Bestätigung erhoben. Sie können Ihr Abonnement vor dem nächsten Abrechnungszyklus kündigen, wenn Sie den neuen Preis nicht akzeptieren.
+                            </p>
+                            <p>
+                                Wenn Ihre Zahlung fehlschlägt oder rückgängig gemacht wird, kann Ihr Konto ausgesetzt werden, bis die Zahlung geklärt ist. Sie sind für alle anfallenden Steuern verantwortlich. Wir können rechtliche Schritte einleiten, um überfällige Beträge einzuziehen.
+                            </p>
+                        </section>
+
+                        <section>
+                            <h2>7. Dienstverfügbarkeit und Kündigung</h2>
+                            <p>
+                                Wir behalten uns das Recht vor, jeden Teil der Dienste jederzeit zu ändern, auszusetzen oder einzustellen. Wenn Sie ein aktives Abonnement haben, können Sie Anspruch auf eine anteilige Rückerstattung haben, wenn dies gesetzlich vorgeschrieben ist.
+                            </p>
+                            <p>
+                                Wir können Ihren Zugang jederzeit aussetzen oder beenden, wenn wir feststellen, dass Sie gegen diese Bedingungen verstoßen haben, die Plattform missbraucht haben oder ein unangemessenes rechtliches, technisches oder Reputationsrisiko geschaffen haben.
+                            </p>
+                            <p>
+                                Wir behalten uns auch das Recht vor, inaktive Konten nach 12 Monaten Inaktivität ohne aktives Abonnement zu kündigen. Sie können Ihr Konto jederzeit über Ihr Konto-Dashboard oder durch Kontaktaufnahme mit unserem Support-Team schließen.
+                            </p>
+                        </section>
+
+                        <section>
+                            <h2>8. Haftungsausschluss und Haftungsbeschränkung</h2>
+                            <p>
+                                Die Dienste werden "wie besehen" und "wie verfügbar" bereitgestellt. Im größtmöglichen gesetzlich zulässigen Umfang lehnt AdMaker AI alle Garantien ab, ausdrücklich oder stillschweigend, einschließlich Eignung für einen bestimmten Zweck, Marktgängigkeit und Nichtverletzung.
+                            </p>
+                            <p>
+                                Wir garantieren nicht, dass die Dienste oder KI-generierten Inhalte genau, ununterbrochen oder fehlerfrei sein werden. Im größtmöglichen gesetzlich zulässigen Umfang haften wir nicht für indirekte, zufällige oder Folgeschäden, einschließlich entgangener Gewinne, Daten oder Geschäftsmöglichkeiten.
+                            </p>
+                            <p>
+                                Unsere Gesamthaftung übersteigt nicht den höheren Betrag von 100 $ oder den Betrag, den Sie AdMaker AI in den 12 Monaten vor dem Anspruch gezahlt haben.
+                            </p>
+                        </section>
+
+                        <section>
+                            <h2>9. Freistellung</h2>
+                            <p>
+                                Wenn Sie AdMaker AI im Namen eines Unternehmens oder einer Organisation nutzen, verpflichten Sie sich, AdMaker AI und seine Teammitglieder von allen Ansprüchen, Schäden, Kosten oder Anwaltsgebühren freizustellen, die sich ergeben aus:
                             </p>
                             <ul>
-                                <li>Votre utilisation des Services ;</li>
-                                <li>Votre violation de ces Conditions ;</li>
-                                <li>Votre violation de toute loi ou droit de tiers.</li>
+                                <li>Ihrer Nutzung der Dienste;</li>
+                                <li>Ihrer Verletzung dieser Bedingungen;</li>
+                                <li>Ihrer Verletzung von Gesetzen oder Rechten Dritter.</li>
                             </ul>
                         </section>
 
                         <section>
-                            <h2>10. Réclamations pour violation de droits d'auteur</h2>
+                            <h2>10. Urheberrechtsbeschwerden</h2>
                             <p>
-                                Si vous pensez que votre propriété intellectuelle a été violée par du contenu généré à l'aide d'AdMaker AI, vous pouvez soumettre un avis à <a href="mailto:contact.admakerai@gmail.com">contact.admakerai@gmail.com</a> incluant :
+                                Wenn Sie glauben, dass Ihr geistiges Eigentum durch mit AdMaker AI generierte Inhalte verletzt wurde, können Sie eine Mitteilung an <a href="mailto:contact.admakerai@gmail.com">contact.admakerai@gmail.com</a> senden, die Folgendes enthält:
                             </p>
                             <ul>
-                                <li>Votre nom et coordonnées ;</li>
-                                <li>Une description de l'œuvre protégée par le droit d'auteur ;</li>
-                                <li>Une déclaration sous peine de parjure que l'utilisation n'est pas autorisée ;</li>
-                                <li>Votre signature (physique ou électronique).</li>
+                                <li>Ihren Namen und Kontaktdaten;</li>
+                                <li>Eine Beschreibung des urheberrechtlich geschützten Werks;</li>
+                                <li>Eine eidesstattliche Erklärung, dass die Nutzung nicht autorisiert ist;</li>
+                                <li>Ihre Unterschrift (physisch oder elektronisch).</li>
                             </ul>
                             <p>
-                                Nous examinerons toutes les réclamations légitimes conformément aux lois applicables sur la propriété intellectuelle.
+                                Wir werden alle legitimen Beschwerden gemäß den geltenden Gesetzen zum geistigen Eigentum prüfen.
                             </p>
                         </section>
 
                         <section>
-                            <h2>11. Conditions générales</h2>
+                            <h2>11. Allgemeine Bedingungen</h2>
                             <p>
-                                Ces Conditions représentent l'accord complet entre vous et AdMaker AI concernant l'utilisation des Services. Elles remplacent tout accord antérieur ou contemporain.
+                                Diese Bedingungen stellen die gesamte Vereinbarung zwischen Ihnen und AdMaker AI bezüglich der Nutzung der Dienste dar. Sie ersetzen alle früheren oder gleichzeitigen Vereinbarungen.
                             </p>
                             <p>
-                                Vous ne pouvez pas transférer ou céder vos droits en vertu de ces Conditions sans notre consentement écrit. Nous pouvons transférer nos droits à tout successeur ou service affilié.
+                                Sie dürfen Ihre Rechte unter diesen Bedingungen nicht ohne unsere schriftliche Zustimmung übertragen oder abtreten. Wir können unsere Rechte an jeden Nachfolger oder verbundenen Dienst übertragen.
                             </p>
                             <p>
-                                Si une disposition de ces Conditions est jugée invalide ou inapplicable, les dispositions restantes resteront pleinement en vigueur. Le non-respect de toute disposition ne constituera pas une renonciation à nos droits.
+                                Sollte eine Bestimmung dieser Bedingungen für ungültig oder nicht durchsetzbar befunden werden, bleiben die übrigen Bestimmungen in vollem Umfang in Kraft. Die Nichtdurchsetzung einer Bestimmung stellt keinen Verzicht auf unsere Rechte dar.
                             </p>
                         </section>
 
                         <section>
-                            <h2>12. Coordonnées</h2>
+                            <h2>12. Kontaktinformationen</h2>
                             <p>
-                                Si vous avez des questions concernant ces Conditions, veuillez nous contacter à :
+                                Wenn Sie Fragen zu diesen Bedingungen haben, kontaktieren Sie uns unter:
                             </p>
                             <p>
-                                <strong>Email :</strong> <a href="mailto:contact.admakerai@gmail.com">contact.admakerai@gmail.com</a>
+                                <strong>E-Mail:</strong> <a href="mailto:contact.admakerai@gmail.com">contact.admakerai@gmail.com</a>
                             </p>
                         </section>
                     </div>

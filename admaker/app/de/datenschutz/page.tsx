@@ -19,155 +19,155 @@ export default function Datenschutzrichtlinie() {
                         <p className={styles.lastUpdated}>Letzte Aktualisierung: 2. Januar 2026</p>
 
                         <p className={styles.intro}>
-                            Chez AdMaker AI, nous nous engageons à protéger votre vie privée. Cette Politique de confidentialité explique comment nous collectons, utilisons, stockons et partageons les informations personnelles ("Données personnelles") lorsque vous utilisez nos sites web, logiciels, applications et services associés (collectivement, les "Services"). Elle s'applique aux personnes qui utilisent directement nos Services, mais pas aux données traitées dans le cadre de contrats d'entreprise sur mesure—ces relations sont régies par leurs accords spécifiques.
+                            Bei AdMaker AI verpflichten wir uns, Ihre Privatsphäre zu schützen. Diese Datenschutzrichtlinie erklärt, wie wir personenbezogene Daten ("Personenbezogene Daten") sammeln, verwenden, speichern und weitergeben, wenn Sie unsere Websites, Software, Anwendungen und zugehörigen Dienste (zusammen die "Dienste") nutzen. Sie gilt für Personen, die unsere Dienste direkt nutzen, jedoch nicht für Daten, die im Rahmen maßgeschneiderter Unternehmensverträge verarbeitet werden—diese Beziehungen werden durch ihre spezifischen Vereinbarungen geregelt.
                         </p>
 
                         <section>
-                            <h2>1. Informations que nous collectons</h2>
+                            <h2>1. Welche Informationen wir sammeln</h2>
 
-                            <h3>a. Informations que vous fournissez volontairement</h3>
-                            <p>Nous pouvons collecter les types suivants de Données personnelles que vous soumettez directement :</p>
+                            <h3>a. Von Ihnen freiwillig bereitgestellte Informationen</h3>
+                            <p>Wir können die folgenden Arten von personenbezogenen Daten sammeln, die Sie direkt übermitteln:</p>
                             <ul>
-                                <li><strong>Détails du compte :</strong> Y compris votre nom, adresse e-mail, détails de paiement et adresse de facturation lorsque vous vous inscrivez ou vous abonnez.</li>
-                                <li><strong>Contenu utilisateur :</strong> Tels que tous les fichiers, scripts, images ou commentaires que vous téléchargez ou créez sur la plateforme.</li>
-                                <li><strong>Historique de communication :</strong> Tous les messages envoyés à notre équipe d'assistance, soumissions de formulaires de contact ou autres interactions avec les clients.</li>
-                                <li><strong>Commentaires et participation :</strong> Réponses aux enquêtes, formulaires de commentaires, concours ou activités promotionnelles.</li>
+                                <li><strong>Kontodetails:</strong> Einschließlich Name, E-Mail-Adresse, Zahlungsdetails und Rechnungsadresse bei Registrierung oder Abonnement.</li>
+                                <li><strong>Benutzerinhalte:</strong> Alle Dateien, Skripte, Bilder oder Kommentare, die Sie auf die Plattform hochladen oder erstellen.</li>
+                                <li><strong>Kommunikationsverlauf:</strong> Alle Nachrichten, die an unser Support-Team gesendet werden, Kontaktformular-Einreichungen oder andere Kundeninteraktionen.</li>
+                                <li><strong>Feedback und Teilnahme:</strong> Antworten auf Umfragen, Feedback-Formulare, Wettbewerbe oder Werbeaktivitäten.</li>
                             </ul>
 
-                            <h3>b. Informations collectées automatiquement</h3>
-                            <p>Lorsque vous interagissez avec nos Services, nous collectons automatiquement :</p>
+                            <h3>b. Automatisch gesammelte Informationen</h3>
+                            <p>Wenn Sie mit den Diensten interagieren, sammeln wir automatisch:</p>
                             <ul>
-                                <li><strong>Données sur l'appareil et techniques :</strong> Adresse IP, type de navigateur, système d'exploitation, résolution d'écran, identifiants d'appareil et préférences linguistiques.</li>
-                                <li><strong>Analyses d'utilisation :</strong> Informations sur l'activité de la plateforme, sélections d'avatars, modèles utilisés, temps passé sur les fonctionnalités et chemins de navigation.</li>
-                                <li><strong>Cookies et technologies de suivi :</strong> Nous utilisons des cookies et des technologies similaires pour maintenir la fonctionnalité, assurer la sécurité et analyser l'engagement. Vous pouvez ajuster les paramètres des cookies dans votre navigateur, bien que cela puisse affecter le fonctionnement des Services.</li>
+                                <li><strong>Geräte- und technische Daten:</strong> IP-Adresse, Browsertyp, Betriebssystem, Bildschirmauflösung, Gerätekennungen und Spracheinstellungen.</li>
+                                <li><strong>Nutzungsanalysen:</strong> Informationen über Plattformaktivitäten, Avatar-Auswahl, verwendete Vorlagen, für Funktionen aufgewendete Zeit und Navigationspfade.</li>
+                                <li><strong>Cookies und Tracking-Technologien:</strong> Wir verwenden Cookies und ähnliche Technologien, um Funktionen aufrechtzuerhalten, Sicherheit zu gewährleisten und Engagement zu analysieren. Sie können Ihre Cookie-Einstellungen in Ihrem Browser anpassen, dies kann jedoch die Leistung der Dienste beeinträchtigen.</li>
                             </ul>
 
-                            <h3>c. Données provenant de tiers et de plateformes sociales</h3>
+                            <h3>c. Daten von Dritten und sozialen Plattformen</h3>
                             <p>
-                                Si vous interagissez avec nous via des plateformes tierces (par exemple, Instagram, LinkedIn, YouTube), nous pouvons collecter des données disponibles à partir de votre profil public ou de vos interactions avec notre contenu. Ceci est soumis aux conditions de confidentialité de ces plateformes.
+                                Wenn Sie über Drittplattformen (wie Instagram, LinkedIn, YouTube) mit uns interagieren, können wir Daten sammeln, die über öffentliche Profile oder Ihre Interaktionen mit unseren Inhalten verfügbar sind, vorbehaltlich der Datenschutzbedingungen dieser Plattformen.
                             </p>
                         </section>
 
                         <section>
-                            <h2>2. Comment nous utilisons vos informations</h2>
-                            <p>Nous traitons les Données personnelles conformément aux exigences légales applicables et à des fins incluant :</p>
+                            <h2>2. Wie wir Ihre Informationen verwenden</h2>
+                            <p>Wir verarbeiten personenbezogene Daten in Übereinstimmung mit geltenden rechtlichen Anforderungen und verwenden sie für folgende Zwecke:</p>
                             <ul>
-                                <li>Créer et gérer les comptes utilisateurs et les abonnements.</li>
-                                <li>Fournir et améliorer nos outils de génération de contenu alimentés par l'IA.</li>
-                                <li>Surveiller les modèles d'utilisation pour améliorer les performances et l'expérience utilisateur.</li>
-                                <li>Fournir des mises à jour, une assistance et des communications de service importantes.</li>
-                                <li>Détecter les abus, les risques de sécurité ou les activités frauduleuses.</li>
-                                <li>Améliorer nos systèmes d'IA et former des modèles (sauf si vous vous désabonnez).</li>
-                                <li>Remplir les obligations légales et faire respecter nos conditions de service.</li>
+                                <li>Erstellung und Verwaltung von Benutzerkonten und Abonnements.</li>
+                                <li>Bereitstellung und Verbesserung von KI-gestützten Inhaltserstellungstools.</li>
+                                <li>Überwachung von Nutzungsmustern zur Verbesserung von Leistung und Benutzererfahrung.</li>
+                                <li>Bereitstellung von Updates, Support und wichtigen Dienstkommunikationen.</li>
+                                <li>Erkennung von Missbrauch, Sicherheitsrisiken oder betrügerischem Verhalten.</li>
+                                <li>Verbesserung von KI-Systemen und Trainingsmodellen (sofern Sie sich nicht abgemeldet haben).</li>
+                                <li>Erfüllung rechtlicher Verpflichtungen und Durchsetzung der Nutzungsbedingungen.</li>
                             </ul>
                             <p>
-                                Nous pouvons également utiliser des données désidentifiées ou agrégées pour l'analyse, le développement de produits ou les informations marketing. Ces données ne peuvent pas vous identifier et ne sont pas considérées comme des Données personnelles.
+                                Wir können auch deidentifizierte oder aggregierte Daten für Analysen, Produktentwicklung oder Marketing-Einblicke verwenden. Diese Daten können Sie nicht identifizieren und werden nicht als personenbezogene Daten betrachtet.
                             </p>
                         </section>
 
                         <section>
-                            <h2>3. Contenu IA et Formation de modèles</h2>
+                            <h2>3. KI-Inhalte und Modelltraining</h2>
                             <p>
-                                Lorsque vous utilisez AdMaker AI, vous pouvez saisir des entrées (par exemple, des invites, des scripts) qui génèrent des sorties IA. Ces interactions peuvent être utilisées pour affiner nos modèles d'IA et améliorer les performances de la plateforme. Vous pouvez demander à vous désabonner de cette utilisation en nous contactant à <a href="mailto:contact.admakerai@gmail.com">contact.admakerai@gmail.com</a>. Le désabonnement peut réduire la capacité de la plateforme à adapter les résultats à vos préférences.
+                                Bei der Nutzung von AdMaker AI können Sie Eingaben (Prompts, Skripte usw.) eingeben, um KI-Ausgaben zu generieren. Diese Interaktionen können verwendet werden, um KI-Modelle zu verfeinern und die Plattformleistung zu verbessern. Sie können sich von dieser Verwendung abmelden, indem Sie <a href="mailto:contact.admakerai@gmail.com">contact.admakerai@gmail.com</a> kontaktieren. Die Abmeldung kann die Fähigkeit der Plattform verringern, Ergebnisse auf Ihre Präferenzen abzustimmen.
                             </p>
                         </section>
 
                         <section>
-                            <h2>4. Comment nous partageons les Données personnelles</h2>
-                            <p>Vos données peuvent être partagées dans les situations suivantes :</p>
+                            <h2>4. Wie wir personenbezogene Daten weitergeben</h2>
+                            <p>Ihre Daten können unter folgenden Umständen weitergegeben werden:</p>
                             <ul>
-                                <li><strong>Fournisseurs de services :</strong> Nous comptons sur des fournisseurs de confiance pour des services tels que l'hébergement cloud, l'analyse, le traitement des paiements et l'assistance. Ces fournisseurs sont autorisés à traiter les données uniquement en notre nom.</li>
-                                <li><strong>Changements d'entreprise :</strong> Si AdMaker AI fait l'objet d'une fusion, d'une acquisition, d'une vente d'actifs ou d'une restructuration, les données des utilisateurs peuvent être transférées à l'organisation successeur.</li>
-                                <li><strong>Exigences légales :</strong> Nous pouvons divulguer vos informations si la loi, la réglementation, une procédure judiciaire ou une demande gouvernementale l'exige.</li>
-                                <li><strong>Partage public :</strong> Lorsque vous publiez délibérément du contenu sur AdMaker AI (par exemple, en publiant des témoignages ou des vidéos générées par les utilisateurs), vos informations partagées peuvent être visibles par d'autres.</li>
+                                <li><strong>Dienstleister:</strong> Wir verlassen uns auf vertrauenswürdige Anbieter für Dienste wie Cloud-Hosting, Analysen, Zahlungsabwicklung und Support. Diese Anbieter sind nur berechtigt, Daten in unserem Auftrag zu verarbeiten.</li>
+                                <li><strong>Geschäftsänderungen:</strong> Wenn AdMaker AI eine Fusion, Übernahme, einen Vermögensverkauf oder eine Umstrukturierung durchläuft, können Benutzerdaten an die Nachfolgeorganisation übertragen werden.</li>
+                                <li><strong>Rechtliche Anforderungen:</strong> Wir können Ihre Informationen offenlegen, wenn dies durch Gesetz, Vorschriften, Gerichtsverfahren oder behördliche Anfragen erforderlich ist.</li>
+                                <li><strong>Öffentliche Weitergabe:</strong> Wenn Sie absichtlich Inhalte auf AdMaker AI veröffentlichen (wie Testimonials oder Einreichungen von benutzergenerierten Videos), können geteilte Informationen für andere sichtbar sein.</li>
                             </ul>
                             <p>
-                                <strong>Nous ne vendons pas vos données</strong> et nous ne partageons pas les Données personnelles avec des tiers non affiliés à des fins de publicité comportementale.
+                                <strong>Wir verkaufen Ihre Daten nicht</strong> und geben personenbezogene Daten nicht an nicht verbundene Dritte für Verhaltenswerbung weiter.
                             </p>
                         </section>
 
                         <section>
-                            <h2>5. Vos droits et choix</h2>
-                            <p>Selon votre emplacement, vous pouvez avoir des droits légaux concernant vos Données personnelles, notamment :</p>
+                            <h2>5. Ihre Rechte und Wahlmöglichkeiten</h2>
+                            <p>Je nach Standort können Sie rechtliche Rechte in Bezug auf Ihre personenbezogenen Daten haben, einschließlich:</p>
                             <ul>
-                                <li><strong>Accès :</strong> Demander une copie des Données personnelles que nous détenons à votre sujet.</li>
-                                <li><strong>Rectification :</strong> Demander la correction de données inexactes ou incomplètes.</li>
-                                <li><strong>Effacement :</strong> Nous demander de supprimer vos données, sous réserve de certaines exceptions.</li>
-                                <li><strong>Restriction :</strong> Demander des limites sur la façon dont vos données sont traitées.</li>
-                                <li><strong>Objection :</strong> S'opposer au traitement, en particulier pour le marketing direct.</li>
-                                <li><strong>Portabilité des données :</strong> Recevoir vos données dans un format portable.</li>
-                                <li><strong>Retirer le consentement :</strong> Lorsque le consentement est la base légale, vous pouvez le retirer à tout moment.</li>
-                                <li><strong>Déposer une plainte :</strong> Contacter votre autorité locale de protection des données.</li>
+                                <li><strong>Zugriff:</strong> Anfordern einer Kopie der personenbezogenen Daten, die wir über Sie haben.</li>
+                                <li><strong>Berichtigung:</strong> Anfordern der Korrektur ungenauer oder unvollständiger Daten.</li>
+                                <li><strong>Löschung:</strong> Anfordern der Löschung Ihrer Daten, vorbehaltlich bestimmter Ausnahmen.</li>
+                                <li><strong>Einschränkung:</strong> Anfordern von Einschränkungen, wie Ihre Daten verarbeitet werden.</li>
+                                <li><strong>Widerspruch:</strong> Widerspruch gegen die Verarbeitung, insbesondere für Direktmarketing.</li>
+                                <li><strong>Datenübertragbarkeit:</strong> Empfang Ihrer Daten in einem portablen Format.</li>
+                                <li><strong>Widerruf der Einwilligung:</strong> Wenn die Einwilligung die Rechtsgrundlage ist, können Sie diese jederzeit widerrufen.</li>
+                                <li><strong>Beschwerde einreichen:</strong> Kontaktieren Sie Ihre lokale Datenschutzbehörde.</li>
                             </ul>
                             <p>
-                                Pour exercer l'un de ces droits, veuillez nous contacter à <a href="mailto:contact.admakerai@gmail.com">contact.admakerai@gmail.com</a>. Nous pouvons exiger une vérification d'identité avant de traiter de telles demandes.
+                                Um eines dieser Rechte auszuüben, kontaktieren Sie uns unter <a href="mailto:contact.admakerai@gmail.com">contact.admakerai@gmail.com</a>. Wir können eine Identitätsüberprüfung verlangen, bevor wir solche Anfragen bearbeiten.
                             </p>
                         </section>
 
                         <section>
-                            <h2>6. Conservation des données</h2>
+                            <h2>6. Datenspeicherung</h2>
                             <p>
-                                Nous conservons les Données personnelles uniquement aussi longtemps que nécessaire pour remplir leur objectif initial ou pour nous conformer aux exigences légales. Les périodes de conservation varient en fonction du type de données, de la façon dont elles sont utilisées et des réglementations applicables. Une fois qu'elles ne sont plus nécessaires, les données sont supprimées en toute sécurité ou anonymisées.
+                                Wir speichern personenbezogene Daten nur so lange, wie es zur Erfüllung des ursprünglichen Zwecks oder zur Erfüllung rechtlicher Anforderungen erforderlich ist. Die Aufbewahrungsfristen variieren je nach Art der Daten, wie sie verwendet werden und geltenden Vorschriften. Wenn sie nicht mehr benötigt werden, werden Daten sicher gelöscht oder anonymisiert.
                             </p>
                         </section>
 
                         <section>
-                            <h2>7. Sécurité</h2>
+                            <h2>7. Sicherheit</h2>
                             <p>
-                                Nous prenons la sécurité des données au sérieux et mettons en œuvre des mesures techniques et organisationnelles pour protéger vos informations. Celles-ci peuvent inclure le cryptage, les contrôles d'accès basés sur les rôles, les pare-feu et le stockage cloud sécurisé.
+                                Wir nehmen Datensicherheit ernst und implementieren technische und organisatorische Maßnahmen zum Schutz Ihrer Informationen. Dies kann Verschlüsselung, rollenbasierte Zugriffskontrollen, Firewalls und sichere Cloud-Speicherung umfassen.
                             </p>
                             <p>
-                                Cependant, aucune méthode de transmission sur Internet ou de stockage électronique n'est sécurisée à 100%. Bien que nous nous efforcions de protéger vos Données personnelles, nous ne pouvons pas garantir une sécurité absolue.
-                            </p>
-                        </section>
-
-                        <section>
-                            <h2>8. Transferts internationaux</h2>
-                            <p>
-                                En utilisant AdMaker AI, vous reconnaissez que vos données peuvent être transférées et traitées dans des pays autres que le vôtre, y compris des juridictions qui peuvent ne pas offrir des lois de protection des données équivalentes. Lorsque cela est requis, nous mettons en œuvre des garanties appropriées (telles que les Clauses contractuelles types) pour garantir que vos données restent protégées pendant ces transferts.
+                                Keine Übertragungsmethode über das Internet oder elektronische Speicherung ist jedoch zu 100% sicher. Während wir uns bemühen, personenbezogene Daten zu schützen, können wir absolute Sicherheit nicht garantieren.
                             </p>
                         </section>
 
                         <section>
-                            <h2>9. Base légale du traitement</h2>
-                            <p>Nous ne traitons les Données personnelles que lorsque cela est légalement justifié. Cela inclut :</p>
+                            <h2>8. Internationale Übertragungen</h2>
+                            <p>
+                                Durch die Nutzung von AdMaker AI erkennen Sie an, dass Ihre Daten in Länder außerhalb Ihres eigenen übertragen und verarbeitet werden können. Dies kann Gerichtsbarkeiten umfassen, die möglicherweise nicht gleichwertige Datenschutzgesetze bieten. Gegebenenfalls implementieren wir geeignete Schutzmaßnahmen (wie Standardvertragsklauseln), um sicherzustellen, dass Daten während solcher Übertragungen geschützt sind.
+                            </p>
+                        </section>
+
+                        <section>
+                            <h2>9. Rechtsgrundlage für die Verarbeitung</h2>
+                            <p>Wir verarbeiten personenbezogene Daten nur, wenn wir rechtlich dazu berechtigt sind. Dies umfasst:</p>
                             <ul>
-                                <li><strong>Exécution d'un contrat :</strong> Pour fournir les Services auxquels vous vous êtes abonné.</li>
-                                <li><strong>Intérêts légitimes :</strong> Pour le fonctionnement de la plateforme, l'analyse, la sécurité et l'assistance aux utilisateurs.</li>
-                                <li><strong>Consentement :</strong> Lorsque vous acceptez activement des fonctionnalités facultatives comme les e-mails marketing.</li>
-                                <li><strong>Conformité légale :</strong> Lorsque la réglementation ou la loi l'exige.</li>
+                                <li><strong>Vertragserfüllung:</strong> Um die Dienste bereitzustellen, die Sie abonniert haben.</li>
+                                <li><strong>Berechtigte Interessen:</strong> Für Plattformbetrieb, Analysen, Sicherheit und Benutzersupport.</li>
+                                <li><strong>Einwilligung:</strong> Wenn Sie aktiv in optionale Funktionen wie Marketing-E-Mails einwilligen.</li>
+                                <li><strong>Rechtliche Einhaltung:</strong> Wenn dies durch Vorschriften oder Gesetze erforderlich ist.</li>
                             </ul>
-                            <p>Vous pouvez retirer votre consentement à tout moment pour le traitement basé sur le consentement.</p>
+                            <p>Für einwilligungsbasierte Verarbeitung können Sie Ihre Einwilligung jederzeit widerrufen.</p>
                         </section>
 
                         <section>
-                            <h2>10. Liens vers des tiers</h2>
+                            <h2>10. Links zu Dritten</h2>
                             <p>
-                                Les Services peuvent inclure des liens vers des sites ou des outils tiers. Ceux-ci fonctionnent de manière indépendante et ont leurs propres politiques de confidentialité. AdMaker AI n'est pas responsable des pratiques de données des sites tiers auxquels vous accédez via notre plateforme.
+                                Die Dienste können Links zu Websites oder Tools von Dritten enthalten. Diese werden unabhängig betrieben und haben ihre eigenen Datenschutzrichtlinien. AdMaker AI ist nicht verantwortlich für die Datenpraktiken von Drittseiten, auf die Sie über die Plattform zugreifen.
                             </p>
                         </section>
 
                         <section>
-                            <h2>11. Confidentialité des enfants</h2>
+                            <h2>11. Datenschutz von Kindern</h2>
                             <p>
-                                Nos Services ne sont pas destinés aux enfants de moins de 13 ans. Nous ne collectons pas sciemment de Données personnelles auprès d'enfants de moins de 13 ans. Si vous pensez que nous avons collecté des informations auprès d'un enfant de moins de 13 ans, veuillez nous contacter immédiatement à <a href="mailto:contact.admakerai@gmail.com">contact.admakerai@gmail.com</a>.
+                                Unsere Dienste richten sich nicht an Kinder unter 13 Jahren. Wir sammeln wissentlich keine personenbezogenen Daten von Kindern unter 13 Jahren. Wenn Sie glauben, dass wir Informationen von einem Kind unter 13 Jahren gesammelt haben, kontaktieren Sie uns bitte umgehend unter <a href="mailto:contact.admakerai@gmail.com">contact.admakerai@gmail.com</a>.
                             </p>
                         </section>
 
                         <section>
-                            <h2>12. Mises à jour de cette politique</h2>
+                            <h2>12. Aktualisierungen dieser Richtlinie</h2>
                             <p>
-                                Nous pouvons mettre à jour cette Politique de confidentialité de temps à autre. Lorsque la loi l'exige, nous vous informerons directement par e-mail ou par message dans l'application. Votre utilisation continue des Services après les mises à jour indique l'acceptation de la politique révisée.
+                                Wir können diese Datenschutzrichtlinie von Zeit zu Zeit aktualisieren. Wenn dies gesetzlich vorgeschrieben ist, werden wir Sie direkt per E-Mail oder In-App-Nachricht benachrichtigen. Ihre fortgesetzte Nutzung der Dienste nach Aktualisierungen bedeutet Ihre Zustimmung zur überarbeiteten Richtlinie.
                             </p>
                         </section>
 
                         <section>
-                            <h2>13. Coordonnées</h2>
+                            <h2>13. Kontaktinformationen</h2>
                             <p>
-                                Si vous avez des questions concernant cette Politique de confidentialité ou nos pratiques en matière de données, veuillez nous contacter à :
+                                Wenn Sie Fragen zu dieser Datenschutzrichtlinie oder unseren Datenpraktiken haben, kontaktieren Sie uns unter:
                             </p>
                             <p>
-                                <strong>Email :</strong> <a href="mailto:contact.admakerai@gmail.com">contact.admakerai@gmail.com</a>
+                                <strong>E-Mail:</strong> <a href="mailto:contact.admakerai@gmail.com">contact.admakerai@gmail.com</a>
                             </p>
                         </section>
                     </div>
