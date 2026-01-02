@@ -166,81 +166,31 @@ export default function ComparePricingUGCArticleFR() {
                         </section>
 
                         <section id="evaluate" className={styles.section}>
-                            <h2>How to Evaluate Video Production Tool Costs</h2>
+                            <h2>Comment évaluer les coûts des outils de production vidéo</h2>
 
-                            <p>Beyond headline monthly prices, several factors impact total cost of ownership when you compare pricing for UGC video production tools:</p>
+                            <p>Au-delà du prix affiché, plusieurs facteurs impactent le coût total de possession :</p>
 
-                            <h3>Factor 1: True Cost Per Video</h3>
-                            <p>Calculate actual per-video cost based on your usage:</p>
+                            <h3>Facteur 1 : Le coût réel par vidéo</h3>
+                            <p>Calculez le coût réel en fonction de votre utilisation via cette formule :</p>
 
-                            <p><strong>Formula:</strong> (Monthly subscription + additional fees) ÷ Videos created = True cost per video</p>
+                            <p><strong>(Abonnement mensuel + frais additionnels) ÷ Nombre de vidéos créées = Coût réel par vidéo</strong></p>
 
-                            <p><strong>Example scenarios:</strong></p>
+                            <p><strong>Marque A</strong> (Faible volume) : Crée 5 vidéos/mois avec un outil à 49 $/mois. Coût réel : 9,80 $/vidéo.</p>
 
-                            <p><strong>Brand A</strong> (Low volume):</p>
-                            <ul>
-                                <li>Creates 5 videos monthly</li>
-                                <li>Subscribes to $49/month tool</li>
-                                <li>True cost: $9.80 per video</li>
-                            </ul>
+                            <p><strong>Marque B</strong> (Haut volume) : Crée 50 vidéos/mois avec un outil illimité à 29 $/mois. Coût réel : 0,58 $/vidéo.</p>
 
-                            <p><strong>Brand B</strong> (High volume):</p>
-                            <ul>
-                                <li>Creates 50 videos monthly</li>
-                                <li>Subscribes to $29/month unlimited tool</li>
-                                <li>True cost: $0.58 per video</li>
-                            </ul>
+                            <h3>Facteur 2 : Limitations des fonctionnalités par palier</h3>
+                            <p>Les forfaits restreignent souvent des fonctionnalités critiques comme la durée de la vidéo (30s vs 90s), la résolution (1080p vs 4K), ou les droits d'utilisation commerciale. Un forfait à 29 $ peut rapidement grimper à 79 $ si vous avez besoin de formats plus longs.</p>
 
-                            <p>Volume dramatically impacts unit economics. High-volume creators benefit most from unlimited plans, while low-volume users may prefer per-video or credit models.</p>
-
-                            <h3>Factor 2: Feature Limitations by Tier</h3>
-                            <p>Pricing tiers often restrict critical features:</p>
-
-                            <p><strong>Common limitations:</strong></p>
-                            <ul>
-                                <li>Video length caps (30s vs 60s vs 90s)</li>
-                                <li>Resolution restrictions (720p vs 1080p vs 4K)</li>
-                                <li>Watermark removal requirements</li>
-                                <li>Export format options</li>
-                                <li>Avatar/voice selection</li>
-                                <li>Background customization</li>
-                                <li>Commercial usage rights</li>
-                                <li>Priority processing speed</li>
-                                <li>Revision capabilities</li>
-                            </ul>
-
-                            <p>A $29 plan with 30-second limit may require $79 upgrade if your content needs 60-second formats, effectively tripling costs.</p>
-
-                            <h3>Factor 3: Scalability Economics</h3>
-                            <p>How costs scale with growth:</p>
-
-                            <p><strong>Linear scaling:</strong> Cost increases proportionally with usage (per-video or credit models)</p>
-
-                            <p><strong>Stepped scaling:</strong> Flat rate until threshold, then tier upgrade required</p>
-
-                            <p><strong>Unlimited scaling:</strong> Same cost regardless of volume (most favorable for growth)</p>
-
-                            <p>When planning annual budgets, model costs at 2x and 5x current volume to understand scalability implications.</p>
-
-                            <h3>Factor 4: Quality vs Price Trade-offs</h3>
-                            <p>Higher pricing doesn't guarantee better output. Evaluation framework:</p>
-
-                            <p><strong>Quality assessment areas:</strong></p>
-                            <ul>
-                                <li>Avatar realism and diversity</li>
-                                <li>Voice naturalness</li>
-                                <li>Background authenticity</li>
-                                <li>Processing speed</li>
-                                <li>Customization flexibility</li>
-                                <li>Brand consistency</li>
-                            </ul>
-
-                            <p>Test multiple platforms at various price points with identical content before committing to annual contracts.</p>
+                            <h3>Facteur 3 : Économies d'échelle</h3>
+                            <p><strong>Échelle linéaire :</strong> Le coût augmente proportionnellement à l'usage (crédits).</p>
+                            <p><strong>Échelle par paliers :</strong> Tarif fixe jusqu'à un seuil, puis mise à niveau requise.</p>
+                            <p><strong>Échelle illimitée :</strong> Coût identique quel que soit le volume (idéal pour la croissance).</p>
 
                             <div className={styles.imageWrapper}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1280&h=720&fit=crop"
-                                    alt="spreadsheet showing cost analysis data"
+                                    alt="feuille de calcul montrant des données d'analyse de coûts"
                                     width={1280}
                                     height={720}
                                 />
