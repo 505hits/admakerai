@@ -304,16 +304,16 @@
         width: 280px;
         max-width: 85vw;
         flex-direction: column;
-        background: rgba(10, 10, 10, 0.98);
+        background: #0a0a0a;
         backdrop-filter: blur(20px);
-        border-left: 1px solid rgba(255, 255, 255, 0.15);
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
         padding: var(--spacing-xl) var(--spacing-lg);
         gap: var(--spacing-md);
         overflow-y: auto;
         transform: translateX(100%);
         pointer-events: none;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: -8px 0 32px rgba(0, 0, 0, 0.8);
+        box-shadow: -8px 0 32px rgba(0, 0, 0, 0.9);
         z-index: 1001;
     }
 
@@ -328,10 +328,13 @@
         text-align: left;
         font-size: var(--font-size-base);
         width: 100%;
+        color: #ffffff !important;
+        font-weight: 500;
     }
 
     .navLinks a:hover {
-        background: rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.1);
+        color: #ffffff !important;
     }
 
     .btnPrimary,
