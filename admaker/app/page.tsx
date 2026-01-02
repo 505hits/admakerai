@@ -9,6 +9,7 @@ import FAQ from '@/components/FAQ';
 import TypedText from '@/components/TypedText';
 import Testimonials from '@/components/Testimonials';
 import FloatingCTA from '@/components/FloatingCTA';
+import Footer from '@/components/Footer';
 import { getMediaUrl } from '@/lib/cloudflare-config';
 
 export default function Home() {
@@ -630,21 +631,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="footer">
-        <div className="container">
-          <div className="footer-content">
-            <div className="footer-brand">
-              <div className="logo">
-                <span className="logo-text">AdMaker<span className="gradient-text">AI</span></span>
-              </div>
-              <p>The #1 platform to create AI video ads in minutes.</p>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <p>&copy; 2026 AdMaker AI. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       {/* Floating CTA Button */}
       <FloatingCTA text="Create your AI video now" href="/login" />
