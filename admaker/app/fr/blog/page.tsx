@@ -15,6 +15,28 @@ export default function BlogPageFR() {
                     <p className={styles.subtitle}>Dernières actualités et insights d'AdMaker AI</p>
 
                     <div className={styles.blogGrid}>
+                        <Link href="/fr/blog/comparer-prix-outils-production-video-ugc" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=500&fit=crop"
+                                    alt="Comparatif des Tarifs des Outils de Production Vidéo UGC"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>Guide Tarifs</span>
+                                <h2 className={styles.cardTitle}>Comparatif des Tarifs des Outils de Production Vidéo UGC (Guide 2025)</h2>
+                                <p className={styles.cardExcerpt}>
+                                    Comparez les tarifs des outils de production vidéo UGC sur 15+ plateformes. Analyse détaillée des coûts, frais cachés et ROI. Trouvez l'outil adapté à votre budget.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>Janvier 2025</span>
+                                </div>
+                            </div>
+                        </Link>
+
                         <Link href="/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
