@@ -609,6 +609,39 @@ export default function DashboardPage() {
 
             const userId = user.id;
 
+            // CRITICAL: Store metadata BEFORE calling KIE API
+            // This ensures we don't get charged by KIE if metadata storage fails
+            // We need a temporary taskId to store metadata before getting the real one from KIE
+            const tempTaskId = `temp_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+
+            try {
+                const metadataResponse = await secureFetch('/api/veo/store-metadata', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        taskId: tempTaskId,
+                        userId: userId,
+                        actorName: selectedActor.name,
+                        actorImageUrl: selectedActor.thumbnailUrl,
+                        script: actualScript,
+                        sceneDescription: actualScene,
+                        duration,
+                        format
+                    })
+                });
+
+                if (!metadataResponse.ok) {
+                    throw new Error('Failed to store metadata');
+                }
+
+                console.log('✅ Metadata pre-stored with temp ID');
+            } catch (metaErr) {
+                console.error('❌ CRITICAL: Metadata storage failed:', metaErr);
+                setIsGenerating(false);
+                setError('Failed to prepare video generation. Please try again.');
+                return; // Don't call KIE API or deduct credits
+            }
+
             // Call our API route (server-side) with CSRF protection
             const response = await secureFetch('/api/veo/generate', {
                 method: 'POST',
@@ -627,6 +660,12 @@ export default function DashboardPage() {
 
             if (!response.ok) {
                 const errorData = await response.json();
+
+                // Clean up temp metadata
+                await supabase
+                    .from('video_generation_metadata')
+                    .delete()
+                    .eq('task_id', tempTaskId);
 
                 // Check if this is a content policy violation that requires refund
                 if (errorData.shouldRefund && errorData.code === 400) {
@@ -648,24 +687,17 @@ export default function DashboardPage() {
             const result = await response.json();
             console.log('✅ Video generation started, taskId:', result.taskId);
 
-            // Store metadata for webhook
+            // Update metadata with real taskId from KIE
             try {
-                await secureFetch('/api/veo/store-metadata', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        taskId: result.taskId,
-                        userId: userId,
-                        actorName: selectedActor.name,
-                        actorImageUrl: selectedActor.thumbnailUrl,
-                        script: actualScript,
-                        sceneDescription: actualScene,
-                        duration,
-                        format
-                    })
-                });
-            } catch (metaErr) {
-                console.error('❌ Metadata storage error:', metaErr);
+                await supabase
+                    .from('video_generation_metadata')
+                    .update({ task_id: result.taskId })
+                    .eq('task_id', tempTaskId);
+
+                console.log('✅ Metadata updated with real taskId');
+            } catch (updateErr) {
+                console.error('❌ Failed to update metadata with real taskId:', updateErr);
+                // This is not critical - webhook will use fallback
             }
 
             // Deduct credits immediately
