@@ -70,9 +70,19 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({ taskId: result.taskId });
     } catch (error: any) {
         console.error('❌ Video generation error:', error);
+
+        // Check if this is a content policy violation
+        const isContentViolation = error.message === 'CONTENT_POLICY_VIOLATION' || error.code === 400;
+
         return NextResponse.json(
-            { error: error.message || 'Failed to start video generation' },
-            { status: 500 }
+            {
+                error: isContentViolation
+                    ? 'Your prompt was flagged by KIE as violating content policies.'
+                    : (error.message || 'Failed to start video generation'),
+                code: error.code || 500,
+                shouldRefund: isContentViolation
+            },
+            { status: isContentViolation ? 400 : 500 }
         );
     }
 }

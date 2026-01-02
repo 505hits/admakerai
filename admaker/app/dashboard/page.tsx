@@ -627,6 +627,21 @@ export default function DashboardPage() {
 
             if (!response.ok) {
                 const errorData = await response.json();
+
+                // Check if this is a content policy violation that requires refund
+                if (errorData.shouldRefund && errorData.code === 400) {
+                    // Refund the credits that were deducted
+                    const refundedCredits = credits + cost;
+                    setCredits(refundedCredits);
+
+                    await supabase
+                        .from('profiles')
+                        .update({ credits: refundedCredits })
+                        .eq('id', userId);
+
+                    console.log(`💰 Refunded ${cost} credits due to content policy violation`);
+                }
+
                 throw new Error(errorData.error || 'Failed to start video generation');
             }
 
@@ -829,6 +844,12 @@ export default function DashboardPage() {
 
         } catch (err: any) {
             console.error('❌ Batch generation error:', err);
+
+            // Check if any generation failed due to content policy violation
+            // Note: In batch mode, we need to handle partial failures
+            // For now, we'll show the error but won't refund since some videos might have succeeded
+            // TODO: Implement per-video refund tracking for batch operations
+
             setError(err.message || 'Failed to start batch generation');
             setIsGenerating(false);
         }

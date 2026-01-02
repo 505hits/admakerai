@@ -54,7 +54,7 @@ class VeoAPIClient {
 
                 // Throw error with specific message
                 const errorMessages: Record<number, string> = {
-                    400: '1080P is processing. Please wait 1-2 minutes.',
+                    400: 'CONTENT_POLICY_VIOLATION', // Special marker for content violations
                     401: 'Invalid API key. Please check your credentials.',
                     402: 'Insufficient credits. Please upgrade your plan.',
                     404: 'API endpoint not found.',
@@ -66,7 +66,9 @@ class VeoAPIClient {
                     505: 'This feature is currently disabled.',
                 };
 
-                throw new Error(errorMessages[result.code] || result.msg || 'API request failed');
+                const error = new Error(errorMessages[result.code] || result.msg || 'API request failed');
+                (error as any).code = result.code; // Attach error code for downstream handling
+                throw error;
             }
 
             return result as T;
