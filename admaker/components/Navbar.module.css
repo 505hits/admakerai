@@ -298,26 +298,28 @@
 
     .navLinks {
         position: fixed;
-        top: 60px;
-        left: 0;
+        top: 0;
         right: 0;
+        bottom: 0;
+        width: 280px;
+        max-width: 85vw;
         flex-direction: column;
         background: rgba(0, 0, 0, 0.98);
         backdrop-filter: blur(20px);
-        border-top: 1px solid rgba(255, 255, 255, 0.05);
-        padding: var(--spacing-lg);
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        padding: var(--spacing-xl) var(--spacing-lg);
         gap: var(--spacing-md);
-        max-height: calc(100vh - 60px);
         overflow-y: auto;
-        transform: translateY(-100%);
+        transform: translateX(100%);
         opacity: 0;
         pointer-events: none;
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        box-shadow: -8px 0 32px rgba(0, 0, 0, 0.5);
+        z-index: 1001;
     }
 
     .navLinks.active {
-        transform: translateY(0);
+        transform: translateX(0);
         opacity: 1;
         pointer-events: all;
     }
@@ -325,8 +327,9 @@
     .navLinks a {
         padding: var(--spacing-md);
         border-radius: var(--radius-md);
-        text-align: center;
+        text-align: left;
         font-size: var(--font-size-base);
+        width: 100%;
     }
 
     .navLinks a:hover {
@@ -367,5 +370,18 @@
         position: static;
         margin-top: var(--spacing-sm);
         width: 100%;
+    }
+
+    /* Mobile menu overlay */
+    .navLinks.active::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 280px;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(4px);
+        z-index: -1;
     }
 }
