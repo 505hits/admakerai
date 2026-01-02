@@ -1,0 +1,50 @@
+.floatingCTA {
+    position: fixed;
+    bottom: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, #ff0844 0%, #ff6b6b 100%);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 50px;
+    box-shadow: 0 8px 30px rgba(255, 8, 68, 0.4);
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
+    white-space: nowrap;
+}
+
+.floatingCTA.visible {
+    bottom: 30px;
+}
+
+.floatingCTA:hover {
+    transform: translateX(-50%) translateY(-4px);
+    box-shadow: 0 12px 40px rgba(255, 8, 68, 0.6);
+}
+
+.floatingCTA svg {
+    transition: transform 0.3s ease;
+}
+
+.floatingCTA:hover svg {
+    transform: translateY(-2px);
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .floatingCTA {
+        font-size: 14px;
+        padding: 14px 24px;
+        bottom: -100px;
+    }
+
+    .floatingCTA.visible {
+        bottom: 20px;
+    }
+}

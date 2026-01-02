@@ -629,7 +629,7 @@ export default function HomeJa() {
                         </div>
                     </div>
                     <div className="footer-bottom">
-                        <p>© 2024 AdMaker AI. All rights reserved.</p>
+                        <p>© 2026 AdMaker AI. All rights reserved.</p>
                     </div>
                 </div>
             </footer>

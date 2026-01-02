@@ -336,6 +336,29 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
         };
     }, []);
 
+    // Close mobile menu when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (isMobileMenuOpen) {
+                const target = event.target as HTMLElement;
+                const navLinks = document.querySelector(`.${styles.navLinks}`);
+                const menuBtn = document.querySelector(`.${styles.mobileMenuBtn}`);
+
+                if (navLinks && menuBtn && !navLinks.contains(target) && !menuBtn.contains(target)) {
+                    setIsMobileMenuOpen(false);
+                }
+            }
+        };
+
+        if (isMobileMenuOpen) {
+            document.addEventListener('click', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        };
+    }, [isMobileMenuOpen]);
+
 
     const handleLogout = async () => {
         try {

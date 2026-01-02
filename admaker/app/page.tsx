@@ -8,6 +8,7 @@ import Pricing from '@/components/Pricing';
 import FAQ from '@/components/FAQ';
 import TypedText from '@/components/TypedText';
 import Testimonials from '@/components/Testimonials';
+import FloatingCTA from '@/components/FloatingCTA';
 import { getMediaUrl } from '@/lib/cloudflare-config';
 
 export default function Home() {
@@ -71,7 +72,7 @@ export default function Home() {
 
             const stats = [
               'Conversion +250%',
-              '10M+ vues',
+              '10M+ views',
               'ROI x5',
               'Engagement +180%',
               'CTR +320%',
@@ -456,7 +457,7 @@ export default function Home() {
                 100% Powered by AI
               </h3>
               <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.7)', lineHeight: '1.6', margin: 0 }}>
-                We use the lastest & most powerful models to generate content that is relevant and engaging.
+                We use the latest & most powerful models to generate content that is relevant and engaging.
               </p>
             </div>
 
@@ -640,10 +641,13 @@ export default function Home() {
             </div>
           </div>
           <div className="footer-bottom">
-            <p>&copy; 2024 AdMaker AI. All rights reserved.</p>
+            <p>&copy; 2026 AdMaker AI. All rights reserved.</p>
           </div>
         </div>
       </footer>
+
+      {/* Floating CTA Button */}
+      <FloatingCTA text="Create your AI video now" href="/login" />
     </main>
   );
 }

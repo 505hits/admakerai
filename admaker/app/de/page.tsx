@@ -424,7 +424,7 @@ export default function HomeDe() {
                         </div>
                     </div>
                     <div className="footer-bottom">
-                        <p>© 2024 AdMaker AI. Alle Rechte vorbehalten.</p>
+                        <p>© 2026 AdMaker AI. Alle Rechte vorbehalten.</p>
                     </div>
                 </div>
             </footer>

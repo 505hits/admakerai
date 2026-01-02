@@ -8,6 +8,7 @@ import Pricing from '@/components/Pricing';
 import FAQ from '@/components/FAQ';
 import TypedText from '@/components/TypedText';
 import Testimonials from '@/components/Testimonials';
+import FloatingCTA from '@/components/FloatingCTA';
 import { getMediaUrl } from '@/lib/cloudflare-config';
 
 export default function HomeFr() {
@@ -629,10 +630,13 @@ export default function HomeFr() {
                         </div>
                     </div>
                     <div className="footer-bottom">
-                        <p>© 2024 AdMaker AI. Tous droits réservés.</p>
+                        <p>© 2026 AdMaker AI. Tous droits réservés.</p>
                     </div>
                 </div>
             </footer>
+
+            {/* Floating CTA Button */}
+            <FloatingCTA text="Créez votre vidéo IA maintenant" href="/fr/connexion" />
         </main>
     );
 }

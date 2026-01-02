@@ -301,7 +301,7 @@ export default function HomeEs() {
                         </div>
                     </div>
                     <div className="footer-bottom">
-                        <p>© 2024 AdMaker AI. Todos los derechos reservados.</p>
+                        <p>© 2026 AdMaker AI. Todos los derechos reservados.</p>
                     </div>
                 </div>
             </footer>

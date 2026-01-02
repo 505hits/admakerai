@@ -301,7 +301,7 @@ export default function HomePt() {
                         </div>
                     </div>
                     <div className="footer-bottom">
-                        <p>© 2024 AdMaker AI. Todos os direitos reservados.</p>
+                        <p>© 2026 AdMaker AI. Todos os direitos reservados.</p>
                     </div>
                 </div>
             </footer>
