@@ -8,6 +8,7 @@ import Pricing from '@/components/Pricing';
 import FAQ from '@/components/FAQ';
 import TypedText from '@/components/TypedText';
 import Testimonials from '@/components/Testimonials';
+import FloatingCTA from '@/components/FloatingCTA';
 import { getMediaUrl } from '@/lib/cloudflare-config';
 
 export default function HomeEs() {
@@ -305,6 +306,9 @@ export default function HomeEs() {
                     </div>
                 </div>
             </footer>
+
+            {/* Floating CTA Button */}
+            <FloatingCTA text="Crea tu video IA ahora" href="/es/iniciar-sesion" />
         </main>
     );
 }

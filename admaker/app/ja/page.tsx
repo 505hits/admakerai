@@ -8,6 +8,7 @@ import Pricing from '@/components/Pricing';
 import FAQ from '@/components/FAQ';
 import TypedText from '@/components/TypedText';
 import Testimonials from '@/components/Testimonials';
+import FloatingCTA from '@/components/FloatingCTA';
 import { getMediaUrl } from '@/lib/cloudflare-config';
 
 export default function HomeJa() {
@@ -633,6 +634,9 @@ export default function HomeJa() {
                     </div>
                 </div>
             </footer>
+
+            {/* Floating CTA Button */}
+            <FloatingCTA text="今すぐAIビデオを作成" href="/ja/login" />
         </main>
     );
 }

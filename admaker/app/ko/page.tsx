@@ -8,6 +8,7 @@ import Pricing from '@/components/Pricing';
 import FAQ from '@/components/FAQ';
 import TypedText from '@/components/TypedText';
 import Testimonials from '@/components/Testimonials';
+import FloatingCTA from '@/components/FloatingCTA';
 import { getMediaUrl } from '@/lib/cloudflare-config';
 
 export default function HomeKo() {
@@ -305,6 +306,9 @@ export default function HomeKo() {
                     </div>
                 </div>
             </footer>
+
+            {/* Floating CTA Button */}
+            <FloatingCTA text="지금 AI 비디오 만들기" href="/ko/login" />
         </main>
     );
 }

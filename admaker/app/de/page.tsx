@@ -8,6 +8,7 @@ import Pricing from '@/components/Pricing';
 import FAQ from '@/components/FAQ';
 import TypedText from '@/components/TypedText';
 import Testimonials from '@/components/Testimonials';
+import FloatingCTA from '@/components/FloatingCTA';
 import { getMediaUrl } from '@/lib/cloudflare-config';
 
 export default function HomeDe() {
@@ -428,6 +429,9 @@ export default function HomeDe() {
                     </div>
                 </div>
             </footer>
+
+            {/* Floating CTA Button */}
+            <FloatingCTA text="Erstellen Sie jetzt Ihr KI-Video" href="/de/anmelden" />
         </main>
     );
 }
