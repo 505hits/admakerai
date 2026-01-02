@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import Navbar from '@/components/Navbar';
+import SimilarArticles from '@/components/SimilarArticles';
 import styles from './Article.module.css';
 import Image from 'next/image';
 
@@ -733,6 +734,10 @@ export default function TopAIPlatformsUGCArticle() {
                     <aside className={styles.videoSidebar}>
                         <BlogVideoSidebar locale={locale} />
                     </aside>
+                </div>
+
+                <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+                    <SimilarArticles locale="en" currentSlug="/blog/top-ai-platforms-creating-ugc-brand-videos" />
                 </div>
 
                 {/* Sticky Mobile CTA */}

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import Navbar from '@/components/Navbar';
+import SimilarArticles from '@/components/SimilarArticles';
 import styles from './Article.module.css';
 import Image from 'next/image';
 
@@ -467,6 +468,10 @@ export default function TopAIPlatformsUGCArticle() {
                     <aside className={styles.videoSidebar}>
                         <BlogVideoSidebar locale={locale} />
                     </aside>
+                </div>
+
+                <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+                    <SimilarArticles locale="de" currentSlug="/de/blog/beste-ki-plattformen-ugc-markenvideos" />
                 </div>
 
                 <a href={landingPageUrl} className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`} aria-label="Erstellen Sie Ihr UGC-Video">
