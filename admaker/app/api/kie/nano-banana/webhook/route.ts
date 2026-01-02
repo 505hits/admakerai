@@ -29,6 +29,18 @@ export async function POST(request: NextRequest) {
         console.log('🍌 Nano Banana Webhook POST received');
         console.log('🍌 Timestamp:', new Date().toISOString());
 
+        // Security: Validate webhook signature
+        const signature = request.headers.get('x-kie-signature') || request.headers.get('authorization');
+        const expectedSecret = process.env.KIE_WEBHOOK_SECRET;
+
+        if (expectedSecret && signature !== expectedSecret) {
+            console.warn('❌ Invalid webhook signature');
+            return NextResponse.json(
+                { error: 'Unauthorized' },
+                { status: 401 }
+            );
+        }
+
         const contentType = request.headers.get('content-type') || '';
         console.log('📋 Content-Type:', contentType);
 
