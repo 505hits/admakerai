@@ -107,6 +107,54 @@ const articlesData: Record<string, ArticleData[]> = {
             category: 'KI-Video-Plattformen',
             date: 'Dezember 2024'
         }
+    ],
+    pt: [
+        {
+            slug: '/pt/blog/melhor-servico-criacao-video-ugc-marketing-imobiliario',
+            title: 'Melhor Serviço de Criação de Vídeo UGC para Marketing Imobiliário',
+            image: 'https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/2.jpg',
+            category: 'Marketing Imobiliário',
+            date: 'Dezembro 2024'
+        },
+        {
+            slug: '/pt/blog/melhores-plataformas-ia-criar-videos-ugc-marca',
+            title: 'Melhores Plataformas de IA para Criar Vídeos UGC de Marca',
+            image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=500&fit=crop',
+            category: 'Plataformas de IA de Vídeo',
+            date: 'Dezembro 2024'
+        }
+    ],
+    ja: [
+        {
+            slug: '/ja/blog/best-ugc-video-creation-service-real-estate-marketing',
+            title: '不動産マーケティングに最適なUGC動画作成サービス',
+            image: 'https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/2.jpg',
+            category: '不動産マーケティング',
+            date: '2024年12月'
+        },
+        {
+            slug: '/ja/blog/brand-ugc-video-ai-platforms',
+            title: 'ブランドUGC動画作成のためのトップAIプラットフォーム',
+            image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=500&fit=crop',
+            category: 'AI動画プラットフォーム',
+            date: '2024年12月'
+        }
+    ],
+    ko: [
+        {
+            slug: '/ko/blog/best-ugc-video-creation-service-real-estate-marketing',
+            title: '부동산 마케팅을 위한 최고의 UGC 비디오 제작 서비스',
+            image: 'https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/2.jpg',
+            category: '부동산 마케팅',
+            date: '2024년 12월'
+        },
+        {
+            slug: '/ko/blog/brand-ugc-video-ai-platforms',
+            title: '브랜드 UGC 비디오 제작을 위한 최고의 AI 플랫폼',
+            image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=500&fit=crop',
+            category: 'AI 비디오 플랫폼',
+            date: '2024년 12월'
+        }
     ]
 };
 

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import styles from './ScriptEditor.module.css';
+import { secureFetch } from '@/lib/api/client';
 
 // List of available accents
 const ACCENTS = [
@@ -110,7 +111,7 @@ export default function ScriptEditor({
         setEnhanceError(null);
 
         try {
-            const response = await fetch('/api/enhance-script', {
+            const response = await secureFetch('/api/enhance-script', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
