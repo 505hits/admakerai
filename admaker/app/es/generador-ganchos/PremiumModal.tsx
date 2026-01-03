@@ -77,7 +77,7 @@ export default function PremiumModal({ isOpen, onClose }: PremiumModalProps) {
                         </div>
 
                         <h2 className={styles.title}>
-                            Desbloquea <span className="gradient-text-red">Ganchos Ilimitados</span>
+                            Desbloquea <span className="gradient-text-red">Ganchos y Videos Ilimitados</span>
                         </h2>
 
                         <p className={styles.subtitle}>
@@ -85,10 +85,10 @@ export default function PremiumModal({ isOpen, onClose }: PremiumModalProps) {
                         </p>
 
                         <div className={styles.priceBox}>
-                            <div className={styles.oldPrice}>36€/mes</div>
+                            <div className={styles.oldPrice}>$49/mes</div>
                             <div className={styles.newPrice}>
-                                <span className={styles.currency}>€</span>
-                                <span className={styles.amount}>29</span>
+                                <span className={styles.currency}>$</span>
+                                <span className={styles.amount}>39</span>
                                 <span className={styles.period}>/mes</span>
                             </div>
                             <div className={styles.discount}>-20% SOLO HOY</div>
