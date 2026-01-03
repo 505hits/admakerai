@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import PremiumModal from './PremiumModal';
 import styles from './HookGenerator.module.css';
 import { secureFetch } from '@/lib/api/client';
 import { createClient } from '@/lib/supabase/client';
@@ -17,6 +18,7 @@ export default function HookGeneratorPage() {
     const [hooksRemaining, setHooksRemaining] = useState<number | null>(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+    const [showPremiumModal, setShowPremiumModal] = useState(false);
     const router = useRouter();
     const supabase = createClient();
 
@@ -52,8 +54,8 @@ export default function HookGeneratorPage() {
 
             if (!response.ok) {
                 if (data.limitReached) {
-                    setError(data.error);
                     setHooksRemaining(0);
+                    setShowPremiumModal(true); // Show premium modal instead of error
                 } else {
                     throw new Error(data.error || 'Failed to generate hooks');
                 }
@@ -95,11 +97,19 @@ export default function HookGeneratorPage() {
                 <div className={styles.heroGlow}></div>
                 <div className="container">
                     <div className={styles.heroContent}>
+                        {/* Social Proof */}
+                        <div className={styles.socialProof}>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                            Trusted by 20,000+ ecom brands
+                        </div>
+
                         <h1 className={styles.title}>
                             Free AI <span className="gradient-text-red">Hook Generator</span>
                         </h1>
                         <p className={styles.subtitle}>
-                            Create 5 viral video hooks in seconds. Perfect for TikTok, Instagram Reels, and YouTube Shorts.
+                            Create 3 viral video hooks in seconds. Perfect for TikTok, Instagram Reels, and YouTube Shorts.
                         </p>
 
                         {isAuthenticated && hooksRemaining !== null && (
@@ -333,6 +343,13 @@ export default function HookGeneratorPage() {
             )}
 
             <Footer />
+
+            {/* Premium Modal */}
+            <PremiumModal
+                isOpen={showPremiumModal}
+                onClose={() => setShowPremiumModal(false)}
+            />
         </main>
     );
 }
+```

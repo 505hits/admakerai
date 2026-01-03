@@ -13,31 +13,42 @@ export async function POST(request: NextRequest) {
     try {
         console.log('🎣 Hook generation API called');
 
-        // Rate limiting - 5 requests per hour per IP (for non-authenticated users)
-        const clientIp = getClientIp(request);
-        const rateLimitResult = rateLimit(clientIp, rateLimitConfigs.enhance);
+        const ip = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
 
-        if (!rateLimitResult.success) {
-            return NextResponse.json(
-                { error: 'Too many requests. Please try again later' },
-                {
-                    status: 429,
-                    headers: getRateLimitHeaders(rateLimitResult),
-                }
-            );
+        // Get user if authenticated
+        const supabase = await createClient();
+        const { data: { user } } = await supabase.auth.getUser();
+
+        let hooksRemaining = null; // Initialize hooksRemaining here
+
+        // Rate limiting for non-authenticated users (stricter - 10 total per hour)
+        let rateLimitResult; // Declare rateLimitResult here to be accessible later
+
+        if (!user) {
+            const clientIp = getClientIp(request);
+            const ipRateLimit = await rateLimit(clientIp, { ...rateLimitConfigs.enhance, max: 10 });
+            rateLimitResult = ipRateLimit; // Assign to rateLimitResult
+
+            if (!ipRateLimit.success) {
+                return NextResponse.json(
+                    {
+                        error: 'You\'ve reached the maximum number of free hook generations. Please sign up to continue.',
+                        limitReached: true,
+                        isAuthenticated: false
+                    },
+                    {
+                        status: 429,
+                        headers: getRateLimitHeaders(ipRateLimit)
+                    }
+                );
+            }
         }
 
-        // Get authenticated user (optional for this endpoint)
-        const supabase = await createClient();
-        const { data: { user }, error: authError } = await supabase.auth.getUser();
-
-        let hooksRemaining = null;
-
-        // If user is authenticated, check their hook usage
+        // For authenticated users, check their hook generation count
         if (user) {
             const { data: profile, error: profileError } = await supabase
                 .from('profiles')
-                .select('hook_generations_used')
+                .select('hook_generations_used, subscription_status')
                 .eq('id', user.id)
                 .single();
 
@@ -49,22 +60,32 @@ export async function POST(request: NextRequest) {
                 );
             }
 
-            const usedGenerations = profile?.hook_generations_used ?? 0;
-            hooksRemaining = Math.max(0, 10 - usedGenerations);
+            // Check if user has a paid subscription
+            const isPaidUser = profile?.subscription_status === 'active' ||
+                profile?.subscription_status === 'trialing';
 
-            if (usedGenerations >= 10) {
-                console.log('❌ User has reached hook generation limit');
-                return NextResponse.json(
-                    {
-                        error: 'You have used all your free hook generations. Upgrade to Pro for unlimited access.',
-                        limitReached: true,
-                        hooksRemaining: 0
-                    },
-                    { status: 403 }
-                );
+            if (!isPaidUser) {
+                const hooksUsed = profile?.hook_generations_used || 0;
+                hooksRemaining = Math.max(0, 10 - hooksUsed);
+
+                if (hooksUsed >= 10) {
+                    console.log('❌ User has reached hook generation limit');
+                    return NextResponse.json(
+                        {
+                            error: 'You\'ve used all your free hook generations! Upgrade to Pro for unlimited access.',
+                            limitReached: true,
+                            hooksRemaining: 0,
+                            isAuthenticated: true
+                        },
+                        { status: 429 }
+                    );
+                }
+                console.log(`✅ User has ${hooksRemaining} hook generations remaining`);
+            } else {
+                // Paid users have unlimited hooks
+                hooksRemaining = -1; // Indicate unlimited
+                console.log('✅ Paid user has unlimited hook generations');
             }
-
-            console.log(`✅ User has ${hooksRemaining} hook generations remaining`);
         }
 
         // Parse and validate request body
@@ -96,7 +117,7 @@ export async function POST(request: NextRequest) {
         // Create the prompt for the AI model
         const prompt = `You are an expert copywriter specializing in viral video hooks for TikTok, Instagram Reels, and YouTube Shorts.
 
-Generate 5 DIFFERENT catchy hooks for a video about: "${videoIdea}"
+Generate 3 DIFFERENT catchy hooks for a video about: "${videoIdea}"
 
 Requirements for each hook:
 - MUST grab attention in the first 2 seconds
@@ -107,7 +128,7 @@ Requirements for each hook:
 - Each hook MUST be completely different from the others
 - DETECT the language of the video idea and respond in THE SAME LANGUAGE
 
-Format your response as a numbered list (1-5), one hook per line.
+Format your response as a numbered list (1-3), one hook per line.
 Do NOT include explanations, just the hooks.
 
 Example format:
@@ -117,7 +138,7 @@ Example format:
 4. Stop doing [common mistake] - here's why
 5. The truth about [topic] that nobody tells you
 
-Generate 5 hooks:`;
+Generate 3 hooks:`;
 
         // Call Meta Llama 3.1 405B Instruct model via Replicate
         const output = await replicate.run(
@@ -125,7 +146,7 @@ Generate 5 hooks:`;
             {
                 input: {
                     prompt: prompt,
-                    max_tokens: 500,
+                    max_tokens: 300,
                     temperature: 0.8,
                     top_p: 0.9,
                 }
@@ -133,34 +154,34 @@ Generate 5 hooks:`;
         );
 
         // Collect the output
-        let generatedHooks = '';
+        let generatedText = '';
 
         if (output && typeof output === 'object' && Symbol.asyncIterator in output) {
             for await (const chunk of output as any) {
-                generatedHooks += chunk;
+                generatedText += chunk;
             }
         } else if (output && typeof output === 'object' && Symbol.iterator in output) {
             for (const chunk of output as any) {
-                generatedHooks += chunk;
+                generatedText += chunk;
             }
         } else if (Array.isArray(output)) {
-            generatedHooks = output.join('');
+            generatedText = output.join('');
         } else if (typeof output === 'string') {
-            generatedHooks = output;
+            generatedText = output;
         }
 
-        if (!generatedHooks || generatedHooks.trim().length === 0) {
+        if (!generatedText || generatedText.trim().length === 0) {
             console.error('❌ No hooks generated from AI');
             throw new Error('Failed to generate hooks. Please try again.');
         }
 
         // Parse the hooks from the response
-        const hooks = generatedHooks
+        const hooks = generatedText
             .split('\n')
-            .filter(line => line.trim().match(/^\d+\./))
-            .map(line => line.replace(/^\d+\.\s*/, '').trim())
-            .filter(hook => hook.length > 0)
-            .slice(0, 5);
+            .filter((line: string) => line.trim().match(/^\d+\./))
+            .map((line: string) => line.replace(/^\d+\.\s*/, '').trim())
+            .filter((hook: string) => hook.length > 0)
+            .slice(0, 3); // Take only first 3 hooks
 
         if (hooks.length === 0) {
             console.error('❌ Failed to parse hooks from response');
