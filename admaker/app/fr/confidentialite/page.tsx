@@ -1,5 +1,4 @@
 import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
 import styles from '../../terms/legal.module.css';
 
 export const metadata = {
@@ -174,7 +173,7 @@ export default function PolitiqueConfidentialite() {
                 </div>
             </div>
 
-            <Footer lang="fr" />
+
         </main>
     );
 }

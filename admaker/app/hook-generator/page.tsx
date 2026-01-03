@@ -366,7 +366,6 @@ export default function HookGeneratorPage() {
                 </section>
             )}
 
-            <Footer />
 
             {/* Premium Modal */}
             <PremiumModal

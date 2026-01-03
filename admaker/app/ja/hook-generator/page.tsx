@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
 import PremiumModal from './PremiumModal';
 import SEOContent from './SEOContent';
 import StickyHookCTA from './StickyHookCTA';
@@ -352,7 +351,7 @@ export default function HookGenerator() {
                 </section>
             )}
 
-            <Footer />
+
 
             <PremiumModal
                 isOpen={showPremiumModal}

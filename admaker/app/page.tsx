@@ -9,7 +9,6 @@ import FAQ from '@/components/FAQ';
 import TypedText from '@/components/TypedText';
 import Testimonials from '@/components/Testimonials';
 import FloatingCTA from '@/components/FloatingCTA';
-import Footer from '@/components/Footer';
 import { getMediaUrl } from '@/lib/cloudflare-config';
 
 export default function Home() {
@@ -715,8 +714,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <Footer />
+
 
       {/* Floating CTA Button */}
       <FloatingCTA text="Create your AI video now" href="/login" />

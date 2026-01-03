@@ -1,5 +1,4 @@
 import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
 import styles from './legal.module.css';
 
 export const metadata = {
@@ -180,7 +179,7 @@ export default function TermsOfService() {
                 </div>
             </div>
 
-            <Footer />
+
         </main>
     );
 }
