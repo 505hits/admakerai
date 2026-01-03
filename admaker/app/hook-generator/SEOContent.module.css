@@ -155,7 +155,7 @@
 /* Feature Grid */
 .featureGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 24px;
     margin-top: 40px;
 }
@@ -191,29 +191,48 @@
 .faqList {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 16px;
     margin-top: 40px;
 }
 
 .faqItem {
-    padding: 24px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 28px 32px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 3px solid #ff0844;
     border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.faqItem:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 8, 68, 0.3);
+    transform: translateX(8px);
+    box-shadow: 0 8px 30px rgba(255, 8, 68, 0.15);
 }
 
 .faqItem h4 {
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     color: #fff;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.faqItem h4::before {
+    content: "❓";
+    font-size: 1.1rem;
+    flex-shrink: 0;
 }
 
 .faqItem p {
     font-size: 1.05rem;
     color: rgba(255, 255, 255, 0.75);
-    line-height: 1.7;
+    line-height: 1.8;
     margin: 0;
+    padding-left: 32px;
 }
 
 /* Final CTA */
@@ -299,5 +318,9 @@
     .finalCta {
         padding: 40px 24px;
         margin-top: 60px;
+    }
+
+    .featureGrid {
+        grid-template-columns: 1fr;
     }
 }
