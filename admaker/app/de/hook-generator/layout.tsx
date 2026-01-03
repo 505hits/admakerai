@@ -24,6 +24,8 @@ export const metadata: Metadata = {
             'es': 'https://admakerai.app/es/generador-ganchos',
             'pt': 'https://admakerai.app/pt/gerador-ganchos',
             'de': 'https://admakerai.app/de/hook-generator',
+            'ko': 'https://admakerai.app/ko/hook-generator',
+            'ja': 'https://admakerai.app/ja/hook-generator',
         }
     },
     openGraph: {

@@ -475,7 +475,15 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                     </a>
                     <div className={`${styles.navLinks} ${isMobileMenuOpen ? styles.active : ''}`}>
                         <a href="#features">{t.features}</a>
-                        <a href={lang === 'fr' ? '/fr/generateur-accroches' : lang === 'es' ? '/es/generador-ganchos' : lang === 'pt' ? '/pt/gerador-ganchos' : lang === 'de' ? '/de/hook-generator' : '/hook-generator'}>{t.hookGenerator}</a>
+                        <a href={
+                            lang === 'fr' ? '/fr/generateur-accroches' :
+                                lang === 'es' ? '/es/generador-ganchos' :
+                                    lang === 'pt' ? '/pt/gerador-ganchos' :
+                                        lang === 'de' ? '/de/hook-generator' :
+                                            lang === 'ko' ? '/ko/hook-generator' :
+                                                lang === 'ja' ? '/ja/hook-generator' :
+                                                    '/hook-generator'
+                        }>{t.hookGenerator}</a>
                         <a href="#pricing">{t.pricing}</a>
                         <a href={`${langPrefix}/blog`}>{t.blog}</a>
 
