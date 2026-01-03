@@ -57,6 +57,7 @@ export default function GeneradorGanchos() {
 
             if (!response.ok) {
                 if (data.limitReached) {
+                    console.log('🚨 Limit reached! Opening premium modal...', data);
                     setHooksRemaining(0);
                     setShowPremiumModal(true);
                 } else {
