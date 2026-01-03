@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Navbar from '@/components/Navbar';
+import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import styles from '../compare-pricing-ugc-video-production-tools/Article.module.css'; // Reusing styles
 import Image from 'next/image';
 

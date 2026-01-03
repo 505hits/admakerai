@@ -630,6 +630,91 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Free Tool Section */}
+      <section className="free-tool" style={{ padding: '100px 0', background: 'linear-gradient(180deg, #000 0%, #0a0a0a 100%)', position: 'relative', overflow: 'hidden' }}>
+        <div className="container">
+          <div className="section-header animate-fade-in-up" style={{ textAlign: 'center', marginBottom: '60px' }}>
+            <h2 style={{ fontSize: 'clamp(36px, 5vw, 56px)', fontWeight: '800', marginBottom: '20px', lineHeight: '1.2' }}>
+              Free Tools for <span className="gradient-text-red">Creators</span>
+            </h2>
+          </div>
+
+          <div style={{
+            maxWidth: '1000px',
+            margin: '0 auto',
+            background: 'rgba(255, 255, 255, 0.03)',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            borderRadius: '24px',
+            padding: '40px',
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: '40px',
+            flexWrap: 'wrap',
+            justifyContent: 'center'
+          }} className="animate-fade-in-up stagger-1">
+            <div style={{ flex: '1 1 400px' }}>
+              <h3 style={{ fontSize: '28px', fontWeight: '700', color: '#fff', marginBottom: '16px' }}>
+                Viral Hook Generator
+              </h3>
+              <p style={{ fontSize: '16px', color: 'rgba(255, 255, 255, 0.7)', lineHeight: '1.6', marginBottom: '24px' }}>
+                Struggling to start your video? Use our free AI Hook Generator to create scroll-stopping intros for TikTok, Reels, and Shorts. No signup required.
+              </p>
+              <a href="/hook-generator" style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                color: '#ff0844',
+                fontWeight: '600',
+                fontSize: '16px',
+                textDecoration: 'none',
+                borderBottom: '2px solid rgba(255, 8, 68, 0.3)',
+                paddingBottom: '2px',
+                transition: 'all 0.3s ease'
+              }}
+                onMouseEnter={(e) => { e.currentTarget.style.borderBottomColor = '#ff0844'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.borderBottomColor = 'rgba(255, 8, 68, 0.3)'; }}
+              >
+                Generate Hooks Free →
+              </a>
+            </div>
+            <div style={{ flex: '0 1 400px', position: 'relative' }}>
+              <div style={{
+                position: 'absolute',
+                top: '-20px',
+                right: '-20px',
+                background: 'linear-gradient(135deg, #ff0844, #ff6b6b)',
+                padding: '8px 16px',
+                borderRadius: '50px',
+                color: '#fff',
+                fontWeight: '700',
+                fontSize: '12px',
+                transform: 'rotate(5deg)',
+                zIndex: 10,
+                boxShadow: '0 4px 15px rgba(255, 8, 68, 0.3)'
+              }}>
+                FREE FOREVER
+              </div>
+              <div style={{
+                background: 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)',
+                border: '1px solid rgba(255,255,255,0.05)',
+                borderRadius: '16px',
+                padding: '20px',
+                aspectRatio: '16/9',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                <div style={{ textAlign: 'center' }}>
+                  <div style={{ fontSize: '48px', marginBottom: '10px' }}>⚡️</div>
+                  <div style={{ fontSize: '18px', fontWeight: '700', color: 'rgba(255,255,255,0.8)' }}>AI Hook Generator</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <Footer />
 
