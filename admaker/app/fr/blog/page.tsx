@@ -15,6 +15,28 @@ export default function BlogPageFR() {
                     <p className={styles.subtitle}>Dernières actualités et insights d'AdMaker AI</p>
 
                     <div className={styles.blogGrid}>
+                        <Link href="/fr/blog/meilleurs-createurs-video-ugc-pour-publicites-sociales" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop"
+                                    alt="Meilleurs Créateurs Vidéo UGC pour Publicités Sociales"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>Publicité Sociale</span>
+                                <h2 className={styles.cardTitle}>Meilleurs Créateurs Vidéo UGC pour Publicités Sociales (Avis 2025)</h2>
+                                <p className={styles.cardExcerpt}>
+                                    Découvrez les meilleurs créateurs de vidéos UGC pour publicités sociales basés sur les avis utilisateurs, les données de performance et le ROI.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>Janvier 2025</span>
+                                </div>
+                            </div>
+                        </Link>
+
                         <Link href="/fr/blog/comparer-prix-outils-production-video-ugc" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

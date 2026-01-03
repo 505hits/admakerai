@@ -15,6 +15,28 @@ export default function BlogPageES() {
                     <p className={styles.subtitle}>Últimas noticias e información de AdMaker AI</p>
 
                     <div className={styles.blogGrid}>
+                        <Link href="/es/blog/mejores-creadores-video-ugc-para-anuncios-sociales" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop"
+                                    alt="Mejores Creadores de Video UGC para Anuncios Sociales"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>Publicidad Social</span>
+                                <h2 className={styles.cardTitle}>Mejores Creadores de Video UGC para Anuncios Sociales (Reseñas 2025)</h2>
+                                <p className={styles.cardExcerpt}>
+                                    Descubre los mejores creadores de videos UGC para anuncios sociales basados en reseñas de usuarios, datos de rendimiento y ROI.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>Enero 2025</span>
+                                </div>
+                            </div>
+                        </Link>
+
                         <Link href="/es/blog/mejor-servicio-creacion-video-ugc-marketing-inmobiliario" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

@@ -264,6 +264,34 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                 ko: '/ko/blog/best-ugc-video-creation-service-real-estate-marketing',
                 de: '/de/blog/bester-ugc-video-erstellungsservice-immobilienmarketing'
             },
+            // Top Rated UGC Video Makers article mappings
+            '/blog/top-rated-ugc-video-makers-for-social-ads': {
+                en: '/blog/top-rated-ugc-video-makers-for-social-ads',
+                fr: '/fr/blog/meilleurs-createurs-video-ugc-pour-publicites-sociales',
+                es: '/es/blog/mejores-creadores-video-ugc-para-anuncios-sociales',
+                pt: '/pt/blog',
+                ko: '/ko/blog',
+                de: '/de/blog',
+                ja: '/ja/blog'
+            },
+            '/blog/meilleurs-createurs-video-ugc-pour-publicites-sociales': {
+                en: '/blog/top-rated-ugc-video-makers-for-social-ads',
+                fr: '/fr/blog/meilleurs-createurs-video-ugc-pour-publicites-sociales',
+                es: '/es/blog/mejores-creadores-video-ugc-para-anuncios-sociales',
+                pt: '/pt/blog',
+                ko: '/ko/blog',
+                de: '/de/blog',
+                ja: '/ja/blog'
+            },
+            '/blog/mejores-creadores-video-ugc-para-anuncios-sociales': {
+                en: '/blog/top-rated-ugc-video-makers-for-social-ads',
+                fr: '/fr/blog/meilleurs-createurs-video-ugc-pour-publicites-sociales',
+                es: '/es/blog/mejores-creadores-video-ugc-para-anuncios-sociales',
+                pt: '/pt/blog',
+                ko: '/ko/blog',
+                de: '/de/blog',
+                ja: '/ja/blog'
+            },
             // Top AI Platforms article mappings
             '/blog/top-ai-platforms-creating-ugc-brand-videos': {
                 en: '/blog/top-ai-platforms-creating-ugc-brand-videos',
