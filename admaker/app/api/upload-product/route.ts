@@ -5,13 +5,15 @@ import { validateBase64Image, generateSafeFilename, getExtensionFromMimeType } f
 import { handleError, ValidationError } from '@/lib/security/error-handler';
 
 // Configure route to accept larger payloads
-export const config = {
-    api: {
-        bodyParser: {
-            sizeLimit: '10mb',
-        },
-    },
-};
+// Configure route to accept larger payloads
+// Note: In App Router, body size limit is handled differently or globally.
+// export const config = {
+//     api: {
+//         bodyParser: {
+//             sizeLimit: '10mb',
+//         },
+//     },
+// };
 
 // Cloudflare R2 Configuration (matching r2-upload.ts)
 const R2_ACCOUNT_ID = '1defcdb7b33d256403a1c29fc50d14b4';
