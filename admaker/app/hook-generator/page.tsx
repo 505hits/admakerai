@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -21,6 +21,7 @@ export default function HookGeneratorPage() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
     const [showPremiumModal, setShowPremiumModal] = useState(false);
+    const resultsRef = useRef<HTMLDivElement>(null);
     const router = useRouter();
     const supabase = createClient();
 
@@ -67,6 +68,14 @@ export default function HookGeneratorPage() {
             setHooks(data.hooks);
             setHooksRemaining(data.hooksRemaining);
             setIsAuthenticated(data.isAuthenticated);
+
+            // Scroll to results after successful generation
+            setTimeout(() => {
+                resultsRef.current?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }, 300);
 
         } catch (err) {
             console.error('Error generating hooks:', err);
@@ -191,7 +200,7 @@ export default function HookGeneratorPage() {
 
                     {/* Results */}
                     {hooks.length > 0 && (
-                        <div className={styles.resultsContainer}>
+                        <div ref={resultsRef} className={styles.resultsContainer}>
                             <h2 className={styles.resultsTitle}>Your Viral Hooks</h2>
                             <div className={styles.hooksList}>
                                 {hooks.map((hook, index) => (
