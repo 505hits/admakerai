@@ -26,7 +26,11 @@ export async function POST(request: NextRequest) {
 
         if (!user) {
             const clientIp = getClientIp(request);
-            const ipRateLimit = await rateLimit(clientIp, { ...rateLimitConfigs.enhance, max: 10 });
+            // Use a custom config for hook generation (10 requests per hour)
+            const ipRateLimit = await rateLimit(clientIp, {
+                windowMs: 60 * 60 * 1000, // 1 hour
+                maxRequests: 10, // 10 requests per hour
+            });
             rateLimitResult = ipRateLimit; // Assign to rateLimitResult
 
             if (!ipRateLimit.success) {
@@ -218,7 +222,7 @@ Generate 3 hooks:`;
                 hooksRemaining,
                 isAuthenticated: !!user
             },
-            { headers: getRateLimitHeaders(rateLimitResult) }
+            rateLimitResult ? { headers: getRateLimitHeaders(rateLimitResult) } : {}
         );
 
     } catch (error) {
