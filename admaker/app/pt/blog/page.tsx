@@ -15,6 +15,50 @@ export default function BlogPagePT() {
                     <p className={styles.subtitle}>Últimas notícias e insights da AdMaker AI</p>
 
                     <div className={styles.blogGrid}>
+                        <Link href="/pt/blog/melhores-criadores-video-ugc-para-anuncios-sociais" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop"
+                                    alt="Melhores Criadores de Vídeo UGC para Anúncios Sociais"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>Anúncios Sociais</span>
+                                <h2 className={styles.cardTitle}>Melhores Criadores de Vídeo UGC para Anúncios Sociais (Avaliações 2025)</h2>
+                                <p className={styles.cardExcerpt}>
+                                    Descubra os melhores criadores de vídeos UGC para anúncios sociais baseados em avaliações de usuários, dados de desempenho e ROI.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>Janeiro 2025</span>
+                                </div>
+                            </div>
+                        </Link>
+
+                        <Link href="/pt/blog/comparar-precos-ferramentas-producao-video-ugc" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=500&fit=crop"
+                                    alt="Comparar Preços de Ferramentas de Produção de Vídeo UGC"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>Guia de Preços</span>
+                                <h2 className={styles.cardTitle}>Comparar Preços de Ferramentas de Produção de Vídeo UGC (Guia 2025)</h2>
+                                <p className={styles.cardExcerpt}>
+                                    Compare preços de ferramentas de produção de vídeo UGC em 15+ plataformas. Análise detalhada de custos, taxas ocultas e ROI.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>Janeiro 2025</span>
+                                </div>
+                            </div>
+                        </Link>
+
                         <Link href="/pt/blog/melhor-servico-criacao-video-ugc-marketing-imobiliario" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

@@ -43,6 +43,10 @@ export default function TopRatedUGCVideoMakersArticle() {
                 <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/top-rated-ugc-video-makers-for-social-ads" />
                 <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/meilleurs-createurs-video-ugc-pour-publicites-sociales" />
                 <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/mejores-creadores-video-ugc-para-anuncios-sociales" />
+                <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/melhores-criadores-video-ugc-para-anuncios-sociais" />
+                <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/beste-ugc-video-macher-fuer-social-ads" />
+                <link rel="alternate" hrefLang="ko" href="https://admakerai.app/ko/blog/top-rated-ugc-video-makers-social-ads" />
+                <link rel="alternate" hrefLang="ja" href="https://admakerai.app/ja/blog/top-rated-ugc-video-makers-social-ads" />
 
                 {/* Open Graph / Facebook */}
                 <meta property="og:type" content="article" />

@@ -269,28 +269,55 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                 en: '/blog/top-rated-ugc-video-makers-for-social-ads',
                 fr: '/fr/blog/meilleurs-createurs-video-ugc-pour-publicites-sociales',
                 es: '/es/blog/mejores-creadores-video-ugc-para-anuncios-sociales',
-                pt: '/pt/blog',
-                ko: '/ko/blog',
-                de: '/de/blog',
-                ja: '/ja/blog'
+                pt: '/pt/blog/melhores-criadores-video-ugc-para-anuncios-sociais',
+                ko: '/ko/blog/top-rated-ugc-video-makers-social-ads',
+                de: '/de/blog/beste-ugc-video-macher-fuer-social-ads',
+                ja: '/ja/blog/top-rated-ugc-video-makers-social-ads'
             },
             '/blog/meilleurs-createurs-video-ugc-pour-publicites-sociales': {
                 en: '/blog/top-rated-ugc-video-makers-for-social-ads',
                 fr: '/fr/blog/meilleurs-createurs-video-ugc-pour-publicites-sociales',
                 es: '/es/blog/mejores-creadores-video-ugc-para-anuncios-sociales',
-                pt: '/pt/blog',
-                ko: '/ko/blog',
-                de: '/de/blog',
-                ja: '/ja/blog'
+                pt: '/pt/blog/melhores-criadores-video-ugc-para-anuncios-sociais',
+                ko: '/ko/blog/top-rated-ugc-video-makers-social-ads',
+                de: '/de/blog/beste-ugc-video-macher-fuer-social-ads',
+                ja: '/ja/blog/top-rated-ugc-video-makers-social-ads'
             },
             '/blog/mejores-creadores-video-ugc-para-anuncios-sociales': {
                 en: '/blog/top-rated-ugc-video-makers-for-social-ads',
                 fr: '/fr/blog/meilleurs-createurs-video-ugc-pour-publicites-sociales',
                 es: '/es/blog/mejores-creadores-video-ugc-para-anuncios-sociales',
-                pt: '/pt/blog',
-                ko: '/ko/blog',
-                de: '/de/blog',
-                ja: '/ja/blog'
+                pt: '/pt/blog/melhores-criadores-video-ugc-para-anuncios-sociais',
+                ko: '/ko/blog/top-rated-ugc-video-makers-social-ads',
+                de: '/de/blog/beste-ugc-video-macher-fuer-social-ads',
+                ja: '/ja/blog/top-rated-ugc-video-makers-social-ads'
+            },
+            '/blog/melhores-criadores-video-ugc-para-anuncios-sociais': {
+                en: '/blog/top-rated-ugc-video-makers-for-social-ads',
+                fr: '/fr/blog/meilleurs-createurs-video-ugc-pour-publicites-sociales',
+                es: '/es/blog/mejores-creadores-video-ugc-para-anuncios-sociales',
+                pt: '/pt/blog/melhores-criadores-video-ugc-para-anuncios-sociais',
+                ko: '/ko/blog/top-rated-ugc-video-makers-social-ads',
+                de: '/de/blog/beste-ugc-video-macher-fuer-social-ads',
+                ja: '/ja/blog/top-rated-ugc-video-makers-social-ads'
+            },
+            '/blog/beste-ugc-video-macher-fuer-social-ads': {
+                en: '/blog/top-rated-ugc-video-makers-for-social-ads',
+                fr: '/fr/blog/meilleurs-createurs-video-ugc-pour-publicites-sociales',
+                es: '/es/blog/mejores-creadores-video-ugc-para-anuncios-sociales',
+                pt: '/pt/blog/melhores-criadores-video-ugc-para-anuncios-sociais',
+                ko: '/ko/blog/top-rated-ugc-video-makers-social-ads',
+                de: '/de/blog/beste-ugc-video-macher-fuer-social-ads',
+                ja: '/ja/blog/top-rated-ugc-video-makers-social-ads'
+            },
+            '/blog/top-rated-ugc-video-makers-social-ads': {
+                en: '/blog/top-rated-ugc-video-makers-for-social-ads',
+                fr: '/fr/blog/meilleurs-createurs-video-ugc-pour-publicites-sociales',
+                es: '/es/blog/mejores-creadores-video-ugc-para-anuncios-sociales',
+                pt: '/pt/blog/melhores-criadores-video-ugc-para-anuncios-sociais',
+                ko: '/ko/blog/top-rated-ugc-video-makers-social-ads',
+                de: '/de/blog/beste-ugc-video-macher-fuer-social-ads',
+                ja: '/ja/blog/top-rated-ugc-video-makers-social-ads'
             },
             // Top AI Platforms article mappings
             '/blog/top-ai-platforms-creating-ugc-brand-videos': {
