@@ -39,6 +39,7 @@ export default function DashboardPage() {
     const [virtualTryOnImageUrl, setVirtualTryOnImageUrl] = useState<string | null>(null);
     const [format, setFormat] = useState<'16:9' | '9:16'>('16:9');
     const [duration, setDuration] = useState<8 | 16>(8);
+    const [accent, setAccent] = useState('');
     const [isGenerating, setIsGenerating] = useState(false);
     const [generatedVideo, setGeneratedVideo] = useState<string | null>(null);
     const [credits, setCredits] = useState(0); // Start with 0 credits
@@ -170,6 +171,7 @@ export default function DashboardPage() {
         const currentVirtualTryOnImageUrl = virtualTryOnImageUrl;
         const currentFormat = format;
         const currentDuration = duration;
+        const currentAccent = accent;
         const currentIndex = activeVariation;
 
         // Update variations array: save current variation and prepare to load new one
@@ -186,6 +188,7 @@ export default function DashboardPage() {
                         virtualTryOnImageUrl: currentVirtualTryOnImageUrl,
                         format: currentFormat,
                         duration: currentDuration,
+                        accent: currentAccent,
                         status: (currentSelectedActor && currentScript.trim()) ? 'configured' as const : 'empty' as const
                     };
                 }
@@ -201,6 +204,7 @@ export default function DashboardPage() {
             setVirtualTryOnImageUrl(newVariation.virtualTryOnImageUrl);
             setFormat(newVariation.format);
             setDuration(newVariation.duration);
+            setAccent(newVariation.accent);
 
             return updated;
         });
@@ -226,6 +230,13 @@ export default function DashboardPage() {
         setSceneDescription(newDescription);
         setVariations(prev => prev.map((v, i) =>
             i === activeVariation ? { ...v, sceneDescription: newDescription } : v
+        ));
+    };
+
+    const handleAccentChange = (newAccent: string) => {
+        setAccent(newAccent);
+        setVariations(prev => prev.map((v, i) =>
+            i === activeVariation ? { ...v, accent: newAccent } : v
         ));
     };
 
@@ -603,7 +614,8 @@ export default function DashboardPage() {
                 format,
                 duration,
                 productImageUrl || undefined,
-                virtualTryOnImageUrl || undefined
+                virtualTryOnImageUrl || undefined,
+                accent
             );
 
             console.log('✅ Video generation started, taskId:', result.taskId);
@@ -621,7 +633,8 @@ export default function DashboardPage() {
                         script: actualScript,
                         sceneDescription: actualScene,
                         duration,
-                        format
+                        format,
+                        accent
                     })
                 });
             } catch (metaErr) {
@@ -682,6 +695,7 @@ export default function DashboardPage() {
             virtualTryOnImageUrl,
             format,
             duration,
+            accent,
         });
 
         // Get all configured variations
@@ -727,7 +741,8 @@ export default function DashboardPage() {
                     variation.format,
                     variation.duration,
                     variation.productImageUrl || undefined,
-                    variation.virtualTryOnImageUrl || undefined
+                    variation.virtualTryOnImageUrl || undefined,
+                    variation.accent
                 );
             });
 
@@ -752,7 +767,8 @@ export default function DashboardPage() {
                             script: variation.script.trim(),
                             sceneDescription: variation.sceneDescription || 'Professional video presentation',
                             duration: variation.duration,
-                            format: variation.format
+                            format: variation.format,
+                            accent: variation.accent
                         })
                     });
                     console.log(`✅ Metadata stored for variation ${i + 1}/${results.length}`);
@@ -1098,6 +1114,9 @@ export default function DashboardPage() {
                                         duration={duration}
                                         onScriptChange={handleScriptChange}
                                         onSceneChange={handleSceneDescriptionChange}
+                                        accent={accent}
+                                        onAccentChange={handleAccentChange}
+                                        lang="fr"
                                     />
                                 </div>
 

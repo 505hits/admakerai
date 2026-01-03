@@ -38,11 +38,29 @@ export default function LoginPage() {
         }
     };
 
-    const handleEmailSubmit = (e: React.FormEvent) => {
+    const handleEmailSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Send magic link email
-        console.log('Sending magic link to:', email);
-        setIsEmailSent(true);
+        try {
+            setLoading(true);
+            setError(null);
+
+            const { error } = await supabase.auth.signInWithOtp({
+                email,
+                options: {
+                    emailRedirectTo: `${window.location.origin}/auth/callback`,
+                },
+            });
+
+            if (error) throw error;
+
+            console.log('Magic link sent to:', email);
+            setIsEmailSent(true);
+        } catch (err: any) {
+            console.error('Error sending magic link:', err);
+            setError(err.message || 'Failed to send magic link. Please try again.');
+        } finally {
+            setLoading(false);
+        }
     };
 
     if (isEmailSent) {
