@@ -16,7 +16,7 @@ export default function GenerateurAccroches() {
     const [videoIdea, setVideoIdea] = useState('');
     const [hooks, setHooks] = useState<string[]>([]);
     const [isGenerating, setIsGenerating] = useState(false);
-    const [error, setError] = useState('');
+    const [error, setError] = useState<string | null>(null);
     const [hooksRemaining, setHooksRemaining] = useState<number | null>(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
@@ -25,24 +25,23 @@ export default function GenerateurAccroches() {
     const router = useRouter();
     const supabase = createClient();
 
+    // Check authentication status on mount
     useEffect(() => {
-        const fetchHooksRemaining = async () => {
+        const checkAuth = async () => {
             const { data: { user } } = await supabase.auth.getUser();
-            if (user) {
-                setIsAuthenticated(true);
-                const response = await fetch('/api/user/hooks-remaining');
-                const data = await response.json();
-                setHooksRemaining(data.hooksRemaining);
-            }
+            setIsAuthenticated(!!user);
         };
-        fetchHooksRemaining();
+        checkAuth();
     }, []);
 
     const handleGenerate = async () => {
-        if (!videoIdea.trim()) return;
+        if (!videoIdea.trim()) {
+            setError('Veuillez entrer votre idée de vidéo');
+            return;
+        }
 
         setIsGenerating(true);
-        setError('');
+        setError(null);
         setHooks([]);
 
         try {
@@ -59,7 +58,7 @@ export default function GenerateurAccroches() {
             if (!response.ok) {
                 if (data.limitReached) {
                     setHooksRemaining(0);
-                    setShowPremiumModal(true);
+                    setShowPremiumModal(true); // Show premium modal instead of error
                 } else {
                     throw new Error(data.error || 'Échec de la génération des accroches');
                 }
@@ -97,7 +96,7 @@ export default function GenerateurAccroches() {
     };
 
     const handleUpgrade = () => {
-        router.push('/payment');
+        router.push('/fr/paiement');
     };
 
     return (
@@ -230,7 +229,7 @@ export default function GenerateurAccroches() {
                                                     </>
                                                 )}
                                             </button>
-                                            <a href="/" className={styles.generateVideoBtn}>
+                                            <a href="/fr" className={styles.generateVideoBtn}>
                                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                                                     <path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                                 </svg>
@@ -245,31 +244,127 @@ export default function GenerateurAccroches() {
                 </div>
             </section>
 
-            {/* Scrolling Videos Section */}
-            <section className={styles['examples-slider']}>
-                <div className={styles['slider-track']}>
-                    {[...Array(2)].map((_, setIndex) => (
-                        <div key={setIndex} className={styles['video-set']}>
-                            {['video1.mp4', 'video2.mp4', 'video3.mp4', 'video4.mp4', 'video5.mp4'].map((video, index) => (
-                                <div key={`${setIndex}-${index}`} className={styles['video-wrapper']}>
+            {/* How It Works */}
+            <section className={styles.howItWorks}>
+                <div className="container">
+                    <div className="section-header">
+                        <h2>Comment ça marche</h2>
+                    </div>
+                    <div className={styles.stepsGrid}>
+                        <div className={styles.step}>
+                            <div className={styles.stepNumber}>1</div>
+                            <h3>Décrivez votre vidéo</h3>
+                            <p>Dites-nous de quoi parle votre vidéo en quelques mots</p>
+                        </div>
+                        <div className={styles.step}>
+                            <div className={styles.stepNumber}>2</div>
+                            <h3>L'IA génère les accroches</h3>
+                            <p>Notre IA crée 3 accroches uniques et captivantes</p>
+                        </div>
+                        <div className={styles.step}>
+                            <div className={styles.stepNumber}>3</div>
+                            <h3>Copiez & Utilisez</h3>
+                            <p>Choisissez votre préférée et utilisez-la dans votre vidéo</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Examples Slider Section - After How It Works */}
+            <section className="examples-slider">
+                <div className="slider-track">
+                    {[...Array(18)].map((_, i) => {
+                        const videoUrls = [
+                            getMediaUrl('video  beauté.mp4'),
+                            getMediaUrl('video  bleu.mp4'),
+                            getMediaUrl('video canette.mp4'),
+                            getMediaUrl('video podcast.mp4'),
+                            getMediaUrl('video podcast 2.mp4'),
+                            getMediaUrl('video sportif.mp4')
+                        ];
+
+                        const titles = [
+                            'Publicité Beauté',
+                            'Lancement Produit',
+                            'Campagne Boisson',
+                            'UGC Podcast',
+                            'Témoignage Client',
+                            'Fitness & Sport'
+                        ];
+
+                        const stats = [
+                            'Conversion +250%',
+                            '10M+ vues',
+                            'ROI x5',
+                            'Engagement +180%',
+                            'CTR +320%',
+                            'Portée x3'
+                        ];
+
+                        const videoIndex = i % 6;
+
+                        return (
+                            <div key={i} className="slide">
+                                <div className="example-card has-gif">
                                     <video
+                                        src={videoUrls[videoIndex]}
                                         autoPlay
                                         loop
                                         muted
                                         playsInline
-                                        className={styles['example-video']}
-                                    >
-                                        <source src={getMediaUrl(`examples/${video}`)} type="video/mp4" />
-                                    </video>
+                                        className="example-gif"
+                                    />
+                                    <div className="example-info-overlay">
+                                        <h4>{titles[videoIndex]}</h4>
+                                        <p>{stats[videoIndex]}</p>
+                                    </div>
                                 </div>
-                            ))}
-                        </div>
-                    ))}
+                            </div>
+                        );
+                    })}
                 </div>
             </section>
 
             {/* SEO Content Section */}
             <SEOContent />
+
+            {/* Examples */}
+            <section className={styles.examples}>
+                <div className="container">
+                    <div className="section-header">
+                        <h2>Exemples d'Accroches</h2>
+                    </div>
+                    <div className={styles.examplesGrid}>
+                        <div className={styles.exampleCard}>
+                            <p className={styles.exampleHook}>"Attendez... ceci a tout changé dans ma façon de monter des vidéos"</p>
+                            <span className={styles.exampleType}>Interruption de Pattern</span>
+                        </div>
+                        <div className={styles.exampleCard}>
+                            <p className={styles.exampleHook}>"Personne n'en parle, mais 90% des vidéos virales utilisent cette astuce"</p>
+                            <span className={styles.exampleType}>Gap de Curiosité</span>
+                        </div>
+                        <div className={styles.exampleCard}>
+                            <p className={styles.exampleHook}>"J'ai essayé de publier à 3h du matin pendant 30 jours et..."</p>
+                            <span className={styles.exampleType}>Storytelling</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* CTA */}
+            {!isAuthenticated && (
+                <section className={styles.cta}>
+                    <div className="container">
+                        <div className={styles.ctaContent}>
+                            <h2>Vous voulez des générations illimitées ?</h2>
+                            <p>Inscrivez-vous pour obtenir 10 générations gratuites, puis passez à l'offre premium pour un accès illimité</p>
+                            <button className="btn-primary btn-large" onClick={() => router.push('/fr/connexion')}>
+                                Commencer Gratuitement
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            )}
 
             <Footer />
 
