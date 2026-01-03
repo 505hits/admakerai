@@ -1,0 +1,76 @@
+.stickyContainer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    padding: 16px 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.8) 100%);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.stickyContainer.visible {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+}
+
+.ctaButton {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, #ff0844 0%, #ff6b6b 100%);
+    border: none;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 30px rgba(255, 8, 68, 0.5);
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.ctaButton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(255, 8, 68, 0.7);
+}
+
+.ctaButton:active {
+    transform: translateY(-1px);
+}
+
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 8px 30px rgba(255, 8, 68, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 8px 40px rgba(255, 8, 68, 0.7);
+    }
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .stickyContainer {
+        padding: 12px 16px;
+    }
+
+    .ctaButton {
+        max-width: 100%;
+        font-size: 1rem;
+        padding: 14px 24px;
+    }
+}

@@ -6,6 +6,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PremiumModal from './PremiumModal';
 import SEOContent from './SEOContent';
+import StickyHookCTA from './StickyHookCTA';
 import styles from './HookGenerator.module.css';
 import { secureFetch } from '@/lib/api/client';
 import { createClient } from '@/lib/supabase/client';
@@ -353,6 +354,9 @@ export default function HookGeneratorPage() {
                 isOpen={showPremiumModal}
                 onClose={() => setShowPremiumModal(false)}
             />
+
+            {/* Sticky CTA Button */}
+            <StickyHookCTA />
         </main>
     );
 }
