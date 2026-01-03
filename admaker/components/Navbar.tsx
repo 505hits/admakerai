@@ -156,6 +156,9 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
             '/panel': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel', ko: '/ko/dashboard', de: '/de/dashboard', ja: '/ja/dashboard' },
             '/painel': { en: '/dashboard', fr: '/fr/tableau-de-bord', es: '/es/panel', pt: '/pt/painel', ko: '/ko/dashboard', de: '/de/dashboard', ja: '/ja/dashboard' },
             '/blog': { en: '/blog', fr: '/fr/blog', es: '/es/blog', pt: '/pt/blog', ko: '/ko/blog', de: '/de/blog', ja: '/ja/blog' },
+            '/hook-generator': { en: '/hook-generator', fr: '/fr/generateur-accroches', es: '/es/generador-ganchos', pt: '/pt/hook-generator', ko: '/ko/hook-generator', de: '/de/hook-generator', ja: '/ja/hook-generator' },
+            '/generateur-accroches': { en: '/hook-generator', fr: '/fr/generateur-accroches', es: '/es/generador-ganchos', pt: '/pt/hook-generator', ko: '/ko/hook-generator', de: '/de/hook-generator', ja: '/ja/hook-generator' },
+            '/generador-ganchos': { en: '/hook-generator', fr: '/fr/generateur-accroches', es: '/es/generador-ganchos', pt: '/pt/hook-generator', ko: '/ko/hook-generator', de: '/de/hook-generator', ja: '/ja/hook-generator' },
             // Blog article mappings
             '/blog/compare-pricing-ugc-video-production-tools': {
                 en: '/blog/compare-pricing-ugc-video-production-tools',
@@ -471,7 +474,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                     </a>
                     <div className={`${styles.navLinks} ${isMobileMenuOpen ? styles.active : ''}`}>
                         <a href="#features">{t.features}</a>
-                        <a href="/hook-generator">{t.hookGenerator}</a>
+                        <a href={lang === 'fr' ? '/fr/generateur-accroches' : lang === 'es' ? '/es/generador-ganchos' : '/hook-generator'}>{t.hookGenerator}</a>
                         <a href="#pricing">{t.pricing}</a>
                         <a href={`${langPrefix}/blog`}>{t.blog}</a>
 
