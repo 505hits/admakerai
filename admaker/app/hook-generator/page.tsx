@@ -198,27 +198,35 @@ export default function HookGeneratorPage() {
                                     <div key={index} className={styles.hookCard}>
                                         <div className={styles.hookNumber}>{index + 1}</div>
                                         <p className={styles.hookText}>{hook}</p>
-                                        <button
-                                            className={styles.copyBtn}
-                                            onClick={() => handleCopy(hook, index)}
-                                        >
-                                            {copiedIndex === index ? (
-                                                <>
-                                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                                                        <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                                    </svg>
-                                                    Copied!
-                                                </>
-                                            ) : (
-                                                <>
-                                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                                                        <rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                                        <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                                    </svg>
-                                                    Copy
-                                                </>
-                                            )}
-                                        </button>
+                                        <div className={styles.hookActions}>
+                                            <button
+                                                className={styles.copyBtn}
+                                                onClick={() => handleCopy(hook, index)}
+                                            >
+                                                {copiedIndex === index ? (
+                                                    <>
+                                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                                            <path d="M20 6L9 17L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                        </svg>
+                                                        Copied!
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                                            <rect x="9" y="9" width="13" height="13" rx="2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                            <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                        </svg>
+                                                        Copy
+                                                    </>
+                                                )}
+                                            </button>
+                                            <a href="/" className={styles.generateVideoBtn}>
+                                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                </svg>
+                                                Generate Video
+                                            </a>
+                                        </div>
                                     </div>
                                 ))}
                             </div>
