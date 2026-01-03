@@ -122,53 +122,55 @@ export default function HookGeneratorPage() {
                                 {hooksRemaining} free generations remaining
                             </div>
                         )}
+
+                        {/* Input Box - Inside Hero */}
+                        <div className={styles.inputContainer}>
+                            <label htmlFor="videoIdea" className={styles.label}>
+                                What's your video about?
+                            </label>
+                            <textarea
+                                id="videoIdea"
+                                className={styles.textarea}
+                                placeholder="Example: A productivity app that helps you focus by blocking distracting websites"
+                                value={videoIdea}
+                                onChange={(e) => setVideoIdea(e.target.value)}
+                                maxLength={500}
+                                rows={4}
+                            />
+                            <div className={styles.charCounter}>
+                                {videoIdea.length}/500 characters
+                            </div>
+
+                            <button
+                                className={styles.generateBtn}
+                                onClick={handleGenerate}
+                                disabled={isGenerating || !videoIdea.trim()}
+                            >
+                                {isGenerating ? (
+                                    <>
+                                        <svg className={styles.spinner} width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                            <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" strokeOpacity="0.25" />
+                                            <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                                        </svg>
+                                        Generating Hooks...
+                                    </>
+                                ) : (
+                                    <>
+                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor" />
+                                        </svg>
+                                        Generate 3 Hooks
+                                    </>
+                                )}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            {/* Generator Section */}
-            <section className={styles.generatorSection}>
+            {/* Results Section */}
+            <section className={styles.resultsSection}>
                 <div className="container">
-                    <div className={styles.inputContainer}>
-                        <label htmlFor="videoIdea" className={styles.label}>
-                            What's your video about?
-                        </label>
-                        <textarea
-                            id="videoIdea"
-                            className={styles.textarea}
-                            placeholder="Example: A productivity app that helps you focus by blocking distracting websites"
-                            value={videoIdea}
-                            onChange={(e) => setVideoIdea(e.target.value)}
-                            maxLength={500}
-                            rows={4}
-                        />
-                        <div className={styles.charCounter}>
-                            {videoIdea.length}/500 characters
-                        </div>
-
-                        <button
-                            className={styles.generateBtn}
-                            onClick={handleGenerate}
-                            disabled={isGenerating || !videoIdea.trim()}
-                        >
-                            {isGenerating ? (
-                                <>
-                                    <svg className={styles.spinner} width="20" height="20" viewBox="0 0 24 24" fill="none">
-                                        <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" strokeOpacity="0.25" />
-                                        <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-                                    </svg>
-                                    Generating Hooks...
-                                </>
-                            ) : (
-                                <>
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                                        <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="currentColor" />
-                                    </svg>
-                                    Generate 3 Hooks
-                                </>
-                            )}
-                        </button>
-                    </div>
 
                     {/* Error Message */}
                     {error && (

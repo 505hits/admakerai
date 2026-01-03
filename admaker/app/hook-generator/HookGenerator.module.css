@@ -1,7 +1,7 @@
 /* Hero Section */
 .hero {
     position: relative;
-    padding: 140px 0 20px;
+    padding: 140px 0 80px;
     text-align: center;
     overflow: visible;
     background: #000;
@@ -84,21 +84,14 @@
     color: #ff0844;
     font-weight: 600;
     font-size: 0.9rem;
+    margin-bottom: 24px;
 }
 
 .hooksCounter svg {
     color: #ff0844;
 }
 
-/* Generator Section */
-.generatorSection {
-    padding: 20px 0 80px;
-    background: #000;
-    position: relative;
-    z-index: 1;
-    margin-top: 0;
-}
-
+/* Input Container - Now in Hero */
 .inputContainer {
     max-width: 800px;
     margin: 0 auto;
@@ -107,9 +100,15 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 20px;
     padding: 32px;
-    margin-bottom: 40px;
+    margin-top: 0;
     position: relative;
     z-index: 2;
+}
+
+/* Results Section */
+.resultsSection {
+    padding: 60px 0;
+    background: #000;
 }
 
 .label {
