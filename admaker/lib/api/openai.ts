@@ -37,7 +37,12 @@ export async function enhanceScript({
 
 Transform the following script into a highly engaging ${duration}-second UGC ad script optimized for Instagram/TikTok.
 
-Requirements:
+CRITICAL REQUIREMENTS:
+- DETECT the language of the original script and respond in THE SAME LANGUAGE
+- If the original script is in French, respond in French
+- If the original script is in English, respond in English
+- If the original script is in Spanish, respond in Spanish
+- And so on for any other language
 - Start with a CATCHY HOOK in the first 1-2 seconds that stops scrolling
 - Keep it conversational and authentic (UGC style)
 - Use short, punchy sentences
@@ -45,11 +50,12 @@ Requirements:
 - End with a clear call-to-action
 - Total length should fit in ${duration} seconds when spoken naturally
 - Format: Script only, no scene descriptions
+- DO NOT translate the script to another language - keep it in the original language
 
 Original script:
 ${originalScript}
 
-Enhanced UGC script:`;
+Enhanced UGC script (in the same language as the original):`;
 
         // Call Meta Llama 3.1 405B Instruct model via Replicate
         // This model is more reliable than openai/o1 and produces consistent output
