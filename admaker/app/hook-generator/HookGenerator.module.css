@@ -1,7 +1,7 @@
 /* Hero Section */
 .hero {
     position: relative;
-    padding: 140px 0 40px;
+    padding: 140px 0 20px;
     text-align: center;
     overflow: visible;
     background: #000;
@@ -92,10 +92,11 @@
 
 /* Generator Section */
 .generatorSection {
-    padding: 40px 0 80px;
+    padding: 20px 0 80px;
     background: #000;
     position: relative;
     z-index: 1;
+    margin-top: 0;
 }
 
 .inputContainer {

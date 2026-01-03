@@ -16,8 +16,8 @@ export default function SEOContent() {
                         generates millions of views or gets buried in the feed.
                     </p>
                     <p className={styles.intro}>
-                        AdMakerAI's AI-powered hook generator transforms your ideas into compelling opening lines that stop the scroll and
-                        drive conversions. Recognized as one of the top AI platforms for creating UGC brand videos, we analyze millions of
+                        <Link href="/" className={styles.inlineLink}>AdMakerAI</Link>'s AI-powered hook generator transforms your ideas into compelling opening lines that stop the scroll and
+                        drive conversions. Recognized as one of the top <Link href="/" className={styles.inlineLink}>AI platforms for creating UGC brand videos</Link>, we analyze millions of
                         high-performing advertisements to deliver tested, optimized hooks that actually work.
                     </p>
                 </div>
