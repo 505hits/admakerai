@@ -75,7 +75,7 @@ export async function updateSession(request: NextRequest) {
     }
 
     // Public routes that don't require authentication
-    const publicRoutes = ['/', '/login', '/auth', '/dashboard', '/blog', '/terms', '/privacy']
+    const publicRoutes = ['/', '/login', '/auth', '/dashboard', '/blog', '/hook-generator', '/terms', '/privacy']
 
     // Normalize the pathname to check against public routes
     const normalizedPath = normalizeLocalizedPath(request.nextUrl.pathname)

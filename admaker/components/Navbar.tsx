@@ -24,6 +24,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
     const translations = {
         en: {
             features: 'Features',
+            hookGenerator: 'Hook Generator',
             pricing: 'Pricing',
             blog: 'Blog',
             signIn: 'Sign in',
@@ -35,6 +36,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
         },
         fr: {
             features: 'Fonctionnalités',
+            hookGenerator: 'Générateur de Hooks',
             pricing: 'Tarifs',
             blog: 'Blog',
             signIn: 'Se connecter',
@@ -46,6 +48,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
         },
         es: {
             features: 'Características',
+            hookGenerator: 'Generador de Hooks',
             pricing: 'Precios',
             blog: 'Blog',
             signIn: 'Iniciar Sesión',
@@ -57,6 +60,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
         },
         pt: {
             features: 'Recursos',
+            hookGenerator: 'Gerador de Hooks',
             pricing: 'Preços',
             blog: 'Blog',
             signIn: 'Entrar',
@@ -68,6 +72,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
         },
         ko: {
             features: '기능',
+            hookGenerator: '훅 생성기',
             pricing: '가격',
             blog: '블로그',
             signIn: '로그인',
@@ -79,6 +84,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
         },
         de: {
             features: 'Funktionen',
+            hookGenerator: 'Hook-Generator',
             pricing: 'Preise',
             blog: 'Blog',
             signIn: 'Anmelden',
@@ -90,6 +96,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
         },
         ja: {
             features: '機能',
+            hookGenerator: 'フックジェネレーター',
             pricing: '価格',
             blog: 'ブログ',
             signIn: 'ログイン',
@@ -154,7 +161,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                 en: '/blog/compare-pricing-ugc-video-production-tools',
                 fr: '/fr/blog/comparer-prix-outils-production-video-ugc',
                 es: '/es/blog/comparar-precios-herramientas-produccion-video-ugc',
-                pt: '/pt/blog/comparar-precos-ferramentas-producao-video-ugc',
+                pt: '/pt/blog',
                 ko: '/ko/blog/ugc-video-production-tools-pricing-comparison',
                 de: '/de/blog/preise-vergleichen-ugc-video-produktionstools',
                 ja: '/ja/blog/ugc-video-production-tools-pricing-comparison'
@@ -163,7 +170,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                 en: '/blog/compare-pricing-ugc-video-production-tools',
                 fr: '/fr/blog/comparer-prix-outils-production-video-ugc',
                 es: '/es/blog/comparar-precios-herramientas-produccion-video-ugc',
-                pt: '/pt/blog/comparar-precos-ferramentas-producao-video-ugc',
+                pt: '/pt/blog',
                 ko: '/ko/blog/ugc-video-production-tools-pricing-comparison',
                 de: '/de/blog/preise-vergleichen-ugc-video-produktionstools',
                 ja: '/ja/blog/ugc-video-production-tools-pricing-comparison'
@@ -172,7 +179,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                 en: '/blog/compare-pricing-ugc-video-production-tools',
                 fr: '/fr/blog/comparer-prix-outils-production-video-ugc',
                 es: '/es/blog/comparar-precios-herramientas-produccion-video-ugc',
-                pt: '/pt/blog/comparar-precos-ferramentas-producao-video-ugc',
+                pt: '/pt/blog',
                 ko: '/ko/blog/ugc-video-production-tools-pricing-comparison',
                 de: '/de/blog/preise-vergleichen-ugc-video-produktionstools',
                 ja: '/ja/blog/ugc-video-production-tools-pricing-comparison'
@@ -181,7 +188,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                 en: '/blog/compare-pricing-ugc-video-production-tools',
                 fr: '/fr/blog/comparer-prix-outils-production-video-ugc',
                 es: '/es/blog/comparar-precios-herramientas-produccion-video-ugc',
-                pt: '/pt/blog/comparar-precos-ferramentas-producao-video-ugc',
+                pt: '/pt/blog',
                 ko: '/ko/blog/ugc-video-production-tools-pricing-comparison',
                 de: '/de/blog/preise-vergleichen-ugc-video-produktionstools',
                 ja: '/ja/blog/ugc-video-production-tools-pricing-comparison'
@@ -190,7 +197,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                 en: '/blog/compare-pricing-ugc-video-production-tools',
                 fr: '/fr/blog/comparer-prix-outils-production-video-ugc',
                 es: '/es/blog/comparar-precios-herramientas-produccion-video-ugc',
-                pt: '/pt/blog/comparar-precos-ferramentas-producao-video-ugc',
+                pt: '/pt/blog',
                 ko: '/ko/blog/ugc-video-production-tools-pricing-comparison',
                 de: '/de/blog/preise-vergleichen-ugc-video-produktionstools',
                 ja: '/ja/blog/ugc-video-production-tools-pricing-comparison'
@@ -199,7 +206,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                 en: '/blog/compare-pricing-ugc-video-production-tools',
                 fr: '/fr/blog/comparer-prix-outils-production-video-ugc',
                 es: '/es/blog/comparar-precios-herramientas-produccion-video-ugc',
-                pt: '/pt/blog/comparar-precos-ferramentas-producao-video-ugc',
+                pt: '/pt/blog',
                 ko: '/ko/blog/ugc-video-production-tools-pricing-comparison',
                 de: '/de/blog/preise-vergleichen-ugc-video-produktionstools',
                 ja: '/ja/blog/ugc-video-production-tools-pricing-comparison'
@@ -464,6 +471,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                     </a>
                     <div className={`${styles.navLinks} ${isMobileMenuOpen ? styles.active : ''}`}>
                         <a href="#features">{t.features}</a>
+                        <a href="/hook-generator">{t.hookGenerator}</a>
                         <a href="#pricing">{t.pricing}</a>
                         <a href={`${langPrefix}/blog`}>{t.blog}</a>
 

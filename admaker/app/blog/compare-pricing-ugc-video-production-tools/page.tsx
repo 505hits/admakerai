@@ -43,7 +43,6 @@ export default function ComparePricingUGCArticle() {
                 <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/compare-pricing-ugc-video-production-tools" />
                 <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/comparer-prix-outils-production-video-ugc" />
                 <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/comparar-precios-herramientas-produccion-video-ugc" />
-                <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/comparar-precos-ferramentas-producao-video-ugc" />
                 <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/preise-vergleichen-ugc-video-produktionstools" />
                 <link rel="alternate" hrefLang="ko" href="https://admakerai.app/ko/blog/ugc-video-production-tools-pricing-comparison" />
                 <link rel="alternate" hrefLang="ja" href="https://admakerai.app/ja/blog/ugc-video-production-tools-pricing-comparison" />
