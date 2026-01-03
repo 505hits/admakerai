@@ -177,37 +177,39 @@ export default function TopAIPlatformsUGCArticle() {
                             <h3>Step 2: Test Generation Speed</h3>
                             <p>Speed directly impacts campaign agility. I tested each platform with identical 30-second scripts:</p>
 
-                            <table className={styles.comparisonTable}>
-                                <thead>
-                                    <tr>
-                                        <th>Platform</th>
-                                        <th>Average Time</th>
-                                        <th>Consistency</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><strong>AdMaker AI</strong></td>
-                                        <td>45-60s</td>
-                                        <td>⭐⭐⭐⭐⭐</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Synthesia</td>
-                                        <td>3-5 min</td>
-                                        <td>⭐⭐⭐⭐</td>
-                                    </tr>
-                                    <tr>
-                                        <td>HeyGen</td>
-                                        <td>2-4 min</td>
-                                        <td>⭐⭐⭐⭐</td>
-                                    </tr>
-                                    <tr>
-                                        <td>D-ID</td>
-                                        <td>4-7 min</td>
-                                        <td>⭐⭐⭐</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div className={styles.tableWrapper}>
+                                <table className={styles.comparisonTable}>
+                                    <thead>
+                                        <tr>
+                                            <th>Platform</th>
+                                            <th>Average Time</th>
+                                            <th>Consistency</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>AdMaker AI</strong></td>
+                                            <td>45-60s</td>
+                                            <td>⭐⭐⭐⭐⭐</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Synthesia</td>
+                                            <td>3-5 min</td>
+                                            <td>⭐⭐⭐⭐</td>
+                                        </tr>
+                                        <tr>
+                                            <td>HeyGen</td>
+                                            <td>2-4 min</td>
+                                            <td>⭐⭐⭐⭐</td>
+                                        </tr>
+                                        <tr>
+                                            <td>D-ID</td>
+                                            <td>4-7 min</td>
+                                            <td>⭐⭐⭐</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
                             <p><strong>Why speed matters:</strong> Marketing teams need to test 5-10 variations per campaign. At 45 seconds per video, <a href={landingPageUrl}>AdMaker AI</a> generates 10 variations in 7.5 minutes. Competitors require 30-70 minutes for the same output.</p>
 
@@ -324,60 +326,62 @@ export default function TopAIPlatformsUGCArticle() {
                                 />
                             </div>
 
-                            <table className={styles.comparisonTable}>
-                                <thead>
-                                    <tr>
-                                        <th>Platform</th>
-                                        <th>Authenticity</th>
-                                        <th>Speed</th>
-                                        <th>Price/Video</th>
-                                        <th>Best For</th>
-                                        <th>Score</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><a href={landingPageUrl}><strong>AdMaker AI</strong></a></td>
-                                        <td>⭐⭐⭐⭐⭐</td>
-                                        <td>45-60s</td>
-                                        <td>$0.98</td>
-                                        <td>Brand UGC</td>
-                                        <td>9.6/10</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Synthesia</td>
-                                        <td>⭐⭐⭐</td>
-                                        <td>3-5m</td>
-                                        <td>$3.78</td>
-                                        <td>Training</td>
-                                        <td>7.8/10</td>
-                                    </tr>
-                                    <tr>
-                                        <td>HeyGen</td>
-                                        <td>⭐⭐⭐⭐</td>
-                                        <td>2-4m</td>
-                                        <td>$3.08</td>
-                                        <td>Multilingual</td>
-                                        <td>8.2/10</td>
-                                    </tr>
-                                    <tr>
-                                        <td>D-ID</td>
-                                        <td>⭐⭐⭐</td>
-                                        <td>4-7m</td>
-                                        <td>$2.45</td>
-                                        <td>Prototypes</td>
-                                        <td>6.9/10</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Creatify</td>
-                                        <td>⭐⭐⭐⭐</td>
-                                        <td>2-3m</td>
-                                        <td>$0.78</td>
-                                        <td>Social Ads</td>
-                                        <td>7.5/10</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div className={styles.tableWrapper}>
+                                <table className={styles.comparisonTable}>
+                                    <thead>
+                                        <tr>
+                                            <th>Platform</th>
+                                            <th>Authenticity</th>
+                                            <th>Speed</th>
+                                            <th>Price/Video</th>
+                                            <th>Best For</th>
+                                            <th>Score</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><a href={landingPageUrl}><strong>AdMaker AI</strong></a></td>
+                                            <td>⭐⭐⭐⭐⭐</td>
+                                            <td>45-60s</td>
+                                            <td>$0.98</td>
+                                            <td>Brand UGC</td>
+                                            <td>9.6/10</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Synthesia</td>
+                                            <td>⭐⭐⭐</td>
+                                            <td>3-5m</td>
+                                            <td>$3.78</td>
+                                            <td>Training</td>
+                                            <td>7.8/10</td>
+                                        </tr>
+                                        <tr>
+                                            <td>HeyGen</td>
+                                            <td>⭐⭐⭐⭐</td>
+                                            <td>2-4m</td>
+                                            <td>$3.08</td>
+                                            <td>Multilingual</td>
+                                            <td>8.2/10</td>
+                                        </tr>
+                                        <tr>
+                                            <td>D-ID</td>
+                                            <td>⭐⭐⭐</td>
+                                            <td>4-7m</td>
+                                            <td>$2.45</td>
+                                            <td>Prototypes</td>
+                                            <td>6.9/10</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Creatify</td>
+                                            <td>⭐⭐⭐⭐</td>
+                                            <td>2-3m</td>
+                                            <td>$0.78</td>
+                                            <td>Social Ads</td>
+                                            <td>7.5/10</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </section>
 
                         <section id="use-cases" className={styles.section}>
@@ -473,42 +477,44 @@ export default function TopAIPlatformsUGCArticle() {
                             <p><strong>Diversity testing:</strong> Supplement brand tested 6 different avatars (3 male, 3 female, various ethnicities) with identical scripts. Performance varied 40% based solely on avatar selection. <a href={landingPageUrl}>AdMaker AI's</a> 300+ avatar library enables precise demographic targeting.</p>
 
                             <h3>3. Optimize Video Length by Platform</h3>
-                            <table className={styles.comparisonTable}>
-                                <thead>
-                                    <tr>
-                                        <th>Platform</th>
-                                        <th>Optimal Length</th>
-                                        <th>Format</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>TikTok</td>
-                                        <td>15-30s</td>
-                                        <td>9:16 vertical</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Instagram Reels</td>
-                                        <td>15-30s</td>
-                                        <td>9:16 vertical</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Instagram Feed</td>
-                                        <td>30-60s</td>
-                                        <td>1:1 square</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Facebook</td>
-                                        <td>30-90s</td>
-                                        <td>1:1 or 16:9</td>
-                                    </tr>
-                                    <tr>
-                                        <td>YouTube</td>
-                                        <td>60-120s</td>
-                                        <td>16:9 horizontal</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <div className={styles.tableWrapper}>
+                                <table className={styles.comparisonTable}>
+                                    <thead>
+                                        <tr>
+                                            <th>Platform</th>
+                                            <th>Optimal Length</th>
+                                            <th>Format</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>TikTok</td>
+                                            <td>15-30s</td>
+                                            <td>9:16 vertical</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Instagram Reels</td>
+                                            <td>15-30s</td>
+                                            <td>9:16 vertical</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Instagram Feed</td>
+                                            <td>30-60s</td>
+                                            <td>1:1 square</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Facebook</td>
+                                            <td>30-90s</td>
+                                            <td>1:1 or 16:9</td>
+                                        </tr>
+                                        <tr>
+                                            <td>YouTube</td>
+                                            <td>60-120s</td>
+                                            <td>16:9 horizontal</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
                             <h3>4. Add Authentic Imperfections</h3>
                             <p><strong>Techniques that increase perceived authenticity:</strong></p>
