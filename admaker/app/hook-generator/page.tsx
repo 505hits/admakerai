@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import PremiumModal from './PremiumModal';
+import SEOContent from './SEOContent';
 import styles from './HookGenerator.module.css';
 import { secureFetch } from '@/lib/api/client';
 import { createClient } from '@/lib/supabase/client';
@@ -304,6 +305,9 @@ export default function HookGeneratorPage() {
                 </div>
             </section>
 
+            {/* SEO Content Section */}
+            <SEOContent />
+
             {/* Examples */}
             <section className={styles.examples}>
                 <div className="container">
@@ -352,4 +356,3 @@ export default function HookGeneratorPage() {
         </main>
     );
 }
-```
