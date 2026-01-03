@@ -15,6 +15,27 @@ export default function BlogPage() {
                     <p className={styles.subtitle}>Latest news and insights from AdMaker AI</p>
 
                     <div className={styles.blogGrid}>
+                        <Link href="/blog/top-rated-ugc-video-makers-for-social-ads" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop"
+                                    alt="Top-Rated UGC Video Makers for Social Ads"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>Social Ads</span>
+                                <h2 className={styles.cardTitle}>Top-Rated UGC Video Makers for Social Ads (2025 Reviews)</h2>
+                                <p className={styles.cardExcerpt}>
+                                    Discover top-rated UGC video makers for social ads based on user reviews, performance data, and ROI. Compare features, ratings, and real campaign results.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>January 2025</span>
+                                </div>
+                            </div>
+                        </Link>
                         <Link href="/blog/compare-pricing-ugc-video-production-tools" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
