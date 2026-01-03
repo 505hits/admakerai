@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
-import styles from '../../blog/compare-pricing-ugc-video-production-tools/Article.module.css';
+import styles from '../../../blog/compare-pricing-ugc-video-production-tools/Article.module.css';
 import Image from 'next/image';
 
 function getLandingPageUrl(locale: string = 'en'): string {
