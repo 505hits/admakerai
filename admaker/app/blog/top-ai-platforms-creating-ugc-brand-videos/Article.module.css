@@ -2,6 +2,8 @@
     min-height: 100vh;
     background: #0a0a0a;
     padding: 100px 20px 60px;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 .contentWrapper {
@@ -24,6 +26,8 @@
     max-width: 100%;
     min-width: 0;
     overflow-wrap: break-word;
+    word-wrap: break-word;
+    overflow-x: hidden;
 }
 
 .articleHeader {
@@ -40,6 +44,7 @@
 
 .heroImage {
     max-width: 500px;
+    width: 100%;
     border-radius: 12px;
     overflow: hidden;
     margin-top: 20px;
@@ -49,6 +54,7 @@
     width: 100%;
     height: auto;
     display: block;
+    max-width: 100%;
 }
 
 /* Table of Contents */
@@ -165,6 +171,7 @@
 /* Images */
 .imageWrapper {
     max-width: 500px;
+    width: 100%;
     border-radius: 12px;
     overflow: hidden;
     margin: 24px 0;
@@ -174,6 +181,7 @@
     width: 100%;
     height: auto;
     display: block;
+    max-width: 100%;
 }
 
 /* Code Blocks */
@@ -317,6 +325,7 @@
 
     .articleContent {
         padding: 24px;
+        overflow-x: hidden;
     }
 
     .mainTitle {
@@ -335,6 +344,18 @@
     .section li {
         font-size: 16px;
     }
+
+    .tableWrapper {
+        margin-left: -24px;
+        margin-right: -24px;
+        border-radius: 0;
+        width: calc(100% + 48px);
+    }
+
+    .heroImage,
+    .imageWrapper {
+        max-width: 100%;
+    }
 }
 
 @media (max-width: 480px) {
@@ -344,10 +365,17 @@
 
     .articleContent {
         padding: 20px;
+        overflow-x: hidden;
     }
 
     .mainTitle {
         font-size: 28px;
+    }
+
+    .tableWrapper {
+        margin-left: -20px;
+        margin-right: -20px;
+        width: calc(100% + 40px);
     }
 }
 

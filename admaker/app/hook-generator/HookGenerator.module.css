@@ -3,8 +3,9 @@
     position: relative;
     padding: 140px 0 40px;
     text-align: center;
-    overflow: visible;
+    overflow-x: hidden;
     background: #000;
+    width: 100%;
 }
 
 .heroGlow {
@@ -109,6 +110,8 @@
 .resultsSection {
     padding: 60px 0;
     background: #000;
+    overflow-x: hidden;
+    width: 100%;
 }
 
 .label {
@@ -295,6 +298,7 @@
     display: flex;
     gap: 12px;
     flex-shrink: 0;
+    flex-wrap: wrap;
 }
 
 .copyBtn {
@@ -333,6 +337,7 @@
     transition: all 0.3s ease;
     text-decoration: none;
     white-space: nowrap;
+    max-width: 100%;
 }
 
 .generateVideoBtn:hover {
@@ -475,10 +480,12 @@
 @media (max-width: 768px) {
     .hero {
         padding: 140px 0 80px;
+        overflow-x: hidden;
     }
 
     .inputContainer {
         padding: 24px;
+        max-width: 100%;
     }
 
     .hookCard {
@@ -486,7 +493,13 @@
         gap: 12px;
     }
 
-    .copyBtn {
+    .hookActions {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .copyBtn,
+    .generateVideoBtn {
         width: 100%;
         justify-content: center;
     }
@@ -498,5 +511,10 @@
 
     .ctaContent {
         padding: 60px 30px;
+    }
+
+    .resultsContainer {
+        max-width: 100%;
+        overflow-x: hidden;
     }
 }
