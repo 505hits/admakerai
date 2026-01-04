@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
+import SimilarArticles from '@/components/SimilarArticles';
 import styles from '../compare-pricing-ugc-video-production-tools/Article.module.css'; // Reusing styles
 import Image from 'next/image';
 
@@ -621,6 +622,10 @@ export default function TopRatedUGCVideoMakersArticle() {
                     <aside className={styles.videoSidebar}>
                         <BlogVideoSidebar locale={locale} />
                     </aside>
+                </div>
+
+                <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+                    <SimilarArticles locale="en" currentSlug="/blog/top-rated-ugc-video-makers-for-social-ads" />
                 </div>
 
                 {/* Sticky Mobile CTA */}
