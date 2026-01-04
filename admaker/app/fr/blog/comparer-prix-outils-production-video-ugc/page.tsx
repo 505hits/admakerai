@@ -122,9 +122,9 @@ export default function ComparePricingUGCArticleFR() {
                         <section id="understanding" className={styles.section}>
                             <h2>Comprendre la tarification des outils de production UGC</h2>
 
-                            <p>Lors de l'évaluation des coûts des plateformes de création de contenu généré par les utilisateurs (UGC), les structures de prix varient considérablement sur le marché. Comprendre ces différences aide les entreprises à prendre des décisions éclairées, alignées sur leur budget et leurs besoins en volume de contenu.</p>
+                            <p>Lors de l'évaluation des coûts des <a href={landingPageUrl}>plateformes de création de contenu généré par les utilisateurs (UGC)</a>, les structures de prix varient considérablement sur le marché. Comprendre ces différences aide les entreprises à prendre des décisions éclairées, alignées sur leur budget et leurs besoins en volume de contenu.</p>
 
-                            <p>Le paysage actuel comprend des places de marché de créateurs traditionnelles facturant entre 150 et 500 $ par vidéo, des outils de génération par IA avec des abonnements mensuels, et des modèles hybrides combinant logiciel et services de créateurs. Ce guide examine les données tarifaires réelles de 15 plateformes collectées en janvier 2025.</p>
+                            <p>Le paysage actuel comprend des places de marché de créateurs traditionnelles facturant entre 150 et 500 $ par vidéo, des <a href={landingPageUrl}>outils de génération par IA</a> avec des abonnements mensuels, et des modèles hybrides combinant logiciel et services de créateurs. Ce guide examine les données tarifaires réelles de 15 plateformes collectées en janvier 2025.</p>
 
                             <p><strong>Catégories de modèles de tarification :</strong></p>
 
@@ -148,7 +148,7 @@ export default function ComparePricingUGCArticleFR() {
                         <section id="evaluate" className={styles.section}>
                             <h2>Comment évaluer les coûts des outils de production vidéo</h2>
 
-                            <p>Au-delà du prix affiché, plusieurs facteurs impactent le coût total de possession :</p>
+                            <p>Au-delà du prix affiché, plusieurs facteurs impactent le <a href={landingPageUrl}>coût total de possession des outils vidéo</a> :</p>
 
                             <h3>Facteur 1 : Le coût réel par vidéo</h3>
                             <p>Calculez le coût réel en fonction de votre utilisation via cette formule :</p>
@@ -160,12 +160,12 @@ export default function ComparePricingUGCArticleFR() {
                             <p><strong>Marque B</strong> (Haut volume) : Crée 50 vidéos/mois avec un outil illimité à 29 $/mois. Coût réel : 0,58 $/vidéo.</p>
 
                             <h3>Facteur 2 : Limitations des fonctionnalités par palier</h3>
-                            <p>Les forfaits restreignent souvent des fonctionnalités critiques comme la durée de la vidéo (30s vs 90s), la résolution (1080p vs 4K), ou les droits d'utilisation commerciale. Un forfait à 29 $ peut rapidement grimper à 79 $ si vous avez besoin de formats plus longs.</p>
+                            <p>Les forfaits restreignent souvent des fonctionnalités critiques comme la <a href={landingPageUrl}>durée de la vidéo</a> (30s vs 90s), la résolution (1080p vs 4K), ou les <a href={landingPageUrl}>droits d'utilisation commerciale</a>. Un forfait à 29 $ peut rapidement grimper à 79 $ si vous avez besoin de formats plus longs.</p>
 
                             <h3>Facteur 3 : Économies d'échelle</h3>
                             <p><strong>Échelle linéaire :</strong> Le coût augmente proportionnellement à l'usage (crédits).</p>
                             <p><strong>Échelle par paliers :</strong> Tarif fixe jusqu'à un seuil, puis mise à niveau requise.</p>
-                            <p><strong>Échelle illimitée :</strong> Coût identique quel que soit le volume (idéal pour la croissance).</p>
+                            <p><strong>Échelle illimitée :</strong> Coût identique quel que soit le volume (<a href={landingPageUrl}>idéal pour la croissance</a>).</p>
                         </section>
 
                         <section id="comparison" className={styles.section}>
@@ -265,13 +265,13 @@ export default function ComparePricingUGCArticleFR() {
                         <section id="hidden-costs" className={styles.section}>
                             <h2>Les coûts cachés des outils de production vidéo</h2>
 
-                            <p>Les tarifs annoncés reflètent rarement les dépenses totales :</p>
+                            <p>Les <a href={landingPageUrl}>tarifs annoncés</a> reflètent rarement les <a href={landingPageUrl}>dépenses totales de production vidéo</a> :</p>
 
                             <h3>1. Frais de rendu et de traitement</h3>
                             <p>Certaines plateformes facturent chaque itération ou modification (0,50 $ à 3 $ par rendu).</p>
 
                             <h3>2. Licences commerciales</h3>
-                            <p>Des frais séparés pour les droits d'utilisation publicitaire peuvent doubler le coût effectif.</p>
+                            <p>Des frais séparés pour les <a href={landingPageUrl}>droits d'utilisation publicitaire</a> peuvent doubler le coût effectif.</p>
 
                             <h3>3. Bibliothèques d'actifs (Stock)</h3>
                             <p>L'accès aux musiques et images premium coûte souvent entre 9 et 29 $/mois en supplément.</p>
@@ -289,11 +289,11 @@ export default function ComparePricingUGCArticleFR() {
                             <h3>Marques E-commerce</h3>
                             <p><strong>Budget type :</strong> 500 - 2 000 $/mois.</p>
                             <p><strong>Objectif :</strong> Tester massivement des publicités.</p>
-                            <p><strong>Conseil :</strong> Privilégiez les forfaits illimités à 29-39 $. Le ROI est atteint dès qu'une vidéo améliore légèrement vos performances publicitaires.</p>
+                            <p><strong>Conseil :</strong> Privilégiez les <a href={landingPageUrl}>forfaits illimités</a> à 29-39 $. Le ROI est atteint dès qu'une vidéo améliore légèrement vos performances publicitaires.</p>
 
                             <h3>Agences Marketing</h3>
                             <p><strong>Budget type :</strong> 200 - 1 000 $/mois par client.</p>
-                            <p><strong>Stratégie :</strong> Utiliser des outils IA pour produire à bas coût (10-30 $) et facturer le service au client (100-250 $), générant des marges de 70-85 %.</p>
+                            <p><strong>Stratégie :</strong> Utiliser des <a href={landingPageUrl}>outils IA pour produire à bas coût</a> (10-30 $) et facturer le service au client (100-250 $), générant des marges de 70-85 %.</p>
 
                             <h3>Créateurs de contenu & Solopreneurs</h3>
                             <p><strong>Budget type :</strong> 50 - 200 $/mois.</p>
@@ -307,10 +307,10 @@ export default function ComparePricingUGCArticleFR() {
                             <p>Idéales pour tester. Limites : 1 à 5 vidéos/mois, filigranes obligatoires, pas de droits commerciaux.</p>
 
                             <h3>Entrée de gamme (29-39 $/mois)</h3>
-                            <p>Idéal pour les petites entreprises. Suppression des filigranes, HD 1080p, licences de base.</p>
+                            <p>Idéal pour les <a href={landingPageUrl}>petites entreprises</a>. Suppression des filigranes, <a href={landingPageUrl}>HD 1080p</a>, licences de base.</p>
 
                             <h3>Professionnel (49-99 $/mois)</h3>
-                            <p>Pour les marques en croissance. Vidéos plus longues, export 4K, sièges d'équipe et traitement prioritaire.</p>
+                            <p>Pour les <a href={landingPageUrl}>marques en croissance</a>. Vidéos plus longues, export 4K, sièges d'équipe et <a href={landingPageUrl}>traitement prioritaire</a>.</p>
                         </section>
 
                         <section id="optimization" className={styles.section}>
@@ -323,10 +323,10 @@ export default function ComparePricingUGCArticleFR() {
                             <p>Ne payez pas pour de l'illimité si vous ne produisez que 10 vidéos par mois.</p>
 
                             <h3>3. Approche Hybride</h3>
-                            <p>Utilisez l'IA pour le volume (test publicitaire) et des créateurs réels pour vos contenus "stars" (campagnes majeures).</p>
+                            <p>Utilisez <a href={landingPageUrl}>l'IA pour le volume</a> (<a href="/fr/hook-generator">test publicitaire</a>) et des créateurs réels pour vos contenus "stars" (campagnes majeures).</p>
 
                             <h3>4. Mise à l'échelle saisonnière</h3>
-                            <p>Passez au forfait supérieur uniquement lors des pics d'activité (ex: Black Friday) et repassez au forfait de base le reste de l'année.</p>
+                            <p>Passez au forfait supérieur uniquement lors des <a href="/fr/hook-generator">pics d'activité</a> (ex: Black Friday) et repassez au forfait de base le reste de l'année.</p>
                         </section>
 
                         <section id="faq" className={styles.section}>
@@ -334,7 +334,7 @@ export default function ComparePricingUGCArticleFR() {
 
                             <div className={styles.faqItem}>
                                 <h3 className={styles.faqQuestion}>Quel est le coût moyen d'un outil vidéo UGC ?</h3>
-                                <p className={styles.faqAnswer}>Les plateformes IA coûtent entre 29 et 99 $/mois. Les places de marché de créateurs coûtent 150 à 500 $ par vidéo.</p>
+                                <p className={styles.faqAnswer}>Les <a href={landingPageUrl}>plateformes IA</a> coûtent entre 29 et 99 $/mois. Les places de marché de créateurs coûtent 150 à 500 $ par vidéo.</p>
                             </div>
 
                             <div className={styles.faqItem}>
@@ -350,7 +350,7 @@ export default function ComparePricingUGCArticleFR() {
 
                         <section className={styles.section}>
                             <h2>Conclusion : Prendre la bonne décision</h2>
-                            <p>Pour les entreprises créant plus de 10 vidéos par mois et nécessitant une exécution rapide, les plans IA illimités (environ 29-49 $/mois) offrent le meilleur ROI, avec un coût par vidéo descendant sous la barre des 3 $ à grande échelle.</p>
+                            <p>Pour les entreprises créant plus de 10 vidéos par mois et nécessitant une exécution rapide, les <a href={landingPageUrl}>plans IA illimités</a> (environ 29-49 $/mois) offrent le meilleur ROI, avec un coût par vidéo descendant sous la barre des 3 $ à grande échelle.</p>
 
                             <p className={styles.highlight}>
                                 <a href={landingPageUrl} style={{ color: 'white', fontSize: '20px', fontWeight: '700' }}>Comparez les essais gratuits →</a><br /><br />
