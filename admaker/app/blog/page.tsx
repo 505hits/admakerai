@@ -101,6 +101,28 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
+
+                        <Link href="/blog/best-software-creating-ugc-testimonial-videos" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=500&fit=crop"
+                                    alt="Best Software for Creating UGC Testimonial Videos"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>Testimonial Software</span>
+                                <h2 className={styles.cardTitle}>Best Software for Creating UGC Testimonial Videos (2025)</h2>
+                                <p className={styles.cardExcerpt}>
+                                    Find the best software for creating UGC testimonial videos. Compare tools, features, and pricing. Create authentic customer testimonials in minutes.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>January 2025</span>
+                                </div>
+                            </div>
+                        </Link>
                     </div>
                 </div>
             </div>
