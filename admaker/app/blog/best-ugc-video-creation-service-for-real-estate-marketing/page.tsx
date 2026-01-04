@@ -317,8 +317,8 @@ export default function RealEstateUGCArticle() {
                         <section id="tips" className={styles.section}>
                             <h2>How to Create High-Converting Real Estate Videos</h2>
 
-                            <h3>1. Master the 3-Second Hook</h3>
-                            <p>65% scroll past in 3 seconds. Strong hooks: "This home sold in 36 hours—here's why..." or "Stop overpaying for less—check this out..."</p>
+                            <h3>1. Master the <a href="/hook-generator">3-Second Hook</a></h3>
+                            <p>65% scroll past in 3 seconds. <a href="/hook-generator">Strong hooks</a>: "This home sold in 36 hours—here's why..." or "Stop overpaying for less—check this out..."</p>
 
                             <div className={styles.imageWrapper}>
                                 <Image
@@ -339,7 +339,7 @@ export default function RealEstateUGCArticle() {
                                 <li>YouTube: 60-90s horizontal</li>
                             </ul>
 
-                            <h3>4. Perfect Your CTA</h3>
+                            <h3>4. <a href="/hook-generator">Perfect Your CTA</a></h3>
                             <p>Instead of "Contact me," use: "Text 'HOME' to [Number] right now for instant details"</p>
 
                             <div className={styles.imageWrapper}>
