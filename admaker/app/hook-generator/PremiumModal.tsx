@@ -143,10 +143,10 @@ export default function PremiumModal({ isOpen, onClose }: PremiumModalProps) {
 
                         {/* Pricing */}
                         <div className={styles.pricing}>
-                            <div className={styles.oldPrice}>$36/month</div>
+                            <div className={styles.oldPrice}>$49/month</div>
                             <div className={styles.newPrice}>
                                 <span className={styles.currency}>$</span>
-                                <span className={styles.amount}>29</span>
+                                <span className={styles.amount}>39</span>
                                 <span className={styles.period}>/month</span>
                             </div>
                         </div>

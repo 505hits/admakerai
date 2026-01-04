@@ -73,7 +73,8 @@
 
 .content {
     display: flex;
-    height: 600px;
+    height: auto;
+    max-height: 85vh;
 }
 
 /* Left side - Videos */
@@ -123,7 +124,7 @@
 /* Right side - Message */
 .messageSection {
     flex: 1;
-    padding: 40px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -134,16 +135,16 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 6px 12px;
+    padding: 4px 10px;
     background: linear-gradient(135deg, rgba(255, 8, 68, 0.2) 0%, rgba(255, 107, 107, 0.2) 100%);
     border: 1px solid rgba(255, 8, 68, 0.4);
     border-radius: 50px;
     color: #ff0844;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     width: fit-content;
     animation: pulse 2s ease-in-out infinite;
 }
@@ -161,33 +162,33 @@
 }
 
 .title {
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: 800;
     color: #fff;
     line-height: 1.2;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .subtitle {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     line-height: 1.4;
 }
 
 .features {
     list-style: none;
     padding: 0;
-    margin: 0 0 24px;
+    margin: 0 0 16px;
 }
 
 .features li {
     display: flex;
     align-items: center;
     gap: 10px;
-    padding: 8px 0;
+    padding: 6px 0;
     color: rgba(255, 255, 255, 0.9);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 .features li svg {
@@ -204,11 +205,11 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 12px 16px;
+    padding: 10px 14px;
     background: linear-gradient(135deg, rgba(255, 8, 68, 0.15) 0%, rgba(255, 107, 107, 0.15) 100%);
     border: 1px solid rgba(255, 8, 68, 0.3);
     border-radius: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .discountText {
@@ -245,7 +246,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .oldPrice {
@@ -282,12 +283,12 @@
 
 .upgradeBtn {
     width: 100%;
-    padding: 16px 24px;
+    padding: 14px 24px;
     background: linear-gradient(135deg, #ff0844 0%, #ff6b6b 100%);
     border: none;
     border-radius: 12px;
     color: #fff;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -296,7 +297,7 @@
     justify-content: center;
     gap: 8px;
     box-shadow: 0 8px 30px rgba(255, 8, 68, 0.4);
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .upgradeBtn:hover {
@@ -316,23 +317,23 @@
     .content {
         flex-direction: column;
         height: auto;
-        max-height: 90vh;
+        max-height: 85vh;
     }
 
     .videosSection {
-        height: 300px;
+        height: 200px;
     }
 
     .messageSection {
-        padding: 40px 30px;
+        padding: 24px 20px;
     }
 
     .title {
-        font-size: 2rem;
+        font-size: 1.4rem;
     }
 
     .amount {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 }
 
@@ -340,19 +341,34 @@
     .modal {
         width: 95%;
         border-radius: 16px;
+        max-height: 85vh;
+    }
+
+    .videosSection {
+        height: 150px;
     }
 
     .messageSection {
-        padding: 30px 20px;
+        padding: 20px 16px;
     }
 
     .title {
-        font-size: 1.75rem;
+        font-size: 1.3rem;
+    }
+
+    .features li {
+        font-size: 0.8rem;
+        padding: 4px 0;
     }
 
     .discountBadge {
         flex-direction: column;
-        gap: 12px;
+        gap: 8px;
         align-items: flex-start;
+        padding: 8px 12px;
+    }
+
+    .amount {
+        font-size: 1.8rem;
     }
 }
