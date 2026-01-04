@@ -272,14 +272,10 @@
     color: rgba(255, 255, 255, 0.85);
 }
 
-/* Video Sidebar - Sticky */
+/* Video Sidebar */
 .videoSidebar {
     width: 100%;
-    position: sticky;
-    top: 100px;
-    align-self: start;
-    max-height: calc(100vh - 120px);
-    overflow-y: auto;
+    align-self: stretch;
 }
 
 /* Responsive */
