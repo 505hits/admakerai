@@ -44,7 +44,7 @@ export default function BestMobileAppsForTikTokUGC() {
     return (
         <>
             <div className={styles.pageContainer}>
-                <Navbar locale={locale} />
+                <Navbar lang={locale} />
 
                 <div className={styles.contentWrapper}>
                     <article className={styles.articleContainer}>
@@ -921,7 +921,7 @@ export default function BestMobileAppsForTikTokUGC() {
                             </section>
                         </div>
 
-                        <SimilarArticles />
+                        <SimilarArticles locale={locale} currentSlug="best-mobile-apps-creating-ugc-videos-tiktok" />
                     </article>
 
                     {/* Sidebar */}
