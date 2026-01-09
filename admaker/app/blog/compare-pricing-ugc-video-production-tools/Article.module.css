@@ -2,7 +2,6 @@
     min-height: 100vh;
     background: #0a0a0a;
     padding: 100px 20px 60px;
-    overflow-x: hidden;
     width: 100%;
 }
 
@@ -276,6 +275,10 @@
 .videoSidebar {
     width: 100%;
     align-self: stretch;
+    position: sticky;
+    top: 120px;
+    max-height: calc(100vh - 140px);
+    overflow-y: auto;
 }
 
 /* Responsive */

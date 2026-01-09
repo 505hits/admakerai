@@ -454,7 +454,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
             window.removeEventListener('scroll', handleScroll);
             subscription.unsubscribe();
         };
-    }, []);
+    }, [pathname]); // Re-check auth when pathname changes
 
     // Close mobile menu when clicking outside
     useEffect(() => {

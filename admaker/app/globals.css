@@ -301,10 +301,10 @@ img {
 
 /* Examples Slider */
 .examples-slider {
-    padding: var(--spacing-xl) 0;
+    padding: var(--spacing-lg) 0;
     background: linear-gradient(180deg, transparent 0%, rgba(255, 8, 68, 0.03) 50%, transparent 100%);
     overflow: hidden;
-    margin-top: -4rem;
+    margin-top: -6rem;
     position: relative;
     z-index: 0;
 }

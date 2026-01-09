@@ -15,6 +15,28 @@ export default function BlogPage() {
                     <p className={styles.subtitle}>Latest news and insights from AdMaker AI</p>
 
                     <div className={styles.blogGrid}>
+                        <Link href="/blog/best-mobile-apps-creating-ugc-videos-tiktok" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop"
+                                    alt="Best Mobile Apps for Creating UGC Videos for TikTok"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>Mobile Tools</span>
+                                <h2 className={styles.cardTitle}>Best Mobile Apps for Creating UGC Videos for TikTok (2025)</h2>
+                                <p className={styles.cardExcerpt}>
+                                    Discover the best mobile apps for creating UGC videos for TikTok. Compare features, editing tools, and performance. Create viral-ready content on your phone.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>January 2025</span>
+                                </div>
+                            </div>
+                        </Link>
+
                         <Link href="/blog/top-rated-ugc-video-makers-for-social-ads" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
@@ -51,6 +73,28 @@ export default function BlogPage() {
                                 <h2 className={styles.cardTitle}>Compare Pricing for UGC Video Production Tools (2025 Guide)</h2>
                                 <p className={styles.cardExcerpt}>
                                     Compare pricing for UGC video production tools across 15+ platforms. Detailed cost breakdown, hidden fees, and ROI analysis. Find the right tool for your budget.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>January 2025</span>
+                                </div>
+                            </div>
+                        </Link>
+
+                        <Link href="/blog/compare-free-vs-paid-ugc-video-creation-tools" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop"
+                                    alt="Compare Free vs Paid UGC Video Creation Tools"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>Tool Comparison</span>
+                                <h2 className={styles.cardTitle}>Compare Free vs Paid UGC Video Creation Tools (2025)</h2>
+                                <p className={styles.cardExcerpt}>
+                                    Compare free vs paid UGC video creation tools. Detailed analysis of features, limitations, and when each option makes sense. Make the right choice for your needs.
                                 </p>
                                 <div className={styles.cardMeta}>
                                     <span>January 2025</span>
