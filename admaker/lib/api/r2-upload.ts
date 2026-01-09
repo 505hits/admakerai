@@ -2,24 +2,32 @@ import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 
 // Cloudflare R2 Configuration
 const R2_ACCOUNT_ID = '1defcdb7b33d256403a1c29fc50d14b4';
-const R2_ACCESS_KEY_ID = process.env.R2_ACCESS_KEY_ID;
-const R2_SECRET_ACCESS_KEY = process.env.R2_SECRET_ACCESS_KEY;
 const R2_BUCKET_NAME = 'admakerai-media';
 const R2_PUBLIC_URL = 'https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev';
 
-if (!R2_ACCESS_KEY_ID || !R2_SECRET_ACCESS_KEY) {
-    throw new Error('Missing R2 credentials: R2_ACCESS_KEY_ID and R2_SECRET_ACCESS_KEY must be set in environment variables');
-}
+let r2ClientInstance: S3Client | null = null;
 
-// Create S3 client configured for Cloudflare R2
-const r2Client = new S3Client({
-    region: 'auto',
-    endpoint: `https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
-    credentials: {
-        accessKeyId: R2_ACCESS_KEY_ID,
-        secretAccessKey: R2_SECRET_ACCESS_KEY,
-    },
-});
+function getR2Client(): S3Client {
+    if (r2ClientInstance) return r2ClientInstance;
+
+    const R2_ACCESS_KEY_ID = process.env.R2_ACCESS_KEY_ID;
+    const R2_SECRET_ACCESS_KEY = process.env.R2_SECRET_ACCESS_KEY;
+
+    if (!R2_ACCESS_KEY_ID || !R2_SECRET_ACCESS_KEY) {
+        throw new Error('Missing R2 credentials: R2_ACCESS_KEY_ID and R2_SECRET_ACCESS_KEY must be set in environment variables');
+    }
+
+    r2ClientInstance = new S3Client({
+        region: 'auto',
+        endpoint: `https://${R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
+        credentials: {
+            accessKeyId: R2_ACCESS_KEY_ID,
+            secretAccessKey: R2_SECRET_ACCESS_KEY,
+        },
+    });
+
+    return r2ClientInstance;
+}
 
 /**
  * Upload a video to Cloudflare R2
@@ -41,7 +49,7 @@ export async function uploadVideoToR2(
             ContentType: contentType,
         });
 
-        await r2Client.send(command);
+        await getR2Client().send(command);
 
         // Return the public URL
         const publicUrl = `${R2_PUBLIC_URL}/${fileName}`;
