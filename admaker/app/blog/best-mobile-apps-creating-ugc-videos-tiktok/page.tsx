@@ -6,7 +6,10 @@ import Navbar from '../../../components/Navbar';
 import styles from '../compare-pricing-ugc-video-production-tools/Article.module.css';
 import BlogVideoSidebar from '../../../components/BlogVideoSidebar';
 import SimilarArticles from '../../../components/SimilarArticles';
-import { getLandingPageUrl } from '../../../utils/localeUtils';
+
+function getLandingPageUrl(locale: string = 'en'): string {
+    return locale === 'en' ? '/' : `/${locale}`;
+}
 
 const locale = 'en';
 
