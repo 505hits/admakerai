@@ -396,9 +396,15 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
 
         // Check login status and user access with Supabase
         const checkLoginStatus = async () => {
+            console.log('[Navbar] Checking login status...');
             const { data: { session } } = await supabase.auth.getSession();
-            setIsLoggedIn(!!session);
+            console.log('[Navbar] Session:', session ? 'Found' : 'Not found');
+
+            const isLoggedInNow = !!session;
+            setIsLoggedIn(isLoggedInNow);
+
             if (session?.user) {
+                console.log('[Navbar] User logged in:', session.user.email);
                 setUserAvatar(session.user.user_metadata?.avatar_url || null);
 
                 // Load user profile to check access
@@ -415,9 +421,12 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                         (profile.replicator_credits || 0) > 0;
                     const hasActiveSubscription = profile.subscription_status === 'active';
                     setHasAccess(hasActiveSubscription || hasCredits);
+                    console.log('[Navbar] Access granted:', hasActiveSubscription || hasCredits);
                 }
             } else {
+                console.log('[Navbar] No user session');
                 setHasAccess(false);
+                setUserAvatar(null);
             }
         };
 
