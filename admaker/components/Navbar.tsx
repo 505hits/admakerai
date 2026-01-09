@@ -434,10 +434,26 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
             }
         };
 
+        // Listen for storage changes (Supabase session updates)
+        const handleStorageChange = (e: StorageEvent) => {
+            if (e.key?.includes('supabase.auth.token')) {
+                checkLoginStatus();
+            }
+        };
+
+        // Initial check
         checkLoginStatus();
+
+        // Set up event listeners
         window.addEventListener('scroll', handleScroll);
         window.addEventListener('focus', handleFocus);
         window.addEventListener('hashchange', handleHashChange);
+        window.addEventListener('storage', handleStorageChange);
+
+        // Poll for session changes (fallback for mobile)
+        const pollInterval = setInterval(() => {
+            checkLoginStatus();
+        }, 2000); // Check every 2 seconds
 
         // Listen for auth changes
         const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
@@ -469,6 +485,8 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
             window.removeEventListener('scroll', handleScroll);
             window.removeEventListener('focus', handleFocus);
             window.removeEventListener('hashchange', handleHashChange);
+            window.removeEventListener('storage', handleStorageChange);
+            clearInterval(pollInterval);
             subscription.unsubscribe();
         };
     }, [pathname]); // Re-check auth when pathname changes
