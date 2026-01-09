@@ -507,9 +507,9 @@ export default function CompareFreeVsPaidArticle() {
                             <div className={styles.imageWrapper}>
                                 <Image
                                     src={getMediaUrl('article6.png')}
-                                    alt=\"cost analysis and ROI calculation on laptop screen\"
-                                width={1280}
-                                height={720}
+                                    alt="cost analysis and ROI calculation on laptop screen"
+                                    width={1280}
+                                    height={720}
                                 />
                             </div>
                         </section>
