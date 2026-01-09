@@ -1,7 +1,7 @@
 /* Hero Section */
 .hero {
     position: relative;
-    padding: 140px 0 20px;
+    padding: 140px 0 0;
     text-align: center;
     overflow-x: hidden;
     background: #000;
@@ -108,7 +108,7 @@
 
 /* Results Section */
 .resultsSection {
-    padding: 40px 0;
+    padding: 20px 0;
     background: #000;
     overflow-x: hidden;
     width: 100%;
@@ -479,7 +479,7 @@
 /* Responsive */
 @media (max-width: 768px) {
     .hero {
-        padding: 120px 0 20px;
+        padding: 100px 0 0;
         overflow-x: hidden;
     }
 

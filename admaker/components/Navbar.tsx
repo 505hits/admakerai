@@ -421,8 +421,14 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
             }
         };
 
+        // Force check on window focus (after OAuth redirect)
+        const handleFocus = () => {
+            checkLoginStatus();
+        };
+
         checkLoginStatus();
         window.addEventListener('scroll', handleScroll);
+        window.addEventListener('focus', handleFocus);
 
         // Listen for auth changes
         const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
@@ -452,6 +458,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
 
         return () => {
             window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('focus', handleFocus);
             subscription.unsubscribe();
         };
     }, [pathname]); // Re-check auth when pathname changes

@@ -273,7 +273,7 @@ export default function HookGeneratorPage() {
             {/* Examples Slider Section - After How It Works */}
             <section className="examples-slider">
                 <div className="slider-track">
-                    {[...Array(18)].map((_, i) => {
+                    {[...Array(12)].map((_, i) => {
                         const videoUrls = [
                             getMediaUrl('video  beauté.mp4'),
                             getMediaUrl('video  bleu.mp4'),
