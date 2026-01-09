@@ -7,6 +7,7 @@ import Navbar from '@/components/Navbar';
 import SimilarArticles from '@/components/SimilarArticles';
 import styles from '../compare-pricing-ugc-video-production-tools/Article.module.css';
 import Image from 'next/image';
+import { getMediaUrl } from '@/lib/cloudflare-config';
 
 // Helper function to get the landing page URL based on locale
 function getLandingPageUrl(locale: string = 'en'): string {
@@ -96,7 +97,7 @@ export default function CompareFreeVsPaidArticle() {
                             </h1>
                             <div className={styles.heroImage}>
                                 <Image
-                                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1280&h=720&fit=crop"
+                                    src={getMediaUrl('article1.png')}
                                     alt="person comparing software options on dual computer screens"
                                     width={1280}
                                     height={720}
@@ -146,7 +147,7 @@ export default function CompareFreeVsPaidArticle() {
 
                             <div className={styles.imageWrapper}>
                                 <Image
-                                    src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1280&h=720&fit=crop"
+                                    src={getMediaUrl('article2.png')}
                                     alt="calculator and budget spreadsheet on desk"
                                     width={1280}
                                     height={720}
@@ -251,7 +252,7 @@ export default function CompareFreeVsPaidArticle() {
 
                             <div className={styles.imageWrapper}>
                                 <Image
-                                    src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=1280&h=720&fit=crop"
+                                    src={getMediaUrl('article3.png')}
                                     alt="person working on video editing with professional software"
                                     width={1280}
                                     height={720}
@@ -295,7 +296,7 @@ export default function CompareFreeVsPaidArticle() {
 
                             <div className={styles.imageWrapper}>
                                 <Image
-                                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1280&h=720&fit=crop"
+                                    src={getMediaUrl('article4.png')}
                                     alt="comparison chart showing free vs paid features side by side"
                                     width={1280}
                                     height={720}
@@ -438,7 +439,7 @@ export default function CompareFreeVsPaidArticle() {
 
                             <div className={styles.imageWrapper}>
                                 <Image
-                                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1280&h=720&fit=crop"
+                                    src={getMediaUrl('article5.png')}
                                     alt="business team meeting discussing video content strategy"
                                     width={1280}
                                     height={720}
@@ -502,6 +503,15 @@ export default function CompareFreeVsPaidArticle() {
                             <p><strong>Hidden cost:</strong> Professional presentation loss from watermarks, quality limitations.</p>
 
                             <p><strong>Estimated impact:</strong> If watermarked video converts 1.5% versus 2.0% for professional video, on 10,000 monthly visitors that's 50 lost conversions. At $100 average value = $5,000 monthly opportunity cost.</p>
+
+                            <div className={styles.imageWrapper}>
+                                <Image
+                                    src={getMediaUrl('article6.png')}
+                                    alt=\"cost analysis and ROI calculation on laptop screen\"
+                                width={1280}
+                                height={720}
+                                />
+                            </div>
                         </section>
 
                         <section id="faq" className={styles.section}>
