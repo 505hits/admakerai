@@ -920,14 +920,14 @@ export default function BestMobileAppsForTikTokUGC() {
                     <SimilarArticles locale={locale} currentSlug="best-mobile-apps-creating-ugc-videos-tiktok" />
                 </div>
 
-                {/* Mobile Sticky CTA */}
-                {showMobileCTA && (
-                    <div className={styles.mobileStickyCTA}>
-                        <a href={getLandingPageUrl(locale)} className={styles.mobileCTAButton}>
-                            Start Creating Videos Free →
-                        </a>
-                    </div>
-                )}
+                {/* Sticky Mobile CTA */}
+                <a
+                    href={getLandingPageUrl(locale)}
+                    className={`${styles.stickyCta} ${showMobileCTA ? styles.stickyCtaVisible : ''}`}
+                    aria-label="Try AdMaker AI"
+                >
+                    Start Free with AdMaker AI
+                </a>
             </div>
         </>
     );

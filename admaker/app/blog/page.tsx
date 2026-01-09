@@ -18,7 +18,7 @@ export default function BlogPage() {
                         <Link href="/blog/best-mobile-apps-creating-ugc-videos-tiktok" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
-                                    src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop"
+                                    src="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/article1.png"
                                     alt="Best Mobile Apps for Creating UGC Videos for TikTok"
                                     width={400}
                                     height={250}
