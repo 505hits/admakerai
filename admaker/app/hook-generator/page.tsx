@@ -11,6 +11,7 @@ import styles from './HookGenerator.module.css';
 import { secureFetch } from '@/lib/api/client';
 import { createClient } from '@/lib/supabase/client';
 import { getMediaUrl } from '@/lib/cloudflare-config';
+import PromoPopup from '@/components/PromoPopup';
 
 export default function HookGeneratorPage() {
     const [videoIdea, setVideoIdea] = useState('');
@@ -21,6 +22,7 @@ export default function HookGeneratorPage() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
     const [showPremiumModal, setShowPremiumModal] = useState(false);
+    const [showPromoPopup, setShowPromoPopup] = useState(false);
     const resultsRef = useRef<HTMLDivElement>(null);
     const router = useRouter();
     const supabase = createClient();
@@ -229,12 +231,15 @@ export default function HookGeneratorPage() {
                                                     </>
                                                 )}
                                             </button>
-                                            <a href="/" className={styles.generateVideoBtn}>
+                                            <button
+                                                onClick={() => setShowPromoPopup(true)}
+                                                className={styles.generateVideoBtn}
+                                            >
                                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                                                     <path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                                 </svg>
                                                 Generate Video
-                                            </a>
+                                            </button>
                                         </div>
                                     </div>
                                 ))}
@@ -371,6 +376,12 @@ export default function HookGeneratorPage() {
             <PremiumModal
                 isOpen={showPremiumModal}
                 onClose={() => setShowPremiumModal(false)}
+            />
+
+            {/* Promo Popup */}
+            <PromoPopup
+                isOpen={showPromoPopup}
+                onClose={() => setShowPromoPopup(false)}
             />
 
             {/* Sticky CTA Button */}

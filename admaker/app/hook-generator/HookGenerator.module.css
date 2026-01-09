@@ -323,21 +323,19 @@
 }
 
 .generateVideoBtn {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 8px;
     padding: 10px 20px;
-    background: linear-gradient(135deg, #ff0844 0%, #ff6b6b 100%);
+    background: linear-gradient(135deg, #ff0844, #ff6b6b);
+    color: #fff;
     border: none;
     border-radius: 8px;
-    color: #fff;
-    font-size: 0.9rem;
+    font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
-    white-space: nowrap;
-    max-width: 100%;
 }
 
 .generateVideoBtn:hover {
