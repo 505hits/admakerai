@@ -426,9 +426,18 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
             checkLoginStatus();
         };
 
+        // Force check on hash change (Supabase OAuth callback on mobile)
+        const handleHashChange = () => {
+            // Supabase returns tokens in URL hash after OAuth
+            if (window.location.hash.includes('access_token')) {
+                setTimeout(() => checkLoginStatus(), 500);
+            }
+        };
+
         checkLoginStatus();
         window.addEventListener('scroll', handleScroll);
         window.addEventListener('focus', handleFocus);
+        window.addEventListener('hashchange', handleHashChange);
 
         // Listen for auth changes
         const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
@@ -459,6 +468,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
         return () => {
             window.removeEventListener('scroll', handleScroll);
             window.removeEventListener('focus', handleFocus);
+            window.removeEventListener('hashchange', handleHashChange);
             subscription.unsubscribe();
         };
     }, [pathname]); // Re-check auth when pathname changes
