@@ -15,6 +15,28 @@ export default function BlogPage() {
                     <p className={styles.subtitle}>Latest news and insights from AdMaker AI</p>
 
                     <div className={styles.blogGrid}>
+                        <Link href="/blog/best-ai-driven-ugc-video-platforms-startups" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=500&fit=crop"
+                                    alt="Best AI-Driven UGC Video Platforms for Startups"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>Startup Guide</span>
+                                <h2 className={styles.cardTitle}>Best AI-Driven UGC Video Platforms for Startups (2025)</h2>
+                                <p className={styles.cardExcerpt}>
+                                    Find the best AI-driven UGC video platforms for startups. Compare pricing, features, and scalability. Optimize your video marketing budget from day one.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>January 2025</span>
+                                </div>
+                            </div>
+                        </Link>
+
                         <Link href="/blog/best-mobile-apps-creating-ugc-videos-tiktok" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
