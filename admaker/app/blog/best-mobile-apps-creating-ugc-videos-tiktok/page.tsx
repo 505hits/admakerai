@@ -779,11 +779,10 @@ export default function BestMobileAppsForTikTokUGC() {
 
                             <div className={styles.imageWrapper}>
                                 <Image
-                                    src="https://images.unsplash.com/photo-1556656793-08538906a9f8?w=1280&h=720&fit=crop"
+                                    src={getMediaUrl('article6.png')}
                                     alt="Creator reviewing multiple TikTok videos on smartphone screen"
                                     width={1280}
                                     height={720}
-                                    className={styles.contentImage}
                                 />
                             </div>
                         </section>
