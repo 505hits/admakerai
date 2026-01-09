@@ -81,7 +81,7 @@ export default function BestMobileAppsForTikTokUGC() {
                         </nav>
 
 
-                        <section id="why-mobile">
+                        <section id="why-mobile" className={styles.section}>
                             <h2>Why Mobile Apps Dominate TikTok Content Creation</h2>
                             <p>
                                 TikTok emerged as a mobile-first platform where 98% of content consumption occurs on smartphones. This mobile-native environment creates unique requirements for content creation tools—desktop workflows often produce videos that feel disconnected from TikTok's authentic, casual aesthetic.
@@ -114,7 +114,7 @@ export default function BestMobileAppsForTikTokUGC() {
                             </div>
                         </section>
 
-                        <section id="essential-features">
+                        <section id="essential-features" className={styles.section}>
                             <h2>Essential Features for TikTok UGC Apps</h2>
                             <p>Effective mobile apps for TikTok creation require specific capabilities:</p>
 
@@ -230,7 +230,7 @@ export default function BestMobileAppsForTikTokUGC() {
                             </div>
                         </section>
 
-                        <section id="native-apps">
+                        <section id="native-apps" className={styles.section}>
                             <h2>Native Mobile Apps Analyzed</h2>
                             <p>Comprehensive evaluation of smartphone-native applications:</p>
 
@@ -442,7 +442,7 @@ export default function BestMobileAppsForTikTokUGC() {
                             </div>
                         </section>
 
-                        <section id="web-apps">
+                        <section id="web-apps" className={styles.section}>
                             <h2>Mobile-Optimized Web Apps</h2>
                             <p>Browser-based tools accessible on mobile devices:</p>
 
@@ -553,7 +553,7 @@ export default function BestMobileAppsForTikTokUGC() {
                             </div>
                         </section>
 
-                        <section id="tiktok-optimization">
+                        <section id="tiktok-optimization" className={styles.section}>
                             <h2>TikTok-Specific Optimization Techniques</h2>
                             <p>Maximizing performance regardless of app chosen:</p>
 
@@ -663,7 +663,7 @@ export default function BestMobileAppsForTikTokUGC() {
                             </div>
                         </section>
 
-                        <section id="workflow">
+                        <section id="workflow" className={styles.section}>
                             <h2>Workflow Strategies for Mobile Creation</h2>
                             <p>Efficient content production using mobile apps:</p>
 
@@ -736,7 +736,7 @@ export default function BestMobileAppsForTikTokUGC() {
                             </div>
                         </section>
 
-                        <section id="mobile-vs-desktop">
+                        <section id="mobile-vs-desktop" className={styles.section}>
                             <h2>Mobile vs Desktop for TikTok Content</h2>
                             <p>Comparing creation environments:</p>
 
@@ -787,7 +787,7 @@ export default function BestMobileAppsForTikTokUGC() {
                             </div>
                         </section>
 
-                        <section id="faq" className={styles.faqSection}>
+                        <section id="faq" className={styles.section}>
                             <h2>FAQ About Mobile Apps for TikTok UGC Creation</h2>
 
                             <div className={styles.faqItem}>
