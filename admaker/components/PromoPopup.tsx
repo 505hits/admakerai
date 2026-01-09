@@ -34,7 +34,7 @@ export default function PromoPopup({ isOpen, onClose }: PromoPopupProps) {
     };
 
     const handleClaim = () => {
-        window.location.href = '/pricing';
+        window.location.href = '/payment';
     };
 
     if (!isOpen) return null;
