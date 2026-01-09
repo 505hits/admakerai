@@ -10,11 +10,11 @@
 
 .heroGlow {
     position: absolute;
-    top: -200px;
+    top: -100px;
     left: 50%;
     transform: translateX(-50%);
-    width: 1200px;
-    height: 1200px;
+    width: 800px;
+    height: 600px;
     background: radial-gradient(circle, rgba(255, 8, 68, 0.35) 0%, rgba(255, 8, 68, 0.15) 40%, transparent 70%);
     filter: blur(100px);
     pointer-events: none;
