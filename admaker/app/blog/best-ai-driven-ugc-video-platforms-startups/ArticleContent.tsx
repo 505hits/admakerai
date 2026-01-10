@@ -276,7 +276,7 @@ export default function ArticleContent() {
 
                     </article>
 
-                    <aside className={styles.sidebar}>
+                    <aside className={styles.videoSidebar}>
                         <BlogVideoSidebar locale="en" />
                     </aside>
                 </div>
