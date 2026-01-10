@@ -15,9 +15,9 @@ export const metadata: Metadata = {
   title: "AdMaker AI | Create AI Ads in Minutes",
   description: "The #1 platform to create AI video ads. Write your script, choose your actors, and generate your video in 2 minutes.",
   icons: {
-    icon: '/favicon.png',
-    shortcut: '/favicon.png',
-    apple: '/favicon.png',
+    icon: 'https://admakerai.app/favicon.ico',
+    shortcut: 'https://admakerai.app/favicon.ico',
+    apple: 'https://admakerai.app/favicon.ico',
   },
   alternates: {
     canonical: "https://admakerai.app/",
