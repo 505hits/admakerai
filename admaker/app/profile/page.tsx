@@ -100,7 +100,10 @@ export default function ProfilePage() {
         'free': 'Free',
         'startup': 'Startup',
         'growth': 'Growth',
-        'pro': 'Pro'
+        'pro': 'Pro',
+        'Startup': 'Startup',
+        'Growth': 'Growth',
+        'Pro': 'Pro'
     };
 
     const planName = planNames[profile?.subscription_plan || 'free'] || 'Free';

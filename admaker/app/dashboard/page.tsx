@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
+import { useSearchParams, useRouter } from 'next/navigation';
 import styles from './Dashboard.module.css';
 import ScriptEditor from '@/components/dashboard/ScriptEditor';
 import VideoSettings from '@/components/dashboard/VideoSettings';
@@ -15,10 +16,18 @@ import { saveVideo, getUserVideos } from '@/lib/api/videos';
 import { createClient } from '@/lib/supabase/client';
 import { replicateVideoWithActor } from '@/lib/api/kie';
 import { secureFetch } from '@/lib/api/client';
+import { getUserData } from '@/app/actions/profile';
 
-export default function DashboardPage() {
+function DashboardContent() {
+    const searchParams = useSearchParams();
+    const router = useRouter();
+    const isPaymentSuccess = searchParams.get('success') === 'true';
+    const sessionId = searchParams.get('session_id');
+
     const [activeTab, setActiveTab] = useState('create');
     const [sidebarOpen, setSidebarOpen] = useState(false);
+    const [isCheckingPayment, setIsCheckingPayment] = useState(isPaymentSuccess);
+    const [paymentStatus, setPaymentStatus] = useState<string | null>(null);
 
     // Variation state
     const [activeVariation, setActiveVariation] = useState(0);
@@ -84,33 +93,71 @@ export default function DashboardPage() {
             // Load custom actors and user credits
             const supabase = createClient();
             const { data: { user } } = await supabase.auth.getUser();
+
             if (user) {
-                // Load user profile to check access
-                const { data: profile } = await supabase
-                    .from('profiles')
-                    .select('credits, actor_credits, replicator_credits, subscription_status')
-                    .eq('id', user.id)
-                    .single();
+                // Determine if we need to poll for updates (if came from payment success)
+                let pollAttempts = 0;
+                const maxPollAttempts = isPaymentSuccess ? 10 : 1; // 10 attempts (~20s) if payment success, else just 1
 
-                if (profile) {
-                    setCredits(profile.credits || 0);
-                    setActorCredits(profile.actor_credits || 0);
-                    setReplicatorCredits(profile.replicator_credits || 0);
-
-                    // Check if user has access (active subscription OR any credits > 0)
-                    const hasCredits = (profile.credits || 0) > 0 ||
-                        (profile.actor_credits || 0) > 0 ||
-                        (profile.replicator_credits || 0) > 0;
-                    const hasActiveSubscription = profile.subscription_status === 'active';
-
-                    // Redirect to payment if no access
-                    if (!hasActiveSubscription && !hasCredits) {
-                        window.location.href = '/payment';
-                        return;
+                const checkAccess = async () => {
+                    if (isPaymentSuccess) {
+                        setPaymentStatus(`Finalizing subscription setup... (Attempt ${pollAttempts + 1}/${maxPollAttempts})`);
                     }
-                }
 
-                // Load custom actors
+                    // Use server action to get fresh data (bypassing cache potentially)
+                    const { profile } = await getUserData();
+
+                    if (profile) {
+                        const hasCredits = (profile.credits || 0) > 0 ||
+                            (profile.actor_credits || 0) > 0 ||
+                            (profile.replicator_credits || 0) > 0;
+                        const hasActiveSubscription = profile.subscription_status === 'active';
+
+                        const hasAccess = hasActiveSubscription || hasCredits;
+
+                        if (hasAccess) {
+                            // User has access! Update state and stop polling
+                            setCredits(profile.credits || 0);
+                            setActorCredits(profile.actor_credits || 0);
+                            setReplicatorCredits(profile.replicator_credits || 0);
+
+                            if (isPaymentSuccess) {
+                                setIsCheckingPayment(false);
+                                setPaymentStatus('Subscription active! Redirecting to dashboard...');
+                                // Clear URL params
+                                window.history.replaceState(null, '', '/dashboard');
+                            }
+                            return true;
+                        }
+                    }
+                    return false;
+                };
+
+                // Polling loop
+                const runCheck = async () => {
+                    const hasAccess = await checkAccess();
+                    if (hasAccess) return;
+
+                    pollAttempts++;
+                    if (pollAttempts < maxPollAttempts) {
+                        setTimeout(runCheck, 2000); // Check every 2 seconds
+                    } else {
+                        // Final check failed - redirect to payment if not just a refresh
+                        if (!isPaymentSuccess) {
+                            window.location.href = '/payment';
+                        } else {
+                            // Payment success but still no access?
+                            // Maybe just let them stay but show error?
+                            // For now, redirect to payment page as "failed"
+                            alert("We couldn't verify your subscription yet. Please contact support if this persists.");
+                            window.location.href = '/payment';
+                        }
+                    }
+                };
+
+                runCheck();
+
+                // Load custom actors independent of access check
                 const { data: actors } = await supabase
                     .from('custom_actors')
                     .select('*')
@@ -125,7 +172,25 @@ export default function DashboardPage() {
             }
         };
         loadData();
-    }, []);
+    }, [isPaymentSuccess]);
+
+    if (isCheckingPayment) {
+        return (
+            <div className={styles.loadingContainer} style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '100vh',
+                backgroundColor: '#111',
+                color: 'white'
+            }}>
+                <div className={styles.spinner}></div>
+                <h2 style={{ marginTop: '20px' }}>{paymentStatus || 'Verifying payment...'}</h2>
+                <p style={{ opacity: 0.7, marginTop: '10px' }}>Please wait while we set up your workspace.</p>
+            </div>
+        );
+    }
 
     // Save video to history (Supabase)
     const saveVideoToHistory = async (video: any) => {
@@ -808,8 +873,7 @@ export default function DashboardPage() {
                 });
 
                 if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.error || 'Failed to start video generation');
+                    throw new Error(`Failed to generate variation`);
                 }
 
                 return response.json();
@@ -2241,5 +2305,39 @@ export default function DashboardPage() {
                 )
             }
         </div>
+    );
+}
+
+export default function DashboardPage() {
+    return (
+        <Suspense fallback={
+            <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '100vh',
+                backgroundColor: '#111',
+                color: 'white'
+            }}>
+                <div style={{
+                    width: '40px',
+                    height: '40px',
+                    border: '3px solid rgba(255, 255, 255, 0.1)',
+                    borderTop: '3px solid #10b981',
+                    borderRadius: '50%',
+                    animation: 'spin 1s linear infinite'
+                }}></div>
+                <p style={{ marginTop: '20px' }}>Loading environment...</p>
+                <style jsx>{`
+                    @keyframes spin {
+                        0% { transform: rotate(0deg); }
+                        100% { transform: rotate(360deg); }
+                    }
+                `}</style>
+            </div>
+        }>
+            <DashboardContent />
+        </Suspense>
     );
 }

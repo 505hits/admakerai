@@ -64,6 +64,9 @@ export async function POST(request: NextRequest) {
 
                 // Extract metadata
                 const userId = session.metadata?.userId;
+                const planType = session.metadata?.planType; // 'startup', 'growth', 'pro'
+                const billingPeriod = session.metadata?.billingPeriod; // 'monthly', 'annual'
+
                 const videoCredits = parseInt(session.metadata?.videoCredits || '0');
                 const actorCredits = parseInt(session.metadata?.actorCredits || '0');
                 const replicatorCredits = parseInt(session.metadata?.replicatorCredits || '0');
@@ -73,7 +76,7 @@ export async function POST(request: NextRequest) {
                     break;
                 }
 
-                // Update user credits in Supabase
+                // Update user credits and subscription status in Supabase
                 const supabase = createServiceClient();
 
                 // Get current credits
@@ -93,19 +96,42 @@ export async function POST(request: NextRequest) {
                 const newActorCredits = (profile?.actor_credits || 0) + actorCredits;
                 const newReplicatorCredits = (profile?.replicator_credits || 0) + replicatorCredits;
 
+                // Calculate subscription end date
+                // Default to 1 month from now if monthly, 1 year if annual
+                // In a real implementation with recurring payments, Stripe provides current_period_end
+                const now = new Date();
+                let endDate = new Date();
+                if (billingPeriod === 'annual') {
+                    endDate.setFullYear(endDate.getFullYear() + 1);
+                } else {
+                    endDate.setMonth(endDate.getMonth() + 1);
+                }
+
+                const updateData: any = {
+                    credits: newVideoCredits,
+                    actor_credits: newActorCredits,
+                    replicator_credits: newReplicatorCredits,
+                };
+
+                // Only update subscription status if a plan was purchased
+                // (This avoids overwriting status if this was just a credit top-up, though currently we only sell plans)
+                if (planType) {
+                    updateData.subscription_status = 'active';
+                    updateData.subscription_plan = planType;
+                    updateData.subscription_end_date = endDate.toISOString();
+                }
+
                 const { error: updateError } = await supabase
                     .from('profiles')
-                    .update({
-                        credits: newVideoCredits,
-                        actor_credits: newActorCredits,
-                        replicator_credits: newReplicatorCredits,
-                    })
+                    .update(updateData)
                     .eq('id', userId);
 
                 if (updateError) {
-                    console.error('❌ Error updating user credits:', updateError);
+                    console.error('❌ Error updating user profile:', updateError);
                 } else {
-                    console.log(`✅ Credits updated for user ${userId}:`);
+                    console.log(`✅ Profile updated for user ${userId}:`);
+                    console.log(`   Plan: ${planType} (${billingPeriod})`);
+                    console.log(`   Status: active`);
                     console.log(`   Video credits: ${profile?.credits || 0} → ${newVideoCredits} (+${videoCredits})`);
                     console.log(`   Actor credits: ${profile?.actor_credits || 0} → ${newActorCredits} (+${actorCredits})`);
                     console.log(`   Replicator credits: ${profile?.replicator_credits || 0} → ${newReplicatorCredits} (+${replicatorCredits})`);
