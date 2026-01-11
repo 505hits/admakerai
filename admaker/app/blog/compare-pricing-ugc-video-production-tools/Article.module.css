@@ -3,6 +3,9 @@
     background: #0a0a0a;
     padding: 100px 20px 60px;
     width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 .contentWrapper {
@@ -13,6 +16,13 @@
     gap: 40px;
     align-items: start;
     width: 100%;
+    box-sizing: border-box;
+}
+
+.mainContent {
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 /* Article Content */
@@ -39,6 +49,9 @@
     line-height: 1.2;
     margin: 0 0 24px 0;
     color: white;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .heroImage {
@@ -211,7 +224,7 @@
     width: 100%;
     border-collapse: collapse;
     min-width: 600px;
-    /* Ensure table triggers scroll */
+    table-layout: fixed;
 }
 
 .comparisonTable thead {
@@ -317,9 +330,20 @@
 }
 
 @media (max-width: 768px) {
+    .pageContainer {
+        padding: 80px 12px 40px;
+        overflow-x: hidden;
+    }
+
     .contentWrapper {
         grid-template-columns: 1fr;
         gap: 0;
+        max-width: 100%;
+    }
+
+    .mainContent {
+        max-width: 100%;
+        overflow: hidden;
     }
 
     .videoSidebar {
@@ -327,37 +351,85 @@
     }
 
     .articleContent {
-        padding: 24px;
+        padding: 20px;
         overflow-x: hidden;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 
     .mainTitle {
-        font-size: 32px;
+        font-size: 24px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+
+    .articleHeader {
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .heroImage {
+        max-width: 100%;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .heroImage img {
+        max-width: 100%;
+        height: auto;
     }
 
     .section h2 {
-        font-size: 26px;
+        font-size: 22px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 
     .section h3 {
-        font-size: 22px;
+        font-size: 18px;
     }
 
     .section p,
     .section li {
-        font-size: 16px;
+        font-size: 15px;
+    }
+
+    /* Table mobile fixes */
+    .comparisonTable {
+        min-width: 100%;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .comparisonTable th,
+    .comparisonTable td {
+        padding: 10px 8px;
+        font-size: 13px;
     }
 
     .tableWrapper {
-        margin-left: -24px;
-        margin-right: -24px;
+        margin-left: -20px;
+        margin-right: -20px;
         border-radius: 0;
-        width: calc(100% + 48px);
+        width: calc(100% + 40px);
+        padding: 0 8px;
+        overflow-x: auto;
     }
 
-    .heroImage,
     .imageWrapper {
         max-width: 100%;
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .imageWrapper img {
+        max-width: 100%;
+        height: auto;
     }
 }
 
@@ -380,6 +452,382 @@
         margin-right: -20px;
         width: calc(100% + 40px);
     }
+}
+
+/* Stats Box */
+.statsBox {
+    background: rgba(255, 8, 68, 0.08);
+    border: 1px solid rgba(255, 8, 68, 0.2);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 24px 0;
+}
+
+.statsBox h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+    color: white;
+}
+
+.statsBox ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.statsBox li {
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Feature Box */
+.featureBox {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 16px 0;
+}
+
+.featureBox h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    color: white;
+}
+
+.featureBox ul {
+    margin: 0 0 12px 0;
+    padding-left: 20px;
+}
+
+.featureBox li {
+    margin-bottom: 6px;
+    font-size: 15px;
+}
+
+/* Tool Card */
+.toolCard {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 30px;
+    margin: 30px 0;
+}
+
+.toolCard h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    color: #ff0844;
+}
+
+.toolCard h4 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 24px 0 12px 0;
+    color: white;
+}
+
+.toolCard ul {
+    padding-left: 20px;
+    margin: 12px 0;
+}
+
+.toolCard li {
+    margin-bottom: 8px;
+}
+
+/* Technique Card */
+.techniqueCard {
+    background: rgba(255, 255, 255, 0.02);
+    border-left: 4px solid #ff0844;
+    padding: 24px;
+    margin: 24px 0;
+    border-radius: 0 12px 12px 0;
+}
+
+.techniqueCard h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    color: white;
+}
+
+.techniqueCard h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 16px 0 8px 0;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Workflow Card */
+.workflowCard {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 20px 0;
+}
+
+.workflowCard h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    color: white;
+}
+
+.workflowCard h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 16px 0 8px 0;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.workflowCard ol {
+    padding-left: 20px;
+    margin: 12px 0;
+}
+
+/* Workflow Box */
+.workflowBox {
+    background: rgba(255, 8, 68, 0.05);
+    border: 1px solid rgba(255, 8, 68, 0.15);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 16px 0;
+}
+
+.workflowBox h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    color: white;
+}
+
+.workflowBox ol {
+    padding-left: 20px;
+    margin: 0;
+}
+
+/* Pros/Cons Grid */
+.prosConsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 20px 0;
+}
+
+@media (max-width: 768px) {
+    .prosConsGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.limitations,
+.considerations,
+.realityCheck,
+.strengths {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.limitations h4,
+.considerations h4,
+.realityCheck h4,
+.strengths h4 {
+    font-size: 15px;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    color: white;
+}
+
+.limitations ul,
+.considerations ul,
+.realityCheck ul,
+.strengths ul {
+    margin: 0;
+    padding-left: 18px;
+}
+
+.limitations li,
+.considerations li,
+.realityCheck li,
+.strengths li {
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+/* Note Box */
+.noteBox {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 24px 0;
+}
+
+.noteBox h4 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 12px 0;
+    color: white;
+}
+
+/* Comparison Grid */
+.comparisonGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin: 24px 0;
+}
+
+@media (max-width: 768px) {
+    .comparisonGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.comparisonCard {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.comparisonCard h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+    color: white;
+}
+
+.comparisonCard ul {
+    padding-left: 18px;
+    margin: 0;
+}
+
+.comparisonCard li {
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+/* Recommendation Box */
+.recommendationBox {
+    background: rgba(255, 8, 68, 0.08);
+    border: 1px solid rgba(255, 8, 68, 0.2);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 24px 0;
+}
+
+.recommendationBox h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 16px 0;
+    color: white;
+}
+
+/* Conclusion Section */
+.conclusionSection {
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.conclusionSection h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    color: white;
+}
+
+/* Recommendations Grid */
+.recommendationsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.recommendationCard {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+}
+
+.recommendationCard h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 8px 0;
+    color: white;
+}
+
+.recommendationCard p {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+}
+
+.emoji {
+    font-size: 32px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.finalNote {
+    font-size: 16px;
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    margin: 24px 0;
+}
+
+/* CTA Box */
+.ctaBox {
+    background: linear-gradient(135deg, rgba(255, 8, 68, 0.15) 0%, rgba(255, 84, 120, 0.1) 100%);
+    border: 1px solid rgba(255, 8, 68, 0.3);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    margin: 32px 0;
+}
+
+.ctaBox h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+    color: white;
+}
+
+.ctaButton {
+    display: inline-block;
+    background: linear-gradient(135deg, #ff0844 0%, #ff5478 100%);
+    color: white !important;
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 700;
+    text-decoration: none !important;
+    border: none !important;
+    box-shadow: 0 8px 24px rgba(255, 8, 68, 0.4);
+    transition: all 0.3s ease;
+}
+
+.ctaButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(255, 8, 68, 0.5);
+    background: linear-gradient(135deg, #ff5478 0%, #ff0844 100%);
+}
+
+.ctaSubtext {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 16px 0 0 0;
 }
 
 /* Sticky Mobile CTA */

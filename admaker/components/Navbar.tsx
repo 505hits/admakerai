@@ -415,13 +415,19 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                     .single();
 
                 if (profile) {
+                    console.log('[Navbar] Profile data:', profile);
                     // User has access if they have an active subscription OR any credits > 0
                     const hasCredits = (profile.credits || 0) > 0 ||
                         (profile.actor_credits || 0) > 0 ||
                         (profile.replicator_credits || 0) > 0;
                     const hasActiveSubscription = profile.subscription_status === 'active';
+                    console.log('[Navbar] Credits:', profile.credits, 'Actor:', profile.actor_credits, 'Replicator:', profile.replicator_credits);
+                    console.log('[Navbar] hasCredits:', hasCredits);
+                    console.log('[Navbar] hasActiveSubscription:', hasActiveSubscription);
+                    console.log('[Navbar] Final hasAccess:', hasActiveSubscription || hasCredits);
                     setHasAccess(hasActiveSubscription || hasCredits);
-                    console.log('[Navbar] Access granted:', hasActiveSubscription || hasCredits);
+                } else {
+                    console.log('[Navbar] No profile found for user');
                 }
             } else {
                 console.log('[Navbar] No user session');
@@ -478,11 +484,15 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                     .single();
 
                 if (profile) {
+                    console.log('[Navbar] Auth change - Profile data:', profile);
                     const hasCredits = (profile.credits || 0) > 0 ||
                         (profile.actor_credits || 0) > 0 ||
                         (profile.replicator_credits || 0) > 0;
                     const hasActiveSubscription = profile.subscription_status === 'active';
+                    console.log('[Navbar] Auth change - hasCredits:', hasCredits, 'hasActiveSubscription:', hasActiveSubscription);
                     setHasAccess(hasActiveSubscription || hasCredits);
+                } else {
+                    console.log('[Navbar] Auth change - No profile found');
                 }
             } else {
                 setUserAvatar(null);
