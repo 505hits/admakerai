@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-    title: '부동산 마케팅을 위한 최고의 UGC 비디오 서비스 (2025) | AdMaker AI',
+    title: '不動産マーケティング向け最高のUGCビデオ作成サービス (2025) | AdMaker AI',
     alternates: {
-        canonical: 'https://admakerai.app/ko/blog/best-ugc-video-creation-service-real-estate-marketing',
+        canonical: 'https://admakerai.app/ja/blog/best-ugc-video-creation-service-real-estate-marketing',
         languages: {
             'x-default': 'https://admakerai.app/blog/best-ugc-video-creation-service-for-real-estate-marketing',
             'en': 'https://admakerai.app/blog/best-ugc-video-creation-service-for-real-estate-marketing',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
             'ja': 'https://admakerai.app/ja/blog/best-ugc-video-creation-service-real-estate-marketing',
         },
     },
-    openGraph: { type: 'article', locale: 'ko_KR', siteName: 'AdMaker AI' },
+    openGraph: { type: 'article', locale: 'ja_JP', siteName: 'AdMaker AI' },
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) { return children; }
