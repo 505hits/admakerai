@@ -15,6 +15,28 @@ export default function BlogPage() {
                     <p className={styles.subtitle}>Latest news and insights from AdMaker AI</p>
 
                     <div className={styles.blogGrid}>
+                        <Link href="/blog/best-rated-platforms-quick-ugc-product-ad-videos" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop"
+                                    alt="Best Rated Platforms for Quick UGC Product Ad Videos"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>Platform Comparison</span>
+                                <h2 className={styles.cardTitle}>Best Rated Platforms for Quick UGC Product Ad Videos</h2>
+                                <p className={styles.cardExcerpt}>
+                                    After testing 15 platforms with $12K budget, we ranked the fastest UGC video tools. Create product ads in under 2 minutes. Real speed tests included.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>January 2025</span>
+                                </div>
+                            </div>
+                        </Link>
+
                         <Link href="/blog/hook-generator" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
