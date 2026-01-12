@@ -34,16 +34,16 @@ export default function HookGeneratorArticle() {
                 <meta name="description" content="Discover the best hook generator tools for video ads. Compare AI platforms, templates, and proven strategies to create scroll-stopping hooks that boost CTR by 300%." />
                 <meta name="keywords" content="hook generator, video hooks, video ad hooks, scroll-stopping hooks, CTR optimization, hook templates" />
 
-                <link rel="canonical" href="https://admakerai.app/blog/best-hook-generator-tools-video-ads" />
+                <link rel="canonical" href="https://admakerai.app/blog/hook-generator" />
 
-                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/best-hook-generator-tools-video-ads" />
-                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/best-hook-generator-tools-video-ads" />
+                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/hook-generator" />
+                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/hook-generator" />
 
                 <meta property="og:type" content="article" />
                 <meta property="og:title" content="Best Hook Generator Tools for Video Ads in 2025" />
                 <meta property="og:description" content="Discover the best hook generator tools for video ads. Compare AI platforms, templates, and proven strategies." />
                 <meta property="og:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1280&h=720&fit=crop" />
-                <meta property="og:url" content="https://admakerai.app/blog/best-hook-generator-tools-video-ads" />
+                <meta property="og:url" content="https://admakerai.app/blog/hook-generator" />
                 <meta property="og:locale" content="en_US" />
                 <meta property="og:site_name" content="AdMaker AI" />
                 <meta property="article:published_time" content="2025-01-12T00:00:00Z" />
@@ -76,7 +76,7 @@ export default function HookGeneratorArticle() {
                         "description": "Discover the best hook generator tools for video ads. Compare AI platforms, templates, and proven strategies to create scroll-stopping hooks.",
                         "mainEntityOfPage": {
                             "@type": "WebPage",
-                            "@id": "https://admakerai.app/blog/best-hook-generator-tools-video-ads"
+                            "@id": "https://admakerai.app/blog/hook-generator"
                         }
                     })}
                 </script>
@@ -684,7 +684,7 @@ export default function HookGeneratorArticle() {
                 </div>
             )}
 
-            <SimilarArticles currentSlug="best-hook-generator-tools-video-ads" locale={locale} />
+            <SimilarArticles currentSlug="hook-generator" locale={locale} />
         </>
     );
 }

@@ -15,7 +15,7 @@ export default function BlogPage() {
                     <p className={styles.subtitle}>Latest news and insights from AdMaker AI</p>
 
                     <div className={styles.blogGrid}>
-                        <Link href="/blog/best-hook-generator-tools-video-ads" className={styles.blogCard}>
+                        <Link href="/blog/hook-generator" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop"
