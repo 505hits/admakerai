@@ -15,6 +15,28 @@ export default function BlogPage() {
                     <p className={styles.subtitle}>Latest news and insights from AdMaker AI</p>
 
                     <div className={styles.blogGrid}>
+                        <Link href="/blog/best-hook-generator-tools-video-ads" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop"
+                                    alt="Best Hook Generator Tools for Video Ads"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>Hook Generator</span>
+                                <h2 className={styles.cardTitle}>Best Hook Generator Tools for Video Ads in 2025</h2>
+                                <p className={styles.cardExcerpt}>
+                                    Discover the best hook generator tools for video ads. Compare AI platforms, templates, and proven strategies to create scroll-stopping hooks that boost CTR by 300%.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>January 2025</span>
+                                </div>
+                            </div>
+                        </Link>
+
                         <Link href="/blog/startup-video-tools" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
