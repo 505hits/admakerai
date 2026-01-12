@@ -752,7 +752,7 @@ export default function TopAIPlatformsUGCArticle() {
                     className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
                     aria-label="Create your AI Ads now"
                 >
-                    Create your AI Ads now 👉
+                    Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
                 </a>
             </div>
         </>

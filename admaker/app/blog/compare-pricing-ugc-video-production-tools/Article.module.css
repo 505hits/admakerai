@@ -829,6 +829,23 @@
     margin: 16px 0 0 0;
 }
 
+/* Wiggle animation for pointer emoji */
+@keyframes wiggle {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    25% {
+        transform: rotate(-15deg);
+    }
+
+    75% {
+        transform: rotate(15deg);
+    }
+}
+
 /* Sticky Mobile CTA */
 .stickyCta {
     position: fixed;
@@ -854,16 +871,38 @@
 .stickyCtaVisible {
     opacity: 1;
     visibility: visible;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+/* Pulse animation for the entire button */
+@keyframes pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 8px 24px rgba(255, 8, 68, 0.4);
+    }
+
+    50% {
+        box-shadow: 0 8px 32px rgba(255, 8, 68, 0.6);
+    }
 }
 
 .stickyCta:hover {
     transform: translateX(-50%) translateY(-2px);
     box-shadow: 0 12px 32px rgba(255, 8, 68, 0.5);
     background: linear-gradient(135deg, #ff5478 0%, #ff0844 100%);
+    animation: none;
 }
 
 .stickyCta:active {
     transform: translateX(-50%) translateY(0);
+}
+
+/* Animated emoji pointer */
+.emojiPointer {
+    display: inline-block;
+    animation: wiggle 0.8s ease-in-out infinite;
+    margin-left: 4px;
 }
 
 /* Show sticky CTA only on mobile */
