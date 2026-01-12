@@ -502,9 +502,9 @@ export default function BestAiDrivenUgcPlatformsStartupsArticle() {
                 <Link
                     href={landingPageUrl}
                     className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
-                    aria-label="Try AdMaker AI"
+                    aria-label="Create your AI Ads now"
                 >
-                    Start Free with AdMaker AI
+                    Create your AI Ads now
                 </Link>
             </div>
         </>

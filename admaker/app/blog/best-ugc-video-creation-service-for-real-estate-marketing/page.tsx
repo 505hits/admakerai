@@ -522,9 +522,9 @@ export default function RealEstateUGCArticle() {
                 <a
                     href={landingPageUrl}
                     className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
-                    aria-label="Create your real estate video"
+                    aria-label="Create your AI Ads now"
                 >
-                    🎬 Create Your Video Now
+                    Create your AI Ads now
                 </a>
             </div>
         </>

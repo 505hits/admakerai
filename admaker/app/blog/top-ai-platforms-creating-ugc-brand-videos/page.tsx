@@ -750,9 +750,9 @@ export default function TopAIPlatformsUGCArticle() {
                 <a
                     href={landingPageUrl}
                     className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
-                    aria-label="Create your UGC video"
+                    aria-label="Create your AI Ads now"
                 >
-                    🎬 Create Your Video Now
+                    Create your AI Ads now
                 </a>
             </div>
         </>

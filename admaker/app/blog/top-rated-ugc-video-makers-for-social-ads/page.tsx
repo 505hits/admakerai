@@ -632,9 +632,9 @@ export default function TopRatedUGCVideoMakersArticle() {
                 <a
                     href={landingPageUrl}
                     className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
-                    aria-label="Try AdMaker AI"
+                    aria-label="Create your AI Ads now"
                 >
-                    Start Free with AdMaker AI
+                    Create your AI Ads now
                 </a>
             </div >
         </>

@@ -924,9 +924,9 @@ export default function BestMobileAppsForTikTokUGC() {
                 <a
                     href={getLandingPageUrl(locale)}
                     className={`${styles.stickyCta} ${showMobileCTA ? styles.stickyCtaVisible : ''}`}
-                    aria-label="Try AdMaker AI"
+                    aria-label="Create your AI Ads now"
                 >
-                    Start Free with AdMaker AI
+                    Create your AI Ads now
                 </a>
             </div>
         </>

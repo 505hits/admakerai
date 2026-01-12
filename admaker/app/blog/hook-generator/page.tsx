@@ -679,7 +679,7 @@ export default function HookGeneratorArticle() {
             {showStickyCta && (
                 <div className={styles.stickyCta}>
                     <a href={landingPageUrl} className={styles.stickyCtaButton}>
-                        Try AdMaker AI Free →
+                        Create your AI Ads now
                     </a>
                 </div>
             )}

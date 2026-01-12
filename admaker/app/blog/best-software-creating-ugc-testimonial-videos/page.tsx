@@ -713,9 +713,9 @@ export default function BestSoftwareTestimonialVideosArticle() {
                 <a
                     href={landingPageUrl}
                     className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
-                    aria-label="Try AdMaker AI"
+                    aria-label="Create your AI Ads now"
                 >
-                    Start Creating Testimonials Free
+                    Create your AI Ads now
                 </a>
             </div>
         </>

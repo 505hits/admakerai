@@ -938,9 +938,9 @@ export default function ComparePricingUGCArticle() {
                 <a
                     href={landingPageUrl}
                     className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
-                    aria-label="Compare pricing tools"
+                    aria-label="Create your AI Ads now"
                 >
-                    Compare Pricing Now
+                    Create your AI Ads now
                 </a>
             </div>
         </>
