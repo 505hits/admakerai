@@ -524,7 +524,7 @@ export default function RealEstateUGCArticle() {
                     className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
                     aria-label="Create your AI Ads now"
                 >
-                    Create your AI Ads now
+                    Create your AI Ads now 👉
                 </a>
             </div>
         </>

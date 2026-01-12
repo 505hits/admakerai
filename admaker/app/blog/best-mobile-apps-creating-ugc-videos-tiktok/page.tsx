@@ -926,7 +926,7 @@ export default function BestMobileAppsForTikTokUGC() {
                     className={`${styles.stickyCta} ${showMobileCTA ? styles.stickyCtaVisible : ''}`}
                     aria-label="Create your AI Ads now"
                 >
-                    Create your AI Ads now
+                    Create your AI Ads now 👉
                 </a>
             </div>
         </>

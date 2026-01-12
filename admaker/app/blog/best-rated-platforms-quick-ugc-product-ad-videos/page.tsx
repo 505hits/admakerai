@@ -686,15 +686,18 @@ export default function QuickUGCPlatformsArticle() {
                 </div>
             </div>
 
-            {showStickyCta && (
-                <div className={styles.stickyCta}>
-                    <a href={landingPageUrl} className={styles.stickyCtaButton}>
-                        Create your AI Ads now
-                    </a>
-                </div>
-            )}
+            <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+                <SimilarArticles currentSlug="best-rated-platforms-quick-ugc-product-ad-videos" locale={locale} />
+            </div>
 
-            <SimilarArticles currentSlug="best-rated-platforms-quick-ugc-product-ad-videos" locale={locale} />
+            {/* Sticky Mobile CTA */}
+            <a
+                href={landingPageUrl}
+                className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
+                aria-label="Create your AI Ads now"
+            >
+                Create your AI Ads now 👉
+            </a>
         </>
     );
 }
