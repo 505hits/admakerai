@@ -593,6 +593,33 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                                                 lang === 'ja' ? '/ja/hook-generator' :
                                                     '/hook-generator'
                         }>{t.hookGenerator}</a>
+
+                        {hasAccess && (
+                            <a href={langPrefix + '/dashboard'} style={{
+                                background: 'rgba(255, 255, 255, 0.1)',
+                                padding: '8px 16px',
+                                borderRadius: '20px',
+                                color: '#fff',
+                                fontWeight: 600,
+                                fontSize: '14px',
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '8px',
+                                border: '1px solid rgba(255, 255, 255, 0.2)',
+                                transition: 'all 0.2s ease',
+                                textDecoration: 'none',
+                                marginLeft: '8px'
+                            }}>
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                    <rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                    <rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                    <rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                    <rect x="9" y="9" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
+                                </svg>
+                                {t.dashboard}
+                            </a>
+                        )}
+
                         <a href="#pricing">{t.pricing}</a>
                         <a href={`${langPrefix}/blog`}>{t.blog}</a>
 
@@ -766,17 +793,6 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                                                 </svg>
                                                 {t.profile}
                                             </a>
-                                            {hasAccess && (
-                                                <a href="/dashboard" className={styles.dropdownItem}>
-                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                                        <rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
-                                                        <rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
-                                                        <rect x="2" y="9" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
-                                                        <rect x="9" y="9" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
-                                                    </svg>
-                                                    {t.dashboard}
-                                                </a>
-                                            )}
                                             <button onClick={handleLogout} className={styles.dropdownItem}>
                                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                                                     <path d="M6 14H3a1 1 0 01-1-1V3a1 1 0 011-1h3M11 11l3-3-3-3M14 8H6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

@@ -1,10 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import Replicate from 'replicate';
+// Note: replicate import removed as we are switching to Kie.ai for this endpoint
+// We keep the package in package.json for other features (script enhancer, hooks)
 import { rateLimit, rateLimitConfigs, getClientIp, getRateLimitHeaders } from '@/lib/security/rate-limit';
-
-const replicate = new Replicate({
-    auth: process.env.REPLICATE_API_TOKEN,
-});
 
 export async function POST(request: NextRequest) {
     try {
@@ -31,45 +28,64 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        if (!process.env.REPLICATE_API_TOKEN) {
-            console.error('❌ REPLICATE_API_TOKEN is not set');
+        const KIE_API_KEY = process.env.KIE_API_KEY;
+
+        if (!KIE_API_KEY) {
+            console.error('❌ KIE_API_KEY is not set');
             return NextResponse.json(
                 { error: 'Server configuration error: Missing API key' },
                 { status: 500 }
             );
         }
 
-        console.log('🎬 Creating Replicate video replication task...');
+        console.log('🎬 Creating Kie.ai Kling 2.6 motion control task...');
         console.log('Video URL:', videoUrl);
         console.log('Actor Image URL:', actorImageUrl);
-        console.log('Resolution:', resolution);
 
-        const prediction = await replicate.predictions.create({
-            version: "wan-video/wan-2.2-animate-replace",
-            input: {
-                video: videoUrl,
-                character_image: actorImageUrl,
-                resolution: resolution,
-                go_fast: true,
-                merge_audio: true,
-                refert_num: 1,
-                frames_per_second: 24,
+        const kieResponse = await fetch('https://api.kie.ai/api/v1/jobs/createTask', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${KIE_API_KEY}`,
+                'Content-Type': 'application/json'
             },
-            webhook: `${process.env.NEXT_PUBLIC_APP_URL}/api/replicate-webhook`,
-            webhook_events_filter: ["completed"],
+            body: JSON.stringify({
+                model: 'kling-2.6/motion-control',
+                input: {
+                    input_urls: [actorImageUrl],
+                    video_urls: [videoUrl],
+                    character_orientation: 'video', // Default as per documentation
+                    mode: resolution === '1080' ? '1080p' : '720p' // Map resolution to Kie format
+                },
+                callBackUrl: `${process.env.NEXT_PUBLIC_APP_URL}/api/kie/webhook`
+            })
         });
 
-        console.log('✅ Replicate prediction created:', prediction.id);
+        if (!kieResponse.ok) {
+            const errorText = await kieResponse.text();
+            console.error('❌ Kie.ai API Error:', errorText);
+            throw new Error(`Kie.ai API Error: ${kieResponse.status} ${errorText}`);
+        }
+
+        const kieData = await kieResponse.json();
+
+        if (kieData.code !== 200) {
+            console.error('❌ Kie.ai Error Response:', kieData);
+            throw new Error(kieData.msg || 'Failed to create Kie task');
+        }
+
+        const taskData = kieData.data;
+        console.log('✅ Kie.ai task created:', taskData.taskId);
+
         return NextResponse.json(
             {
-                predictionId: prediction.id,
-                status: prediction.status
+                predictionId: taskData.taskId, // Mapping taskId to predictionId for frontend compatibility
+                status: 'starting'
             },
             { headers: getRateLimitHeaders(rateLimitResult) }
         );
 
     } catch (error: any) {
-        console.error('❌ Error creating Replicate prediction:', error);
+        console.error('❌ Error creating video replication task:', error);
         return NextResponse.json(
             { error: error.message || 'Failed to start video replication' },
             { status: 500 }

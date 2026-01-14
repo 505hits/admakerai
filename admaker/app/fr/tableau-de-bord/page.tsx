@@ -2140,10 +2140,10 @@ export default function DashboardPage() {
                             </div>
                             <div style={{ flex: 1 }}>
                                 <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#10b981', margin: '0 0 6px 0', lineHeight: 1.4 }}>
-                                    Vidéo en cours de génération !
+                                    Video Generation in Progress!
                                 </h3>
                                 <p style={{ fontSize: '14px', color: 'rgba(255, 255, 255, 0.8)', margin: 0, lineHeight: 1.5 }}>
-                                    Votre vidéo apparaîtra dans l'historique dans {isReplicatorGeneration ? '10-15 minutes' : '1-2 minutes'}.
+                                    Your video will appear in history in {isReplicatorGeneration ? '10-15 minutes' : '1-2 minutes'}.
                                 </p>
                             </div>
                             <button
