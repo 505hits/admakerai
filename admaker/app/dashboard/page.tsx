@@ -1392,10 +1392,10 @@ function DashboardContent() {
                                 }} />
                                 <div>
                                     <div style={{ fontSize: '14px', fontWeight: 600, color: '#e5e7eb', marginBottom: '4px' }}>
-                                        Génération en cours...
+                                        Generating...
                                     </div>
                                     <div style={{ fontSize: '12px', color: '#9ca3af' }}>
-                                        Votre vidéo sera prête dans {isReplicatorGeneration ? '10-15 minutes' : '1-2 minutes'} et apparaîtra automatiquement ici
+                                        Your video will be ready in {isReplicatorGeneration ? '10-15 minutes' : '1-2 minutes'} and will appear here automatically
                                     </div>
                                 </div>
                             </div>

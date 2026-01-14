@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { secureFetch } from '@/lib/api/client';
 import styles from './CustomUploads.module.css';
 
 interface CustomUploadsProps {
@@ -98,7 +99,7 @@ export default function CustomUploads({ onProductImageChange, onVirtualTryOnImag
                 }
 
                 // Upload to R2 in background
-                const response = await fetch('/api/upload-product', {
+                const response = await secureFetch('/api/upload-product', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ imageData: compressedImage })
@@ -176,7 +177,7 @@ export default function CustomUploads({ onProductImageChange, onVirtualTryOnImag
                 }
 
                 // Upload to R2 in background
-                const response = await fetch('/api/upload-product', {
+                const response = await secureFetch('/api/upload-product', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ imageData: compressedImage })

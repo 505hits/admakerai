@@ -128,13 +128,19 @@ export async function POST(request: NextRequest) {
 
                 if (updateError) {
                     console.error('❌ Error updating user profile:', updateError);
+                    console.error('   User ID:', userId);
+                    console.error('   Update data:', updateData);
                 } else {
-                    console.log(`✅ Profile updated for user ${userId}:`);
+                    console.log('✅✅✅ CREDITS SUCCESSFULLY ADDED ✅✅✅');
+                    console.log(`   User ID: ${userId}`);
                     console.log(`   Plan: ${planType} (${billingPeriod})`);
-                    console.log(`   Status: active`);
-                    console.log(`   Video credits: ${profile?.credits || 0} → ${newVideoCredits} (+${videoCredits})`);
-                    console.log(`   Actor credits: ${profile?.actor_credits || 0} → ${newActorCredits} (+${actorCredits})`);
-                    console.log(`   Replicator credits: ${profile?.replicator_credits || 0} → ${newReplicatorCredits} (+${replicatorCredits})`);
+                    console.log(`   Subscription Status: active`);
+                    console.log(`   Subscription End Date: ${endDate.toISOString()}`);
+                    console.log('   CREDITS SUMMARY:');
+                    console.log(`   - Video: ${profile?.credits || 0} → ${newVideoCredits} (+${videoCredits})`);
+                    console.log(`   - Actor: ${profile?.actor_credits || 0} → ${newActorCredits} (+${actorCredits})`);
+                    console.log(`   - Replicator: ${profile?.replicator_credits || 0} → ${newReplicatorCredits} (+${replicatorCredits})`);
+                    console.log('✅ User can now use the /api/payment/verify-credits endpoint');
                 }
 
                 break;

@@ -60,9 +60,9 @@ export async function POST(request: NextRequest) {
 
             const metadata = metadataRow;
 
-            // Calculate expiration date (30 days from now)
+            // Calculate expiration date (14 days from now)
             const expiresAt = new Date();
-            expiresAt.setDate(expiresAt.getDate() + 30);
+            expiresAt.setDate(expiresAt.getDate() + 14);
 
             // Save to videos table
             const { error: saveError } = await supabase
