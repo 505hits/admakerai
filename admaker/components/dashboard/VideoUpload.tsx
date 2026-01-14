@@ -43,11 +43,11 @@ export default function VideoUpload({ onVideoChange }: VideoUploadProps) {
         }
 
         try {
-            // Validate video duration (max 5 seconds, allowing small buffer up to 6s)
+            // Validate video duration (max 15 seconds, allowing small buffer up to 16s)
             const duration = await getVideoDuration(file);
             console.log("Video duration:", duration);
-            if (duration > 6) {
-                alert(`Video is too long (${duration.toFixed(1)}s). Please upload a video shorter than 5 seconds.`);
+            if (duration > 16) {
+                alert(`⚠️ Video is too long (${duration.toFixed(1)}s).\n\nPlease upload a video shorter than 15 seconds.`);
                 return;
             }
 
@@ -173,7 +173,7 @@ export default function VideoUpload({ onVideoChange }: VideoUploadProps) {
                                 <path d="M8 36h32" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
                             </svg>
                             <span>{isDragging ? 'Drop video here' : 'Click to upload or drag & drop'}</span>
-                            <p className={styles.uploadHint}>MP4, MOV, MKV or WebM (max 10MB) - Max 5 seconds</p>
+                            <p className={styles.uploadHint}>MP4, MOV, MKV or WebM (max 10MB) - Max 15 seconds</p>
                         </>
                     )}
                 </label>
