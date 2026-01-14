@@ -78,7 +78,9 @@ export default function VideoUpload({ onVideoChange }: VideoUploadProps) {
             onVideoChange?.(url);
         } catch (error: any) {
             console.error('Video upload/validation failed:', error);
-            alert(error.message || 'Failed to upload video. Please try again.');
+            // Show detailed error in alert for debugging
+            const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+            alert(`Upload Error: ${errorMessage}\nPlease try again.`);
             setVideoUrl(null);
             onVideoChange?.(null);
         } finally {
