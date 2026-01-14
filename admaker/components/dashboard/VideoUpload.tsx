@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { secureFetch } from '@/lib/api/client';
 import styles from './VideoUpload.module.css';
 
 interface VideoUploadProps {
@@ -57,7 +58,7 @@ export default function VideoUpload({ onVideoChange }: VideoUploadProps) {
             const formData = new FormData();
             formData.append('file', file);
 
-            const response = await fetch('/api/upload/video', {
+            const response = await secureFetch('/api/upload/video', {
                 method: 'POST',
                 body: formData,
             });
