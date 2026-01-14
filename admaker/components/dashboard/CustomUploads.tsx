@@ -266,42 +266,7 @@ export default function CustomUploads({ onProductImageChange, onVirtualTryOnImag
                     )}
                 </div>
 
-                {/* Virtual Try-On Upload */}
-                <div className={styles.uploadItem}>
-                    <label className={styles.uploadLabel}>{t.virtualTryOn}</label>
-                    {virtualTryOnImage ? (
-                        <div className={styles.preview}>
-                            <img src={virtualTryOnImage} alt="Clothing" />
-                            <button
-                                className={styles.removeBtn}
-                                onClick={() => removeImage('virtualTryOn')}
-                            >
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                    <path d="M4 4l8 8M4 12l8-8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                                </svg>
-                            </button>
-                        </div>
-                    ) : (
-                        <label
-                            className={`${styles.uploadBox} ${isDraggingVirtual ? styles.dragging : ''}`}
-                            onDragOver={(e) => handleDragOver(e, 'virtualTryOn')}
-                            onDragLeave={(e) => handleDragLeave(e, 'virtualTryOn')}
-                            onDrop={(e) => handleDrop(e, 'virtualTryOn')}
-                        >
-                            <input
-                                type="file"
-                                accept="image/*"
-                                onChange={(e) => handleImageUpload(e, 'virtualTryOn')}
-                                className={styles.fileInput}
-                            />
-                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                                <path d="M8 6h12M8 6a2 2 0 012-2h8a2 2 0 012 2M8 6v2m12-2v2M8 8h12v12a2 2 0 01-2 2h-8a2 2 0 01-2-2V8z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                <path d="M12 12v6M16 12v6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                            </svg>
-                            <span>{isDraggingVirtual ? t.dropHere : t.uploadClothing}</span>
-                        </label>
-                    )}
-                </div>
+
             </div>
         </div>
     );
