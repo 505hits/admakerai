@@ -987,7 +987,7 @@ function DashboardContent() {
             console.log('🎬 Starting video replication with Replicate...');
 
             // Call Replicate API route
-            const apiResponse = await fetch('/api/replicate-video', {
+            const apiResponse = await secureFetch('/api/replicate-video', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
