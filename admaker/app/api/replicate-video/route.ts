@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        const KIE_API_KEY = process.env.KIE_API_KEY;
+        const KIE_API_KEY = process.env.KIE_API_KEY || process.env.VEO_API_KEY;
 
         if (!KIE_API_KEY) {
             console.error('❌ KIE_API_KEY is not set');
