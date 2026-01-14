@@ -45,7 +45,8 @@ export async function secureFetch(
     }
 
     // Add Content-Type if not set and body is JSON
-    if (options.body && !headers.has('Content-Type')) {
+    // Do not set for FormData as browser adds multipart/form-data with boundary
+    if (options.body && !headers.has('Content-Type') && !(options.body instanceof FormData)) {
         headers.set('Content-Type', 'application/json');
     }
 
