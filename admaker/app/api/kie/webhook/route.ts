@@ -2,9 +2,23 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/service';
 import { uploadVideoToR2 } from '@/lib/api/r2-upload';
 
+import { getSecretFromRequest } from '@/lib/security/webhook-validation';
+
 export async function POST(request: NextRequest) {
     try {
         console.log('📹 Kie.ai Callback POST received');
+
+        // Webhook security: Verify secret token
+        const secret = getSecretFromRequest(request);
+        const expectedSecret = process.env.KIE_WEBHOOK_SECRET;
+
+        if (expectedSecret && secret !== expectedSecret) {
+            console.warn('❌ Unauthorized webhook attempt');
+            return NextResponse.json(
+                { error: 'Unauthorized' },
+                { status: 401 }
+            );
+        }
 
         const body = await request.json();
         console.log('Callback body:', JSON.stringify(body, null, 2));
