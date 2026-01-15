@@ -47,6 +47,7 @@ function DashboardContent() {
     const [virtualTryOnImageUrl, setVirtualTryOnImageUrl] = useState<string | null>(null);
     const [format, setFormat] = useState<'16:9' | '9:16'>('16:9');
     const [duration, setDuration] = useState<8 | 16>(8);
+    const [accent, setAccent] = useState('');
     const [isGenerating, setIsGenerating] = useState(false);
     const [generatedVideo, setGeneratedVideo] = useState<string | null>(null);
     const [credits, setCredits] = useState(0); // Start with 0 credits
@@ -249,6 +250,7 @@ function DashboardContent() {
         const currentVirtualTryOnImageUrl = virtualTryOnImageUrl;
         const currentFormat = format;
         const currentDuration = duration;
+        const currentAccent = accent;
         const currentIndex = activeVariation;
 
         // Update variations array: save current variation and prepare to load new one
@@ -265,6 +267,7 @@ function DashboardContent() {
                         virtualTryOnImageUrl: currentVirtualTryOnImageUrl,
                         format: currentFormat,
                         duration: currentDuration,
+                        accent: currentAccent,
                         status: (currentSelectedActor && currentScript.trim()) ? 'configured' as const : 'empty' as const
                     };
                 }
@@ -280,6 +283,7 @@ function DashboardContent() {
             setVirtualTryOnImageUrl(newVariation.virtualTryOnImageUrl);
             setFormat(newVariation.format);
             setDuration(newVariation.duration);
+            setAccent(newVariation.accent || '');
 
             return updated;
         });
@@ -319,6 +323,13 @@ function DashboardContent() {
         setVirtualTryOnImageUrl(url);
         setVariations(prev => prev.map((v, i) =>
             i === activeVariation ? { ...v, virtualTryOnImageUrl: url } : v
+        ));
+    };
+
+    const handleAccentChange = (newAccent: string) => {
+        setAccent(newAccent);
+        setVariations(prev => prev.map((v, i) =>
+            i === activeVariation ? { ...v, accent: newAccent } : v
         ));
     };
 
@@ -718,6 +729,7 @@ function DashboardContent() {
                     sceneDescription: actualScene,
                     format,
                     duration,
+                    accent: accent || undefined,
                     productImageUrl: productImageUrl || undefined,
                     virtualTryOnImageUrl: virtualTryOnImageUrl || undefined
                 })
@@ -819,6 +831,7 @@ function DashboardContent() {
             virtualTryOnImageUrl,
             format,
             duration,
+            accent,
         });
 
         // Get all configured variations
@@ -867,6 +880,7 @@ function DashboardContent() {
                         sceneDescription: actualScene,
                         format: variation.format,
                         duration: variation.duration,
+                        accent: variation.accent || undefined,
                         productImageUrl: variation.productImageUrl || undefined,
                         virtualTryOnImageUrl: variation.virtualTryOnImageUrl || undefined
                     })
@@ -900,7 +914,8 @@ function DashboardContent() {
                             script: variation.script.trim(),
                             sceneDescription: variation.sceneDescription || 'Professional video presentation',
                             duration: variation.duration,
-                            format: variation.format
+                            format: variation.format,
+                            accent: variation.accent || undefined
                         })
                     });
                     console.log(`✅ Metadata stored for variation ${i + 1}/${results.length}`);
@@ -1250,8 +1265,10 @@ function DashboardContent() {
                                         sceneDescription={sceneDescription}
                                         showSceneDescription={true}
                                         duration={duration}
+                                        accent={accent}
                                         onScriptChange={handleScriptChange}
                                         onSceneChange={handleSceneDescriptionChange}
+                                        onAccentChange={handleAccentChange}
                                     />
                                 </div>
 
@@ -1791,26 +1808,11 @@ function DashboardContent() {
 
                     {/* Warning Banner */}
                     <div className={styles.warningBanner}>
-                        ⚠️ This feature works best with videos showing a single influencer without products.
+                        ⚠️ This feature works best with videos showing a single influencer.
                     </div>
 
                     {/* Info Banners */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '24px' }}>
-                        {/* Generation Time Info */}
-                        <div className={styles.infoBanner}>
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style={{ flexShrink: 0 }}>
-                                <circle cx="10" cy="10" r="8" stroke="#60a5fa" strokeWidth="2" />
-                                <path d="M10 6v4l2 2" stroke="#60a5fa" strokeWidth="2" strokeLinecap="round" />
-                            </svg>
-                            <div>
-                                <p style={{ fontSize: '13px', fontWeight: 600, color: '#93c5fd', marginBottom: '4px' }}>
-                                    Final video duration: 5 seconds | Generation time: 10-15 minutes
-                                </p>
-                                <p style={{ fontSize: '12px', color: '#9ca3af', lineHeight: '1.5', margin: 0 }}>
-                                    The replicated video will be automatically trimmed to 5 seconds. Please be patient during generation.
-                                </p>
-                            </div>
-                        </div>
 
                         {/* Actor Selection Guidelines */}
                         <div className={styles.infoBanner}>
