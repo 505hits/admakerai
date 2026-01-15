@@ -13,11 +13,21 @@ interface NavbarProps {
 export default function Navbar({ lang = 'en' }: NavbarProps) {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(() => {
+        if (typeof window !== 'undefined') {
+            return localStorage.getItem('admaker_is_logged_in') === 'true';
+        }
+        return false;
+    });
     const [showUserDropdown, setShowUserDropdown] = useState(false);
     const [showLangDropdown, setShowLangDropdown] = useState(false);
     const [userAvatar, setUserAvatar] = useState<string | null>(null);
-    const [hasAccess, setHasAccess] = useState(false);
+    const [hasAccess, setHasAccess] = useState(() => {
+        if (typeof window !== 'undefined') {
+            return localStorage.getItem('admaker_has_access') === 'true';
+        }
+        return false;
+    });
     const router = useRouter();
     const supabase = createClient();
 
@@ -402,6 +412,9 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
 
             const isLoggedInNow = !!session;
             setIsLoggedIn(isLoggedInNow);
+            if (typeof window !== 'undefined') {
+                localStorage.setItem('admaker_is_logged_in', String(isLoggedInNow));
+            }
 
             if (session?.user) {
                 console.log('[Navbar] User logged in:', session.user.email);
@@ -424,15 +437,28 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                     console.log('[Navbar] Credits:', profile.credits, 'Actor:', profile.actor_credits, 'Replicator:', profile.replicator_credits);
                     console.log('[Navbar] hasCredits:', hasCredits);
                     console.log('[Navbar] hasActiveSubscription:', hasActiveSubscription);
-                    console.log('[Navbar] Final hasAccess:', hasActiveSubscription || hasCredits);
-                    setHasAccess(hasActiveSubscription || hasCredits);
+
+                    const access = hasActiveSubscription || hasCredits;
+                    console.log('[Navbar] Final hasAccess:', access);
+                    setHasAccess(access);
+                    if (typeof window !== 'undefined') {
+                        localStorage.setItem('admaker_has_access', String(access));
+                    }
                 } else {
                     console.log('[Navbar] No profile found for user');
+                    setHasAccess(false);
+                    if (typeof window !== 'undefined') {
+                        localStorage.removeItem('admaker_has_access');
+                    }
                 }
             } else {
                 console.log('[Navbar] No user session');
                 setHasAccess(false);
                 setUserAvatar(null);
+                if (typeof window !== 'undefined') {
+                    localStorage.removeItem('admaker_has_access');
+                    localStorage.setItem('admaker_is_logged_in', 'false');
+                }
             }
         };
 
@@ -472,7 +498,12 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
 
         // Listen for auth changes
         const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
-            setIsLoggedIn(!!session);
+            const isLoggedInNow = !!session;
+            setIsLoggedIn(isLoggedInNow);
+            if (typeof window !== 'undefined') {
+                localStorage.setItem('admaker_is_logged_in', String(isLoggedInNow));
+            }
+
             if (session?.user) {
                 setUserAvatar(session.user.user_metadata?.avatar_url || null);
 
@@ -490,13 +521,26 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                         (profile.replicator_credits || 0) > 0;
                     const hasActiveSubscription = profile.subscription_status === 'active';
                     console.log('[Navbar] Auth change - hasCredits:', hasCredits, 'hasActiveSubscription:', hasActiveSubscription);
-                    setHasAccess(hasActiveSubscription || hasCredits);
+
+                    const access = hasActiveSubscription || hasCredits;
+                    setHasAccess(access);
+                    if (typeof window !== 'undefined') {
+                        localStorage.setItem('admaker_has_access', String(access));
+                    }
                 } else {
                     console.log('[Navbar] Auth change - No profile found');
+                    setHasAccess(false);
+                    if (typeof window !== 'undefined') {
+                        localStorage.removeItem('admaker_has_access');
+                    }
                 }
             } else {
                 setUserAvatar(null);
                 setHasAccess(false);
+                if (typeof window !== 'undefined') {
+                    localStorage.removeItem('admaker_has_access');
+                    localStorage.setItem('admaker_is_logged_in', 'false');
+                }
             }
         });
 
@@ -543,6 +587,10 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
             setIsLoggedIn(false);
             setUserAvatar(null);
             setHasAccess(false);
+            if (typeof window !== 'undefined') {
+                localStorage.removeItem('admaker_has_access');
+                localStorage.removeItem('admaker_is_logged_in');
+            }
 
             // Try to sign out with Supabase with a timeout
             const timeoutPromise = new Promise((_, reject) =>
