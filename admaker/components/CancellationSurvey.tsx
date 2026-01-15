@@ -3,16 +3,27 @@
 import { useState } from 'react';
 import styles from './CancellationSurvey.module.css';
 
+interface SurveyData {
+    reason: string;
+    frequency: string;
+    satisfactionScore: number;
+    feedbackText: string;
+    recommendationScore: string;
+}
+
 interface CancellationSurveyProps {
     isOpen: boolean;
     onClose: () => void;
-    onConfirmCancellation: () => void;
+    onConfirmCancellation: (data: SurveyData) => void;
 }
 
 export default function CancellationSurvey({ isOpen, onClose, onConfirmCancellation }: CancellationSurveyProps) {
     const [step, setStep] = useState(0);
     const [reason, setReason] = useState('');
-    const [feedback, setFeedback] = useState('');
+    const [frequency, setFrequency] = useState('');
+    const [satisfactionScore, setSatisfactionScore] = useState(0);
+    const [feedbackText, setFeedbackText] = useState('');
+    const [recommendationScore, setRecommendationScore] = useState('');
 
     if (!isOpen) return null;
 
@@ -28,6 +39,16 @@ export default function CancellationSurvey({ isOpen, onClose, onConfirmCancellat
 
     const nextStep = () => {
         setStep(prev => prev + 1);
+    };
+
+    const handleConfirm = () => {
+        onConfirmCancellation({
+            reason,
+            frequency,
+            satisfactionScore,
+            feedbackText,
+            recommendationScore: recommendationScore || 'Not Answered'
+        });
     };
 
     const isLastStep = step === 5;
@@ -62,8 +83,8 @@ export default function CancellationSurvey({ isOpen, onClose, onConfirmCancellat
                             {['Daily', 'Weekly', 'Monthly', 'Rarely'].map((option, i) => (
                                 <button
                                     key={i}
-                                    className={`${styles.optionBtn} ${feedback === option ? styles.selected : ''}`}
-                                    onClick={() => setFeedback(option)}
+                                    className={`${styles.optionBtn} ${frequency === option ? styles.selected : ''}`}
+                                    onClick={() => setFrequency(option)}
                                 >
                                     {option}
                                 </button>
@@ -81,9 +102,12 @@ export default function CancellationSurvey({ isOpen, onClose, onConfirmCancellat
                             {['😡', '😕', '😐', '🙂', '😍'].map((emoji, i) => (
                                 <button
                                     key={i}
-                                    className={styles.optionBtn}
+                                    className={`${styles.optionBtn} ${satisfactionScore === i + 1 ? styles.selected : ''}`}
                                     style={{ fontSize: '2rem', padding: '0.5rem 1rem' }}
-                                    onClick={nextStep}
+                                    onClick={() => {
+                                        setSatisfactionScore(i + 1);
+                                        // Optional: auto advance can fee rushed, let them click next or just set state
+                                    }}
                                 >
                                     {emoji}
                                 </button>
@@ -100,7 +124,8 @@ export default function CancellationSurvey({ isOpen, onClose, onConfirmCancellat
                         <textarea
                             className={styles.textarea}
                             placeholder="Tell us what features were missing or what went wrong..."
-                            onChange={(e) => setFeedback(e.target.value)}
+                            onChange={(e) => setFeedbackText(e.target.value)}
+                            value={feedbackText}
                         />
                     </>
                 );
@@ -111,9 +136,15 @@ export default function CancellationSurvey({ isOpen, onClose, onConfirmCancellat
                         <h2 className={styles.title}>Would you recommend us?</h2>
                         <p className={styles.description}>To a friend or colleague looking for AI video ads.</p>
                         <div className={styles.options}>
-                            <button className={styles.optionBtn} onClick={nextStep}>Yes, definitely</button>
-                            <button className={styles.optionBtn} onClick={nextStep}>Maybe</button>
-                            <button className={styles.optionBtn} onClick={nextStep}>No, probably not</button>
+                            {['Yes, definitely', 'Maybe', 'No, probably not'].map((opt, i) => (
+                                <button
+                                    key={i}
+                                    className={`${styles.optionBtn} ${recommendationScore === opt ? styles.selected : ''}`}
+                                    onClick={() => setRecommendationScore(opt)}
+                                >
+                                    {opt}
+                                </button>
+                            ))}
                         </div>
                     </>
                 );
@@ -188,7 +219,7 @@ export default function CancellationSurvey({ isOpen, onClose, onConfirmCancellat
                             <button className={styles.btnKeep} onClick={onClose}>
                                 Keep My Subscription
                             </button>
-                            <button className={styles.btnDanger} onClick={onConfirmCancellation}>
+                            <button className={styles.btnDanger} onClick={handleConfirm}>
                                 I understand, cancel now
                             </button>
                         </>

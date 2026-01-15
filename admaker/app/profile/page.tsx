@@ -75,11 +75,11 @@ export default function ProfilePage() {
         setShowCancellationSurvey(true);
     };
 
-    const handleConfirmCancellation = async () => {
+    const handleConfirmCancellation = async (feedbackData: any) => {
         setShowCancellationSurvey(false);
         setLoading(true);
         try {
-            const result = await cancelSubscription();
+            const result = await cancelSubscription(feedbackData);
             if (result.success) {
                 alert('Subscription canceled successfully. Access available until: ' + (result.endDate || 'Period end'));
                 // Refresh profile data
@@ -94,7 +94,6 @@ export default function ProfilePage() {
             setLoading(false);
         }
     };
-
 
     // Show loading indicator but don't block the entire page
     const isLoading = loading && !profile;
