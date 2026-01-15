@@ -15,6 +15,28 @@ export default function BlogPage() {
                     <p className={styles.subtitle}>Latest news and insights from AdMaker AI</p>
 
                     <div className={styles.blogGrid}>
+                        <Link href="/blog/ugc-video-ads-ai" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=800&h=500&fit=crop"
+                                    alt="UGC Video Ads AI Complete Creation Guide for 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>Ad Strategy</span>
+                                <h2 className={styles.cardTitle}>UGC Video Ads AI Complete Creation Guide for 2026</h2>
+                                <p className={styles.cardExcerpt}>
+                                    After creating 500+ AI-generated UGC video ads with $45K spend, we reveal what actually works. Complete guide with real performance data and tested workflows.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>January 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
                         <Link href="/blog/best-rated-platforms-quick-ugc-product-ad-videos" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
