@@ -30,9 +30,27 @@ function getR2Client() {
     return r2Client;
 }
 
+import { rateLimit, rateLimitConfigs, getClientIp, getRateLimitHeaders } from '@/lib/security/rate-limit';
+
+// ... existing code ...
+
 export async function POST(request: NextRequest) {
     try {
         console.log('📹 Video upload request received');
+
+        // Rate limiting for uploads
+        const clientIp = getClientIp(request);
+        const rateLimitResult = rateLimit(clientIp, rateLimitConfigs.upload);
+
+        if (!rateLimitResult.success) {
+            return NextResponse.json(
+                { error: 'Too many upload requests. Please try again later' },
+                {
+                    status: 429,
+                    headers: getRateLimitHeaders(rateLimitResult),
+                }
+            );
+        }
 
         // Authentication Check
         const supabase = await createClient();

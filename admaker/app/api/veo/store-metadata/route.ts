@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createServiceClient } from '@/lib/supabase/service';
+import { createClient } from '@/lib/supabase/server';
 import { rateLimit, rateLimitConfigs, getClientIp, getRateLimitHeaders } from '@/lib/security/rate-limit';
 
 /**
@@ -40,9 +41,29 @@ export async function POST(request: NextRequest) {
             );
         }
 
+        // Verify user authentication
+        const supabase = await createClient();
+        const { data: { user }, error: authError } = await supabase.auth.getUser();
+
+        if (authError || !user) {
+            return NextResponse.json(
+                { error: 'Unauthorized' },
+                { status: 401 }
+            );
+        }
+
+        if (userId !== user.id) {
+            return NextResponse.json(
+                { error: 'Unauthorized: User ID mismatch' },
+                { status: 403 }
+            );
+        }
+
         // Store metadata in Supabase (replaces in-memory Map)
-        const supabase = createServiceClient();
-        const { error } = await supabase
+        // We can use the same authenticated client if RLS allows insert
+        // OR rely on service client but we are now safe because we verified userId === user.id
+        const serviceClient = createServiceClient();
+        const { error } = await serviceClient
             .from('video_generation_metadata')
             .upsert({
                 task_id: taskId,

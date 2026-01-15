@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { createServiceClient } from '@/lib/supabase/service';
+// import { createServiceClient } from '@/lib/supabase/service';
+import { createClient } from '@/lib/supabase/server';
 import { generateVideoWithDuration } from '@/lib/api/veo';
 import { rateLimit, rateLimitConfigs, getClientIp, getRateLimitHeaders } from '@/lib/security/rate-limit';
 
@@ -40,18 +41,24 @@ export async function POST(request: NextRequest) {
             );
         }
 
-        // Verify user authentication
-        const supabase = createServiceClient();
-        const { data: profile, error: profileError } = await supabase
-            .from('profiles')
-            .select('id')
-            .eq('id', userId)
-            .single();
+        // ... existing code ...
 
-        if (profileError || !profile) {
+        // Verify user authentication
+        const supabase = await createClient();
+        const { data: { user }, error: authError } = await supabase.auth.getUser();
+
+        if (authError || !user) {
             return NextResponse.json(
                 { error: 'Unauthorized' },
                 { status: 401 }
+            );
+        }
+
+        // Security: Ensure user can only generate for themselves
+        if (userId !== user.id) {
+            return NextResponse.json(
+                { error: 'Unauthorized: User ID mismatch' },
+                { status: 403 }
             );
         }
 
