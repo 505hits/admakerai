@@ -456,7 +456,7 @@ function DashboardContent() {
             const decorImageUrl = decorImagePreview;
 
             // Call create actor API
-            const response = await fetch('/api/kie/nano-banana/create-actor', {
+            const response = await secureFetch('/api/kie/nano-banana/create-actor', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -526,7 +526,7 @@ function DashboardContent() {
 
                 attempts++;
 
-                const statusResponse = await fetch(`/api/kie/nano-banana/check-status?taskId=${taskId}`);
+                const statusResponse = await secureFetch(`/api/kie/nano-banana/check-status?taskId=${taskId}`);
                 const statusData = await statusResponse.json();
 
                 if (statusData.state === 'success' && statusData.imageUrl) {
