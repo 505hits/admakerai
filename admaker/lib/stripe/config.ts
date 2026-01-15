@@ -17,7 +17,7 @@ export const PRICING_PLANS = {
             amount: 6900, // $69.00 en cents
             videoCredits: 1200,
             actorCredits: 1200,
-            replicatorCredits: 100, // 5 uses × 20 credits
+            replicatorCredits: 300, // 15 uses × 20 credits
             videos: 60,
         },
         pro: {
@@ -25,7 +25,7 @@ export const PRICING_PLANS = {
             amount: 9900, // $99.00 en cents
             videoCredits: 2200,
             actorCredits: 2200,
-            replicatorCredits: 200, // 10 uses × 20 credits
+            replicatorCredits: 600, // 30 uses × 20 credits
             videos: 110,
         },
     },
@@ -43,7 +43,7 @@ export const PRICING_PLANS = {
             amount: 66200, // $662.00 en cents (69 * 12 * 0.8)
             videoCredits: 14400, // 1200 * 12
             actorCredits: 14400, // 1200 * 12
-            replicatorCredits: 1200, // 100 * 12
+            replicatorCredits: 3600, // 300 * 12
             videos: 720, // 60 * 12
         },
         pro: {
@@ -51,7 +51,7 @@ export const PRICING_PLANS = {
             amount: 95000, // $950.00 en cents (99 * 12 * 0.8)
             videoCredits: 26400, // 2200 * 12
             actorCredits: 26400, // 2200 * 12
-            replicatorCredits: 2400, // 200 * 12
+            replicatorCredits: 7200, // 600 * 12
             videos: 1320, // 110 * 12
         },
     },
