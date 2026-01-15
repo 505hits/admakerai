@@ -248,7 +248,7 @@ export default function Pricing({ lang = 'en' }: PricingProps) {
             videoCredits: 1200,
             videos: 60,
             actorCredits: 1200,
-            monthlyReplicatorCredits: 100,
+            monthlyReplicatorCredits: 300,
             features: [
                 `1200 ${t.videoCredits}`,
                 `1200 ${t.actorCredits}`,
@@ -267,7 +267,7 @@ export default function Pricing({ lang = 'en' }: PricingProps) {
             videoCredits: 2200,
             videos: 110,
             actorCredits: 2200,
-            monthlyReplicatorCredits: 200,
+            monthlyReplicatorCredits: 600,
             features: [
                 `2200 ${t.videoCredits}`,
                 `2200 ${t.actorCredits}`,
