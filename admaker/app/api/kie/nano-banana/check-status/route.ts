@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
             );
         }
 
-        const apiKey = process.env.KIE_API_KEY;
+        const apiKey = process.env.KIE_API_KEY || process.env.VEO_API_KEY;
         if (!apiKey) {
             return NextResponse.json(
                 { error: 'KIE_API_KEY not configured' },
