@@ -6,6 +6,7 @@ import { createClient } from '@/lib/supabase/client'
 import { getUserData } from '@/app/actions/profile'
 import { cancelSubscription } from '@/app/actions/stripe';
 import Navbar from '@/components/Navbar';
+import CancellationSurvey from '@/components/CancellationSurvey';
 import styles from './Profile.module.css';
 
 interface UserProfile {
@@ -25,6 +26,7 @@ export default function ProfilePage() {
     const [loading, setLoading] = useState(true);
     const [userEmail, setUserEmail] = useState('');
     const [profile, setProfile] = useState<UserProfile | null>(null);
+    const [showCancellationSurvey, setShowCancellationSurvey] = useState(false);
 
     useEffect(() => {
         loadUserData();
@@ -69,11 +71,12 @@ export default function ProfilePage() {
         router.push('/payment');
     };
 
-    const handleCancelSubscription = async () => {
-        if (!confirm('Are you sure you want to cancel your subscription? You will retain access until the end of the current billing period.')) {
-            return;
-        }
+    const initCancelFlow = () => {
+        setShowCancellationSurvey(true);
+    };
 
+    const handleConfirmCancellation = async () => {
+        setShowCancellationSurvey(false);
         setLoading(true);
         try {
             const result = await cancelSubscription();
@@ -219,7 +222,7 @@ export default function ProfilePage() {
                             </a>
 
                             <button
-                                onClick={handleCancelSubscription}
+                                onClick={initCancelFlow}
                                 className={`${styles.actionCard} ${styles.danger}`}
                                 disabled={!isActive}
                                 style={!isActive ? { opacity: 0.5, cursor: 'not-allowed' } : {}}
@@ -233,6 +236,12 @@ export default function ProfilePage() {
                     </div>
                 </div>
             </div>
+
+            <CancellationSurvey
+                isOpen={showCancellationSurvey}
+                onClose={() => setShowCancellationSurvey(false)}
+                onConfirmCancellation={handleConfirmCancellation}
+            />
         </>
     );
 }
