@@ -1369,6 +1369,14 @@ function DashboardContent() {
                 {activeTab === 'history' && (
                     <div className={styles.historySection}>
                         <h1 className={styles.pageTitle}>Video History</h1>
+                        <p style={{
+                            fontSize: '13px',
+                            color: '#e5e7eb',
+                            margin: '-8px 0 24px 0',
+                            opacity: 0.8
+                        }}>
+                            Please note that videos take 2-3 minutes to create. Try refreshing the page if they don't appear.
+                        </p>
 
                         {/* Generation in Progress Indicator */}
                         {isGenerating && (
