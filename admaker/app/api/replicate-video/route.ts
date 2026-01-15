@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { createClient } from '@/lib/supabase/server';
 // Note: replicate import removed as we are switching to Kie.ai for this endpoint
 // We keep the package in package.json for other features (script enhancer, hooks)
 import { rateLimit, rateLimitConfigs, getClientIp, getRateLimitHeaders } from '@/lib/security/rate-limit';
@@ -16,6 +17,18 @@ export async function POST(request: NextRequest) {
                     status: 429,
                     headers: getRateLimitHeaders(rateLimitResult),
                 }
+            );
+        }
+
+        // Authentication Check
+        const supabase = await createClient();
+        const { data: { user }, error: authError } = await supabase.auth.getUser();
+
+        if (authError || !user) {
+            console.warn('❌ Unauthorized attempt to generate video');
+            return NextResponse.json(
+                { error: 'Unauthorized. Please log in.' },
+                { status: 401 }
             );
         }
 

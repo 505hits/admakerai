@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { createClient } from '@/lib/supabase/server';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 
 // Cloudflare R2 Configuration (from lib/r2-upload.ts)
@@ -32,6 +33,18 @@ function getR2Client() {
 export async function POST(request: NextRequest) {
     try {
         console.log('📹 Video upload request received');
+
+        // Authentication Check
+        const supabase = await createClient();
+        const { data: { user }, error: authError } = await supabase.auth.getUser();
+
+        if (authError || !user) {
+            console.warn('❌ Unauthorized attempt to upload video');
+            return NextResponse.json(
+                { error: 'Unauthorized. Please log in.' },
+                { status: 401 }
+            );
+        }
 
         const formData = await request.formData();
         const file = formData.get('file') as File;

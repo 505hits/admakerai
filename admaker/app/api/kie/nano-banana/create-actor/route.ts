@@ -35,6 +35,18 @@ export async function POST(request: NextRequest) {
             );
         }
 
+        // Authentication Check
+        const authClient = await createClient();
+        const { data: { user }, error: authError } = await authClient.auth.getUser();
+
+        if (authError || !user) {
+            console.warn('❌ Unauthorized attempt to create actor');
+            return NextResponse.json(
+                { error: 'Unauthorized. Please log in.' },
+                { status: 401 }
+            );
+        }
+
         // Bot detection
         const uaValidation = validateUserAgent(request);
         if (!uaValidation.valid) {
