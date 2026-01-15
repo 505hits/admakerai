@@ -643,21 +643,7 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
                         }>{t.hookGenerator}</a>
 
                         {hasAccess && (
-                            <a href={langPrefix + '/dashboard'} style={{
-                                background: 'rgba(255, 255, 255, 0.1)',
-                                padding: '8px 16px',
-                                borderRadius: '20px',
-                                color: '#fff',
-                                fontWeight: 600,
-                                fontSize: '14px',
-                                display: 'inline-flex',
-                                alignItems: 'center',
-                                gap: '8px',
-                                border: '1px solid rgba(255, 255, 255, 0.2)',
-                                transition: 'all 0.2s ease',
-                                textDecoration: 'none',
-                                marginLeft: '8px'
-                            }}>
+                            <a href={langPrefix + '/dashboard'} className={styles.dashboardLink}>
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                                     <rect x="2" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
                                     <rect x="9" y="2" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.5" />
