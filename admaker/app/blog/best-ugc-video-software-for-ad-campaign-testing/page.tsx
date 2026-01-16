@@ -37,6 +37,7 @@ export default function BestUgcVideoSoftwareArticle() {
                 <link rel="canonical" href="https://admakerai.app/blog/best-ugc-video-software-for-ad-campaign-testing" />
 
                 <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/best-ugc-video-software-for-ad-campaign-testing" />
+                <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/meilleur-logiciel-video-ugc-test-campagne-publicitaire" />
                 <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/best-ugc-video-software-for-ad-campaign-testing" />
 
                 <meta property="og:type" content="article" />
