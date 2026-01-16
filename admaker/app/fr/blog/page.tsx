@@ -15,6 +15,27 @@ export default function BlogPageFR() {
                     <p className={styles.subtitle}>Dernières actualités et insights d'AdMaker AI</p>
 
                     <div className={styles.blogGrid}>
+                        <Link href="/fr/blog/meilleur-logiciel-video-ugc-test-campagne-publicitaire" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://images.unsplash.com/photo-1483058712412-4245e9b90334?w=800&h=500&fit=crop"
+                                    alt="Meilleur Logiciel Vidéo UGC pour Tester vos Campagnes Publicitaires en 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>Tests Publicitaires</span>
+                                <h2 className={styles.cardTitle}>Meilleur Logiciel Vidéo UGC pour Tester vos Campagnes Publicitaires en 2026</h2>
+                                <p className={styles.cardExcerpt}>
+                                    Après avoir mené 1 200+ tests A/B avec 82 000 $ de budget, je révèle les meilleurs logiciels vidéo UGC pour tester vos campagnes. Données réelles.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>Janvier 2026</span>
+                                </div>
+                            </div>
+                        </Link>
                         <Link href="/fr/blog/meilleurs-createurs-video-ugc-pour-publicites-sociales" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

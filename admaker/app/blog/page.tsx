@@ -15,6 +15,28 @@ export default function BlogPage() {
                     <p className={styles.subtitle}>Latest news and insights from AdMaker AI</p>
 
                     <div className={styles.blogGrid}>
+                        <Link href="/blog/best-ugc-video-software-for-ad-campaign-testing" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://images.unsplash.com/photo-1483058712412-4245e9b90334?w=800&h=500&fit=crop"
+                                    alt="Best UGC Video Software for Ad Campaign Testing in 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>Ad Testing</span>
+                                <h2 className={styles.cardTitle}>Best UGC Video Software for Ad Campaign Testing in 2026</h2>
+                                <p className={styles.cardExcerpt}>
+                                    After running 1,200+ A/B tests with $82K spend, I reveal the best UGC video software. Real data from 6-month systematic testing program.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>January 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
                         <Link href="/blog/ugc-video-ads-ai" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
