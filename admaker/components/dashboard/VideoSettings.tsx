@@ -4,9 +4,9 @@ import styles from './VideoSettings.module.css';
 
 interface VideoSettingsProps {
     format: '16:9' | '9:16';
-    duration: 8 | 16;
+    duration: 8; // Only 8s videos supported
     onFormatChange: (format: '16:9' | '9:16') => void;
-    onDurationChange: (duration: 8 | 16) => void;
+    onDurationChange: (duration: 8) => void; // Keep for compatibility but only accepts 8
     lang?: 'en' | 'fr';
 }
 
@@ -41,8 +41,8 @@ export default function VideoSettings({
     };
     const t = translations[lang];
     const getCreditCost = () => {
-        // Credits based only on duration
-        return duration === 8 ? 20 : 40;
+        // Only 8s videos supported = 20 credits
+        return 20;
     };
 
     return (
@@ -80,23 +80,13 @@ export default function VideoSettings({
                     <label className={styles.settingLabel}>{t.duration}</label>
                     <div className={styles.durationButtons}>
                         <button
-                            className={`${styles.durationButton} ${duration === 8 ? styles.active : ''}`}
-                            onClick={() => onDurationChange(8)}
+                            className={`${styles.durationButton} ${styles.active}`}
+                            disabled
                         >
                             <span className={styles.durationTime}>8s</span>
                             <span className={styles.durationCost}>20 {t.credits}</span>
                         </button>
-                        <button
-                            className={`${styles.durationButton} ${duration === 16 ? styles.active : ''}`}
-                            onClick={() => onDurationChange(16)}
-                        >
-                            <span className={styles.durationTime}>16s</span>
-                            <span className={styles.durationCost}>40 {t.credits}</span>
-                        </button>
                     </div>
-                    <p className={styles.durationNote}>
-                        {t.durationNote}
-                    </p>
                 </div>
 
                 {/* Credit Cost Summary */}
