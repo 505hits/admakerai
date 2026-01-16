@@ -269,7 +269,7 @@ function DashboardContent() {
                         duration: currentDuration,
                         accent: currentAccent,
                         status: (currentSelectedActor && currentScript.trim()) ? 'configured' as const : 'empty' as const
-                    };
+                    } as VideoVariation;
                 }
                 return v;
             });
