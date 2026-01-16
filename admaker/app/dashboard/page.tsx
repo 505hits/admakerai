@@ -33,10 +33,10 @@ function DashboardContent() {
     const [activeVariation, setActiveVariation] = useState(0);
     const [visibleVariations, setVisibleVariations] = useState(1); // Start with 1 variation visible
     const [variations, setVariations] = useState<VideoVariation[]>([
-        { id: 1, script: '', sceneDescription: '', selectedActor: null, productImageUrl: null, virtualTryOnImageUrl: null, format: '16:9', duration: 8, status: 'empty', accent: '' },
-        { id: 2, script: '', sceneDescription: '', selectedActor: null, productImageUrl: null, virtualTryOnImageUrl: null, format: '16:9', duration: 8, status: 'empty', accent: '' },
-        { id: 3, script: '', sceneDescription: '', selectedActor: null, productImageUrl: null, virtualTryOnImageUrl: null, format: '16:9', duration: 8, status: 'empty', accent: '' },
-        { id: 4, script: '', sceneDescription: '', selectedActor: null, productImageUrl: null, virtualTryOnImageUrl: null, format: '16:9', duration: 8, status: 'empty', accent: '' },
+        { id: 1, script: '', sceneDescription: '', selectedActor: null, productImageUrl: null, virtualTryOnImageUrl: null, format: '16:9', duration: 8 as const, status: 'empty', accent: '' },
+        { id: 2, script: '', sceneDescription: '', selectedActor: null, productImageUrl: null, virtualTryOnImageUrl: null, format: '16:9', duration: 8 as const, status: 'empty', accent: '' },
+        { id: 3, script: '', sceneDescription: '', selectedActor: null, productImageUrl: null, virtualTryOnImageUrl: null, format: '16:9', duration: 8 as const, status: 'empty', accent: '' },
+        { id: 4, script: '', sceneDescription: '', selectedActor: null, productImageUrl: null, virtualTryOnImageUrl: null, format: '16:9', duration: 8 as const, status: 'empty', accent: '' },
     ]);
 
     // Video generation state
