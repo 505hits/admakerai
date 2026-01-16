@@ -5,7 +5,7 @@ import Head from 'next/head';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import Navbar from '@/components/Navbar';
 import SimilarArticles from '@/components/SimilarArticles';
-import styles from '../../blog/Blog.module.css'; // Correct path to CSS
+import styles from '../../../blog/Blog.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 
