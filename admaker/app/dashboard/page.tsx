@@ -249,7 +249,7 @@ function DashboardContent() {
         const currentProductImageUrl = productImageUrl;
         const currentVirtualTryOnImageUrl = virtualTryOnImageUrl;
         const currentFormat = format;
-        const currentDuration = 8; // Always 8s
+        const currentDuration: 8 = 8; // Always 8s
         const currentAccent = accent;
         const currentIndex = activeVariation;
 
