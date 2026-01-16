@@ -349,4 +349,24 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- Article 3: Best UGC Video Software for Ad Campaign Testing -->
+  <!-- EN -->
+  <url>
+    <loc>https://admakerai.app/blog/best-ugc-video-software-for-ad-campaign-testing</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://admakerai.app/blog/best-ugc-video-software-for-ad-campaign-testing" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://admakerai.app/fr/blog/meilleur-logiciel-video-ugc-test-campagne-publicitaire" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://admakerai.app/blog/best-ugc-video-software-for-ad-campaign-testing" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- FR -->
+  <url>
+    <loc>https://admakerai.app/fr/blog/meilleur-logiciel-video-ugc-test-campagne-publicitaire</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://admakerai.app/blog/best-ugc-video-software-for-ad-campaign-testing" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://admakerai.app/fr/blog/meilleur-logiciel-video-ugc-test-campagne-publicitaire" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://admakerai.app/blog/best-ugc-video-software-for-ad-campaign-testing" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
 </urlset>
