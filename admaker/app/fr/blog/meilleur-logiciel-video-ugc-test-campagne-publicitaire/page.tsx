@@ -414,7 +414,7 @@ export default function BestUgcVideoSoftwareArticleFR() {
 
                             <div className={styles.imageWrapper}>
                                 <Image
-                                    src="https://images.unsplash.com/photo-1429260350537-7db124ce78ac?w=1280&h=720&fit=crop"
+                                    src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=1280&h=720&fit=crop"
                                     alt="Filmer du contenu avec téléphone mobile pour test rapide de variations"
                                     width={1280}
                                     height={720}
