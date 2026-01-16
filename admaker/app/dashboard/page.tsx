@@ -46,7 +46,7 @@ function DashboardContent() {
     const [productImageUrl, setProductImageUrl] = useState<string | null>(null);
     const [virtualTryOnImageUrl, setVirtualTryOnImageUrl] = useState<string | null>(null);
     const [format, setFormat] = useState<'16:9' | '9:16'>('16:9');
-    const [duration, setDuration] = useState<8 | 16>(8);
+    const [duration, setDuration] = useState<8>(8); // Only 8s videos supported
     const [accent, setAccent] = useState('');
     const [isGenerating, setIsGenerating] = useState(false);
     const [generatedVideo, setGeneratedVideo] = useState<string | null>(null);
@@ -282,7 +282,7 @@ function DashboardContent() {
             setProductImageUrl(newVariation.productImageUrl);
             setVirtualTryOnImageUrl(newVariation.virtualTryOnImageUrl);
             setFormat(newVariation.format);
-            setDuration(newVariation.duration);
+            setDuration(8); // Always 8s
             setAccent(newVariation.accent || '');
 
             return updated;
@@ -340,10 +340,11 @@ function DashboardContent() {
         ));
     };
 
-    const handleDurationChange = (newDuration: 8 | 16) => {
-        setDuration(newDuration);
+    const handleDurationChange = (newDuration: 8) => {
+        // Duration is locked at 8s, but keep handler for compatibility
+        setDuration(8);
         setVariations(prev => prev.map((v, i) =>
-            i === activeVariation ? { ...v, duration: newDuration } : v
+            i === activeVariation ? { ...v, duration: 8 } : v
         ));
     };
 
@@ -373,7 +374,7 @@ function DashboardContent() {
                 setProductImageUrl(firstVariation.productImageUrl);
                 setVirtualTryOnImageUrl(firstVariation.virtualTryOnImageUrl);
                 setFormat(firstVariation.format);
-                setDuration(firstVariation.duration);
+                setDuration(8); // Always 8s
             }
         }
     };
@@ -386,14 +387,14 @@ function DashboardContent() {
     };
 
     const getCreditCost = () => {
-        // Credits based only on duration
-        return duration === 8 ? 20 : 40;
+        // Only 8s videos supported = 20 credits
+        return 20;
     };
 
     const getTotalCreditCost = () => {
-        // Calculate total cost for all configured variations
+        // Calculate total cost for all configured variations (20 credits each)
         const configuredVariations = variations.slice(0, visibleVariations).filter(v => v.selectedActor && v.script.trim());
-        return configuredVariations.reduce((sum, v) => sum + (v.duration === 8 ? 20 : 40), 0);
+        return configuredVariations.length * 20;
     };
 
     const handleActorImageUpload = (e: React.ChangeEvent<HTMLInputElement>, type: 'person' | 'object' | 'decor') => {
@@ -844,7 +845,7 @@ function DashboardContent() {
 
         // Calculate total cost
         const totalCost = configuredVariations.reduce((sum, v) => {
-            return sum + (v.duration === 8 ? 20 : 40);
+            return sum + 20; // All videos are 8s = 20 credits
         }, 0);
 
         if (credits < totalCost) {

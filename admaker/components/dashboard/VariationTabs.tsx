@@ -12,7 +12,7 @@ export interface VideoVariation {
     productImageUrl: string | null;
     virtualTryOnImageUrl: string | null;
     format: '16:9' | '9:16';
-    duration: 8 | 16;
+    duration: 8; // Only 8s videos supported
     status: 'empty' | 'configured' | 'generating' | 'complete' | 'error';
 }
 
