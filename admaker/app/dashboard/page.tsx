@@ -46,7 +46,7 @@ function DashboardContent() {
     const [productImageUrl, setProductImageUrl] = useState<string | null>(null);
     const [virtualTryOnImageUrl, setVirtualTryOnImageUrl] = useState<string | null>(null);
     const [format, setFormat] = useState<'16:9' | '9:16'>('16:9');
-    const [duration, setDuration] = useState<8>(8); // Only 8s videos supported
+    const [duration, setDuration] = useState<8 | 16>(8); // Always 8s in UI
     const [accent, setAccent] = useState('');
     const [isGenerating, setIsGenerating] = useState(false);
     const [generatedVideo, setGeneratedVideo] = useState<string | null>(null);
@@ -340,11 +340,11 @@ function DashboardContent() {
         ));
     };
 
-    const handleDurationChange = (newDuration: 8) => {
-        // Duration is locked at 8s, but keep handler for compatibility
+    const handleDurationChange = (newDuration: 8 | 16) => {
+        // Always force 8s since only 8s is supported by API
         setDuration(8);
         setVariations(prev => prev.map((v, i) =>
-            i === activeVariation ? { ...v, duration: 8 } : v
+            i === activeVariation ? { ...v, duration: 8 as const } : v
         ));
     };
 

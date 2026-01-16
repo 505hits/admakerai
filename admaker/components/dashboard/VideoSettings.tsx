@@ -4,9 +4,9 @@ import styles from './VideoSettings.module.css';
 
 interface VideoSettingsProps {
     format: '16:9' | '9:16';
-    duration: 8; // Only 8s videos supported
+    duration: 8 | 16; // UI only shows 8s but keep type for compatibility
     onFormatChange: (format: '16:9' | '9:16') => void;
-    onDurationChange: (duration: 8) => void; // Keep for compatibility but only accepts 8
+    onDurationChange: (duration: 8 | 16) => void; // Keep for compatibility
     lang?: 'en' | 'fr';
 }
 
