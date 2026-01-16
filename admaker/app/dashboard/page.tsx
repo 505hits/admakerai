@@ -259,7 +259,7 @@ function DashboardContent() {
                 if (i === currentIndex) {
                     // Save current variation data
                     return {
-                        ...v,
+                        id: v.id,
                         script: currentScript,
                         sceneDescription: currentSceneDescription,
                         selectedActor: currentSelectedActor,
