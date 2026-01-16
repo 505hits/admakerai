@@ -255,7 +255,7 @@ function DashboardContent() {
 
         // Update variations array: save current variation and prepare to load new one
         setVariations(prev => {
-            const updated = prev.map((v, i) => {
+            const updated = prev.map((v, i): VideoVariation => {
                 if (i === currentIndex) {
                     // Save current variation data
                     return {
@@ -269,7 +269,7 @@ function DashboardContent() {
                         duration: currentDuration,
                         accent: currentAccent,
                         status: (currentSelectedActor && currentScript.trim()) ? 'configured' as const : 'empty' as const
-                    } as VideoVariation;
+                    };
                 }
                 return v;
             });
