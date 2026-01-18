@@ -15,6 +15,28 @@ export default function BlogPage() {
                     <p className={styles.subtitle}>Latest news and insights from AdMaker AI</p>
 
                     <div className={styles.blogGrid}>
+                        <Link href="/blog/emotion-generator" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=800&h=500&fit=crop"
+                                    alt="Top 10 Emotion Generator Tools for Video Marketing in 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>Video Marketing</span>
+                                <h2 className={styles.cardTitle}>Top 10 Emotion Generator Tools for Video Marketing in 2026</h2>
+                                <p className={styles.cardExcerpt}>
+                                    After testing 23 emotion generator tools with $18K spend, I reveal which tools actually boost video engagement. Real performance data included.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>January 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
                         <Link href="/blog/best-ugc-video-software-for-ad-campaign-testing" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

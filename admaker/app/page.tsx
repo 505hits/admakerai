@@ -9,6 +9,7 @@ import FAQ from '@/components/FAQ';
 import TypedText from '@/components/TypedText';
 import Testimonials from '@/components/Testimonials';
 import FloatingCTA from '@/components/FloatingCTA';
+import BlogArticlesSection from '@/components/BlogArticlesSection';
 import { getMediaUrl } from '@/lib/cloudflare-config';
 
 export default function Home() {
@@ -714,6 +715,8 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Blog Articles Section */}
+      <BlogArticlesSection />
 
 
       {/* Floating CTA Button */}
