@@ -15,6 +15,27 @@ export default function BlogPage() {
                     <p className={styles.subtitle}>Latest news and insights from AdMaker AI</p>
 
                     <div className={styles.blogGrid}>
+                        <Link href="/blog/compare-ugc-video-tools-for-low-budget-campaigns" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop"
+                                    alt="Best Way to Compare UGC Video Tools for Low Budget Campaigns"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>Budget Strategy</span>
+                                <h2 className={styles.cardTitle}>Best Way to Compare UGC Video Tools for Low Budget Campaigns</h2>
+                                <p className={styles.cardExcerpt}>
+                                    After comparing 32 UGC video tools with $2,800 monthly budgets, I reveal how to choose the right platform. Real ROI data for budget-conscious brands.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>January 2026</span>
+                                </div>
+                            </div>
+                        </Link>
                         <Link href="/blog/emotion-generator" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
