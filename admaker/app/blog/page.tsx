@@ -15,6 +15,27 @@ export default function BlogPage() {
                     <p className={styles.subtitle}>Latest news and insights from AdMaker AI</p>
 
                     <div className={styles.blogGrid}>
+                        <Link href="/blog/promotion-script-army" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=800&h=500&fit=crop"
+                                    alt="How to Use Promotion Script Army for Video Ads in 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>Ad Strategy</span>
+                                <h2 className={styles.cardTitle}>How to Use Promotion Script Army for Video Ads in 2026</h2>
+                                <p className={styles.cardExcerpt}>
+                                    After testing promotion script army framework across 340 video ads with $16K spend, I reveal the complete system. Real conversion data included.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>January 2026</span>
+                                </div>
+                            </div>
+                        </Link>
                         <Link href="/blog/compare-ugc-video-tools-for-low-budget-campaigns" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
