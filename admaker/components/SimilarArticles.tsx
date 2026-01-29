@@ -11,8 +11,9 @@ interface ArticleData {
 }
 
 interface SimilarArticlesProps {
-    locale: 'en' | 'fr' | 'es' | 'de' | 'pt' | 'ja' | 'ko';
-    currentSlug: string;
+    locale?: 'en' | 'fr' | 'es' | 'de' | 'pt' | 'ja' | 'ko';
+    currentSlug?: string;
+    matches?: ArticleData[];
 }
 
 const articlesData: Record<string, ArticleData[]> = {
@@ -168,12 +169,10 @@ const sectionTitles = {
     ko: '관련 기사'
 };
 
-export default function SimilarArticles({ locale, currentSlug }: SimilarArticlesProps) {
+export default function SimilarArticles({ locale = 'en', currentSlug = '', matches }: SimilarArticlesProps) {
     const articles = articlesData[locale] || articlesData['en'];
-    // Filter out current article and limit to 3.
-    // Since we only have 3 total right now, it will show the other 2.
-    // Logic updated to logic slice(0, 3) to support up to 3 when more are added.
-    const similarArticles = articles
+
+    const similarArticles = matches || articles
         .filter(article => !currentSlug.includes(article.slug) && article.slug !== currentSlug)
         .slice(0, 3);
 
