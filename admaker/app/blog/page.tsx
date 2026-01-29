@@ -15,6 +15,27 @@ export default function BlogPage() {
                     <p className={styles.subtitle}>Latest news and insights from AdMaker AI</p>
 
                     <div className={styles.blogGrid}>
+                        <Link href="/blog/reviews-of-ugc-video-makers-with-mobile-support" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://images.unsplash.com/photo-1611162617474-5b629942183c?w=800&h=500&fit=crop"
+                                    alt="Best Reviews of UGC Video Makers with Mobile Support in 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>Video Strategy</span>
+                                <h2 className={styles.cardTitle}>Best Reviews of UGC Video Makers with Mobile Support in 2026</h2>
+                                <p className={styles.cardExcerpt}>
+                                    After reviewing 19 mobile UGC video makers with 580+ user testimonials analyzed, I reveal which platforms actually deliver. Real user data included.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>January 2026</span>
+                                </div>
+                            </div>
+                        </Link>
                         <Link href="/blog/promotion-script-army" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
