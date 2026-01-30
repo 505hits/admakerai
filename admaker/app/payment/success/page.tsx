@@ -1,7 +1,8 @@
 'use client';
 
-import { useEffect, useState, Suspense } from 'react';
+import { useEffect, useState, Suspense, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { trackPurchase } from '@/lib/gtag';
 import styles from './Success.module.css';
 
 interface VerificationStatus {
@@ -20,6 +21,7 @@ function PaymentSuccessContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const sessionId = searchParams.get('session_id');
+    const purchaseTracked = useRef(false);
 
     const [status, setStatus] = useState<VerificationStatus>({
         loading: true,
@@ -54,6 +56,27 @@ function PaymentSuccessContent() {
                 const data = await response.json();
 
                 if (data.success && data.creditsAdded && data.planUpdated) {
+                    // Track purchase event for Google Ads conversion (only once)
+                    if (!purchaseTracked.current) {
+                        purchaseTracked.current = true;
+
+                        // Estimate value based on plan
+                        const planPrices: Record<string, number> = {
+                            startup: 49,
+                            growth: 69,
+                            pro: 99,
+                        };
+                        const planName = data.profile.subscriptionPlan || 'subscription';
+                        const estimatedValue = planPrices[planName.toLowerCase()] || 49;
+
+                        trackPurchase({
+                            transactionId: sessionId,
+                            value: estimatedValue,
+                            currency: 'USD',
+                            planName: planName,
+                        });
+                    }
+
                     // Credits verified successfully!
                     setStatus({
                         loading: false,

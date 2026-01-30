@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { secureFetch } from '@/lib/api/client';
+import { trackBeginCheckout } from '@/lib/gtag';
 import styles from './Pricing.module.css';
 
 interface PricingProps {
@@ -171,6 +172,15 @@ export default function Pricing({ lang = 'en' }: PricingProps) {
 
     const handleCheckout = async (plan: typeof plans[0], cycle: 'monthly' | 'annual') => {
         setLoading(plan.name);
+
+        // Track begin_checkout event for Google Ads conversion
+        const price = cycle === 'monthly' ? plan.monthlyPrice : plan.annualPrice;
+        trackBeginCheckout({
+            value: price,
+            currency: 'USD',
+            planName: plan.name,
+            billingPeriod: cycle,
+        });
 
         try {
             const planType = plan.name.toLowerCase() as 'startup' | 'growth' | 'pro';

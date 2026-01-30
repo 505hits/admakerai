@@ -1,9 +1,10 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState, useRef } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { createClient } from '@/lib/supabase/client';
 import { useRouter } from 'next/navigation';
+import { trackSignUp, trackLogin } from '@/lib/gtag';
 
 
 interface AuthContextType {
@@ -26,6 +27,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     const [loading, setLoading] = useState(true);
     const router = useRouter();
     const supabase = createClient();
+    const authTracked = useRef(false);
 
     useEffect(() => {
         // Get initial session
@@ -38,10 +40,36 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // Listen for auth changes
         const {
             data: { subscription },
-        } = supabase.auth.onAuthStateChange((_event, session) => {
+        } = supabase.auth.onAuthStateChange((event, session) => {
             setSession(session);
             setUser(session?.user ?? null);
             setLoading(false);
+
+            // Track sign_up or login event (only once per auth state change)
+            if (event === 'SIGNED_IN' && session?.user && !authTracked.current) {
+                authTracked.current = true;
+
+                // Determine auth method
+                const provider = session.user.app_metadata?.provider || 'email';
+                const isGoogle = provider === 'google';
+                const method = isGoogle ? 'google' : 'magic_link';
+
+                // Check if this is a new user (created within last 60 seconds)
+                const createdAt = new Date(session.user.created_at || 0);
+                const now = new Date();
+                const isNewUser = (now.getTime() - createdAt.getTime()) < 60000;
+
+                if (isNewUser) {
+                    trackSignUp(method);
+                } else {
+                    trackLogin(method);
+                }
+            }
+
+            // Reset tracking when user signs out
+            if (event === 'SIGNED_OUT') {
+                authTracked.current = false;
+            }
         });
 
         return () => subscription.unsubscribe();
