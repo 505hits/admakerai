@@ -18,7 +18,7 @@ export default function BlogPage() {
                         <Link href="/blog/reviews-of-ugc-video-makers-with-mobile-support" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
-                                    src="https://images.unsplash.com/photo-1611162617474-5b629942183c?w=800&h=500&fit=crop"
+                                    src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=800&h=500&fit=crop"
                                     alt="Best Reviews of UGC Video Makers with Mobile Support in 2026"
                                     width={400}
                                     height={250}
