@@ -10,6 +10,7 @@ import TypedText from '@/components/TypedText';
 import Testimonials from '@/components/Testimonials';
 import FloatingCTA from '@/components/FloatingCTA';
 import BlogArticlesSection from '@/components/BlogArticlesSection';
+import LazyVideo from '@/components/LazyVideo';
 import { getMediaUrl } from '@/lib/cloudflare-config';
 
 export default function Home() {
@@ -85,12 +86,8 @@ export default function Home() {
             return (
               <div key={i} className="slide">
                 <div className="example-card has-gif">
-                  <video
+                  <LazyVideo
                     src={videoUrls[videoIndex]}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
                     className="example-gif"
                   />
                   <div className="example-info-overlay">
@@ -242,12 +239,8 @@ export default function Home() {
                 maxWidth: '280px',
                 width: '100%'
               }}>
-                <video
+                <LazyVideo
                   src={getMediaUrl('landing winning 1.mp4')}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
                 <div style={{
@@ -315,12 +308,8 @@ export default function Home() {
                 maxWidth: '280px',
                 width: '100%'
               }}>
-                <video
+                <LazyVideo
                   src={getMediaUrl('landing winning 2.mp4')}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
                 <div style={{
