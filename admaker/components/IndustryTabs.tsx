@@ -428,6 +428,7 @@ export default function IndustryTabs({ lang = 'en' }: IndustryTabsProps) {
                                     loop
                                     muted
                                     playsInline
+                                    preload="none"
                                     style={{ objectFit: 'cover' }}
                                 />
                             )}
@@ -439,6 +440,7 @@ export default function IndustryTabs({ lang = 'en' }: IndustryTabsProps) {
                                     loop
                                     muted
                                     playsInline
+                                    preload="none"
                                     style={{ objectFit: 'cover' }}
                                 />
                             )}
@@ -450,6 +452,7 @@ export default function IndustryTabs({ lang = 'en' }: IndustryTabsProps) {
                                     loop
                                     muted
                                     playsInline
+                                    preload="none"
                                     style={{ objectFit: 'cover' }}
                                 />
                             )}
@@ -461,6 +464,7 @@ export default function IndustryTabs({ lang = 'en' }: IndustryTabsProps) {
                                     loop
                                     muted
                                     playsInline
+                                    preload="none"
                                     style={{ objectFit: 'cover' }}
                                 />
                             )}

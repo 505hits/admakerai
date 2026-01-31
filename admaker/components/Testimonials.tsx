@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styles from './Testimonials.module.css';
 
 interface TestimonialsProps {
@@ -287,10 +288,13 @@ export default function Testimonials({ lang = 'en' }: TestimonialsProps) {
                             </div>
                             <p className={styles.testimonialText}>"{testimonial.text}"</p>
                             <div className={styles.testimonialAuthor}>
-                                <img
-                                    src={`https://images.unsplash.com/photo-${['1494790108377-be9c29b29330', '1507003211169-0a1dd7228f2d', '1438761681033-6461ffad8d80', '1500648767791-00dcc994a43e', '1534528741775-53994a69daeb', '1506794778202-cad84cf45f1d'][index]}?w=100&h=100&fit=crop&crop=faces`}
+                                <Image
+                                    src={`https://images.unsplash.com/photo-${['1494790108377-be9c29b29330', '1507003211169-0a1dd7228f2d', '1438761681033-6461ffad8d80', '1500648767791-00dcc994a43e', '1534528741775-53994a69daeb', '1506794778202-cad84cf45f1d'][index]}?w=100&h=100&fit=crop&crop=faces&auto=format`}
                                     alt={testimonial.name}
+                                    width={48}
+                                    height={48}
                                     className={styles.avatar}
+                                    loading="lazy"
                                 />
                                 <div>
                                     <h4 className={styles.authorName}>{testimonial.name}</h4>

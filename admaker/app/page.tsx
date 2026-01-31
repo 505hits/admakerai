@@ -1,17 +1,34 @@
 'use client';
 
 import { useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import IndustryTabs from '@/components/IndustryTabs';
-import Pricing from '@/components/Pricing';
-import FAQ from '@/components/FAQ';
 import TypedText from '@/components/TypedText';
-import Testimonials from '@/components/Testimonials';
 import FloatingCTA from '@/components/FloatingCTA';
-import BlogArticlesSection from '@/components/BlogArticlesSection';
 import LazyVideo from '@/components/LazyVideo';
 import { getMediaUrl } from '@/lib/cloudflare-config';
+
+// Lazy load heavy components for better initial page load
+const IndustryTabs = dynamic(() => import('@/components/IndustryTabs'), {
+  loading: () => <div style={{ minHeight: '500px', background: '#0a0a0a' }} />,
+});
+
+const Pricing = dynamic(() => import('@/components/Pricing'), {
+  loading: () => <div style={{ minHeight: '600px', background: '#000' }} />,
+});
+
+const Testimonials = dynamic(() => import('@/components/Testimonials'), {
+  loading: () => <div style={{ minHeight: '400px', background: '#000' }} />,
+});
+
+const FAQ = dynamic(() => import('@/components/FAQ'), {
+  loading: () => <div style={{ minHeight: '400px', background: '#000' }} />,
+});
+
+const BlogArticlesSection = dynamic(() => import('@/components/BlogArticlesSection'), {
+  loading: () => <div style={{ minHeight: '300px', background: '#000' }} />,
+});
 
 export default function Home() {
   useEffect(() => {
@@ -53,7 +70,8 @@ export default function Home() {
       {/* Examples Slider Section */}
       <section className="examples-slider">
         <div className="slider-track">
-          {[...Array(18)].map((_, i) => {
+          {/* Only 6 unique videos - CSS animation creates infinite scroll effect */}
+          {[...Array(6)].map((_, i) => {
             const videoUrls = [
               getMediaUrl('video  beauté.mp4'),
               getMediaUrl('video  bleu.mp4'),
@@ -81,18 +99,16 @@ export default function Home() {
               'Reach x3'
             ];
 
-            const videoIndex = i % 6;
-
             return (
               <div key={i} className="slide">
                 <div className="example-card has-gif">
                   <LazyVideo
-                    src={videoUrls[videoIndex]}
+                    src={videoUrls[i]}
                     className="example-gif"
                   />
                   <div className="example-info-overlay">
-                    <h4>{titles[videoIndex]}</h4>
-                    <p>{stats[videoIndex]}</p>
+                    <h4>{titles[i]}</h4>
+                    <p>{stats[i]}</p>
                   </div>
                 </div>
               </div>

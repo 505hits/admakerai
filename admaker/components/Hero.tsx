@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styles from './Hero.module.css';
 
 interface HeroProps {
@@ -105,25 +106,37 @@ export default function Hero({ lang = 'en' }: HeroProps) {
                     {/* Social Proof */}
                     <div className={styles.socialProof}>
                         <div className={styles.avatarGroup}>
-                            <img
-                                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=faces"
+                            <Image
+                                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=faces&auto=format"
                                 alt="User"
+                                width={40}
+                                height={40}
                                 className={styles.avatar}
+                                loading="eager"
                             />
-                            <img
-                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces"
+                            <Image
+                                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=faces&auto=format"
                                 alt="User"
+                                width={40}
+                                height={40}
                                 className={styles.avatar}
+                                loading="eager"
                             />
-                            <img
-                                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=faces"
+                            <Image
+                                src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=faces&auto=format"
                                 alt="User"
+                                width={40}
+                                height={40}
                                 className={styles.avatar}
+                                loading="eager"
                             />
-                            <img
-                                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=faces"
+                            <Image
+                                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=faces&auto=format"
                                 alt="User"
+                                width={40}
+                                height={40}
                                 className={styles.avatar}
+                                loading="eager"
                             />
                         </div>
                         <div className={styles.socialProofContent}>

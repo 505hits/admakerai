@@ -6,9 +6,10 @@ interface LazyVideoProps {
     src: string;
     className?: string;
     style?: React.CSSProperties;
+    poster?: string;
 }
 
-export default function LazyVideo({ src, className, style }: LazyVideoProps) {
+export default function LazyVideo({ src, className, style, poster }: LazyVideoProps) {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isVisible, setIsVisible] = useState(false);
     const [hasLoaded, setHasLoaded] = useState(false);
@@ -60,8 +61,12 @@ export default function LazyVideo({ src, className, style }: LazyVideoProps) {
             muted
             playsInline
             preload="none"
+            poster={poster}
             className={className}
-            style={style}
+            style={{
+                ...style,
+                backgroundColor: !hasLoaded ? '#1a1a2e' : undefined,
+            }}
         />
     );
 }
