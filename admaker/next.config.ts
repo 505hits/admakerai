@@ -1,7 +1,18 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Experimental optimizations
+  experimental: {
+    optimizeCss: true,
+    optimizePackageImports: ['lucide-react', '@stripe/stripe-js'],
+  },
+
   images: {
+    // Prefer AVIF (smaller than WebP) with WebP fallback
+    formats: ['image/avif', 'image/webp'],
+    // Minimize image sizes
+    deviceSizes: [640, 750, 828, 1080, 1200],
+    imageSizes: [16, 32, 48, 64, 96, 128],
     remotePatterns: [
       {
         protocol: 'https',

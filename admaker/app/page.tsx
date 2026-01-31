@@ -5,9 +5,13 @@ import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import TypedText from '@/components/TypedText';
-import FloatingCTA from '@/components/FloatingCTA';
 import LazyVideo from '@/components/LazyVideo';
 import { getMediaUrl } from '@/lib/cloudflare-config';
+
+// Lazy load FloatingCTA - not needed for initial render
+const FloatingCTA = dynamic(() => import('@/components/FloatingCTA'), {
+  ssr: false,
+});
 
 // Lazy load heavy components for better initial page load
 const IndustryTabs = dynamic(() => import('@/components/IndustryTabs'), {
