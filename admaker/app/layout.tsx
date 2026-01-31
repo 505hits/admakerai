@@ -44,6 +44,19 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        {/* Preconnect to external domains for faster resource loading */}
+        <link rel="preconnect" href="https://images.unsplash.com" />
+        <link rel="preconnect" href="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev" />
+        <link rel="dns-prefetch" href="https://images.unsplash.com" />
+        <link rel="dns-prefetch" href="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev" />
+        {/* Preload critical logo image */}
+        <link
+          rel="preload"
+          href="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/admaker_ai_logo-removebg-preview.png"
+          as="image"
+        />
+      </head>
       <body className={inter.className}>
         <GoogleAnalytics />
         <Suspense fallback={null}>

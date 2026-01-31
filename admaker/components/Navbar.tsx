@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
+import Image from 'next/image';
 import styles from './Navbar.module.css';
 import { getMediaUrl } from '../lib/cloudflare-config';
 import { createClient } from '@/lib/supabase/client';
@@ -625,7 +626,14 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
             <div className="container">
                 <div className={styles.navContent}>
                     <a href={langPrefix || '/'} className={styles.logo} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                        <img src={getMediaUrl('admaker_ai_logo-removebg-preview.png')} alt="AdMaker AI Logo" style={{ height: '40px', width: 'auto' }} />
+                        <Image
+                            src={getMediaUrl('admaker_ai_logo-removebg-preview.png')}
+                            alt="AdMaker AI Logo"
+                            width={40}
+                            height={40}
+                            priority
+                            style={{ height: '40px', width: 'auto' }}
+                        />
                         <span className={styles.logoText} style={{ fontSize: '24px', fontWeight: '700', color: '#fff' }}>
                             AdMaker<span style={{ background: 'linear-gradient(135deg, #ff0844 0%, #ff6b6b 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>AI</span>
                         </span>

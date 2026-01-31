@@ -314,6 +314,7 @@ img {
     gap: var(--spacing-lg);
     animation: slide 40s linear infinite;
     width: max-content;
+    will-change: transform;
 }
 
 .slide {
