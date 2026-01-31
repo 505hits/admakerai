@@ -1,0 +1,16 @@
+{
+    "name": "AdMaker AI",
+    "short_name": "AdMaker",
+    "description": "Create AI UGC Ads in Minutes",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#ff0844",
+    "icons": [
+        {
+            "src": "https://admakerai.app/favicon.ico",
+            "sizes": "64x64",
+            "type": "image/x-icon"
+        }
+    ]
+}

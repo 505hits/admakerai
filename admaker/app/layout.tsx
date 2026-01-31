@@ -45,6 +45,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* PWA Manifest */}
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#ff0844" />
         {/* Preconnect to external domains for faster resource loading */}
         <link rel="preconnect" href="https://images.unsplash.com" />
         <link rel="preconnect" href="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev" />
@@ -55,6 +58,20 @@ export default function RootLayout({
           rel="preload"
           href="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/admaker_ai_logo-removebg-preview.png"
           as="image"
+        />
+        {/* Register Service Worker */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js').catch(function(err) {
+                    console.log('SW registration failed:', err);
+                  });
+                });
+              }
+            `,
+          }}
         />
       </head>
       <body className={inter.className}>
