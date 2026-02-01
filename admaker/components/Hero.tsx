@@ -155,15 +155,12 @@ export default function Hero({ lang = 'en' }: HeroProps) {
                         {t.title}
                         <span className="gradient-text-red">{t.titleHighlight}</span>
                     </h1>
-                    <p className={styles.heroSubtitle}>
-                        {t.subtitle}
-                    </p>
                     <p className={styles.heroDescription}>
                         {t.description}
                     </p>
                     <div className={styles.heroCta}>
                         <a href={loginUrl} className={styles.btnPrimaryLarge}>
-                            {t.ctaPrimary}
+                            👋 {t.ctaPrimary}
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                             </svg>

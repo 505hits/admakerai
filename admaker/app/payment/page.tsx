@@ -10,6 +10,20 @@ export default function PaymentPage() {
         <main>
             <Navbar />
 
+            {/* Hero Section */}
+            <section className={styles.paymentHero}>
+                <div className={styles.heroGlow}></div>
+                <div className="container">
+                    <div className={styles.heroContent}>
+                        <h1>
+                            Start Creating Your{' '}
+                            <span className="gradient-text-red">UGC Ads</span> Today
+                        </h1>
+                        <p>Join 20,000+ marketers creating high-converting video ads</p>
+                    </div>
+                </div>
+            </section>
+
             {/* Pricing Section */}
             <Pricing />
 

@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import styles from './IndustryTabs.module.css';
-import { getMediaUrl } from '../lib/cloudflare-config';
+import { getMediaUrl } from '@/lib/cloudflare-config';
+
 
 interface Industry {
     id: string;

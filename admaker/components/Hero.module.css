@@ -114,11 +114,11 @@
 }
 
 .heroTitle {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(1.5rem, 5vw, 3.5rem);
     font-weight: 900;
     line-height: 1.1;
     letter-spacing: -0.03em;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
 }
 
 .heroSubtitle {
@@ -241,7 +241,47 @@
 
 @media (max-width: 768px) {
     .hero {
-        padding: 100px 0 var(--spacing-xl) 0;
+        min-height: auto;
+        padding: 90px 0 var(--spacing-md) 0;
+    }
+
+    .heroTitle {
+        font-size: 1.5rem;
+        margin-bottom: var(--spacing-xs);
+    }
+
+    .heroDescription {
+        font-size: var(--font-size-xs);
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .btnPrimaryLarge {
+        padding: 0.75rem 1.5rem;
+        font-size: var(--font-size-sm);
+    }
+
+    .heroGlow {
+        width: 150%;
+        height: 150%;
+        background: radial-gradient(circle at 50% 30%,
+                rgba(255, 8, 68, 0.35) 0%,
+                rgba(255, 50, 100, 0.25) 25%,
+                rgba(255, 100, 150, 0.15) 50%,
+                rgba(139, 0, 139, 0.08) 70%,
+                transparent 90%);
+        filter: blur(40px);
+    }
+
+    .heroGlow::before {
+        background: radial-gradient(ellipse at 20% 20%,
+                rgba(255, 100, 150, 0.2) 0%,
+                transparent 60%);
+    }
+
+    .heroGlow::after {
+        background: radial-gradient(ellipse at 80% 80%,
+                rgba(255, 50, 100, 0.15) 0%,
+                transparent 50%);
     }
 
     /* Make social proof more compact on mobile */
@@ -282,12 +322,12 @@
     }
 
     .statsProof {
-        gap: var(--spacing-sm);
-        padding: var(--spacing-sm) var(--spacing-md);
-        margin-top: var(--spacing-md);
+        gap: var(--spacing-xs);
+        padding: var(--spacing-xs) var(--spacing-sm);
+        margin-top: var(--spacing-sm);
     }
 
     .statText {
-        font-size: var(--font-size-xs);
+        font-size: 10px;
     }
 }
