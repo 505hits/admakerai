@@ -163,6 +163,25 @@
     box-shadow: 0 8px 30px rgba(255, 8, 68, 0.4);
 }
 
+.clickEmoji {
+    display: inline-block;
+    font-size: 1.5rem;
+    margin-left: 8px;
+    animation: clickAnimation 1.5s infinite ease-in-out;
+}
+
+@keyframes clickAnimation {
+
+    0%,
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+
+    50% {
+        transform: scale(0.8) rotate(-10deg);
+    }
+}
+
 .btnGhostLarge {
     display: inline-flex;
     align-items: center;
