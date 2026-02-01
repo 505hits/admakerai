@@ -155,6 +155,8 @@
     border-radius: var(--radius-full);
     transition: all var(--transition-base);
     box-shadow: 0 4px 20px rgba(255, 8, 68, 0.3);
+    position: relative;
+    /* Allow absolute positioning of emoji */
 }
 
 .btnPrimaryLarge:hover {
@@ -277,8 +279,32 @@
     }
 
     .btnPrimaryLarge {
-        padding: 0.75rem 1.5rem;
-        font-size: var(--font-size-sm);
+        padding: 1rem 2rem;
+        font-size: 1.125rem;
+        /* Larger font size as requested */
+    }
+
+    .clickEmoji {
+        position: absolute;
+        right: 15%;
+        bottom: -15px;
+        font-size: 2.5rem;
+        /* Larger emoji */
+        margin-left: 0;
+        animation: clickAnimationMobile 1.5s infinite ease-in-out;
+        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+    }
+
+    @keyframes clickAnimationMobile {
+
+        0%,
+        100% {
+            transform: scale(1) rotate(-10deg);
+        }
+
+        50% {
+            transform: scale(0.8) rotate(-25deg);
+        }
     }
 
     .heroGlow {
