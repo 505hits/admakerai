@@ -292,7 +292,7 @@ export default function Pricing({ lang = 'en', hideTitle = false }: PricingProps
     ];
 
     return (
-        <section className={styles.pricingSection} id="pricing">
+        <section className={`${styles.pricingSection} ${hideTitle ? styles.compact : ''}`} id="pricing">
             <div className={styles.container}>
                 <div className={styles.header}>
                     {!hideTitle && (
