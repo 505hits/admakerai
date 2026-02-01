@@ -12,7 +12,7 @@ export default function PaymentPage() {
 
             {/* Hero Section */}
             <section className={styles.paymentHero}>
-                <div className={styles.heroGlow}></div>
+                {/* <div className={styles.heroGlow}></div> */}
                 <div className="container">
                     <div className={styles.heroContent}>
                         <h1>
@@ -25,7 +25,7 @@ export default function PaymentPage() {
             </section>
 
             {/* Pricing Section */}
-            <Pricing />
+            <Pricing hideTitle={true} />
 
             {/* Examples Slider Section */}
             <section className="examples-slider">

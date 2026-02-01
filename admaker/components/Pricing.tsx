@@ -9,9 +9,10 @@ import styles from './Pricing.module.css';
 
 interface PricingProps {
     lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko' | 'de' | 'ja';
+    hideTitle?: boolean;
 }
 
-export default function Pricing({ lang = 'en' }: PricingProps) {
+export default function Pricing({ lang = 'en', hideTitle = false }: PricingProps) {
     const router = useRouter();
     const [billingCycle, setBillingCycle] = useState<'monthly' | 'annual'>('monthly');
     const [loading, setLoading] = useState<string | null>(null);
@@ -294,10 +295,14 @@ export default function Pricing({ lang = 'en' }: PricingProps) {
         <section className={styles.pricingSection} id="pricing">
             <div className={styles.container}>
                 <div className={styles.header}>
-                    <h2 className={styles.title}>{t.title}</h2>
-                    <p className={styles.subtitle}>
-                        {t.subtitle}
-                    </p>
+                    {!hideTitle && (
+                        <>
+                            <h2 className={styles.title}>{t.title}</h2>
+                            <p className={styles.subtitle}>
+                                {t.subtitle}
+                            </p>
+                        </>
+                    )}
 
                     <div className={styles.pricingToggle}>
                         <button
