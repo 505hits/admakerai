@@ -1,0 +1,37 @@
+name: Daily Blog Generation
+
+on:
+  schedule:
+    # Run at 18:45 UTC daily (19:45 CET / 20:45 CEST)
+    - cron: '45 18 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install replicate
+
+      - name: Run Generation Script
+        env:
+          REPLICATE_API_TOKEN: ${{ secrets.REPLICATE_API_TOKEN }}
+          VEO_API_KEY: ${{ secrets.VEO_API_KEY }}
+        run: node generate-daily-blog.js
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add .
+          git commit -m "Auto-generated blog posts (SEO Optimized)" || echo "No changes to commit"
+          git push
