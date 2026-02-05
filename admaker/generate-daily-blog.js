@@ -1,3 +1,4 @@
+require('dotenv').config();
 const fs = require('fs');
 const path = require('path');
 const Replicate = require('replicate');
@@ -44,47 +45,104 @@ async function main() {
         process.exit(1);
     }
 
-    const topics = JSON.parse(fs.readFileSync(BLOG_TOPICS_FILE, 'utf8'));
-    console.log(`Loaded ${topics.length} topics. Scanning for pending...`);
+    let topics = JSON.parse(fs.readFileSync(BLOG_TOPICS_FILE, 'utf8'));
+    console.log(`Loaded ${topics.length} topics.`);
 
-    // Select up to 2 pending topics
-    const pendingTopics = topics.filter(t => t.status === 'pending');
+    // Check for "completed" topics that might be missing languages (fix for previous partial runs)
+    // We only check topics completed recently or just iterate all "completed" to be safe? 
+    // For now, let's explicitly look for topics that are marked 'completed' but missing files in some languages.
+    // However, to respect the "2 per day" limit, we should prioritize "pending" OR "fixing incomplete".
 
-    if (pendingTopics.length === 0) {
-        console.log('✅ No pending topics found. (Filtered count: 0)');
-        return;
-    }
+    // User wants 2 articles per day * 7 languages = 14 gens.
+    // If we have incomplete topics, we should finish them first.
 
     const limit = 2;
+    let processedCount = 0;
+
+    // Filter for pending topics
+    const pendingTopics = topics.filter(t => t.status === 'pending');
+
+    // Also consider topics that are 'completed' but might be missing languages (optional validation step)
+    // For this run, we will focus on PENDING topics as per standard flow, 
+    // BUT the user likely reset the status or wants us to fix the specific ones.
+    // We will stick to the 'pending' list for the main loop, but we will make the loop robust 
+    // so if we manually reset a topic to 'pending', it works even if half the files exist.
+
     const topicsToProcess = pendingTopics.slice(0, limit);
+
+    if (topicsToProcess.length === 0) {
+        console.log('✅ No pending topics found.');
+        return;
+    }
 
     for (const topic of topicsToProcess) {
         console.log(`\n📝 Processing Topic: ${topic.h1} (${topic.slug})`);
 
-        const enPostPath = path.join(LANGUAGES[0].dir, topic.slug);
-        if (fs.existsSync(enPostPath)) {
-            console.log('  ⚠️ Post already exists in EN, skipping generation checks and marking complete.');
-        } else {
-            // 2. Generate Images (10 images per topic)
-            const imageUrls = await generateBlogImages(topic.keyword, 10);
+        // Check which languages are missing
+        const missingLanguages = [];
+        for (const lang of LANGUAGES) {
+            // We need to know the translated slug to check existence accurately, 
+            // but we don't know it yet if we haven't generated it. 
+            // HOWEVER, for checking if we should START, we can check if the folder usually matches the topic slug 
+            // OR if we can find a folder that *looks* like it.
+            // Simpler approach: If 'en' exists, we might assume others should too. 
+            // But if we want to be robust:
+            // We will try running the generation. The generation function checks if file exists.
+            missingLanguages.push(lang);
+        }
 
-            // 3. Iterate Languages
-            for (const lang of LANGUAGES) {
-                console.log(`  🌐 Generating for Lang: ${lang.code.toUpperCase()}`);
+        if (missingLanguages.length === 0) {
+            console.log('  ✨ All languages appear to exist. Marking complete.');
+            const originalIndex = topics.findIndex(t => t.keyword === topic.keyword);
+            if (originalIndex !== -1) {
+                topics[originalIndex].status = 'completed';
+                topics[originalIndex].completedDate = new Date().toISOString();
+            }
+            continue;
+        }
 
-                if (!fs.existsSync(lang.dir)) {
-                    fs.mkdirSync(lang.dir, { recursive: true });
-                }
+        // 2. Generate Images (10 images per topic)
+        // We only generate images if we are actually going to generate some content.
+        // Optimization: Check if images for this topic already exist in a way we can reuse?
+        // For now, standard flow: generate fresh images to ensure quality/linkage.
+        const imageUrls = await generateBlogImages(topic.keyword, 10);
 
-                try {
-                    const articleContent = await generateArticleContent(topic, lang.code);
+        // 3. Iterate Languages
+        let allLanguagesSuccessful = true;
 
-                    // Use translated slug if available, otherwise fallback to topic.slug
-                    const finalSlug = (lang.code !== 'en' && articleContent.slug_translated)
-                        ? articleContent.slug_translated
-                        : topic.slug;
+        for (const lang of LANGUAGES) {
+            console.log(`  🌐 Checking/Generating for Lang: ${lang.code.toUpperCase()}`);
 
-                    const postDir = path.join(lang.dir, finalSlug);
+            if (!fs.existsSync(lang.dir)) {
+                fs.mkdirSync(lang.dir, { recursive: true });
+            }
+
+            // We can't easily check for *translated* slug existence before generation 
+            // unless we store the translated slug in the JSON.
+            // But we can check if the DEFAULT slug folder exists as a fallback check,
+            // or just proceed to generateURL/Content.
+
+            // To be safe and ensure we don't regenerate if it exists:
+            // We'll rely on the logic inside: generate, get slug, check if that slug dir exists.
+
+            try {
+                // Generate content (this costs money/tokens, so ideally only if needed)
+                // But without the translated slug, we don't know the path.
+                // Trade-off: We generate the JSON first (cheap-ish), then check if file exists.
+
+                const articleContent = await generateArticleContent(topic, lang.code);
+
+                // Use translated slug if available, otherwise fallback to topic.slug
+                const finalSlug = (lang.code !== 'en' && articleContent.slug_translated)
+                    ? articleContent.slug_translated
+                    : topic.slug;
+
+                const postDir = path.join(lang.dir, finalSlug);
+
+                if (fs.existsSync(path.join(postDir, 'page.tsx'))) {
+                    console.log(`    ⚠️ Post already exists at ${lang.code}/${finalSlug}, skipping write.`);
+                    // We treat this as success
+                } else {
                     if (!fs.existsSync(postDir)) {
                         fs.mkdirSync(postDir, { recursive: true });
                     }
@@ -95,24 +153,31 @@ async function main() {
 
                     updateBlogIndex(lang.dir, { ...topic, slug: finalSlug }, imageUrls[0], lang.code, articleContent.title_translated || topic.h1);
 
+                    // Sleep to avoid rate limits
                     await sleep(3000);
-
-                } catch (err) {
-                    console.error(`    ❌ Failed generation for ${lang.code}:`, err.message);
                 }
+
+            } catch (err) {
+                console.error(`    ❌ Failed generation for ${lang.code}:`, err.message);
+                allLanguagesSuccessful = false;
             }
         }
 
-        // 4. Mark Complete
-        const originalIndex = topics.findIndex(t => t.keyword === topic.keyword);
-        if (originalIndex !== -1) {
-            topics[originalIndex].status = 'completed';
-            topics[originalIndex].completedDate = new Date().toISOString();
+        // 4. Mark Complete ONLY if all successful
+        if (allLanguagesSuccessful) {
+            const originalIndex = topics.findIndex(t => t.keyword === topic.keyword);
+            if (originalIndex !== -1) {
+                topics[originalIndex].status = 'completed';
+                topics[originalIndex].completedDate = new Date().toISOString();
+            }
+            // Write to file immediately to save progress
+            fs.writeFileSync(BLOG_TOPICS_FILE, JSON.stringify(topics, null, 2));
+        } else {
+            console.warn(`  ⚠️ Topic ${topic.slug} verification failed for some languages. Keeping as pending.`);
         }
     }
 
-    fs.writeFileSync(BLOG_TOPICS_FILE, JSON.stringify(topics, null, 2));
-    console.log('\n✅ Task Complete');
+    console.log('\n✅ Batch Process Complete');
 }
 
 async function generateArticleContent(topic, langCode) {
@@ -121,7 +186,7 @@ async function generateArticleContent(topic, langCode) {
         try {
             console.log(`    🤖 Asking Claude (${retries} attempts left)...`);
             const prompt = `
-            You are an expert SEO Content Writer for "AdMaker AI". Write a high-ranking blog post.
+            You are an expert SEO Content Writer for "AdMaker AI". Write a high-ranking, COMPREHENSIVE blog post.
             
             **Input Data**:
             - Keyword: "${topic.keyword}"
@@ -129,20 +194,24 @@ async function generateArticleContent(topic, langCode) {
             
             **Strict Content Requirements**:
             1. **Title H1**: Must be ~70 chars. MUST alternate between "Best way", "How to", "Top 5", or "Top 10" style. Translated to ${langCode}.
-            2. **Year**: ALWAYS use "2026" for the current year. NEVER use 2024 or 2025.
-            3. **Length**: ~2000-2500 words.
+            2. **Year**: ALWAYS use "2026" for the current year. NEVER use 2024 or 2025. CHECK THIS TWICE.
+            3. **Length**: CRITICAL: The content MUST be ~2000-2500 words of ACTUAL TEXT. 
+               - DO NOT SUMMARIZE. 
+               - DO NOT use "..." or placeholders like "[Insert text here]".
+               - WRITE THE FULL, DETAILED PARAGRAPHS for every section.
+               - This is a long-form guide.
             4. **Quick Answer**: Start with a "Quick Answer" or "Summary" distinct block.
             5. **Step-by-Step Guide**: Include a detailed, practical step-by-step guide on "How to make UGC ads with AdMaker AI" VERY EARLY in the article (around the second or third section).
-            6. **Natural Promotion**: Mention "AdMaker AI" naturally as a helpful tool. Do NOT be overly salesy or spammy. Google hates "hard selling". Focus on value and solving the user's problem.
-            7. **Internal Links**: Include ~10 internal links at the **END** of the article.
-               - **IMPORTANT**: They MUST link to other articles in the SAME language (e.g., /${langCode}/blog/...).
+            6. **Natural Promotion**: Mention "AdMaker AI" naturally as a helpful tool. Do NOT be overly salesy. Focus on value.
+            7. **Internal Links**: Include ~10 internal links scattered throughout the text and at the end.
                - Mark them as [INTERNAL_LINK: anchor_text | url].
-            8. **External Links**: Include ~5 high-authority external links near the **end** of the article.
+               - URLs must be relative (e.g., /blog/...).
+            8. **External Links**: Include ~5 high-authority external links.
             9. **FAQ**: Exactly 15 relevant questions/answers.
             10. **Tone**: Authenticity, "I tested this", data-backed numbers. Professional but accessible.
             11. **Structure**: 
                - Use <h2> and <h3>. 
-               - Include EXACTLY 10 image placeholders: [IMAGE_PLACEHOLDER_1]...[IMAGE_PLACEHOLDER_10].
+               - Include EXACTLY 10 image placeholders: [IMAGE_PLACEHOLDER_1]...[IMAGE_PLACEHOLDER_10]. Place them visibly between sections.
             
             **Output Format**:
             Return ONLY a valid JSON object:
@@ -151,7 +220,7 @@ async function generateArticleContent(topic, langCode) {
                "slug_translated": "translated-slug-perfect-keyword-match",
                "meta_description": "...",
                "quick_answer": "...",
-               "content_html": "HTML string... (do not include <html> or <body> tags, just inner content)",
+               "content_html": "HTML string... (NO <html>/<body> tags. JUST the inner HTML elements like <h2>, <p>, <ul>, etc.)",
                "faq": [ { "question": "...", "answer": "..." } ... ]
             }
             `;
