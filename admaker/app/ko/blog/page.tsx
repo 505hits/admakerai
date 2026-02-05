@@ -14,7 +14,25 @@ export default function BlogPageKO() {
                     <h1 className={styles.pageTitle}>블로그</h1>
                     <p className={styles.subtitle}>AdMaker AI의 최신 뉴스 및 인사이트</p>
 
-                    <div className={styles.blogGrid}>
+                    <div className = { styles.blogGrid } >
+
+        < Link href = "/ko/blog/arcads-ai-best-guide-2026" className = { styles.blogCard } >
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://placehold.co/800x450?text=Gen+Failed"
+                                    alt="2026년 최고의 아크애드 AI 사용법: 전문가의 포괄적인 가이드"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>2026년 최고의 아크애드 AI 사용법: 전문가의 포괄적인 가이드</h2>
+                                <p className={styles.cardExcerpt}>arcads ai</p>
+                            </div>
+                        </Link >
+         
                         <Link href="/ko/blog/top-rated-ugc-video-makers-social-ads" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

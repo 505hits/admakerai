@@ -14,7 +14,25 @@ export default function BlogPageES() {
                     <h1 className={styles.pageTitle}>Blog</h1>
                     <p className={styles.subtitle}>Últimas noticias e información de AdMaker AI</p>
 
-                    <div className={styles.blogGrid}>
+                    <div className = { styles.blogGrid } >
+
+        < Link href = "/es/blog/arcads-ai-beneficios-guia-2026" className = { styles.blogCard } >
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://placehold.co/800x450?text=Gen+Failed"
+                                    alt="Los 5 Mejores Beneficios de Arcads AI en 2026: Guía Completa de Automatización"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Los 5 Mejores Beneficios de Arcads AI en 2026: Guía Completa de Automatización</h2>
+                                <p className={styles.cardExcerpt}>arcads ai</p>
+                            </div>
+                        </Link >
+         
                         <Link href="/es/blog/mejores-creadores-video-ugc-para-anuncios-sociales" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

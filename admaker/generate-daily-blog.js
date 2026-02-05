@@ -183,8 +183,15 @@ async function main() {
 async function generateArticleContent(topic, langCode) {
     let retries = 3;
     while (retries > 0) {
+        let output;
+        let fullText;
+
         try {
             console.log(`    🤖 Asking Claude (${retries} attempts left)...`);
+            // ... prompt definition ... (we can leave prompt def inside or move it out, but output needs to be outside)
+            // Wait, replace_file_content is better with small chunks. 
+            // I'll just change the declaration line.
+
             const prompt = `
             You are an expert SEO Content Writer for "AdMaker AI". Write a high-ranking, COMPREHENSIVE blog post.
             
@@ -214,7 +221,10 @@ async function generateArticleContent(topic, langCode) {
                - Include EXACTLY 10 image placeholders: [IMAGE_PLACEHOLDER_1]...[IMAGE_PLACEHOLDER_10]. Place them visibly between sections.
             
             **Output Format**:
-            Return ONLY a valid JSON object:
+            Return ONLY a valid JSON object.
+            **CRITICAL**: The "content_html" and other strings MUST NOT contain literal newlines. Escape all newlines as \\n. 
+            Example: "content_html": "<p>Para 1</p>\\n<p>Para 2</p>"
+            
             {
                "title_translated": "...", 
                "slug_translated": "translated-slug-perfect-keyword-match",
@@ -231,8 +241,9 @@ async function generateArticleContent(topic, langCode) {
                 system_prompt: "You are a JSON-only response bot. Never output markdown fencing like ```json."
             };
 
-            const output = await replicate.run("anthropic/claude-3.5-sonnet", { input });
-            let fullText = Array.isArray(output) ? output.join('') : output;
+            output = await replicate.run("anthropic/claude-3.5-sonnet", { input });
+            fullText = Array.isArray(output) ? output.join('') : output;
+
 
             fullText = fullText.replace(/```json/g, '').replace(/```/g, '').trim();
             const firstBrace = fullText.indexOf('{');
@@ -244,7 +255,13 @@ async function generateArticleContent(topic, langCode) {
             return JSON.parse(fullText);
         } catch (e) {
             console.warn(`    ⚠️ JSON Parse/API Error: ${e.message}. Retrying...`);
+            console.log('--- DEBUG: RAW OUTPUT START ---');
+            console.log(output); // Check if output is string or object
+            console.log('--- DEBUG: RAW OUTPUT END ---');
+            fs.writeFileSync('failed_log.txt', fullText || 'No output');
             retries--;
+
+
             await sleep(3000);
         }
     }
