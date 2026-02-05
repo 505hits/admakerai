@@ -332,7 +332,8 @@ export default function BlogPost() {
 
                     <div 
                         className="prose prose-lg prose-invert max-w-none prose-headings:font-bold prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-a:text-[#ff0844] prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl"
-                        dangerouslySetInnerHTML={{ __html: \`${htmlContent.replace(/`/g, '\\`')}\` }} 
+                dangerouslySetInnerHTML={{ __html: \`\${htmlContent.replace(/`/ g, '\\\\`')
+} \` }} 
                     />
 
                     {/* FAQ */}
@@ -373,7 +374,7 @@ function updateBlogIndex(dir, topic, thumbnail, lang, title) {
     if (!fs.existsSync(listPath)) return;
 
     let content = fs.readFileSync(listPath, 'utf8');
-    const linkPath = \`/\${lang === 'en' ? 'blog' : lang + '/blog'}/\${topic.slug}\`;
+    const linkPath = `/${lang === 'en' ? 'blog' : lang + '/blog'}/${topic.slug}`;
     if (content.includes(linkPath)) return;
 
     // Standard card injection
@@ -399,9 +400,9 @@ function updateBlogIndex(dir, topic, thumbnail, lang, title) {
         `;
 
     if (content.includes('className={styles.blogGrid}')) {
-         content = content.replace(
-            'className={styles.blogGrid}>', 
-            `className = { styles.blogGrid } >\n${ newCard } `
+        content = content.replace(
+            'className={styles.blogGrid}>',
+            `className = { styles.blogGrid } >\n${newCard} `
         );
         fs.writeFileSync(listPath, content);
     }
