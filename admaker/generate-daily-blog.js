@@ -123,17 +123,18 @@ async function generateArticleContent(topic, langCode) {
             - Target Language: "${langCode}"
             
             **Strict Content Requirements**:
-            1. **Title H1**: Must be ~70 chars, start with "Best way", "How to", or "Top 5/10". Translated to ${langCode}.
-            2. **Length**: ~2000-2500 words.
-            3. **Quick Answer**: Start with a "Quick Answer" or "Summary" distinct block.
-            4. **Step-by-Step Guide**: Include a detailed, practical step-by-step guide on "How to make UGC ads with AdMaker AI" VERY EARLY in the article (around the second or third section).
-            5. **Natural Promotion**: Mention "AdMaker AI" naturally as a helpful tool. Do NOT be overly salesy or spammy. Google hates "hard selling". Focus on value and solving the user's problem.
-            6. **Internal Links**: Include ~10 internal links (e.g., to /pricing, /contact, /blog) **early** in the article. 
+            1. **Title H1**: Must be ~70 chars. MUST alternate between "Best way", "How to", "Top 5", or "Top 10" style. Translated to ${langCode}.
+            2. **Year**: ALWAYS use "2026" for the current year. NEVER use 2024 or 2025.
+            3. **Length**: ~2000-2500 words.
+            4. **Quick Answer**: Start with a "Quick Answer" or "Summary" distinct block.
+            5. **Step-by-Step Guide**: Include a detailed, practical step-by-step guide on "How to make UGC ads with AdMaker AI" VERY EARLY in the article (around the second or third section).
+            6. **Natural Promotion**: Mention "AdMaker AI" naturally as a helpful tool. Do NOT be overly salesy or spammy. Google hates "hard selling". Focus on value and solving the user's problem.
+            7. **Internal Links**: Include ~10 internal links (e.g., to /pricing, /contact, /blog) **early** in the article. 
                - **IMPORTANT**: Mark them as [INTERNAL_LINK: anchor_text | url].
-            7. **External Links**: Include ~5 high-authority external links near the **end** of the article.
-            8. **FAQ**: Exactly 15 relevant questions/answers.
-            9. **Tone**: Authenticity, "I tested this", data-backed numbers. Professional but accessible.
-            10. **Structure**: 
+            8. **External Links**: Include ~5 high-authority external links near the **end** of the article.
+            9. **FAQ**: Exactly 15 relevant questions/answers.
+            10. **Tone**: Authenticity, "I tested this", data-backed numbers. Professional but accessible.
+            11. **Structure**: 
                - Use <h2> and <h3>. 
                - Include EXACTLY 10 image placeholders: [IMAGE_PLACEHOLDER_1]...[IMAGE_PLACEHOLDER_10].
             
