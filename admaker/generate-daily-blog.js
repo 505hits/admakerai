@@ -204,9 +204,11 @@ async function generateArticleContent(topic, langCode) {
             2. **Year**: ALWAYS use "2026" for the current year. NEVER use 2024 or 2025. CHECK THIS TWICE.
             3. **Length**: CRITICAL: The content MUST be ~2000-2500 words of ACTUAL TEXT. 
                - DO NOT SUMMARIZE. 
-               - DO NOT use "..." or placeholders like "[Insert text here]".
-               - WRITE THE FULL, DETAILED PARAGRAPHS for every section.
-               - This is a long-form guide.
+               - NEVER use "..." or "etc." or placeholders like "[Insert text here]".
+               - WRITE THE FULL, DETAILED PARAGRAPHS for every single section.
+               - If you find yourself writing short descriptions, STOP and WRITE MORE.
+               - Every H2 section must have at least 300 words.
+               - This is a long-form guide. Do not be lazy.
             4. **Quick Answer**: Start with a "Quick Answer" or "Summary" distinct block.
             5. **Step-by-Step Guide**: Include a detailed, practical step-by-step guide on "How to make UGC ads with AdMaker AI" VERY EARLY in the article (around the second or third section).
             6. **Natural Promotion**: Mention "AdMaker AI" naturally as a helpful tool. Do NOT be overly salesy. Focus on value.
@@ -235,15 +237,21 @@ async function generateArticleContent(topic, langCode) {
             }
             `;
 
+            // DeepSeek R1 input structure
             const input = {
                 prompt: prompt,
-                max_tokens: 8192,
-                system_prompt: "You are a JSON-only response bot. Never output markdown fencing like ```json."
+                max_tokens: 65000, // Increased for R1 thinking + long content
+                temperature: 0.6
             };
 
-            output = await replicate.run("anthropic/claude-3.5-sonnet", { input });
+            // Using DeepSeek R1
+            output = await replicate.run("deepseek-ai/deepseek-r1", { input });
+
+            // DeepSeek returns an array of strings (iterator)
             fullText = Array.isArray(output) ? output.join('') : output;
 
+            // Remove <think> blocks common in R1
+            fullText = fullText.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
 
             fullText = fullText.replace(/```json/g, '').replace(/```/g, '').trim();
             const firstBrace = fullText.indexOf('{');
