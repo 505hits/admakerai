@@ -79,16 +79,21 @@ async function main() {
                 try {
                     const articleContent = await generateArticleContent(topic, lang.code);
 
-                    const postDir = path.join(lang.dir, topic.slug);
+                    // Use translated slug if available, otherwise fallback to topic.slug
+                    const finalSlug = (lang.code !== 'en' && articleContent.slug_translated)
+                        ? articleContent.slug_translated
+                        : topic.slug;
+
+                    const postDir = path.join(lang.dir, finalSlug);
                     if (!fs.existsSync(postDir)) {
                         fs.mkdirSync(postDir, { recursive: true });
                     }
 
                     const pageContent = createPageTsx(topic, articleContent, imageUrls, lang.code);
                     fs.writeFileSync(path.join(postDir, 'page.tsx'), pageContent);
-                    console.log(`    ✅ Created ${lang.code}/blog/${topic.slug}/page.tsx`);
+                    console.log(`    ✅ Created ${lang.code}/blog/${finalSlug}/page.tsx`);
 
-                    updateBlogIndex(lang.dir, topic, imageUrls[0], lang.code, articleContent.title_translated || topic.h1);
+                    updateBlogIndex(lang.dir, { ...topic, slug: finalSlug }, imageUrls[0], lang.code, articleContent.title_translated || topic.h1);
 
                     await sleep(3000);
 
@@ -129,8 +134,9 @@ async function generateArticleContent(topic, langCode) {
             4. **Quick Answer**: Start with a "Quick Answer" or "Summary" distinct block.
             5. **Step-by-Step Guide**: Include a detailed, practical step-by-step guide on "How to make UGC ads with AdMaker AI" VERY EARLY in the article (around the second or third section).
             6. **Natural Promotion**: Mention "AdMaker AI" naturally as a helpful tool. Do NOT be overly salesy or spammy. Google hates "hard selling". Focus on value and solving the user's problem.
-            7. **Internal Links**: Include ~10 internal links (e.g., to /pricing, /contact, /blog) **early** in the article. 
-               - **IMPORTANT**: Mark them as [INTERNAL_LINK: anchor_text | url].
+            7. **Internal Links**: Include ~10 internal links at the **END** of the article.
+               - **IMPORTANT**: They MUST link to other articles in the SAME language (e.g., /${langCode}/blog/...).
+               - Mark them as [INTERNAL_LINK: anchor_text | url].
             8. **External Links**: Include ~5 high-authority external links near the **end** of the article.
             9. **FAQ**: Exactly 15 relevant questions/answers.
             10. **Tone**: Authenticity, "I tested this", data-backed numbers. Professional but accessible.
@@ -142,6 +148,7 @@ async function generateArticleContent(topic, langCode) {
             Return ONLY a valid JSON object:
             {
                "title_translated": "...", 
+               "slug_translated": "translated-slug-perfect-keyword-match",
                "meta_description": "...",
                "quick_answer": "...",
                "content_html": "HTML string... (do not include <html> or <body> tags, just inner content)",
