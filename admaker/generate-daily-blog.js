@@ -374,7 +374,8 @@ function updateBlogIndex(dir, topic, thumbnail, lang, title) {
     if (!fs.existsSync(listPath)) return;
 
     let content = fs.readFileSync(listPath, 'utf8');
-    const linkPath = `/${lang === 'en' ? 'blog' : lang + '/blog'}/${topic.slug}`;
+    const prefix = lang === 'en' ? 'blog' : lang + '/blog';
+    const linkPath = '/' + prefix + '/' + topic.slug;
     if (content.includes(linkPath)) return;
 
     // Standard card injection
