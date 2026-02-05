@@ -130,7 +130,9 @@ async function main() {
                 // But without the translated slug, we don't know the path.
                 // Trade-off: We generate the JSON first (cheap-ish), then check if file exists.
 
-                const articleContent = await generateArticleContent(topic, lang.code);
+                // Pass completed topics for "Related Reading"
+                const completedTopics = topics.filter(t => t.status === 'completed');
+                const articleContent = await generateArticleContent(topic, lang.code, completedTopics);
 
                 // Use translated slug if available, otherwise fallback to topic.slug
                 const finalSlug = (lang.code !== 'en' && articleContent.slug_translated)
@@ -180,7 +182,7 @@ async function main() {
     console.log('\n✅ Batch Process Complete');
 }
 
-async function generateArticleContent(topic, langCode) {
+async function generateArticleContent(topic, langCode, completedTopics = []) {
     let retries = 3;
     while (retries > 0) {
         let output;
@@ -192,6 +194,14 @@ async function generateArticleContent(topic, langCode) {
             // Wait, replace_file_content is better with small chunks. 
             // I'll just change the declaration line.
 
+            // Select some related articles (random 3 from completed)
+            const relatedLinks = completedTopics
+                .filter(t => t.keyword !== topic.keyword) // Exclude self
+                .sort(() => 0.5 - Math.random())
+                .slice(0, 3)
+                .map(t => `- Title: "${t.h1}", URL: https://admakerai.app/blog/${t.slug}`)
+                .join('\n');
+
             const prompt = `
             You are an expert SEO Content Writer for "AdMaker AI". Write a high-ranking, COMPREHENSIVE blog post.
             
@@ -202,23 +212,41 @@ async function generateArticleContent(topic, langCode) {
             **Strict Content Requirements**:
             1. **Title H1**: Must be ~70 chars. MUST alternate between "Best way", "How to", "Top 5", or "Top 10" style. Translated to ${langCode}.
             2. **Year**: ALWAYS use "2026" for the current year. NEVER use 2024 or 2025. CHECK THIS TWICE.
-            3. **Length**: CRITICAL: The content MUST be ~2000-2500 words of ACTUAL TEXT. 
+            3. **Length**: CRITICAL: The content MUST be ~2500 words of ACTUAL TEXT. 
                - DO NOT SUMMARIZE. 
                - NEVER use "..." or "etc." or placeholders like "[Insert text here]".
                - WRITE THE FULL, DETAILED PARAGRAPHS for every single section.
-               - If you find yourself writing short descriptions, STOP and WRITE MORE.
-               - Every H2 section must have at least 300 words.
+               - Every H2 section must have at least 300-400 words.
                - This is a long-form guide. Do not be lazy.
-            4. **Quick Answer**: Start with a "Quick Answer" or "Summary" distinct block.
-            5. **Step-by-Step Guide**: Include a detailed, practical step-by-step guide on "How to make UGC ads with AdMaker AI" VERY EARLY in the article (around the second or third section).
-            6. **Natural Promotion**: Mention "AdMaker AI" naturally as a helpful tool. Do NOT be overly salesy. Focus on value.
-            7. **Internal Links**: Include ~10 internal links scattered throughout the text and at the end.
-               - Mark them as [INTERNAL_LINK: anchor_text | url].
-               - URLs must be relative (e.g., /blog/...).
-            8. **External Links**: Include ~5 high-authority external links.
-            9. **FAQ**: Exactly 15 relevant questions/answers.
-            10. **Tone**: Authenticity, "I tested this", data-backed numbers. Professional but accessible.
-            11. **Structure**: 
+            4. **Slug**: The "slug_translated" MUST be the EXACT translation of the provided Keyword, converted to kebab-case. 
+               - DO NOT add extra words like "guide", "review", "2026", or "best" unless they are part of the original Keyword.
+               - Example: Keyword "dog food" -> Slug "nourriture-chien". NOT "guide-nourriture-chien-2026".
+            5. **HTML Specifics**:
+               - Use \`<h2>\` and \`<h3>\` for headers.
+               - For comparisons, use standard HTML \`<table>\`, \`<tr>\`, \`<th>\`, \`<td>\`. 
+               - NEVER put \`<tr>\` tags inside \`<ul>\`. Lists use \`<li>\`, tables use \`<tr>\`.
+            6. **Step-by-Step Guide**: Include a detailed, practical step-by-step guide on "How to make UGC ads with AdMaker AI".
+               - **DEPTH REQUIREMENT**: This section is CRITICAL. Each step must be at least 200-300 words.
+               - Explain the "Why", the "How", and include "Pro Tips" for each step.
+               - Do not just list actions; explain the strategy behind them.
+            9. **Comparison Table**: You MUST include a standard HTML comparison table (`< table > `) in the section comparing AdMaker/Arcads/Competitors.
+               - Compare at least 3 tools (e.g., Arcads, AdMaker AI, and a purely manual option).
+               - Columns: Price, Speed, AI Features, Ease of Use.
+            10. **AdMaker Independence**: 
+               - AdMaker AI is a COMPETING, INDEPENDENT tool. It is NOT a plugin or sub-tool of Arcads.
+               - Position it as a smarter, more automated alternative.
+            11. **Objectivity & Free Tools**:
+               - To gain trust, mention free tools like Canva or CapCut.
+               - Example: "You can use CapCut for manual editing (free but slow), whereas AdMaker AI automates this..."
+               - This makes the review feel honest and less "salesy".
+            12. **Tone & Humanization**: 
+               - **Be OPINIONATED**. Don't just describe; judge.
+               - Avoid "neutral" corporate phrasing.
+               - **Add "Salt"**: Use metaphors and strong adjectives.
+            13. **Case Studies**: If you include case studies, they must be VERY DETAILED (min 400 words). TRIPLE the typical volume.
+            14. **Related Reading**: At the very end, include a section "Related Articles":
+               ${relatedLinks || "(No existing articles, link to /blog)"}
+            15. **Structure**: 
                - Use <h2> and <h3>. 
                - Include EXACTLY 10 image placeholders: [IMAGE_PLACEHOLDER_1]...[IMAGE_PLACEHOLDER_10]. Place them visibly between sections.
             
@@ -229,10 +257,10 @@ async function generateArticleContent(topic, langCode) {
             
             {
                "title_translated": "...", 
-               "slug_translated": "translated-slug-perfect-keyword-match",
+               "slug_translated": "translated-keyword-only-no-extras",
                "meta_description": "...",
                "quick_answer": "...",
-               "content_html": "HTML string... (NO <html>/<body> tags. JUST the inner HTML elements like <h2>, <p>, <ul>, etc.)",
+               "content_html": "HTML string... (NO <html>/<body> tags. JUST the inner HTML elements like <h2>, <p>, <table>, etc.)",
                "faq": [ { "question": "...", "answer": "..." } ... ]
             }
             `;
