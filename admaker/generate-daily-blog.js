@@ -305,7 +305,7 @@ async function generateSingleImage(prompt) {
     try {
         const res = await fetch('https://api.kie.ai/api/v1/jobs/createTask', {
             method: 'POST',
-            headers: { 'Authorization': `Bearer ${KIE_API_KEY}`, 'Content-Type': 'application/json' },
+            headers: { 'Authorization': `Bearer ${VEO_API_KEY}`, 'Content-Type': 'application/json' },
             body: JSON.stringify({ model: 'z-image', input: { prompt, aspect_ratio: '16:9' } })
         });
         const data = await res.json();
@@ -315,7 +315,7 @@ async function generateSingleImage(prompt) {
         for (let i = 0; i < 45; i++) {
             await sleep(2000);
             const check = await fetch(`https://api.kie.ai/api/v1/jobs/recordInfo?taskId=${taskId}`, {
-                headers: { 'Authorization': `Bearer ${KIE_API_KEY}` }
+                headers: { 'Authorization': `Bearer ${VEO_API_KEY}` }
             });
             const d = await check.json();
             if (d.data.state === 'success') return JSON.parse(d.data.resultJson).resultUrls[0];
