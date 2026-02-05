@@ -29,6 +29,10 @@ function sleep(ms) {
 
 async function main() {
     console.log('🚀 Starting Multilingual Daily Blog Generation (Strict SEO Mode)...');
+    console.log('CWD:', process.cwd());
+    console.log('__dirname:', __dirname);
+    console.log('BLOG_TOPICS_FILE:', BLOG_TOPICS_FILE);
+    console.log('API Keys Present:', !!REPLICATE_API_TOKEN, !!VEO_API_KEY);
 
     if (!REPLICATE_API_TOKEN || !VEO_API_KEY) {
         console.error('❌ Missing API Keys (REPLICATE_API_TOKEN or VEO_API_KEY)');
@@ -41,12 +45,13 @@ async function main() {
     }
 
     const topics = JSON.parse(fs.readFileSync(BLOG_TOPICS_FILE, 'utf8'));
+    console.log(`Loaded ${topics.length} topics. Scanning for pending...`);
 
     // Select up to 2 pending topics
     const pendingTopics = topics.filter(t => t.status === 'pending');
 
     if (pendingTopics.length === 0) {
-        console.log('✅ No pending topics found.');
+        console.log('✅ No pending topics found. (Filtered count: 0)');
         return;
     }
 
