@@ -154,7 +154,7 @@ async function generateArticleContent(topic, langCode) {
                 system_prompt: "You are a JSON-only response bot. Never output markdown fencing like ```json."
             };
 
-            const output = await replicate.run("anthropic/claude-4.5-sonnet:891395562725dcbe6af92af87997cd7d353683f2dc9f375fcca13824f15d7881", { input });
+            const output = await replicate.run("anthropic/claude-3.5-sonnet", { input });
             let fullText = Array.isArray(output) ? output.join('') : output;
 
             fullText = fullText.replace(/```json/g, '').replace(/```/g, '').trim();
