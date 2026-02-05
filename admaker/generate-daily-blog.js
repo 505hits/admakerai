@@ -332,8 +332,7 @@ export default function BlogPost() {
 
                     <div 
                         className="prose prose-lg prose-invert max-w-none prose-headings:font-bold prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-a:text-[#ff0844] prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl"
-                dangerouslySetInnerHTML={{ __html: \`\${htmlContent.replace(/`/ g, '\\\\`')
-} \` }} 
+                dangerouslySetInnerHTML={{ __html: htmlContent }} 
                     />
 
                     {/* FAQ */}
