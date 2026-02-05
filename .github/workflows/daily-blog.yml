@@ -3,7 +3,7 @@ name: Daily Blog Generation
 on:
   schedule:
     # Run at 18:45 UTC daily (19:45 CET / 20:45 CEST)
-    - cron: '30 10 * * *'
+    - cron: '0 11 * * *'
   workflow_dispatch:
 
 jobs:
