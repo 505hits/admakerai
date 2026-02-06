@@ -296,19 +296,37 @@ async function generateArticleContent(topic, langCode, completedTopics = []) {
             // 1. Remove ALL markdown code blocks markers
             fullText = fullText.replace(/```json\s*/gi, '').replace(/```\s*/g, '');
 
-            // 2. Remove common LLM preambles/postambles
-            fullText = fullText.replace(/^[\s\S]*?(?=\{)/m, ''); // Remove everything before first {
-
-            // 3. Find ALL valid JSON objects and take the FIRST complete one
+            // 2. Find the FIRST complete JSON object using proper string-aware parsing
             let braceCount = 0;
             let jsonStart = -1;
             let jsonEnd = -1;
+            let inString = false;
+            let escapeNext = false;
 
             for (let i = 0; i < fullText.length; i++) {
-                if (fullText[i] === '{') {
+                const char = fullText[i];
+
+                if (escapeNext) {
+                    escapeNext = false;
+                    continue;
+                }
+
+                if (char === '\\') {
+                    escapeNext = true;
+                    continue;
+                }
+
+                if (char === '"' && !escapeNext) {
+                    inString = !inString;
+                    continue;
+                }
+
+                if (inString) continue; // Skip characters inside strings
+
+                if (char === '{') {
                     if (braceCount === 0) jsonStart = i;
                     braceCount++;
-                } else if (fullText[i] === '}') {
+                } else if (char === '}') {
                     braceCount--;
                     if (braceCount === 0 && jsonStart !== -1) {
                         jsonEnd = i;
@@ -317,9 +335,20 @@ async function generateArticleContent(topic, langCode, completedTopics = []) {
                 }
             }
 
-            if (jsonStart !== -1 && jsonEnd !== -1) {
-                fullText = fullText.substring(jsonStart, jsonEnd + 1);
+            if (jsonStart === -1 || jsonEnd === -1) {
+                throw new Error('No valid JSON object found in response');
             }
+
+            fullText = fullText.substring(jsonStart, jsonEnd + 1);
+
+            // 3. Fix unescaped newlines/tabs INSIDE JSON string values
+            // This regex finds content between quotes and escapes literal newlines
+            fullText = fullText.replace(/"([^"\\]*(\\.[^"\\]*)*)"/g, (match) => {
+                return match
+                    .replace(/\n/g, '\\n')
+                    .replace(/\r/g, '\\r')
+                    .replace(/\t/g, '\\t');
+            });
 
             // 4. Fix common JSON issues from LLM
             fullText = fullText.replace(/,\s*}/g, '}'); // Remove trailing commas
