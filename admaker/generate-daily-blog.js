@@ -10,13 +10,13 @@ const VEO_API_KEY = process.env.VEO_API_KEY; // Previously KIE_API_KEY
 const BLOG_TOPICS_FILE = path.join(__dirname, 'data/blog-topics.json');
 
 const LANGUAGES = [
-    { code: 'en', dir: path.join(__dirname, 'app/blog') },
-    { code: 'fr', dir: path.join(__dirname, 'app/fr/blog') },
-    { code: 'es', dir: path.join(__dirname, 'app/es/blog') },
-    { code: 'pt', dir: path.join(__dirname, 'app/pt/blog') },
-    { code: 'de', dir: path.join(__dirname, 'app/de/blog') },
-    { code: 'ko', dir: path.join(__dirname, 'app/ko/blog') },
-    { code: 'ja', dir: path.join(__dirname, 'app/ja/blog') }
+    { code: 'en', name: 'English', dir: path.join(__dirname, 'app/blog') },
+    { code: 'fr', name: 'French', dir: path.join(__dirname, 'app/fr/blog') },
+    { code: 'es', name: 'Spanish', dir: path.join(__dirname, 'app/es/blog') },
+    { code: 'pt', name: 'Portuguese', dir: path.join(__dirname, 'app/pt/blog') },
+    { code: 'de', name: 'German', dir: path.join(__dirname, 'app/de/blog') },
+    { code: 'ko', name: 'Korean', dir: path.join(__dirname, 'app/ko/blog') },
+    { code: 'ja', name: 'Japanese', dir: path.join(__dirname, 'app/ja/blog') }
 ];
 
 const replicate = new Replicate({
@@ -132,7 +132,7 @@ async function main() {
 
                 // Pass completed topics for "Related Reading"
                 const completedTopics = topics.filter(t => t.status === 'completed');
-                const articleContent = await generateArticleContent(topic, lang.code, completedTopics);
+                const articleContent = await generateArticleContent(topic, lang, completedTopics);
 
                 // Use translated slug if available, otherwise fallback to topic.slug
                 const finalSlug = (lang.code !== 'en' && articleContent.slug_translated)
@@ -182,7 +182,7 @@ async function main() {
     console.log('\n✅ Batch Process Complete');
 }
 
-async function generateArticleContent(topic, langCode, completedTopics = []) {
+async function generateArticleContent(topic, lang, completedTopics = []) {
     let retries = 3;
     while (retries > 0) {
         let output;
@@ -207,9 +207,12 @@ async function generateArticleContent(topic, langCode, completedTopics = []) {
             
             **Input Data**:
             - Keyword: "${topic.keyword}"
-            - Target Language: "${langCode}"
+            - Target Language: ${lang.name} (code: ${lang.code})
             
-            ⚠️ **CRITICAL LENGTH REQUIREMENT** ⚠️
+            ⚠️ **CRITICAL: YOU MUST WRITE THE ENTIRE ARTICLE IN ${lang.name.toUpperCase()}** ⚠️
+            - All text MUST be in ${lang.name}, including title, headings, paragraphs, FAQ questions and answers
+            - Do NOT write in English if the target language is not English
+            - The slug should be translated/adapted to ${lang.name} as well
             This article MUST be approximately 2000 words (not less, not much more).
             - Every <h2> section MUST have MINIMUM 150-250 words.
             - Every paragraph MUST have at least 3-4 sentences.
