@@ -415,15 +415,6 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
-import styles from './Article.module.css'; // Assuming this exists in the root or a standard import is possible. 
-// Wait, if we are creating file in app/blog/[slug]/page.tsx, then relative path is ../Article.module.css? 
-// No, previously it was import styles from './Article.module.css'; which means it was in SAME folder.
-// Since we are creating a new folder, we won't have the CSS file there.
-// We MUST either inject styles or assume global styles/tailwind.
-// To fix "Missing CSS", I will use a path assuming it's in a shared location, OR just comment out styles import and rely on Tailwind.
-// The user's code relies on Tailwind mostly now.
-// I will REMOVE the css module import to prevent build errors and rely on Tailwind classes used in the JSX.
-// import styles from './Article.module.css'; << REMOVED
 
 export default function BlogPost() {
     const [showStickyCta, setShowStickyCta] = useState(false);
