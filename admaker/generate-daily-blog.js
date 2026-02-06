@@ -241,9 +241,14 @@ async function generateArticleContent(topic, langCode, completedTopics = []) {
             
             7. **Common Mistakes to Avoid** (250+ words): List 5+ mistakes with explanations
             
-            8. **FAQ Section** (in the JSON faq field): 5-7 questions with detailed answers
+            8. **When to Choose Arcads Instead** (200+ words) [E-E-A-T TRUST SECTION]:
+               - Be HONEST about AdMaker AI limitations
+               - Example: "If you need celebrity-level UGC actors or enterprise API integration, Arcads might be better"
+               - This section BOOSTS your Google trustworthiness score. Don't skip it.
             
-            9. **Conclusion + CTA** (200+ words): Summary and call to action
+            9. **FAQ Section** (in the JSON faq field): 5-7 questions with detailed answers
+            
+            10. **Conclusion + CTA** (200+ words): Summary and call to action
             
             **OTHER REQUIREMENTS**:
             - Title H1: ~70 chars, use "Best", "How to", "Top 5", or "Top 10" style. Translated to ${langCode}.
