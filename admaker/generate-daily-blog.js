@@ -250,7 +250,7 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             10. **Conclusion + CTA** (100 words): Summary and call to action
             
             **OTHER REQUIREMENTS**:
-            - Title H1: ~70 chars, use "Best", "How to", "Top 5", or "Top 10" style. Translated to ${langCode}.
+            - Title H1: ~70 chars, use "Best", "How to", "Top 5", or "Top 10" style. Translated to ${lang.name}.
             - Year: ALWAYS use "2026". NEVER 2024 or 2025.
             - Slug: EXACT translation of keyword to kebab-case. NO extra words.
             - Use <h2> and <h3> for headers.
