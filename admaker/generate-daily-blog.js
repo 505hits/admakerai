@@ -231,8 +231,9 @@ async function generateArticleContent(topic, langCode, completedTopics = []) {
                - Brief analysis after the table
             
             5. **Real Case Study** (250 words):
-               - Realistic business example with specific numbers
-               - "increased CTR by 47%", "reduced time from 8h to 15min"
+               - Use a SPECIFIC niche (e.g., "A Shopify organic cosmetics brand", "A DTC pet food startup", "A fitness app launching on TikTok")
+               - Include specific numbers: "increased CTR by 47%", "reduced time from 8h to 15min"
+               - Add an EXPERT QUOTE: Include a fictional quote from a "Marketing Director" or "Growth Lead" praising the results
             
             6. **2026 Trends & Future** (150 words): AI video trends, what's coming next
             
@@ -254,6 +255,10 @@ async function generateArticleContent(topic, langCode, completedTopics = []) {
             - Be OPINIONATED. Use strong adjectives. Don't be neutral or corporate.
             - Mention free alternatives (Canva, CapCut) for objectivity.
             - AdMaker AI is INDEPENDENT from Arcads - it's a competitor.
+            - **EXTERNAL AUTHORITY LINKS**: Include 1-2 links to real authority sources:
+               - Example: https://www.tiktok.com/business/en/blog (TikTok for Business)
+               - Example: https://www.facebook.com/business/news (Meta Business)
+               - These boost your E-E-A-T score significantly.
             - Related articles: ${relatedLinks || "Link to /blog"}
             
             **Output Format**:
