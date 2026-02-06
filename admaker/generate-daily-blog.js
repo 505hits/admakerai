@@ -210,45 +210,40 @@ async function generateArticleContent(topic, langCode, completedTopics = []) {
             - Target Language: "${langCode}"
             
             ⚠️ **CRITICAL LENGTH REQUIREMENT** ⚠️
-            This article MUST be AT LEAST 2500 words. You will be penalized if the article is shorter.
-            - Every <h2> section MUST have MINIMUM 400 words.
-            - Every paragraph MUST have at least 4-5 sentences.
-            - NEVER summarize. ALWAYS elaborate with examples, statistics, and detailed explanations.
-            - If you think you're done, you're NOT. Add more details.
+            This article MUST be approximately 2000 words (not less, not much more).
+            - Every <h2> section MUST have MINIMUM 150-250 words.
+            - Every paragraph MUST have at least 3-4 sentences.
+            - NEVER summarize too much. Elaborate with examples.
             
             **MANDATORY SECTIONS** (you MUST include ALL of these):
             
-            1. **Introduction** (300+ words): Hook the reader, explain the problem, preview the solution.
+            1. **Introduction** (150 words): Hook the reader, explain the problem.
             
-            2. **What is [Topic]?** (400+ words): Deep explanation with context, history, why it matters in 2026.
+            2. **What is [Topic]?** (200 words): Explanation with context for 2026.
             
-            3. **Step-by-Step Guide: How to Make UGC Ads with AdMaker AI** (800+ words):
-               - Include 5-7 detailed steps
-               - Each step: 150+ words with "Why", "How", and "Pro Tip"
-               - Be specific about buttons to click, settings to use
+            3. **Step-by-Step Guide: How to Make UGC Ads with AdMaker AI** (500 words):
+               - Include 5 steps
+               - Each step: 100 words with "Why", "How", and "Pro Tip"
             
-            4. **Comparison Table** (300+ words): 
+            4. **Comparison Table** (200 words): 
                - HTML table comparing AdMaker AI, Arcads, Canva, CapCut
-               - Columns: Price, Speed, AI Features, Ease of Use, Best For
-               - Add analysis paragraph AFTER the table
+               - Columns: Price, Speed, AI Features, Ease of Use
+               - Brief analysis after the table
             
-            5. **Real Case Study** (400+ words):
-               - Fictional but realistic business example
-               - Include specific numbers: "increased CTR by 47%", "reduced production time from 8 hours to 15 minutes"
-               - Describe the before/after journey
+            5. **Real Case Study** (250 words):
+               - Realistic business example with specific numbers
+               - "increased CTR by 47%", "reduced time from 8h to 15min"
             
-            6. **2026 Trends & Future** (300+ words): AI video trends, AR integration, what's coming next
+            6. **2026 Trends & Future** (150 words): AI video trends, what's coming next
             
-            7. **Common Mistakes to Avoid** (250+ words): List 5+ mistakes with explanations
+            7. **Common Mistakes to Avoid** (150 words): List 3-5 mistakes
             
-            8. **When to Choose Arcads Instead** (200+ words) [E-E-A-T TRUST SECTION]:
+            8. **When to Choose Arcads Instead** (100 words) [E-E-A-T TRUST]:
                - Be HONEST about AdMaker AI limitations
-               - Example: "If you need celebrity-level UGC actors or enterprise API integration, Arcads might be better"
-               - This section BOOSTS your Google trustworthiness score. Don't skip it.
             
-            9. **FAQ Section** (in the JSON faq field): 5-7 questions with detailed answers
+            9. **FAQ Section** (in JSON faq field): 5 questions with answers
             
-            10. **Conclusion + CTA** (200+ words): Summary and call to action
+            10. **Conclusion + CTA** (100 words): Summary and call to action
             
             **OTHER REQUIREMENTS**:
             - Title H1: ~70 chars, use "Best", "How to", "Top 5", or "Top 10" style. Translated to ${langCode}.
