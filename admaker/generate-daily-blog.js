@@ -189,7 +189,7 @@ async function generateArticleContent(topic, langCode, completedTopics = []) {
         let fullText;
 
         try {
-            console.log(`    🤖 Asking DeepSeek R1 (${retries} attempts left)...`);
+            console.log(`    🤖 Asking Llama 3.1 405B (${retries} attempts left)...`);
             // ... prompt definition ... (we can leave prompt def inside or move it out, but output needs to be outside)
             // Wait, replace_file_content is better with small chunks. 
             // I'll just change the declaration line.
@@ -265,21 +265,22 @@ async function generateArticleContent(topic, langCode, completedTopics = []) {
             }
             `;
 
-            // DeepSeek R1 input structure
+            // Llama 3.1 405B input structure
             const input = {
+                system_prompt: "You are an expert SEO Content Writer. You MUST write detailed, comprehensive content. NEVER be lazy. ALWAYS write at least 2000 words. Return ONLY valid JSON with no markdown formatting.",
                 prompt: prompt,
-                max_tokens: 65000, // Increased for R1 thinking + long content
-                temperature: 0.6
+                max_tokens: 8000, // Enough for 2000+ word articles
+                min_tokens: 4000, // Force minimum length
+                temperature: 0.7,
+                top_p: 0.9
             };
 
-            // Using DeepSeek R1
-            output = await replicate.run("deepseek-ai/deepseek-r1", { input });
+            // Using Llama 3.1 405B Instruct
+            console.log(`    📝 Generating with Llama 3.1 405B...`);
+            output = await replicate.run("meta/meta-llama-3.1-405b-instruct", { input });
 
-            // DeepSeek returns an array of strings (iterator)
+            // Llama returns an array of strings (iterator)
             fullText = Array.isArray(output) ? output.join('') : output;
-
-            // Remove <think> blocks common in R1
-            fullText = fullText.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
 
             fullText = fullText.replace(/```json/g, '').replace(/```/g, '').trim();
             const firstBrace = fullText.indexOf('{');
