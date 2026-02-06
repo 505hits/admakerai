@@ -203,65 +203,70 @@ async function generateArticleContent(topic, langCode, completedTopics = []) {
                 .join('\n');
 
             const prompt = `
-            You are an expert SEO Content Writer for "AdMaker AI". Write a high-ranking, COMPREHENSIVE blog post.
+            You are an expert SEO Content Writer for "AdMaker AI". Write a LONG, COMPREHENSIVE blog post.
             
             **Input Data**:
             - Keyword: "${topic.keyword}"
             - Target Language: "${langCode}"
             
-            **Strict Content Requirements**:
-            1. **Title H1**: Must be ~70 chars. MUST alternate between "Best way", "How to", "Top 5", or "Top 10" style. Translated to ${langCode}.
-            2. **Year**: ALWAYS use "2026" for the current year. NEVER use 2024 or 2025. CHECK THIS TWICE.
-            3. **Length**: CRITICAL: The content MUST be ~2500 words of ACTUAL TEXT. 
-               - DO NOT SUMMARIZE. 
-               - NEVER use "..." or "etc." or placeholders like "[Insert text here]".
-               - WRITE THE FULL, DETAILED PARAGRAPHS for every single section.
-               - Every H2 section must have at least 300-400 words.
-               - This is a long-form guide. Do not be lazy.
-            4. **Slug**: The "slug_translated" MUST be the EXACT translation of the provided Keyword, converted to kebab-case. 
-               - DO NOT add extra words like "guide", "review", "2026", or "best" unless they are part of the original Keyword.
-               - Example: Keyword "dog food" -> Slug "nourriture-chien". NOT "guide-nourriture-chien-2026".
-            5. **HTML Specifics**:
-               - Use \`<h2>\` and \`<h3>\` for headers.
-               - For comparisons, use standard HTML \`<table>\`, \`<tr>\`, \`<th>\`, \`<td>\`. 
-               - NEVER put \`<tr>\` tags inside \`<ul>\`. Lists use \`<li>\`, tables use \`<tr>\`.
-            6. **Step-by-Step Guide**: Include a detailed, practical step-by-step guide on "How to make UGC ads with AdMaker AI".
-               - **DEPTH REQUIREMENT**: This section is CRITICAL. Each step must be at least 200-300 words.
-               - Explain the "Why", the "How", and include "Pro Tips" for each step.
-               - Do not just list actions; explain the strategy behind them.
-            7. **Comparison Table**: You MUST include a standard HTML comparison table (\`<table>\`) in the section comparing AdMaker/Arcads/Competitors.
-               - Compare at least 3 tools (e.g., Arcads, AdMaker AI, and a purely manual option).
-               - Columns: Price, Speed, AI Features, Ease of Use.
-            10. **AdMaker Independence**: 
-               - AdMaker AI is a COMPETING, INDEPENDENT tool. It is NOT a plugin or sub-tool of Arcads.
-               - Position it as a smarter, more automated alternative.
-            11. **Objectivity & Free Tools**:
-               - To gain trust, mention free tools like Canva or CapCut.
-               - Example: "You can use CapCut for manual editing (free but slow), whereas AdMaker AI automates this..."
-               - This makes the review feel honest and less "salesy".
-            12. **Tone & Humanization**: 
-               - **Be OPINIONATED**. Don't just describe; judge.
-               - Avoid "neutral" corporate phrasing.
-               - **Add "Salt"**: Use metaphors and strong adjectives.
-            13. **Case Studies**: If you include case studies, they must be VERY DETAILED (min 400 words). TRIPLE the typical volume.
-            14. **Related Reading**: At the very end, include a section "Related Articles":
-               ${relatedLinks || "(No existing articles, link to /blog)"}
-            15. **Structure**: 
-               - Use <h2> and <h3>. 
-               - Include EXACTLY 10 image placeholders: [IMAGE_PLACEHOLDER_1]...[IMAGE_PLACEHOLDER_10]. Place them visibly between sections.
+            ⚠️ **CRITICAL LENGTH REQUIREMENT** ⚠️
+            This article MUST be AT LEAST 2500 words. You will be penalized if the article is shorter.
+            - Every <h2> section MUST have MINIMUM 400 words.
+            - Every paragraph MUST have at least 4-5 sentences.
+            - NEVER summarize. ALWAYS elaborate with examples, statistics, and detailed explanations.
+            - If you think you're done, you're NOT. Add more details.
+            
+            **MANDATORY SECTIONS** (you MUST include ALL of these):
+            
+            1. **Introduction** (300+ words): Hook the reader, explain the problem, preview the solution.
+            
+            2. **What is [Topic]?** (400+ words): Deep explanation with context, history, why it matters in 2026.
+            
+            3. **Step-by-Step Guide: How to Make UGC Ads with AdMaker AI** (800+ words):
+               - Include 5-7 detailed steps
+               - Each step: 150+ words with "Why", "How", and "Pro Tip"
+               - Be specific about buttons to click, settings to use
+            
+            4. **Comparison Table** (300+ words): 
+               - HTML table comparing AdMaker AI, Arcads, Canva, CapCut
+               - Columns: Price, Speed, AI Features, Ease of Use, Best For
+               - Add analysis paragraph AFTER the table
+            
+            5. **Real Case Study** (400+ words):
+               - Fictional but realistic business example
+               - Include specific numbers: "increased CTR by 47%", "reduced production time from 8 hours to 15 minutes"
+               - Describe the before/after journey
+            
+            6. **2026 Trends & Future** (300+ words): AI video trends, AR integration, what's coming next
+            
+            7. **Common Mistakes to Avoid** (250+ words): List 5+ mistakes with explanations
+            
+            8. **FAQ Section** (in the JSON faq field): 5-7 questions with detailed answers
+            
+            9. **Conclusion + CTA** (200+ words): Summary and call to action
+            
+            **OTHER REQUIREMENTS**:
+            - Title H1: ~70 chars, use "Best", "How to", "Top 5", or "Top 10" style. Translated to ${langCode}.
+            - Year: ALWAYS use "2026". NEVER 2024 or 2025.
+            - Slug: EXACT translation of keyword to kebab-case. NO extra words.
+            - Use <h2> and <h3> for headers.
+            - Include EXACTLY 10 image placeholders: [IMAGE_PLACEHOLDER_1] through [IMAGE_PLACEHOLDER_10]
+            - Be OPINIONATED. Use strong adjectives. Don't be neutral or corporate.
+            - Mention free alternatives (Canva, CapCut) for objectivity.
+            - AdMaker AI is INDEPENDENT from Arcads - it's a competitor.
+            - Related articles: ${relatedLinks || "Link to /blog"}
             
             **Output Format**:
-            Return ONLY a valid JSON object.
-            **CRITICAL**: The "content_html" and other strings MUST NOT contain literal newlines. Escape all newlines as \\n. 
-            Example: "content_html": "<p>Para 1</p>\\n<p>Para 2</p>"
+            Return ONLY a valid JSON object with NO markdown formatting.
+            Escape all newlines as \\n inside strings.
             
             {
                "title_translated": "...", 
-               "slug_translated": "translated-keyword-only-no-extras",
-               "meta_description": "...",
-               "quick_answer": "...",
-               "content_html": "HTML string... (NO <html>/<body> tags. JUST the inner HTML elements like <h2>, <p>, <table>, etc.)",
-               "faq": [ { "question": "...", "answer": "..." } ... ]
+               "slug_translated": "translated-keyword-only",
+               "meta_description": "155 chars max...",
+               "quick_answer": "2-3 sentence direct answer...",
+               "content_html": "LONG HTML content with all sections above...",
+               "faq": [ { "question": "...", "answer": "..." }, ... ]
             }
             `;
 
