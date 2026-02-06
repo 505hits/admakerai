@@ -222,14 +222,14 @@ async function generateArticleContent(topic, langCode, completedTopics = []) {
                - DO NOT add extra words like "guide", "review", "2026", or "best" unless they are part of the original Keyword.
                - Example: Keyword "dog food" -> Slug "nourriture-chien". NOT "guide-nourriture-chien-2026".
             5. **HTML Specifics**:
-               - Use \\`< h2 >\\` and \\` < h3 >\\` for headers.
-               - For comparisons, use standard HTML \\`< table >\\`, \\` < tr >\\`, \\` < th >\\`, \\` < td >\\`. 
-               - NEVER put \\`< tr >\\` tags inside \\` < ul >\\`. Lists use \\` < li >\\`, tables use \\` < tr >\\`.
+               - Use \`<h2>\` and \`<h3>\` for headers.
+               - For comparisons, use standard HTML \`<table>\`, \`<tr>\`, \`<th>\`, \`<td>\`. 
+               - NEVER put \`<tr>\` tags inside \`<ul>\`. Lists use \`<li>\`, tables use \`<tr>\`.
             6. **Step-by-Step Guide**: Include a detailed, practical step-by-step guide on "How to make UGC ads with AdMaker AI".
                - **DEPTH REQUIREMENT**: This section is CRITICAL. Each step must be at least 200-300 words.
                - Explain the "Why", the "How", and include "Pro Tips" for each step.
                - Do not just list actions; explain the strategy behind them.
-            7. **Comparison Table**: You MUST include a standard HTML comparison table (\\`< table >\\`) in the section comparing AdMaker/Arcads/Competitors.
+            7. **Comparison Table**: You MUST include a standard HTML comparison table (\`<table>\`) in the section comparing AdMaker/Arcads/Competitors.
                - Compare at least 3 tools (e.g., Arcads, AdMaker AI, and a purely manual option).
                - Columns: Price, Speed, AI Features, Ease of Use.
             10. **AdMaker Independence**: 
