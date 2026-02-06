@@ -386,10 +386,42 @@ function downloadImage(url, filepath) {
 function createPageTsx(topic, content, images, lang) {
     let htmlContent = content.content_html;
 
-    // Replace Image Placeholders
+    // ========== SEO SANITIZATION ==========
+
+    // 1. Remove duplicate H1 tags (template already has H1 in header)
+    htmlContent = htmlContent.replace(/<h1[^>]*>.*?<\/h1>/gi, '');
+
+    // 2. Remove any leftover image placeholders that weren't replaced
+    htmlContent = htmlContent.replace(/\[IMAGE_PLACEHOLDER_\d+\]/g, '');
+
+    // 3. Remove empty paragraphs and whitespace-only tags
+    htmlContent = htmlContent.replace(/<p>\s*<\/p>/gi, '');
+    htmlContent = htmlContent.replace(/<div>\s*<\/div>/gi, '');
+
+    // 4. Fix potential unclosed tags (basic cleanup)
+    htmlContent = htmlContent.replace(/<br>/gi, '<br/>');
+    htmlContent = htmlContent.replace(/<hr>/gi, '<hr/>');
+
+    // 5. Remove markdown artifacts that might slip through
+    htmlContent = htmlContent.replace(/```[a-z]*\n?/gi, '');
+    htmlContent = htmlContent.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    htmlContent = htmlContent.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+
+    // 6. Clean up excessive newlines
+    htmlContent = htmlContent.replace(/\n{3,}/g, '\n\n');
+
+    // 7. Ensure all links have rel="noopener" for external links
+    htmlContent = htmlContent.replace(
+        /<a\s+href="(https?:\/\/(?!admakerai\.app)[^"]+)"([^>]*)>/gi,
+        '<a href="$1" rel="noopener noreferrer" target="_blank"$2>'
+    );
+
+    // ========== END SEO SANITIZATION ==========
+
+    // Replace Image Placeholders with actual images
     images.forEach((img, idx) => {
         // Use standard img tag for simplicity within dangerouslySetInnerHTML
-        const stdImgTag = `<img src="${img}" alt="${topic.keyword}" class="w-full rounded-xl my-8 hover:opacity-95 transition" />`;
+        const stdImgTag = `<img src="${img}" alt="${topic.keyword} - illustration ${idx + 1}" loading="lazy" class="w-full rounded-xl my-8 hover:opacity-95 transition" />`;
         htmlContent = htmlContent.replace(`[IMAGE_PLACEHOLDER_${idx + 1}]`, stdImgTag);
     });
 
