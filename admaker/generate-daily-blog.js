@@ -292,12 +292,38 @@ async function generateArticleContent(topic, langCode, completedTopics = []) {
             // Llama returns an array of strings (iterator)
             fullText = Array.isArray(output) ? output.join('') : output;
 
-            fullText = fullText.replace(/```json/g, '').replace(/```/g, '').trim();
-            const firstBrace = fullText.indexOf('{');
-            const lastBrace = fullText.lastIndexOf('}');
-            if (firstBrace !== -1 && lastBrace !== -1) {
-                fullText = fullText.substring(firstBrace, lastBrace + 1);
+            // === ROBUST JSON EXTRACTION ===
+            // 1. Remove ALL markdown code blocks markers
+            fullText = fullText.replace(/```json\s*/gi, '').replace(/```\s*/g, '');
+
+            // 2. Remove common LLM preambles/postambles
+            fullText = fullText.replace(/^[\s\S]*?(?=\{)/m, ''); // Remove everything before first {
+
+            // 3. Find ALL valid JSON objects and take the FIRST complete one
+            let braceCount = 0;
+            let jsonStart = -1;
+            let jsonEnd = -1;
+
+            for (let i = 0; i < fullText.length; i++) {
+                if (fullText[i] === '{') {
+                    if (braceCount === 0) jsonStart = i;
+                    braceCount++;
+                } else if (fullText[i] === '}') {
+                    braceCount--;
+                    if (braceCount === 0 && jsonStart !== -1) {
+                        jsonEnd = i;
+                        break; // Found first complete JSON object
+                    }
+                }
             }
+
+            if (jsonStart !== -1 && jsonEnd !== -1) {
+                fullText = fullText.substring(jsonStart, jsonEnd + 1);
+            }
+
+            // 4. Fix common JSON issues from LLM
+            fullText = fullText.replace(/,\s*}/g, '}'); // Remove trailing commas
+            fullText = fullText.replace(/,\s*]/g, ']'); // Remove trailing commas in arrays
 
             return JSON.parse(fullText);
         } catch (e) {
