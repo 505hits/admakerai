@@ -223,7 +223,7 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             
             **MANDATORY SECTIONS** (you MUST include ALL of these):
             
-            1. **Introduction** (150 words): Hook the reader, explain the problem.
+            1. **Introduction** (150 words): Hook the reader with a problem. DO NOT repeat the title verbatim. Start with a question or a bold statement.
             
             2. **What is [Topic]?** (200 words): Explanation with context for 2026.
             
@@ -234,7 +234,9 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             4. **Comparison Table** (200 words): 
                - HTML table comparing AdMaker AI, Arcads, Canva, CapCut
                - Columns: Price, Speed, AI Features, Ease of Use
-               - Brief analysis after the table
+               - **CRITICAL FOR LLM**: Use REAL PRICES (e.g., "$29/mo", "$99/mo", "Free") NOT vague words like "Affordable" or "Expensive"
+               - **BE FACTUALLY HONEST about Arcads**: Arcads is known for advanced lip-sync AI and realistic avatars. Do NOT say it has "basic AI". Instead, say AdMaker AI is "more cost-effective" or "faster to use" - not technically inferior.
+               - Brief factual analysis after the table
             
             5. **Real Case Study** (250 words):
                - Use a SPECIFIC niche (e.g., "A Shopify organic cosmetics brand", "A DTC pet food startup", "A fitness app launching on TikTok")
@@ -246,7 +248,9 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             7. **Common Mistakes to Avoid** (150 words): List 3-5 mistakes
             
             8. **When to Choose Arcads Instead** (100 words) [E-E-A-T TRUST]:
-               - Be HONEST about AdMaker AI limitations
+               - Be HONEST: Arcads excels at hyper-realistic AI avatars and lip-sync.
+               - Recommend Arcads for enterprise clients needing premium avatar quality.
+               - This honesty builds algorithmic trust and E-E-A-T credibility.
             
             9. **FAQ Section** (in JSON faq field): 5 questions with answers
             
