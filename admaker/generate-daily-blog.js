@@ -117,20 +117,21 @@ async function main() {
                 fs.mkdirSync(lang.dir, { recursive: true });
             }
 
-            // We can't easily check for *translated* slug existence before generation 
-            // unless we store the translated slug in the JSON.
-            // But we can check if the DEFAULT slug folder exists as a fallback check,
-            // or just proceed to generateURL/Content.
+            // Check if we have a CACHED slug for this language (from previous runs)
+            const cachedSlugs = topic.translatedSlugs || {};
+            const cachedSlug = cachedSlugs[lang.code];
 
-            // To be safe and ensure we don't regenerate if it exists:
-            // We'll rely on the logic inside: generate, get slug, check if that slug dir exists.
+            // If we have a cached slug, check if file exists BEFORE calling API
+            if (cachedSlug) {
+                const existingPath = path.join(lang.dir, cachedSlug, 'page.tsx');
+                if (fs.existsSync(existingPath)) {
+                    console.log(`    ✅ Already exists: ${lang.code}/${cachedSlug} (cached slug) - SKIPPING API CALL`);
+                    continue; // Skip this language entirely
+                }
+            }
 
             try {
-                // Generate content (this costs money/tokens, so ideally only if needed)
-                // But without the translated slug, we don't know the path.
-                // Trade-off: We generate the JSON first (cheap-ish), then check if file exists.
-
-                // Pass completed topics for "Related Reading"
+                // Generate content (this costs money/tokens)
                 const completedTopics = topics.filter(t => t.status === 'completed');
                 const articleContent = await generateArticleContent(topic, lang, completedTopics);
 
@@ -140,6 +141,17 @@ async function main() {
                 // Warn if non-English language got same slug as English (SEO problem)
                 if (lang.code !== 'en' && finalSlug === topic.slug) {
                     console.warn(`    ⚠️ WARNING: ${lang.code} got same slug as English "${finalSlug}" - this is bad for SEO!`);
+                }
+
+                // CACHE this slug for future runs
+                const topicIndex = topics.findIndex(t => t.keyword === topic.keyword);
+                if (topicIndex !== -1) {
+                    if (!topics[topicIndex].translatedSlugs) {
+                        topics[topicIndex].translatedSlugs = {};
+                    }
+                    topics[topicIndex].translatedSlugs[lang.code] = finalSlug;
+                    // Save immediately so we don't lose progress if script crashes
+                    fs.writeFileSync(BLOG_TOPICS_FILE, JSON.stringify(topics, null, 2));
                 }
 
                 const postDir = path.join(lang.dir, finalSlug);
