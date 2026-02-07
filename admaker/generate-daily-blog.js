@@ -53,10 +53,10 @@ async function main() {
     // For now, let's explicitly look for topics that are marked 'completed' but missing files in some languages.
     // However, to respect the "2 per day" limit, we should prioritize "pending" OR "fixing incomplete".
 
-    // User wants 2 articles per day * 7 languages = 14 gens.
+    // 1 topic per day * 7 languages = 7 generations per day
     // If we have incomplete topics, we should finish them first.
 
-    const limit = 2;
+    const limit = 1; // 1 topic per day, translated into all 7 languages
     let processedCount = 0;
 
     // Filter for pending topics
@@ -134,10 +134,13 @@ async function main() {
                 const completedTopics = topics.filter(t => t.status === 'completed');
                 const articleContent = await generateArticleContent(topic, lang, completedTopics);
 
-                // Use translated slug if available, otherwise fallback to topic.slug
-                const finalSlug = (lang.code !== 'en' && articleContent.slug_translated)
-                    ? articleContent.slug_translated
-                    : topic.slug;
+                // Use translated slug - it should ALWAYS be present and DIFFERENT for each language
+                const finalSlug = articleContent.slug_translated || topic.slug;
+
+                // Warn if non-English language got same slug as English (SEO problem)
+                if (lang.code !== 'en' && finalSlug === topic.slug) {
+                    console.warn(`    ⚠️ WARNING: ${lang.code} got same slug as English "${finalSlug}" - this is bad for SEO!`);
+                }
 
                 const postDir = path.join(lang.dir, finalSlug);
 
@@ -199,7 +202,7 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
                 .filter(t => t.keyword !== topic.keyword) // Exclude self
                 .sort(() => 0.5 - Math.random())
                 .slice(0, 3)
-                .map(t => `- Title: "${t.h1}", URL: https://admakerai.app/blog/${t.slug}`)
+                .map(t => `- Title: "${t.h1}", URL: https://admakerai.app/${lang.code === 'en' ? '' : lang.code + '/'}blog/${t.slug}`)
                 .join('\n');
 
             const prompt = `
@@ -252,7 +255,9 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             **OTHER REQUIREMENTS**:
             - Title H1: ~70 chars, use "Best", "How to", "Top 5", or "Top 10" style. Translated to ${lang.name}.
             - Year: ALWAYS use "2026". NEVER 2024 or 2025.
-            - Slug: EXACT translation of keyword to kebab-case. NO extra words.
+            - Slug: MUST be a UNIQUE translation of the keyword to ${lang.name}. Do NOT just use the English slug.
+               Example: If keyword is "arcads ai" and lang is French, slug should be like "avis-arcads-ai" NOT "arcads-ai".
+               CRITICAL: The slug MUST be DIFFERENT from the English version for non-English languages.
             - Use <h2> and <h3> for headers.
             - Include EXACTLY 10 image placeholders: [IMAGE_PLACEHOLDER_1] through [IMAGE_PLACEHOLDER_10]
             - Be OPINIONATED. Use strong adjectives. Don't be neutral or corporate.
