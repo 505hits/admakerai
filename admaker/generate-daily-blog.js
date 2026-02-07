@@ -78,40 +78,14 @@ async function main() {
     for (const topic of topicsToProcess) {
         console.log(`\n📝 Processing Topic: ${topic.h1} (${topic.slug})`);
 
-        // Check which languages are missing
-        const missingLanguages = [];
-        for (const lang of LANGUAGES) {
-            // We need to know the translated slug to check existence accurately, 
-            // but we don't know it yet if we haven't generated it. 
-            // HOWEVER, for checking if we should START, we can check if the folder usually matches the topic slug 
-            // OR if we can find a folder that *looks* like it.
-            // Simpler approach: If 'en' exists, we might assume others should too. 
-            // But if we want to be robust:
-            // We will try running the generation. The generation function checks if file exists.
-            missingLanguages.push(lang);
-        }
-
-        if (missingLanguages.length === 0) {
-            console.log('  ✨ All languages appear to exist. Marking complete.');
-            const originalIndex = topics.findIndex(t => t.keyword === topic.keyword);
-            if (originalIndex !== -1) {
-                topics[originalIndex].status = 'completed';
-                topics[originalIndex].completedDate = new Date().toISOString();
-            }
-            continue;
-        }
-
-        // 2. Generate Images (10 images per topic)
-        // We only generate images if we are actually going to generate some content.
-        // Optimization: Check if images for this topic already exist in a way we can reuse?
-        // For now, standard flow: generate fresh images to ensure quality/linkage.
-        const imageUrls = await generateBlogImages(topic.keyword, 10);
-
-        // 3. Iterate Languages
+        // STEP 1: Generate TEXT for all languages FIRST (fast fail on errors)
+        console.log('  📝 PHASE 1: Generating text content for all languages...');
+        const generatedContent = {}; // { langCode: articleContent }
+        let anyTextSucceeded = false;
         let allLanguagesSuccessful = true;
 
         for (const lang of LANGUAGES) {
-            console.log(`  🌐 Checking/Generating for Lang: ${lang.code.toUpperCase()}`);
+            console.log(`  🌐 Generating text for: ${lang.code.toUpperCase()}`);
 
             if (!fs.existsSync(lang.dir)) {
                 fs.mkdirSync(lang.dir, { recursive: true });
@@ -125,22 +99,22 @@ async function main() {
             if (cachedSlug) {
                 const existingPath = path.join(lang.dir, cachedSlug, 'page.tsx');
                 if (fs.existsSync(existingPath)) {
-                    console.log(`    ✅ Already exists: ${lang.code}/${cachedSlug} (cached slug) - SKIPPING API CALL`);
-                    continue; // Skip this language entirely
+                    console.log(`    ✅ Already exists: ${lang.code}/${cachedSlug} (cached) - SKIPPING`);
+                    generatedContent[lang.code] = { _skipped: true, slug: cachedSlug };
+                    anyTextSucceeded = true;
+                    continue;
                 }
             }
 
             try {
-                // Generate content (this costs money/tokens)
                 const completedTopics = topics.filter(t => t.status === 'completed');
                 const articleContent = await generateArticleContent(topic, lang, completedTopics);
 
-                // Use translated slug - it should ALWAYS be present and DIFFERENT for each language
                 const finalSlug = articleContent.slug_translated || topic.slug;
 
-                // Warn if non-English language got same slug as English (SEO problem)
+                // Warn if non-English language got same slug as English
                 if (lang.code !== 'en' && finalSlug === topic.slug) {
-                    console.warn(`    ⚠️ WARNING: ${lang.code} got same slug as English "${finalSlug}" - this is bad for SEO!`);
+                    console.warn(`    ⚠️ WARNING: ${lang.code} got same slug as English "${finalSlug}"`);
                 }
 
                 // CACHE this slug for future runs
@@ -150,37 +124,53 @@ async function main() {
                         topics[topicIndex].translatedSlugs = {};
                     }
                     topics[topicIndex].translatedSlugs[lang.code] = finalSlug;
-                    // Save immediately so we don't lose progress if script crashes
                     fs.writeFileSync(BLOG_TOPICS_FILE, JSON.stringify(topics, null, 2));
                 }
 
-                const postDir = path.join(lang.dir, finalSlug);
-
-                if (fs.existsSync(path.join(postDir, 'page.tsx'))) {
-                    console.log(`    ⚠️ Post already exists at ${lang.code}/${finalSlug}, skipping write.`);
-                    // We treat this as success
-                } else {
-                    if (!fs.existsSync(postDir)) {
-                        fs.mkdirSync(postDir, { recursive: true });
-                    }
-
-                    const pageContent = createPageTsx(topic, articleContent, imageUrls, lang.code);
-                    fs.writeFileSync(path.join(postDir, 'page.tsx'), pageContent);
-                    console.log(`    ✅ Created ${lang.code}/blog/${finalSlug}/page.tsx`);
-
-                    updateBlogIndex(lang.dir, { ...topic, slug: finalSlug }, imageUrls[0], lang.code, articleContent.title_translated || topic.h1);
-
-                    // Sleep to avoid rate limits
-                    await sleep(3000);
-                }
+                generatedContent[lang.code] = { ...articleContent, finalSlug };
+                anyTextSucceeded = true;
+                console.log(`    ✅ Text generated for ${lang.code} (slug: ${finalSlug})`);
 
             } catch (err) {
-                console.error(`    ❌ Failed generation for ${lang.code}:`, err.message);
+                console.error(`    ❌ Text generation FAILED for ${lang.code}:`, err.message);
                 allLanguagesSuccessful = false;
             }
         }
 
-        // 4. Mark Complete ONLY if all successful
+        // STEP 2: Generate IMAGES only if at least one text succeeded
+        if (!anyTextSucceeded) {
+            console.log('  ❌ All text generations failed. SKIPPING image generation.');
+            continue;
+        }
+
+        console.log('\n  🎨 PHASE 2: Generating images...');
+        const imageUrls = await generateBlogImages(topic.keyword, 10);
+
+        // STEP 3: Write files for each successful text generation
+        console.log('\n  📁 PHASE 3: Writing files...');
+        for (const lang of LANGUAGES) {
+            const content = generatedContent[lang.code];
+            if (!content) continue; // Text generation failed for this lang
+            if (content._skipped) continue; // Already exists
+
+            const postDir = path.join(lang.dir, content.finalSlug);
+
+            if (fs.existsSync(path.join(postDir, 'page.tsx'))) {
+                console.log(`    ⚠️ Post already exists at ${lang.code}/${content.finalSlug}, skipping write.`);
+            } else {
+                if (!fs.existsSync(postDir)) {
+                    fs.mkdirSync(postDir, { recursive: true });
+                }
+
+                const pageContent = createPageTsx(topic, content, imageUrls, lang.code);
+                fs.writeFileSync(path.join(postDir, 'page.tsx'), pageContent);
+                console.log(`    ✅ Created ${lang.code}/blog/${content.finalSlug}/page.tsx`);
+
+                updateBlogIndex(lang.dir, { ...topic, slug: content.finalSlug }, imageUrls[0], lang.code, content.title_translated || topic.h1);
+            }
+        }
+
+        // STEP 4: Mark Complete ONLY if all successful
         if (allLanguagesSuccessful) {
             const originalIndex = topics.findIndex(t => t.keyword === topic.keyword);
             if (originalIndex !== -1) {
