@@ -78,85 +78,121 @@ async function main() {
     for (const topic of topicsToProcess) {
         console.log(`\n📝 Processing Topic: ${topic.h1} (${topic.slug})`);
 
-        // STEP 1: Generate TEXT for all languages FIRST (fast fail on errors)
-        console.log('  📝 PHASE 1: Generating text content for all languages...');
         const generatedContent = {}; // { langCode: articleContent }
-        let anyTextSucceeded = false;
         let allLanguagesSuccessful = true;
+        const completedTopics = topics.filter(t => t.status === 'completed');
+
+        // ================================================================
+        // STEP 1: Generate ENGLISH article FIRST (this is the base)
+        // ================================================================
+        console.log('  📝 PHASE 1: Generating ENGLISH base article...');
+
+        const enLang = LANGUAGES.find(l => l.code === 'en');
+        const cachedSlugs = topic.translatedSlugs || {};
+
+        // Check if EN already exists
+        if (cachedSlugs['en']) {
+            const existingPath = path.join(enLang.dir, cachedSlugs['en'], 'page.tsx');
+            if (fs.existsSync(existingPath)) {
+                console.log(`    ✅ EN already exists: ${cachedSlugs['en']} - SKIPPING`);
+                generatedContent['en'] = { _skipped: true, finalSlug: cachedSlugs['en'] };
+            }
+        }
+
+        // Generate EN if not skipped
+        if (!generatedContent['en']) {
+            try {
+                const enContent = await generateArticleContent(topic, enLang, completedTopics);
+                const enSlug = enContent.slug_translated || topic.slug;
+
+                // Cache the slug
+                const topicIndex = topics.findIndex(t => t.keyword === topic.keyword);
+                if (topicIndex !== -1) {
+                    if (!topics[topicIndex].translatedSlugs) topics[topicIndex].translatedSlugs = {};
+                    topics[topicIndex].translatedSlugs['en'] = enSlug;
+                    fs.writeFileSync(BLOG_TOPICS_FILE, JSON.stringify(topics, null, 2));
+                }
+
+                generatedContent['en'] = { ...enContent, finalSlug: enSlug };
+                console.log(`    ✅ EN base article generated (slug: ${enSlug})`);
+            } catch (err) {
+                console.error(`    ❌ EN generation FAILED:`, err.message);
+                console.log('  ❌ Cannot proceed without EN base. Skipping topic.');
+                allLanguagesSuccessful = false;
+                continue; // Skip this topic entirely
+            }
+        }
+
+        // ================================================================
+        // STEP 2: TRANSLATE to other languages (not regenerate)
+        // ================================================================
+        console.log('\n  🌍 PHASE 2: Translating to other languages...');
 
         for (const lang of LANGUAGES) {
-            console.log(`  🌐 Generating text for: ${lang.code.toUpperCase()}`);
+            if (lang.code === 'en') continue; // Already done
+
+            console.log(`  🌐 Translating to: ${lang.code.toUpperCase()}`);
 
             if (!fs.existsSync(lang.dir)) {
                 fs.mkdirSync(lang.dir, { recursive: true });
             }
 
-            // Check if we have a CACHED slug for this language (from previous runs)
-            const cachedSlugs = topic.translatedSlugs || {};
-            const cachedSlug = cachedSlugs[lang.code];
-
-            // If we have a cached slug, check if file exists BEFORE calling API
-            if (cachedSlug) {
-                const existingPath = path.join(lang.dir, cachedSlug, 'page.tsx');
+            // Check if already exists
+            if (cachedSlugs[lang.code]) {
+                const existingPath = path.join(lang.dir, cachedSlugs[lang.code], 'page.tsx');
                 if (fs.existsSync(existingPath)) {
-                    console.log(`    ✅ Already exists: ${lang.code}/${cachedSlug} (cached) - SKIPPING`);
-                    generatedContent[lang.code] = { _skipped: true, slug: cachedSlug };
-                    anyTextSucceeded = true;
+                    console.log(`    ✅ Already exists: ${lang.code}/${cachedSlugs[lang.code]} - SKIPPING`);
+                    generatedContent[lang.code] = { _skipped: true, finalSlug: cachedSlugs[lang.code] };
                     continue;
                 }
             }
 
             try {
-                const completedTopics = topics.filter(t => t.status === 'completed');
-                const articleContent = await generateArticleContent(topic, lang, completedTopics);
+                // TRANSLATE the EN content (not regenerate from scratch)
+                const translatedContent = await translateArticleContent(generatedContent['en'], lang, topic);
+                const translatedSlug = translatedContent.slug_translated || topic.slug;
 
-                const finalSlug = articleContent.slug_translated || topic.slug;
-
-                // Warn if non-English language got same slug as English
-                if (lang.code !== 'en' && finalSlug === topic.slug) {
-                    console.warn(`    ⚠️ WARNING: ${lang.code} got same slug as English "${finalSlug}"`);
-                }
-
-                // CACHE this slug for future runs
+                // Cache the slug
                 const topicIndex = topics.findIndex(t => t.keyword === topic.keyword);
                 if (topicIndex !== -1) {
-                    if (!topics[topicIndex].translatedSlugs) {
-                        topics[topicIndex].translatedSlugs = {};
-                    }
-                    topics[topicIndex].translatedSlugs[lang.code] = finalSlug;
+                    if (!topics[topicIndex].translatedSlugs) topics[topicIndex].translatedSlugs = {};
+                    topics[topicIndex].translatedSlugs[lang.code] = translatedSlug;
                     fs.writeFileSync(BLOG_TOPICS_FILE, JSON.stringify(topics, null, 2));
                 }
 
-                generatedContent[lang.code] = { ...articleContent, finalSlug };
-                anyTextSucceeded = true;
-                console.log(`    ✅ Text generated for ${lang.code} (slug: ${finalSlug})`);
+                generatedContent[lang.code] = { ...translatedContent, finalSlug: translatedSlug };
+                console.log(`    ✅ Translated to ${lang.code} (slug: ${translatedSlug})`);
 
             } catch (err) {
-                console.error(`    ❌ Text generation FAILED for ${lang.code}:`, err.message);
+                console.error(`    ❌ Translation FAILED for ${lang.code}:`, err.message);
                 allLanguagesSuccessful = false;
             }
         }
 
-        // STEP 2: Generate IMAGES only if at least one text succeeded
-        if (!anyTextSucceeded) {
-            console.log('  ❌ All text generations failed. SKIPPING image generation.');
-            continue;
+        // ================================================================
+        // STEP 3: Generate IMAGES (same for all languages)
+        // ================================================================
+        const hasAnyContent = Object.values(generatedContent).some(c => c && !c._skipped);
+        if (!hasAnyContent) {
+            console.log('  ⚠️ All content already exists. Skipping image generation.');
+        } else {
+            console.log('\n  🎨 PHASE 3: Generating images...');
         }
+        const imageUrls = hasAnyContent ? await generateBlogImages(topic.keyword, 10) : [];
 
-        console.log('\n  🎨 PHASE 2: Generating images...');
-        const imageUrls = await generateBlogImages(topic.keyword, 10);
-
-        // STEP 3: Write files for each successful text generation
-        console.log('\n  📁 PHASE 3: Writing files...');
+        // ================================================================
+        // STEP 4: Write files
+        // ================================================================
+        console.log('\n  📁 PHASE 4: Writing files...');
         for (const lang of LANGUAGES) {
             const content = generatedContent[lang.code];
-            if (!content) continue; // Text generation failed for this lang
-            if (content._skipped) continue; // Already exists
+            if (!content) continue;
+            if (content._skipped) continue;
 
             const postDir = path.join(lang.dir, content.finalSlug);
 
             if (fs.existsSync(path.join(postDir, 'page.tsx'))) {
-                console.log(`    ⚠️ Post already exists at ${lang.code}/${content.finalSlug}, skipping write.`);
+                console.log(`    ⚠️ Already exists: ${lang.code}/${content.finalSlug}`);
             } else {
                 if (!fs.existsSync(postDir)) {
                     fs.mkdirSync(postDir, { recursive: true });
@@ -170,17 +206,19 @@ async function main() {
             }
         }
 
-        // STEP 4: Mark Complete ONLY if all successful
+        // ================================================================
+        // STEP 5: Mark Complete
+        // ================================================================
         if (allLanguagesSuccessful) {
             const originalIndex = topics.findIndex(t => t.keyword === topic.keyword);
             if (originalIndex !== -1) {
                 topics[originalIndex].status = 'completed';
                 topics[originalIndex].completedDate = new Date().toISOString();
             }
-            // Write to file immediately to save progress
             fs.writeFileSync(BLOG_TOPICS_FILE, JSON.stringify(topics, null, 2));
+            console.log('  ✅ Topic marked as COMPLETED');
         } else {
-            console.warn(`  ⚠️ Topic ${topic.slug} verification failed for some languages. Keeping as pending.`);
+            console.warn(`  ⚠️ Some languages failed. Topic remains pending.`);
         }
     }
 
@@ -259,11 +297,11 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             10. **Conclusion + CTA** (100 words): Summary and call to action
             
             **OTHER REQUIREMENTS**:
-            - Title H1: ~70 chars, use "Best", "How to", "Top 5", or "Top 10" style. Translated to ${lang.name}.
+            - Title H1: MUST be maximum 70 characters. MUST NOT contain a colon (:) or two-part structure.
+               - BAD EXAMPLES: "Arcads Pricing 2026: Is It Worth It?" or "AI UGC: Complete Guide"
+               - GOOD EXAMPLES: "Best Arcads Pricing Guide for 2026" or "Top 10 AI UGC Tools in 2026"
             - Year: ALWAYS use "2026". NEVER 2024 or 2025.
-            - Slug: MUST be a UNIQUE translation of the keyword to ${lang.name}. Do NOT just use the English slug.
-               Example: If keyword is "arcads ai" and lang is French, slug should be like "avis-arcads-ai" NOT "arcads-ai".
-               CRITICAL: The slug MUST be DIFFERENT from the English version for non-English languages.
+            - Slug: Use a simple SEO-friendly slug based on the keyword (e.g., "arcads-pricing-guide").
             - Use <h2> and <h3> for headers.
             - Include EXACTLY 10 image placeholders: [IMAGE_PLACEHOLDER_1] through [IMAGE_PLACEHOLDER_10]
             - Be OPINIONATED. Use strong adjectives. Don't be neutral or corporate.
@@ -382,6 +420,125 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
         }
     }
     throw new Error('Max retries exceeded for content generation');
+}
+
+// ================================================================
+// TRANSLATE article content from English to other languages
+// ================================================================
+async function translateArticleContent(enContent, lang, topic) {
+    // If EN content was skipped (already existed), we need to read it from disk or skip
+    if (enContent._skipped) {
+        throw new Error('Cannot translate: EN content was skipped (already exists)');
+    }
+
+    let retries = 3;
+    while (retries > 0) {
+        let output;
+        let fullText;
+
+        try {
+            console.log(`    🤖 Translating with Llama 3.1 405B (${retries} attempts left)...`);
+
+            const prompt = `
+You are a professional translator. Translate the following blog article from English to ${lang.name}.
+
+**TRANSLATION RULES**:
+1. Translate ALL text to ${lang.name} including title, headings, paragraphs, FAQ questions and answers
+2. Keep the exact same HTML structure (h1, h2, h3, p, table, etc.)
+3. Keep all [IMAGE_PLACEHOLDER_X] placeholders exactly as they are
+4. Keep all URLs and links exactly as they are
+5. Translate the slug to a natural ${lang.name} keyword (e.g., "arcads-pricing" → "tarifs-arcads" for French)
+6. The title MUST be maximum 70 characters and MUST NOT contain a colon (:) or two-part structure
+   - BAD: "Arcads Pricing 2026: Is It Worth It?"
+   - GOOD: "Best Arcads Pricing Guide for 2026"
+
+**ORIGINAL ENGLISH CONTENT**:
+- Title: ${enContent.title_translated}
+- Slug: ${enContent.slug_translated || topic.slug}
+- Meta Description: ${enContent.meta_description}
+- Quick Answer: ${enContent.quick_answer}
+
+**HTML Content to translate**:
+${enContent.content_html}
+
+**FAQ to translate**:
+${JSON.stringify(enContent.faq, null, 2)}
+
+**OUTPUT FORMAT**:
+Return ONLY a valid JSON object with NO markdown formatting.
+Escape all newlines as \\n inside strings.
+
+{
+   "title_translated": "Translated title (max 70 chars, no colons)", 
+   "slug_translated": "translated-slug-in-${lang.code}",
+   "meta_description": "Translated meta description (155 chars max)",
+   "quick_answer": "Translated quick answer",
+   "content_html": "Translated HTML content with all placeholders preserved",
+   "faq": [ { "question": "Translated question", "answer": "Translated answer" }, ... ]
+}
+`;
+
+            const input = {
+                system_prompt: "You are a professional translator. Translate accurately while preserving HTML structure. Return ONLY valid JSON.",
+                prompt: prompt,
+                max_tokens: 8000,
+                temperature: 0.5, // Lower temp for more consistent translations
+                top_p: 0.9
+            };
+
+            output = await replicate.run('meta/meta-llama-3.1-405b-instruct', { input });
+
+            // Flatten output array to string
+            fullText = Array.isArray(output) ? output.join('') : String(output);
+
+            // Clean markdown code blocks
+            fullText = fullText.replace(/```json\s*\n?/gi, '').replace(/```\s*$/g, '');
+
+            // Extract first JSON object
+            let jsonStart = -1;
+            let jsonEnd = -1;
+            let braceCount = 0;
+
+            for (let i = 0; i < fullText.length; i++) {
+                const char = fullText[i];
+                if (char === '{') {
+                    if (jsonStart === -1) jsonStart = i;
+                    braceCount++;
+                } else if (char === '}') {
+                    braceCount--;
+                    if (braceCount === 0 && jsonStart !== -1) {
+                        jsonEnd = i;
+                        break;
+                    }
+                }
+            }
+
+            if (jsonStart === -1 || jsonEnd === -1) {
+                throw new Error('No valid JSON object found in translation response');
+            }
+
+            fullText = fullText.substring(jsonStart, jsonEnd + 1);
+
+            // Fix unescaped newlines in JSON strings
+            fullText = fullText.replace(/"([^"\\]*(\\.[^"\\]*)*)"/g, (match) => {
+                return match
+                    .replace(/\n/g, '\\n')
+                    .replace(/\r/g, '\\r')
+                    .replace(/\t/g, '\\t');
+            });
+
+            // Fix common JSON issues
+            fullText = fullText.replace(/,\s*}/g, '}');
+            fullText = fullText.replace(/,\s*]/g, ']');
+
+            return JSON.parse(fullText);
+        } catch (e) {
+            console.warn(`    ⚠️ Translation Error: ${e.message}. Retrying...`);
+            retries--;
+            await sleep(3000);
+        }
+    }
+    throw new Error('Max retries exceeded for translation');
 }
 
 async function generateBlogImages(keyword, count) {
