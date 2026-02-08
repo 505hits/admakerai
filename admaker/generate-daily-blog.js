@@ -235,12 +235,15 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             // Wait, replace_file_content is better with small chunks. 
             // I'll just change the declaration line.
 
-            // Select some related articles (random 3 from completed)
+            // Select some related articles (random 3 from completed) - output as HTML links
             const relatedLinks = completedTopics
                 .filter(t => t.keyword !== topic.keyword) // Exclude self
                 .sort(() => 0.5 - Math.random())
                 .slice(0, 3)
-                .map(t => `- Title: "${t.h1}", URL: https://admakerai.app/${lang.code === 'en' ? '' : lang.code + '/'}blog/${t.slug}`)
+                .map(t => {
+                    const url = `https://admakerai.app/${lang.code === 'en' ? '' : lang.code + '/'}blog/${t.slug}`;
+                    return `<a href="${url}" style="color: #ff0844; font-weight: bold; display: block; margin: 10px 0;">→ ${t.h1 || t.keyword}</a>`;
+                })
                 .join('\n');
 
             const prompt = `
@@ -345,16 +348,18 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             9. **FAQ Section** (will be in JSON): 7 questions, EACH answer 80+ words
                Include questions about pricing, ROI, usage limits, comparison, quality
             
-            10. **Related Readings** (mandatory section):
+            10. **Related Readings** (MANDATORY section with links to other blog articles):
+                Create a "Related Articles" section with 3 links to other blog articles.
+                Use this exact HTML format:
                 <h2>Related Articles You'll Love</h2>
                 <div class="related-readings">
-                ${relatedLinks ? relatedLinks.split('\\n').map(link => {
-                const match = link.match(/Title: "([^"]+)", URL: ([^\\s]+)/);
-                if (match) return \`<a href="\${match[2]}" style="color: #ff0844; font-weight: bold; display: block; margin: 10px 0;">→ \${match[1]}</a>\`;
-                    return '';
-                }).join('') : '<p>Check our blog for more articles!</p>'}
+                ${relatedLinks ? relatedLinks : '<!-- No related articles available yet -->'}
                 </div>
-                [IMAGE_PLACEHOLDER_9] <-- PUT IMAGE HERE
+                
+                Format each link with PINK style like this:
+                <a href="URL" style="color: #ff0844; font-weight: bold; display: block; margin: 10px 0;">→ Article Title</a>
+                
+                [IMAGE_PLACEHOLDER_9] <-- PUT IMAGE HERE AFTER THIS SECTION
             
             11. **Conclusion + Strong CTA** (200+ words):
                 - Summarize the 3 key takeaways
@@ -413,90 +418,90 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             ---HTML_CONTENT_END---
             `;
 
-                // Llama 3.1 405B input structure
-                const input = {
-                    system_prompt: "You are an expert SEO Content Writer for AdMaker AI. You MUST write at least 2500 words. Return JSON metadata first, then HTML content between delimiters. NEVER summarize. ALWAYS expand every section with detailed examples, statistics, and real-world explanations. Write like a human marketing expert, not a generic AI.",
-                    prompt: prompt,
-                    max_tokens: 12000, // Increased for 2500+ word articles
-                    min_tokens: 6000, // Force longer minimum
-                    temperature: 0.7,
-                    top_p: 0.9
-                };
+            // Llama 3.1 405B input structure
+            const input = {
+                system_prompt: "You are an expert SEO Content Writer for AdMaker AI. You MUST write at least 2500 words. Return JSON metadata first, then HTML content between delimiters. NEVER summarize. ALWAYS expand every section with detailed examples, statistics, and real-world explanations. Write like a human marketing expert, not a generic AI.",
+                prompt: prompt,
+                max_tokens: 12000, // Increased for 2500+ word articles
+                min_tokens: 6000, // Force longer minimum
+                temperature: 0.7,
+                top_p: 0.9
+            };
 
-                // Using Llama 3.1 405B Instruct
-                console.log(`    📝 Generating with Llama 3.1 405B...`);
-                output = await replicate.run("meta/meta-llama-3.1-405b-instruct", { input });
+            // Using Llama 3.1 405B Instruct
+            console.log(`    📝 Generating with Llama 3.1 405B...`);
+            output = await replicate.run("meta/meta-llama-3.1-405b-instruct", { input });
 
-                // Llama returns an array of strings (iterator)
-                fullText = Array.isArray(output) ? output.join('') : output;
+            // Llama returns an array of strings (iterator)
+            fullText = Array.isArray(output) ? output.join('') : output;
 
-                // === ROBUST HYBRID EXTRACTION ===
+            // === ROBUST HYBRID EXTRACTION ===
 
-                // 1. Extract JSON Metadata
-                let jsonMatch = fullText.match(/\{[\s\S]*?\}/);
-                if (!jsonMatch) throw new Error('No JSON metadata found');
+            // 1. Extract JSON Metadata
+            let jsonMatch = fullText.match(/\{[\s\S]*?\}/);
+            if (!jsonMatch) throw new Error('No JSON metadata found');
 
-                let jsonPart = jsonMatch[0];
-                // Fix strict JSON if needed
-                jsonPart = jsonPart.replace(/,\s*}/g, '}').replace(/,\s*]/g, ']');
-                const metadata = JSON.parse(jsonPart);
+            let jsonPart = jsonMatch[0];
+            // Fix strict JSON if needed
+            jsonPart = jsonPart.replace(/,\s*}/g, '}').replace(/,\s*]/g, ']');
+            const metadata = JSON.parse(jsonPart);
 
-                // 2. Extract HTML Content
-                const contentStartMarker = '---HTML_CONTENT_START---';
-                const contentEndMarker = '---HTML_CONTENT_END---';
+            // 2. Extract HTML Content
+            const contentStartMarker = '---HTML_CONTENT_START---';
+            const contentEndMarker = '---HTML_CONTENT_END---';
 
-                let startIndex = fullText.indexOf(contentStartMarker);
-                let endIndex = fullText.indexOf(contentEndMarker);
+            let startIndex = fullText.indexOf(contentStartMarker);
+            let endIndex = fullText.indexOf(contentEndMarker);
 
-                if (startIndex === -1) throw new Error('HTML content start marker not found');
+            if (startIndex === -1) throw new Error('HTML content start marker not found');
 
-                // If end marker missing (truncation), use end of text
-                if (endIndex === -1) {
-                    console.warn('    ⚠️ Warning: HTML content end marker missing (truncation suspect). Using full text end.');
-                    endIndex = fullText.length;
-                }
-
-                let htmlContent = fullText.substring(startIndex + contentStartMarker.length, endIndex).trim();
-
-                if (htmlContent.length < 1000) throw new Error('Generated HTML content seems too short');
-
-                const enContent = {
-                    ...metadata,
-                    content_html: htmlContent
-                };
-                return enContent;
-            } catch (e) {
-                console.warn(`    ⚠️ JSON Parse/API Error: ${e.message}. Retrying...`);
-                console.log('--- DEBUG: RAW OUTPUT START ---');
-                console.log(output); // Check if output is string or object
-                console.log('--- DEBUG: RAW OUTPUT END ---');
-                fs.writeFileSync('failed_log.txt', fullText || 'No output');
-                retries--;
-
-
-                await sleep(3000);
+            // If end marker missing (truncation), use end of text
+            if (endIndex === -1) {
+                console.warn('    ⚠️ Warning: HTML content end marker missing (truncation suspect). Using full text end.');
+                endIndex = fullText.length;
             }
+
+            let htmlContent = fullText.substring(startIndex + contentStartMarker.length, endIndex).trim();
+
+            if (htmlContent.length < 1000) throw new Error('Generated HTML content seems too short');
+
+            const enContent = {
+                ...metadata,
+                content_html: htmlContent
+            };
+            return enContent;
+        } catch (e) {
+            console.warn(`    ⚠️ JSON Parse/API Error: ${e.message}. Retrying...`);
+            console.log('--- DEBUG: RAW OUTPUT START ---');
+            console.log(output); // Check if output is string or object
+            console.log('--- DEBUG: RAW OUTPUT END ---');
+            fs.writeFileSync('failed_log.txt', fullText || 'No output');
+            retries--;
+
+
+            await sleep(3000);
         }
+    }
     throw new Error('Max retries exceeded for content generation');
+}
+
+// ================================================================
+// TRANSLATE article content from English to other languages
+// ================================================================
+async function translateArticleContent(enContent, lang, topic) {
+    if (enContent._skipped) {
+        throw new Error('Cannot translate: EN content was skipped (already exists)');
     }
 
-    // ================================================================
-    // TRANSLATE article content from English to other languages
-    // ================================================================
-    async function translateArticleContent(enContent, lang, topic) {
-        if (enContent._skipped) {
-            throw new Error('Cannot translate: EN content was skipped (already exists)');
-        }
+    let retries = 3;
+    while (retries > 0) {
+        let output;
+        let fullText;
 
-        let retries = 3;
-        while (retries > 0) {
-            let output;
-            let fullText;
+        try {
+            console.log(`    🤖 Translating with Llama 3.1 405B (${retries} attempts left)...`);
 
-            try {
-                console.log(`    🤖 Translating with Llama 3.1 405B (${retries} attempts left)...`);
-
-                const prompt = `
+            const prompt = `
 You are a professional translator. Translate the following blog article from English to ${lang.name}.
 
 **TRANSLATION RULES**:
@@ -543,206 +548,206 @@ PART 2: The translated HTML content, enclosed specifically between these delimit
 ---HTML_CONTENT_END---
 `;
 
-                const input = {
-                    system_prompt: "You are a professional translator. Return JSON metadata followed by HTML content in delimiters.",
-                    prompt: prompt,
-                    max_tokens: 8000,
-                    temperature: 0.5,
-                    top_p: 0.9
-                };
+            const input = {
+                system_prompt: "You are a professional translator. Return JSON metadata followed by HTML content in delimiters.",
+                prompt: prompt,
+                max_tokens: 8000,
+                temperature: 0.5,
+                top_p: 0.9
+            };
 
-                output = await replicate.run('meta/meta-llama-3.1-405b-instruct', { input });
-                fullText = Array.isArray(output) ? output.join('') : String(output);
+            output = await replicate.run('meta/meta-llama-3.1-405b-instruct', { input });
+            fullText = Array.isArray(output) ? output.join('') : String(output);
 
-                // 1. Extract JSON Metadata
-                let jsonMatch = fullText.match(/\{[\s\S]*?\}/);
-                if (!jsonMatch) throw new Error('No JSON metadata found');
+            // 1. Extract JSON Metadata
+            let jsonMatch = fullText.match(/\{[\s\S]*?\}/);
+            if (!jsonMatch) throw new Error('No JSON metadata found');
 
-                let jsonPart = jsonMatch[0];
-                // Fix strict JSON if needed
-                jsonPart = jsonPart.replace(/,\s*}/g, '}').replace(/,\s*]/g, ']');
-                const metadata = JSON.parse(jsonPart);
+            let jsonPart = jsonMatch[0];
+            // Fix strict JSON if needed
+            jsonPart = jsonPart.replace(/,\s*}/g, '}').replace(/,\s*]/g, ']');
+            const metadata = JSON.parse(jsonPart);
 
-                // 2. Extract HTML Content
-                const contentStartMarker = '---HTML_CONTENT_START---';
-                const contentEndMarker = '---HTML_CONTENT_END---';
+            // 2. Extract HTML Content
+            const contentStartMarker = '---HTML_CONTENT_START---';
+            const contentEndMarker = '---HTML_CONTENT_END---';
 
-                let startIndex = fullText.indexOf(contentStartMarker);
-                let endIndex = fullText.indexOf(contentEndMarker);
+            let startIndex = fullText.indexOf(contentStartMarker);
+            let endIndex = fullText.indexOf(contentEndMarker);
 
-                if (startIndex === -1) throw new Error('HTML content start marker not found');
+            if (startIndex === -1) throw new Error('HTML content start marker not found');
 
-                // If end marker missing (truncation), use end of text
-                if (endIndex === -1) {
-                    console.warn('    ⚠️ Warning: HTML content end marker missing (truncation suspect). Using full text end.');
-                    endIndex = fullText.length;
-                }
+            // If end marker missing (truncation), use end of text
+            if (endIndex === -1) {
+                console.warn('    ⚠️ Warning: HTML content end marker missing (truncation suspect). Using full text end.');
+                endIndex = fullText.length;
+            }
 
-                let htmlContent = fullText.substring(startIndex + contentStartMarker.length, endIndex).trim();
+            let htmlContent = fullText.substring(startIndex + contentStartMarker.length, endIndex).trim();
 
-                if (htmlContent.length < 500) throw new Error('Translated HTML content seems too short');
+            if (htmlContent.length < 500) throw new Error('Translated HTML content seems too short');
 
-                return {
-                    ...metadata,
-                    content_html: htmlContent
-                };
+            return {
+                ...metadata,
+                content_html: htmlContent
+            };
 
+        } catch (e) {
+            console.warn(`    ⚠️ Translation Error: ${e.message}. Retrying...`);
+            retries--;
+            await sleep(3000);
+        }
+    }
+    throw new Error('Max retries exceeded for translation');
+}
+
+async function generateBlogImages(keyword, count) {
+    console.log('    🎨 Generating Images...');
+    const images = [];
+    const prompts = [
+        "Young woman influencer talking to camera in modern apartment, natural lighting, casual outfit, authentic UGC style",
+        "Male tech reviewer holding smartphone, professional home office background, enthusiastic expression, no text",
+        "Real estate agent woman smiling in front of luxury house, professional attire, sunny day, confident pose",
+        "Lifestyle vlogger filming selfie video with ring light, cozy bedroom setup, warm tones, genuine smile",
+        "Female fitness influencer in workout clothes, gym background, motivational pose, energetic expression",
+        "Young entrepreneur man working on laptop in coffee shop, casual creative style, focused expression",
+        "Beauty influencer applying makeup in vanity mirror, soft lighting, elegant setup, tutorial style",
+        "Food blogger presenting dish in restaurant, appetizing presentation, warm ambiance, excited face",
+        "Travel vlogger with backpack in scenic location, adventure style, candid moment, outdoor lighting",
+        "Digital marketer woman at desktop computer, modern office, confident professional look, clean background"
+    ];
+
+    for (let i = 0; i < count; i++) {
+        const p = `${prompts[i % prompts.length]}, realistic, 8k, cinematic lighting, soft focus background, no text, no writing, no letters, no words`;
+        const url = await generateSingleImage(p);
+
+        if (url) {
+            const filename = `img - ${Date.now()} -${i}.png`;
+            const localPath = path.join(__dirname, 'public/blog-images', filename);
+            const relativePath = `/ blog - images / ${filename} `;
+            if (!fs.existsSync(path.dirname(localPath))) fs.mkdirSync(path.dirname(localPath), { recursive: true });
+            try {
+                await downloadImage(url, localPath);
+                images.push(relativePath);
             } catch (e) {
-                console.warn(`    ⚠️ Translation Error: ${e.message}. Retrying...`);
-                retries--;
-                await sleep(3000);
+                images.push('https://placehold.co/800x450?text=Image+Error');
             }
+        } else {
+            images.push('https://placehold.co/800x450?text=Gen+Failed');
         }
-        throw new Error('Max retries exceeded for translation');
     }
+    return images;
+}
 
-    async function generateBlogImages(keyword, count) {
-        console.log('    🎨 Generating Images...');
-        const images = [];
-        const prompts = [
-            "Young woman influencer talking to camera in modern apartment, natural lighting, casual outfit, authentic UGC style",
-            "Male tech reviewer holding smartphone, professional home office background, enthusiastic expression, no text",
-            "Real estate agent woman smiling in front of luxury house, professional attire, sunny day, confident pose",
-            "Lifestyle vlogger filming selfie video with ring light, cozy bedroom setup, warm tones, genuine smile",
-            "Female fitness influencer in workout clothes, gym background, motivational pose, energetic expression",
-            "Young entrepreneur man working on laptop in coffee shop, casual creative style, focused expression",
-            "Beauty influencer applying makeup in vanity mirror, soft lighting, elegant setup, tutorial style",
-            "Food blogger presenting dish in restaurant, appetizing presentation, warm ambiance, excited face",
-            "Travel vlogger with backpack in scenic location, adventure style, candid moment, outdoor lighting",
-            "Digital marketer woman at desktop computer, modern office, confident professional look, clean background"
-        ];
+async function generateSingleImage(prompt) {
+    try {
+        const res = await fetch('https://api.kie.ai/api/v1/jobs/createTask', {
+            method: 'POST',
+            headers: { 'Authorization': `Bearer ${VEO_API_KEY} `, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ model: 'z-image', input: { prompt, aspect_ratio: '16:9' } })
+        });
+        const data = await res.json();
+        if (data.code !== 200) return null;
 
-        for (let i = 0; i < count; i++) {
-            const p = `${prompts[i % prompts.length]}, realistic, 8k, cinematic lighting, soft focus background, no text, no writing, no letters, no words`;
-            const url = await generateSingleImage(p);
-
-            if (url) {
-                const filename = `img - ${Date.now()} -${i}.png`;
-                const localPath = path.join(__dirname, 'public/blog-images', filename);
-                const relativePath = `/ blog - images / ${filename} `;
-                if (!fs.existsSync(path.dirname(localPath))) fs.mkdirSync(path.dirname(localPath), { recursive: true });
-                try {
-                    await downloadImage(url, localPath);
-                    images.push(relativePath);
-                } catch (e) {
-                    images.push('https://placehold.co/800x450?text=Image+Error');
-                }
-            } else {
-                images.push('https://placehold.co/800x450?text=Gen+Failed');
-            }
-        }
-        return images;
-    }
-
-    async function generateSingleImage(prompt) {
-        try {
-            const res = await fetch('https://api.kie.ai/api/v1/jobs/createTask', {
-                method: 'POST',
-                headers: { 'Authorization': `Bearer ${VEO_API_KEY} `, 'Content-Type': 'application/json' },
-                body: JSON.stringify({ model: 'z-image', input: { prompt, aspect_ratio: '16:9' } })
+        const taskId = data.data.taskId;
+        for (let i = 0; i < 45; i++) {
+            await sleep(2000);
+            const check = await fetch(`https://api.kie.ai/api/v1/jobs/recordInfo?taskId=${taskId}`, {
+                headers: { 'Authorization': `Bearer ${VEO_API_KEY}` }
             });
-            const data = await res.json();
-            if (data.code !== 200) return null;
+            const d = await check.json();
+            if (d.data.state === 'success') return JSON.parse(d.data.resultJson).resultUrls[0];
+            if (d.data.state === 'fail') return null;
+        }
+    } catch (e) { }
+    return null;
+}
 
-            const taskId = data.data.taskId;
-            for (let i = 0; i < 45; i++) {
-                await sleep(2000);
-                const check = await fetch(`https://api.kie.ai/api/v1/jobs/recordInfo?taskId=${taskId}`, {
-                    headers: { 'Authorization': `Bearer ${VEO_API_KEY}` }
-                });
-                const d = await check.json();
-                if (d.data.state === 'success') return JSON.parse(d.data.resultJson).resultUrls[0];
-                if (d.data.state === 'fail') return null;
-            }
-        } catch (e) { }
-        return null;
-    }
+function downloadImage(url, filepath) {
+    return new Promise((resolve, reject) => {
+        const https = url.startsWith('https') ? require('https') : require('http');
+        const file = fs.createWriteStream(filepath);
+        https.get(url, (res) => {
+            res.pipe(file);
+            file.on('finish', () => { file.close(); resolve(); });
+        }).on('error', (e) => { fs.unlink(filepath, () => { }); reject(e); });
+    });
+}
 
-    function downloadImage(url, filepath) {
-        return new Promise((resolve, reject) => {
-            const https = url.startsWith('https') ? require('https') : require('http');
-            const file = fs.createWriteStream(filepath);
-            https.get(url, (res) => {
-                res.pipe(file);
-                file.on('finish', () => { file.close(); resolve(); });
-            }).on('error', (e) => { fs.unlink(filepath, () => { }); reject(e); });
-        });
-    }
+function createPageTsx(topic, content, images, lang) {
+    let htmlContent = content.content_html;
 
-    function createPageTsx(topic, content, images, lang) {
-        let htmlContent = content.content_html;
+    // ========== SEO SANITIZATION ==========
 
-        // ========== SEO SANITIZATION ==========
+    // 1. Remove duplicate H1 tags (template already has H1 in header)
+    htmlContent = htmlContent.replace(/<h1[^>]*>.*?<\/h1>/gi, '');
 
-        // 1. Remove duplicate H1 tags (template already has H1 in header)
-        htmlContent = htmlContent.replace(/<h1[^>]*>.*?<\/h1>/gi, '');
+    // 2. Remove any leftover image placeholders that weren't replaced
+    htmlContent = htmlContent.replace(/\[IMAGE_PLACEHOLDER_\d+\]/g, '');
 
-        // 2. Remove any leftover image placeholders that weren't replaced
-        htmlContent = htmlContent.replace(/\[IMAGE_PLACEHOLDER_\d+\]/g, '');
+    // 3. Remove empty paragraphs and whitespace-only tags
+    htmlContent = htmlContent.replace(/<p>\s*<\/p>/gi, '');
+    htmlContent = htmlContent.replace(/<div>\s*<\/div>/gi, '');
 
-        // 3. Remove empty paragraphs and whitespace-only tags
-        htmlContent = htmlContent.replace(/<p>\s*<\/p>/gi, '');
-        htmlContent = htmlContent.replace(/<div>\s*<\/div>/gi, '');
+    // 4. Fix potential unclosed tags (basic cleanup)
+    htmlContent = htmlContent.replace(/<br>/gi, '<br/>');
+    htmlContent = htmlContent.replace(/<hr>/gi, '<hr/>');
 
-        // 4. Fix potential unclosed tags (basic cleanup)
-        htmlContent = htmlContent.replace(/<br>/gi, '<br/>');
-        htmlContent = htmlContent.replace(/<hr>/gi, '<hr/>');
+    // 5. Remove markdown artifacts that might slip through
+    htmlContent = htmlContent.replace(/```[a-z]*\n?/gi, '');
+    htmlContent = htmlContent.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    htmlContent = htmlContent.replace(/\*([^*]+)\*/g, '<em>$1</em>');
 
-        // 5. Remove markdown artifacts that might slip through
-        htmlContent = htmlContent.replace(/```[a-z]*\n?/gi, '');
-        htmlContent = htmlContent.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-        htmlContent = htmlContent.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+    // 6. Clean up excessive newlines
+    htmlContent = htmlContent.replace(/\n{3,}/g, '\n\n');
 
-        // 6. Clean up excessive newlines
-        htmlContent = htmlContent.replace(/\n{3,}/g, '\n\n');
+    // 7. Ensure all links have rel="noopener" for external links
+    htmlContent = htmlContent.replace(
+        /<a\s+href="(https?:\/\/(?!admakerai\.app)[^"]+)"([^>]*)>/gi,
+        '<a href="$1" rel="noopener noreferrer" target="_blank"$2>'
+    );
 
-        // 7. Ensure all links have rel="noopener" for external links
-        htmlContent = htmlContent.replace(
-            /<a\s+href="(https?:\/\/(?!admakerai\.app)[^"]+)"([^>]*)>/gi,
-            '<a href="$1" rel="noopener noreferrer" target="_blank"$2>'
-        );
+    // ========== END SEO SANITIZATION ==========
 
-        // ========== END SEO SANITIZATION ==========
+    // Replace [LANDING_PAGE_URL] with actual landing page URL based on language
+    const landingPageUrl = lang === 'en' ? 'https://admakerai.app' : `https://admakerai.app/${lang}`;
+    htmlContent = htmlContent.replace(/\[LANDING_PAGE_URL\]/g, landingPageUrl);
 
-        // Replace [LANDING_PAGE_URL] with actual landing page URL based on language
-        const landingPageUrl = lang === 'en' ? 'https://admakerai.app' : `https://admakerai.app/${lang}`;
-        htmlContent = htmlContent.replace(/\[LANDING_PAGE_URL\]/g, landingPageUrl);
+    // Replace Image Placeholders with actual images
+    images.forEach((img, idx) => {
+        // Use standard img tag for simplicity within dangerouslySetInnerHTML
+        const stdImgTag = `<img src="${img}" alt="${topic.keyword} - illustration ${idx + 1}" loading="lazy" class="w-full rounded-xl my-8 hover:opacity-95 transition" />`;
+        htmlContent = htmlContent.replace(`[IMAGE_PLACEHOLDER_${idx + 1}]`, stdImgTag);
+    });
 
-        // Replace Image Placeholders with actual images
-        images.forEach((img, idx) => {
-            // Use standard img tag for simplicity within dangerouslySetInnerHTML
-            const stdImgTag = `<img src="${img}" alt="${topic.keyword} - illustration ${idx + 1}" loading="lazy" class="w-full rounded-xl my-8 hover:opacity-95 transition" />`;
-            htmlContent = htmlContent.replace(`[IMAGE_PLACEHOLDER_${idx + 1}]`, stdImgTag);
-        });
+    // Pink Links (Internal)
+    htmlContent = htmlContent.replace(
+        /\[INTERNAL_LINK:\s*([^|]+?)\s*\|\s*([^\]]+?)\]/g,
+        '<a href="$2" class="text-[#ff0844] font-bold hover:text-[#ff5478] highlight-link" style="color: #ff0844; font-weight: 700;">$1</a>'
+    );
 
-        // Pink Links (Internal)
-        htmlContent = htmlContent.replace(
-            /\[INTERNAL_LINK:\s*([^|]+?)\s*\|\s*([^\]]+?)\]/g,
-            '<a href="$2" class="text-[#ff0844] font-bold hover:text-[#ff5478] highlight-link" style="color: #ff0844; font-weight: 700;">$1</a>'
-        );
+    // External Links (basic detection if Claude outputs them as standard a tags, we can style them via prose class, but if we need specific styling we assume they are already a tags)
 
-        // External Links (basic detection if Claude outputs them as standard a tags, we can style them via prose class, but if we need specific styling we assume they are already a tags)
+    const landingPageUrl = lang === 'en' ? '/' : `/${lang}`;
 
-        const landingPageUrl = lang === 'en' ? '/' : `/${lang}`;
+    // Schema
+    const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": content.title_translated,
+        "image": images[0],
+        "author": { "@type": "Organization", "name": "AdMaker AI" },
+        "mainEntity": {
+            "@type": "FAQPage",
+            "mainEntity": content.faq ? content.faq.map(f => ({
+                "@type": "Question",
+                "name": f.question,
+                "acceptedAnswer": { "@type": "Answer", "text": f.answer }
+            })) : []
+        }
+    };
 
-        // Schema
-        const jsonLd = {
-            "@context": "https://schema.org",
-            "@type": "Article",
-            "headline": content.title_translated,
-            "image": images[0],
-            "author": { "@type": "Organization", "name": "AdMaker AI" },
-            "mainEntity": {
-                "@type": "FAQPage",
-                "mainEntity": content.faq ? content.faq.map(f => ({
-                    "@type": "Question",
-                    "name": f.question,
-                    "acceptedAnswer": { "@type": "Answer", "text": f.answer }
-                })) : []
-            }
-        };
-
-        return `
+    return `
 'use client';
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
@@ -831,21 +836,21 @@ export default function BlogPost() {
     );
 }
 `;
-    }
+}
 
-    function updateBlogIndex(dir, topic, thumbnail, lang, title) {
-        const listPath = path.join(dir, 'page.tsx');
-        if (!fs.existsSync(listPath)) return;
+function updateBlogIndex(dir, topic, thumbnail, lang, title) {
+    const listPath = path.join(dir, 'page.tsx');
+    if (!fs.existsSync(listPath)) return;
 
-        let content = fs.readFileSync(listPath, 'utf8');
-        const prefix = lang === 'en' ? 'blog' : lang + '/blog';
-        const linkPath = '/' + prefix + '/' + topic.slug;
-        if (content.includes(linkPath)) return;
+    let content = fs.readFileSync(listPath, 'utf8');
+    const prefix = lang === 'en' ? 'blog' : lang + '/blog';
+    const linkPath = '/' + prefix + '/' + topic.slug;
+    if (content.includes(linkPath)) return;
 
-        // Standard card injection
-        // Match styles.blogCard usage
-        // We assume the index page has 'styles' imported.
-        const newCard = `
+    // Standard card injection
+    // Match styles.blogCard usage
+    // We assume the index page has 'styles' imported.
+    const newCard = `
         < Link href = "${linkPath}" className = { styles.blogCard } >
                             <div className={styles.cardImage}>
                                 <Image
@@ -864,13 +869,13 @@ export default function BlogPost() {
                         </Link >
         `;
 
-        if (content.includes('className={styles.blogGrid}')) {
-            content = content.replace(
-                'className={styles.blogGrid}>',
-                `className = { styles.blogGrid } >\n${newCard} `
-            );
-            fs.writeFileSync(listPath, content);
-        }
+    if (content.includes('className={styles.blogGrid}')) {
+        content = content.replace(
+            'className={styles.blogGrid}>',
+            `className = { styles.blogGrid } >\n${newCard} `
+        );
+        fs.writeFileSync(listPath, content);
     }
+}
 
-    main();
+main();
