@@ -246,15 +246,17 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             const prompt = `
             You are an EXPERT SEO Content Writer for "AdMaker AI". Write a LONG, COMPREHENSIVE, DETAILED blog post.
             
-            ⚠️⚠️⚠️ ABSOLUTE MINIMUM: 2000 WORDS ⚠️⚠️⚠️
-            - If your article is under 2000 words, YOU HAVE FAILED YOUR TASK.
-            - NEVER summarize. ALWAYS expand with examples, details, and explanations.
-            - Each section MUST meet or EXCEED its minimum word count.
-            - Paragraphs must be 4-6 sentences each, not 1-2.
+            ⚠️⚠️⚠️ CRITICAL: ABSOLUTE MINIMUM 2500 WORDS ⚠️⚠️⚠️
+            - If your article is under 2500 words, YOU HAVE COMPLETELY FAILED.
+            - Count your words as you write. Each paragraph must have 5-7 sentences.
+            - NEVER summarize. ALWAYS expand with examples, statistics, and detailed explanations.
+            - Each section MUST meet or EXCEED its minimum word count listed below.
+            - Write like a human expert sharing real experience, not a generic AI summary.
             
             **Input Data**:
             - Keyword: "${topic.keyword}"
             - Target Language: ${lang.name} (code: ${lang.code})
+            - Landing Page URL: https://admakerai.app${lang.code === 'en' ? '' : '/' + lang.code}
             
             ⚠️ FACTUAL PRICING DATA FOR 2026 (USE EXACTLY THESE NUMBERS):
             ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -271,65 +273,120 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             - Arcads founded: 2024, raised €14M Series A in late 2025
             - TikTok 2026 report: 75% of advertisers now use AI for video ads
             - Average Fiverr UGC creator: $150/video vs AI tools ~$3/video
+            - Meta Business 2026 study: Video ads get 3x more engagement than static
             
-            **MANDATORY SECTIONS** (MUST include ALL with MINIMUM word counts):
+            ═══════════════════════════════════════════════════════════════
+            ███ MANDATORY ARTICLE STRUCTURE (FOLLOW EXACTLY) ███
+            ═══════════════════════════════════════════════════════════════
             
-            1. **Introduction** (180+ words):
-               - Hook with a provocative question or bold statistic
-               - Explain the problem businesses face
-               - Preview what the article covers
-               - DO NOT just repeat the title
+            1. **Introduction** (200+ words):
+               - Start with a bold statistic or provocative question as hook
+               - Explain the pain point businesses face in 2026
+               - Preview what the reader will learn (use bullet points)
+               - End with: "Let's dive in."
+               [IMAGE_PLACEHOLDER_1] <-- PUT IMAGE HERE AFTER INTRO
             
-            2. **What is [Topic]?** (250+ words):
-               - Detailed explanation of the concept
-               - Historical context and 2026 relevance
-               - Why it matters for businesses today
-               - Include a specific example
+            2. **What is [Topic]?** (300+ words):
+               - Comprehensive definition with historical context
+               - Why it matters MORE in 2026 than ever before
+               - Include a specific real-world example
+               - Reference TikTok's 2026 AI adoption report (75% statistic)
+               [IMAGE_PLACEHOLDER_2] <-- PUT IMAGE HERE
             
-            3. **Step-by-Step Guide: How to Make UGC Ads with AdMaker AI** (600+ words):
-               - 5 detailed steps, EACH with 120+ words
-               - Structure each step as:
-                 * "Why it matters" (40 words)
-                 * "How to do it" (50 words)  
-                 * "Pro Tip" (30 words)
-               - Include specific UI references
-               - Place [IMAGE_PLACEHOLDER_X] after each step
+            3. **Step-by-Step Guide: How to Create UGC Ads with AdMaker AI** (700+ words):
+               This is the CORE section. Write 5 detailed steps, EACH step must have:
+               - Step title as <h3>
+               - "Why this matters" paragraph (60 words)
+               - "How to do it" paragraph (80 words) 
+               - "Pro Tip" callout (40 words)
+               - Total per step: 180+ words
+               
+               Step 1: [Plan Your Ad Strategy] + [IMAGE_PLACEHOLDER_3]
+               Step 2: [Choose Your AI Avatar] + [IMAGE_PLACEHOLDER_4]
+               Step 3: [Write Your Script] + [IMAGE_PLACEHOLDER_5]
+               Step 4: [Customize Your Video] + [IMAGE_PLACEHOLDER_6]
+               Step 5: [Export and Launch] + [IMAGE_PLACEHOLDER_7]
+               
+               ⚠️ IMPORTANT: Include 2-3 PINK INTERNAL LINKS in this section:
+               <a href="[LANDING_PAGE_URL]" style="color: #ff0844; font-weight: bold;">Try AdMaker AI Now</a>
             
-            4. **Comparison Table + Analysis** (300+ words):
-               - HTML table with columns: Platform, Price (2026), Videos/Credits, Render Speed, Best For
-               - USE THE EXACT PRICES FROM THE TABLE ABOVE ($110 for Arcads, NOT $99)
-               - After table: 150+ word analysis explaining pros/cons of each
-               - Be factually honest: Arcads has premium avatar quality
+            4. **Platform Comparison: AdMaker AI vs Alternatives** (400+ words):
+               - Full HTML comparison table with 5 columns: Platform, Price, Videos/Credits, Render Speed, Best For
+               - USE EXACT PRICES from data above
+               - Below table: 200+ word analysis paragraph for EACH platform (why it's good/bad)
+               - Be honest: mention Arcads' premium avatar quality but higher cost
+               [IMAGE_PLACEHOLDER_8] <-- PUT IMAGE HERE
             
-            5. **Real Case Study** (350+ words):
-               - Specific niche: "A Shopify organic skincare brand" or "A DTC fitness app"
-               - Specific numbers: "CTR increased 47%", "CPA decreased 32%"
-               - Before/After comparison with real metrics
-               - Expert quote: "As [Name], [Title] at [Company], said: '...'" (50+ words)
-               - Timeline: "Within 3 weeks of switching to AdMaker AI..."
+            5. **Real Success Story: Case Study** (400+ words):
+               - Specific business: "Sarah Chen, founder of GlowUp Skincare (Shopify store)"
+               - Specific numbers: "CTR increased 47%, CPA dropped 32%, ROAS improved 2.8x"
+               - Timeline: "Within 3 weeks of switching from traditional UGC creators to AdMaker AI..."
+               - Direct quote from the "client" (50+ words)
+               - Before/After metrics comparison
             
-            6. **2026 Trends & Future** (250+ words):
+            6. **2026 Industry Trends & What's Next** (250+ words):
                - AI video ad market growth statistics
-               - TikTok's January 2026 AI adoption report
-               - What to expect in 2027
-               - How businesses should prepare
+               - TikTok's 2026 AI adoption report findings
+               - Meta's video engagement data
+               - Predictions for 2027
+               - How businesses should prepare now
             
-            7. **Common Mistakes to Avoid** (200+ words):
-               - List 5 specific mistakes with explanations (40+ words each)
-               - Include how to avoid each mistake
+            7. **Common Mistakes to Avoid** (250+ words):
+               - List 5 specific mistakes as <h3> headers
+               - Each mistake: 50+ word explanation + how to avoid it
+               - Real examples of failures
             
-            8. **When to Choose Arcads Instead** (180+ words) [E-E-A-T TRUST]:
-               - Be HONEST: Arcads excels at hyper-realistic AI avatars
-               - Their €14M funding means strong R&D
-               - Recommend for: enterprise clients, premium quality needs
+            8. **When to Choose Arcads Instead** (200+ words) [E-E-A-T HONESTY]:
+               - Be GENUINELY honest: Arcads excels at hyper-realistic AI avatars
+               - Their €14M funding = strong R&D
+               - Recommend for: enterprise clients, premium brand needs
                - This honesty builds E-E-A-T credibility with Google
             
-            9. **FAQ Section** (in JSON): 5 questions, EACH answer 60+ words
+            9. **FAQ Section** (will be in JSON): 7 questions, EACH answer 80+ words
+               Include questions about pricing, ROI, usage limits, comparison, quality
             
-            10. **Conclusion + CTA** (180+ words): 
-                - Summarize key points
-                - Clear value proposition  
-                - Strong call-to-action
+            10. **Related Readings** (mandatory section):
+                <h2>Related Articles You'll Love</h2>
+                <div class="related-readings">
+                ${relatedLinks ? relatedLinks.split('\\n').map(link => {
+                const match = link.match(/Title: "([^"]+)", URL: ([^\\s]+)/);
+                if (match) return \`<a href="\${match[2]}" style="color: #ff0844; font-weight: bold; display: block; margin: 10px 0;">→ \${match[1]}</a>\`;
+                    return '';
+                }).join('') : '<p>Check our blog for more articles!</p>'}
+                </div>
+                [IMAGE_PLACEHOLDER_9] <-- PUT IMAGE HERE
+            
+            11. **Conclusion + Strong CTA** (200+ words):
+                - Summarize the 3 key takeaways
+                - Restate the value proposition
+                - STRONG call-to-action with PINK LINK:
+                  <a href="[LANDING_PAGE_URL]" style="color: #ff0844; font-weight: bold; font-size: 1.2em;">🚀 Start Creating AI Video Ads Now - Try AdMaker AI Free</a>
+                [IMAGE_PLACEHOLDER_10] <-- PUT IMAGE HERE
+            
+            ═══════════════════════════════════════════════════════════════
+            ███ MANDATORY LINK REQUIREMENTS ███
+            ═══════════════════════════════════════════════════════════════
+            
+            1. **EXTERNAL LINKS (2-3 required)**: Link to authority sources:
+               - TikTok Business: https://business.tiktok.com
+               - Meta Business: https://business.meta.com
+               - Statista: https://www.statista.com
+               Format: <a href="URL" target="_blank" rel="noopener">Source Name</a>
+            
+            2. **INTERNAL LINKS TO LANDING PAGE (3-4 required)**: 
+               Use PINK styling for visibility:
+               <a href="[LANDING_PAGE_URL]" style="color: #ff0844; font-weight: bold;">AdMaker AI</a>
+               Replace [LANDING_PAGE_URL] with: https://admakerai.app${lang.code === 'en' ? '' : '/' + lang.code}
+            
+            3. **RELATED ARTICLE LINKS**: Already provided in section 10 above
+            
+            ═══════════════════════════════════════════════════════════════
+            ███ IMAGE PLACEMENT RULES ███
+            ═══════════════════════════════════════════════════════════════
+            - SPREAD images evenly throughout the article
+            - Place [IMAGE_PLACEHOLDER_X] AFTER each major section as marked above
+            - NEVER put 2 images in a row without text between them
+            - Use exactly 10 placeholders: [IMAGE_PLACEHOLDER_1] through [IMAGE_PLACEHOLDER_10]
             
             **TITLE REQUIREMENTS**:
             - MUST be 60-70 characters exactly
@@ -339,13 +396,6 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             - GOOD: "Best Arcads Alternatives for Small Businesses 2026"
             - BAD: "Arcads Pricing 2026: Complete Guide"
             
-            **OTHER REQUIREMENTS**:
-            - Year: ALWAYS "2026". NEVER 2024 or 2025.
-            - Use <h2> and <h3> for headers
-            - Include EXACTLY 10 image placeholders: [IMAGE_PLACEHOLDER_1] through [IMAGE_PLACEHOLDER_10]
-            - External links: Include 1-2 authority sources (TikTok Business, Meta Business)
-            - Internal links: ${relatedLinks || "Link to /blog"}
-            
             **OUTPUT FORMAT**:
             You must output TWO parts.
             
@@ -354,99 +404,99 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
                "title_translated": "60-70 char title starting with Best/Top/How to",
                "meta_description": "155 chars max, compelling and keyword-rich",
                "quick_answer": "2-3 sentences directly answering the main question",
-               "faq": [{"question":"...", "answer":"60+ words..."}]
+               "faq": [{"question":"...", "answer":"80+ words..."}]
             }
             
             PART 2: The HTML content, enclosed specifically between these delimiters:
             ---HTML_CONTENT_START---
-            (Put the full 2000+ WORD HTML article here)
+            (Put the full 2500+ WORD HTML article here with ALL 10 image placeholders distributed evenly)
             ---HTML_CONTENT_END---
             `;
 
-            // Llama 3.1 405B input structure
-            const input = {
-                system_prompt: "You are an expert SEO Content Writer. Return JSON metadata followed by HTML content in delimiters. NEVER be lazy. ALWAYS write at least 2000 words.",
-                prompt: prompt,
-                max_tokens: 8000, // Enough for 2000+ word articles
-                min_tokens: 4000, // Force minimum length
-                temperature: 0.7,
-                top_p: 0.9
-            };
+                // Llama 3.1 405B input structure
+                const input = {
+                    system_prompt: "You are an expert SEO Content Writer for AdMaker AI. You MUST write at least 2500 words. Return JSON metadata first, then HTML content between delimiters. NEVER summarize. ALWAYS expand every section with detailed examples, statistics, and real-world explanations. Write like a human marketing expert, not a generic AI.",
+                    prompt: prompt,
+                    max_tokens: 12000, // Increased for 2500+ word articles
+                    min_tokens: 6000, // Force longer minimum
+                    temperature: 0.7,
+                    top_p: 0.9
+                };
 
-            // Using Llama 3.1 405B Instruct
-            console.log(`    📝 Generating with Llama 3.1 405B...`);
-            output = await replicate.run("meta/meta-llama-3.1-405b-instruct", { input });
+                // Using Llama 3.1 405B Instruct
+                console.log(`    📝 Generating with Llama 3.1 405B...`);
+                output = await replicate.run("meta/meta-llama-3.1-405b-instruct", { input });
 
-            // Llama returns an array of strings (iterator)
-            fullText = Array.isArray(output) ? output.join('') : output;
+                // Llama returns an array of strings (iterator)
+                fullText = Array.isArray(output) ? output.join('') : output;
 
-            // === ROBUST HYBRID EXTRACTION ===
+                // === ROBUST HYBRID EXTRACTION ===
 
-            // 1. Extract JSON Metadata
-            let jsonMatch = fullText.match(/\{[\s\S]*?\}/);
-            if (!jsonMatch) throw new Error('No JSON metadata found');
+                // 1. Extract JSON Metadata
+                let jsonMatch = fullText.match(/\{[\s\S]*?\}/);
+                if (!jsonMatch) throw new Error('No JSON metadata found');
 
-            let jsonPart = jsonMatch[0];
-            // Fix strict JSON if needed
-            jsonPart = jsonPart.replace(/,\s*}/g, '}').replace(/,\s*]/g, ']');
-            const metadata = JSON.parse(jsonPart);
+                let jsonPart = jsonMatch[0];
+                // Fix strict JSON if needed
+                jsonPart = jsonPart.replace(/,\s*}/g, '}').replace(/,\s*]/g, ']');
+                const metadata = JSON.parse(jsonPart);
 
-            // 2. Extract HTML Content
-            const contentStartMarker = '---HTML_CONTENT_START---';
-            const contentEndMarker = '---HTML_CONTENT_END---';
+                // 2. Extract HTML Content
+                const contentStartMarker = '---HTML_CONTENT_START---';
+                const contentEndMarker = '---HTML_CONTENT_END---';
 
-            let startIndex = fullText.indexOf(contentStartMarker);
-            let endIndex = fullText.indexOf(contentEndMarker);
+                let startIndex = fullText.indexOf(contentStartMarker);
+                let endIndex = fullText.indexOf(contentEndMarker);
 
-            if (startIndex === -1) throw new Error('HTML content start marker not found');
+                if (startIndex === -1) throw new Error('HTML content start marker not found');
 
-            // If end marker missing (truncation), use end of text
-            if (endIndex === -1) {
-                console.warn('    ⚠️ Warning: HTML content end marker missing (truncation suspect). Using full text end.');
-                endIndex = fullText.length;
+                // If end marker missing (truncation), use end of text
+                if (endIndex === -1) {
+                    console.warn('    ⚠️ Warning: HTML content end marker missing (truncation suspect). Using full text end.');
+                    endIndex = fullText.length;
+                }
+
+                let htmlContent = fullText.substring(startIndex + contentStartMarker.length, endIndex).trim();
+
+                if (htmlContent.length < 1000) throw new Error('Generated HTML content seems too short');
+
+                const enContent = {
+                    ...metadata,
+                    content_html: htmlContent
+                };
+                return enContent;
+            } catch (e) {
+                console.warn(`    ⚠️ JSON Parse/API Error: ${e.message}. Retrying...`);
+                console.log('--- DEBUG: RAW OUTPUT START ---');
+                console.log(output); // Check if output is string or object
+                console.log('--- DEBUG: RAW OUTPUT END ---');
+                fs.writeFileSync('failed_log.txt', fullText || 'No output');
+                retries--;
+
+
+                await sleep(3000);
             }
-
-            let htmlContent = fullText.substring(startIndex + contentStartMarker.length, endIndex).trim();
-
-            if (htmlContent.length < 1000) throw new Error('Generated HTML content seems too short');
-
-            const enContent = {
-                ...metadata,
-                content_html: htmlContent
-            };
-            return enContent;
-        } catch (e) {
-            console.warn(`    ⚠️ JSON Parse/API Error: ${e.message}. Retrying...`);
-            console.log('--- DEBUG: RAW OUTPUT START ---');
-            console.log(output); // Check if output is string or object
-            console.log('--- DEBUG: RAW OUTPUT END ---');
-            fs.writeFileSync('failed_log.txt', fullText || 'No output');
-            retries--;
-
-
-            await sleep(3000);
         }
-    }
     throw new Error('Max retries exceeded for content generation');
-}
-
-// ================================================================
-// TRANSLATE article content from English to other languages
-// ================================================================
-async function translateArticleContent(enContent, lang, topic) {
-    if (enContent._skipped) {
-        throw new Error('Cannot translate: EN content was skipped (already exists)');
     }
 
-    let retries = 3;
-    while (retries > 0) {
-        let output;
-        let fullText;
+    // ================================================================
+    // TRANSLATE article content from English to other languages
+    // ================================================================
+    async function translateArticleContent(enContent, lang, topic) {
+        if (enContent._skipped) {
+            throw new Error('Cannot translate: EN content was skipped (already exists)');
+        }
 
-        try {
-            console.log(`    🤖 Translating with Llama 3.1 405B (${retries} attempts left)...`);
+        let retries = 3;
+        while (retries > 0) {
+            let output;
+            let fullText;
 
-            const prompt = `
+            try {
+                console.log(`    🤖 Translating with Llama 3.1 405B (${retries} attempts left)...`);
+
+                const prompt = `
 You are a professional translator. Translate the following blog article from English to ${lang.name}.
 
 **TRANSLATION RULES**:
@@ -493,202 +543,206 @@ PART 2: The translated HTML content, enclosed specifically between these delimit
 ---HTML_CONTENT_END---
 `;
 
-            const input = {
-                system_prompt: "You are a professional translator. Return JSON metadata followed by HTML content in delimiters.",
-                prompt: prompt,
-                max_tokens: 8000,
-                temperature: 0.5,
-                top_p: 0.9
-            };
+                const input = {
+                    system_prompt: "You are a professional translator. Return JSON metadata followed by HTML content in delimiters.",
+                    prompt: prompt,
+                    max_tokens: 8000,
+                    temperature: 0.5,
+                    top_p: 0.9
+                };
 
-            output = await replicate.run('meta/meta-llama-3.1-405b-instruct', { input });
-            fullText = Array.isArray(output) ? output.join('') : String(output);
+                output = await replicate.run('meta/meta-llama-3.1-405b-instruct', { input });
+                fullText = Array.isArray(output) ? output.join('') : String(output);
 
-            // 1. Extract JSON Metadata
-            let jsonMatch = fullText.match(/\{[\s\S]*?\}/);
-            if (!jsonMatch) throw new Error('No JSON metadata found');
+                // 1. Extract JSON Metadata
+                let jsonMatch = fullText.match(/\{[\s\S]*?\}/);
+                if (!jsonMatch) throw new Error('No JSON metadata found');
 
-            let jsonPart = jsonMatch[0];
-            // Fix strict JSON if needed
-            jsonPart = jsonPart.replace(/,\s*}/g, '}').replace(/,\s*]/g, ']');
-            const metadata = JSON.parse(jsonPart);
+                let jsonPart = jsonMatch[0];
+                // Fix strict JSON if needed
+                jsonPart = jsonPart.replace(/,\s*}/g, '}').replace(/,\s*]/g, ']');
+                const metadata = JSON.parse(jsonPart);
 
-            // 2. Extract HTML Content
-            const contentStartMarker = '---HTML_CONTENT_START---';
-            const contentEndMarker = '---HTML_CONTENT_END---';
+                // 2. Extract HTML Content
+                const contentStartMarker = '---HTML_CONTENT_START---';
+                const contentEndMarker = '---HTML_CONTENT_END---';
 
-            let startIndex = fullText.indexOf(contentStartMarker);
-            let endIndex = fullText.indexOf(contentEndMarker);
+                let startIndex = fullText.indexOf(contentStartMarker);
+                let endIndex = fullText.indexOf(contentEndMarker);
 
-            if (startIndex === -1) throw new Error('HTML content start marker not found');
+                if (startIndex === -1) throw new Error('HTML content start marker not found');
 
-            // If end marker missing (truncation), use end of text
-            if (endIndex === -1) {
-                console.warn('    ⚠️ Warning: HTML content end marker missing (truncation suspect). Using full text end.');
-                endIndex = fullText.length;
-            }
+                // If end marker missing (truncation), use end of text
+                if (endIndex === -1) {
+                    console.warn('    ⚠️ Warning: HTML content end marker missing (truncation suspect). Using full text end.');
+                    endIndex = fullText.length;
+                }
 
-            let htmlContent = fullText.substring(startIndex + contentStartMarker.length, endIndex).trim();
+                let htmlContent = fullText.substring(startIndex + contentStartMarker.length, endIndex).trim();
 
-            if (htmlContent.length < 500) throw new Error('Translated HTML content seems too short');
+                if (htmlContent.length < 500) throw new Error('Translated HTML content seems too short');
 
-            return {
-                ...metadata,
-                content_html: htmlContent
-            };
+                return {
+                    ...metadata,
+                    content_html: htmlContent
+                };
 
-        } catch (e) {
-            console.warn(`    ⚠️ Translation Error: ${e.message}. Retrying...`);
-            retries--;
-            await sleep(3000);
-        }
-    }
-    throw new Error('Max retries exceeded for translation');
-}
-
-async function generateBlogImages(keyword, count) {
-    console.log('    🎨 Generating Images...');
-    const images = [];
-    const prompts = [
-        "Young woman influencer talking to camera in modern apartment, natural lighting, casual outfit, authentic UGC style",
-        "Male tech reviewer holding smartphone, professional home office background, enthusiastic expression, no text",
-        "Real estate agent woman smiling in front of luxury house, professional attire, sunny day, confident pose",
-        "Lifestyle vlogger filming selfie video with ring light, cozy bedroom setup, warm tones, genuine smile",
-        "Female fitness influencer in workout clothes, gym background, motivational pose, energetic expression",
-        "Young entrepreneur man working on laptop in coffee shop, casual creative style, focused expression",
-        "Beauty influencer applying makeup in vanity mirror, soft lighting, elegant setup, tutorial style",
-        "Food blogger presenting dish in restaurant, appetizing presentation, warm ambiance, excited face",
-        "Travel vlogger with backpack in scenic location, adventure style, candid moment, outdoor lighting",
-        "Digital marketer woman at desktop computer, modern office, confident professional look, clean background"
-    ];
-
-    for (let i = 0; i < count; i++) {
-        const p = `${prompts[i % prompts.length]}, realistic, 8k, cinematic lighting, soft focus background, no text, no writing, no letters, no words`;
-        const url = await generateSingleImage(p);
-
-        if (url) {
-            const filename = `img - ${Date.now()} -${i}.png`;
-            const localPath = path.join(__dirname, 'public/blog-images', filename);
-            const relativePath = `/ blog - images / ${filename} `;
-            if (!fs.existsSync(path.dirname(localPath))) fs.mkdirSync(path.dirname(localPath), { recursive: true });
-            try {
-                await downloadImage(url, localPath);
-                images.push(relativePath);
             } catch (e) {
-                images.push('https://placehold.co/800x450?text=Image+Error');
+                console.warn(`    ⚠️ Translation Error: ${e.message}. Retrying...`);
+                retries--;
+                await sleep(3000);
             }
-        } else {
-            images.push('https://placehold.co/800x450?text=Gen+Failed');
         }
+        throw new Error('Max retries exceeded for translation');
     }
-    return images;
-}
 
-async function generateSingleImage(prompt) {
-    try {
-        const res = await fetch('https://api.kie.ai/api/v1/jobs/createTask', {
-            method: 'POST',
-            headers: { 'Authorization': `Bearer ${VEO_API_KEY} `, 'Content-Type': 'application/json' },
-            body: JSON.stringify({ model: 'z-image', input: { prompt, aspect_ratio: '16:9' } })
-        });
-        const data = await res.json();
-        if (data.code !== 200) return null;
+    async function generateBlogImages(keyword, count) {
+        console.log('    🎨 Generating Images...');
+        const images = [];
+        const prompts = [
+            "Young woman influencer talking to camera in modern apartment, natural lighting, casual outfit, authentic UGC style",
+            "Male tech reviewer holding smartphone, professional home office background, enthusiastic expression, no text",
+            "Real estate agent woman smiling in front of luxury house, professional attire, sunny day, confident pose",
+            "Lifestyle vlogger filming selfie video with ring light, cozy bedroom setup, warm tones, genuine smile",
+            "Female fitness influencer in workout clothes, gym background, motivational pose, energetic expression",
+            "Young entrepreneur man working on laptop in coffee shop, casual creative style, focused expression",
+            "Beauty influencer applying makeup in vanity mirror, soft lighting, elegant setup, tutorial style",
+            "Food blogger presenting dish in restaurant, appetizing presentation, warm ambiance, excited face",
+            "Travel vlogger with backpack in scenic location, adventure style, candid moment, outdoor lighting",
+            "Digital marketer woman at desktop computer, modern office, confident professional look, clean background"
+        ];
 
-        const taskId = data.data.taskId;
-        for (let i = 0; i < 45; i++) {
-            await sleep(2000);
-            const check = await fetch(`https://api.kie.ai/api/v1/jobs/recordInfo?taskId=${taskId}`, {
-                headers: { 'Authorization': `Bearer ${VEO_API_KEY}` }
+        for (let i = 0; i < count; i++) {
+            const p = `${prompts[i % prompts.length]}, realistic, 8k, cinematic lighting, soft focus background, no text, no writing, no letters, no words`;
+            const url = await generateSingleImage(p);
+
+            if (url) {
+                const filename = `img - ${Date.now()} -${i}.png`;
+                const localPath = path.join(__dirname, 'public/blog-images', filename);
+                const relativePath = `/ blog - images / ${filename} `;
+                if (!fs.existsSync(path.dirname(localPath))) fs.mkdirSync(path.dirname(localPath), { recursive: true });
+                try {
+                    await downloadImage(url, localPath);
+                    images.push(relativePath);
+                } catch (e) {
+                    images.push('https://placehold.co/800x450?text=Image+Error');
+                }
+            } else {
+                images.push('https://placehold.co/800x450?text=Gen+Failed');
+            }
+        }
+        return images;
+    }
+
+    async function generateSingleImage(prompt) {
+        try {
+            const res = await fetch('https://api.kie.ai/api/v1/jobs/createTask', {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${VEO_API_KEY} `, 'Content-Type': 'application/json' },
+                body: JSON.stringify({ model: 'z-image', input: { prompt, aspect_ratio: '16:9' } })
             });
-            const d = await check.json();
-            if (d.data.state === 'success') return JSON.parse(d.data.resultJson).resultUrls[0];
-            if (d.data.state === 'fail') return null;
-        }
-    } catch (e) { }
-    return null;
-}
+            const data = await res.json();
+            if (data.code !== 200) return null;
 
-function downloadImage(url, filepath) {
-    return new Promise((resolve, reject) => {
-        const https = url.startsWith('https') ? require('https') : require('http');
-        const file = fs.createWriteStream(filepath);
-        https.get(url, (res) => {
-            res.pipe(file);
-            file.on('finish', () => { file.close(); resolve(); });
-        }).on('error', (e) => { fs.unlink(filepath, () => { }); reject(e); });
-    });
-}
+            const taskId = data.data.taskId;
+            for (let i = 0; i < 45; i++) {
+                await sleep(2000);
+                const check = await fetch(`https://api.kie.ai/api/v1/jobs/recordInfo?taskId=${taskId}`, {
+                    headers: { 'Authorization': `Bearer ${VEO_API_KEY}` }
+                });
+                const d = await check.json();
+                if (d.data.state === 'success') return JSON.parse(d.data.resultJson).resultUrls[0];
+                if (d.data.state === 'fail') return null;
+            }
+        } catch (e) { }
+        return null;
+    }
 
-function createPageTsx(topic, content, images, lang) {
-    let htmlContent = content.content_html;
+    function downloadImage(url, filepath) {
+        return new Promise((resolve, reject) => {
+            const https = url.startsWith('https') ? require('https') : require('http');
+            const file = fs.createWriteStream(filepath);
+            https.get(url, (res) => {
+                res.pipe(file);
+                file.on('finish', () => { file.close(); resolve(); });
+            }).on('error', (e) => { fs.unlink(filepath, () => { }); reject(e); });
+        });
+    }
 
-    // ========== SEO SANITIZATION ==========
+    function createPageTsx(topic, content, images, lang) {
+        let htmlContent = content.content_html;
 
-    // 1. Remove duplicate H1 tags (template already has H1 in header)
-    htmlContent = htmlContent.replace(/<h1[^>]*>.*?<\/h1>/gi, '');
+        // ========== SEO SANITIZATION ==========
 
-    // 2. Remove any leftover image placeholders that weren't replaced
-    htmlContent = htmlContent.replace(/\[IMAGE_PLACEHOLDER_\d+\]/g, '');
+        // 1. Remove duplicate H1 tags (template already has H1 in header)
+        htmlContent = htmlContent.replace(/<h1[^>]*>.*?<\/h1>/gi, '');
 
-    // 3. Remove empty paragraphs and whitespace-only tags
-    htmlContent = htmlContent.replace(/<p>\s*<\/p>/gi, '');
-    htmlContent = htmlContent.replace(/<div>\s*<\/div>/gi, '');
+        // 2. Remove any leftover image placeholders that weren't replaced
+        htmlContent = htmlContent.replace(/\[IMAGE_PLACEHOLDER_\d+\]/g, '');
 
-    // 4. Fix potential unclosed tags (basic cleanup)
-    htmlContent = htmlContent.replace(/<br>/gi, '<br/>');
-    htmlContent = htmlContent.replace(/<hr>/gi, '<hr/>');
+        // 3. Remove empty paragraphs and whitespace-only tags
+        htmlContent = htmlContent.replace(/<p>\s*<\/p>/gi, '');
+        htmlContent = htmlContent.replace(/<div>\s*<\/div>/gi, '');
 
-    // 5. Remove markdown artifacts that might slip through
-    htmlContent = htmlContent.replace(/```[a-z]*\n?/gi, '');
-    htmlContent = htmlContent.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-    htmlContent = htmlContent.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+        // 4. Fix potential unclosed tags (basic cleanup)
+        htmlContent = htmlContent.replace(/<br>/gi, '<br/>');
+        htmlContent = htmlContent.replace(/<hr>/gi, '<hr/>');
 
-    // 6. Clean up excessive newlines
-    htmlContent = htmlContent.replace(/\n{3,}/g, '\n\n');
+        // 5. Remove markdown artifacts that might slip through
+        htmlContent = htmlContent.replace(/```[a-z]*\n?/gi, '');
+        htmlContent = htmlContent.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+        htmlContent = htmlContent.replace(/\*([^*]+)\*/g, '<em>$1</em>');
 
-    // 7. Ensure all links have rel="noopener" for external links
-    htmlContent = htmlContent.replace(
-        /<a\s+href="(https?:\/\/(?!admakerai\.app)[^"]+)"([^>]*)>/gi,
-        '<a href="$1" rel="noopener noreferrer" target="_blank"$2>'
-    );
+        // 6. Clean up excessive newlines
+        htmlContent = htmlContent.replace(/\n{3,}/g, '\n\n');
 
-    // ========== END SEO SANITIZATION ==========
+        // 7. Ensure all links have rel="noopener" for external links
+        htmlContent = htmlContent.replace(
+            /<a\s+href="(https?:\/\/(?!admakerai\.app)[^"]+)"([^>]*)>/gi,
+            '<a href="$1" rel="noopener noreferrer" target="_blank"$2>'
+        );
 
-    // Replace Image Placeholders with actual images
-    images.forEach((img, idx) => {
-        // Use standard img tag for simplicity within dangerouslySetInnerHTML
-        const stdImgTag = `<img src="${img}" alt="${topic.keyword} - illustration ${idx + 1}" loading="lazy" class="w-full rounded-xl my-8 hover:opacity-95 transition" />`;
-        htmlContent = htmlContent.replace(`[IMAGE_PLACEHOLDER_${idx + 1}]`, stdImgTag);
-    });
+        // ========== END SEO SANITIZATION ==========
 
-    // Pink Links (Internal)
-    htmlContent = htmlContent.replace(
-        /\[INTERNAL_LINK:\s*([^|]+?)\s*\|\s*([^\]]+?)\]/g,
-        '<a href="$2" class="text-[#ff0844] font-bold hover:text-[#ff5478] highlight-link" style="color: #ff0844; font-weight: 700;">$1</a>'
-    );
+        // Replace [LANDING_PAGE_URL] with actual landing page URL based on language
+        const landingPageUrl = lang === 'en' ? 'https://admakerai.app' : `https://admakerai.app/${lang}`;
+        htmlContent = htmlContent.replace(/\[LANDING_PAGE_URL\]/g, landingPageUrl);
 
-    // External Links (basic detection if Claude outputs them as standard a tags, we can style them via prose class, but if we need specific styling we assume they are already a tags)
+        // Replace Image Placeholders with actual images
+        images.forEach((img, idx) => {
+            // Use standard img tag for simplicity within dangerouslySetInnerHTML
+            const stdImgTag = `<img src="${img}" alt="${topic.keyword} - illustration ${idx + 1}" loading="lazy" class="w-full rounded-xl my-8 hover:opacity-95 transition" />`;
+            htmlContent = htmlContent.replace(`[IMAGE_PLACEHOLDER_${idx + 1}]`, stdImgTag);
+        });
 
-    const landingPageUrl = lang === 'en' ? '/' : `/${lang}`;
+        // Pink Links (Internal)
+        htmlContent = htmlContent.replace(
+            /\[INTERNAL_LINK:\s*([^|]+?)\s*\|\s*([^\]]+?)\]/g,
+            '<a href="$2" class="text-[#ff0844] font-bold hover:text-[#ff5478] highlight-link" style="color: #ff0844; font-weight: 700;">$1</a>'
+        );
 
-    // Schema
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "headline": content.title_translated,
-        "image": images[0],
-        "author": { "@type": "Organization", "name": "AdMaker AI" },
-        "mainEntity": {
-            "@type": "FAQPage",
-            "mainEntity": content.faq ? content.faq.map(f => ({
-                "@type": "Question",
-                "name": f.question,
-                "acceptedAnswer": { "@type": "Answer", "text": f.answer }
-            })) : []
-        }
-    };
+        // External Links (basic detection if Claude outputs them as standard a tags, we can style them via prose class, but if we need specific styling we assume they are already a tags)
 
-    return `
+        const landingPageUrl = lang === 'en' ? '/' : `/${lang}`;
+
+        // Schema
+        const jsonLd = {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": content.title_translated,
+            "image": images[0],
+            "author": { "@type": "Organization", "name": "AdMaker AI" },
+            "mainEntity": {
+                "@type": "FAQPage",
+                "mainEntity": content.faq ? content.faq.map(f => ({
+                    "@type": "Question",
+                    "name": f.question,
+                    "acceptedAnswer": { "@type": "Answer", "text": f.answer }
+                })) : []
+            }
+        };
+
+        return `
 'use client';
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
@@ -777,21 +831,21 @@ export default function BlogPost() {
     );
 }
 `;
-}
+    }
 
-function updateBlogIndex(dir, topic, thumbnail, lang, title) {
-    const listPath = path.join(dir, 'page.tsx');
-    if (!fs.existsSync(listPath)) return;
+    function updateBlogIndex(dir, topic, thumbnail, lang, title) {
+        const listPath = path.join(dir, 'page.tsx');
+        if (!fs.existsSync(listPath)) return;
 
-    let content = fs.readFileSync(listPath, 'utf8');
-    const prefix = lang === 'en' ? 'blog' : lang + '/blog';
-    const linkPath = '/' + prefix + '/' + topic.slug;
-    if (content.includes(linkPath)) return;
+        let content = fs.readFileSync(listPath, 'utf8');
+        const prefix = lang === 'en' ? 'blog' : lang + '/blog';
+        const linkPath = '/' + prefix + '/' + topic.slug;
+        if (content.includes(linkPath)) return;
 
-    // Standard card injection
-    // Match styles.blogCard usage
-    // We assume the index page has 'styles' imported.
-    const newCard = `
+        // Standard card injection
+        // Match styles.blogCard usage
+        // We assume the index page has 'styles' imported.
+        const newCard = `
         < Link href = "${linkPath}" className = { styles.blogCard } >
                             <div className={styles.cardImage}>
                                 <Image
@@ -810,13 +864,13 @@ function updateBlogIndex(dir, topic, thumbnail, lang, title) {
                         </Link >
         `;
 
-    if (content.includes('className={styles.blogGrid}')) {
-        content = content.replace(
-            'className={styles.blogGrid}>',
-            `className = { styles.blogGrid } >\n${newCard} `
-        );
-        fs.writeFileSync(listPath, content);
+        if (content.includes('className={styles.blogGrid}')) {
+            content = content.replace(
+                'className={styles.blogGrid}>',
+                `className = { styles.blogGrid } >\n${newCard} `
+            );
+            fs.writeFileSync(listPath, content);
+        }
     }
-}
 
-main();
+    main();
