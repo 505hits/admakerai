@@ -418,22 +418,19 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             ---HTML_CONTENT_END---
             `;
 
-            // Llama 3.1 405B input structure
+            // Claude 3.5 Haiku input structure (per Replicate docs)
             const input = {
-                system_prompt: "You are an expert SEO Content Writer for AdMaker AI. You MUST write at least 2500 words. Return JSON metadata first, then HTML content between delimiters. NEVER summarize. ALWAYS expand every section with detailed examples, statistics, and real-world explanations. Write like a human marketing expert, not a generic AI.",
+                system_prompt: "You are an expert SEO Content Writer for AdMaker AI. You MUST write at least 2500 words. Return JSON metadata first, then HTML content between ---HTML_CONTENT_START--- and ---HTML_CONTENT_END--- delimiters. NEVER summarize. ALWAYS expand every section with detailed examples, statistics, and real-world explanations. Write like a human marketing expert, not a generic AI. FOLLOW ALL INSTRUCTIONS EXACTLY.",
                 prompt: prompt,
-                max_tokens: 12000, // Increased for 2500+ word articles
-                min_tokens: 6000, // Force longer minimum
-                temperature: 0.7,
-                top_p: 0.9
+                max_tokens: 8192 // Max supported by Replicate for this model
             };
 
-            // Using Llama 3.1 405B Instruct
-            console.log(`    📝 Generating with Llama 3.1 405B...`);
-            output = await replicate.run("meta/meta-llama-3.1-405b-instruct", { input });
+            // Using Claude 3.5 Haiku
+            console.log(`    📝 Generating with Claude 3.5 Haiku...`);
+            output = await replicate.run("anthropic/claude-3.5-haiku", { input });
 
-            // Llama returns an array of strings (iterator)
-            fullText = Array.isArray(output) ? output.join('') : output;
+            // Claude returns an array of strings (iterator) that needs to be joined
+            fullText = Array.isArray(output) ? output.join('') : String(output);
 
             // === ROBUST HYBRID EXTRACTION ===
 
