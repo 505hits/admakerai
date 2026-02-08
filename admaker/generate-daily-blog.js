@@ -420,9 +420,9 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
 
             // Claude 3.5 Haiku input structure (per Replicate docs)
             const input = {
-                system_prompt: "You are an expert SEO Content Writer for AdMaker AI. You MUST write at least 2500 words. Return JSON metadata first, then HTML content between ---HTML_CONTENT_START--- and ---HTML_CONTENT_END--- delimiters. NEVER summarize. ALWAYS expand every section with detailed examples, statistics, and real-world explanations. Write like a human marketing expert, not a generic AI. FOLLOW ALL INSTRUCTIONS EXACTLY.",
+                system_prompt: "You are an automated SEO Content Generator. You are NOT a chat assistant. \n\nRULES:\n1. OUTPUT ONLY valid JSON metadata followed immediately by the HTML content.\n2. NO conversational text (e.g., 'Here is the article', 'Part 1').\n3. DO NOT SUMMARIZE or use placeholders like '[More sections here]'. Write the FULL 2500+ word article.\n4. RETURN THE COMPLETE RESULT IN ONE RESPONSE.\n5. If the article is too short, you retain a penalty. EXPAND every section.",
                 prompt: prompt,
-                max_tokens: 8192 // Max supported by Replicate for this model
+                max_tokens: 8192
             };
 
             // Using Claude 3.5 Haiku
