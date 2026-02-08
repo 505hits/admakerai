@@ -419,7 +419,7 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             `;
 
             // === STEP 1: METADATA & FIRST HALF ===
-            console.log(`    📝 Generating Part 1 with Claude 3.5 Sonnet...`);
+            console.log(`    📝 Generating Part 1 with Llama 3.1 405B...`);
 
             const promptPart1 = prompt + `
             
@@ -437,10 +437,11 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             const input1 = {
                 system_prompt: "You are an automated SEO Content Generator. STEP 1 mode. Output JSON metadata then HTML content for Sections 1-3. Stop after Section 3.",
                 prompt: promptPart1,
-                max_tokens: 8192
+                max_new_tokens: 4096,
+                temperature: 0.7
             };
 
-            const output1 = await replicate.run("anthropic/claude-3.5-sonnet", { input: input1 });
+            const output1 = await replicate.run("meta/meta-llama-3.1-405b-instruct", { input: input1 });
             const text1 = Array.isArray(output1) ? output1.join('') : String(output1);
 
             // Parse Part 1
@@ -456,7 +457,7 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             let htmlPart1 = text1.substring(startIndex + startMarker.length).split(part1EndMarker)[0].trim();
 
             // === STEP 2: SECOND HALF ===
-            console.log(`    📝 Generating Part 2 (Sections 4-11) with Claude 3.5 Sonnet...`);
+            console.log(`    📝 Generating Part 2 (Sections 4-11) with Llama 3.1 405B...`);
 
             const promptPart2 = `
             CONTINUATION TASK.
@@ -485,10 +486,11 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             const input2 = {
                 system_prompt: "You are an automated SEO Content Generator. STEP 2 mode. Output HTML content for Sections 4-11. Start immediately with Section 4.",
                 prompt: promptPart2,
-                max_tokens: 8192
+                max_new_tokens: 4096,
+                temperature: 0.7
             };
 
-            const output2 = await replicate.run("anthropic/claude-3.5-sonnet", { input: input2 });
+            const output2 = await replicate.run("meta/meta-llama-3.1-405b-instruct", { input: input2 });
             const text2 = Array.isArray(output2) ? output2.join('') : String(output2);
 
             let htmlPart2 = text2.split('---HTML_CONTENT_END---')[0].trim();
