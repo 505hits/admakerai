@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+﻿import { Metadata } from 'next';
 
 export const metadata: Metadata = {
     title: "무료 AI 훅 생성기 | 몇 초 만에 바이럴 훅 생성 | AdMakerAI",

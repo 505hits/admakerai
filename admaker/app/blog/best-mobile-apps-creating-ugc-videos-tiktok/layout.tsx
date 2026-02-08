@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
     title: 'Best Mobile Apps for Creating UGC Videos for TikTok (2025) | AdMaker AI',

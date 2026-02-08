@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+﻿import { Metadata } from 'next';
 
 export const metadata: Metadata = {
     title: "無料AIフック生成ツール | 数秒でバイラルフックを作成 | AdMakerAI",

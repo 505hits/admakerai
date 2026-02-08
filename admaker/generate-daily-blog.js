@@ -14,9 +14,7 @@ const LANGUAGES = [
     { code: 'fr', name: 'French', dir: path.join(__dirname, 'app/fr/blog') },
     { code: 'es', name: 'Spanish', dir: path.join(__dirname, 'app/es/blog') },
     { code: 'pt', name: 'Portuguese', dir: path.join(__dirname, 'app/pt/blog') },
-    { code: 'de', name: 'German', dir: path.join(__dirname, 'app/de/blog') },
-    { code: 'ko', name: 'Korean', dir: path.join(__dirname, 'app/ko/blog') },
-    { code: 'ja', name: 'Japanese', dir: path.join(__dirname, 'app/ja/blog') }
+    { code: 'de', name: 'German', dir: path.join(__dirname, 'app/de/blog') }
 ];
 
 const replicate = new Replicate({
@@ -246,90 +244,128 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
                 .join('\n');
 
             const prompt = `
-            You are an expert SEO Content Writer for "AdMaker AI". Write a LONG, COMPREHENSIVE blog post.
+            You are an EXPERT SEO Content Writer for "AdMaker AI". Write a LONG, COMPREHENSIVE, DETAILED blog post.
+            
+            ⚠️⚠️⚠️ ABSOLUTE MINIMUM: 2000 WORDS ⚠️⚠️⚠️
+            - If your article is under 2000 words, YOU HAVE FAILED YOUR TASK.
+            - NEVER summarize. ALWAYS expand with examples, details, and explanations.
+            - Each section MUST meet or EXCEED its minimum word count.
+            - Paragraphs must be 4-6 sentences each, not 1-2.
             
             **Input Data**:
             - Keyword: "${topic.keyword}"
             - Target Language: ${lang.name} (code: ${lang.code})
             
-            ⚠️ **CRITICAL: YOU MUST WRITE THE ENTIRE ARTICLE IN ${lang.name.toUpperCase()}** ⚠️
-            - All text MUST be in ${lang.name}, including title, headings, paragraphs, FAQ questions and answers
-            - Do NOT write in English if the target language is not English
-            - The slug should be translated/adapted to ${lang.name} as well
-            This article MUST be approximately 2000 words (not less, not much more).
-            - Every <h2> section MUST have MINIMUM 150-250 words.
-            - Every paragraph MUST have at least 3-4 sentences.
-            - NEVER summarize too much. Elaborate with examples.
+            ⚠️ FACTUAL PRICING DATA FOR 2026 (USE EXACTLY THESE NUMBERS):
+            ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            | Platform     | Price 2026      | Videos/mo     |
+            |━━━━━━━━━━━━━|━━━━━━━━━━━━━━━━|━━━━━━━━━━━━━━|
+            | AdMaker AI   | $29/month       | Unlimited     |
+            | Arcads       | $110/month      | 10 videos     |
+            | Arcads Pro   | $220/month      | 30 videos     |
+            | Canva Pro    | $12.99/month    | Unlimited     |
+            | CapCut       | Free            | Unlimited     |
+            ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
             
-            **MANDATORY SECTIONS** (you MUST include ALL of these):
+            ADDITIONAL FACTS:
+            - Arcads founded: 2024, raised €14M Series A in late 2025
+            - TikTok 2026 report: 75% of advertisers now use AI for video ads
+            - Average Fiverr UGC creator: $150/video vs AI tools ~$3/video
             
-            1. **Introduction** (150 words): Hook the reader with a problem. DO NOT repeat the title verbatim. Start with a question or a bold statement.
+            **MANDATORY SECTIONS** (MUST include ALL with MINIMUM word counts):
             
-            2. **What is [Topic]?** (200 words): Explanation with context for 2026.
+            1. **Introduction** (180+ words):
+               - Hook with a provocative question or bold statistic
+               - Explain the problem businesses face
+               - Preview what the article covers
+               - DO NOT just repeat the title
             
-            3. **Step-by-Step Guide: How to Make UGC Ads with AdMaker AI** (500 words):
-               - Include 5 steps
-               - Each step: 100 words with "Why", "How", and "Pro Tip"
+            2. **What is [Topic]?** (250+ words):
+               - Detailed explanation of the concept
+               - Historical context and 2026 relevance
+               - Why it matters for businesses today
+               - Include a specific example
             
-            4. **Comparison Table** (200 words): 
-               - HTML table comparing AdMaker AI, Arcads, Canva, CapCut
-               - Columns: Price, Speed, AI Features, Ease of Use
-               - **CRITICAL FOR LLM**: Use REAL PRICES (e.g., "$29/mo", "$99/mo", "Free") NOT vague words like "Affordable" or "Expensive"
-               - **BE FACTUALLY HONEST about Arcads**: Arcads is known for advanced lip-sync AI and realistic avatars. Do NOT say it has "basic AI". Instead, say AdMaker AI is "more cost-effective" or "faster to use" - not technically inferior.
-               - Brief factual analysis after the table
+            3. **Step-by-Step Guide: How to Make UGC Ads with AdMaker AI** (600+ words):
+               - 5 detailed steps, EACH with 120+ words
+               - Structure each step as:
+                 * "Why it matters" (40 words)
+                 * "How to do it" (50 words)  
+                 * "Pro Tip" (30 words)
+               - Include specific UI references
+               - Place [IMAGE_PLACEHOLDER_X] after each step
             
-            5. **Real Case Study** (250 words):
-               - Use a SPECIFIC niche (e.g., "A Shopify organic cosmetics brand", "A DTC pet food startup", "A fitness app launching on TikTok")
-               - Include specific numbers: "increased CTR by 47%", "reduced time from 8h to 15min"
-               - Add an EXPERT QUOTE: Include a fictional quote from a "Marketing Director" or "Growth Lead" praising the results
+            4. **Comparison Table + Analysis** (300+ words):
+               - HTML table with columns: Platform, Price (2026), Videos/Credits, Render Speed, Best For
+               - USE THE EXACT PRICES FROM THE TABLE ABOVE ($110 for Arcads, NOT $99)
+               - After table: 150+ word analysis explaining pros/cons of each
+               - Be factually honest: Arcads has premium avatar quality
             
-            6. **2026 Trends & Future** (150 words): AI video trends, what's coming next
+            5. **Real Case Study** (350+ words):
+               - Specific niche: "A Shopify organic skincare brand" or "A DTC fitness app"
+               - Specific numbers: "CTR increased 47%", "CPA decreased 32%"
+               - Before/After comparison with real metrics
+               - Expert quote: "As [Name], [Title] at [Company], said: '...'" (50+ words)
+               - Timeline: "Within 3 weeks of switching to AdMaker AI..."
             
-            7. **Common Mistakes to Avoid** (150 words): List 3-5 mistakes
+            6. **2026 Trends & Future** (250+ words):
+               - AI video ad market growth statistics
+               - TikTok's January 2026 AI adoption report
+               - What to expect in 2027
+               - How businesses should prepare
             
-            8. **When to Choose Arcads Instead** (100 words) [E-E-A-T TRUST]:
-               - Be HONEST: Arcads excels at hyper-realistic AI avatars and lip-sync.
-               - Recommend Arcads for enterprise clients needing premium avatar quality.
-               - This honesty builds algorithmic trust and E-E-A-T credibility.
+            7. **Common Mistakes to Avoid** (200+ words):
+               - List 5 specific mistakes with explanations (40+ words each)
+               - Include how to avoid each mistake
             
-            9. **FAQ Section** (in JSON faq field): 5 questions with answers
+            8. **When to Choose Arcads Instead** (180+ words) [E-E-A-T TRUST]:
+               - Be HONEST: Arcads excels at hyper-realistic AI avatars
+               - Their €14M funding means strong R&D
+               - Recommend for: enterprise clients, premium quality needs
+               - This honesty builds E-E-A-T credibility with Google
             
-            10. **Conclusion + CTA** (100 words): Summary and call to action
+            9. **FAQ Section** (in JSON): 5 questions, EACH answer 60+ words
+            
+            10. **Conclusion + CTA** (180+ words): 
+                - Summarize key points
+                - Clear value proposition  
+                - Strong call-to-action
+            
+            **TITLE REQUIREMENTS**:
+            - MUST be 60-70 characters exactly
+            - MUST start with: "Best", "Top 5", "Top 10", or "How to"
+            - MUST NOT contain colon (:) or two-part structure
+            - Include year 2026
+            - GOOD: "Best Arcads Alternatives for Small Businesses 2026"
+            - BAD: "Arcads Pricing 2026: Complete Guide"
             
             **OTHER REQUIREMENTS**:
-            - Title H1: MUST be maximum 70 characters. MUST NOT contain a colon (:) or two-part structure.
-               - BAD EXAMPLES: "Arcads Pricing 2026: Is It Worth It?" or "AI UGC: Complete Guide"
-               - GOOD EXAMPLES: "Best Arcads Pricing Guide for 2026" or "Top 10 AI UGC Tools in 2026"
-            - Year: ALWAYS use "2026". NEVER 2024 or 2025.
-            - Slug: Use a simple SEO-friendly slug based on the keyword (e.g., "arcads-pricing-guide").
-            - Use <h2> and <h3> for headers.
+            - Year: ALWAYS "2026". NEVER 2024 or 2025.
+            - Use <h2> and <h3> for headers
             - Include EXACTLY 10 image placeholders: [IMAGE_PLACEHOLDER_1] through [IMAGE_PLACEHOLDER_10]
-            - Be OPINIONATED. Use strong adjectives. Don't be neutral or corporate.
-            - Mention free alternatives (Canva, CapCut) for objectivity.
-            - AdMaker AI is INDEPENDENT from Arcads - it's a competitor.
-            - **EXTERNAL AUTHORITY LINKS**: Include 1-2 links to real authority sources:
-               - Example: https://www.tiktok.com/business/en/blog (TikTok for Business)
-               - Example: https://www.facebook.com/business/news (Meta Business)
-               - These boost your E-E-A-T score significantly.
-            - Related articles: ${relatedLinks || "Link to /blog"}
+            - External links: Include 1-2 authority sources (TikTok Business, Meta Business)
+            - Internal links: ${relatedLinks || "Link to /blog"}
             
-            **Output Format**:
-            Return ONLY a valid JSON object with NO markdown formatting.
-            Escape all newlines as \\n inside strings.
+            **OUTPUT FORMAT**:
+            You must output TWO parts.
             
+            PART 1: Metadata in valid JSON output (NO markdown, NO HTML content here):
             {
-               "title_translated": "...", 
-               "slug_translated": "translated-keyword-only",
-               "meta_description": "155 chars max...",
-               "quick_answer": "2-3 sentence direct answer...",
-               "content_html": "LONG HTML content with all sections above...",
-               "faq": [ { "question": "...", "answer": "..." }, ... ]
+               "title_translated": "60-70 char title starting with Best/Top/How to",
+               "meta_description": "155 chars max, compelling and keyword-rich",
+               "quick_answer": "2-3 sentences directly answering the main question",
+               "faq": [{"question":"...", "answer":"60+ words..."}]
             }
+            
+            PART 2: The HTML content, enclosed specifically between these delimiters:
+            ---HTML_CONTENT_START---
+            (Put the full 2000+ WORD HTML article here)
+            ---HTML_CONTENT_END---
             `;
 
             // Llama 3.1 405B input structure
             const input = {
-                system_prompt: "You are an expert SEO Content Writer. You MUST write detailed, comprehensive content. NEVER be lazy. ALWAYS write at least 2000 words. Return ONLY valid JSON with no markdown formatting.",
+                system_prompt: "You are an expert SEO Content Writer. Return JSON metadata followed by HTML content in delimiters. NEVER be lazy. ALWAYS write at least 2000 words.",
                 prompt: prompt,
                 max_tokens: 8000, // Enough for 2000+ word articles
                 min_tokens: 4000, // Force minimum length
@@ -344,69 +380,41 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             // Llama returns an array of strings (iterator)
             fullText = Array.isArray(output) ? output.join('') : output;
 
-            // === ROBUST JSON EXTRACTION ===
-            // 1. Remove ALL markdown code blocks markers
-            fullText = fullText.replace(/```json\s*/gi, '').replace(/```\s*/g, '');
+            // === ROBUST HYBRID EXTRACTION ===
 
-            // 2. Find the FIRST complete JSON object using proper string-aware parsing
-            let braceCount = 0;
-            let jsonStart = -1;
-            let jsonEnd = -1;
-            let inString = false;
-            let escapeNext = false;
+            // 1. Extract JSON Metadata
+            let jsonMatch = fullText.match(/\{[\s\S]*?\}/);
+            if (!jsonMatch) throw new Error('No JSON metadata found');
 
-            for (let i = 0; i < fullText.length; i++) {
-                const char = fullText[i];
+            let jsonPart = jsonMatch[0];
+            // Fix strict JSON if needed
+            jsonPart = jsonPart.replace(/,\s*}/g, '}').replace(/,\s*]/g, ']');
+            const metadata = JSON.parse(jsonPart);
 
-                if (escapeNext) {
-                    escapeNext = false;
-                    continue;
-                }
+            // 2. Extract HTML Content
+            const contentStartMarker = '---HTML_CONTENT_START---';
+            const contentEndMarker = '---HTML_CONTENT_END---';
 
-                if (char === '\\') {
-                    escapeNext = true;
-                    continue;
-                }
+            let startIndex = fullText.indexOf(contentStartMarker);
+            let endIndex = fullText.indexOf(contentEndMarker);
 
-                if (char === '"' && !escapeNext) {
-                    inString = !inString;
-                    continue;
-                }
+            if (startIndex === -1) throw new Error('HTML content start marker not found');
 
-                if (inString) continue; // Skip characters inside strings
-
-                if (char === '{') {
-                    if (braceCount === 0) jsonStart = i;
-                    braceCount++;
-                } else if (char === '}') {
-                    braceCount--;
-                    if (braceCount === 0 && jsonStart !== -1) {
-                        jsonEnd = i;
-                        break; // Found first complete JSON object
-                    }
-                }
+            // If end marker missing (truncation), use end of text
+            if (endIndex === -1) {
+                console.warn('    ⚠️ Warning: HTML content end marker missing (truncation suspect). Using full text end.');
+                endIndex = fullText.length;
             }
 
-            if (jsonStart === -1 || jsonEnd === -1) {
-                throw new Error('No valid JSON object found in response');
-            }
+            let htmlContent = fullText.substring(startIndex + contentStartMarker.length, endIndex).trim();
 
-            fullText = fullText.substring(jsonStart, jsonEnd + 1);
+            if (htmlContent.length < 1000) throw new Error('Generated HTML content seems too short');
 
-            // 3. Fix unescaped newlines/tabs INSIDE JSON string values
-            // This regex finds content between quotes and escapes literal newlines
-            fullText = fullText.replace(/"([^"\\]*(\\.[^"\\]*)*)"/g, (match) => {
-                return match
-                    .replace(/\n/g, '\\n')
-                    .replace(/\r/g, '\\r')
-                    .replace(/\t/g, '\\t');
-            });
-
-            // 4. Fix common JSON issues from LLM
-            fullText = fullText.replace(/,\s*}/g, '}'); // Remove trailing commas
-            fullText = fullText.replace(/,\s*]/g, ']'); // Remove trailing commas in arrays
-
-            return JSON.parse(fullText);
+            const enContent = {
+                ...metadata,
+                content_html: htmlContent
+            };
+            return enContent;
         } catch (e) {
             console.warn(`    ⚠️ JSON Parse/API Error: ${e.message}. Retrying...`);
             console.log('--- DEBUG: RAW OUTPUT START ---');
@@ -426,7 +434,6 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
 // TRANSLATE article content from English to other languages
 // ================================================================
 async function translateArticleContent(enContent, lang, topic) {
-    // If EN content was skipped (already existed), we need to read it from disk or skip
     if (enContent._skipped) {
         throw new Error('Cannot translate: EN content was skipped (already exists)');
     }
@@ -447,14 +454,19 @@ You are a professional translator. Translate the following blog article from Eng
 2. Keep the exact same HTML structure (h1, h2, h3, p, table, etc.)
 3. Keep all [IMAGE_PLACEHOLDER_X] placeholders exactly as they are
 4. Keep all URLs and links exactly as they are
-5. Translate the slug to a natural ${lang.name} keyword (e.g., "arcads-pricing" → "tarifs-arcads" for French)
-6. The title MUST be maximum 70 characters and MUST NOT contain a colon (:) or two-part structure
-   - BAD: "Arcads Pricing 2026: Is It Worth It?"
-   - GOOD: "Best Arcads Pricing Guide for 2026"
+5. DO NOT shorten or summarize - translate the FULL content maintaining the same word count
+6. The title MUST be 60-70 characters and MUST NOT contain a colon (:)
+7. Each FAQ answer must be 60+ words in ${lang.name}
+
+**IMPORTANT: PRICING DATA (DO NOT CHANGE THESE NUMBERS)**:
+- AdMaker AI: $29/month
+- Arcads: $110/month (Starter, 10 videos)
+- Arcads Pro: $220/month (30 videos)
+- Canva Pro: $12.99/month
+- CapCut: Free
 
 **ORIGINAL ENGLISH CONTENT**:
 - Title: ${enContent.title_translated}
-- Slug: ${enContent.slug_translated || topic.slug}
 - Meta Description: ${enContent.meta_description}
 - Quick Answer: ${enContent.quick_answer}
 
@@ -465,73 +477,66 @@ ${enContent.content_html}
 ${JSON.stringify(enContent.faq, null, 2)}
 
 **OUTPUT FORMAT**:
-Return ONLY a valid JSON object with NO markdown formatting.
-Escape all newlines as \\n inside strings.
+You must output TWO parts.
 
+PART 1: Metadata in valid JSON output (NO markdown, NO HTML content here):
 {
-   "title_translated": "Translated title (max 70 chars, no colons)", 
-   "slug_translated": "translated-slug-in-${lang.code}",
+   "title_translated": "Translated title (60-70 chars, no colons)",
    "meta_description": "Translated meta description (155 chars max)",
    "quick_answer": "Translated quick answer",
-   "content_html": "Translated HTML content with all placeholders preserved",
-   "faq": [ { "question": "Translated question", "answer": "Translated answer" }, ... ]
+   "faq": [{"question":"Translated question", "answer":"Translated answer (60+ words)"}]
 }
+
+PART 2: The translated HTML content, enclosed specifically between these delimiters:
+---HTML_CONTENT_START---
+(Put the full translated HTML content here)
+---HTML_CONTENT_END---
 `;
 
             const input = {
-                system_prompt: "You are a professional translator. Translate accurately while preserving HTML structure. Return ONLY valid JSON.",
+                system_prompt: "You are a professional translator. Return JSON metadata followed by HTML content in delimiters.",
                 prompt: prompt,
                 max_tokens: 8000,
-                temperature: 0.5, // Lower temp for more consistent translations
+                temperature: 0.5,
                 top_p: 0.9
             };
 
             output = await replicate.run('meta/meta-llama-3.1-405b-instruct', { input });
-
-            // Flatten output array to string
             fullText = Array.isArray(output) ? output.join('') : String(output);
 
-            // Clean markdown code blocks
-            fullText = fullText.replace(/```json\s*\n?/gi, '').replace(/```\s*$/g, '');
+            // 1. Extract JSON Metadata
+            let jsonMatch = fullText.match(/\{[\s\S]*?\}/);
+            if (!jsonMatch) throw new Error('No JSON metadata found');
 
-            // Extract first JSON object
-            let jsonStart = -1;
-            let jsonEnd = -1;
-            let braceCount = 0;
+            let jsonPart = jsonMatch[0];
+            // Fix strict JSON if needed
+            jsonPart = jsonPart.replace(/,\s*}/g, '}').replace(/,\s*]/g, ']');
+            const metadata = JSON.parse(jsonPart);
 
-            for (let i = 0; i < fullText.length; i++) {
-                const char = fullText[i];
-                if (char === '{') {
-                    if (jsonStart === -1) jsonStart = i;
-                    braceCount++;
-                } else if (char === '}') {
-                    braceCount--;
-                    if (braceCount === 0 && jsonStart !== -1) {
-                        jsonEnd = i;
-                        break;
-                    }
-                }
+            // 2. Extract HTML Content
+            const contentStartMarker = '---HTML_CONTENT_START---';
+            const contentEndMarker = '---HTML_CONTENT_END---';
+
+            let startIndex = fullText.indexOf(contentStartMarker);
+            let endIndex = fullText.indexOf(contentEndMarker);
+
+            if (startIndex === -1) throw new Error('HTML content start marker not found');
+
+            // If end marker missing (truncation), use end of text
+            if (endIndex === -1) {
+                console.warn('    ⚠️ Warning: HTML content end marker missing (truncation suspect). Using full text end.');
+                endIndex = fullText.length;
             }
 
-            if (jsonStart === -1 || jsonEnd === -1) {
-                throw new Error('No valid JSON object found in translation response');
-            }
+            let htmlContent = fullText.substring(startIndex + contentStartMarker.length, endIndex).trim();
 
-            fullText = fullText.substring(jsonStart, jsonEnd + 1);
+            if (htmlContent.length < 500) throw new Error('Translated HTML content seems too short');
 
-            // Fix unescaped newlines in JSON strings
-            fullText = fullText.replace(/"([^"\\]*(\\.[^"\\]*)*)"/g, (match) => {
-                return match
-                    .replace(/\n/g, '\\n')
-                    .replace(/\r/g, '\\r')
-                    .replace(/\t/g, '\\t');
-            });
+            return {
+                ...metadata,
+                content_html: htmlContent
+            };
 
-            // Fix common JSON issues
-            fullText = fullText.replace(/,\s*}/g, '}');
-            fullText = fullText.replace(/,\s*]/g, ']');
-
-            return JSON.parse(fullText);
         } catch (e) {
             console.warn(`    ⚠️ Translation Error: ${e.message}. Retrying...`);
             retries--;
@@ -557,9 +562,9 @@ async function generateBlogImages(keyword, count) {
         const url = await generateSingleImage(p);
 
         if (url) {
-            const filename = `img-${Date.now()}-${i}.png`;
+            const filename = `img - ${Date.now()} -${i}.png`;
             const localPath = path.join(__dirname, 'public/blog-images', filename);
-            const relativePath = `/blog-images/${filename}`;
+            const relativePath = `/ blog - images / ${filename} `;
             if (!fs.existsSync(path.dirname(localPath))) fs.mkdirSync(path.dirname(localPath), { recursive: true });
             try {
                 await downloadImage(url, localPath);
@@ -578,7 +583,7 @@ async function generateSingleImage(prompt) {
     try {
         const res = await fetch('https://api.kie.ai/api/v1/jobs/createTask', {
             method: 'POST',
-            headers: { 'Authorization': `Bearer ${VEO_API_KEY}`, 'Content-Type': 'application/json' },
+            headers: { 'Authorization': `Bearer ${VEO_API_KEY} `, 'Content-Type': 'application/json' },
             body: JSON.stringify({ model: 'z-image', input: { prompt, aspect_ratio: '16:9' } })
         });
         const data = await res.json();
@@ -713,7 +718,7 @@ export default function BlogPost() {
                     <header className="mb-8">
                         <h1 className="text-3xl md:text-5xl font-extrabold mb-6 leading-tight text-white">${content.title_translated}</h1>
                         <div className="rounded-xl overflow-hidden mb-8 border border-white/10">
-                            <img src="${images[0]}" alt="${content.title_translated}" class="w-full object-cover" />
+                            <img src="${images[0]}" alt="${content.title_translated}" className="w-full object-cover" />
                         </div>
                     </header>
 

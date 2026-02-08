@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+﻿import { Metadata } from 'next';
 
 export const metadata: Metadata = {
     title: 'AdMaker AI - AIによる最高のUGC動画作成プラットフォーム',

@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+﻿import { Metadata } from 'next';
 
 export const metadata: Metadata = {
     title: "Kostenloser KI Hook-Generator | Erstelle virale Hooks in Sekunden | AdMakerAI",

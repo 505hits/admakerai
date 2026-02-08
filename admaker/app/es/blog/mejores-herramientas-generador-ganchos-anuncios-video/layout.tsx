@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
     title: 'Mejores Herramientas Generador de Ganchos para Anuncios de Video 2025 | AdMaker AI',

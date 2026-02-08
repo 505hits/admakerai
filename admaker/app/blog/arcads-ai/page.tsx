@@ -1,4 +1,4 @@
-
+﻿
 'use client';
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
@@ -42,7 +42,7 @@ export default function BlogPost() {
                     <header className="mb-8">
                         <h1 className="text-3xl md:text-5xl font-extrabold mb-6 leading-tight text-white">Top 10 Ways to Master Arcads AI for Ad Creation in 2026 [Complete Guide]</h1>
                         <div className="rounded-xl overflow-hidden mb-8 border border-white/10">
-                            <img src="https://placehold.co/800x450?text=Gen+Failed" alt="Top 10 Ways to Master Arcads AI for Ad Creation in 2026 [Complete Guide]" class="w-full object-cover" />
+                            <img src="https://placehold.co/800x450?text=Gen+Failed" alt="Top 10 Ways to Master Arcads AI for Ad Creation in 2026 [Complete Guide]" className="w-full object-cover" />
                         </div>
                     </header>
 

@@ -1,4 +1,4 @@
-import { Metadata } from 'next';
+﻿import { Metadata } from 'next';
 
 export const metadata: Metadata = {
     title: "Generador de Ganchos IA Gratis | Crea Ganchos Virales en Segundos | AdMakerAI",

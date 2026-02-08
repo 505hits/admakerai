@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
     title: 'Compare Pricing for UGC Video Production Tools (2025) | AdMaker AI',

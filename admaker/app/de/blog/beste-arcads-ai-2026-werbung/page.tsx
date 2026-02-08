@@ -1,4 +1,4 @@
-
+﻿
 'use client';
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
@@ -42,7 +42,7 @@ export default function BlogPost() {
                     <header className="mb-8">
                         <h1 className="text-3xl md:text-5xl font-extrabold mb-6 leading-tight text-white">Die 10 besten Möglichkeiten, ArcAds AI im Jahr 2026 für Ihre Werbekampagnen zu nutzen</h1>
                         <div className="rounded-xl overflow-hidden mb-8 border border-white/10">
-                            <img src="https://placehold.co/800x450?text=Gen+Failed" alt="Die 10 besten Möglichkeiten, ArcAds AI im Jahr 2026 für Ihre Werbekampagnen zu nutzen" class="w-full object-cover" />
+                            <img src="https://placehold.co/800x450?text=Gen+Failed" alt="Die 10 besten Möglichkeiten, ArcAds AI im Jahr 2026 für Ihre Werbekampagnen zu nutzen" className="w-full object-cover" />
                         </div>
                     </header>
 

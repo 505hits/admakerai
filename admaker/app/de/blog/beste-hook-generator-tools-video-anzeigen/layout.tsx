@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
     title: 'Beste Hook-Generator-Tools für Video-Anzeigen 2025 | AdMaker AI',

@@ -1,4 +1,4 @@
-import Link from 'next/link';
+﻿import Link from 'next/link';
 import styles from '../../hook-generator/SEOContent.module.css';
 
 export default function SEOContent() {

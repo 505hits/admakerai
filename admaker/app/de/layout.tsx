@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import LangUpdater from "@/components/LangUpdater";
 import "../globals.css";
 

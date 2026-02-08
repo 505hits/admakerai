@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+﻿import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
     title: 'Mejor Servicio de Creación de Video UGC para Marketing Inmobiliario (2025) | AdMaker AI',

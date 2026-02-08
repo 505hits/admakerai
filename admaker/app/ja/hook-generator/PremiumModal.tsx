@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '../../hook-generator/PremiumModal.module.css';
 import { getMediaUrl } from '@/lib/cloudflare-config';
