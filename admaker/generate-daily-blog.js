@@ -419,7 +419,7 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             `;
 
             // === STEP 1: METADATA & FIRST HALF ===
-            console.log(`    📝 Generating Part 1 with Claude 3.5 Haiku...`);
+            console.log(`    📝 Generating Part 1 with Claude 3.5 Sonnet...`);
 
             const promptPart1 = prompt + `
             
@@ -440,7 +440,7 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
                 max_tokens: 8192
             };
 
-            const output1 = await replicate.run("anthropic/claude-3.5-haiku", { input: input1 });
+            const output1 = await replicate.run("anthropic/claude-3.5-sonnet", { input: input1 });
             const text1 = Array.isArray(output1) ? output1.join('') : String(output1);
 
             // Parse Part 1
@@ -456,7 +456,7 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             let htmlPart1 = text1.substring(startIndex + startMarker.length).split(part1EndMarker)[0].trim();
 
             // === STEP 2: SECOND HALF ===
-            console.log(`    📝 Generating Part 2 (Sections 4-11) with Claude 3.5 Haiku...`);
+            console.log(`    📝 Generating Part 2 (Sections 4-11) with Claude 3.5 Sonnet...`);
 
             const promptPart2 = `
             CONTINUATION TASK.
@@ -488,7 +488,7 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
                 max_tokens: 8192
             };
 
-            const output2 = await replicate.run("anthropic/claude-3.5-haiku", { input: input2 });
+            const output2 = await replicate.run("anthropic/claude-3.5-sonnet", { input: input2 });
             const text2 = Array.isArray(output2) ? output2.join('') : String(output2);
 
             let htmlPart2 = text2.split('---HTML_CONTENT_END---')[0].trim();
