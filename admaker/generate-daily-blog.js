@@ -200,7 +200,7 @@ async function main() {
                 fs.writeFileSync(path.join(postDir, 'page.tsx'), pageContent);
                 console.log(`    ✅ Created ${lang.code}/blog/${content.finalSlug}/page.tsx`);
 
-                updateBlogIndex(lang.dir, { ...topic, slug: content.finalSlug }, imageUrls[0], lang.code, content.title_translated || topic.h1);
+                updateBlogIndex(lang.dir, { ...topic, slug: content.finalSlug }, imageUrls[0] ? imageUrls[0].url : '', lang.code, content.title_translated || topic.h1);
             }
         }
 
@@ -663,16 +663,18 @@ async function generateBlogImages(keyword, count) {
             if (!fs.existsSync(path.dirname(localPath))) fs.mkdirSync(path.dirname(localPath), { recursive: true });
             try {
                 await downloadImage(url, localPath);
-                images.push(relativePath);
+                images.push({ url: relativePath, alt: prompts[i % prompts.length] });
             } catch (e) {
-                images.push('https://placehold.co/800x450?text=Image+Error');
+                images.push({ url: 'https://placehold.co/800x450?text=Image+Error', alt: 'Image generation error placeholder' });
             }
         } else {
-            images.push('https://placehold.co/800x450?text=Gen+Failed');
+            images.push({ url: 'https://placehold.co/800x450?text=Gen+Failed', alt: 'Image generation failed placeholder' });
         }
     }
     return images;
 }
+
+
 
 async function generateSingleImage(prompt) {
     try {
@@ -749,9 +751,9 @@ function createPageTsx(topic, content, images, lang) {
     htmlContent = htmlContent.replace(/\[LANDING_PAGE_URL\]/g, landingPageUrl);
 
     // Replace Image Placeholders with actual images
-    images.forEach((img, idx) => {
-        // Use standard img tag for simplicity within dangerouslySetInnerHTML
-        const stdImgTag = `<img src="${img}" alt="${topic.keyword} - illustration ${idx + 1}" loading="lazy" class="w-full rounded-xl my-8 hover:opacity-95 transition" />`;
+    images.forEach((imgObj, idx) => {
+        // Use standard img tag
+        const stdImgTag = `<img src="${imgObj.url}" alt="${imgObj.alt} - ${topic.keyword}" loading="lazy" class="w-full rounded-xl my-8 hover:opacity-95 transition" />`;
         htmlContent = htmlContent.replace(`[IMAGE_PLACEHOLDER_${idx + 1}]`, stdImgTag);
     });
 
@@ -761,16 +763,12 @@ function createPageTsx(topic, content, images, lang) {
         '<a href="$2" class="text-[#ff0844] font-bold hover:text-[#ff5478] highlight-link" style="color: #ff0844; font-weight: 700;">$1</a>'
     );
 
-    // External Links (basic detection if Claude outputs them as standard a tags, we can style them via prose class, but if we need specific styling we assume they are already a tags)
-
-
-
     // Schema
     const jsonLd = {
         "@context": "https://schema.org",
         "@type": "Article",
         "headline": content.title_translated,
-        "image": images[0],
+        "image": images[0] ? images[0].url : '',
         "author": { "@type": "Organization", "name": "AdMaker AI" },
         "mainEntity": {
             "@type": "FAQPage",
@@ -781,6 +779,8 @@ function createPageTsx(topic, content, images, lang) {
             })) : []
         }
     };
+
+    // ...
 
     return `
 'use client';
@@ -819,11 +819,10 @@ export default function BlogPost() {
             <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-10 items-start">
                 
                 {/* Left: Article */}
-                <article className="bg-white/5 border border-white/10 rounded-3xl p-6 md:p-10 break-words">
                     <header className="mb-8">
                         <h1 className="text-3xl md:text-5xl font-extrabold mb-6 leading-tight text-white">${content.title_translated}</h1>
                         <div className="rounded-xl overflow-hidden mb-8 border border-white/10">
-                            <img src="${images[0]}" alt="${content.title_translated}" className="w-full object-cover" />
+                            ${images[0] ? `<img src="${images[0].url}" alt="${images[0].alt} - ${content.title_translated}" className="w-full object-cover" />` : ''}
                         </div>
                     </header>
 
