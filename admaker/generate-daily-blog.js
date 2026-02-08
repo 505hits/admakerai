@@ -705,6 +705,12 @@ export default function BlogPost() {
         <Head>
           <title>${content.title_translated} | AdMaker AI</title>
           <meta name="description" content="${content.meta_description}" />
+          <link rel="alternate" hrefLang="en" href="https://admaker-ai.com/blog/${topic.slug}" />
+          <link rel="alternate" hrefLang="fr" href="https://admaker-ai.com/fr/blog/${topic.slug}" />
+          <link rel="alternate" hrefLang="es" href="https://admaker-ai.com/es/blog/${topic.slug}" />
+          <link rel="alternate" hrefLang="pt" href="https://admaker-ai.com/pt/blog/${topic.slug}" />
+          <link rel="alternate" hrefLang="de" href="https://admaker-ai.com/de/blog/${topic.slug}" />
+          <link rel="alternate" hrefLang="x-default" href="https://admaker-ai.com/blog/${topic.slug}" />
           <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         </Head>
         
