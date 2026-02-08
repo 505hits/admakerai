@@ -418,53 +418,91 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             ---HTML_CONTENT_END---
             `;
 
-            // Claude 3.5 Haiku input structure (per Replicate docs)
-            const input = {
-                system_prompt: "You are an automated SEO Content Generator. You are NOT a chat assistant. \n\nRULES:\n1. OUTPUT ONLY valid JSON metadata followed immediately by the HTML content.\n2. NO conversational text (e.g., 'Here is the article', 'Part 1').\n3. DO NOT SUMMARIZE or use placeholders like '[More sections here]'. Write the FULL 2500+ word article.\n4. RETURN THE COMPLETE RESULT IN ONE RESPONSE.\n5. If the article is too short, you retain a penalty. EXPAND every section.",
-                prompt: prompt,
+            // === STEP 1: METADATA & FIRST HALF ===
+            console.log(`    📝 Generating Part 1 with Claude 3.5 Haiku...`);
+
+            const promptPart1 = prompt + `
+            
+            🔴 INSTRUCTION FOR PART 1:
+            GENERATE ONLY:
+            1. The JSON Metadata
+            2. The HTML Content STARTING FAOM ---HTML_CONTENT_START---
+            3. SECTIONS 1, 2, and 3 ONLY.
+            4. STOP after Section 3. Do NOT write Section 4 yet.
+            5. END with a temporary marker: ---PART1_END---
+            
+            (Do not close the html or body tags yet)
+            `;
+
+            const input1 = {
+                system_prompt: "You are an automated SEO Content Generator. STEP 1 mode. Output JSON metadata then HTML content for Sections 1-3. Stop after Section 3.",
+                prompt: promptPart1,
                 max_tokens: 8192
             };
 
-            // Using Claude 3.5 Haiku
-            console.log(`    📝 Generating with Claude 3.5 Haiku...`);
-            output = await replicate.run("anthropic/claude-3.5-haiku", { input });
+            const output1 = await replicate.run("anthropic/claude-3.5-haiku", { input: input1 });
+            const text1 = Array.isArray(output1) ? output1.join('') : String(output1);
 
-            // Claude returns an array of strings (iterator) that needs to be joined
-            fullText = Array.isArray(output) ? output.join('') : String(output);
+            // Parse Part 1
+            const jsonMatch = text1.match(/\{[\s\S]*?\}/);
+            if (!jsonMatch) throw new Error('No JSON metadata found in Part 1');
+            const metadata = JSON.parse(jsonMatch[0].replace(/,\s*}/g, '}').replace(/,\s*]/g, ']'));
 
-            // === ROBUST HYBRID EXTRACTION ===
+            const startMarker = '---HTML_CONTENT_START---';
+            const part1EndMarker = '---PART1_END---';
+            let startIndex = text1.indexOf(startMarker);
+            if (startIndex === -1) throw new Error('HTML content start marker not found in Part 1');
 
-            // 1. Extract JSON Metadata
-            let jsonMatch = fullText.match(/\{[\s\S]*?\}/);
-            if (!jsonMatch) throw new Error('No JSON metadata found');
+            let htmlPart1 = text1.substring(startIndex + startMarker.length).split(part1EndMarker)[0].trim();
 
-            let jsonPart = jsonMatch[0];
-            // Fix strict JSON if needed
-            jsonPart = jsonPart.replace(/,\s*}/g, '}').replace(/,\s*]/g, ']');
-            const metadata = JSON.parse(jsonPart);
+            // === STEP 2: SECOND HALF ===
+            console.log(`    📝 Generating Part 2 (Sections 4-11) with Claude 3.5 Haiku...`);
 
-            // 2. Extract HTML Content
-            const contentStartMarker = '---HTML_CONTENT_START---';
-            const contentEndMarker = '---HTML_CONTENT_END---';
+            const promptPart2 = `
+            CONTINUATION TASK.
+            Topic: "${topic.keyword}"
+            Language: ${lang.name}
+            
+            You are continuing the article.
+            
+            🔴 INSTRUCTION FOR PART 2:
+            1. RESUME immediately at **Section 4: Platform Comparison**.
+            2. WRITE Sections 4, 5, 6, 7, 8, 9, 10, and 11.
+            3. INCLUDE the MANDATORY "Related Readings" section (Section 10) with the pink links provided below.
+            4. END with the Conclusion.
+            5. CLOSE with ---HTML_CONTENT_END---.
+            
+            Data for Section 10 (Related Readings):
+            ${relatedLinks}
+            
+            CONTEXT FROM PART 1 (Review but do not repeat):
+            (We have already written Intro, What is, and Step-by-Step Guide)
+            
+            START WRITING DIRECTLY WITH HTML for Section 4 (e.g., <section> or <h2>).
+            DO NOT output JSON again. HTML ONLY.
+            `;
 
-            let startIndex = fullText.indexOf(contentStartMarker);
-            let endIndex = fullText.indexOf(contentEndMarker);
+            const input2 = {
+                system_prompt: "You are an automated SEO Content Generator. STEP 2 mode. Output HTML content for Sections 4-11. Start immediately with Section 4.",
+                prompt: promptPart2,
+                max_tokens: 8192
+            };
 
-            if (startIndex === -1) throw new Error('HTML content start marker not found');
+            const output2 = await replicate.run("anthropic/claude-3.5-haiku", { input: input2 });
+            const text2 = Array.isArray(output2) ? output2.join('') : String(output2);
 
-            // If end marker missing (truncation), use end of text
-            if (endIndex === -1) {
-                console.warn('    ⚠️ Warning: HTML content end marker missing (truncation suspect). Using full text end.');
-                endIndex = fullText.length;
-            }
+            let htmlPart2 = text2.split('---HTML_CONTENT_END---')[0].trim();
+            // Remove any potential start markers if the model hallucinated them
+            htmlPart2 = htmlPart2.replace('---HTML_CONTENT_START---', '').replace('```html', '').replace('```', '').trim();
 
-            let htmlContent = fullText.substring(startIndex + contentStartMarker.length, endIndex).trim();
+            // COMBINE
+            const fullHtml = htmlPart1 + '\n\n' + htmlPart2;
 
-            if (htmlContent.length < 1000) throw new Error('Generated HTML content seems too short');
+            if (fullHtml.length < 2000) throw new Error('Generated HTML content seems too short (combined)');
 
             const enContent = {
                 ...metadata,
-                content_html: htmlContent
+                content_html: fullHtml
             };
             return enContent;
         } catch (e) {
