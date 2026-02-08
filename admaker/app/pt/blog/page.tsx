@@ -14,25 +14,9 @@ export default function BlogPagePT() {
                     <h1 className={styles.pageTitle}>Blog</h1>
                     <p className={styles.subtitle}>Últimas notícias e insights da AdMaker AI</p>
 
-                    <div className = { styles.blogGrid } >
+                    <div className={styles.blogGrid} >
 
-        < Link href = "/pt/blog/como-usar-arcads-ai-2026" className = { styles.blogCard } >
-                            <div className={styles.cardImage}>
-                                <Image
-                                    src="https://placehold.co/800x450?text=Gen+Failed"
-                                    alt="Como Usar ArcAds AI em 2026: O Guia Definitivo para Anúncios Inteligentes"
-                                    width={400}
-                                    height={250}
-                                    style={{ objectFit: 'cover' }}
-                                />
-                            </div>
-                            <div className={styles.cardContent}>
-                                <span className={styles.category}>AdMaker AI</span>
-                                <h2 className={styles.cardTitle}>Como Usar ArcAds AI em 2026: O Guia Definitivo para Anúncios Inteligentes</h2>
-                                <p className={styles.cardExcerpt}>arcads ai</p>
-                            </div>
-                        </Link >
-         
+
                         <Link href="/pt/blog/melhores-criadores-video-ugc-para-anuncios-sociais" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
