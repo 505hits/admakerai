@@ -550,15 +550,20 @@ async function generateBlogImages(keyword, count) {
     console.log('    🎨 Generating Images...');
     const images = [];
     const prompts = [
-        "Person using app on phone happy", "Data chart analysis screen",
-        "Team meeting whiteboard strategy", "Video recording setup smartphone",
-        "Dashboard metrics rising green", "Influencer selfie style smiling",
-        "E-commerce unboxing moment", "Creative editing software view",
-        "Business person presenting results", "Viral video success graph"
+        "Young woman influencer talking to camera in modern apartment, natural lighting, casual outfit, authentic UGC style",
+        "Male tech reviewer holding smartphone, professional home office background, enthusiastic expression, no text",
+        "Real estate agent woman smiling in front of luxury house, professional attire, sunny day, confident pose",
+        "Lifestyle vlogger filming selfie video with ring light, cozy bedroom setup, warm tones, genuine smile",
+        "Female fitness influencer in workout clothes, gym background, motivational pose, energetic expression",
+        "Young entrepreneur man working on laptop in coffee shop, casual creative style, focused expression",
+        "Beauty influencer applying makeup in vanity mirror, soft lighting, elegant setup, tutorial style",
+        "Food blogger presenting dish in restaurant, appetizing presentation, warm ambiance, excited face",
+        "Travel vlogger with backpack in scenic location, adventure style, candid moment, outdoor lighting",
+        "Digital marketer woman at desktop computer, modern office, confident professional look, clean background"
     ];
 
     for (let i = 0; i < count; i++) {
-        const p = `${prompts[i % prompts.length]}, ${keyword}, realistic, 8k, cinematic lighting, soft focus background`;
+        const p = `${prompts[i % prompts.length]}, realistic, 8k, cinematic lighting, soft focus background, no text, no writing, no letters, no words`;
         const url = await generateSingleImage(p);
 
         if (url) {
