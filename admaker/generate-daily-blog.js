@@ -725,7 +725,7 @@ function createPageTsx(topic, content, images, lang) {
 
     // External Links (basic detection if Claude outputs them as standard a tags, we can style them via prose class, but if we need specific styling we assume they are already a tags)
 
-    const landingPageUrl = lang === 'en' ? '/' : `/${lang}`;
+
 
     // Schema
     const jsonLd = {
