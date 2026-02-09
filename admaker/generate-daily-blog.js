@@ -619,14 +619,30 @@ PART 2: The translated HTML content, enclosed specifically between these delimit
             output = await replicate.run('meta/meta-llama-3.1-405b-instruct', { input });
             fullText = Array.isArray(output) ? output.join('') : String(output);
 
-            // 1. Extract JSON Metadata
-            let jsonMatch = fullText.match(/\{[\s\S]*?\}/);
-            if (!jsonMatch) throw new Error('No JSON metadata found');
+            // 1. Extract JSON Metadata from code block or balanced braces
+            let jsonString = '';
+            const codeBlockMatch = fullText.match(/```(?:json)?\s*\n?([\s\S]*?)```/);
+            if (codeBlockMatch) {
+                jsonString = codeBlockMatch[1].trim();
+            } else {
+                // Fallback: find balanced braces
+                const firstBrace = fullText.indexOf('{');
+                if (firstBrace === -1) throw new Error('No JSON found in translation');
+                let depth = 0;
+                let endBrace = -1;
+                for (let i = firstBrace; i < fullText.length; i++) {
+                    if (fullText[i] === '{') depth++;
+                    if (fullText[i] === '}') depth--;
+                    if (depth === 0) { endBrace = i; break; }
+                }
+                if (endBrace === -1) throw new Error('Unbalanced JSON braces in translation');
+                jsonString = fullText.substring(firstBrace, endBrace + 1);
+            }
+            console.log('    🔍 DEBUG: Translation jsonString length =', jsonString.length);
 
-            let jsonPart = jsonMatch[0];
-            // Fix strict JSON if needed
-            jsonPart = jsonPart.replace(/,\s*}/g, '}').replace(/,\s*]/g, ']');
-            const metadata = JSON.parse(jsonPart);
+            // Clean and parse
+            jsonString = jsonString.replace(/,\s*}/g, '}').replace(/,\s*]/g, ']');
+            const metadata = JSON.parse(jsonString);
 
             // 2. Extract HTML Content
             const contentStartMarker = '---HTML_CONTENT_START---';
