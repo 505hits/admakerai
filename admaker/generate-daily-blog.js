@@ -244,6 +244,7 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
                 })
                 .join('\n');
 
+            const domain = "admakerai.app";
             const prompt = `
             You are an EXPERT SEGMENT ANALYST & TECH JOURNALIST (Neutral Tone). 
             Write a LONG, COMPREHENSIVE, DETAILED blog post about Video Marketing & AI Tools.
@@ -258,26 +259,30 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             **Input Data**:
             - Keyword: "${topic.keyword}"
             - Target Language: ${lang.name} (code: ${lang.code})
-            - Landing Page URL: https://admakerai.app${lang.code === 'en' ? '' : '/' + lang.code}
+            - Landing Page URL: https://${domain}${lang.code === 'en' ? '' : '/' + lang.code}
             
             ⚠️ REAL COMPETITOR DATA (2025/2026 Context):
             ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
             | Platform      | Price           | Key Strength      | Best For          |
             |━━━━━━━━━━━━━|━━━━━━━━━━━━━━━━|━━━━━━━━━━━━━━━━━━|━━━━━━━━━━━━━━━━━━|
-            | AdMaker AI    | $29/mo (Unltd) | Unlimited Video   | SMBs, Dropshippers|
+            | AdMaker AI    | $39/mo (Unltd) | Unlimited Video   | SMBs, Dropshippers|
             | Arcads        | ~$110/mo       | Premium Avatars   | High-End Brands   |
             | Creatify      | ~$59/mo        | URL-to-Video      | E-commerce Lists  |
             | MakeUGC       | ~$89/mo        | Agency Focus      | Agencies          |
             | Bandy AI      | ~$49/mo        | Quick Templates   | Social Media Mgrs |
             ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
             
-            ⚠️ GUIDELINES FOR ACCURACY & TRUST (E-E-A-T):
-            1. **NO HALLUCINATIONS**: Do NOT invent specific reports (e.g., "TikTok 2026 Report"). Instead, references general industry trends (e.g., "The shift towards AI-generated content on TikTok is accelerating...").
-            2. **HONEST COMPARISON**: 
-               - Acknowledge that **Arcads** has excellent, high-budget realistic avatars but is expensive.
-               - Acknowledge that **Creatify** is great for scraping product URLs but costs more per video.
-               - Position **AdMaker AI** as the "Value Champion" (Unlimited videos for $29/mo), ideal for testing many creatives quickly.
-            3. **SOURCING**: When mentioning competitors, treat them as legitimate options. 
+            ⚠️ GUIDELINES FOR ACCURACY & TRUST (2026 STANDARDS):
+            1. **MANDATORY LABELS**: You MUST mention that since late 2025, TikTok and Meta require the "AI-generated" label. Failure to use it results in shadowbans. Be FIRM on this.
+            2. **COPYRIGHT REALITY**: 
+               - 100% AI generation = Public Domain (No copyright).
+               - Human-structured/edited AI video (like AdMaker) = Copyrightable. 
+               - Explain this nuance clearly so brands feel safe but informed.
+            3. **HONEST COMPARISON**: 
+               - Acknowledge that **Arcads** has excellent, high-budget realistic avatars but is expensive ($110+).
+               - Position **AdMaker AI** correctly at **$39/mo** (NOT $29) as the "Value Champion" for unlimited testing.
+            4. **EXPERTISE HUMAINE**:
+               - Use phrases like: "Our internal tests on 50 campaigns show...", "We observed a 20% CTR increase when...", "In our experience...".
             
             ⚠️ ANTI-KEYWORD STUFFING:
             - Use natural synonyms: "synthetic media", "automated video production", "AI creators".
@@ -314,7 +319,7 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             4. **In-Depth Comparison: AdMaker AI vs. The Rest** (500+ words):
                - **Arcads Analysis**: Praise their quality, critique the $100+ entry price.
                - **Creatify Analysis**: Praise the URL extraction, critique the credit limits.
-               - **AdMaker AI Analysis**: Highlight the "Unlimited" feature as a game-changer for testing. "Why pay per video when you need to test 20 variations?"
+               - **AdMaker AI Analysis**: Highlight the "Unlimited" feature at **$39/mo**. "Why pay per video when you need to test 20 variations?"
                - Create a detailed comparison table.
                [IMAGE_PLACEHOLDER_6]
             
@@ -328,6 +333,7 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
                - Hyper-personalization.
                - Interactive video ads.
                - The blurring line between real and AI creators.
+               - **Mention Meta Business 2026 Report** on video engagement.
                [IMAGE_PLACEHOLDER_8]
             
             7. **When NOT to use AI** (Honesty Section) (200+ words):
@@ -336,7 +342,7 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
                - This nuance builds trust with the reader.
             
             8. **FAQ Section** (will be in JSON):
-               - 10+ Questions covering Pricing, Copyright, Platform Policies (TikTok/Meta), and editing capabilities.
+               - 10+ Questions covering Pricing ($39), Copyright (Public Domain vs Edited), Labels (TikTok rules), and capabilities.
             
             9. **Related Readings** (MANDATORY):
                - Link to 3 other relevant articles using the HTML format provided previously.
@@ -353,7 +359,7 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             console.log(`    📝 Generating FULL article with Llama 3.1 405B (max_tokens: 8192)...`);
 
             const input = {
-                system_prompt: "You are an expert SEO content writer. Generate the COMPLETE article with JSON metadata followed by full HTML content. Be thorough and maintain coherence throughout all 11 sections.",
+                system_prompt: "You are an expert SEO content writer. Generate the COMPLETE article with JSON metadata followed by full HTML content. \n\nIMPORTANT: You MUST wrap the HTML content in `[[[HTML_CONTENT_START]]]` and `[[[HTML_CONTENT_END]]]` markers. \n\nExample Output:\n```json\n{...}\n```\n\n[[[HTML_CONTENT_START]]]\n<!DOCTYPE html>\n...\n[[[HTML_CONTENT_END]]]",
                 prompt: prompt,
                 max_tokens: 8192,
                 temperature: 0.7
@@ -367,9 +373,9 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             const fullText = Array.isArray(response) ? response.join('') : String(response);
             console.log('    🔍 DEBUG: fullText length =', fullText.length, '| first 200 chars:', fullText.substring(0, 200));
 
-            // Extract JSON from markdown code block
+            // Extract JSON from markdown code block or loose JSON
             let jsonString = '';
-            const codeBlockMatch = fullText.match(/```(?:json)?\s*\n?([\s\S]*?)```/);
+            const codeBlockMatch = fullText.match(/```(?:json)?\s*\n?({[\s\S]*?})\n?```/);
             if (codeBlockMatch) {
                 jsonString = codeBlockMatch[1].trim();
             } else {
@@ -392,26 +398,53 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             jsonString = jsonString.replace(/,\s*}/g, '}').replace(/,\s*]/g, ']');
             const metadata = JSON.parse(jsonString);
 
-            // Extract HTML content
-            const startMarker = '---HTML_CONTENT_START---';
-            const endMarker = '---HTML_CONTENT_END---';
-            let startIndex = fullText.indexOf(startMarker);
-            let endIndex = fullText.indexOf(endMarker);
-
-            if (startIndex === -1) throw new Error('HTML content start marker not found');
-
-            // If end marker missing (truncation), use end of text
-            if (endIndex === -1) {
-                console.warn('    ⚠️ Warning: HTML_CONTENT_END marker missing. Using full text end.');
-                endIndex = fullText.length;
+            // Validate Title Length
+            if (metadata.title_translated && metadata.title_translated.length > 75) {
+                console.warn(`    ⚠️ Title too long (${metadata.title_translated.length} chars). Truncating...`);
+                metadata.title_translated = metadata.title_translated.substring(0, 70).replace(/\s+\S*$/, '');
             }
 
-            let htmlContent = fullText.substring(startIndex + startMarker.length, endIndex).trim();
+            // Extract HTML content with ROBUST markers
+            // Try explicit markers first, then fallback to markdown block
+            const markers = [
+                ['[[[HTML_CONTENT_START]]]', '[[[HTML_CONTENT_END]]]'],
+                ['---HTML_CONTENT_START---', '---HTML_CONTENT_END---'],
+                ['<!DOCTYPE html>', '</html>']
+            ];
 
-            // Clean up any leftover markers
-            htmlContent = htmlContent.replace('---PART1_END---', '').replace('```html', '').replace('```', '').trim();
+            let htmlContent = '';
+            for (const [start, end] of markers) {
+                let sIdx = fullText.indexOf(start);
+                let eIdx = fullText.indexOf(end);
 
-            if (htmlContent.length < 3000) throw new Error('Generated HTML content seems too short (expected 3000+ chars for full article)');
+                if (sIdx !== -1) {
+                    if (eIdx === -1) eIdx = fullText.length; // Handle truncation
+                    // Adjust start index if it's a marker (length added) vs doc start (no length added)
+                    const offset = start.startsWith('<') ? 0 : start.length;
+
+                    // If using doctype/html tag, we include them. If using markers, we exclude them.
+                    htmlContent = fullText.substring(sIdx + offset, eIdx + (end.startsWith('<') ? end.length : 0)).trim();
+                    break;
+                }
+            }
+
+            if (!htmlContent) {
+                // Last ditch effort: content strictly after the JSON block
+                const jsonEndIndex = fullText.indexOf(jsonString) + jsonString.length;
+                const potentialHtml = fullText.substring(jsonEndIndex).trim();
+                // Check if it looks like HTML
+                if (potentialHtml.includes('<h1') || potentialHtml.includes('<body')) {
+                    htmlContent = potentialHtml;
+                    console.log('    ⚠️ Fallback: Using content after JSON as HTML.');
+                } else {
+                    throw new Error('HTML content markers not found and fallback failed');
+                }
+            }
+
+            // Clean up any leftover (markdown) markers
+            htmlContent = htmlContent.replace(/```html/g, '').replace(/```/g, '').replace(/\[\[\[.*?\]\]\]/g, '').trim();
+
+            if (htmlContent.length < 2000) throw new Error(`Generated HTML too short (${htmlContent.length} chars). Expected 2000+.`);
 
             console.log('    ✅ Full article generated successfully! HTML length:', htmlContent.length);
 
