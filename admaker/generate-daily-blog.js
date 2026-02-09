@@ -128,6 +128,7 @@ async function main() {
 
         for (const lang of LANGUAGES) {
             if (lang.code === 'en') continue; // Already done
+            continue; // CRITICAL: Skip all translations for cost saving
 
             console.log(`  🌐 Translating to: ${lang.code.toUpperCase()}`);
 

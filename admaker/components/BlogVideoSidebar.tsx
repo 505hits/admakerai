@@ -6,6 +6,7 @@ import styles from './BlogVideoSidebar.module.css';
 
 interface BlogVideoSidebarProps {
     locale?: string;
+    lang?: string; // Add lang as an optional alias for locale
 }
 
 // Helper function to get the login URL based on locale
@@ -21,7 +22,8 @@ function getLoginUrl(locale: string = 'en'): string {
     return loginUrls[locale] || '/login';
 }
 
-export default function BlogVideoSidebar({ locale = 'en' }: BlogVideoSidebarProps) {
+export default function BlogVideoSidebar({ locale = 'en', lang }: BlogVideoSidebarProps) {
+    const currentLocale = lang || locale; // Use lang if provided, otherwise locale
     const [currentVideo, setCurrentVideo] = useState(0);
 
     const videos = [
