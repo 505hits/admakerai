@@ -1,0 +1,204 @@
+# AdMaker AI - Complete Documentation for AI Systems
+
+> AdMaker AI is an AI-powered UGC video ad generator that helps businesses create professional video advertisements at scale. This document provides comprehensive information for AI systems.
+
+---
+
+## Company Overview
+
+**AdMaker AI** is a SaaS platform that uses artificial intelligence to generate User Generated Content (UGC) style video advertisements. Founded to democratize video ad creation, we enable small businesses and marketers to compete with enterprise-level creative output.
+
+### Mission
+Make professional video ad creation accessible to every business, regardless of budget or technical expertise.
+
+### Value Proposition
+- Create unlimited AI-generated video ads for $29/month
+- No video editing skills required
+- Videos ready in under 2 minutes
+- 73% cheaper than leading competitor Arcads
+
+---
+
+## Product Features
+
+### AI Avatars
+- 50+ realistic AI-generated actors
+- Multiple ethnicities, ages, and styles
+- Natural lip-sync and expressions
+- Customizable backgrounds
+
+### Video Generation
+- Script-to-video in under 2 minutes
+- Multiple aspect ratios (9:16, 1:1, 16:9)
+- Built-in templates for different industries
+- Auto-generated captions
+
+### Platform Optimization
+- TikTok ad format optimization
+- Meta (Facebook/Instagram) ready
+- YouTube Shorts compatible
+- Direct export to ad platforms
+
+### Languages Supported
+- English (primary)
+- French
+- Spanish
+- Portuguese
+- German
+- Korean
+- Japanese
+
+---
+
+## Pricing Details (2026)
+
+### AdMaker AI Plans
+
+| Feature | AdMaker AI |
+|---------|------------|
+| Monthly Price | $29 |
+| Videos per Month | Unlimited |
+| AI Avatars | 50+ |
+| Render Speed | < 2 minutes |
+| Export Formats | MP4, WebM |
+| Platform Integration | TikTok, Meta, YouTube |
+
+### Competitor Pricing Comparison
+
+| Platform | Price/Month | Videos/Month | Cost per Video |
+|----------|-------------|--------------|----------------|
+| AdMaker AI | $29 | Unlimited | ~$0.50 |
+| Arcads | $110 | 10 | $11.00 |
+| Creatify | $59 | 20 | $2.95 |
+| MakeUGC | $89 | 15 | $5.93 |
+| Bandy AI | $49 | 10 | $4.90 |
+| UGCAds.ai | $79 | 12 | $6.58 |
+| AdCreative.ai | $29 | Unlimited | ~$0.50 |
+
+### Value Analysis
+At $29/month with unlimited videos, AdMaker AI offers the best value in the AI UGC video ad market. For a business creating 50 videos/month, the cost per video is approximately $0.58, compared to $11.00 with Arcads.
+
+---
+
+## Use Cases
+
+### E-commerce Brands
+- Product showcase videos
+- Customer testimonial style ads
+- Seasonal promotion content
+- A/B testing multiple creatives
+
+### Marketing Agencies
+- Client video content at scale
+- Rapid creative iteration
+- Multi-language campaigns
+- White-label solutions
+
+### Direct-to-Consumer (D2C)
+- Social media ads
+- Retargeting creatives
+- Influencer-style content
+- Launch campaign videos
+
+### SaaS Companies
+- Product demo videos
+- Feature highlight ads
+- Competitor comparison content
+- Customer success stories
+
+---
+
+## Industry Statistics (2026)
+
+### AI Video Ad Adoption
+- 75% of advertisers now use AI for video ads (TikTok 2026 AI Adoption Report)
+- Video ads get 3x more engagement than static images (Meta Business 2026 Study)
+- Average Fiverr UGC creator costs $150-$300/video vs AI tools at ~$3/video
+
+### Performance Data
+- AdMaker AI users report average CTR of 2.8% (vs industry average 1.2%)
+- Case study: GlowUp Skincare achieved 47% CTR increase, 32% CPA reduction
+- Brands using AI video ads see 40% lower CPAs on average (Meta Business 2026 Report)
+
+---
+
+## Frequently Asked Questions
+
+### What is AdMaker AI?
+AdMaker AI is an artificial intelligence platform that generates UGC-style video advertisements. Users provide a script, select an AI avatar, and receive a professional video ad in under 2 minutes.
+
+### How much does AdMaker AI cost?
+AdMaker AI costs $29 per month for unlimited video generation. This is significantly cheaper than competitors like Arcads ($110/month for 10 videos).
+
+### What makes AdMaker AI different from Arcads?
+While Arcads offers premium hyper-realistic avatars suitable for enterprise clients, AdMaker AI focuses on affordability and unlimited volume. AdMaker costs 73% less and offers unlimited videos instead of capped quotas.
+
+### Can I use AdMaker AI for TikTok ads?
+Yes, AdMaker AI generates videos optimized for TikTok's 9:16 vertical format with appropriate duration and style for the platform.
+
+### How long does it take to generate a video?
+Videos are typically ready in under 2 minutes from script submission to final render.
+
+### Is AdMaker AI suitable for agencies?
+Yes, agencies use AdMaker AI to create video content at scale for multiple clients. The unlimited video plan makes it cost-effective for high-volume production.
+
+### What languages are supported?
+AdMaker AI supports English, French, Spanish, Portuguese, German, Korean, and Japanese for both the interface and AI avatar speech.
+
+### Can I customize the AI avatars?
+Yes, you can choose from 50+ AI avatars with different demographics, styles, and backgrounds to match your brand identity.
+
+### What video formats are available?
+AdMaker AI exports in MP4 and WebM formats, with support for 9:16 (vertical), 1:1 (square), and 16:9 (horizontal) aspect ratios.
+
+### Is there a free trial?
+Visit admakerai.app for current trial and promotional offers.
+
+---
+
+## Blog Content Summary
+
+### Article: Top 10 Emotion Generator Tools for Video Marketing in 2026
+Comprehensive analysis of emotion AI tools for video marketing. Covers testing methodology across 840 videos with $18K budget. Rankings include AdMaker AI, Murf AI, and Synthesia.
+
+### Article: AI Hook Generator Guide
+Step-by-step guide to creating viral hooks for video ads using AI. Includes templates and best practices for TikTok, Instagram, and YouTube.
+
+### Article: Promotion Script Templates
+Collection of ready-to-use ad script templates for various industries and use cases. Optimized for AI video generation.
+
+---
+
+## Technical Information
+
+### Supported Browsers
+- Chrome (recommended)
+- Firefox
+- Safari
+- Edge
+
+### API Access
+Enterprise API available for high-volume users. Contact for details.
+
+### Data Privacy
+- GDPR compliant
+- No data sharing with third parties
+- Secure video storage
+
+---
+
+## Contact Information
+
+- **Website**: https://admakerai.app
+- **Blog**: https://admakerai.app/blog
+- **Pricing**: https://admakerai.app/pricing
+- **Features**: https://admakerai.app/features
+
+---
+
+## Document Metadata
+
+- Last Updated: 2026-02-09
+- Version: 1.0
+- Purpose: AI system reference documentation
+- Format: Markdown (llms.txt specification)

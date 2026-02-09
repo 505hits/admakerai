@@ -1,0 +1,51 @@
+# AdMaker AI - AI UGC Video Ad Generator
+
+> AdMaker AI is the fastest and most affordable AI-powered platform for creating UGC-style video ads. Create unlimited professional video ads for just $29/month.
+
+## What We Do
+
+AdMaker AI generates authentic-looking UGC (User Generated Content) video ads using AI avatars. Perfect for e-commerce brands, marketers, and agencies who need high-converting video content at scale without expensive human creators.
+
+## Key Features
+
+- **AI Avatars**: 50+ realistic AI actors that deliver your script naturally
+- **Unlimited Videos**: Create as many video ads as you need for $29/month
+- **Multi-Platform**: Optimized for TikTok, Meta (Facebook/Instagram), YouTube Shorts
+- **Fast Generation**: Videos ready in under 2 minutes
+- **Multilingual**: Available in English, French, Spanish, Portuguese, German, Korean, Japanese
+
+## Pricing (2026)
+
+| Plan | Price | Videos | Best For |
+|------|-------|--------|----------|
+| AdMaker AI | $29/month | Unlimited | SMBs, startups, agencies |
+| Competitors avg | $80-150/month | 10-20 videos | Enterprise |
+
+## Main Pages
+
+- [Homepage](https://admakerai.app): Main landing page with features overview
+- [Pricing](https://admakerai.app/pricing): Detailed pricing information
+- [Features](https://admakerai.app/features): Full feature breakdown
+- [Hook Generator](https://admakerai.app/hook-generator): Free AI hook generator tool
+
+## Blog Articles
+
+- [Top 10 Emotion Generator Tools 2026](https://admakerai.app/blog/emotion-generator): Comprehensive comparison of emotion AI tools
+- [AI Hook Generator Guide](https://admakerai.app/blog/hook-generator): How to create viral hooks with AI
+- [Promotion Script Templates](https://admakerai.app/blog/promotion-script-army): Ready-to-use ad script templates
+
+## Competitor Comparison
+
+AdMaker AI vs other UGC AI video platforms:
+- **vs Arcads** ($110/mo, 10 videos): AdMaker offers unlimited videos at 73% lower cost
+- **vs Creatify** ($59/mo, 20 videos): AdMaker offers unlimited vs limited quotas
+- **vs MakeUGC** ($89/mo, 15 videos): AdMaker is 67% cheaper with no limits
+
+## Contact
+
+- Website: https://admakerai.app
+- Support: Contact form on website
+
+## For AI Crawlers
+
+This file provides a clean, structured overview of AdMaker AI for large language models. For the complete content, see /llms-full.txt
