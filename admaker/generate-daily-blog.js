@@ -232,9 +232,6 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
 
         try {
             console.log(`    🤖 Asking Llama 3.1 405B (${retries} attempts left)...`);
-            // ... prompt definition ... (we can leave prompt def inside or move it out, but output needs to be outside)
-            // Wait, replace_file_content is better with small chunks. 
-            // I'll just change the declaration line.
 
             // Select some related articles (random 3 from completed) - output as HTML links
             const relatedLinks = completedTopics
@@ -248,204 +245,108 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
                 .join('\n');
 
             const prompt = `
-            You are an EXPERT SEO Content Writer for "AdMaker AI". Write a LONG, COMPREHENSIVE, DETAILED blog post.
+            You are an EXPERT SEGMENT ANALYST & TECH JOURNALIST (Neutral Tone). 
+            Write a LONG, COMPREHENSIVE, DETAILED blog post about Video Marketing & AI Tools.
             
             ⚠️⚠️⚠️ CRITICAL: ABSOLUTE MINIMUM 2500 WORDS ⚠️⚠️⚠️
             - If your article is under 2500 words, YOU HAVE COMPLETELY FAILED.
             - Count your words as you write. Each paragraph must have 5-7 sentences.
-            - NEVER summarize. ALWAYS expand with examples, statistics, and detailed explanations.
-            - Each section MUST meet or EXCEED its minimum word count listed below.
-            - Write like a human expert sharing real experience, not a generic AI summary.
+            - NEVER summarize. ALWAYS expand with examples, nuanced analysis, and detailed explanations.
+            - Write like a human expert (e.g., TechCrunch, Verge style), NOT a generic AI summary.
+            - BE OBJECTIVE: Discuss pros AND cons of every tool, including AdMaker AI.
             
             **Input Data**:
             - Keyword: "${topic.keyword}"
             - Target Language: ${lang.name} (code: ${lang.code})
             - Landing Page URL: https://admakerai.app${lang.code === 'en' ? '' : '/' + lang.code}
             
-            ⚠️ FACTUAL PRICING DATA FOR 2026 - REAL UGC AI COMPETITORS ONLY:
+            ⚠️ REAL COMPETITOR DATA (2025/2026 Context):
             ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-            | Platform      | URL                              | Price 2026      | Videos/mo  | Best For          |
-            |━━━━━━━━━━━━━|━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━|━━━━━━━━━━━━━━━━|━━━━━━━━━━|━━━━━━━━━━━━━━━━━━|
-            | AdMaker AI    | https://admakerai.app            | $29/month       | Unlimited  | SMBs, startups    |
-            | Arcads        | https://www.arcads.ai            | $110/month      | 10 videos  | Enterprise, brands|
-            | Creatify      | https://creatify.ai              | $59/month       | 20 videos  | E-commerce        |
-            | MakeUGC       | https://www.makeugc.ai           | $89/month       | 15 videos  | Social media      |
-            | Bandy AI      | https://bandy.ai                 | $49/month       | 10 videos  | Quick ads         |
-            | UGCAds.ai     | https://ugcads.ai                | $79/month       | 12 videos  | Performance ads   |
-            | AdCreative.ai | https://adcreative.ai            | $29/month       | Unlimited  | Creative testing  |
+            | Platform      | Price           | Key Strength      | Best For          |
+            |━━━━━━━━━━━━━|━━━━━━━━━━━━━━━━|━━━━━━━━━━━━━━━━━━|━━━━━━━━━━━━━━━━━━|
+            | AdMaker AI    | $29/mo (Unltd) | Unlimited Video   | SMBs, Dropshippers|
+            | Arcads        | ~$110/mo       | Premium Avatars   | High-End Brands   |
+            | Creatify      | ~$59/mo        | URL-to-Video      | E-commerce Lists  |
+            | MakeUGC       | ~$89/mo        | Agency Focus      | Agencies          |
+            | Bandy AI      | ~$49/mo        | Quick Templates   | Social Media Mgrs |
             ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
             
-            ⚠️ DO NOT MENTION: Canva, CapCut, or any generic video editing tools.
-            ONLY compare with the UGC AI video ad tools listed above.
+            ⚠️ GUIDELINES FOR ACCURACY & TRUST (E-E-A-T):
+            1. **NO HALLUCINATIONS**: Do NOT invent specific reports (e.g., "TikTok 2026 Report"). Instead, references general industry trends (e.g., "The shift towards AI-generated content on TikTok is accelerating...").
+            2. **HONEST COMPARISON**: 
+               - Acknowledge that **Arcads** has excellent, high-budget realistic avatars but is expensive.
+               - Acknowledge that **Creatify** is great for scraping product URLs but costs more per video.
+               - Position **AdMaker AI** as the "Value Champion" (Unlimited videos for $29/mo), ideal for testing many creatives quickly.
+            3. **SOURCING**: When mentioning competitors, treat them as legitimate options. 
             
-            VERIFIED FACTS FROM REAL TESTS (Cite these specifically):
-            - Arcads founded: 2024, raised €14M Series A in late 2025
-            - TikTok 2026 AI Adoption Report: 75% of advertisers now use AI for video ads
-            - Meta Business 2026 Study: Video ads get 3x more engagement than static
-            - Average Fiverr UGC creator: $150-$300/video vs AI tools ~$3/video
-            - Our internal test: 47 ads created with AdMaker AI, avg CTR 2.8% vs industry 1.2%
-            - Case study: D2C brand "GlowUp Skincare" saw 47% CTR increase, 32% CPA drop
-            
-            EXPERT QUOTES TO INCLUDE (Pick 2-3):
-            - "AI-generated UGC is the biggest shift in performance marketing since programmatic." — Gary Vaynerchuk, VaynerMedia CEO
-            - "Brands using AI video ads see 40% lower CPAs on average." — Meta Business 2026 Report
-            - "The future of advertising is authentic-looking AI content at scale." — Rand Fishkin, SparkToro Founder
-            - "We switched 80% of our creative production to AI tools and saved $50K/month." — DTC Brand CMO
-            
-            ⚠️ ANTI-KEYWORD STUFFING RULES:
-            - Do NOT repeat the main keyword more than 3-4 times in the entire article
-            - Use natural synonyms: "AI video ads", "UGC content", "AI-generated creatives"
-            - Write for HUMANS first, Google second
-            - Avoid phrases like "best [keyword] for [keyword] in 2026"
+            ⚠️ ANTI-KEYWORD STUFFING:
+            - Use natural synonyms: "synthetic media", "automated video production", "AI creators".
+            - Do NOT repeat the main keyword robotically.
             
             ═══════════════════════════════════════════════════════════════
             ███ MANDATORY ARTICLE STRUCTURE (FOLLOW EXACTLY) ███
             ═══════════════════════════════════════════════════════════════
             
             1. **Introduction** (200+ words):
-               - Start with a bold statistic or provocative question as hook
-               - Explain the pain point businesses face in 2026
-               - Preview what the reader will learn (use bullet points)
-               - End with: "Let's dive in."
-               [IMAGE_PLACEHOLDER_1] <-- PUT IMAGE HERE AFTER INTRO
+               - Hook: The explosion of short-form video demand.
+               - Problem: The high cost of human UGC creators ($150+ per video).
+               - Solution: The rise of AI alternatives.
+               - Thesis: Why choosing the right tool matters for ROI.
+               [IMAGE_PLACEHOLDER_1]
             
             2. **What is [Topic]?** (300+ words):
-               - Comprehensive definition with historical context
-               - Why it matters MORE in 2026 than ever before
-               - Include a specific real-world example
-               - Reference TikTok's 2026 AI adoption report (75% statistic)
-               [IMAGE_PLACEHOLDER_2] <-- PUT IMAGE HERE
+               - Definition and evolution from 2023 to 2026.
+               - Why "Quantity" of creatives is now as important as "Quality" (Ad fatigue).
+               - Real-world application example.
+               [IMAGE_PLACEHOLDER_2]
             
-            3. **Step-by-Step Guide: How to Create UGC Ads with AdMaker AI** (700+ words):
-               This is the CORE section. Write 5 detailed steps, EACH step must have:
-               - Step title as <h3>
-               - "Why this matters" paragraph (60 words)
-               - "How to do it" paragraph (80 words) 
-               - "Pro Tip" callout (40 words)
-               - Total per step: 180+ words
+            3. **Step-by-Step Guide: Creating High-Converting UGC Ads** (700+ words):
+               - Focus on "Strategy" first, "Tool" second.
+               - Step 1: Researching Hooks (The first 3 seconds).
+               - Step 2: Selecting the right Avatar Persona for your niche.
+               - Step 3: Writing natural scripts (avoiding "salesy" language).
+               - Step 4: Generating the video (Using tools like AdMaker AI).
+               - Step 5: Testing and iterating (The "Winner" strategy).
                
-               Step 1: [Plan Your Ad Strategy] + [IMAGE_PLACEHOLDER_3]
-               Step 2: [Choose Your AI Avatar] + [IMAGE_PLACEHOLDER_4]
-               Step 3: [Write Your Script] + [IMAGE_PLACEHOLDER_5]
-               Step 4: [Customize Your Video] + [IMAGE_PLACEHOLDER_6]
-               Step 5: [Export and Launch] + [IMAGE_PLACEHOLDER_7]
-               
-               ⚠️ IMPORTANT: Include 2-3 PINK INTERNAL LINKS in this section:
-               <a href="[LANDING_PAGE_URL]" style="color: #ff0844; font-weight: bold;">Try AdMaker AI Now</a>
+               *Includes 2-3 PINK INTERNAL LINKS to: <a href="[LANDING_PAGE_URL]" style="color: #ff0844; font-weight: bold;">Try AdMaker AI for Free</a>*
+               [IMAGE_PLACEHOLDER_3] [IMAGE_PLACEHOLDER_4] [IMAGE_PLACEHOLDER_5] (Distribute these)
             
-            4. **Platform Comparison: AdMaker AI vs Alternatives** (400+ words):
-               - Full HTML comparison table with 5 columns: Platform, Price, Videos/Credits, Render Speed, Best For
-               - USE EXACT PRICES from data above
-               - Below table: 200+ word analysis paragraph for EACH platform (why it's good/bad)
-               - Be honest: mention Arcads' premium avatar quality but higher cost
-               [IMAGE_PLACEHOLDER_8] <-- PUT IMAGE HERE
+            4. **In-Depth Comparison: AdMaker AI vs. The Rest** (500+ words):
+               - **Arcads Analysis**: Praise their quality, critique the $100+ entry price.
+               - **Creatify Analysis**: Praise the URL extraction, critique the credit limits.
+               - **AdMaker AI Analysis**: Highlight the "Unlimited" feature as a game-changer for testing. "Why pay per video when you need to test 20 variations?"
+               - Create a detailed comparison table.
+               [IMAGE_PLACEHOLDER_6]
             
-            5. **Real Success Story: Case Study** (400+ words):
-               - Specific business: "Sarah Chen, founder of GlowUp Skincare (Shopify store)"
-               - Specific numbers: "CTR increased 47%, CPA dropped 32%, ROAS improved 2.8x"
-               - Timeline: "Within 3 weeks of switching from traditional UGC creators to AdMaker AI..."
-               - Direct quote from the "client" (50+ words)
-               - Before/After metrics comparison
+            5. **The ROI of AI Video Ads** (300+ words):
+               - compare Cost Per Acquisition (CPA) of Human vs AI.
+               - Speed to market: Launching trends in hours, not weeks.
+               - Scalability: Producing typically 10x more creatives for the same budget.
+               [IMAGE_PLACEHOLDER_7]
             
-            6. **2026 Industry Trends & What's Next** (250+ words):
-               - AI video ad market growth statistics
-               - TikTok's 2026 AI adoption report findings
-               - Meta's video engagement data
-               - Predictions for 2027
-               - How businesses should prepare now
+            6. **2026 Industry Trends** (250+ words):
+               - Hyper-personalization.
+               - Interactive video ads.
+               - The blurring line between real and AI creators.
+               [IMAGE_PLACEHOLDER_8]
             
-            7. **Common Mistakes to Avoid** (250+ words):
-               - List 5 specific mistakes as <h3> headers
-               - Each mistake: 50+ word explanation + how to avoid it
-               - Real examples of failures
+            7. **When NOT to use AI** (Honesty Section) (200+ words):
+               - Be transparent: For highly emotional, personal founder stories, real human video is still best.
+               - AI is for *Scale* and *Performance*, Human is for *Deep Connection*.
+               - This nuance builds trust with the reader.
             
-            8. **When to Choose Arcads Instead** (200+ words) [E-E-A-T HONESTY]:
-               - Be GENUINELY honest: Arcads excels at hyper-realistic AI avatars
-               - Their €14M funding = strong R&D
-               - Recommend for: enterprise clients, premium brand needs
-               - This honesty builds E-E-A-T credibility with Google
+            8. **FAQ Section** (will be in JSON):
+               - 10+ Questions covering Pricing, Copyright, Platform Policies (TikTok/Meta), and editing capabilities.
             
-            9. **FAQ Section** (will be in JSON): MINIMUM 10 questions, EACH answer 80+ words
-               MUST include questions about:
-               - Pricing comparison (AdMaker AI vs Arcads, Creatify, etc.)
-               - ROI and performance metrics
-               - Usage limits and video quotas
-               - Quality comparison with human UGC creators
-               - Platform-specific features (TikTok, Meta, YouTube)
-               - Render speed and turnaround time
-               - AI avatar customization options
-               - Script writing and voiceover quality
-               - Integration with ad platforms
-               - Enterprise vs SMB use cases
+            9. **Related Readings** (MANDATORY):
+               - Link to 3 other relevant articles using the HTML format provided previously.
+               [IMAGE_PLACEHOLDER_9]
             
-            10. **Related Readings** (MANDATORY section with links to other blog articles):
-                Create a "Related Articles" section with 3 links to other blog articles.
-                Use this exact HTML format:
-                <h2>Related Articles You'll Love</h2>
-                <div class="related-readings">
-                ${relatedLinks ? relatedLinks : '<!-- No related articles available yet -->'}
-                </div>
-                
-                Format each link with PINK style like this:
-                <a href="URL" style="color: #ff0844; font-weight: bold; display: block; margin: 10px 0;">→ Article Title</a>
-                
-                [IMAGE_PLACEHOLDER_9] <-- PUT IMAGE HERE AFTER THIS SECTION
-            
-            11. **Conclusion + Strong CTA** (200+ words):
-                - Summarize the 3 key takeaways
-                - Restate the value proposition
-                - STRONG call-to-action with PINK LINK:
-                  <a href="[LANDING_PAGE_URL]" style="color: #ff0844; font-weight: bold; font-size: 1.2em;">🚀 Start Creating AI Video Ads Now - Try AdMaker AI Free</a>
-                [IMAGE_PLACEHOLDER_10] <-- PUT IMAGE HERE
-            
-            ═══════════════════════════════════════════════════════════════
-            ███ MANDATORY LINK REQUIREMENTS ███
-            ═══════════════════════════════════════════════════════════════
-            
-            1. **EXTERNAL LINKS (2-3 required)**: Link to authority sources:
-               - TikTok Business: https://business.tiktok.com
-               - Meta Business: https://business.meta.com
-               - Statista: https://www.statista.com
-               Format: <a href="URL" target="_blank" rel="noopener">Source Name</a>
-            
-            2. **INTERNAL LINKS TO LANDING PAGE (3-4 required)**: 
-               Use PINK styling for visibility:
-               <a href="[LANDING_PAGE_URL]" style="color: #ff0844; font-weight: bold;">AdMaker AI</a>
-               Replace [LANDING_PAGE_URL] with: https://admakerai.app${lang.code === 'en' ? '' : '/' + lang.code}
-            
-            3. **RELATED ARTICLE LINKS**: Already provided in section 10 above
-            
-            ═══════════════════════════════════════════════════════════════
-            ███ IMAGE PLACEMENT RULES ███
-            ═══════════════════════════════════════════════════════════════
-            - SPREAD images evenly throughout the article
-            - Place [IMAGE_PLACEHOLDER_X] AFTER each major section as marked above
-            - NEVER put 2 images in a row without text between them
-            - Use exactly 10 placeholders: [IMAGE_PLACEHOLDER_1] through [IMAGE_PLACEHOLDER_10]
-            
-            **TITLE REQUIREMENTS**:
-            - MUST be 60-70 characters exactly
-            - MUST start with: "Best", "Top 5", "Top 10", or "How to"
-            - MUST NOT contain colon (:) or two-part structure
-            - Include year 2026
-            - GOOD: "Best Arcads Alternatives for Small Businesses 2026"
-            - BAD: "Arcads Pricing 2026: Complete Guide"
-            
-            **OUTPUT FORMAT**:
-            You must output TWO parts.
-            
-            PART 1: Metadata in valid JSON output (NO markdown, NO HTML content here):
-            {
-               "title_translated": "60-70 char title starting with Best/Top/How to",
-               "meta_description": "155 chars max, compelling and keyword-rich",
-               "quick_answer": "2-3 sentences directly answering the main question",
-               "faq": [{"question":"...", "answer":"80+ words..."}]
-            }
-            
-            PART 2: The HTML content, enclosed specifically between these delimiters:
-            ---HTML_CONTENT_START---
-            (Put the full 2500+ WORD HTML article here with ALL 10 image placeholders distributed evenly)
-            ---HTML_CONTENT_END---
+            10. **Conclusion** (200+ words):
+                - Final verdict.
+                - Encouragement to start testing.
+                - Strong CTA.
+                [IMAGE_PLACEHOLDER_10]
             `;
 
             // === SINGLE-SHOT GENERATION (Full Article) ===
@@ -458,12 +359,12 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
                 temperature: 0.7
             };
 
-            const output = await replicate.run("meta/meta-llama-3.1-405b-instruct", { input });
-            console.log('    🔍 DEBUG: output type =', typeof output, '| isArray =', Array.isArray(output), '| length =', output?.length);
-            if (!output || (Array.isArray(output) && output.length === 0)) {
+            const response = await replicate.run("meta/meta-llama-3.1-405b-instruct", { input });
+            console.log('    🔍 DEBUG: output type =', typeof response, '| isArray =', Array.isArray(response), '| length =', response?.length);
+            if (!response || (Array.isArray(response) && response.length === 0)) {
                 throw new Error('Replicate API returned empty or undefined output');
             }
-            const fullText = Array.isArray(output) ? output.join('') : String(output);
+            const fullText = Array.isArray(response) ? response.join('') : String(response);
             console.log('    🔍 DEBUG: fullText length =', fullText.length, '| first 200 chars:', fullText.substring(0, 200));
 
             // Extract JSON from markdown code block
