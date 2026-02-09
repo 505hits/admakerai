@@ -79,6 +79,18 @@ export async function POST(request: NextRequest) {
                 // Update user credits and subscription status in Supabase
                 const supabase = createServiceClient();
 
+                // Idempotency check: Check if payment already processed
+                const { data: existingPayment } = await supabase
+                    .from('payments')
+                    .select('id')
+                    .eq('stripe_session_id', session.id)
+                    .single();
+
+                if (existingPayment) {
+                    console.log('⚠️ Payment already processed:', session.id);
+                    break;
+                }
+
                 // Get current credits
                 const { data: profile, error: fetchError } = await supabase
                     .from('profiles')
@@ -131,6 +143,17 @@ export async function POST(request: NextRequest) {
                     console.error('   User ID:', userId);
                     console.error('   Update data:', updateData);
                 } else {
+                    // Record payment to prevent duplicates
+                    await supabase.from('payments').insert({
+                        user_id: userId,
+                        stripe_session_id: session.id,
+                        amount_total: session.amount_total,
+                        currency: session.currency,
+                        status: session.payment_status,
+                        plan_type: planType,
+                        created_at: new Date().toISOString()
+                    });
+
                     console.log('✅✅✅ CREDITS SUCCESSFULLY ADDED ✅✅✅');
                     console.log(`   User ID: ${userId}`);
                     console.log(`   Plan: ${planType} (${billingPeriod})`);
