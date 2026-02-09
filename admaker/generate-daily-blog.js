@@ -418,119 +418,75 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             ---HTML_CONTENT_END---
             `;
 
-            // === STEP 1: METADATA & FIRST HALF ===
-            console.log(`    📝 Generating Part 1 with Llama 3.1 405B...`);
+            // === SINGLE-SHOT GENERATION (Full Article) ===
+            console.log(`    📝 Generating FULL article with Llama 3.1 405B (max_tokens: 8192)...`);
 
-            const promptPart1 = prompt + `
-            
-            🔴 INSTRUCTION FOR PART 1:
-            GENERATE ONLY:
-            1. The JSON Metadata
-            2. The HTML Content STARTING FAOM ---HTML_CONTENT_START---
-            3. SECTIONS 1, 2, and 3 ONLY.
-            4. STOP after Section 3. Do NOT write Section 4 yet.
-            5. END with a temporary marker: ---PART1_END---
-            
-            (Do not close the html or body tags yet)
-            `;
-
-            const input1 = {
-                system_prompt: "You are an automated SEO Content Generator. STEP 1 mode. Output JSON metadata then HTML content for Sections 1-3. Stop after Section 3.",
-                prompt: promptPart1,
-                max_tokens: 4096,
+            const input = {
+                system_prompt: "You are an expert SEO content writer. Generate the COMPLETE article with JSON metadata followed by full HTML content. Be thorough and maintain coherence throughout all 11 sections.",
+                prompt: prompt,
+                max_tokens: 8192,
                 temperature: 0.7
             };
 
-            const output1 = await replicate.run("meta/meta-llama-3.1-405b-instruct", { input: input1 });
-            console.log('    🔍 DEBUG: output1 type =', typeof output1, '| isArray =', Array.isArray(output1), '| length =', output1?.length);
-            if (!output1 || (Array.isArray(output1) && output1.length === 0)) {
+            const output = await replicate.run("meta/meta-llama-3.1-405b-instruct", { input });
+            console.log('    🔍 DEBUG: output type =', typeof output, '| isArray =', Array.isArray(output), '| length =', output?.length);
+            if (!output || (Array.isArray(output) && output.length === 0)) {
                 throw new Error('Replicate API returned empty or undefined output');
             }
-            const text1 = Array.isArray(output1) ? output1.join('') : String(output1);
-            console.log('    🔍 DEBUG: text1 length =', text1.length, '| first 200 chars:', text1.substring(0, 200));
+            const fullText = Array.isArray(output) ? output.join('') : String(output);
+            console.log('    🔍 DEBUG: fullText length =', fullText.length, '| first 200 chars:', fullText.substring(0, 200));
 
-            // Parse Part 1 - Extract JSON from markdown code block
-            // Llama wraps JSON in ```json ... ``` or ``` ... ```
+            // Extract JSON from markdown code block
             let jsonString = '';
-            const codeBlockMatch = text1.match(/```(?:json)?\s*\n?([\s\S]*?)```/);
+            const codeBlockMatch = fullText.match(/```(?:json)?\s*\n?([\s\S]*?)```/);
             if (codeBlockMatch) {
                 jsonString = codeBlockMatch[1].trim();
             } else {
                 // Fallback: find balanced braces
-                const firstBrace = text1.indexOf('{');
-                if (firstBrace === -1) throw new Error('No JSON found in Part 1');
+                const firstBrace = fullText.indexOf('{');
+                if (firstBrace === -1) throw new Error('No JSON found');
                 let depth = 0;
                 let endBrace = -1;
-                for (let i = firstBrace; i < text1.length; i++) {
-                    if (text1[i] === '{') depth++;
-                    if (text1[i] === '}') depth--;
+                for (let i = firstBrace; i < fullText.length; i++) {
+                    if (fullText[i] === '{') depth++;
+                    if (fullText[i] === '}') depth--;
                     if (depth === 0) { endBrace = i; break; }
                 }
                 if (endBrace === -1) throw new Error('Unbalanced JSON braces');
-                jsonString = text1.substring(firstBrace, endBrace + 1);
+                jsonString = fullText.substring(firstBrace, endBrace + 1);
             }
-            console.log('    🔍 DEBUG: jsonString length =', jsonString.length, '| first 100 chars:', jsonString.substring(0, 100));
+            console.log('    🔍 DEBUG: jsonString length =', jsonString.length);
 
-            // Clean and parse
+            // Clean and parse JSON
             jsonString = jsonString.replace(/,\s*}/g, '}').replace(/,\s*]/g, ']');
             const metadata = JSON.parse(jsonString);
 
+            // Extract HTML content
             const startMarker = '---HTML_CONTENT_START---';
-            const part1EndMarker = '---PART1_END---';
-            let startIndex = text1.indexOf(startMarker);
-            if (startIndex === -1) throw new Error('HTML content start marker not found in Part 1');
+            const endMarker = '---HTML_CONTENT_END---';
+            let startIndex = fullText.indexOf(startMarker);
+            let endIndex = fullText.indexOf(endMarker);
 
-            let htmlPart1 = text1.substring(startIndex + startMarker.length).split(part1EndMarker)[0].trim();
+            if (startIndex === -1) throw new Error('HTML content start marker not found');
 
-            // === STEP 2: SECOND HALF ===
-            console.log(`    📝 Generating Part 2 (Sections 4-11) with Llama 3.1 405B...`);
+            // If end marker missing (truncation), use end of text
+            if (endIndex === -1) {
+                console.warn('    ⚠️ Warning: HTML_CONTENT_END marker missing. Using full text end.');
+                endIndex = fullText.length;
+            }
 
-            const promptPart2 = `
-            CONTINUATION TASK.
-            Topic: "${topic.keyword}"
-            Language: ${lang.name}
-            
-            You are continuing the article.
-            
-            🔴 INSTRUCTION FOR PART 2:
-            1. RESUME immediately at **Section 4: Platform Comparison**.
-            2. WRITE Sections 4, 5, 6, 7, 8, 9, 10, and 11.
-            3. INCLUDE the MANDATORY "Related Readings" section (Section 10) with the pink links provided below.
-            4. END with the Conclusion.
-            5. CLOSE with ---HTML_CONTENT_END---.
-            
-            Data for Section 10 (Related Readings):
-            ${relatedLinks}
-            
-            CONTEXT FROM PART 1 (Review but do not repeat):
-            (We have already written Intro, What is, and Step-by-Step Guide)
-            
-            START WRITING DIRECTLY WITH HTML for Section 4 (e.g., <section> or <h2>).
-            DO NOT output JSON again. HTML ONLY.
-            `;
+            let htmlContent = fullText.substring(startIndex + startMarker.length, endIndex).trim();
 
-            const input2 = {
-                system_prompt: "You are an automated SEO Content Generator. STEP 2 mode. Output HTML content for Sections 4-11. Start immediately with Section 4.",
-                prompt: promptPart2,
-                max_tokens: 4096,
-                temperature: 0.7
-            };
+            // Clean up any leftover markers
+            htmlContent = htmlContent.replace('---PART1_END---', '').replace('```html', '').replace('```', '').trim();
 
-            const output2 = await replicate.run("meta/meta-llama-3.1-405b-instruct", { input: input2 });
-            const text2 = Array.isArray(output2) ? output2.join('') : String(output2);
+            if (htmlContent.length < 3000) throw new Error('Generated HTML content seems too short (expected 3000+ chars for full article)');
 
-            let htmlPart2 = text2.split('---HTML_CONTENT_END---')[0].trim();
-            // Remove any potential start markers if the model hallucinated them
-            htmlPart2 = htmlPart2.replace('---HTML_CONTENT_START---', '').replace('```html', '').replace('```', '').trim();
-
-            // COMBINE
-            const fullHtml = htmlPart1 + '\n\n' + htmlPart2;
-
-            if (fullHtml.length < 2000) throw new Error('Generated HTML content seems too short (combined)');
+            console.log('    ✅ Full article generated successfully! HTML length:', htmlContent.length);
 
             const enContent = {
                 ...metadata,
-                content_html: fullHtml
+                content_html: htmlContent
             };
             return enContent;
         } catch (e) {
