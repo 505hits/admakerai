@@ -841,13 +841,16 @@ function updateBlogIndex(dir, topic, thumbnail, lang, title) {
     let content = fs.readFileSync(listPath, 'utf8');
     const prefix = lang === 'en' ? 'blog' : lang + '/blog';
     const linkPath = '/' + prefix + '/' + topic.slug;
-    if (content.includes(linkPath)) return;
 
-    // Standard card injection
-    // Match styles.blogCard usage
-    // We assume the index page has 'styles' imported.
+    // Check if link already exists to avoid duplicates
+    if (content.includes(linkPath)) {
+        console.log(`    ⚠️ Blog index entry already exists for ${linkPath}`);
+        return;
+    }
+
+    // Standard card injection with correct clean JSX
     const newCard = `
-        < Link href = "${linkPath}" className = { styles.blogCard } >
+                        <Link href="${linkPath}" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="${thumbnail}"
@@ -861,16 +864,23 @@ function updateBlogIndex(dir, topic, thumbnail, lang, title) {
                                 <span className={styles.category}>AdMaker AI</span>
                                 <h2 className={styles.cardTitle}>${title}</h2>
                                 <p className={styles.cardExcerpt}>${topic.keyword}</p>
+                                <div className={styles.cardMeta}>
+                                    <span>${new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</span>
+                                </div>
                             </div>
-                        </Link >
-        `;
+                        </Link>`;
 
-    if (content.includes('className={styles.blogGrid}')) {
-        content = content.replace(
-            'className={styles.blogGrid}>',
-            `className = { styles.blogGrid } >\n${newCard} `
-        );
+    // Robust regex replacement to find the opening tag of the grid
+    // Matches: className={styles.blogGrid} ... > or className="...blogGrid..."
+    // We look for the div that holds the grid.
+    const gridRegex = /(className=\{styles\.blogGrid\}\s*>)/;
+
+    if (gridRegex.test(content)) {
+        content = content.replace(gridRegex, `$1\n${newCard}`);
         fs.writeFileSync(listPath, content);
+        console.log(`    ✅ Updated blog index at ${listPath}`);
+    } else {
+        console.warn(`    ⚠️ Could not find blogGrid in ${listPath}`);
     }
 }
 
