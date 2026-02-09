@@ -871,9 +871,8 @@ function updateBlogIndex(dir, topic, thumbnail, lang, title) {
                         </Link>`;
 
     // Robust regex replacement to find the opening tag of the grid
-    // Matches: className={styles.blogGrid} ... > or className="...blogGrid..."
-    // We look for the div that holds the grid.
-    const gridRegex = /(className=\{styles\.blogGrid\}\s*>)/;
+    // Matches: className={styles.blogGrid}, allowing for newlines and spaces
+    const gridRegex = /className=\{styles\.blogGrid\}\s*>/;
 
     if (gridRegex.test(content)) {
         content = content.replace(gridRegex, `$1\n${newCard}`);
