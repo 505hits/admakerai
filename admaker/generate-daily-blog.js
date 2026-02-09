@@ -250,6 +250,17 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             Write a LONG, COMPREHENSIVE, DETAILED blog post about Video Marketing & AI Tools.
             
             ⚠️⚠️⚠️ CRITICAL: ABSOLUTE MINIMUM 2500 WORDS ⚠️⚠️⚠️
+            
+            ⚠️ TITLE RULES (STRICT):
+            1. MUST start with: "Best", "Top", "How to", "The Ultimate Guide to", "7 Best Ways", or similar.
+            2. Length: STRICTLY between 60-70 characters.
+            3. NO COLONS (:) in the middle. Use a single flowing sentence.
+
+            ⚠️ CONTENT GUIDELINES (2026 STANDARDS):
+            1. **Stats & Data**: use REALISTIC percentages (e.g., "boosts CTR by 30%", "saves 40% production time"). 
+            2. **Entities**: Mention specific tools/entities: HeyGen, Runway, Sora, Midjourney, Stable Diffusion where relevant.
+            3. **Images**: For each image placeholder, provide a DETAILED ALT TEXT describing the scene (e.g., "AdMaker AI dashboard showing video editing timeline").
+            
             - If your article is under 2500 words, YOU HAVE COMPLETELY FAILED.
             - Count your words as you write. Each paragraph must have 5-7 sentences.
             - NEVER summarize. ALWAYS expand with examples, nuanced analysis, and detailed explanations.
@@ -618,9 +629,9 @@ async function generateBlogImages(keyword, count) {
         const url = await generateSingleImage(p);
 
         if (url) {
-            const filename = `img - ${Date.now()} -${i}.png`;
+            const filename = `img-${Date.now()}-${i}.png`;
             const localPath = path.join(__dirname, 'public/blog-images', filename);
-            const relativePath = `/ blog - images / ${filename} `;
+            const relativePath = `/blog-images/${filename}`;
             if (!fs.existsSync(path.dirname(localPath))) fs.mkdirSync(path.dirname(localPath), { recursive: true });
             try {
                 await downloadImage(url, localPath);
@@ -730,7 +741,20 @@ function createPageTsx(topic, content, images, lang) {
         "@type": "Article",
         "headline": content.title_translated,
         "image": images[0] ? images[0].url : '',
-        "author": { "@type": "Organization", "name": "AdMaker AI" },
+        "author": {
+            "@type": "Person",
+            "name": "Alex",
+            "jobTitle": "Head of Video Strategy",
+            "url": "https://admakerai.app/blog"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "AdMaker AI",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://admakerai.app/logo.png"
+            }
+        },
         "mainEntity": {
             "@type": "FAQPage",
             "mainEntity": content.faq ? content.faq.map(f => ({
@@ -872,7 +896,8 @@ function updateBlogIndex(dir, topic, thumbnail, lang, title) {
 
     // Robust regex replacement to find the opening tag of the grid
     // Matches: className={styles.blogGrid}, allowing for newlines and spaces
-    const gridRegex = /className=\{styles\.blogGrid\}\s*>/;
+    // CAPTURING GROUP added so $1 works in replace
+    const gridRegex = /(className=\{styles\.blogGrid\}\s*>)/;
 
     if (gridRegex.test(content)) {
         content = content.replace(gridRegex, `$1\n${newCard}`);

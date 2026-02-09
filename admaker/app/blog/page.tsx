@@ -14,27 +14,9 @@ export default function BlogPage() {
                     <h1 className={styles.pageTitle}>Blog</h1>
                     <p className={styles.subtitle}>Latest news and insights from AdMaker AI</p>
 
-                    <div $1
+                    <div className={styles.blogGrid}>
 
-                        <Link href="/blog/best-tool-facebook-video-ads" className={styles.blogCard}>
-                            <div className={styles.cardImage}>
-                                <Image
-                                    src="/ blog - images / img - 1770680119378 -0.png "
-                                    alt="Best Online Tool for Creating Engaging Facebook Video Ads"
-                                    width={400}
-                                    height={250}
-                                    style={{ objectFit: 'cover' }}
-                                />
-                            </div>
-                            <div className={styles.cardContent}>
-                                <span className={styles.category}>AdMaker AI</span>
-                                <h2 className={styles.cardTitle}>Best Online Tool for Creating Engaging Facebook Video Ads</h2>
-                                <p className={styles.cardExcerpt}>best online tool for creating engaging facebook video ads</p>
-                                <div className={styles.cardMeta}>
-                                    <span>February 2026</span>
-                                </div>
-                            </div>
-                        </Link>
+
 
 
                         <Link href="/blog/reviews-of-ugc-video-makers-with-mobile-support" className={styles.blogCard}>
