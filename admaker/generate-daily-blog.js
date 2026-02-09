@@ -437,7 +437,7 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             const input1 = {
                 system_prompt: "You are an automated SEO Content Generator. STEP 1 mode. Output JSON metadata then HTML content for Sections 1-3. Stop after Section 3.",
                 prompt: promptPart1,
-                max_new_tokens: 4096,
+                max_tokens: 4096,
                 temperature: 0.7
             };
 
@@ -486,7 +486,7 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             const input2 = {
                 system_prompt: "You are an automated SEO Content Generator. STEP 2 mode. Output HTML content for Sections 4-11. Start immediately with Section 4.",
                 prompt: promptPart2,
-                max_new_tokens: 4096,
+                max_tokens: 4096,
                 temperature: 0.7
             };
 
@@ -588,7 +588,7 @@ PART 2: The translated HTML content, enclosed specifically between these delimit
             const input = {
                 system_prompt: `You are a professional translator. Translate everything to ${lang.name} accurately.`,
                 prompt: prompt,
-                max_new_tokens: 4096,
+                max_tokens: 4096,
                 temperature: 0.7,
                 top_p: 0.9
             };
