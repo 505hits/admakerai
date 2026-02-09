@@ -845,6 +845,7 @@ export default function BlogPost() {
             <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-10 items-start">
                 
                 {/* Left: Article */}
+                <article>
                     <header className="mb-8">
                         <h1 className="text-3xl md:text-5xl font-extrabold mb-6 leading-tight text-white">${content.title_translated}</h1>
                         <div className="rounded-xl overflow-hidden mb-8 border border-white/10">
@@ -862,7 +863,7 @@ export default function BlogPost() {
 
                     <div 
                         className="prose prose-lg prose-invert max-w-none prose-headings:font-bold prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-a:text-[#ff0844] prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl"
-                dangerouslySetInnerHTML={{ __html: htmlContent }} 
+                dangerouslySetInnerHTML={{ __html: ${JSON.stringify(htmlContent)} }} 
                     />
 
                     {/* FAQ */}
