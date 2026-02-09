@@ -586,10 +586,10 @@ PART 2: The translated HTML content, enclosed specifically between these delimit
 `;
 
             const input = {
-                system_prompt: "You are a professional translator. Return JSON metadata followed by HTML content in delimiters.",
+                system_prompt: `You are a professional translator. Translate everything to ${lang.name} accurately.`,
                 prompt: prompt,
-                max_tokens: 8000,
-                temperature: 0.5,
+                max_new_tokens: 4096,
+                temperature: 0.7,
                 top_p: 0.9
             };
 
