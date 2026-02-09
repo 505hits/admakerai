@@ -449,10 +449,31 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             const text1 = Array.isArray(output1) ? output1.join('') : String(output1);
             console.log('    🔍 DEBUG: text1 length =', text1.length, '| first 200 chars:', text1.substring(0, 200));
 
-            // Parse Part 1
-            const jsonMatch = text1.match(/\{[\s\S]*?\}/);
-            if (!jsonMatch) throw new Error('No JSON metadata found in Part 1');
-            const metadata = JSON.parse(jsonMatch[0].replace(/,\s*}/g, '}').replace(/,\s*]/g, ']'));
+            // Parse Part 1 - Extract JSON from markdown code block
+            // Llama wraps JSON in ```json ... ``` or ``` ... ```
+            let jsonString = '';
+            const codeBlockMatch = text1.match(/```(?:json)?\s*\n?([\s\S]*?)```/);
+            if (codeBlockMatch) {
+                jsonString = codeBlockMatch[1].trim();
+            } else {
+                // Fallback: find balanced braces
+                const firstBrace = text1.indexOf('{');
+                if (firstBrace === -1) throw new Error('No JSON found in Part 1');
+                let depth = 0;
+                let endBrace = -1;
+                for (let i = firstBrace; i < text1.length; i++) {
+                    if (text1[i] === '{') depth++;
+                    if (text1[i] === '}') depth--;
+                    if (depth === 0) { endBrace = i; break; }
+                }
+                if (endBrace === -1) throw new Error('Unbalanced JSON braces');
+                jsonString = text1.substring(firstBrace, endBrace + 1);
+            }
+            console.log('    🔍 DEBUG: jsonString length =', jsonString.length, '| first 100 chars:', jsonString.substring(0, 100));
+
+            // Clean and parse
+            jsonString = jsonString.replace(/,\s*}/g, '}').replace(/,\s*]/g, ']');
+            const metadata = JSON.parse(jsonString);
 
             const startMarker = '---HTML_CONTENT_START---';
             const part1EndMarker = '---PART1_END---';
