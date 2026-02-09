@@ -442,7 +442,12 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             };
 
             const output1 = await replicate.run("meta/meta-llama-3.1-405b-instruct", { input: input1 });
+            console.log('    🔍 DEBUG: output1 type =', typeof output1, '| isArray =', Array.isArray(output1), '| length =', output1?.length);
+            if (!output1 || (Array.isArray(output1) && output1.length === 0)) {
+                throw new Error('Replicate API returned empty or undefined output');
+            }
             const text1 = Array.isArray(output1) ? output1.join('') : String(output1);
+            console.log('    🔍 DEBUG: text1 length =', text1.length, '| first 200 chars:', text1.substring(0, 200));
 
             // Parse Part 1
             const jsonMatch = text1.match(/\{[\s\S]*?\}/);
@@ -510,12 +515,9 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
         } catch (e) {
             console.warn(`    ⚠️ JSON Parse/API Error: ${e.message}. Retrying...`);
             console.log('--- DEBUG: RAW OUTPUT START ---');
-            console.log(output); // Check if output is string or object
+            console.log('Error details:', e);
             console.log('--- DEBUG: RAW OUTPUT END ---');
-            fs.writeFileSync('failed_log.txt', fullText || 'No output');
             retries--;
-
-
             await sleep(3000);
         }
     }
