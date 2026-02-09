@@ -54,7 +54,7 @@ async function main() {
     // 1 topic per day * 7 languages = 7 generations per day
     // If we have incomplete topics, we should finish them first.
 
-    const limit = 5; // Process up to 5 pending topics to catch up
+    const limit = 1; // Process only 1 pending topic per run (User Request)
     let processedCount = 0;
 
     // Filter for pending topics
