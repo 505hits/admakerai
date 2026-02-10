@@ -298,25 +298,26 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             ⚠️ ANTI-KEYWORD STUFFING:
             - Use natural synonyms: "synthetic media", "automated video production", "AI creators".
             - Do NOT repeat the main keyword robotically.
+            - **CRITICAL: The article MUST be at least 2500-3000 words long. Detail is key.**
             
             ═══════════════════════════════════════════════════════════════
             ███ MANDATORY ARTICLE STRUCTURE (FOLLOW EXACTLY) ███
             ═══════════════════════════════════════════════════════════════
             
-            1. **Introduction** (200+ words):
+            1. **Introduction** (300+ words):
                - Hook: The explosion of short-form video demand.
                - Problem: The high cost of human UGC creators ($150+ per video).
                - Solution: The rise of AI alternatives.
                - Thesis: Why choosing the right tool matters for ROI.
                [IMAGE_PLACEHOLDER_1]
             
-            2. **What is [Topic]?** (300+ words):
+            2. **What is [Topic]?** (400+ words):
                - Definition and evolution from 2023 to 2026.
                - Why "Quantity" of creatives is now as important as "Quality" (Ad fatigue).
                - Real-world application example.
                [IMAGE_PLACEHOLDER_2]
             
-            3. **Step-by-Step Guide: Creating High-Converting UGC Ads** (700+ words):
+            3. **Step-by-Step Guide: Creating High-Converting UGC Ads** (800+ words):
                - Focus on "Strategy" first, "Tool" second.
                - Step 1: Researching Hooks (The first 3 seconds).
                - Step 2: Selecting the right Avatar Persona for your niche.
@@ -325,29 +326,29 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
                - Step 5: Testing and iterating (The "Winner" strategy).
                
                *Includes 2-3 PINK INTERNAL LINKS to: <a href="[LANDING_PAGE_URL]" style="color: #ff0844; font-weight: bold;">Try AdMaker AI for Free</a>*
-               [IMAGE_PLACEHOLDER_3] [IMAGE_PLACEHOLDER_4] [IMAGE_PLACEHOLDER_5] (Distribute these)
+               [IMAGE_PLACEHOLDER_3] [IMAGE_PLACEHOLDER_4] [IMAGE_PLACEHOLDER_5] (Distribute these inside this section)
             
-            4. **In-Depth Comparison: AdMaker AI vs. The Rest** (500+ words):
+            4. **In-Depth Comparison: AdMaker AI vs. The Rest** (600+ words):
                - **Arcads Analysis**: Praise their quality, critique the $100+ entry price.
                - **Creatify Analysis**: Praise the URL extraction, critique the credit limits.
                - **AdMaker AI Analysis**: Highlight the "Unlimited" feature at **$39/mo**. "Why pay per video when you need to test 20 variations?"
-               - Create a detailed comparison table.
+               - Create a detailed HTML comparison table.
                [IMAGE_PLACEHOLDER_6]
             
-            5. **The ROI of AI Video Ads** (300+ words):
-               - compare Cost Per Acquisition (CPA) of Human vs AI.
+            5. **The ROI of AI Video Ads** (400+ words):
+               - Compare Cost Per Acquisition (CPA) of Human vs AI.
                - Speed to market: Launching trends in hours, not weeks.
                - Scalability: Producing typically 10x more creatives for the same budget.
                [IMAGE_PLACEHOLDER_7]
             
-            6. **2026 Industry Trends** (250+ words):
+            6. **2026 Industry Trends** (300+ words):
                - Hyper-personalization.
                - Interactive video ads.
                - The blurring line between real and AI creators.
                - **Mention Meta Business 2026 Report** on video engagement.
                [IMAGE_PLACEHOLDER_8]
             
-            7. **When NOT to use AI** (Honesty Section) (200+ words):
+            7. **When NOT to use AI** (Honesty Section) (250+ words):
                - Be transparent: For highly emotional, personal founder stories, real human video is still best.
                - AI is for *Scale* and *Performance*, Human is for *Deep Connection*.
                - This nuance builds trust with the reader.
@@ -359,7 +360,7 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
                - Link to 3 other relevant articles using the HTML format provided previously.
                [IMAGE_PLACEHOLDER_9]
             
-            10. **Conclusion** (200+ words):
+            10. **Conclusion** (250+ words):
                 - Final verdict.
                 - Encouragement to start testing.
                 - Strong CTA.
@@ -370,9 +371,9 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             console.log(`    📝 Generating FULL article with Llama 3.1 405B (max_tokens: 8192)...`);
 
             const input = {
-                system_prompt: "You are an expert SEO content writer. Generate the COMPLETE article with JSON metadata followed by full HTML content. \n\nIMPORTANT: You MUST wrap the HTML content in `[[[HTML_CONTENT_START]]]` and `[[[HTML_CONTENT_END]]]` markers. \n\nExample Output:\n```json\n{...}\n```\n\n[[[HTML_CONTENT_START]]]\n<!DOCTYPE html>\n...\n[[[HTML_CONTENT_END]]]",
+                system_prompt: "You are an expert SEO content writer. Generate the COMPLETE article with JSON metadata followed by full HTML content. \n\nIMPORTANT: You MUST wrap the HTML content in `[[[HTML_CONTENT_START]]]` and `[[[HTML_CONTENT_END]]]` markers. \n\nCRITICAL: Ensure the content is VERY LONG, DETAILED, and includes ALL [IMAGE_PLACEHOLDER_X] markers exactly as requested in the HTML. Do not skip any section.\n\nREQUIRED JSON STRUCTURE:\n{\n  \"title_translated\": \"Title of the article\",\n  \"meta_description\": \"SEO Description (150 chars)\",\n  \"quick_answer\": \"A direct, concise answer to the main topic (50-80 words).\",\n  \"faq\": [{ \"question\": \"Question?\", \"answer\": \"Answer.\" }]\n}\n\nExample Output:\n```json\n{\n  \"title_translated\": \"...\",\n  \"meta_description\": \"...\",\n  \"quick_answer\": \"...\",\n  \"faq\": [...]\n}\n```\n\n[[[HTML_CONTENT_START]]]\n<!DOCTYPE html>\n...\n[[[HTML_CONTENT_END]]]",
                 prompt: prompt,
-                max_tokens: 8192,
+                max_tokens: 16000,
                 temperature: 0.7
             };
 
@@ -767,17 +768,36 @@ function createPageTsx(topic, content, images, lang) {
 
     // ...
 
+    // Verify content completeness
+    if (!content.title_translated) content.title_translated = topic.keyword;
+    if (!content.quick_answer) content.quick_answer = content.meta_description || "Summary not available.";
+
     return `
 'use client';
+
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
+import SimilarArticles from '@/components/SimilarArticles';
+import styles from '../compare-pricing-ugc-video-production-tools/Article.module.css';
+import Image from 'next/image';
+
+function getLandingPageUrl(locale = 'en') {
+    if (locale === 'en') return '/';
+    return \`/\${locale}\`;
+}
 
 export default function BlogPost() {
+    const locale = '${lang.code}';
+    const landingPageUrl = getLandingPageUrl(locale);
     const [showStickyCta, setShowStickyCta] = useState(false);
+
     useEffect(() => {
-        const handleScroll = () => setShowStickyCta(window.scrollY > 300);
+        const handleScroll = () => {
+            setShowStickyCta(window.scrollY > 300);
+        };
+
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
@@ -785,74 +805,80 @@ export default function BlogPost() {
     const jsonLd = ${JSON.stringify(jsonLd)};
 
     return (
-      <>
-        <Head>
-          <title>${content.title_translated} | AdMaker AI</title>
-          <meta name="description" content="${content.meta_description}" />
-          <link rel="alternate" hrefLang="en" href="https://admaker-ai.com/blog/${topic.slug}" />
-          <link rel="alternate" hrefLang="fr" href="https://admaker-ai.com/fr/blog/${topic.slug}" />
-          <link rel="alternate" hrefLang="es" href="https://admaker-ai.com/es/blog/${topic.slug}" />
-          <link rel="alternate" hrefLang="pt" href="https://admaker-ai.com/pt/blog/${topic.slug}" />
-          <link rel="alternate" hrefLang="de" href="https://admaker-ai.com/de/blog/${topic.slug}" />
-          <link rel="alternate" hrefLang="x-default" href="https://admaker-ai.com/blog/${topic.slug}" />
-          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-        </Head>
-        
-        <Navbar lang="${lang}" />
-        
-        <div className="min-h-screen bg-[#0a0a0a] text-white pt-[100px] px-4 overflow-x-hidden font-sans">
-            <div className="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-10 items-start">
-                
-                {/* Left: Article */}
-                <article>
-                    <header className="mb-8">
-                        <h1 className="text-3xl md:text-5xl font-extrabold mb-6 leading-tight text-white">${content.title_translated}</h1>
-                        <div className="rounded-xl overflow-hidden mb-8 border border-white/10">
-                            ${images[0] ? `<img src="${images[0].url}" alt="${images[0].alt} - ${content.title_translated}" className="w-full object-cover" />` : ''}
-                        </div>
-                    </header>
+        <>
+            <Head>
+                <title>${content.title_translated} | AdMaker AI</title>
+                <meta name="description" content="${content.meta_description}" />
+                <link rel="canonical" href="https://admakerai.app/blog/${topic.slug}" />
+                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/${topic.slug}" />
+                <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/${topic.slug}" />
+                <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/${topic.slug}" />
+                <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/${topic.slug}" />
+                <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/${topic.slug}" />
+                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/${topic.slug}" />
+                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+            </Head>
+            
+            <Navbar lang="${lang.code}" />
+            
+            <div className={styles.pageContainer}>
+                <div className={styles.contentWrapper}>
+                    <article className={styles.articleContent}>
+                        <header className={styles.articleHeader}>
+                            <h1 className={styles.mainTitle}>
+                                ${content.title_translated}
+                            </h1>
+                            <div className={styles.heroImage}>
+                                <Image
+                                    src="${images[0] ? images[0].url : 'https://placehold.co/1200x630'}"
+                                    alt="${images[0] ? images[0].alt : content.title_translated}"
+                                    width={1280}
+                                    height={720}
+                                    priority
+                                    className="w-full h-auto object-cover rounded-xl"
+                                />
+                            </div>
+                        </header>
 
-                    {/* Quick Answer */}
-                    <div className="bg-gradient-to-br from-blue-900/40 to-blue-800/20 border border-blue-500/30 p-8 rounded-2xl mb-12 shadow-lg">
-                         <h3 className="text-[#ff0844] font-bold text-lg mb-4 uppercase tracking-wider flex items-center">
-                            <span className="mr-2">⚡</span> Quick Answer
-                         </h3>
-                         <p className="text-blue-100 leading-relaxed text-lg font-medium">${content.quick_answer}</p>
-                    </div>
+                        <section className={styles.section}>
+                            <h2>Quick Answer</h2>
+                            <p>${content.quick_answer}</p>
+                        </section>
 
-                    <div 
-                        className="prose prose-lg prose-invert max-w-none prose-headings:font-bold prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-a:text-[#ff0844] prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl"
-                dangerouslySetInnerHTML={{ __html: ${JSON.stringify(htmlContent)} }} 
-                    />
+                        <div 
+                            className={styles.articleBody}
+                            dangerouslySetInnerHTML={{ __html: ${JSON.stringify(htmlContent)} }} 
+                        />
 
-                    {/* FAQ */}
-                    <section className="mt-16 pt-10 border-t border-white/10">
-                        <h2 className="text-3xl font-bold mb-8 flex items-center"><span className="mr-3">❓</span> FAQ</h2>
-                        <div className="space-y-6">
+                        {/* FAQ Section */}
+                        <section id="faq" className={styles.section}>
+                            <h2>FAQ</h2>
                             ${content.faq ? content.faq.map(f => `
-                            <div className="bg-white/5 p-6 rounded-xl border border-white/5 hover:border-white/10 transition">
-                                <h3 className="font-bold text-xl mb-3 text-white">${f.question}</h3>
-                                <p className="text-gray-400 leading-relaxed">${f.answer}</p>
+                            <div className="mb-6">
+                                <h3 className="font-bold text-xl mb-2">${f.question}</h3>
+                                <p>${f.answer}</p>
                             </div>
                             `).join('') : ''}
-                        </div>
-                    </section>
-                </article>
+                        </section>
+                    </article>
 
-                {/* Right: Sticky Sidebar */}
-                <aside className="hidden lg:block sticky top-[120px]">
-                    <BlogVideoSidebar lang="${lang}" />
-                </aside>
-
+                    <BlogVideoSidebar locale={locale} />
+                </div>
             </div>
-        </div>
-        
-        {/* Mobile Sticky CTA */}
-        <a href="${landingPageUrl}" className={\`fixed bottom-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#ff0844] to-[#ff5478] text-white px-8 py-4 rounded-full font-bold shadow-[0_10px_30px_rgba(255,8,68,0.4)] z-50 transition-all duration-300 whitespace-nowrap hover:scale-105 active:scale-95 \${showStickyCta ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-10'}\`}>
-            Create your AI Ads now 👆
-        </a>
 
-      </>
+            <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+                <SimilarArticles currentSlug="${topic.slug}" locale={locale} />
+            </div>
+
+            {/* Sticky Mobile CTA */}
+            <a
+                href={landingPageUrl}
+                className={\`\${styles.stickyCta} \${showStickyCta ? styles.stickyCtaVisible : ''}\`}
+                aria-label="Create your AI Ads now"
+            >
+                Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
+            </a>
+        </>
     );
 }
 `;
