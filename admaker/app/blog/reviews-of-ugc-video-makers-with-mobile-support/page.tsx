@@ -37,21 +37,24 @@ export default function ReviewsUGCVideoMakersMobile() {
             excerpt: "Discover the best tools for creating user-generated content directly from your phone.",
             image: "https://images.unsplash.com/photo-1611162618071-b39a2ec055fb?w=800&h=500&fit=crop",
             date: "January 2026",
-            link: "/blog/top-5-ugc-video-editing-apps"
+            slug: "/blog/top-5-ugc-video-editing-apps",
+            category: "Video Editing"
         },
         {
             title: "UGC Video Ads AI Guide",
             excerpt: "Learn how to leverage AI to scale your UGC video ad production efficiently.",
             image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=500&fit=crop",
             date: "January 2026",
-            link: "/blog/ugc-video-ads-ai"
+            slug: "/blog/ugc-video-ads-ai",
+            category: "Video Ads"
         },
         {
             title: "Best Hook Generator Tools",
             excerpt: "Create scrolling-stopping hooks for your video ads with these top-rated tools.",
             image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop",
             date: "January 2026",
-            link: "/blog/hook-generator"
+            slug: "/blog/hook-generator",
+            category: "Marketing Tools"
         }
     ];
 
