@@ -16,6 +16,26 @@ export default function BlogPage() {
 
                     <div className={styles.blogGrid}>
 
+                        <Link href="/blog/tiktok-automation" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1770681524576-0.png"
+                                    alt="Best TikTok Automation Tools 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Best TikTok Automation Tools 2026</h2>
+                                <p className={styles.cardExcerpt}>tiktok automation</p>
+                                <div className={styles.cardMeta}>
+                                    <span>February 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
 
 
 
