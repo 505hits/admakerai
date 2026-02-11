@@ -7,6 +7,7 @@ import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import SimilarArticles from '@/components/SimilarArticles';
 
 export default function BlogPost() {
+    const locale = 'fr';
     const [showStickyCta, setShowStickyCta] = useState(false);
     useEffect(() => {
         const handleScroll = () => setShowStickyCta(window.scrollY > 300);

@@ -30,6 +30,13 @@ files.forEach(file => {
     let content = fs.readFileSync(file, 'utf8');
     let modified = false;
 
+    // Detect locale from path
+    let locale = 'en';
+    if (file.includes(path.sep + 'fr' + path.sep)) locale = 'fr';
+    else if (file.includes(path.sep + 'es' + path.sep)) locale = 'es';
+    else if (file.includes(path.sep + 'pt' + path.sep)) locale = 'pt';
+    else if (file.includes(path.sep + 'de' + path.sep)) locale = 'de';
+
     // 1. Ensure essential imports exist
     const imports = [
         { name: 'SimilarArticles', path: "@/components/SimilarArticles" },
@@ -41,7 +48,6 @@ files.forEach(file => {
 
     imports.forEach(imp => {
         if (content.includes(`<${imp.name}`) && !content.includes(`import ${imp.name}`)) {
-            // Find a good place to insert the import
             const importMatch = content.match(/import\s+.*?;/g);
             if (importMatch) {
                 const lastImport = importMatch[importMatch.length - 1];
@@ -56,81 +62,37 @@ files.forEach(file => {
 
     // 2. Ensure 'locale' variable is defined if used
     if (content.includes('locale') && !content.includes('const locale =') && !content.includes('let locale =')) {
-        // Detect locale from path
-        let locale = 'en';
-        if (file.includes('/fr/')) locale = 'fr';
-        else if (file.includes('/es/')) locale = 'es';
-        else if (file.includes('/pt/')) locale = 'pt';
-        else if (file.includes('/de/')) locale = 'de';
-
-        const componentStart = content.match(/export default function.*?\n\s*{/);
+        const componentStart = content.match(/export default function.*?\n?\s*\{/);
         if (componentStart) {
             content = content.replace(componentStart[0], `${componentStart[0]}\n    const locale = '${locale}';`);
             modified = true;
         }
     }
 
-    // 3. Fix structural issues (main vs aside vs article)
-    // If </main> exists but no <main>, remove it OR add it.
-    // Let's ensure a consistent structure for articles.
-
+    // 3. Fix structural issues (loose closing tags)
     // Check balance of <main>
     const openMainCount = (content.match(/<main/g) || []).length;
     const closeMainCount = (content.match(/<\/main>/g) || []).length;
 
     if (closeMainCount > openMainCount) {
-        // Find if we have <div className={styles.contentWrapper}>
-        if (content.includes('className={styles.contentWrapper}>') && !content.includes('<main')) {
-            content = content.replace('className={styles.contentWrapper}>', 'className={styles.contentWrapper}>\n                    <main className={styles.mainContent}>');
-            modified = true;
-        } else {
-            // Just remove the extra </main>
-            content = content.replace(/<\/main>/g, '');
-            modified = true;
-        }
-    } else if (openMainCount > closeMainCount) {
-        // Add closing tag
-        content = content.replace('</article>', '</article>\n                    </main>');
+        content = content.replace(/<\/main>/g, '');
         modified = true;
     }
 
-    // 4. Cleanup redundant empty divs and fix tag order
-    const closingSequence = /<\/article>\s*(<BlogVideoSidebar[^>]*\/>)?\s*<\/div>\s*<\/div>/g;
-    // We want to make it robust
-    if (content.match(closingSequence)) {
-        // Check if main is opened and needs to be closed
-        const hasMain = content.includes('<main');
-        let replacement = '</article>\n';
-        if (content.includes('BlogVideoSidebar')) {
-            const sidebarMatch = content.match(/<BlogVideoSidebar[^>]*\/>/);
-            if (sidebarMatch) replacement += `                        ${sidebarMatch[0]}\n`;
-        }
-        if (hasMain) replacement += '                    </main>\n';
-        replacement += '                </div>\n            </div>';
+    // Check balance of <div>
+    const openDivCount = (content.match(/<div/g) || []).length;
+    const closeDivCount = (content.match(/<\/div>/g) || []).length;
 
-        content = content.replace(closingSequence, replacement);
-        modified = true;
-    }
-
-    // Remove any Duplicate SimilarArticles
-    const similarArticlesMatches = content.match(/<SimilarArticles[^>]*\/>/g);
-    if (similarArticlesMatches && similarArticlesMatches.length > 1) {
-        // Keep only the last one for consistency
-        const lastOne = similarArticlesMatches[similarArticlesMatches.length - 1];
-        content = content.replace(/<SimilarArticles[^>]*\/>/g, '');
-        // Append it before the end of the return statement
-        const returnEnd = content.lastIndexOf('</>');
-        if (returnEnd !== -1) {
-            content = content.slice(0, returnEnd) + `\n            <div style={{ maxWidth: '1400px', margin: '0 auto' }}>\n                ${lastOne}\n            </div>\n        ` + content.slice(returnEnd);
-        } else {
-            const returnEndDiv = content.lastIndexOf(');');
-            if (returnEndDiv !== -1) {
-                // Find the last closing brace
-                const finalBrace = content.lastIndexOf('}', returnEndDiv);
-                content = content.slice(0, finalBrace) + `\n            <div style={{ maxWidth: '1400px', margin: '0 auto' }}>\n                ${lastOne}\n            </div>\n        ` + content.slice(finalBrace);
+    if (closeDivCount > openDivCount) {
+        // Remove extra closing divs at the very end of the return statement
+        const extra = closeDivCount - openDivCount;
+        for (let i = 0; i < extra; i++) {
+            const lastDiv = content.lastIndexOf('</div>');
+            if (lastDiv !== -1) {
+                content = content.slice(0, lastDiv) + content.slice(lastDiv + 6);
+                modified = true;
             }
         }
-        modified = true;
     }
 
     if (modified) {

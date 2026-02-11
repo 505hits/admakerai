@@ -715,7 +715,7 @@ export default function TopAIPlatformsUGCArticle() {
                 >
                     Create your AI Ads now <span className={styles.emojiPointer}>­ƒæë</span>
                 </a>
-            </div>
+            
         </>
     );
 }

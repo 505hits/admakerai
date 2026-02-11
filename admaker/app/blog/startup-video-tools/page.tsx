@@ -506,7 +506,7 @@ export default function BestAiDrivenUgcPlatformsStartupsArticle() {
                 >
                     Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
                 </Link>
-            </div>
+            
         </>
     );
 }
