@@ -206,7 +206,8 @@ async function main() {
                     fs.mkdirSync(postDir, { recursive: true });
                 }
 
-                const pageContent = createPageTsx(topic, content, imageUrls, lang.code);
+                const relatedArticles = getRelatedArticles(topics, topic.keyword, lang.code);
+                const pageContent = createPageTsx(topic, content, imageUrls, lang.code, relatedArticles);
                 fs.writeFileSync(path.join(postDir, 'page.tsx'), pageContent);
                 console.log(`    ✅ Created ${lang.code}/blog/${content.finalSlug}/page.tsx`);
 
@@ -693,7 +694,7 @@ function downloadImage(url, filepath) {
     });
 }
 
-function createPageTsx(topic, content, images, lang) {
+function createPageTsx(topic, content, images, lang, relatedArticles = []) {
     let htmlContent = content.content_html;
 
     // ========== SEO SANITIZATION ==========
@@ -734,15 +735,17 @@ function createPageTsx(topic, content, images, lang) {
 
     // Replace Image Placeholders with actual images
     images.forEach((imgObj, idx) => {
-        // Use standard img tag
+        // Use standard img tag with robust regex
         const stdImgTag = `<img src="${imgObj.url}" alt="${imgObj.alt} - ${topic.keyword}" loading="lazy" class="w-full rounded-xl my-8 hover:opacity-95 transition" />`;
-        htmlContent = htmlContent.replace(`[IMAGE_PLACEHOLDER_${idx + 1}]`, stdImgTag);
+        // Replace [IMAGE_PLACEHOLDER_1], [IMAGE_PLACEHOLDER_01], etc. case insensitive
+        const regex = new RegExp(`\\[IMAGE_PLACEHOLDER_${idx + 1}\\]`, 'gi');
+        htmlContent = htmlContent.replace(regex, stdImgTag);
     });
 
-    // Pink Links (Internal)
+    // Pink Links (Internal) - Removed highlight-link class as requested
     htmlContent = htmlContent.replace(
         /\[INTERNAL_LINK:\s*([^|]+?)\s*\|\s*([^\]]+?)\]/g,
-        '<a href="$2" class="text-[#ff0844] font-bold hover:text-[#ff5478] highlight-link" style="color: #ff0844; font-weight: 700;">$1</a>'
+        '<a href="$2" style="color: #ff0844; font-weight: 700;">$1</a>'
     );
 
     // Schema
@@ -871,7 +874,7 @@ export default function BlogPost() {
                                 `).join('') : ''}
                             </section>
 
-                            <SimilarArticles matches={[]} locale={locale} currentSlug="${topic.slug}" />
+                            <SimilarArticles matches={${JSON.stringify(relatedArticles)}} locale={locale} currentSlug="${topic.slug}" />
                         </article>
                     </main>
 
@@ -882,7 +885,7 @@ export default function BlogPost() {
             </div>
 
             <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-                <SimilarArticles currentSlug="${topic.slug}" locale={locale} />
+                <SimilarArticles currentSlug="${topic.slug}" locale={locale} matches={${JSON.stringify(relatedArticles)}} />
             </div>
 
             {/* Sticky Mobile CTA */}
@@ -947,6 +950,39 @@ function updateBlogIndex(dir, topic, thumbnail, lang, title) {
     } else {
         console.warn(`    ⚠️ Could not find blogGrid in ${listPath}`);
     }
+}
+
+function getRelatedArticles(allTopics, currentKeyword, langCode) {
+    // Helper to get random related articles from completed topics
+    const candidates = allTopics.filter(t => t.status === 'completed' && t.keyword !== currentKeyword);
+    if (candidates.length === 0) return [];
+
+    // Shuffle and pick 3
+    const shuffled = candidates.sort(() => 0.5 - Math.random());
+    const selected = shuffled.slice(0, 3);
+
+    return selected.map(t => {
+        // Determine slug
+        let slugCandidate = t.translatedSlugs?.[langCode] || t.translatedSlugs?.['en'];
+        // Fallback slug generation if not cached
+        if (!slugCandidate) {
+            slugCandidate = t.keyword.toString().toLowerCase().trim()
+                .replace(/[^\w\s-]/g, '')
+                .replace(/[\s_-]+/g, '-')
+                .replace(/^-+|-+$/g, '');
+        }
+
+        // Ensure path logic matches standard
+        const prefix = langCode === 'en' ? '/blog' : `/${langCode}/blog`;
+
+        return {
+            slug: `${prefix}/${slugCandidate}`,
+            title: (t.keyword.charAt(0).toUpperCase() + t.keyword.slice(1)), // Title case keyword (simple)
+            image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop", // Default/Fallback image
+            category: "Guide",
+            date: new Date(t.completedDate || Date.now()).toLocaleDateString(langCode, { month: 'long', year: 'numeric' })
+        };
+    });
 }
 
 main();

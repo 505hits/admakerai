@@ -143,7 +143,7 @@ export default function BlogPost() {
 
                             </section>
 
-                            <SimilarArticles matches={[]} locale={locale} currentSlug="arcads-vs-admaker" />
+                            <SimilarArticles locale={locale} currentSlug="arcads-vs-admaker" />
                         </article>
                     </main>
 
