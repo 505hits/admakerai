@@ -9,7 +9,26 @@
   },
   {
     "keyword": "arcads alternatives",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "arcads-alternatives",
+      "fr": "arcads-alternatives",
+      "es": "arcads-alternatives",
+      "pt": "arcads-alternatives",
+      "de": "arcads-alternatives",
+      "ja": "arcads-alternatives",
+      "ko": "arcads-alternatives"
+    },
+    "translatedTitles": {
+      "en": "Best Arcads Alternatives for AI Video Ads in 2026",
+      "fr": "Meilleures Alternatives à Arcads pour Publicités Vidéo IA 2026",
+      "es": "Mejores Alternativas a Arcads para Anuncios de Video IA en 2026",
+      "pt": "Melhores Alternativas ao Arcads para Anúncios em Vídeo IA 2026",
+      "de": "Beste Arcads Alternativen für KI Video Ads 2026",
+      "ja": "2026年AI動画広告に最適なArcads代替ツールを徹底比較",
+      "ko": "2026년 최고의 Arcads 대체 서비스 AI 비디오 광고 플랫폼 비교"
+    },
+    "completedDate": "2026-02-11T20:45:35.258Z"
   },
   {
     "keyword": "ai ugc",

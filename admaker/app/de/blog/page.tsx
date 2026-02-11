@@ -16,6 +16,26 @@ export default function BlogPageDE() {
 
                     <div className={styles.blogGrid} >
 
+                        <Link href="/de/blog/arcads-alternatives" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1770842617604-0.png"
+                                    alt="Beste Arcads Alternativen für KI Video Ads 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Beste Arcads Alternativen für KI Video Ads 2026</h2>
+                                <p className={styles.cardExcerpt}>arcads alternatives</p>
+                                <div className={styles.cardMeta}>
+                                    <span>February 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
 
                         <Link href="/de/blog/beste-ugc-video-macher-fuer-social-ads" className={styles.blogCard}>
                             <div className={styles.cardImage}>
