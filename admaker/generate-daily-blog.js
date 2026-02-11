@@ -81,7 +81,7 @@ async function main() {
     }
 
     for (const topic of topicsToProcess) {
-        console.log(`\n📝 Processing Topic: ${topic.h1} (${topic.slug})`);
+        console.log(`\n📝 Processing Topic: ${topic.h1 || topic.keyword}`);
 
         const generatedContent = {}; // { langCode: articleContent }
         let allLanguagesSuccessful = true;
@@ -240,7 +240,7 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
         let fullText;
 
         try {
-            console.log(`    🤖 Asking Claude 3.5 Sonnet (${retries} attempts left)...`);
+            console.log(`    🤖 Asking Claude 4.5 Sonnet (${retries} attempts left)...`);
 
             // Select some related articles (random 3 from completed) - output as HTML links
             const relatedLinks = completedTopics
@@ -377,16 +377,16 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             `;
 
             // === SINGLE-SHOT GENERATION (Full Article) ===
-            console.log(`    📝 Generating FULL article with Claude 3.5 Sonnet (max_tokens: 8192)...`);
+            console.log(`    📝 Generating FULL article with Claude 4.5 Sonnet (max_tokens: 8192)...`);
 
             const input = {
                 system_prompt: "You are an expert SEO content writer. Generate the COMPLETE article with JSON metadata followed by full HTML content. \n\nIMPORTANT: You MUST wrap the HTML content in `[[[HTML_CONTENT_START]]]` and `[[[HTML_CONTENT_END]]]` markers. \n\nCRITICAL: Ensure the content is VERY LONG, DETAILED, and includes ALL [IMAGE_PLACEHOLDER_X] markers exactly as requested in the HTML. Do not skip any section.\n\nREQUIRED JSON STRUCTURE:\n{\n  \"title_translated\": \"Title of the article\",\n  \"meta_description\": \"SEO Description (150 chars)\",\n  \"quick_answer\": \"A direct, concise answer to the main topic (50-80 words).\",\n  \"faq\": [{ \"question\": \"Question?\", \"answer\": \"Answer.\" }]\n}\n\nExample Output:\n```json\n{\n  \"title_translated\": \"...\",\n  \"meta_description\": \"...\",\n  \"quick_answer\": \"...\",\n  \"faq\": [...]\n}\n```\n\n[[[HTML_CONTENT_START]]]\n<!DOCTYPE html>\n...\n[[[HTML_CONTENT_END]]]",
                 prompt: prompt,
-                max_tokens: 16000,
+                max_tokens: 8192,
                 temperature: 0.7
             };
 
-            const response = await replicate.run("anthropic/claude-3.5-sonnet", { input });
+            const response = await replicate.run("anthropic/claude-4.5-sonnet", { input });
             console.log('    🔍 DEBUG: output type =', typeof response, '| isArray =', Array.isArray(response), '| length =', response?.length);
             if (!response || (Array.isArray(response) && response.length === 0)) {
                 throw new Error('Replicate API returned empty or undefined output');
@@ -500,7 +500,7 @@ async function translateArticleContent(enContent, lang, topic) {
         let fullText;
 
         try {
-            console.log(`    🤖 Translating with Claude 3.5 Sonnet (${retries} attempts left)...`);
+            console.log(`    🤖 Translating with Claude 4.5 Sonnet (${retries} attempts left)...`);
 
             const prompt = `
 You are a professional translator. Translate the following blog article from English to ${lang.name}.
@@ -557,7 +557,7 @@ PART 2: The translated HTML content, enclosed specifically between these delimit
                 top_p: 0.9
             };
 
-            output = await replicate.run('anthropic/claude-3.5-sonnet', { input });
+            output = await replicate.run('anthropic/claude-4.5-sonnet', { input });
             fullText = Array.isArray(output) ? output.join('') : String(output);
 
             // 1. Extract JSON Metadata from code block or balanced braces
