@@ -733,6 +733,16 @@ function createPageTsx(topic, content, images, lang, relatedArticles = []) {
     const landingPageUrl = lang === 'en' ? 'https://admakerai.app' : `https://admakerai.app/${lang}`;
     htmlContent = htmlContent.replace(/\[LANDING_PAGE_URL\]/g, landingPageUrl);
 
+    // Clean up HTML content (remove DOCTYPE, html, body, style tags)
+    htmlContent = htmlContent
+        .replace(/<!DOCTYPE[^>]*>/i, '')
+        .replace(/<html[^>]*>/i, '')
+        .replace(/<\/html>/i, '')
+        .replace(/<head>[\s\S]*?<\/head>/i, '') // Remove head and everything in it (styles, titles)
+        .replace(/<body[^>]*>/i, '')
+        .replace(/<\/body>/i, '')
+        .replace(/<style[\s\S]*?<\/style>/ig, ''); // Just in case style is outside head
+
     // Replace Image Placeholders with actual images
     images.forEach((imgObj, idx) => {
         // Use standard img tag with robust regex
@@ -745,7 +755,7 @@ function createPageTsx(topic, content, images, lang, relatedArticles = []) {
     // Pink Links (Internal) - Removed highlight-link class as requested
     htmlContent = htmlContent.replace(
         /\[INTERNAL_LINK:\s*([^|]+?)\s*\|\s*([^\]]+?)\]/g,
-        '<a href="$2" style="color: #ff0844; font-weight: 700;">$1</a>'
+        '<a href="$2">$1</a>'
     );
 
     // Schema
@@ -873,15 +883,10 @@ export default function BlogPost() {
                                 </div>
                                 `).join('') : ''}
                             </section>
-
-                            <SimilarArticles matches={${JSON.stringify(relatedArticles)}} locale={locale} currentSlug="${topic.slug}" />
                         </article>
-                    </main>
-
-                    <aside className={styles.videoSidebar}>
+                        
                         <BlogVideoSidebar locale={locale} />
-                    </aside>
-                </div>
+                    </div>
             </div>
 
             <div style={{ maxWidth: '1400px', margin: '0 auto' }}>

@@ -106,13 +106,15 @@
     text-decoration: underline;
 }
 
-/* Sections */
-.section {
+/* Sections and Article Body */
+.section,
+.articleBody {
     margin-bottom: 60px;
     scroll-margin-top: 120px;
 }
 
-.section h2 {
+.section h2,
+.articleBody h2 {
     font-size: 36px;
     font-weight: 700;
     margin: 0 0 24px 0;
@@ -120,21 +122,24 @@
     line-height: 1.3;
 }
 
-.section h3 {
+.section h3,
+.articleBody h3 {
     font-size: 28px;
     font-weight: 600;
     margin: 40px 0 20px 0;
     color: white;
 }
 
-.section h4 {
+.section h4,
+.articleBody h4 {
     font-size: 22px;
     font-weight: 600;
     margin: 30px 0 16px 0;
     color: rgba(255, 255, 255, 0.9);
 }
 
-.section p {
+.section p,
+.articleBody p {
     font-size: 18px;
     line-height: 1.8;
     margin: 0 0 20px 0;
@@ -143,12 +148,15 @@
 }
 
 .section ul,
-.section ol {
+.section ol,
+.articleBody ul,
+.articleBody ol {
     margin: 20px 0;
     padding-left: 30px;
 }
 
-.section li {
+.section li,
+.articleBody li {
     font-size: 18px;
     line-height: 1.8;
     margin-bottom: 12px;
@@ -157,7 +165,8 @@
 
 /* Links - RED COLOR (No Highlight) */
 .section a,
-.articleContent a {
+.articleContent a,
+.articleBody a {
     color: #ff0844;
     text-decoration: none;
     font-weight: 600;
@@ -165,7 +174,8 @@
 }
 
 .section a:hover,
-.articleContent a:hover {
+.articleContent a:hover,
+.articleBody a:hover {
     color: #ff5478;
     text-decoration: underline;
 }
