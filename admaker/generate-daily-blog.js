@@ -9,13 +9,14 @@ const VEO_API_KEY = process.env.VEO_API_KEY; // Previously KIE_API_KEY
 // Adjusted path since script is now in root
 const BLOG_TOPICS_FILE = path.join(__dirname, 'data/blog-topics.json');
 
-{ code: 'en', name: 'English', dir: path.join(__dirname, 'app/blog') },
-{ code: 'fr', name: 'French', dir: path.join(__dirname, 'app/fr/blog') },
-{ code: 'es', name: 'Spanish', dir: path.join(__dirname, 'app/es/blog') },
-{ code: 'pt', name: 'Portuguese', dir: path.join(__dirname, 'app/pt/blog') },
-{ code: 'de', name: 'German', dir: path.join(__dirname, 'app/de/blog') },
-{ code: 'ja', name: 'Japanese', dir: path.join(__dirname, 'app/ja/blog') },
-{ code: 'ko', name: 'Korean', dir: path.join(__dirname, 'app/ko/blog') }
+const LANGUAGES = [
+    { code: 'en', name: 'English', dir: path.join(__dirname, 'app/blog') },
+    { code: 'fr', name: 'French', dir: path.join(__dirname, 'app/fr/blog') },
+    { code: 'es', name: 'Spanish', dir: path.join(__dirname, 'app/es/blog') },
+    { code: 'pt', name: 'Portuguese', dir: path.join(__dirname, 'app/pt/blog') },
+    { code: 'de', name: 'German', dir: path.join(__dirname, 'app/de/blog') },
+    { code: 'ja', name: 'Japanese', dir: path.join(__dirname, 'app/ja/blog') },
+    { code: 'ko', name: 'Korean', dir: path.join(__dirname, 'app/ko/blog') }
 ];
 
 const replicate = new Replicate({
