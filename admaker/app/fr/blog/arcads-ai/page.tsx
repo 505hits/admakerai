@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
+import SimilarArticles from '@/components/SimilarArticles';
 
 export default function BlogPost() {
     const [showStickyCta, setShowStickyCta] = useState(false);
@@ -115,7 +116,6 @@ export default function BlogPost() {
                     </section>
                 </article>
                         <BlogVideoSidebar lang="fr" />
-                    </main>
                 </div>
             </div>
 
