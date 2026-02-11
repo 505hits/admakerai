@@ -789,7 +789,7 @@ import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import SimilarArticles from '@/components/SimilarArticles';
-import styles from '../compare-pricing-ugc-video-production-tools/Article.module.css';
+import styles from '@/app/blog/compare-pricing-ugc-video-production-tools/Article.module.css';
 import Image from 'next/image';
 
 function getLandingPageUrl(locale = 'en') {
