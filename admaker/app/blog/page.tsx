@@ -16,6 +16,26 @@ export default function BlogPage() {
 
                     <div className={styles.blogGrid}>
 
+                        <Link href="/blog/arcads-vs-admaker" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1770834278677-0.png"
+                                    alt="Best AI UGC Ad Tools Compared for 2026 Marketing Success"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Best AI UGC Ad Tools Compared for 2026 Marketing Success</h2>
+                                <p className={styles.cardExcerpt}>arcads vs admaker</p>
+                                <div className={styles.cardMeta}>
+                                    <span>February 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
 
 
 

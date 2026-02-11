@@ -1,7 +1,11 @@
 [
   {
     "keyword": "arcads vs admaker",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "arcads-vs-admaker"
+    },
+    "completedDate": "2026-02-11T18:27:09.140Z"
   },
   {
     "keyword": "arcads alternatives",
