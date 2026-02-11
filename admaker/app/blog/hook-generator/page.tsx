@@ -673,6 +673,7 @@ export default function HookGeneratorArticle() {
                     </article>
 
                     <BlogVideoSidebar locale={locale} />
+                    </main>
                 </div>
             </div>
 

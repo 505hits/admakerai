@@ -683,6 +683,7 @@ export default function QuickUGCPlatformsArticle() {
                     </article>
 
                     <BlogVideoSidebar locale={locale} />
+                    </main>
                 </div>
             </div>
 

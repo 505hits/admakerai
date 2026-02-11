@@ -35,13 +35,13 @@ export default function BlogPost() {
             <Head>
                 <title>Melhores Alternativas ao Arcads para Anúncios em Vídeo IA 2026 | AdMaker AI</title>
                 <meta name="description" content="Compare as principais alternativas ao Arcads como AdMaker AI, Creatify e MakeUGC. Descubra qual ferramenta de vídeo IA oferece o melhor ROI para suas campanhas." />
-                <link rel="canonical" href="https://admakerai.app/blog/undefined" />
-                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/undefined" />
-                <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/undefined" />
-                <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/undefined" />
-                <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/undefined" />
-                <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/undefined" />
-                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/undefined" />
+                <link rel="canonical" href="https://admakerai.app/blog/arcads-alternatives" />
+                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/arcads-alternatives" />
+                <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/arcads-alternatives" />
+                <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/arcads-alternatives" />
+                <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/arcads-alternatives" />
+                <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/arcads-alternatives" />
+                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/arcads-alternatives" />
                 <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             </Head>
             
@@ -145,11 +145,12 @@ export default function BlogPost() {
                         </article>
                         
                         <BlogVideoSidebar locale={locale} />
-                    </div>
+                    </main>
+                </div>
             </div>
 
             <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-                <SimilarArticles currentSlug="undefined" locale={locale} matches={[{"slug":"/pt/blog/arcads-vs-admaker","title":"arcads vs admaker","image":"https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop","category":"Guide","date":"fevereiro de 2026"}]} />
+                <SimilarArticles currentSlug="arcads-alternatives" locale={locale} matches={[{"slug":"/pt/blog/arcads-vs-admaker","title":"arcads vs admaker","image":"https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop","category":"Guide","date":"fevereiro de 2026"}]} />
             </div>
 
             {/* Sticky Mobile CTA */}

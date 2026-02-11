@@ -149,6 +149,7 @@ export default function BlogPost() {
 
 
                     <BlogVideoSidebar locale={locale} />
+                    </main>
                 </div>
             </div>
 

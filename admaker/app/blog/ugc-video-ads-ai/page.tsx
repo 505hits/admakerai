@@ -468,6 +468,7 @@ export default function UGCVideoAdsGuide2026() {
                     </article>
 
                     <BlogVideoSidebar locale={locale} />
+                    </main>
                 </div>
             </div>
 

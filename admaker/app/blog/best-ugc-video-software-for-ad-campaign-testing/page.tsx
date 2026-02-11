@@ -565,6 +565,7 @@ export default function BestUgcVideoSoftwareArticle() {
                     </article>
 
                     <BlogVideoSidebar locale={locale} />
+                    </main>
                 </div>
             </div>
 

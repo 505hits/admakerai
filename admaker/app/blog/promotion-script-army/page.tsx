@@ -699,6 +699,7 @@ Our [product] delivers [benefit] through [mechanism].
                     </article>
 
                     <BlogVideoSidebar locale={locale} />
+                    </main>
                 </div>
             </div>
 

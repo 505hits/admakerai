@@ -642,6 +642,7 @@ export default function EmotionGeneratorArticle() {
                     </article>
 
                     <BlogVideoSidebar locale={locale} />
+                    </main>
                 </div>
             </div>
 

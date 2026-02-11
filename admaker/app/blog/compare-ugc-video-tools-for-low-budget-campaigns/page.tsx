@@ -490,6 +490,7 @@ export default function CompareUgcToolsArticle() {
                     </article>
 
                     <BlogVideoSidebar locale={locale} />
+                    </main>
                 </div>
             </div>
 
