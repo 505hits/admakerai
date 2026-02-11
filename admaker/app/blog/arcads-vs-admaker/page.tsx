@@ -50,6 +50,7 @@ export default function BlogPost() {
 
             <div className={styles.pageContainer}>
                 <div className={styles.contentWrapper}>
+                    <main className={styles.mainContent}>
 
                     <article className={styles.articleContent}>
                         <header className={styles.articleHeader}>
@@ -144,17 +145,19 @@ export default function BlogPost() {
 
                         </section>
 
-                        <SimilarArticles locale={locale} currentSlug="arcads-vs-admaker" />
+                        
                     </article>
-
-
-                    <BlogVideoSidebar locale={locale} />
+                        <BlogVideoSidebar locale={locale} />
                     </main>
                 </div>
             </div>
 
             <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
                 <SimilarArticles currentSlug="arcads-vs-admaker" locale={locale} />
+            </div>
+
+            <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+                
             </div>
 
             {/* Sticky Mobile CTA */}

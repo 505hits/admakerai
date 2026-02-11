@@ -48,6 +48,7 @@ export default function BestMobileAppsForTikTokUGC() {
                 <Navbar lang={locale} />
 
                 <div className={styles.contentWrapper}>
+                    <main className={styles.mainContent}>
                     <article className={styles.articleContent}>
                         {/* Hero Section */}
                         <header className={styles.articleHeader}>
@@ -909,16 +910,14 @@ export default function BestMobileAppsForTikTokUGC() {
                             </div>
                         </section>
                     </article>
-
-                    {/* Sidebar */}
-                    <aside className={styles.videoSidebar}>
                         <BlogVideoSidebar locale={locale} />
-                    </aside>
+                    </main>
                 </div>
+            </div>
 
-                <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-                    <SimilarArticles locale={locale} currentSlug="best-mobile-apps-creating-ugc-videos-tiktok" />
-                </div>
+            <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+                <SimilarArticles currentSlug="best-mobile-apps-creating-ugc-videos-tiktok" locale={locale} />
+            </div>
 
                 {/* Sticky Mobile CTA */}
                 <a

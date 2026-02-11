@@ -85,6 +85,7 @@ export default function BestUgcVideoSoftwareArticle() {
             <Navbar lang="en" />
             <div className={styles.pageContainer}>
                 <div className={styles.contentWrapper}>
+                    <main className={styles.mainContent}>
                     <article className={styles.articleContent}>
                         <header className={styles.articleHeader}>
                             <h1 className={styles.mainTitle}>
@@ -563,14 +564,17 @@ export default function BestUgcVideoSoftwareArticle() {
                             />
                         </div>
                     </article>
-
-                    <BlogVideoSidebar locale={locale} />
+                        <BlogVideoSidebar locale={locale} />
                     </main>
                 </div>
             </div>
 
             <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
                 <SimilarArticles currentSlug="best-ugc-video-software-for-ad-campaign-testing" locale={locale} />
+            </div>
+
+            <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+                
             </div>
 
             {/* Sticky Mobile CTA */}

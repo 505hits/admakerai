@@ -143,14 +143,17 @@ export default function BlogPost() {
                                 
                             </section>
                         </article>
-                        
                         <BlogVideoSidebar locale={locale} />
                     </main>
                 </div>
             </div>
 
             <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-                <SimilarArticles currentSlug="arcads-alternatives" locale={locale} matches={[{"slug":"/es/blog/arcads-vs-admaker","title":"arcads vs admaker","image":"https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop","category":"Guide","date":"febrero de 2026"}]} />
+                <SimilarArticles currentSlug="arcads-alternatives" locale={locale} />
+            </div>
+
+            <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+                
             </div>
 
             {/* Sticky Mobile CTA */}

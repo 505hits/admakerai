@@ -100,6 +100,7 @@ export default function TopAIPlatformsUGCArticle() {
             <Navbar lang="en" />
             <div className={styles.pageContainer}>
                 <div className={styles.contentWrapper}>
+                    <main className={styles.mainContent}>
                     <article className={styles.articleContent}>
                         <header className={styles.articleHeader}>
                             <h1 className={styles.mainTitle}>
@@ -736,15 +737,14 @@ export default function TopAIPlatformsUGCArticle() {
                             </ul>
                         </section>
                     </article>
-
-                    <aside className={styles.videoSidebar}>
                         <BlogVideoSidebar locale={locale} />
-                    </aside>
+                    </main>
                 </div>
+            </div>
 
-                <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-                    <SimilarArticles locale="en" currentSlug="/blog/top-ai-platforms-creating-ugc-brand-videos" />
-                </div>
+            <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+                <SimilarArticles currentSlug="top-ai-platforms-creating-ugc-brand-videos" locale={locale} />
+            </div>
 
                 {/* Sticky Mobile CTA */}
                 <a

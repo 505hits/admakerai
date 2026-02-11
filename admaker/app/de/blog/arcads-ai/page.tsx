@@ -114,14 +114,14 @@ export default function BlogPost() {
                         </div>
                     </section>
                 </article>
-
-                {/* Right: Sticky Sidebar */}
-                <aside className="hidden lg:block sticky top-[120px]">
-                    <BlogVideoSidebar lang="de" />
-                </aside>
-
+                        <BlogVideoSidebar lang="de" />
+                    </main>
+                </div>
             </div>
-        </div>
+
+            <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+                <SimilarArticles currentSlug="arcads-ai" locale={locale} />
+            </div>
         
         {/* Mobile Sticky CTA */}
         <a href="https://admakerai.app/de" className={`fixed bottom-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#ff0844] to-[#ff5478] text-white px-8 py-4 rounded-full font-bold shadow-[0_10px_30px_rgba(255,8,68,0.4)] z-50 transition-all duration-300 whitespace-nowrap hover:scale-105 active:scale-95 ${showStickyCta ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-10'}`}>

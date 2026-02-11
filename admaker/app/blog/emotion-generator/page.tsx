@@ -56,6 +56,7 @@ export default function EmotionGeneratorArticle() {
             <Navbar lang="en" />
             <div className={styles.pageContainer}>
                 <div className={styles.contentWrapper}>
+                    <main className={styles.mainContent}>
                     <article className={styles.articleContent}>
                         <header className={styles.articleHeader}>
                             <h1 className={styles.mainTitle}>
@@ -640,14 +641,17 @@ export default function EmotionGeneratorArticle() {
                             <p><strong>Ready to implement emotion-driven video marketing?</strong> Start with <a href={landingPageUrl}>AdMaker AI's platform</a> creating your first 8 emotional test variations this week. Test intensity levels 1-3, match emotions to message phases, and measure against your baseline. Improvement begins immediately—perfection develops over months.</p>
                         </section>
                     </article>
-
-                    <BlogVideoSidebar locale={locale} />
+                        <BlogVideoSidebar locale={locale} />
                     </main>
                 </div>
             </div>
 
             <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
                 <SimilarArticles currentSlug="emotion-generator" locale={locale} />
+            </div>
+
+            <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+                
             </div>
 
             {/* Sticky Mobile CTA */}

@@ -134,6 +134,7 @@ export default function QuickUGCPlatformsArticle() {
             <Navbar lang="en" />
             <div className={styles.pageContainer}>
                 <div className={styles.contentWrapper}>
+                    <main className={styles.mainContent}>
                     <article className={styles.articleContent}>
                         <header className={styles.articleHeader}>
                             <h1 className={styles.mainTitle}>
@@ -681,14 +682,17 @@ export default function QuickUGCPlatformsArticle() {
                             <p><strong>Ready to create product ads in under 2 minutes?</strong> <a href={landingPageUrl}>Start with AdMaker AI's free tier</a> and test the speed difference yourself.</p>
                         </section>
                     </article>
-
-                    <BlogVideoSidebar locale={locale} />
+                        <BlogVideoSidebar locale={locale} />
                     </main>
                 </div>
             </div>
 
             <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
                 <SimilarArticles currentSlug="best-rated-platforms-quick-ugc-product-ad-videos" locale={locale} />
+            </div>
+
+            <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+                
             </div>
 
             {/* Sticky Mobile CTA */}

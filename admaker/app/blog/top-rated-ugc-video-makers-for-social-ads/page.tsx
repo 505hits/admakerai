@@ -68,6 +68,7 @@ export default function TopRatedUGCVideoMakersArticle() {
             <Navbar lang="en" />
             <div className={styles.pageContainer}>
                 <div className={styles.contentWrapper}>
+                    <main className={styles.mainContent}>
                     <div className={styles.mainContent}>
                         <article className={styles.articleContent}>
                             <header className={styles.articleHeader}>
@@ -618,15 +619,14 @@ export default function TopRatedUGCVideoMakersArticle() {
                                 </div>
                             </section>
                         </article>
-                    </div>
-                    <aside className={styles.videoSidebar}>
                         <BlogVideoSidebar locale={locale} />
-                    </aside>
+                    </main>
                 </div>
+            </div>
 
-                <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-                    <SimilarArticles locale="en" currentSlug="/blog/top-rated-ugc-video-makers-for-social-ads" />
-                </div>
+            <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+                <SimilarArticles currentSlug="top-rated-ugc-video-makers-for-social-ads" locale={locale} />
+            </div>
 
                 {/* Sticky Mobile CTA */}
                 <a

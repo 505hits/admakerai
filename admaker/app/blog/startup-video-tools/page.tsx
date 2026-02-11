@@ -33,6 +33,7 @@ export default function BestAiDrivenUgcPlatformsStartupsArticle() {
             <Navbar lang="en" />
             <div className={styles.pageContainer}>
                 <div className={styles.contentWrapper}>
+                    <main className={styles.mainContent}>
                     <article className={styles.articleContent}>
                         <header className={styles.articleHeader}>
                             <h1 className={styles.mainTitle}>
@@ -489,15 +490,14 @@ export default function BestAiDrivenUgcPlatformsStartupsArticle() {
                             <p>Test with free tiers • Scale with unlimited plans • Optimize for your stage</p>
                         </section>
                     </article>
-
-                    <aside className={styles.videoSidebar}>
                         <BlogVideoSidebar locale="en" />
-                    </aside>
+                    </main>
                 </div>
+            </div>
 
-                <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-                    <SimilarArticles locale="en" currentSlug="/blog/best-ai-driven-ugc-video-platforms-startups" />
-                </div>
+            <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+                <SimilarArticles currentSlug="startup-video-tools" locale={locale} />
+            </div>
 
                 <Link
                     href={landingPageUrl}

@@ -84,6 +84,7 @@ export default function UGCVideoAdsGuide2026() {
             <Navbar lang="en" />
             <div className={styles.pageContainer}>
                 <div className={styles.contentWrapper}>
+                    <main className={styles.mainContent}>
                     <article className={styles.articleContent}>
                         <header className={styles.articleHeader}>
                             <h1 className={styles.mainTitle}>
@@ -466,14 +467,17 @@ export default function UGCVideoAdsGuide2026() {
                             </ul>
                         </section>
                     </article>
-
-                    <BlogVideoSidebar locale={locale} />
+                        <BlogVideoSidebar locale={locale} />
                     </main>
                 </div>
             </div>
 
             <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
                 <SimilarArticles currentSlug="ugc-video-ads-ai" locale={locale} />
+            </div>
+
+            <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+                
             </div>
 
             {/* Sticky Mobile CTA */}

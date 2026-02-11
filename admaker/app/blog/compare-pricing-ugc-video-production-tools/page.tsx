@@ -98,6 +98,7 @@ export default function ComparePricingUGCArticle() {
             <Navbar lang="en" />
             <div className={styles.pageContainer}>
                 <div className={styles.contentWrapper}>
+                    <main className={styles.mainContent}>
                     <article className={styles.articleContent}>
                         <header className={styles.articleHeader}>
                             <h1 className={styles.mainTitle}>
@@ -924,15 +925,14 @@ export default function ComparePricingUGCArticle() {
                             </ul>
                         </section>
                     </article>
-
-                    <aside className={styles.videoSidebar}>
                         <BlogVideoSidebar locale={locale} />
-                    </aside>
+                    </main>
                 </div>
+            </div>
 
-                <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-                    <SimilarArticles locale="en" currentSlug="/blog/compare-pricing-ugc-video-production-tools" />
-                </div>
+            <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
+                <SimilarArticles currentSlug="compare-pricing-ugc-video-production-tools" locale={locale} />
+            </div>
 
                 {/* Sticky Mobile CTA */}
                 <a
