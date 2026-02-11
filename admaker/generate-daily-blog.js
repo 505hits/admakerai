@@ -280,7 +280,7 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             You are an EXPERT SEGMENT ANALYST & TECH JOURNALIST (Neutral Tone). 
             Write a LONG, COMPREHENSIVE, DETAILED blog post about Video Marketing & AI Tools.
             
-            ⚠️⚠️⚠️ CRITICAL: ABSOLUTE MINIMUM 2500 WORDS ⚠️⚠️⚠️
+            ⚠️⚠️⚠️ CRITICAL: TARGET LENGTH 1700 WORDS ⚠️⚠️⚠️
             
             ⚠️ TITLE RULES (STRICT):
             1. MUST start with: "Best", "Top", "How to", "The Ultimate Guide to", "7 Best Ways", or similar.
@@ -292,7 +292,7 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             2. **Entities**: Mention specific tools/entities: HeyGen, Runway, Sora, Midjourney, Stable Diffusion where relevant.
             3. **Images**: For each image placeholder, provide a DETAILED ALT TEXT describing the scene (e.g., "AdMaker AI dashboard showing video editing timeline").
             
-            - If your article is under 2500 words, YOU HAVE COMPLETELY FAILED.
+            - If your article is under 1700 words, YOU HAVE COMPLETELY FAILED.
             - Count your words as you write. Each paragraph must have 5-7 sentences.
             - NEVER summarize. ALWAYS expand with examples, nuanced analysis, and detailed explanations.
             - Write like a human expert (e.g., TechCrunch, Verge style), NOT a generic AI summary.
@@ -348,7 +348,7 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
                - Real-world application example.
                [IMAGE_PLACEHOLDER_2]
             
-            3. **Step-by-Step Guide: Creating High-Converting UGC Ads** (800+ words):
+            3. **Step-by-Step Guide: Creating High-Converting UGC Ads** (500+ words):
                - Focus on "Strategy" first, "Tool" second.
                - Step 1: Researching Hooks (The first 3 seconds).
                - Step 2: Selecting the right Avatar Persona for your niche.
@@ -359,20 +359,20 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
                *Includes 2-3 PINK INTERNAL LINKS to: <a href="[LANDING_PAGE_URL]" style="color: #ff0844; font-weight: bold;">Try AdMaker AI for Free</a>*
                [IMAGE_PLACEHOLDER_3] [IMAGE_PLACEHOLDER_4] [IMAGE_PLACEHOLDER_5] (Distribute these inside this section)
             
-            4. **In-Depth Comparison: AdMaker AI vs. The Rest** (600+ words):
+            4. **In-Depth Comparison: AdMaker AI vs. The Rest** (400+ words):
                - **Arcads Analysis**: Praise their quality, critique the $100+ entry price.
                - **Creatify Analysis**: Praise the URL extraction, critique the credit limits.
                - **AdMaker AI Analysis**: Highlight the "Unlimited" feature at **$39/mo**. "Why pay per video when you need to test 20 variations?"
                - Create a detailed HTML comparison table.
                [IMAGE_PLACEHOLDER_6]
             
-            5. **The ROI of AI Video Ads** (400+ words):
+            5. **The ROI of AI Video Ads** (300+ words):
                - Compare Cost Per Acquisition (CPA) of Human vs AI.
                - Speed to market: Launching trends in hours, not weeks.
                - Scalability: Producing typically 10x more creatives for the same budget.
                [IMAGE_PLACEHOLDER_7]
             
-            6. **2026 Industry Trends** (300+ words):
+            6. **2026 Industry Trends** (200+ words):
                - Hyper-personalization.
                - Interactive video ads.
                - The blurring line between real and AI creators.
