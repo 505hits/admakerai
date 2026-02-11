@@ -798,7 +798,7 @@ function getLandingPageUrl(locale = 'en') {
 }
 
 export default function BlogPost() {
-    const locale = '${lang.code}';
+    const locale = '${lang}';
     const landingPageUrl = getLandingPageUrl(locale);
     const [showStickyCta, setShowStickyCta] = useState(false);
 
@@ -828,7 +828,7 @@ export default function BlogPost() {
                 <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             </Head>
             
-            <Navbar lang="${lang.code}" />
+            <Navbar lang="${lang}" />
             
             <div className={styles.pageContainer}>
                 <div className={styles.contentWrapper}>
