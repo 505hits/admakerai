@@ -14,9 +14,7 @@ const LANGUAGES = [
     { code: 'fr', name: 'French', dir: path.join(__dirname, 'app/fr/blog') },
     { code: 'es', name: 'Spanish', dir: path.join(__dirname, 'app/es/blog') },
     { code: 'pt', name: 'Portuguese', dir: path.join(__dirname, 'app/pt/blog') },
-    { code: 'de', name: 'German', dir: path.join(__dirname, 'app/de/blog') },
-    { code: 'ja', name: 'Japanese', dir: path.join(__dirname, 'app/ja/blog') },
-    { code: 'ko', name: 'Korean', dir: path.join(__dirname, 'app/ko/blog') }
+    { code: 'de', name: 'German', dir: path.join(__dirname, 'app/de/blog') }
 ];
 
 const replicate = new Replicate({
@@ -909,11 +907,12 @@ export default function BlogPost() {
                         </article>
                         
                         <BlogVideoSidebar locale={locale} />
-                    </div>
+                    </main>
+                </div>
             </div>
 
             <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-                <SimilarArticles currentSlug="${topic.slug}" locale={locale} matches={${JSON.stringify(relatedArticles)}} />
+                <SimilarArticles currentSlug="${content.finalSlug}" locale={locale} matches={${JSON.stringify(relatedArticles)}} />
             </div>
 
             {/* Sticky Mobile CTA */}
