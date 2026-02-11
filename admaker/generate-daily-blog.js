@@ -9,12 +9,13 @@ const VEO_API_KEY = process.env.VEO_API_KEY; // Previously KIE_API_KEY
 // Adjusted path since script is now in root
 const BLOG_TOPICS_FILE = path.join(__dirname, 'data/blog-topics.json');
 
-const LANGUAGES = [
-    { code: 'en', name: 'English', dir: path.join(__dirname, 'app/blog') },
-    { code: 'fr', name: 'French', dir: path.join(__dirname, 'app/fr/blog') },
-    { code: 'es', name: 'Spanish', dir: path.join(__dirname, 'app/es/blog') },
-    { code: 'pt', name: 'Portuguese', dir: path.join(__dirname, 'app/pt/blog') },
-    { code: 'de', name: 'German', dir: path.join(__dirname, 'app/de/blog') }
+{ code: 'en', name: 'English', dir: path.join(__dirname, 'app/blog') },
+{ code: 'fr', name: 'French', dir: path.join(__dirname, 'app/fr/blog') },
+{ code: 'es', name: 'Spanish', dir: path.join(__dirname, 'app/es/blog') },
+{ code: 'pt', name: 'Portuguese', dir: path.join(__dirname, 'app/pt/blog') },
+{ code: 'de', name: 'German', dir: path.join(__dirname, 'app/de/blog') },
+{ code: 'ja', name: 'Japanese', dir: path.join(__dirname, 'app/ja/blog') },
+{ code: 'ko', name: 'Korean', dir: path.join(__dirname, 'app/ko/blog') }
 ];
 
 const replicate = new Replicate({
@@ -117,10 +118,20 @@ async function main() {
                 if (topicIndex !== -1) {
                     if (!topics[topicIndex].translatedSlugs) topics[topicIndex].translatedSlugs = {};
                     topics[topicIndex].translatedSlugs['en'] = enSlug;
+
+                    // NEW: Save Title and Primary Image for Similar Articles
+                    if (!topics[topicIndex].translatedTitles) topics[topicIndex].translatedTitles = {};
+                    topics[topicIndex].translatedTitles['en'] = enContent.title_translated || topic.h1;
+
+                    if (enContent.images && enContent.images.length > 0) {
+                        topics[topicIndex].primaryImage = enContent.images[0].url;
+                    }
+
                     fs.writeFileSync(BLOG_TOPICS_FILE, JSON.stringify(topics, null, 2));
                 }
 
-                generatedContent['en'] = { ...enContent, finalSlug: enSlug };
+                // Pass images to content object for consistent usage
+                generatedContent['en'] = { ...enContent, finalSlug: enSlug, images: enContent.images };
                 console.log(`    ✅ EN base article generated (slug: ${enSlug})`);
             } catch (err) {
                 console.error(`    ❌ EN generation FAILED:`, err.message);
@@ -137,7 +148,7 @@ async function main() {
 
         for (const lang of LANGUAGES) {
             if (lang.code === 'en') continue; // Already done
-            continue; // CRITICAL: Skip all translations for cost saving
+            // continue; // REMOVED: Enable translations for all languages
 
             console.log(`  🌐 Translating to: ${lang.code.toUpperCase()}`);
 
@@ -161,10 +172,15 @@ async function main() {
                 const translatedSlug = slugify(translatedContent.slug_translated || topic.keyword);
 
                 // Cache the slug
+                // Cache the slug AND Title
                 const topicIndex = topics.findIndex(t => t.keyword === topic.keyword);
                 if (topicIndex !== -1) {
                     if (!topics[topicIndex].translatedSlugs) topics[topicIndex].translatedSlugs = {};
                     topics[topicIndex].translatedSlugs[lang.code] = translatedSlug;
+
+                    if (!topics[topicIndex].translatedTitles) topics[topicIndex].translatedTitles = {};
+                    topics[topicIndex].translatedTitles[lang.code] = translatedContent.title_translated;
+
                     fs.writeFileSync(BLOG_TOPICS_FILE, JSON.stringify(topics, null, 2));
                 }
 
@@ -206,8 +222,12 @@ async function main() {
                     fs.mkdirSync(postDir, { recursive: true });
                 }
 
+                // Pass imageUrls to createPageTsx to ensuring images are available
                 const relatedArticles = getRelatedArticles(topics, topic.keyword, lang.code);
-                const pageContent = createPageTsx(topic, content, imageUrls, lang.code, relatedArticles);
+                // Attach the images to content if not already there (for EN it's there, for others it might not be)
+                const contentWithImages = { ...content, images: imageUrls };
+
+                const pageContent = createPageTsx(topic, contentWithImages, imageUrls, lang.code, relatedArticles);
                 fs.writeFileSync(path.join(postDir, 'page.tsx'), pageContent);
                 console.log(`    ✅ Created ${lang.code}/blog/${content.finalSlug}/page.tsx`);
 
@@ -746,9 +766,11 @@ function createPageTsx(topic, content, images, lang, relatedArticles = []) {
     // Replace Image Placeholders with actual images
     images.forEach((imgObj, idx) => {
         // Use standard img tag with robust regex
+        // Use standard img tag with robust regex
         const stdImgTag = `<img src="${imgObj.url}" alt="${imgObj.alt} - ${topic.keyword}" loading="lazy" class="w-full rounded-xl my-8 hover:opacity-95 transition" />`;
-        // Replace [IMAGE_PLACEHOLDER_1], [IMAGE_PLACEHOLDER_01], etc. case insensitive
-        const regex = new RegExp(`\\[IMAGE_PLACEHOLDER_${idx + 1}\\]`, 'gi');
+        // Replace [IMAGE_PLACEHOLDER_1], [IMAGE_PLACEHOLDER_1: Description], etc.
+        // Regex matches [IMAGE_PLACEHOLDER_X] or [IMAGE_PLACEHOLDER_X: ...]
+        const regex = new RegExp(`\\[IMAGE_PLACEHOLDER_${idx + 1}(?:\\s*:[^\\]]*)?\\]`, 'gi');
         htmlContent = htmlContent.replace(regex, stdImgTag);
     });
 
@@ -980,10 +1002,16 @@ function getRelatedArticles(allTopics, currentKeyword, langCode) {
         // Ensure path logic matches standard
         const prefix = langCode === 'en' ? '/blog' : `/${langCode}/blog`;
 
+        // Get Translated Title if available, else EN h1/keyword
+        const title = t.translatedTitles?.[langCode] || t.translatedTitles?.['en'] || t.h1 || t.keyword;
+
+        // Get Real Image if available
+        const image = t.primaryImage || "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop";
+
         return {
             slug: `${prefix}/${slugCandidate}`,
-            title: (t.keyword.charAt(0).toUpperCase() + t.keyword.slice(1)), // Title case keyword (simple)
-            image: "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop", // Default/Fallback image
+            title: title, // Updated to use real title
+            image: image, // Updated to use real image
             category: "Guide",
             date: new Date(t.completedDate || Date.now()).toLocaleDateString(langCode, { month: 'long', year: 'numeric' })
         };
