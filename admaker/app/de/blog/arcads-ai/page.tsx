@@ -11,8 +11,7 @@ export default function BlogPost() {
     
 
 
-            <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
-                }useEffect(() => {
+            useEffect(() => {
         const handleScroll = () => setShowStickyCta(window.scrollY > 300);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
@@ -134,5 +133,4 @@ export default function BlogPost() {
 
       </div></>
     );
-            </div>
-        }
+}

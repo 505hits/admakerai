@@ -19,8 +19,7 @@ export default function EmotionGeneratorArticle() {
     
 
 
-            <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
-                }const [showStickyCta, setShowStickyCta] = useState(false);
+            const [showStickyCta, setShowStickyCta] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -668,5 +667,4 @@ export default function EmotionGeneratorArticle() {
             </a>
         </>
     );
-            </div>
-        }
+}

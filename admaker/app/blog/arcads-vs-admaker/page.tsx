@@ -20,8 +20,7 @@ export default function BlogPost() {
     
 
 
-            <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
-                }const [showStickyCta, setShowStickyCta] = useState(false);
+            const [showStickyCta, setShowStickyCta] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -173,5 +172,4 @@ export default function BlogPost() {
             </a>
         </div></>
     );
-            </div>
-        }
+}

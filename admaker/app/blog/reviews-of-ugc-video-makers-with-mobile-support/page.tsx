@@ -15,8 +15,7 @@ export default function ReviewsUGCVideoMakersMobile() {
     
 
 
-            <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
-                }useEffect(() => {
+            useEffect(() => {
         const handleScroll = () => {
             const sections = document.querySelectorAll('section');
             let current = '';
@@ -531,5 +530,4 @@ export default function ReviewsUGCVideoMakersMobile() {
             </div>
         </>
     );
-            </div>
-        }
+}

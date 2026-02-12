@@ -22,9 +22,7 @@ export default function RealEstateUGCArticle() {
     
 
 
-            <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
-                }
-const [showStickyCta, setShowStickyCta] = useState(false);
+            const [showStickyCta, setShowStickyCta] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -533,5 +531,4 @@ const [showStickyCta, setShowStickyCta] = useState(false);
                 </a>
         </>
     );
-            </div>
-        }
+}

@@ -19,8 +19,7 @@ export default function BestMobileAppsForTikTokUGC() {
     
 
 
-            <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
-                }const [showMobileCTA, setShowMobileCTA] = useState(false);
+            const [showMobileCTA, setShowMobileCTA] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -933,5 +932,4 @@ export default function BestMobileAppsForTikTokUGC() {
                 </a>
         </>
     );
-            </div>
-        }
+}
