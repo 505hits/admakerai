@@ -636,7 +636,7 @@ export default function TopRatedUGCVideoMakersArticle() {
                 >
                     Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
                 </a>
-            </div>
+            
         </>
     );
-        
+}

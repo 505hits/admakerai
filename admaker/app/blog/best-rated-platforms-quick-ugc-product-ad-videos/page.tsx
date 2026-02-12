@@ -706,4 +706,4 @@ export default function QuickUGCPlatformsArticle() {
             </a>
         </>
     );
-        
+}
