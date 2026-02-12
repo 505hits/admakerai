@@ -120,7 +120,7 @@ export default function BlogPost() {
                     </section>
                 </article>
                         <BlogVideoSidebar lang="en" />
-                    </main>
+                    
                 </div>
             </div>
 
