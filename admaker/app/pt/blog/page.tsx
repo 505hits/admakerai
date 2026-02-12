@@ -16,6 +16,26 @@ export default function BlogPagePT() {
 
                     <div className={styles.blogGrid} >
 
+                        <Link href="/pt/blog/melhores-ferramentas-ia-ugc-criam-anuncios-video-autenticos" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1770857313594-0.png"
+                                    alt="Melhores Ferramentas de IA UGC Que Criam Anúncios em Vídeo Autênticos em Menos de 60 Segundos"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Melhores Ferramentas de IA UGC Que Criam Anúncios em Vídeo Autênticos em Menos de 60 Segundos</h2>
+                                <p className={styles.cardExcerpt}>ai ugc</p>
+                                <div className={styles.cardMeta}>
+                                    <span>February 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
                         <Link href="/pt/blog/arcads-alternatives" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

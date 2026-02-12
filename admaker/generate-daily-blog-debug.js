@@ -1,4 +1,25 @@
 require('dotenv').config();
+
+// --- DEBUG INJECTION START ---
+const fs_debug = require('fs');
+const path_debug = require('path');
+const logFile_debug = path_debug.join(__dirname, 'debug_log.txt');
+try { fs_debug.writeFileSync(logFile_debug, '', 'utf8'); } catch(e){}
+function log_debug(msg) {
+    const timestamp = new Date().toISOString();
+    let str = msg;
+    if (typeof msg !== 'string') {
+        try { str = JSON.stringify(msg, null, 2); } catch(e) { str = String(msg); }
+    }
+    const line = `[${timestamp}] ${str}\n`;
+    try { fs_debug.appendFileSync(logFile_debug, line, 'utf8'); } catch(e){}
+    process.stdout.write(line);
+}
+console.log = log_debug;
+console.error = log_debug;
+console.warn = log_debug;
+// --- DEBUG INJECTION END ---
+
 const fs = require('fs');
 const path = require('path');
 const Replicate = require('replicate');
@@ -65,7 +86,7 @@ async function main() {
     let processedCount = 0;
 
     // Filter for pending topics
-    const pendingTopics = topics.filter(t => t.status === 'pending');
+    const pendingTopics = topics.filter(t => t.status === 'pending' && (t.keyword.includes('reviews of ugc') || t.keyword.includes('video makers with mobile support')));
 
     // Also consider topics that are 'completed' but might be missing languages (optional validation step)
     // For this run, we will focus on PENDING topics as per standard flow, 
@@ -913,11 +934,8 @@ export default function BlogPost() {
                             </section>
                         </article>
                         
-                    </main>
-                    
-                    <aside className={styles.videoSidebar}>
                         <BlogVideoSidebar locale={locale} />
-                    </aside>
+                    </main>
                 </div>
             </div>
 

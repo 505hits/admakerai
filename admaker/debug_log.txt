@@ -1,0 +1,25 @@
+[2026-02-12T01:03:13.033Z] 🚀 Starting Multilingual Daily Blog Generation (Strict SEO Mode)...
+[2026-02-12T01:03:13.038Z] CWD:
+[2026-02-12T01:03:13.039Z] __dirname:
+[2026-02-12T01:03:13.040Z] BLOG_TOPICS_FILE:
+[2026-02-12T01:03:13.042Z] API Keys Present:
+[2026-02-12T01:03:13.044Z] Loaded 234 topics.
+[2026-02-12T01:03:13.045Z] 
+📝 Processing Topic: reviews of ugc video makers with mobile support
+[2026-02-12T01:03:13.047Z]   📝 PHASE 1: Generating ENGLISH base article...
+[2026-02-12T01:03:13.048Z]     🤖 Asking Claude 4.5 Sonnet (3 attempts left)...
+[2026-02-12T01:03:13.049Z]     📝 Generating FULL article with Claude 4.5 Sonnet (max_tokens: 8192)...
+[2026-02-12T01:06:23.632Z]     🔍 DEBUG: output type =
+[2026-02-12T01:06:23.633Z]     🔍 DEBUG: fullText length =
+[2026-02-12T01:06:23.634Z]     🔍 DEBUG: jsonString length =
+[2026-02-12T01:06:23.635Z]     ✅ Full article generated successfully! HTML length:
+[2026-02-12T01:06:23.636Z]     ✅ EN base article generated (slug: reviews-of-ugc-video-makers-with-mobile-support)
+[2026-02-12T01:06:23.636Z] 
+  🌍 PHASE 2: Translating to other languages...
+[2026-02-12T01:06:23.637Z]   🌐 Translating to: FR
+[2026-02-12T01:06:23.638Z]     🤖 Translating with Claude 4.5 Sonnet (3 attempts left)...
+[2026-02-12T01:09:11.630Z]     🔍 DEBUG: Translation jsonString length =
+[2026-02-12T01:09:11.630Z]     ⚠️ Warning: HTML content end marker missing (truncation suspect). Using full text end.
+[2026-02-12T01:09:11.632Z]     ✅ Translated to fr (slug: meilleurs-createurs-videos-ugc-support-mobile-2026)
+[2026-02-12T01:09:11.632Z]   🌐 Translating to: ES
+[2026-02-12T01:09:11.633Z]     🤖 Translating with Claude 4.5 Sonnet (3 attempts left)...

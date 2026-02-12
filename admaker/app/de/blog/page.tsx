@@ -16,6 +16,26 @@ export default function BlogPageDE() {
 
                     <div className={styles.blogGrid} >
 
+                        <Link href="/de/blog/beste-ki-ugc-tools-fuer-authentische-videoanzeigen" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1770857313594-0.png"
+                                    alt="Beste KI UGC Tools für authentische Videoanzeigen unter 60 Sekunden"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Beste KI UGC Tools für authentische Videoanzeigen unter 60 Sekunden</h2>
+                                <p className={styles.cardExcerpt}>ai ugc</p>
+                                <div className={styles.cardMeta}>
+                                    <span>February 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
                         <Link href="/de/blog/arcads-alternatives" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

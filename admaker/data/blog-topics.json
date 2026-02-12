@@ -32,11 +32,32 @@
   },
   {
     "keyword": "ai ugc",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "ai-ugc",
+      "fr": "meilleurs-outils-ia-ugc-publicites-video-authentiques",
+      "es": "mejores-herramientas-ai-ugc-crear-anuncios-video-autenticos",
+      "pt": "melhores-ferramentas-ia-ugc-criam-anuncios-video-autenticos",
+      "de": "beste-ki-ugc-tools-fuer-authentische-videoanzeigen"
+    },
+    "translatedTitles": {
+      "en": "Best AI UGC Tools That Create Authentic Video Ads Under 60 Seconds",
+      "fr": "Meilleurs outils IA UGC créant des publicités vidéo en 60 secondes",
+      "es": "Mejores Herramientas AI UGC para Crear Anuncios de Video Auténticos en Menos de 60 Segundos",
+      "pt": "Melhores Ferramentas de IA UGC Que Criam Anúncios em Vídeo Autênticos em Menos de 60 Segundos",
+      "de": "Beste KI UGC Tools für authentische Videoanzeigen unter 60 Sekunden"
+    },
+    "completedDate": "2026-02-12T00:50:47.163Z"
   },
   {
     "keyword": "arcads pricing",
-    "status": "pending"
+    "status": "pending",
+    "translatedSlugs": {
+      "en": "arcads-pricing"
+    },
+    "translatedTitles": {
+      "en": "Best AI Video Marketing Tools Compared in 2026 for Maximum ROI"
+    }
   },
   {
     "keyword": "ugc video ads ai",
@@ -392,7 +413,15 @@
   },
   {
     "keyword": "reviews of ugc video makers with mobile support",
-    "status": "pending"
+    "status": "pending",
+    "translatedSlugs": {
+      "en": "reviews-of-ugc-video-makers-with-mobile-support",
+      "fr": "meilleurs-createurs-videos-ugc-support-mobile-2026"
+    },
+    "translatedTitles": {
+      "en": "Best UGC Video Makers with Mobile Support Reviewed for 2026",
+      "fr": "Meilleurs créateurs de vidéos UGC mobiles testés pour 2026"
+    }
   },
   {
     "keyword": "heygen api pricing",
