@@ -17,7 +17,8 @@ function getLandingPageUrl(locale = 'en') {
 export default function BlogPost() {
     const locale = 'fr';
     const landingPageUrl = getLandingPageUrl(locale);
-    const [showStickyCta, setShowStickyCta] = useState(false);
+    
+}const [showStickyCta, setShowStickyCta] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -166,4 +167,4 @@ export default function BlogPost() {
             </a>
         </>
     );
-}
+        

@@ -12,7 +12,8 @@ import Link from 'next/link';
 export default function ReviewsUGCVideoMakersMobile() {
     const [tocActive, setTocActive] = useState('');
 
-    useEffect(() => {
+    
+}useEffect(() => {
         const handleScroll = () => {
             const sections = document.querySelectorAll('section');
             let current = '';
@@ -527,4 +528,4 @@ export default function ReviewsUGCVideoMakersMobile() {
             </div>
         </>
     );
-}
+        

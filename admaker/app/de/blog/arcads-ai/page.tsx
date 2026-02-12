@@ -9,7 +9,8 @@ import SimilarArticles from '@/components/SimilarArticles';
 export default function BlogPost() {
     const locale = 'de';
     const [showStickyCta, setShowStickyCta] = useState(false);
-    useEffect(() => {
+    
+}useEffect(() => {
         const handleScroll = () => setShowStickyCta(window.scrollY > 300);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
@@ -131,4 +132,4 @@ export default function BlogPost() {
 
       </>
     );
-}
+        

@@ -16,7 +16,8 @@ const locale = 'en';
 
 export default function BestMobileAppsForTikTokUGC() {
     const [scrollProgress, setScrollProgress] = useState(0);
-    const [showMobileCTA, setShowMobileCTA] = useState(false);
+    
+}const [showMobileCTA, setShowMobileCTA] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -929,4 +930,4 @@ export default function BestMobileAppsForTikTokUGC() {
                 </a>
         </>
     );
-}
+        

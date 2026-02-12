@@ -17,7 +17,8 @@ function getLandingPageUrl(locale: string = 'en'): string {
 export default function TopRatedUGCVideoMakersArticle() {
     const locale = 'en';
     const landingPageUrl = getLandingPageUrl(locale);
-    const [showStickyCta, setShowStickyCta] = useState(false);
+    
+}const [showStickyCta, setShowStickyCta] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -69,7 +70,6 @@ export default function TopRatedUGCVideoMakersArticle() {
             <div className={styles.pageContainer}>
                 <div className={styles.contentWrapper}>
                     <main className={styles.mainContent}>
-                    <div className={styles.mainContent}>
                         <article className={styles.articleContent}>
                             <header className={styles.articleHeader}>
                                 <h1 className={styles.mainTitle}>
@@ -636,7 +636,7 @@ export default function TopRatedUGCVideoMakersArticle() {
                 >
                     Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
                 </a>
-            </div >
+            </div>
         </>
     );
-}
+        

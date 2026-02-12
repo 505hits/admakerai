@@ -16,7 +16,8 @@ function getLandingPageUrl(locale: string = 'en'): string {
 export default function HookGeneratorArticle() {
     const locale = 'en';
     const landingPageUrl = getLandingPageUrl(locale);
-    const [showStickyCta, setShowStickyCta] = useState(false);
+    
+}const [showStickyCta, setShowStickyCta] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -695,4 +696,4 @@ export default function HookGeneratorArticle() {
             </a>
         </>
     );
-}
+        

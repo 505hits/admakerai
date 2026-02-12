@@ -17,7 +17,8 @@ function getLandingPageUrl(locale: string = 'en'): string {
 export default function ComparePricingUGCArticle() {
     const locale = 'en'; // Current article is in English
     const landingPageUrl = getLandingPageUrl(locale);
-    const [showStickyCta, setShowStickyCta] = useState(false);
+    
+}const [showStickyCta, setShowStickyCta] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -944,4 +945,4 @@ export default function ComparePricingUGCArticle() {
                 </a>
         </>
     );
-}
+        

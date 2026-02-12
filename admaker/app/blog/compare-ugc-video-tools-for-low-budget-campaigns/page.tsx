@@ -16,7 +16,8 @@ function getLandingPageUrl(locale: string = 'en'): string {
 export default function CompareUgcToolsArticle() {
     const locale = 'en';
     const landingPageUrl = getLandingPageUrl(locale);
-    const [showStickyCta, setShowStickyCta] = useState(false);
+    
+}const [showStickyCta, setShowStickyCta] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -512,4 +513,4 @@ export default function CompareUgcToolsArticle() {
             </a>
         </>
     );
-}
+        
