@@ -127,6 +127,8 @@ export default function BlogPageES() {
                     </div>
                 </div>
     
+                        </div>
+    
             </>
     );
 }

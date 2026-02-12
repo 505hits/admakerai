@@ -127,6 +127,8 @@ export default function BlogPagePT() {
                     </div>
                 </div>
     
+                        </div>
+    
             </>
     );
 }

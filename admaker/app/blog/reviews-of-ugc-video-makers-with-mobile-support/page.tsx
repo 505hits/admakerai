@@ -528,6 +528,8 @@ export default function ReviewsUGCVideoMakersMobile() {
                     </div>
                 </div>
     
+                        </div>
+    
             </>
     );
 }

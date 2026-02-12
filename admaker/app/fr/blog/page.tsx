@@ -148,6 +148,8 @@ export default function BlogPageFR() {
                     </div>
                 </div>
     
+                        </div>
+    
             </>
     );
 }
