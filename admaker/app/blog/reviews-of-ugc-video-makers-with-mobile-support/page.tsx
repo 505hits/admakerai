@@ -527,5 +527,7 @@ export default function ReviewsUGCVideoMakersMobile() {
                         </aside>
                     </div>
                 </div>
+    
+            </>
     );
 }
