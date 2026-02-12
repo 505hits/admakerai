@@ -413,7 +413,7 @@ export default function BlogPage() {
                         </Link>
                     </div>
                 </div>
-            </div>
-        </>
+            
+</>
     );
 }

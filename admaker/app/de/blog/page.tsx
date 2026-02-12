@@ -148,7 +148,7 @@ export default function BlogPageDE() {
                         </Link>
                     </div>
                 </div>
-            </div>
-        </>
+            
+</>
     );
 }

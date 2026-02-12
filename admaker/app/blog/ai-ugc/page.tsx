@@ -131,6 +131,6 @@ export default function BlogPost() {
             Create your AI Ads now 👆
         </a>
 
-      </div></>
+      </>
     );
 }

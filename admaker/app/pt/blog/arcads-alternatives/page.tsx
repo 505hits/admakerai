@@ -166,6 +166,6 @@ export default function BlogPost() {
             >
                 Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
             </a>
-        </div></>
+        </>
     );
 }
