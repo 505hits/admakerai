@@ -17,7 +17,10 @@ export default function QuickUGCPlatformsArticle() {
     const locale = 'en';
     const landingPageUrl = getLandingPageUrl(locale);
     
-}const [showStickyCta, setShowStickyCta] = useState(false);
+
+
+            <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
+                }const [showStickyCta, setShowStickyCta] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -706,4 +709,5 @@ export default function QuickUGCPlatformsArticle() {
             </a>
         </>
     );
-}
+            </div>
+        }

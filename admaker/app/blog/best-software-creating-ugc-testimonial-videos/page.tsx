@@ -18,7 +18,10 @@ export default function TopAIPlatformsUGCArticle() {
     const locale = 'en'; // Current article is in English
     const landingPageUrl = getLandingPageUrl(locale);
     
-}
+
+
+            <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
+                }
 const [showStickyCta, setShowStickyCta] = useState(false);
 
     useEffect(() => {
@@ -720,4 +723,5 @@ export default function TopAIPlatformsUGCArticle() {
             
         </>
     );
-}
+            </div>
+        }

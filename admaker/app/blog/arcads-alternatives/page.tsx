@@ -17,7 +17,10 @@ export default function BlogPost() {
     const locale = 'en';
     const landingPageUrl = getLandingPageUrl(locale);
     
-}const [showStickyCta, setShowStickyCta] = useState(false);
+
+
+            <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
+                }const [showStickyCta, setShowStickyCta] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -164,6 +167,7 @@ export default function BlogPost() {
             >
                 Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
             </a>
-        </>
+        </div></>
     );
-}
+            </div>
+        }

@@ -20,7 +20,10 @@ export default function RealEstateUGCArticle() {
     const locale = 'en'; // Current article is in English
     const landingPageUrl = getLandingPageUrl(locale);
     
-}
+
+
+            <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
+                }
 const [showStickyCta, setShowStickyCta] = useState(false);
 
     useEffect(() => {
@@ -530,4 +533,5 @@ const [showStickyCta, setShowStickyCta] = useState(false);
                 </a>
         </>
     );
-}
+            </div>
+        }

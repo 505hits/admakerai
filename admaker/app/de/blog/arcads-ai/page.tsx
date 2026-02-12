@@ -9,7 +9,10 @@ export default function BlogPost() {
     const locale = 'de';
     const [showStickyCta, setShowStickyCta] = useState(false);
     
-}useEffect(() => {
+
+
+            <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
+                }useEffect(() => {
         const handleScroll = () => setShowStickyCta(window.scrollY > 300);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
@@ -129,6 +132,7 @@ export default function BlogPost() {
             Create your AI Ads now 👆
         </a>
 
-      </>
+      </div></>
     );
-}
+            </div>
+        }

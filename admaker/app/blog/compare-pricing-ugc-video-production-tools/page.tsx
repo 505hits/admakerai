@@ -18,7 +18,10 @@ export default function ComparePricingUGCArticle() {
     const locale = 'en'; // Current article is in English
     const landingPageUrl = getLandingPageUrl(locale);
     
-}const [showStickyCta, setShowStickyCta] = useState(false);
+
+
+            <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
+                }const [showStickyCta, setShowStickyCta] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -945,4 +948,5 @@ export default function ComparePricingUGCArticle() {
                 </a>
         </>
     );
-}
+            </div>
+        }
