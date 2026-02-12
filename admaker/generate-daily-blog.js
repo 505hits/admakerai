@@ -859,15 +859,15 @@ export default function BlogPost() {
             <Head>
                 <title>${content.title_translated} | AdMaker AI</title>
                 <meta name="description" content="${content.meta_description}" />
-                <link rel="canonical" href=\`https://admakerai.app/blog/\${topic.translatedSlugs?.['en'] || topic.slug}\` />
-                <link rel="alternate" hrefLang="en" href=\`https://admakerai.app/blog/\${topic.translatedSlugs?.['en'] || topic.slug}\` />
-                <link rel="alternate" hrefLang="fr" href=\`https://admakerai.app/fr/blog/\${topic.translatedSlugs?.['fr'] || topic.slug}\` />
-                <link rel="alternate" hrefLang="es" href=\`https://admakerai.app/es/blog/\${topic.translatedSlugs?.['es'] || topic.slug}\` />
-                <link rel="alternate" hrefLang="pt" href=\`https://admakerai.app/pt/blog/\${topic.translatedSlugs?.['pt'] || topic.slug}\` />
-                <link rel="alternate" hrefLang="de" href=\`https://admakerai.app/de/blog/\${topic.translatedSlugs?.['de'] || topic.slug}\` />
-                <link rel="alternate" hrefLang="x-default" href=\`https://admakerai.app/blog/\${topic.translatedSlugs?.['en'] || topic.slug}\` />
+                <link rel="canonical" href={`https://admakerai.app/blog/${topic.translatedSlugs?.['en'] || topic.slug}`} />
+                <link rel="alternate" hrefLang="en" href={`https://admakerai.app/blog/${topic.translatedSlugs?.['en'] || topic.slug}`} />
+                <link rel="alternate" hrefLang="fr" href={`https://admakerai.app/fr/blog/${topic.translatedSlugs?.['fr'] || topic.slug}`} />
+                <link rel="alternate" hrefLang="es" href={`https://admakerai.app/es/blog/${topic.translatedSlugs?.['es'] || topic.slug}`} />
+                <link rel="alternate" hrefLang="pt" href={`https://admakerai.app/pt/blog/${topic.translatedSlugs?.['pt'] || topic.slug}`} />
+                <link rel="alternate" hrefLang="de" href={`https://admakerai.app/de/blog/${topic.translatedSlugs?.['de'] || topic.slug}`} />
+                <link rel="alternate" hrefLang="x-default" href={`https://admakerai.app/blog/${topic.translatedSlugs?.['en'] || topic.slug}`} />
                 <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-            </Head>
+            </Head >
             
             <Navbar lang="${lang}" />
             
@@ -925,10 +925,10 @@ export default function BlogPost() {
                 <SimilarArticles currentSlug="${content.finalSlug}" locale={locale} matches={${JSON.stringify(relatedArticles)}} />
             </div>
 
-            {/* Sticky Mobile CTA */}
-            <a
-                href={landingPageUrl}
-                className={\`\${styles.stickyCta} \${showStickyCta ? styles.stickyCtaVisible : ''}\`}
+    {/* Sticky Mobile CTA */ }
+    <a
+        href={landingPageUrl}
+        className={\`\${styles.stickyCta} \${showStickyCta ? styles.stickyCtaVisible : ''}\`}
                 aria-label="Create your AI Ads now"
             >
                 Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
