@@ -16,6 +16,28 @@ export default function BlogPage() {
 
                     <div className={styles.blogGrid}>
 
+                        <Link href="/blog/reviews-of-ai-based-ugc-video-creation-services" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop"
+                                    alt="Best Reviews of AI-Based UGC Video Creation Services in 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AI UGC Reviews</span>
+                                <h2 className={styles.cardTitle}>Best Reviews of AI-Based UGC Video Creation Services in 2026</h2>
+                                <p className={styles.cardExcerpt}>
+                                    After analyzing 920+ verified reviews of AI UGC video services, I reveal which platforms actually deliver. Real user performance data included.
+                                </p>
+                                <div className={styles.cardMeta}>
+                                    <span>February 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
                         <Link href="/blog/arcads-alternatives" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
@@ -413,9 +435,9 @@ export default function BlogPage() {
                         </Link>
                     </div>
                 </div>
-    
-                        </div>
-    
-            </>
+
+            </div>
+
+        </>
     );
 }
