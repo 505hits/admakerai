@@ -24,12 +24,12 @@ export default function BlogPost() {
         <Head>
           <title>Alternativas a Arcads para pequeñas empresas 2026 | AdMaker AI</title>
           <meta name="description" content="Descubre las mejores alternativas a Arcads para crear anuncios de video con inteligencia artificial. Compara precios, características y métricas de rendimiento para encontrar la mejor opción para tu negocio." />
-          <link rel="alternate" hrefLang="en" href="https://admaker-ai.com/blog/arcads-ai" />
-          <link rel="alternate" hrefLang="fr" href="https://admaker-ai.com/fr/blog/arcads-ai" />
-          <link rel="alternate" hrefLang="es" href="https://admaker-ai.com/es/blog/arcads-ai" />
-          <link rel="alternate" hrefLang="pt" href="https://admaker-ai.com/pt/blog/arcads-ai" />
-          <link rel="alternate" hrefLang="de" href="https://admaker-ai.com/de/blog/arcads-ai" />
-          <link rel="alternate" hrefLang="x-default" href="https://admaker-ai.com/blog/arcads-ai" />
+          <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/arcads-ai" />
+          <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/arcads-ai" />
+          <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/arcads-ai" />
+          <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/arcads-ai" />
+          <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/arcads-ai" />
+          <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/arcads-ai" />
           <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         </Head>
         

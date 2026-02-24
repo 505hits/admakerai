@@ -24,12 +24,12 @@ export default function BlogPost() {
         <Head>
           <title>Best Arcads Alternatives for Small Businesses 2026 | AdMaker AI</title>
           <meta name="description" content="Discover the best alternatives to Arcads for small businesses in 2026. Compare prices, features, and benefits of top UGC AI video ad tools." />
-          <link rel="alternate" hrefLang="en" href="https://admaker-ai.com/blog/arcads-pricing" />
-          <link rel="alternate" hrefLang="fr" href="https://admaker-ai.com/fr/blog/arcads-pricing" />
-          <link rel="alternate" hrefLang="es" href="https://admaker-ai.com/es/blog/arcads-pricing" />
-          <link rel="alternate" hrefLang="pt" href="https://admaker-ai.com/pt/blog/arcads-pricing" />
-          <link rel="alternate" hrefLang="de" href="https://admaker-ai.com/de/blog/arcads-pricing" />
-          <link rel="alternate" hrefLang="x-default" href="https://admaker-ai.com/blog/arcads-pricing" />
+          <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/arcads-pricing" />
+          <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/arcads-pricing" />
+          <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/arcads-pricing" />
+          <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/arcads-pricing" />
+          <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/arcads-pricing" />
+          <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/arcads-pricing" />
           <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         </Head>
         

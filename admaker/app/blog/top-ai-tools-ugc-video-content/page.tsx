@@ -22,12 +22,12 @@ export default function BlogPost() {
             <Head>
                 <title>Top AI Tools for UGC Video Content | AdMaker AI</title>
                 <meta name="description" content="Discover the best AI tools for creating UGC-style video ads at scale." />
-                <link rel="alternate" hrefLang="en" href="https://admaker-ai.com/blog/top-ai-tools-ugc-video-content" />
-                <link rel="alternate" hrefLang="fr" href="https://admaker-ai.com/fr/blog/top-ai-tools-ugc-video-content" />
-                <link rel="alternate" hrefLang="es" href="https://admaker-ai.com/es/blog/top-ai-tools-ugc-video-content" />
-                <link rel="alternate" hrefLang="pt" href="https://admaker-ai.com/pt/blog/top-ai-tools-ugc-video-content" />
-                <link rel="alternate" hrefLang="de" href="https://admaker-ai.com/de/blog/top-ai-tools-ugc-video-content" />
-                <link rel="alternate" hrefLang="x-default" href="https://admaker-ai.com/blog/top-ai-tools-ugc-video-content" />
+                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/top-ai-tools-ugc-video-content" />
+                <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/top-ai-tools-ugc-video-content" />
+                <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/top-ai-tools-ugc-video-content" />
+                <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/top-ai-tools-ugc-video-content" />
+                <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/top-ai-tools-ugc-video-content" />
+                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/top-ai-tools-ugc-video-content" />
                 <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             </Head>
 

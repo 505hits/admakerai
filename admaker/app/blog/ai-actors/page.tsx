@@ -24,12 +24,12 @@ export default function BlogPost() {
         <Head>
           <title>undefined | AdMaker AI</title>
           <meta name="description" content="undefined" />
-          <link rel="alternate" hrefLang="en" href="https://admaker-ai.com/blog/ai-actors" />
-          <link rel="alternate" hrefLang="fr" href="https://admaker-ai.com/fr/blog/ai-actors" />
-          <link rel="alternate" hrefLang="es" href="https://admaker-ai.com/es/blog/ai-actors" />
-          <link rel="alternate" hrefLang="pt" href="https://admaker-ai.com/pt/blog/ai-actors" />
-          <link rel="alternate" hrefLang="de" href="https://admaker-ai.com/de/blog/ai-actors" />
-          <link rel="alternate" hrefLang="x-default" href="https://admaker-ai.com/blog/ai-actors" />
+          <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/ai-actors" />
+          <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/ai-actors" />
+          <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/ai-actors" />
+          <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/ai-actors" />
+          <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/ai-actors" />
+          <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/ai-actors" />
           <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         </Head>
         
