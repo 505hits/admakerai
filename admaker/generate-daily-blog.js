@@ -648,21 +648,65 @@ PART 2: The translated HTML content, enclosed specifically between these delimit
 async function generateBlogImages(keyword, count) {
     console.log('    🎨 Generating Images...');
     const images = [];
-    const prompts = [
-        "Young woman influencer talking to camera in modern apartment, natural lighting, casual outfit, authentic UGC style",
-        "Male tech reviewer holding smartphone, professional home office background, enthusiastic expression, no text",
-        "Real estate agent woman smiling in front of luxury house, professional attire, sunny day, confident pose",
-        "Lifestyle vlogger filming selfie video with ring light, cozy bedroom setup, warm tones, genuine smile",
-        "Female fitness influencer in workout clothes, gym background, motivational pose, energetic expression",
-        "Young entrepreneur man working on laptop in coffee shop, casual creative style, focused expression",
-        "Beauty influencer applying makeup in vanity mirror, soft lighting, elegant setup, tutorial style",
-        "Food blogger presenting dish in restaurant, appetizing presentation, warm ambiance, excited face",
-        "Travel vlogger with backpack in scenic location, adventure style, candid moment, outdoor lighting",
-        "Digital marketer woman at desktop computer, modern office, confident professional look, clean background"
+
+    // Large pool of diverse scene templates — keyword is injected for uniqueness
+    const sceneTemplates = [
+        "Young woman content creator reviewing {keyword} on laptop in a bright modern loft, natural window light, casual stylish outfit",
+        "Male entrepreneur presenting {keyword} strategy on whiteboard in sleek coworking space, confident stance, business casual",
+        "Female digital marketer analyzing {keyword} data on dual monitors, neon-lit home office, focused expression",
+        "Young man filming {keyword} review video with professional camera setup, studio apartment, warm tones",
+        "Woman in her 30s discussing {keyword} on video call in minimalist Scandinavian office, soft lighting",
+        "Creative director brainstorming {keyword} campaign ideas on tablet, industrial loft with exposed brick",
+        "Gen Z influencer creating {keyword} content with smartphone on tripod, colorful bedroom setup, ring light",
+        "Marketing professional pointing at {keyword} analytics dashboard on large screen, modern glass office",
+        "Female startup founder working on {keyword} project in trendy cafe, natural daylight, determined expression",
+        "Male content strategist editing {keyword} video on MacBook, rooftop terrace with city skyline backdrop",
+        "Young Asian woman testing {keyword} platform on tablet, cozy home setting, plants in background",
+        "Black male tech enthusiast unboxing {keyword} tool, clean desk setup, excited genuine reaction",
+        "Hispanic woman recording {keyword} tutorial, professional podcast studio, warm amber lighting",
+        "Middle-aged businessman evaluating {keyword} ROI on laptop, executive home office, bookshelf background",
+        "Young couple collaborating on {keyword} content, bright airy apartment, authentic candid moment",
+        "Female photographer using {keyword} for client work, creative studio with mood boards on wall",
+        "Male freelancer comparing {keyword} options on phone, outdoor cafe terrace, golden hour lighting",
+        "Professional woman presenting {keyword} results in team meeting, modern conference room, whiteboard behind",
+        "Young creator filming {keyword} testimonial, bedroom setup with LED strips, genuine enthusiastic smile",
+        "Female data analyst reviewing {keyword} performance metrics, dual monitors, clean modern workspace",
+        "Male vlogger discussing {keyword} trends, home studio with acoustic panels, professional microphone",
+        "Woman fitness influencer integrating {keyword} into workflow, bright gym office, motivational posters",
+        "Young designer prototyping {keyword} visual content, iMac setup, colorful stickers on desk",
+        "Business woman on phone discussing {keyword} strategy, walking in urban downtown, confident stride",
+        "Tech reviewer comparing {keyword} features side by side, multiple devices on desk, detailed analysis",
+        "Female social media manager scheduling {keyword} campaigns, laptop in beanbag chair, casual creative vibe",
+        "Male agency owner presenting {keyword} client results, standing desk setup, modern minimalist room",
+        "Young woman celebrating {keyword} campaign success, laptop open with graphs, fist pump expression",
+        "Creative team of two reviewing {keyword} output on shared screen, trendy office with plants",
+        "Solo entrepreneur scaling with {keyword}, coffee shop window seat, laptop and notebook, morning light"
     ];
 
+    // Deterministic shuffle based on keyword so each article gets unique but consistent images
+    function hashCode(str) {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+            hash = ((hash << 5) - hash) + str.charCodeAt(i);
+            hash |= 0;
+        }
+        return Math.abs(hash);
+    }
+
+    const seed = hashCode(keyword);
+    const shuffled = [...sceneTemplates].sort((a, b) => {
+        const ha = hashCode(a + seed.toString()) % 1000;
+        const hb = hashCode(b + seed.toString()) % 1000;
+        return ha - hb;
+    });
+
+    // Pick `count` prompts from the shuffled list
+    const selectedPrompts = shuffled.slice(0, count);
+
     for (let i = 0; i < count; i++) {
-        const p = `${prompts[i % prompts.length]}, realistic, 8k, cinematic lighting, soft focus background, no text, no writing, no letters, no words`;
+        const template = selectedPrompts[i % selectedPrompts.length];
+        const prompt = template.replace(/\{keyword\}/g, keyword);
+        const p = `${prompt}, realistic, 8k, cinematic lighting, soft focus background, no text, no writing, no letters, no words`;
         const url = await generateSingleImage(p);
 
         if (url) {
@@ -672,7 +716,7 @@ async function generateBlogImages(keyword, count) {
             if (!fs.existsSync(path.dirname(localPath))) fs.mkdirSync(path.dirname(localPath), { recursive: true });
             try {
                 await downloadImage(url, localPath);
-                images.push({ url: relativePath, alt: prompts[i % prompts.length] });
+                images.push({ url: relativePath, alt: prompt });
             } catch (e) {
                 images.push({ url: 'https://placehold.co/800x450?text=Image+Error', alt: 'Image generation error placeholder' });
             }
