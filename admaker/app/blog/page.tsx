@@ -16,6 +16,26 @@ export default function BlogPage() {
 
                     <div className={styles.blogGrid}>
 
+                        <Link href="/blog/ai-ugc" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1771958725822-0.png"
+                                    alt="Best AI UGC Tools to Scale Your Video Ads in 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Best AI UGC Tools to Scale Your Video Ads in 2026</h2>
+                                <p className={styles.cardExcerpt}>ai ugc</p>
+                                <div className={styles.cardMeta}>
+                                    <span>February 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
                         <Link href="/blog/reviews-of-ai-based-ugc-video-creation-services" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
