@@ -235,6 +235,52 @@ async function main() {
         }
 
         // ================================================================
+        // STEP 4b: Update blog-slug-mappings.json for Navbar language switcher
+        // ================================================================
+        console.log('  📝 Updating blog-slug-mappings.json...');
+        const BLOG_SLUG_MAPPINGS_FILE = path.join(__dirname, 'data/blog-slug-mappings.json');
+        let slugMappings = {};
+        if (fs.existsSync(BLOG_SLUG_MAPPINGS_FILE)) {
+            try {
+                slugMappings = JSON.parse(fs.readFileSync(BLOG_SLUG_MAPPINGS_FILE, 'utf8'));
+            } catch (e) {
+                slugMappings = {};
+            }
+        }
+
+        // Build the mapping object for this article: { "/blog/en-slug": { en: "/blog/en-slug", fr: "/fr/blog/fr-slug", ... } }
+        const topicSlugs = {};
+        for (const lang of LANGUAGES) {
+            const content = generatedContent[lang.code];
+            if (!content) continue;
+            const slug = content.finalSlug || (content._skipped && cachedSlugs[lang.code]);
+            if (!slug) continue;
+            if (lang.code === 'en') {
+                topicSlugs[lang.code] = `/blog/${slug}`;
+            } else {
+                topicSlugs[lang.code] = `/${lang.code}/blog/${slug}`;
+            }
+        }
+
+        // Only add if we have at least EN + one other language
+        if (topicSlugs['en'] && Object.keys(topicSlugs).length > 1) {
+            // Add an entry for EACH slug pointing to all translations
+            for (const langCode of Object.keys(topicSlugs)) {
+                // The cleanPath key is the path without the lang prefix
+                let cleanKey;
+                if (langCode === 'en') {
+                    cleanKey = topicSlugs[langCode]; // e.g. "/blog/ai-ugc"
+                } else {
+                    // Remove the /{langCode} prefix: "/fr/blog/slug" -> "/blog/slug"
+                    cleanKey = topicSlugs[langCode].substring(langCode.length + 1); // remove "/{langCode}"
+                }
+                slugMappings[cleanKey] = { ...topicSlugs };
+            }
+            fs.writeFileSync(BLOG_SLUG_MAPPINGS_FILE, JSON.stringify(slugMappings, null, 2));
+            console.log('  ✅ blog-slug-mappings.json updated');
+        }
+
+        // ================================================================
         // STEP 5: Mark Complete
         // ================================================================
         if (allLanguagesSuccessful) {

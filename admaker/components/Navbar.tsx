@@ -6,6 +6,7 @@ import Image from 'next/image';
 import styles from './Navbar.module.css';
 import { getMediaUrl } from '../lib/cloudflare-config';
 import { createClient } from '@/lib/supabase/client';
+import blogSlugMappings from '@/data/blog-slug-mappings.json';
 
 interface NavbarProps {
     lang?: 'en' | 'fr' | 'es' | 'pt' | 'ko' | 'de' | 'ja';
@@ -391,6 +392,18 @@ export default function Navbar({ lang = 'en' }: NavbarProps) {
         const mapping = pathMappings[cleanPath];
         if (mapping && mapping[targetLang]) {
             return mapping[targetLang];
+        }
+
+        // Check dynamic blog slug mappings (auto-populated by generate-daily-blog.js)
+        const blogMapping = (blogSlugMappings as Record<string, Record<string, string>>)[cleanPath];
+        if (blogMapping && blogMapping[targetLang]) {
+            return blogMapping[targetLang];
+        }
+
+        // For blog article paths with no mapping, redirect to blog index in target language
+        if (cleanPath.startsWith('/blog/') && cleanPath !== '/blog') {
+            if (targetLang === 'en') return '/blog';
+            return `/${targetLang}/blog`;
         }
 
         // Default: just add language prefix
