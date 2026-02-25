@@ -51,13 +51,22 @@
   },
   {
     "keyword": "arcads pricing",
-    "status": "pending",
+    "status": "completed",
     "translatedSlugs": {
-      "en": "arcads-pricing"
+      "en": "arcads-pricing",
+      "fr": "meilleures-alternatives-arcads-petites-entreprises-2026",
+      "es": "mejores-alternativas-arcads-pequenas-empresas-2026",
+      "pt": "melhores-alternativas-ao-arcads-para-pequenas-empresas-2026",
+      "de": "beste-arcads-alternativen-fuer-kleine-unternehmen-2026"
     },
     "translatedTitles": {
-      "en": "Best AI Video Marketing Tools Compared in 2026 for Maximum ROI"
-    }
+      "en": "Best AI Video Marketing Tools Compared in 2026 for Maximum ROI",
+      "fr": "Meilleures alternatives à Arcads pour petites entreprises 2026",
+      "es": "Mejores Alternativas a Arcads para Pequeñas Empresas 2026",
+      "pt": "Melhores Alternativas ao Arcads para Pequenas Empresas 2026",
+      "de": "Beste Arcads Alternativen für kleine Unternehmen 2026"
+    },
+    "completedDate": "2026-02-25T21:19:00.743Z"
   },
   {
     "keyword": "ugc video ads ai",

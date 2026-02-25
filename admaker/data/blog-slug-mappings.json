@@ -1,58 +1,93 @@
 {
-    "/blog/ai-ugc": {
-        "en": "/blog/ai-ugc",
-        "fr": "/fr/blog/meilleurs-outils-ia-ugc-publicites-video-2026",
-        "es": "/es/blog/mejores-herramientas-ai-ugc-escalar-anuncios-video-2026",
-        "pt": "/pt/blog/melhores-ferramentas-ia-ugc-escalar-anuncios-video-2026",
-        "de": "/de/blog/beste-ki-ugc-tools-fuer-videoanzeigen-2026"
-    },
-    "/blog/meilleurs-outils-ia-ugc-publicites-video-2026": {
-        "en": "/blog/ai-ugc",
-        "fr": "/fr/blog/meilleurs-outils-ia-ugc-publicites-video-2026",
-        "es": "/es/blog/mejores-herramientas-ai-ugc-escalar-anuncios-video-2026",
-        "pt": "/pt/blog/melhores-ferramentas-ia-ugc-escalar-anuncios-video-2026",
-        "de": "/de/blog/beste-ki-ugc-tools-fuer-videoanzeigen-2026"
-    },
-    "/blog/mejores-herramientas-ai-ugc-escalar-anuncios-video-2026": {
-        "en": "/blog/ai-ugc",
-        "fr": "/fr/blog/meilleurs-outils-ia-ugc-publicites-video-2026",
-        "es": "/es/blog/mejores-herramientas-ai-ugc-escalar-anuncios-video-2026",
-        "pt": "/pt/blog/melhores-ferramentas-ia-ugc-escalar-anuncios-video-2026",
-        "de": "/de/blog/beste-ki-ugc-tools-fuer-videoanzeigen-2026"
-    },
-    "/blog/melhores-ferramentas-ia-ugc-escalar-anuncios-video-2026": {
-        "en": "/blog/ai-ugc",
-        "fr": "/fr/blog/meilleurs-outils-ia-ugc-publicites-video-2026",
-        "es": "/es/blog/mejores-herramientas-ai-ugc-escalar-anuncios-video-2026",
-        "pt": "/pt/blog/melhores-ferramentas-ia-ugc-escalar-anuncios-video-2026",
-        "de": "/de/blog/beste-ki-ugc-tools-fuer-videoanzeigen-2026"
-    },
-    "/blog/beste-ki-ugc-tools-fuer-videoanzeigen-2026": {
-        "en": "/blog/ai-ugc",
-        "fr": "/fr/blog/meilleurs-outils-ia-ugc-publicites-video-2026",
-        "es": "/es/blog/mejores-herramientas-ai-ugc-escalar-anuncios-video-2026",
-        "pt": "/pt/blog/melhores-ferramentas-ia-ugc-escalar-anuncios-video-2026",
-        "de": "/de/blog/beste-ki-ugc-tools-fuer-videoanzeigen-2026"
-    },
-    "/blog/arcads-alternatives": {
-        "en": "/blog/arcads-alternatives",
-        "fr": "/fr/blog/arcads-alternatives",
-        "es": "/es/blog/arcads-alternatives",
-        "pt": "/pt/blog/arcads-alternatives",
-        "de": "/de/blog/arcads-alternatives"
-    },
-    "/blog/arcads-vs-admaker": {
-        "en": "/blog/arcads-vs-admaker",
-        "fr": "/fr/blog/arcads-vs-admaker",
-        "es": "/es/blog/arcads-vs-admaker",
-        "pt": "/pt/blog/arcads-vs-admaker",
-        "de": "/de/blog/arcads-vs-admaker"
-    },
-    "/blog/arcads-ai": {
-        "en": "/blog/arcads-ai",
-        "fr": "/fr/blog/arcads-ai",
-        "es": "/es/blog/arcads-ai",
-        "pt": "/pt/blog/arcads-ai",
-        "de": "/de/blog/arcads-ai"
-    }
+  "/blog/ai-ugc": {
+    "en": "/blog/ai-ugc",
+    "fr": "/fr/blog/meilleurs-outils-ia-ugc-publicites-video-2026",
+    "es": "/es/blog/mejores-herramientas-ai-ugc-escalar-anuncios-video-2026",
+    "pt": "/pt/blog/melhores-ferramentas-ia-ugc-escalar-anuncios-video-2026",
+    "de": "/de/blog/beste-ki-ugc-tools-fuer-videoanzeigen-2026"
+  },
+  "/blog/meilleurs-outils-ia-ugc-publicites-video-2026": {
+    "en": "/blog/ai-ugc",
+    "fr": "/fr/blog/meilleurs-outils-ia-ugc-publicites-video-2026",
+    "es": "/es/blog/mejores-herramientas-ai-ugc-escalar-anuncios-video-2026",
+    "pt": "/pt/blog/melhores-ferramentas-ia-ugc-escalar-anuncios-video-2026",
+    "de": "/de/blog/beste-ki-ugc-tools-fuer-videoanzeigen-2026"
+  },
+  "/blog/mejores-herramientas-ai-ugc-escalar-anuncios-video-2026": {
+    "en": "/blog/ai-ugc",
+    "fr": "/fr/blog/meilleurs-outils-ia-ugc-publicites-video-2026",
+    "es": "/es/blog/mejores-herramientas-ai-ugc-escalar-anuncios-video-2026",
+    "pt": "/pt/blog/melhores-ferramentas-ia-ugc-escalar-anuncios-video-2026",
+    "de": "/de/blog/beste-ki-ugc-tools-fuer-videoanzeigen-2026"
+  },
+  "/blog/melhores-ferramentas-ia-ugc-escalar-anuncios-video-2026": {
+    "en": "/blog/ai-ugc",
+    "fr": "/fr/blog/meilleurs-outils-ia-ugc-publicites-video-2026",
+    "es": "/es/blog/mejores-herramientas-ai-ugc-escalar-anuncios-video-2026",
+    "pt": "/pt/blog/melhores-ferramentas-ia-ugc-escalar-anuncios-video-2026",
+    "de": "/de/blog/beste-ki-ugc-tools-fuer-videoanzeigen-2026"
+  },
+  "/blog/beste-ki-ugc-tools-fuer-videoanzeigen-2026": {
+    "en": "/blog/ai-ugc",
+    "fr": "/fr/blog/meilleurs-outils-ia-ugc-publicites-video-2026",
+    "es": "/es/blog/mejores-herramientas-ai-ugc-escalar-anuncios-video-2026",
+    "pt": "/pt/blog/melhores-ferramentas-ia-ugc-escalar-anuncios-video-2026",
+    "de": "/de/blog/beste-ki-ugc-tools-fuer-videoanzeigen-2026"
+  },
+  "/blog/arcads-alternatives": {
+    "en": "/blog/arcads-alternatives",
+    "fr": "/fr/blog/arcads-alternatives",
+    "es": "/es/blog/arcads-alternatives",
+    "pt": "/pt/blog/arcads-alternatives",
+    "de": "/de/blog/arcads-alternatives"
+  },
+  "/blog/arcads-vs-admaker": {
+    "en": "/blog/arcads-vs-admaker",
+    "fr": "/fr/blog/arcads-vs-admaker",
+    "es": "/es/blog/arcads-vs-admaker",
+    "pt": "/pt/blog/arcads-vs-admaker",
+    "de": "/de/blog/arcads-vs-admaker"
+  },
+  "/blog/arcads-ai": {
+    "en": "/blog/arcads-ai",
+    "fr": "/fr/blog/arcads-ai",
+    "es": "/es/blog/arcads-ai",
+    "pt": "/pt/blog/arcads-ai",
+    "de": "/de/blog/arcads-ai"
+  },
+  "/blog/arcads-pricing": {
+    "en": "/blog/arcads-pricing",
+    "fr": "/fr/blog/meilleures-alternatives-arcads-petites-entreprises-2026",
+    "es": "/es/blog/mejores-alternativas-arcads-pequenas-empresas-2026",
+    "pt": "/pt/blog/melhores-alternativas-ao-arcads-para-pequenas-empresas-2026",
+    "de": "/de/blog/beste-arcads-alternativen-fuer-kleine-unternehmen-2026"
+  },
+  "/blog/meilleures-alternatives-arcads-petites-entreprises-2026": {
+    "en": "/blog/arcads-pricing",
+    "fr": "/fr/blog/meilleures-alternatives-arcads-petites-entreprises-2026",
+    "es": "/es/blog/mejores-alternativas-arcads-pequenas-empresas-2026",
+    "pt": "/pt/blog/melhores-alternativas-ao-arcads-para-pequenas-empresas-2026",
+    "de": "/de/blog/beste-arcads-alternativen-fuer-kleine-unternehmen-2026"
+  },
+  "/blog/mejores-alternativas-arcads-pequenas-empresas-2026": {
+    "en": "/blog/arcads-pricing",
+    "fr": "/fr/blog/meilleures-alternatives-arcads-petites-entreprises-2026",
+    "es": "/es/blog/mejores-alternativas-arcads-pequenas-empresas-2026",
+    "pt": "/pt/blog/melhores-alternativas-ao-arcads-para-pequenas-empresas-2026",
+    "de": "/de/blog/beste-arcads-alternativen-fuer-kleine-unternehmen-2026"
+  },
+  "/blog/melhores-alternativas-ao-arcads-para-pequenas-empresas-2026": {
+    "en": "/blog/arcads-pricing",
+    "fr": "/fr/blog/meilleures-alternatives-arcads-petites-entreprises-2026",
+    "es": "/es/blog/mejores-alternativas-arcads-pequenas-empresas-2026",
+    "pt": "/pt/blog/melhores-alternativas-ao-arcads-para-pequenas-empresas-2026",
+    "de": "/de/blog/beste-arcads-alternativen-fuer-kleine-unternehmen-2026"
+  },
+  "/blog/beste-arcads-alternativen-fuer-kleine-unternehmen-2026": {
+    "en": "/blog/arcads-pricing",
+    "fr": "/fr/blog/meilleures-alternatives-arcads-petites-entreprises-2026",
+    "es": "/es/blog/mejores-alternativas-arcads-pequenas-empresas-2026",
+    "pt": "/pt/blog/melhores-alternativas-ao-arcads-para-pequenas-empresas-2026",
+    "de": "/de/blog/beste-arcads-alternativen-fuer-kleine-unternehmen-2026"
+  }
 }

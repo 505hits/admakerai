@@ -16,6 +16,26 @@ export default function BlogPageFR() {
 
                     <div className={styles.blogGrid} >
 
+                        <Link href="/fr/blog/meilleures-alternatives-arcads-petites-entreprises-2026" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1772054208500-0.png"
+                                    alt="Meilleures alternatives à Arcads pour petites entreprises 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Meilleures alternatives à Arcads pour petites entreprises 2026</h2>
+                                <p className={styles.cardExcerpt}>arcads pricing</p>
+                                <div className={styles.cardMeta}>
+                                    <span>February 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
                         <Link href="/fr/blog/meilleurs-outils-ia-ugc-publicites-video-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
