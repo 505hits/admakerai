@@ -33,6 +33,57 @@ function slugify(text) {
         .replace(/^-+|-+$/g, ''); // Trim -
 }
 
+// ================================================================
+// READ existing EN page.tsx to extract content for translations
+// ================================================================
+function readExistingEnContent(pageTsxPath) {
+    const raw = fs.readFileSync(pageTsxPath, 'utf8');
+
+    // Extract title from <h1> tag
+    const titleMatch = raw.match(/<h1[^>]*>([^<]+)<\/h1>/);
+    const title_translated = titleMatch ? titleMatch[1].trim() : '';
+
+    // Extract meta description
+    const metaMatch = raw.match(/meta\s+name="description"\s+content="([^"]+)"/);
+    const meta_description = metaMatch ? metaMatch[1].trim() : '';
+
+    // Extract quick answer text
+    const quickMatch = raw.match(/Quick Answer[\s\S]*?<p[^>]*>([^<]+)<\/p>/);
+    const quick_answer = quickMatch ? quickMatch[1].trim() : '';
+
+    // Extract HTML content from dangerouslySetInnerHTML
+    const htmlMatch = raw.match(/dangerouslySetInnerHTML=\{\{\s*__html:\s*"([\s\S]*?)"\s*\}\}/);
+    let content_html = '';
+    if (htmlMatch) {
+        // Unescape the string (it's a JS string literal inside JSX)
+        content_html = htmlMatch[1]
+            .replace(/\\n/g, '\n')
+            .replace(/\\"/g, '"')
+            .replace(/\\\\/g, '\\');
+    }
+
+    // Extract FAQ from the FAQ section
+    const faq = [];
+    const faqRegex = /<h3[^>]*class="font-bold[^"]*"[^>]*>([^<]+)<\/h3>[\s\S]*?<p[^>]*class="text-gray-400[^"]*"[^>]*>([^<]+)<\/p>/g;
+    let faqMatch;
+    while ((faqMatch = faqRegex.exec(raw)) !== null) {
+        faq.push({
+            question: faqMatch[1].trim(),
+            answer: faqMatch[2].trim()
+        });
+    }
+
+    console.log(`    📖 Read existing EN content: title="${title_translated.substring(0, 50)}...", html=${content_html.length} chars, ${faq.length} FAQs`);
+
+    return {
+        title_translated,
+        meta_description,
+        quick_answer,
+        content_html,
+        faq
+    };
+}
+
 async function main() {
     console.log('🚀 Starting Multilingual Daily Blog Generation (Strict SEO Mode)...');
     console.log('CWD:', process.cwd());
@@ -99,8 +150,9 @@ async function main() {
         if (cachedSlugs['en']) {
             const existingPath = path.join(enLang.dir, cachedSlugs['en'], 'page.tsx');
             if (fs.existsSync(existingPath)) {
-                console.log(`    ✅ EN already exists: ${cachedSlugs['en']} - SKIPPING`);
-                generatedContent['en'] = { _skipped: true, finalSlug: cachedSlugs['en'] };
+                console.log(`    ✅ EN already exists: ${cachedSlugs['en']} - Reading content for translations...`);
+                const existingContent = readExistingEnContent(existingPath);
+                generatedContent['en'] = { ...existingContent, _skipped: true, finalSlug: cachedSlugs['en'] };
             }
         }
 
@@ -562,8 +614,9 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
 // TRANSLATE article content from English to other languages
 // ================================================================
 async function translateArticleContent(enContent, lang, topic) {
-    if (enContent._skipped) {
-        throw new Error('Cannot translate: EN content was skipped (already exists)');
+    // Check if we have actual content to translate (need at least content_html)
+    if (!enContent.content_html || enContent.content_html.length < 100) {
+        throw new Error('Cannot translate: EN content is missing or too short');
     }
 
     let retries = 3;
