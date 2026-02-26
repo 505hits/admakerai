@@ -16,6 +16,26 @@ export default function BlogPageDE() {
 
                     <div className={styles.blogGrid} >
 
+                        <Link href="/de/blog/beste-ki-tools-fuer-ugc-videoanzeigen-vergleich" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1772107398639-0.png"
+                                    alt="Beste KI-Tools für UGC-Videoanzeigen 2026 im Vergleich"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Beste KI-Tools für UGC-Videoanzeigen 2026 im Vergleich</h2>
+                                <p className={styles.cardExcerpt}>ugc video ads ai</p>
+                                <div className={styles.cardMeta}>
+                                    <span>February 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
                         <Link href="/de/blog/beste-arcads-alternativen-fuer-kleine-unternehmen-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
