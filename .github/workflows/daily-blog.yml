@@ -2,9 +2,12 @@ name: Daily Blog Generation
 
 on:
   schedule:
-    # Run at 18:45 UTC daily (19:45 CET / 20:45 CEST)
+    # Run at 11:10 UTC daily
     - cron: '10 11 * * *'
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -16,10 +19,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
 
@@ -36,8 +39,15 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          # Add all changes in the current directory (which is ./admaker due to defaults)
-          git add .
-          git commit -m "Auto-generated blog posts (SEO Optimized)" || echo "No changes to commit"
-          # Push requires access to .git which is in root, but git commands usually handle looking up tree.
-          git push
+          cd $GITHUB_WORKSPACE
+          git add -A
+          if git diff --staged --quiet; then
+            echo "✅ No changes to commit"
+          else
+            git commit -m "Auto-generated blog posts (SEO Optimized)"
+            echo "📦 Commit created. Pulling latest changes..."
+            git pull --rebase origin main
+            echo "🚀 Pushing to origin..."
+            git push origin main
+            echo "✅ Push successful!"
+          fi
