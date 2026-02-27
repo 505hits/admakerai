@@ -16,6 +16,26 @@ export default function BlogPage() {
 
                     <div className={styles.blogGrid}>
 
+                        <Link href="/blog/arcadsai-pricing" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1772193259378-0.png"
+                                    alt="Best AI Video Marketing Tools to Maximize ROI in 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Best AI Video Marketing Tools to Maximize ROI in 2026</h2>
+                                <p className={styles.cardExcerpt}>arcads.ai pricing</p>
+                                <div className={styles.cardMeta}>
+                                    <span>February 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
                         <Link href="/blog/ai-ugc" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

@@ -89,7 +89,22 @@
   },
   {
     "keyword": "arcads.ai pricing",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "arcadsai-pricing",
+      "fr": "meilleurs-outils-video-marketing-ia-maximiser-roi-2026",
+      "es": "mejores-herramientas-video-marketing-ia-maximizar-roi-2026",
+      "pt": "melhores-ferramentas-ia-video-marketing-2026",
+      "de": "beste-ki-video-marketing-tools-maximaler-roi-2026"
+    },
+    "translatedTitles": {
+      "en": "Best AI Video Marketing Tools to Maximize ROI in 2026",
+      "fr": "Meilleurs outils de vidéo marketing IA pour maximiser le ROI en 2026",
+      "es": "Mejores Herramientas de Video Marketing con IA para 2026",
+      "pt": "Melhores Ferramentas de IA para Vídeo Marketing em 2026",
+      "de": "Beste KI-Video-Marketing-Tools für maximalen ROI in 2026"
+    },
+    "completedDate": "2026-02-27T11:56:20.846Z"
   },
   {
     "keyword": "ai actors",
