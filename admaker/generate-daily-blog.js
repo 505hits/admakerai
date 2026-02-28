@@ -262,7 +262,10 @@ async function main() {
         for (const lang of LANGUAGES) {
             const content = generatedContent[lang.code];
             if (!content) continue;
-            if (content._skipped) continue;
+            if (content._skipped) {
+                updateBlogIndex(lang.dir, { ...topic, slug: content.finalSlug }, topic.primaryImage || '', lang.code, content.title_translated || (topic.translatedTitles && topic.translatedTitles[lang.code]) || topic.h1 || topic.keyword);
+                continue;
+            }
 
             const postDir = path.join(lang.dir, content.finalSlug);
 

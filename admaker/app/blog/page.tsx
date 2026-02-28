@@ -16,6 +16,46 @@ export default function BlogPage() {
 
                     <div className={styles.blogGrid}>
 
+                        <Link href="/blog/ai-actors" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://placehold.co/1200x630"
+                                    alt="undefined"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>undefined</h2>
+                                <p className={styles.cardExcerpt}>ai actors</p>
+                                <div className={styles.cardMeta}>
+                                    <span>February 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+                        <Link href="/blog/arcads-pricing" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://placehold.co/1200x630"
+                                    alt="Best Arcads Alternatives for Small Businesses 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Best Arcads Alternatives for Small Businesses 2026</h2>
+                                <p className={styles.cardExcerpt}>arcads pricing</p>
+                                <div className={styles.cardMeta}>
+                                    <span>February 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
                         <Link href="/blog/arcadsai-pricing" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
