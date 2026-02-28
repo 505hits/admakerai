@@ -108,7 +108,22 @@
   },
   {
     "keyword": "ai actors",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "ai-actors",
+      "fr": "meilleurs-acteurs-ia-publicites-video-performantes-2026",
+      "es": "mejores-actores-ia-anuncios-video-convierten-2026",
+      "pt": "melhores-atores-ia-anuncios-video-convertem-2026",
+      "de": "beste-ki-schauspieler-fuer-video-anzeigen-conversion-2026"
+    },
+    "translatedTitles": {
+      "en": "Best AI Actors for Video Ads That Convert in 2026",
+      "fr": "Meilleurs acteurs IA pour publicités vidéo performantes 2026",
+      "es": "Mejores Actores IA para Anuncios de Video que Convierten en 2026",
+      "pt": "Melhores Atores de IA para Anúncios em Vídeo que Convertem em 2026",
+      "de": "Beste KI-Schauspieler für Video-Anzeigen mit hoher Conversion 2026"
+    },
+    "completedDate": "2026-02-28T11:45:25.308Z"
   },
   {
     "keyword": "top ai tools for generating ugc video content",

@@ -16,6 +16,26 @@ export default function BlogPagePT() {
 
                     <div className={styles.blogGrid} >
 
+                        <Link href="/pt/blog/melhores-atores-ia-anuncios-video-convertem-2026" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1772278999883-0.png"
+                                    alt="Melhores Atores de IA para Anúncios em Vídeo que Convertem em 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Melhores Atores de IA para Anúncios em Vídeo que Convertem em 2026</h2>
+                                <p className={styles.cardExcerpt}>ai actors</p>
+                                <div className={styles.cardMeta}>
+                                    <span>February 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
                         <Link href="/pt/blog/melhores-ferramentas-ia-video-marketing-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
