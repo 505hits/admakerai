@@ -16,6 +16,26 @@ export default function BlogPagePT() {
 
                     <div className={styles.blogGrid} >
 
+                        <Link href="/pt/blog/melhores-ferramentas-ia-gerar-conteudo-video-ugc-2026" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1772365557200-0.png"
+                                    alt="Melhores Ferramentas de IA para Gerar Conteúdo de Vídeo UGC 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Melhores Ferramentas de IA para Gerar Conteúdo de Vídeo UGC 2026</h2>
+                                <p className={styles.cardExcerpt}>top ai tools for generating ugc video content</p>
+                                <div className={styles.cardMeta}>
+                                    <span>March 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
                         <Link href="/pt/blog/melhores-atores-ia-anuncios-video-convertem-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
