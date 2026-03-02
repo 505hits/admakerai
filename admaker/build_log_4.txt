@@ -1,0 +1,48 @@
+
+> admaker@0.1.0 build
+> next build
+
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\Users\apoll\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * C:\Users\apoll\OneDrive\Bureau\admakerai3\admakerai\admaker\package-lock.json
+   * C:\Users\apoll\OneDrive\Bureau\admakerai3\admakerai\package-lock.json
+
+▲ Next.js 16.1.6 (Turbopack)
+- Environments: .env.local, .env
+- Experiments (use with caution):
+  ✓ optimizeCss
+  · optimizePackageImports
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 1 errors:
+./OneDrive/Bureau/admakerai3/admakerai/admaker/app/blog/best-mobile-apps-creating-ugc-videos-tiktok/page.tsx:19:14
+Ecmascript file had an error
+[0m [90m 17 |[39m [36mconst[39m locale [33m=[39m [32m'en'[39m[33m;[39m
+ [90m 18 |[39m
+[31m[1m>[22m[39m[90m 19 |[39m [36mexport[39m [36mconst[39m metadata [33m=[39m {
+ [90m    |[39m              [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 20 |[39m     alternates[33m:[39m {
+ [90m 21 |[39m     }
+ [90m 22 |[39m }[33m;[39m[0m
+
+You are attempting to export "metadata" from a component marked with "use client", which is disallowed. Either remove the export, or the "use client" directive. Read more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+Import traces:
+  Client Component Browser:
+    ./OneDrive/Bureau/admakerai3/admakerai/admaker/app/blog/best-mobile-apps-creating-ugc-videos-tiktok/page.tsx [Client Component Browser]
+    ./OneDrive/Bureau/admakerai3/admakerai/admaker/app/blog/best-mobile-apps-creating-ugc-videos-tiktok/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./OneDrive/Bureau/admakerai3/admakerai/admaker/app/blog/best-mobile-apps-creating-ugc-videos-tiktok/page.tsx [Client Component SSR]
+    ./OneDrive/Bureau/admakerai3/admakerai/admaker/app/blog/best-mobile-apps-creating-ugc-videos-tiktok/page.tsx [Server Component]
+
+
+    at <unknown> (./OneDrive/Bureau/admakerai3/admakerai/admaker/app/blog/best-mobile-apps-creating-ugc-videos-tiktok/page.tsx:19:14)

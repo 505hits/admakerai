@@ -1,0 +1,165 @@
+
+> admaker@0.1.0 build
+> next build
+
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\Users\apoll\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * C:\Users\apoll\OneDrive\Bureau\admakerai3\admakerai\admaker\package-lock.json
+
+▲ Next.js 16.1.6 (Turbopack)
+- Environments: .env.local, .env
+- Experiments (use with caution):
+  ✓ optimizeCss
+  · optimizePackageImports
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+✓ Compiled successfully in 8.7s
+  Running TypeScript ...
+  Collecting page data using 11 workers ...
+  Generating static pages using 11 workers (0/124) ...
+  Generating static pages using 11 workers (31/124) 
+  Generating static pages using 11 workers (62/124) 
+  Generating static pages using 11 workers (93/124) 
+✓ Generating static pages using 11 workers (124/124) in 1914.5ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/debug/check-profile
+├ ƒ /api/enhance-script
+├ ƒ /api/generate-hook
+├ ƒ /api/kie/nano-banana/check-status
+├ ƒ /api/kie/nano-banana/create-actor
+├ ƒ /api/kie/nano-banana/webhook
+├ ƒ /api/kie/replicate
+├ ƒ /api/kie/webhook
+├ ƒ /api/payment/verify-credits
+├ ƒ /api/replicate-video
+├ ƒ /api/replicate-video/status
+├ ƒ /api/replicate-webhook
+├ ƒ /api/stripe/checkout
+├ ƒ /api/stripe/webhook
+├ ƒ /api/test
+├ ƒ /api/upload-product
+├ ƒ /api/upload/video
+├ ƒ /api/veo/generate
+├ ƒ /api/veo/store-metadata
+├ ƒ /api/veo/webhook
+├ ƒ /auth/callback
+├ ○ /blog
+├ ○ /blog/ai-actors
+├ ○ /blog/ai-advertisement
+├ ○ /blog/ai-ugc
+├ ○ /blog/arcads-ai
+├ ○ /blog/arcads-alternatives
+├ ○ /blog/arcads-pricing
+├ ○ /blog/arcads-vs-admaker
+├ ○ /blog/arcadsai-pricing
+├ ○ /blog/best-mobile-apps-creating-ugc-videos-tiktok
+├ ○ /blog/best-rated-platforms-quick-ugc-product-ad-videos
+├ ○ /blog/best-software-creating-ugc-testimonial-videos
+├ ○ /blog/best-tool-facebook-video-ads
+├ ○ /blog/best-ugc-video-creation-service-for-real-estate-marketing
+├ ○ /blog/best-ugc-video-software-for-ad-campaign-testing
+├ ○ /blog/compare-pricing-ugc-video-production-tools
+├ ○ /blog/compare-ugc-video-tools-for-low-budget-campaigns
+├ ○ /blog/emotion-generator
+├ ○ /blog/hook-generator
+├ ○ /blog/promotion-script-army
+├ ○ /blog/reviews-of-ai-based-ugc-video-creation-services
+├ ○ /blog/startup-video-tools
+├ ○ /blog/top-ai-platforms-creating-ugc-brand-videos
+├ ○ /blog/top-ai-tools-for-generating-ugc-video-content
+├ ○ /blog/top-ai-tools-ugc-video-content
+├ ○ /blog/top-rated-ugc-video-makers-for-social-ads
+├ ○ /blog/ugc-video-ads-ai
+├ ○ /dashboard
+├ ○ /de
+├ ○ /de/anmelden
+├ ○ /de/blog
+├ ○ /de/blog/arcads-ai
+├ ○ /de/blog/arcads-alternatives
+├ ○ /de/blog/beste-arcads-alternativen-fuer-kleine-unternehmen-2026
+├ ○ /de/blog/beste-ki-schauspieler-fuer-video-anzeigen-conversion-2026
+├ ○ /de/blog/beste-ki-tools-fuer-ugc-videoanzeigen-vergleich
+├ ○ /de/blog/beste-ki-tools-fuer-ugc-videoinhalte-2026
+├ ○ /de/blog/beste-ki-ugc-tools-fuer-videoanzeigen-2026
+├ ○ /de/blog/beste-ki-video-marketing-tools-maximaler-roi-2026
+├ ○ /de/blog/beste-ki-werbungstools-zur-transformation-ihres-videomarketings
+├ ○ /de/datenschutz
+├ ○ /de/hook-generator
+├ ○ /de/nutzungsbedingungen
+├ ○ /de/profil
+├ ○ /de/zahlung
+├ ○ /es
+├ ○ /es/blog
+├ ○ /es/blog/arcads-ai
+├ ○ /es/blog/arcads-alternatives
+├ ○ /es/blog/mejores-actores-ia-anuncios-video-convierten-2026
+├ ○ /es/blog/mejores-alternativas-arcads-pequenas-empresas-2026
+├ ○ /es/blog/mejores-herramientas-ai-ugc-escalar-anuncios-video-2026
+├ ○ /es/blog/mejores-herramientas-ia-anuncios-video-ugc-2026
+├ ○ /es/blog/mejores-herramientas-ia-generar-videos-ugc-2026
+├ ○ /es/blog/mejores-herramientas-publicidad-ia-marketing-video
+├ ○ /es/blog/mejores-herramientas-video-marketing-ia-maximizar-roi-2026
+├ ○ /es/generador-ganchos
+├ ○ /es/iniciar-sesion
+├ ○ /es/pago
+├ ○ /es/perfil
+├ ○ /es/privacidad
+├ ○ /es/terminos
+├ ○ /fr
+├ ○ /fr/blog
+├ ○ /fr/blog/arcads-ai
+├ ○ /fr/blog/arcads-alternatives
+├ ○ /fr/blog/meilleures-alternatives-arcads-petites-entreprises-2026
+├ ○ /fr/blog/meilleurs-acteurs-ia-publicites-video-performantes-2026
+├ ○ /fr/blog/meilleurs-outils-ia-pour-creer-des-videos-ugc-en-2026
+├ ○ /fr/blog/meilleurs-outils-ia-publicites-video-ugc-2026
+├ ○ /fr/blog/meilleurs-outils-ia-ugc-publicites-video-2026
+├ ○ /fr/blog/meilleurs-outils-publicitaires-ia-marketing-video
+├ ○ /fr/blog/meilleurs-outils-video-marketing-ia-maximiser-roi-2026
+├ ○ /fr/conditions
+├ ○ /fr/confidentialite
+├ ○ /fr/connexion
+├ ○ /fr/generateur-accroches
+├ ○ /fr/paiement
+├ ○ /fr/profil
+├ ○ /fr/tableau-de-bord
+├ ○ /hook-generator
+├ ○ /login
+├ ○ /payment
+├ ○ /payment/success
+├ ○ /privacy
+├ ○ /profile
+├ ○ /pt
+├ ○ /pt/blog
+├ ○ /pt/blog/arcads-ai
+├ ○ /pt/blog/arcads-alternatives
+├ ○ /pt/blog/melhores-alternativas-ao-arcads-para-pequenas-empresas-2026
+├ ○ /pt/blog/melhores-atores-ia-anuncios-video-convertem-2026
+├ ○ /pt/blog/melhores-ferramentas-ia-anuncios-marketing-video
+├ ○ /pt/blog/melhores-ferramentas-ia-anuncios-video-ugc-2026
+├ ○ /pt/blog/melhores-ferramentas-ia-gerar-conteudo-video-ugc-2026
+├ ○ /pt/blog/melhores-ferramentas-ia-ugc-escalar-anuncios-video-2026
+├ ○ /pt/blog/melhores-ferramentas-ia-video-marketing-2026
+├ ○ /pt/conexao
+├ ○ /pt/gerador-ganchos
+├ ○ /pt/pagamento
+├ ○ /pt/painel
+├ ○ /pt/perfil
+├ ○ /pt/privacidade
+├ ○ /pt/termos
+└ ○ /terms
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
