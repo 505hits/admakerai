@@ -1,62 +1,28 @@
-'use client';
 
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import Navbar from '@/components/Navbar';
 import SimilarArticles from '@/components/SimilarArticles';
 import styles from '../compare-pricing-ugc-video-production-tools/Article.module.css';
 import Image from 'next/image';
+import StickyCta from '@/components/StickyCta';
 
-function getLandingPageUrl(locale: string = 'en'): string {
-    if (locale === 'en') return '/';
-    return `/${locale}`;
-}
+export const metadata = {
+    title: `Best Hook Generator Tools for Video Ads in 2025 | AdMaker AI`,
+    description: `Discover the best hook generator tools for video ads. Compare AI platforms, templates, and proven strategies to create scroll-stopping hooks that boost CTR by 300%.`,
+    alternates: {
+    }
+};
 
 export default function HookGeneratorArticle() {
     const locale = 'en';
-    const landingPageUrl = getLandingPageUrl(locale);
+        
+
+
+            
     
-
-
-            const [showStickyCta, setShowStickyCta] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowStickyCta(window.scrollY > 300);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
     return (
         <>
-            <Head>
-                <title>Best Hook Generator Tools for Video Ads in 2025 | AdMaker AI</title>
-                <meta name="description" content="Discover the best hook generator tools for video ads. Compare AI platforms, templates, and proven strategies to create scroll-stopping hooks that boost CTR by 300%." />
-                <meta name="keywords" content="hook generator, video hooks, video ad hooks, scroll-stopping hooks, CTR optimization, hook templates" />
-
-                <link rel="canonical" href="https://admakerai.app/blog/hook-generator" />
-
-                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/hook-generator" />
-                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/hook-generator" />
-
-                <meta property="og:type" content="article" />
-                <meta property="og:title" content="Best Hook Generator Tools for Video Ads in 2025" />
-                <meta property="og:description" content="Discover the best hook generator tools for video ads. Compare AI platforms, templates, and proven strategies." />
-                <meta property="og:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1280&h=720&fit=crop" />
-                <meta property="og:url" content="https://admakerai.app/blog/hook-generator" />
-                <meta property="og:locale" content="en_US" />
-                <meta property="og:site_name" content="AdMaker AI" />
-                <meta property="article:published_time" content="2025-01-12T00:00:00Z" />
-
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Best Hook Generator Tools for Video Ads in 2025" />
-                <meta name="twitter:description" content="Discover the best hook generator tools for video ads." />
-                <meta name="twitter:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1280&h=720&fit=crop" />
-
-                <script type="application/ld+json">
+            <script type="application/ld+json">
                     {JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "Article",
@@ -83,7 +49,6 @@ export default function HookGeneratorArticle() {
                         }
                     })}
                 </script>
-            </Head>
             <Navbar lang="en" />
             <div className={styles.pageContainer}>
                 <div className={styles.contentWrapper}>
@@ -128,7 +93,7 @@ export default function HookGeneratorArticle() {
 
                             <p>Research from Wistia demonstrates that 20% of viewers abandon videos within the first 10 seconds. For paid advertising campaigns, this metric becomes even more critical. Facebook's internal data reports that the first 3 seconds determine whether 65% of users will continue watching or scroll past your content. A quality <a href="/hook-generator">hook generator</a> addresses this challenge by systematically producing tested opening statements that reduce early drop-off rates and improve overall ad performance.</p>
 
-                            <p>The best hook generator platforms don't just create catchy phrases in isolation. They integrate seamlessly with broader video creation workflows, offer built-in A/B testing capabilities, and provide detailed performance analytics to refine hook effectiveness over time. Tools like <a href={landingPageUrl}>AdMaker AI's hook generator</a> combine these features with direct video production capabilities, allowing marketers to test hooks immediately within actual ad creatives.</p>
+                            <p>The best hook generator platforms don't just create catchy phrases in isolation. They integrate seamlessly with broader video creation workflows, offer built-in A/B testing capabilities, and provide detailed performance analytics to refine hook effectiveness over time. Tools like <a href="#">AdMaker AI's hook generator</a> combine these features with direct video production capabilities, allowing marketers to test hooks immediately within actual ad creatives.</p>
 
                             <div className={styles.imageWrapper}>
                                 <Image
@@ -176,7 +141,7 @@ export default function HookGeneratorArticle() {
 
                             <h3>1. AdMaker AI Hook Generator</h3>
 
-                            <p><a href={landingPageUrl}>AdMaker AI</a> offers an integrated hook generator combined with full video ad creation capabilities. The platform's hook generator analyzes your product category, target audience, and campaign goals to produce contextually relevant opening lines.</p>
+                            <p><a href="#">AdMaker AI</a> offers an integrated hook generator combined with full video ad creation capabilities. The platform's hook generator analyzes your product category, target audience, and campaign goals to produce contextually relevant opening lines.</p>
 
                             <p><strong>Key Features:</strong></p>
                             <ul>
@@ -261,7 +226,7 @@ export default function HookGeneratorArticle() {
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><a href={landingPageUrl}><strong>AdMaker AI</strong></a></td>
+                                        <td><a href="#"><strong>AdMaker AI</strong></a></td>
                                         <td>$29</td>
                                         <td>Unlimited</td>
                                         <td>Yes (native)</td>
@@ -317,7 +282,7 @@ export default function HookGeneratorArticle() {
 
                             <p>Businesses creating 1-5 videos weekly benefit from template-based tools like Arcads or Copy.ai. The curated library approach provides sufficient variety without requiring extensive customization. Monthly costs stay reasonable while maintaining hook quality.</p>
 
-                            <p>Higher-volume operations producing 20+ videos weekly require AI-powered generation like <a href={landingPageUrl}>AdMaker AI</a> or sophisticated ChatGPT workflows. Template libraries become repetitive at this scale, and the ability to generate unlimited unique hooks becomes essential.</p>
+                            <p>Higher-volume operations producing 20+ videos weekly require AI-powered generation like <a href="#">AdMaker AI</a> or sophisticated ChatGPT workflows. Template libraries become repetitive at this scale, and the ability to generate unlimited unique hooks becomes essential.</p>
 
                             <h3>Evaluate Platform Integration Needs</h3>
 
@@ -612,7 +577,7 @@ export default function HookGeneratorArticle() {
                             <h2>FAQ</h2>
 
                             <h3>What is a hook generator and how does it work?</h3>
-                            <p>A hook generator is a tool that creates compelling opening statements for video advertisements designed to capture viewer attention within the first 3 seconds. Modern hook generators use AI algorithms trained on thousands of high-performing video ads to identify patterns in successful hooks. The tool analyzes your product, target audience, and campaign goals to generate contextually relevant hooks using proven psychological frameworks like pattern interruption, curiosity gaps, and social proof. Advanced platforms like <a href={landingPageUrl}>AdMaker AI</a> combine hook generation with video creation capabilities, allowing immediate testing of generated hooks in actual ad creative.</p>
+                            <p>A hook generator is a tool that creates compelling opening statements for video advertisements designed to capture viewer attention within the first 3 seconds. Modern hook generators use AI algorithms trained on thousands of high-performing video ads to identify patterns in successful hooks. The tool analyzes your product, target audience, and campaign goals to generate contextually relevant hooks using proven psychological frameworks like pattern interruption, curiosity gaps, and social proof. Advanced platforms like <a href="#">AdMaker AI</a> combine hook generation with video creation capabilities, allowing immediate testing of generated hooks in actual ad creative.</p>
 
                             <h3>How much do hook generator tools typically cost?</h3>
                             <p>Hook generator tool pricing ranges from free to $89 monthly depending on features and integration capabilities. Free options include <a href="/hook-generator">AdMaker AI's standalone hook generator</a> and basic ChatGPT usage. Paid platforms range from $20 monthly for ChatGPT Plus to $49 monthly for Copy.ai's video hook templates. Integrated platforms combining hook generation with video production like AdMaker AI start at $29 monthly for unlimited hook creation plus full video generation capabilities.</p>
@@ -621,7 +586,7 @@ export default function HookGeneratorArticle() {
                             <p>Hook generators work effectively for both paid advertising and organic social media content. The same psychological principles that make hooks effective in paid campaigns—pattern interruption, curiosity gaps, social proof—apply equally to organic content competing for attention in crowded feeds. TikTok creators publishing 1-3 videos daily often rely on hook templates and generators to maintain quality without creative burnout.</p>
 
                             <h3>How do I know which hook will perform best for my audience?</h3>
-                            <p>No one can predict with certainty which hook will resonate most strongly with a specific audience without testing. The only reliable method is systematic A/B testing where you create 4-6 hook variations for the same video content, run equal budgets across all variations for 48 hours, and analyze which achieves highest 3-second view rates and CTR. Tools like <a href={landingPageUrl}>AdMaker AI</a> simplify this process by allowing quick hook swaps without recreating entire videos.</p>
+                            <p>No one can predict with certainty which hook will resonate most strongly with a specific audience without testing. The only reliable method is systematic A/B testing where you create 4-6 hook variations for the same video content, run equal budgets across all variations for 48 hours, and analyze which achieves highest 3-second view rates and CTR. Tools like <a href="#">AdMaker AI</a> simplify this process by allowing quick hook swaps without recreating entire videos.</p>
 
                             <h3>Are AI-generated hooks as effective as human-written ones?</h3>
                             <p>Testing across 800+ campaigns shows AI-generated hooks from quality platforms perform comparably to human-written hooks when both use proven frameworks. The key advantage of AI hook generators isn't superior creativity but consistency and volume. A skilled copywriter might produce 10-15 strong hook variations in an hour, while AI tools generate 50-100 options in seconds. This volume enables more extensive testing to identify true winners.</p>
@@ -666,7 +631,7 @@ export default function HookGeneratorArticle() {
 
                             <p>Hook generators have evolved from simple template libraries to sophisticated AI-powered platforms essential for competitive video advertising. The first 3 seconds determine success or failure for 65% of video ad impressions, making systematic hook creation and testing non-negotiable for serious marketers.</p>
 
-                            <p>The best hook generator tools combine proven psychological frameworks with platform-specific optimization, enabling rapid testing and iteration. Integrated platforms like <a href={landingPageUrl}>AdMaker AI</a> streamline workflows by connecting hook generation directly with video production, reducing time from concept to published ad from hours to minutes.</p>
+                            <p>The best hook generator tools combine proven psychological frameworks with platform-specific optimization, enabling rapid testing and iteration. Integrated platforms like <a href="#">AdMaker AI</a> streamline workflows by connecting hook generation directly with video production, reducing time from concept to published ad from hours to minutes.</p>
 
                             <p>Success requires moving beyond one-time hook creation to continuous testing and optimization. Businesses implementing systematic hook testing report average ROI improvements of 187% over 12 months compared to static approaches.</p>
 
@@ -688,14 +653,7 @@ export default function HookGeneratorArticle() {
                 
             </div>
 
-            {/* Sticky Mobile CTA */}
-            <a
-                href={landingPageUrl}
-                className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
-                aria-label="Create your AI Ads now"
-            >
-                Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
-            </a>
+            <StickyCta locale={locale} />
         </>
     );
 }

@@ -1,62 +1,28 @@
-'use client';
 
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import Navbar from '@/components/Navbar';
 import SimilarArticles from '@/components/SimilarArticles';
 import styles from '../compare-pricing-ugc-video-production-tools/Article.module.css';
 import Image from 'next/image';
+import StickyCta from '@/components/StickyCta';
 
-function getLandingPageUrl(locale: string = 'en'): string {
-    if (locale === 'en') return '/';
-    return `/${locale}`;
-}
+export const metadata = {
+    title: `Best Rated Platforms for Quick UGC Product Ad Videos | AdMaker AI`,
+    description: `After testing 15 platforms with $12K budget, we ranked the fastest UGC video tools. Create product ads in under 2 minutes. Real speed tests included.`,
+    alternates: {
+    }
+};
 
 export default function QuickUGCPlatformsArticle() {
     const locale = 'en';
-    const landingPageUrl = getLandingPageUrl(locale);
+        
+
+
+            
     
-
-
-            const [showStickyCta, setShowStickyCta] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowStickyCta(window.scrollY > 300);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
     return (
         <>
-            <Head>
-                <title>Best Rated Platforms for Quick UGC Product Ad Videos | AdMaker AI</title>
-                <meta name="description" content="After testing 15 platforms with $12K budget, we ranked the fastest UGC video tools. Create product ads in under 2 minutes. Real speed tests included." />
-                <meta name="keywords" content="quick UGC video, fast video creation, product ad videos, UGC platforms, video speed test, AdMaker AI" />
-
-                <link rel="canonical" href="https://admakerai.app/blog/best-rated-platforms-quick-ugc-product-ad-videos" />
-
-                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/best-rated-platforms-quick-ugc-product-ad-videos" />
-                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/best-rated-platforms-quick-ugc-product-ad-videos" />
-
-                <meta property="og:type" content="article" />
-                <meta property="og:title" content="Best Rated Platforms for Quick UGC Product Ad Videos" />
-                <meta property="og:description" content="After testing 15 platforms with $12K budget, we ranked the fastest UGC video tools. Create product ads in under 2 minutes." />
-                <meta property="og:image" content="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1280&h=720&fit=crop" />
-                <meta property="og:url" content="https://admakerai.app/blog/best-rated-platforms-quick-ugc-product-ad-videos" />
-                <meta property="og:locale" content="en_US" />
-                <meta property="og:site_name" content="AdMaker AI" />
-                <meta property="article:published_time" content="2026-01-12T00:00:00Z" />
-
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Best Rated Platforms for Quick UGC Product Ad Videos" />
-                <meta name="twitter:description" content="After testing 15 platforms with $12K budget, we ranked the fastest UGC video tools." />
-                <meta name="twitter:image" content="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1280&h=720&fit=crop" />
-
-                <script type="application/ld+json">
+            <script type="application/ld+json">
                     {JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "Article",
@@ -80,60 +46,6 @@ export default function QuickUGCPlatformsArticle() {
                         }
                     })}
                 </script>
-
-                <script type="application/ld+json">
-                    {JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "FAQPage",
-                        "mainEntity": [
-                            {
-                                "@type": "Question",
-                                "name": "What is the fastest platform for creating UGC product ad videos?",
-                                "acceptedAnswer": {
-                                    "@type": "Answer",
-                                    "text": "After testing 15 platforms with 180 videos over 6 weeks, AdMaker AI proved fastest at 1 minute 15 seconds average creation time from login to downloadable video. Creatify ranked second at 3 minutes 42 seconds, followed by Arcads at 5 minutes 18 seconds."
-                                }
-                            },
-                            {
-                                "@type": "Question",
-                                "name": "How much faster are quick UGC platforms versus traditional video production?",
-                                "acceptedAnswer": {
-                                    "@type": "Answer",
-                                    "text": "Traditional video production for product ads averages 3-7 days from brief to final video. Quick UGC platforms compress this timeline to 1-5 minutes per video—a 99.95% time reduction."
-                                }
-                            }
-                        ]
-                    })}
-                </script>
-
-                <script type="application/ld+json">
-                    {JSON.stringify({
-                        "@context": "https://schema.org",
-                        "@type": "Product",
-                        "name": "AdMaker AI",
-                        "description": "Fastest UGC video creation platform - create product ads in under 2 minutes",
-                        "brand": {
-                            "@type": "Brand",
-                            "name": "AdMaker AI"
-                        },
-                        "aggregateRating": {
-                            "@type": "AggregateRating",
-                            "ratingValue": "4.7",
-                            "reviewCount": "340",
-                            "bestRating": "5",
-                            "worstRating": "1"
-                        },
-                        "offers": {
-                            "@type": "Offer",
-                            "price": "29",
-                            "priceCurrency": "USD",
-                            "priceValidUntil": "2026-12-31",
-                            "availability": "https://schema.org/InStock",
-                            "url": "https://admakerai.app/"
-                        }
-                    })}
-                </script>
-            </Head>
             <Navbar lang="en" />
             <div className={styles.pageContainer}>
                 <div className={styles.contentWrapper}>
@@ -277,7 +189,7 @@ export default function QuickUGCPlatformsArticle() {
                                 <tbody>
                                     <tr>
                                         <td>1</td>
-                                        <td><a href={landingPageUrl}><strong>AdMaker AI</strong></a></td>
+                                        <td><a href="#"><strong>AdMaker AI</strong></a></td>
                                         <td>1m 15s</td>
                                         <td>4.7/5</td>
                                         <td>$29</td>
@@ -357,7 +269,7 @@ export default function QuickUGCPlatformsArticle() {
 
                             <p><strong>Our Verdict:</strong> ⚡⚡⚡⚡⚡ (5/5 for speed)</p>
 
-                            <p><a href={landingPageUrl}>Try AdMaker AI free</a></p>
+                            <p><a href="#">Try AdMaker AI free</a></p>
 
                             <div className={styles.imageWrapper}>
                                 <Image
@@ -653,7 +565,7 @@ export default function QuickUGCPlatformsArticle() {
                                 <li><a href="/blog/best-ugc-video-creation-service-for-real-estate-marketing">Best UGC Video Creation Service for Real Estate Marketing</a></li>
                                 <li><a href="/blog/top-ai-platforms-creating-ugc-brand-videos">Top AI Platforms for Creating UGC Brand Videos</a></li>
                                 <li><a href="/blog/hook-generator">Best Hook Generator Tools for Video Ads</a></li>
-                                <li><a href={landingPageUrl}>AdMaker AI Platform</a></li>
+                                <li><a href="#">AdMaker AI Platform</a></li>
                             </ul>
 
                             <h3>External Resources</h3>
@@ -682,7 +594,7 @@ export default function QuickUGCPlatformsArticle() {
 
                             <p>The competitive advantage goes to businesses implementing these tools first within their niches. As more advertisers adopt quick UGC platforms, the baseline expectation for video quality and volume will rise. Early adopters establish market position before competitors match video production capabilities.</p>
 
-                            <p><strong>Ready to create product ads in under 2 minutes?</strong> <a href={landingPageUrl}>Start with AdMaker AI's free tier</a> and test the speed difference yourself.</p>
+                            <p><strong>Ready to create product ads in under 2 minutes?</strong> <a href="#">Start with AdMaker AI's free tier</a> and test the speed difference yourself.</p>
                         </section>
                     </article>
                         <BlogVideoSidebar locale={locale} />
@@ -698,14 +610,7 @@ export default function QuickUGCPlatformsArticle() {
                 
             </div>
 
-            {/* Sticky Mobile CTA */}
-            <a
-                href={landingPageUrl}
-                className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
-                aria-label="Create your AI Ads now"
-            >
-                Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
-            </a>
+            <StickyCta locale={locale} />
         </>
     );
 }

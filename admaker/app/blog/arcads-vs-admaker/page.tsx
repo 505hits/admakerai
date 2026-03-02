@@ -1,52 +1,31 @@
-'use client';
 
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import SimilarArticles from '@/components/SimilarArticles';
 import styles from '@/app/blog/compare-pricing-ugc-video-production-tools/Article.module.css';
 import Image from 'next/image';
+import StickyCta from '@/components/StickyCta';
 import Link from 'next/link';
 
-function getLandingPageUrl(locale = 'en') {
-    if (locale === 'en') return '/';
-    return `/${locale}`;
-}
+export const metadata = {
+    title: `Best AI UGC Ad Tools Compared for 2026 Marketing Success | AdMaker AI`,
+    description: `Deep comparison of AdMaker AI vs Arcads for video marketing. Discover which AI tool delivers best ROI, pricing, and performance for modern brands.`,
+    alternates: {
+    }
+};
 
 export default function BlogPost() {
     const locale = 'en';
-    const landingPageUrl = getLandingPageUrl(locale);
+        
+
+
+            
     
-
-
-            const [showStickyCta, setShowStickyCta] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowStickyCta(window.scrollY > 300);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
     const jsonLd = { "@context": "https://schema.org", "@type": "Article", "headline": "Best AI UGC Ad Tools Compared for 2026 Marketing Success", "image": "/blog-images/img-1770834278677-0.png", "author": { "@type": "Person", "name": "Alex", "jobTitle": "Head of Video Strategy", "url": "https://admakerai.app/blog" }, "publisher": { "@type": "Organization", "name": "AdMaker AI", "logo": { "@type": "ImageObject", "url": "https://admakerai.app/logo.png" } }, "mainEntity": { "@type": "FAQPage", "mainEntity": [{ "@type": "Question", "name": "What is the actual price difference between AdMaker AI and Arcads?", "acceptedAnswer": { "@type": "Answer", "text": "AdMaker AI costs $39/month for unlimited video generation, while Arcads starts at approximately $110/month with usage limits. For brands testing 50+ ad variations monthly, AdMaker AI offers significantly better value, potentially saving $850+ annually." } }, { "@type": "Question", "name": "Do I need to label AI-generated ads on TikTok and Meta in 2026?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, absolutely. Since late 2025, both TikTok and Meta require the 'AI-generated content' label on synthetic media. Failure to disclose can result in shadowbans, reduced reach, or account penalties. This is non-negotiable for platform compliance." } }, { "@type": "Question", "name": "Can I copyright videos created with AI tools like AdMaker AI?", "acceptedAnswer": { "@type": "Answer", "text": "Videos you structure, edit, and direct using AI tools like AdMaker AI are copyrightable as derivative works. However, 100% automated AI generation with no human input typically falls into public domain. The key is demonstrable creative control and editing." } }, { "@type": "Question", "name": "Which tool is better for e-commerce dropshipping ads?", "acceptedAnswer": { "@type": "Answer", "text": "AdMaker AI is generally superior for dropshipping due to unlimited generation at $39/month, allowing rapid testing of 20-30 product variations weekly. Arcads works better for established brands with larger budgets prioritizing premium avatar quality over volume." } }, { "@type": "Question", "name": "How realistic are the avatars in AdMaker AI compared to Arcads?", "acceptedAnswer": { "@type": "Answer", "text": "Arcads avatars are notably more photorealistic, especially for close-up shots and emotional expressions, justifying their premium price. AdMaker AI avatars are highly functional for performance marketing but may show subtle AI artifacts in extreme close-ups. For scroll-stopping ads under 15 seconds, both perform well." } }, { "@type": "Question", "name": "Can these tools replace human UGC creators entirely?", "acceptedAnswer": { "@type": "Answer", "text": "For performance-driven product ads and high-volume testing, AI tools effectively replace human creators, saving 60-80% in costs. However, for deeply emotional brand stories, founder narratives, or luxury positioning, authentic human creators still deliver superior connection and trust." } }, { "@type": "Question", "name": "What is the typical ROI improvement using AI video tools?", "acceptedAnswer": { "@type": "Answer", "text": "Our analysis of 50+ campaigns shows AI-generated UGC ads achieve 25-40% lower cost-per-acquisition compared to static images, with production costs 85% lower than hiring human creators. The ability to test 10x more variations drives the primary ROI advantage." } }, { "@type": "Question", "name": "Do AI-generated ads perform worse due to authenticity concerns?", "acceptedAnswer": { "@type": "Answer", "text": "When properly labeled and scripted naturally, AI ads perform comparably to human UGC in blind A/B tests. The key is avoiding 'salesy' language and focusing on problem-solution narratives. In our tests, 68% of viewers couldn't distinguish well-crafted AI ads from human-created content." } }, { "@type": "Question", "name": "How long does it take to generate a video with these tools?", "acceptedAnswer": { "@type": "Answer", "text": "AdMaker AI typically generates videos in 3-8 minutes depending on length and complexity. Arcads averages 5-12 minutes due to more intensive rendering for premium avatars. Both are 95% faster than coordinating with human creators, which takes 3-7 days minimum." } }, { "@type": "Question", "name": "Can I use these tools for languages other than English?", "acceptedAnswer": { "@type": "Answer", "text": "Both AdMaker AI and Arcads support multiple languages, though avatar lip-sync quality varies. English, Spanish, and French show best results. For Asian languages, subtle mouth-movement mismatches may occur, though most viewers don't notice in fast-paced ads under 30 seconds." } }, { "@type": "Question", "name": "What video formats and aspect ratios are supported?", "acceptedAnswer": { "@type": "Answer", "text": "Both platforms support standard formats: 9:16 (TikTok/Reels), 1:1 (Instagram feed), and 16:9 (YouTube). AdMaker AI offers one-click reformatting between ratios, while Arcads requires separate generation for each format, consuming additional credits on their platform." } }, { "@type": "Question", "name": "Are there refund policies if the videos don't perform well?", "acceptedAnswer": { "@type": "Answer", "text": "AdMaker AI offers a 14-day money-back guarantee. Arcads provides a 7-day trial period. However, ad performance depends heavily on targeting, offer, and creative strategy beyond just the video tool, so refunds are evaluated case-by-case based on platform usage rather than campaign results." } }] } };
 
     return (
         <>
-            <Head>
-                <title>Best AI UGC Ad Tools Compared for 2026 Marketing Success | AdMaker AI</title>
-                <meta name="description" content="Deep comparison of AdMaker AI vs Arcads for video marketing. Discover which AI tool delivers best ROI, pricing, and performance for modern brands." />
-                <link rel="canonical" href="https://admakerai.app/blog/arcads-vs-admaker" />
-                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/arcads-vs-admaker" />
-                <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/arcads-vs-admaker" />
-                <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/arcads-vs-admaker" />
-                <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/arcads-vs-admaker" />
-                <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/arcads-vs-admaker" />
-                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/arcads-vs-admaker" />
-                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-            </Head>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
             <Navbar lang="en" />
 
@@ -162,14 +141,7 @@ export default function BlogPost() {
                 
             </div>
 
-            {/* Sticky Mobile CTA */}
-            <a
-                href={landingPageUrl}
-                className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
-                aria-label="Create your AI Ads now"
-            >
-                Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
-            </a>
+            <StickyCta locale={locale} />
         </>
     );
 }

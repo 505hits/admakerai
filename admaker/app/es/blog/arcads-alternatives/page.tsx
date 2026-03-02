@@ -1,51 +1,30 @@
-'use client';
 
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import SimilarArticles from '@/components/SimilarArticles';
 import styles from '@/app/blog/compare-pricing-ugc-video-production-tools/Article.module.css';
 import Image from 'next/image';
+import StickyCta from '@/components/StickyCta';
 
-function getLandingPageUrl(locale = 'en') {
-    if (locale === 'en') return '/';
-    return `/${locale}`;
-}
+export const metadata = {
+    title: `Mejores Alternativas a Arcads para Anuncios de Video IA en 2026 | AdMaker AI`,
+    description: `Compara las principales alternativas a Arcads como AdMaker AI, Creatify y MakeUGC. Descubre qué herramienta de video IA ofrece el mejor ROI para tus campañas.`,
+    alternates: {
+    }
+};
 
 export default function BlogPost() {
     const locale = 'es';
-    const landingPageUrl = getLandingPageUrl(locale);
+        
+
+
+            
     
-
-
-            const [showStickyCta, setShowStickyCta] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowStickyCta(window.scrollY > 300);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
     const jsonLd = {"@context":"https://schema.org","@type":"Article","headline":"Mejores Alternativas a Arcads para Anuncios de Video IA en 2026","image":"/blog-images/img-1770842617604-0.png","author":{"@type":"Person","name":"Alex","jobTitle":"Head of Video Strategy","url":"https://admakerai.app/blog"},"publisher":{"@type":"Organization","name":"AdMaker AI","logo":{"@type":"ImageObject","url":"https://admakerai.app/logo.png"}},"mainEntity":{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Cuál es el precio real de AdMaker AI comparado con Arcads?","acceptedAnswer":{"@type":"Answer","text":"AdMaker AI cuesta $29/mes con generación ilimitada de videos, mientras que Arcads comienza en aproximadamente $110/mes con límites basados en créditos. Para marcas que prueban 15-30 variaciones mensuales, AdMaker AI ofrece una eficiencia de costos significativamente mejor. Esta diferencia de precio se vuelve aún más pronunciada cuando consideras que no hay costos adicionales por excedentes en AdMaker AI, mientras que Arcads cobra $2.20 por cada video adicional más allá de tu asignación mensual."}},{"@type":"Question","name":"¿Los videos generados por IA están sujetos a protección de derechos de autor?","acceptedAnswer":{"@type":"Answer","text":"El contenido puramente generado por IA cae en el dominio público sin protección de derechos de autor. Sin embargo, los videos de IA que involucran dirección creativa humana, escritura de guiones y edición (como los creados con el flujo de trabajo de AdMaker AI) califican para derechos de autor como obras derivadas según las pautas actuales de USPTO de 2026. Esto significa que tu contribución creativa y las decisiones estratégicas sobre el contenido reciben protección legal, aunque la síntesis de IA en sí misma no esté protegida."}},{"@type":"Question","name":"¿Necesito etiquetar los anuncios generados por IA en TikTok y Meta?","acceptedAnswer":{"@type":"Answer","text":"Sí, absolutamente. Desde finales de 2025, tanto TikTok como Meta requieren la etiqueta 'Generado por IA' o 'Medios alterados' en contenido sintético. El incumplimiento resulta en shadowbans, alcance reducido y posibles restricciones de cuenta. Todas las plataformas principales ahora aplican esta política mediante sistemas de detección por visión computacional que identifican contenido no divulgado, haciendo que la transparencia sea obligatoria y no opcional para el éxito publicitario sostenido."}},{"@type":"Question","name":"¿Qué alternativa a Arcads es mejor para dropshippers de comercio electrónico?","acceptedAnswer":{"@type":"Answer","text":"AdMaker AI es óptimo para dropshippers debido a la generación ilimitada de videos a $29/mes, permitiendo pruebas rápidas de ángulos de productos. Creatify es una segunda opción cercana por su función de URL-a-video que extrae detalles del producto automáticamente. Para dropshippers que prueban múltiples productos semanalmente, el modelo ilimitado de AdMaker AI elimina las decisiones presupuestarias de cada prueba, acelerando dramáticamente el descubrimiento de productos ganadores."}},{"@type":"Question","name":"¿Las herramientas de video IA pueden igualar la calidad de creadores UGC humanos?","acceptedAnswer":{"@type":"Answer","text":"Para anuncios de respuesta directa orientados al rendimiento, las herramientas de IA ahora logran 85-92% de la efectividad del UGC humano a 5-10% del costo. Sin embargo, para storytelling de marca profundamente emocional o narrativas de fundadores, los creadores humanos auténticos todavía superan en 15-20% en métricas de engagement. La clave es usar IA para pruebas de volumen y escalar conceptos ganadores con producción humana premium cuando se justifica."}},{"@type":"Question","name":"¿Cuántas variaciones de video debo probar para un rendimiento óptimo de anuncios?","acceptedAnswer":{"@type":"Answer","text":"Nuestro análisis interno de más de 50 campañas muestra que las marcas que prueban 12-20 variaciones creativas logran un CPA 34% más bajo que aquellas que prueban 1-5 variaciones. El 'ganador' a menudo emerge después de la octava iteración, haciendo que herramientas ilimitadas como AdMaker AI sean estratégicamente valiosas. Este volumen de pruebas permite el descubrimiento sistemático de mensajes resonantes que las pruebas limitadas simplemente no pueden revelar debido a restricciones de muestra."}},{"@type":"Question","name":"¿Cuál es la curva de aprendizaje para usar plataformas de anuncios de video IA?","acceptedAnswer":{"@type":"Answer","text":"La mayoría de las plataformas requieren 2-4 horas para dominar los conceptos básicos. AdMaker AI y Bandy AI ofrecen la incorporación más rápida (menos de 1 hora), mientras que Arcads demanda más tiempo aprendiendo selección de avatares y coincidencia de voz (3-5 horas para competencia). La diferencia radica en la complejidad de la interfaz y las opciones de personalización: más control significa mayor curva de aprendizaje pero potencialmente mejores resultados una vez dominado."}},{"@type":"Question","name":"¿Los avatares de IA funcionan para marketing B2B SaaS?","acceptedAnswer":{"@type":"Answer","text":"Sí, con advertencias. Los avatares de IA sobresalen en videos explicativos y demostraciones de características. Sin embargo, el contenido de construcción de confianza B2B (estudios de caso, historias de fundadores) todavía se beneficia de ejecutivos reales en cámara. Un enfoque híbrido produce los mejores resultados: usa IA para contenido educativo de alto volumen y producción humana para piezas fundamentales de liderazgo de pensamiento que establecen autoridad y diferenciación competitiva."}},{"@type":"Question","name":"¿Cómo evito el efecto 'valle inquietante' en videos IA?","acceptedAnswer":{"@type":"Answer","text":"Enfócate en avatares de realismo medio en lugar de hiperrealistas. Usa guiones naturales y conversacionales evitando frases robóticas. Agrega imperfecciones sutiles como pausas ocasionales. Herramientas como AdMaker AI incluyen 'configuraciones de autenticidad' para introducir variabilidad similar a la humana. Irónicamente, los avatares perfectamente renderizados a menudo generan más desconfianza que aquellos con ligeras imperfecciones que señalan humanidad auténtica, por lo que abraza la imperfección estratégica."}},{"@type":"Question","name":"¿Puedo usar anuncios de video IA para campañas de retargeting?","acceptedAnswer":{"@type":"Answer","text":"Absolutamente. Los anuncios de video personalizados generados por IA para retargeting muestran tasas de conversión 40-55% más altas que los anuncios de retargeting estáticos. La capacidad de producir rápidamente variaciones que abordan objeciones específicas hace que las herramientas de IA sean particularmente efectivas para audiencias cálidas. Puedes crear mensajes personalizados para diferentes segmentos de abandono de carrito, visitantes de página de producto o interacciones de contenido sin los costos prohibitivos de producción de video personalizada."}},{"@type":"Question","name":"¿Qué resolución y formato deben tener los videos IA para anuncios sociales?","acceptedAnswer":{"@type":"Answer","text":"Para estándares de 2026: TikTok y Reels requieren 1080x1920 (9:16), Facebook Feed usa 1080x1080 (1:1) y YouTube Shorts prefiere 1080x1920. Todas las plataformas de IA principales, incluyendo AdMaker AI, exportan en estos formatos optimizados nativamente. La plataforma detecta automáticamente tu canal de distribución previsto y optimiza la relación de aspecto, eliminando el redimensionamiento manual y asegurando que tu contenido cumpla con las especificaciones técnicas de cada plataforma."}},{"@type":"Question","name":"¿Hay una prueba gratuita disponible para alternativas a Arcads?","acceptedAnswer":{"@type":"Answer","text":"AdMaker AI ofrece una prueba gratuita con 3 créditos de video. Creatify proporciona una prueba de 14 días con exportaciones limitadas. MakeUGC no tiene nivel gratuito. Arcads ocasionalmente ejecuta pruebas de 7 días pero típicamente requiere acceso pagado inmediato. La disponibilidad de prueba varía según las promociones actuales, por lo que verifica directamente con cada plataforma. Las pruebas gratuitas te permiten evaluar la calidad del avatar y el flujo de trabajo antes de comprometerte financieramente."}}]}};
 
     return (
         <>
-            <Head>
-                <title>Mejores Alternativas a Arcads para Anuncios de Video IA en 2026 | AdMaker AI</title>
-                <meta name="description" content="Compara las principales alternativas a Arcads como AdMaker AI, Creatify y MakeUGC. Descubre qué herramienta de video IA ofrece el mejor ROI para tus campañas." />
-                <link rel="canonical" href="https://admakerai.app/blog/arcads-alternatives" />
-                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/arcads-alternatives" />
-                <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/arcads-alternatives" />
-                <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/arcads-alternatives" />
-                <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/arcads-alternatives" />
-                <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/arcads-alternatives" />
-                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/arcads-alternatives" />
-                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-            </Head>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             
             <Navbar lang="es" />
             
@@ -158,14 +137,7 @@ export default function BlogPost() {
                 
             </div>
 
-            {/* Sticky Mobile CTA */}
-            <a
-                href={landingPageUrl}
-                className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
-                aria-label="Create your AI Ads now"
-            >
-                Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
-            </a>
+            <StickyCta locale={locale} />
         </>
     );
 }

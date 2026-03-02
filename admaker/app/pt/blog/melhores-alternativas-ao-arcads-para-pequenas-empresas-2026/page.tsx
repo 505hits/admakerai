@@ -1,49 +1,28 @@
 
-'use client';
 
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import SimilarArticles from '@/components/SimilarArticles';
 import styles from '@/app/blog/compare-pricing-ugc-video-production-tools/Article.module.css';
 import Image from 'next/image';
+import StickyCta from '@/components/StickyCta';
 
-function getLandingPageUrl(locale = 'en') {
-    if (locale === 'en') return '/';
-    return `/${locale}`;
-}
+export const metadata = {
+    title: `Melhores Alternativas ao Arcads para Pequenas Empresas 2026 | AdMaker AI`,
+    description: `Descubra as melhores alternativas ao Arcads para pequenas empresas em 2026. Compare preços, recursos e benefícios das principais ferramentas de vídeos UGC com IA.`,
+    alternates: {
+    }
+};
 
 export default function BlogPost() {
     const locale = 'pt';
-    const landingPageUrl = getLandingPageUrl(locale);
-    const [showStickyCta, setShowStickyCta] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowStickyCta(window.scrollY > 300);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
+        
+    
     const jsonLd = {"@context":"https://schema.org","@type":"Article","headline":"Melhores Alternativas ao Arcads para Pequenas Empresas 2026","image":"/blog-images/img-1772054208500-0.png","author":{"@type":"Person","name":"Alex","jobTitle":"Head of Video Strategy","url":"https://admakerai.app/blog"},"publisher":{"@type":"Organization","name":"AdMaker AI","logo":{"@type":"ImageObject","url":"https://admakerai.app/logo.png"}},"mainEntity":{"@type":"FAQPage","mainEntity":[]}};
 
     return (
         <>
-            <Head>
-                <title>Melhores Alternativas ao Arcads para Pequenas Empresas 2026 | AdMaker AI</title>
-                <meta name="description" content="Descubra as melhores alternativas ao Arcads para pequenas empresas em 2026. Compare preços, recursos e benefícios das principais ferramentas de vídeos UGC com IA." />
-                <link rel="canonical" href="https://admakerai.app/blog/arcads-pricing" />
-                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/arcads-pricing" />
-                <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/meilleures-alternatives-arcads-petites-entreprises-2026" />
-                <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/mejores-alternativas-arcads-pequenas-empresas-2026" />
-                <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/melhores-alternativas-ao-arcads-para-pequenas-empresas-2026" />
-                <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/beste-arcads-alternativen-fuer-kleine-unternehmen-2026" />
-                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/arcads-pricing" />
-                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-            </Head >
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             
             <Navbar lang="pt" />
             
@@ -97,13 +76,7 @@ export default function BlogPost() {
             </div>
 
     {/* Sticky Mobile CTA */ }
-    <a
-        href={landingPageUrl}
-        className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
-                aria-label="Create your AI Ads now"
-            >
-                Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
-            </a>
+    <StickyCta locale={locale} />
         </>
     );
 }

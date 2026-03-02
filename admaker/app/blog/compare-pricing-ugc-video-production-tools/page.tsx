@@ -1,76 +1,29 @@
-'use client';
 
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import Navbar from '@/components/Navbar';
 import SimilarArticles from '@/components/SimilarArticles';
 import styles from './Article.module.css';
 import Image from 'next/image';
+import StickyCta from '@/components/StickyCta';
 
 // Helper function to get the landing page URL based on locale
-function getLandingPageUrl(locale: string = 'en'): string {
-    if (locale === 'en') return '/';
-    return `/${locale}`;
-}
+export const metadata = {
+    title: `Compare Pricing for UGC Video Production Tools (2025 Guide) | AdMaker AI`,
+    description: `Compare pricing for UGC video production tools across 15+ platforms. Detailed cost breakdown, hidden fees, and ROI analysis. Find the right tool for your budget.`,
+    alternates: {
+    }
+};
 
 export default function ComparePricingUGCArticle() {
     const locale = 'en'; // Current article is in English
-    const landingPageUrl = getLandingPageUrl(locale);
+        
+
+
+            
     
-
-
-            const [showStickyCta, setShowStickyCta] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowStickyCta(window.scrollY > 300);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
     return (
         <>
-            <Head>
-                {/* Primary Meta Tags */}
-                <title>Compare Pricing for UGC Video Production Tools (2025 Guide) | AdMaker AI</title>
-                <meta name="description" content="Compare pricing for UGC video production tools across 15+ platforms. Detailed cost breakdown, hidden fees, and ROI analysis. Find the right tool for your budget." />
-                <meta name="keywords" content="UGC video pricing, video production tools cost, compare UGC platforms, video creation pricing, AI video tools cost, UGC tool comparison" />
-
-                {/* Canonical URL */}
-                <link rel="canonical" href="https://admakerai.app/blog/compare-pricing-ugc-video-production-tools" />
-
-                {/* Hreflang Tags */}
-                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/compare-pricing-ugc-video-production-tools" />
-                <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/comparer-prix-outils-production-video-ugc" />
-                <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/comparar-precios-herramientas-produccion-video-ugc" />
-                <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/preise-vergleichen-ugc-video-produktionstools" />
-                <link rel="alternate" hrefLang="ko" href="https://admakerai.app/ko/blog/ugc-video-production-tools-pricing-comparison" />
-                <link rel="alternate" hrefLang="ja" href="https://admakerai.app/ja/blog/ugc-video-production-tools-pricing-comparison" />
-                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/compare-pricing-ugc-video-production-tools" />
-
-                {/* Open Graph / Facebook */}
-                <meta property="og:type" content="article" />
-                <meta property="og:title" content="Compare Pricing for UGC Video Production Tools (2025 Guide)" />
-                <meta property="og:description" content="Compare pricing for UGC video production tools across 15+ platforms. Detailed cost breakdown, hidden fees, and ROI analysis." />
-                <meta property="og:image" content="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1280&h=720&fit=crop" />
-                <meta property="og:url" content="https://admakerai.app/blog/compare-pricing-ugc-video-production-tools" />
-                <meta property="og:locale" content="en_US" />
-                <meta property="og:site_name" content="AdMaker AI" />
-                <meta property="article:published_time" content="2025-01-02T00:00:00Z" />
-                <meta property="article:modified_time" content="2025-01-02T00:00:00Z" />
-                <meta property="article:author" content="AdMaker AI" />
-
-                {/* Twitter Card */}
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Compare Pricing for UGC Video Production Tools (2025 Guide)" />
-                <meta name="twitter:description" content="Compare pricing for UGC video production tools across 15+ platforms. Detailed cost breakdown, hidden fees, and ROI analysis." />
-                <meta name="twitter:image" content="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1280&h=720&fit=crop" />
-
-                {/* JSON-LD Structured Data */}
-                <script type="application/ld+json">
+            <script type="application/ld+json">
                     {JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "Article",
@@ -97,7 +50,6 @@ export default function ComparePricingUGCArticle() {
                         }
                     })}
                 </script>
-            </Head>
             <Navbar lang="en" />
             <div className={styles.pageContainer}>
                 <div className={styles.contentWrapper}>
@@ -135,7 +87,7 @@ export default function ComparePricingUGCArticle() {
                         <section id="understanding" className={styles.section}>
                             <h2>Understanding UGC Video Production Tool Pricing</h2>
 
-                            <p>When evaluating costs for user-generated content creation platforms, pricing structures vary significantly across the market. Understanding these differences helps businesses make informed decisions aligned with their budget and content volume needs when choosing <a href={landingPageUrl}>AI video tools</a>.</p>
+                            <p>When evaluating costs for user-generated content creation platforms, pricing structures vary significantly across the market. Understanding these differences helps businesses make informed decisions aligned with their budget and content volume needs when choosing <a href="#">AI video tools</a>.</p>
 
                             <p>The landscape includes traditional creator marketplaces charging $150-500 per video, AI-powered generation tools with monthly subscriptions, and hybrid models combining software with creator services. This guide examines actual pricing data from 15 platforms collected in January 2025.</p>
 
@@ -271,7 +223,7 @@ export default function ComparePricingUGCArticle() {
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><a href={landingPageUrl}><strong>AdMaker AI</strong></a></td>
+                                        <td><a href="#"><strong>AdMaker AI</strong></a></td>
                                         <td>3 videos</td>
                                         <td>$29/mo unlimited</td>
                                         <td>$99/mo team</td>
@@ -427,7 +379,7 @@ export default function ComparePricingUGCArticle() {
 
                             <h3>Analysis Notes:</h3>
 
-                            <p><strong>Value observation:</strong> AI platforms with unlimited tiers (<a href={landingPageUrl}>AdMaker AI</a> $29, Arcads $49) provide best economics for brands creating 10+ videos monthly. Per-video cost drops to $0.58-2.90 at scale.</p>
+                            <p><strong>Value observation:</strong> AI platforms with unlimited tiers (<a href="#">AdMaker AI</a> $29, Arcads $49) provide best economics for brands creating 10+ videos monthly. Per-video cost drops to $0.58-2.90 at scale.</p>
 
                             <p><strong>Quality consideration:</strong> Price doesn't correlate linearly with quality. Mid-tier tools ($29-49) often deliver comparable results to premium ($79-99+) options for most use cases.</p>
 
@@ -449,7 +401,7 @@ export default function ComparePricingUGCArticle() {
                                 <li><strong>Watch for:</strong> "Credits" that deplete with each generation attempt</li>
                             </ul>
 
-                            <p><strong>Which platforms avoid this:</strong> Unlimited generation plans (<a href={landingPageUrl}>AdMaker AI</a> Pro, Arcads Pro) include free iterations.</p>
+                            <p><strong>Which platforms avoid this:</strong> Unlimited generation plans (<a href="#">AdMaker AI</a> Pro, Arcads Pro) include free iterations.</p>
 
                             <h3>2. Commercial Licensing Costs</h3>
                             <p>Separate fees for commercial usage rights:</p>
@@ -547,7 +499,7 @@ export default function ComparePricingUGCArticle() {
 
                             <p><strong>Platform fit:</strong></p>
                             <ul>
-                                <li><strong>Under $50K ad spend:</strong> $29-39 unlimited plans (<a href={landingPageUrl}>AdMaker AI</a>, Creatify)</li>
+                                <li><strong>Under $50K ad spend:</strong> $29-39 unlimited plans (<a href="#">AdMaker AI</a>, Creatify)</li>
                                 <li><strong>$50K+ ad spend:</strong> $79-99 advanced plans with team features</li>
                                 <li><strong>Not recommended:</strong> Per-video creator platforms ($150-500 each = $3,000-25,000 monthly at scale)</li>
                             </ul>
@@ -663,7 +615,7 @@ export default function ComparePricingUGCArticle() {
 
                             <p><strong>Platforms with strongest free tiers:</strong></p>
                             <ol>
-                                <li><a href={landingPageUrl}><strong>AdMaker AI:</strong></a> 3 videos, no watermark, full quality, commercial use</li>
+                                <li><a href="#"><strong>AdMaker AI:</strong></a> 3 videos, no watermark, full quality, commercial use</li>
                                 <li><strong>Creatify:</strong> 2 videos, watermark, community support</li>
                                 <li><strong>CapCut:</strong> Unlimited editing, watermark, basic features</li>
                                 <li><strong>Canva:</strong> Unlimited design tools, limited video features</li>
@@ -686,7 +638,7 @@ export default function ComparePricingUGCArticle() {
 
                             <p><strong>Best value platforms in this range:</strong></p>
                             <ul>
-                                <li><a href={landingPageUrl}><strong>AdMaker AI $29:</strong></a> Unlimited videos, full features, fastest processing</li>
+                                <li><a href="#"><strong>AdMaker AI $29:</strong></a> Unlimited videos, full features, fastest processing</li>
                                 <li><strong>Creatify $39:</strong> 10 videos, good quality, slower processing</li>
                                 <li><strong>Speel $35:</strong> Unlimited videos, limited customization</li>
                             </ul>
@@ -711,7 +663,7 @@ export default function ComparePricingUGCArticle() {
                             <p><strong>Platforms worth premium pricing:</strong></p>
                             <ul>
                                 <li><strong>Arcads $49:</strong> Unlimited high-quality generation</li>
-                                <li><a href={landingPageUrl}><strong>AdMaker AI $99:</strong></a> Team features, white-label, analytics</li>
+                                <li><a href="#"><strong>AdMaker AI $99:</strong></a> Team features, white-label, analytics</li>
                                 <li><strong>Insense $99:</strong> Platform plus creator marketplace access</li>
                             </ul>
 
@@ -858,7 +810,7 @@ export default function ComparePricingUGCArticle() {
 
                             <div className={styles.faqItem}>
                                 <h3 className={styles.faqQuestion}>Are free UGC video tools worth using?</h3>
-                                <p className={styles.faqAnswer}>Free tiers work for testing platforms and occasional use (under 5 videos monthly). Limitations include watermarks, basic features, and restricted commercial use. <a href={landingPageUrl}>AdMaker AI</a> offers strongest free tier with 3 watermark-free videos monthly and full commercial rights. Free tools become insufficient for regular content marketing requiring 10+ videos monthly or professional quality without branding.</p>
+                                <p className={styles.faqAnswer}>Free tiers work for testing platforms and occasional use (under 5 videos monthly). Limitations include watermarks, basic features, and restricted commercial use. <a href="#">AdMaker AI</a> offers strongest free tier with 3 watermark-free videos monthly and full commercial rights. Free tools become insufficient for regular content marketing requiring 10+ videos monthly or professional quality without branding.</p>
                             </div>
 
                             <div className={styles.faqItem}>
@@ -912,10 +864,10 @@ export default function ComparePricingUGCArticle() {
                                 <li>⚖️ <strong>Balance cost vs quality:</strong> Mid-tier tools ($29-49) often match premium options for most use cases</li>
                             </ul>
 
-                            <p>For businesses creating 10+ videos monthly requiring fast turnaround and authentic UGC style, AI-powered unlimited plans like <a href={landingPageUrl}>AdMaker AI at $29</a> or similar platforms provide strongest ROI with per-video costs under $3 at scale.</p>
+                            <p>For businesses creating 10+ videos monthly requiring fast turnaround and authentic UGC style, AI-powered unlimited plans like <a href="#">AdMaker AI at $29</a> or similar platforms provide strongest ROI with per-video costs under $3 at scale.</p>
 
                             <p className={styles.highlight}>
-                                <a href={landingPageUrl} style={{ color: 'white', fontSize: '20px', fontWeight: '700' }}>Compare Free Trials Across Platforms →</a><br /><br />
+                                <a href="#" style={{ color: 'white', fontSize: '20px', fontWeight: '700' }}>Compare Free Trials Across Platforms →</a><br /><br />
                                 Test production tools risk-free • Calculate your actual costs • Find your optimal pricing tier
                             </p>
 
@@ -937,14 +889,7 @@ export default function ComparePricingUGCArticle() {
                 <SimilarArticles currentSlug="compare-pricing-ugc-video-production-tools" locale={locale} />
             </div>
 
-                {/* Sticky Mobile CTA */}
-                <a
-                    href={landingPageUrl}
-                    className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
-                    aria-label="Create your AI Ads now"
-                >
-                    Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
-                </a>
+                <StickyCta locale={locale} />
         </>
     );
 }

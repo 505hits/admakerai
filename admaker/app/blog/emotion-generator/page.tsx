@@ -1,61 +1,28 @@
-'use client';
 
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import Navbar from '@/components/Navbar';
 import SimilarArticles from '@/components/SimilarArticles';
 import styles from '../compare-pricing-ugc-video-production-tools/Article.module.css';
 import Image from 'next/image';
+import StickyCta from '@/components/StickyCta';
 
-function getLandingPageUrl(locale: string = 'en'): string {
-    if (locale === 'en') return '/';
-    return `/${locale}`;
-}
+export const metadata = {
+    title: `Top 10 Emotion Generator Tools for Video Marketing in 2026 | AdMaker AI`,
+    description: `After testing 23 emotion generator tools with $18K spend, I reveal which tools actually boost video engagement. Real performance data included.`,
+    alternates: {
+    }
+};
 
 export default function EmotionGeneratorArticle() {
     const locale = 'en';
-    const landingPageUrl = getLandingPageUrl(locale);
+        
+
+
+            
     
-
-
-            const [showStickyCta, setShowStickyCta] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowStickyCta(window.scrollY > 300);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
     return (
         <>
-            <Head>
-                <title>Top 10 Emotion Generator Tools for Video Marketing in 2026 | AdMaker AI</title>
-                <meta name="description" content="After testing 23 emotion generator tools with $18K spend, I reveal which tools actually boost video engagement. Real performance data included." />
-                <meta name="keywords" content="emotion generator, video marketing, AI avatars, emotional video ads, video engagement, CTR optimization" />
-
-                <link rel="canonical" href="https://admakerai.app/blog/emotion-generator" />
-
-                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/emotion-generator" />
-                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/emotion-generator" />
-
-                <meta property="og:type" content="article" />
-                <meta property="og:title" content="Top 10 Emotion Generator Tools for Video Marketing in 2026" />
-                <meta property="og:description" content="After testing 23 emotion generator tools with $18K spend across 840 videos, I reveal which tools actually boost video engagement and conversions." />
-                <meta property="og:image" content="https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=1280&h=720&fit=crop" />
-                <meta property="og:url" content="https://admakerai.app/blog/emotion-generator" />
-                <meta property="og:locale" content="en_US" />
-                <meta property="og:site_name" content="AdMaker AI" />
-                <meta property="article:published_time" content="2026-01-18T00:00:00Z" />
-
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Top 10 Emotion Generator Tools for Video Marketing in 2026" />
-                <meta name="twitter:description" content="After testing 23 emotion generator tools with $18K spend, I reveal which tools actually boost video engagement." />
-                <meta name="twitter:image" content="https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=1280&h=720&fit=crop" />
-            </Head>
+            
             <Navbar lang="en" />
             <div className={styles.pageContainer}>
                 <div className={styles.contentWrapper}>
@@ -641,7 +608,7 @@ export default function EmotionGeneratorArticle() {
 
                             <p>The critical insight that changed everything: <strong>Authenticity matters 5x more than intensity.</strong> Marketers instinctively think "more emotion equals better performance" when reality shows subtle, genuine emotional expressions consistently outperform exaggerated theatrical delivery by 200-300%. Humans evolved to detect fake emotional signals as survival mechanism—when AI avatars show overly dramatic emotions, viewers subconsciously classify content as manipulative rather than authentic.</p>
 
-                            <p><strong>Ready to implement emotion-driven video marketing?</strong> Start with <a href={landingPageUrl}>AdMaker AI's platform</a> creating your first 8 emotional test variations this week. Test intensity levels 1-3, match emotions to message phases, and measure against your baseline. Improvement begins immediately—perfection develops over months.</p>
+                            <p><strong>Ready to implement emotion-driven video marketing?</strong> Start with <a href="#">AdMaker AI's platform</a> creating your first 8 emotional test variations this week. Test intensity levels 1-3, match emotions to message phases, and measure against your baseline. Improvement begins immediately—perfection develops over months.</p>
                         </section>
                     </article>
                         <BlogVideoSidebar locale={locale} />
@@ -657,14 +624,7 @@ export default function EmotionGeneratorArticle() {
                 
             </div>
 
-            {/* Sticky Mobile CTA */}
-            <a
-                href={landingPageUrl}
-                className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
-                aria-label="Create your AI Ads now"
-            >
-                Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
-            </a>
+            <StickyCta locale={locale} />
         </>
     );
 }

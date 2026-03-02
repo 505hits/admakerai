@@ -1,49 +1,28 @@
 
-'use client';
 
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import SimilarArticles from '@/components/SimilarArticles';
 import styles from '@/app/blog/compare-pricing-ugc-video-production-tools/Article.module.css';
 import Image from 'next/image';
+import StickyCta from '@/components/StickyCta';
 
-function getLandingPageUrl(locale = 'en') {
-    if (locale === 'en') return '/';
-    return `/${locale}`;
-}
+export const metadata = {
+    title: `Mejores Actores IA para Anuncios de Video que Convierten en 2026 | AdMaker AI`,
+    description: `Descubre los mejores actores IA y presentadores virtuales que transforman el marketing de video. Compara herramientas, precios y datos reales de ROI para 2026.`,
+    alternates: {
+    }
+};
 
 export default function BlogPost() {
     const locale = 'es';
-    const landingPageUrl = getLandingPageUrl(locale);
-    const [showStickyCta, setShowStickyCta] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowStickyCta(window.scrollY > 300);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
+        
+    
     const jsonLd = {"@context":"https://schema.org","@type":"Article","headline":"Mejores Actores IA para Anuncios de Video que Convierten en 2026","image":"/blog-images/img-1772278999883-0.png","author":{"@type":"Person","name":"Alex","jobTitle":"Head of Video Strategy","url":"https://admakerai.app/blog"},"publisher":{"@type":"Organization","name":"AdMaker AI","logo":{"@type":"ImageObject","url":"https://admakerai.app/logo.png"}},"mainEntity":{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"¿Es legal usar videos generados por IA en publicidad?","acceptedAnswer":{"@type":"Answer","text":"Sí, los videos generados por IA son legales para publicidad. Sin embargo, desde finales de 2025, plataformas como TikTok y Meta requieren etiquetas claras de 'generado por IA' en contenido sintético. Los videos creados completamente por IA son de dominio público, pero el contenido de IA editado por humanos (seleccionar avatares, escribir guiones, editar) es protegible por derechos de autor."}},{"@type":"Question","name":"¿Cuánto cuesta AdMaker AI comparado con la competencia?","acceptedAnswer":{"@type":"Answer","text":"AdMaker AI cuesta $29/mes con generación ilimitada de videos, convirtiéndolo en la solución más rentable. Arcads cobra aproximadamente $110/mes por avatares premium, Creatify cuesta $59/mes con límites de créditos, y MakeUGC funciona a $89/mes por funciones de agencia."}},{"@type":"Question","name":"¿Los actores IA funcionan tan bien como creadores UGC reales?","acceptedAnswer":{"@type":"Answer","text":"En nuestras pruebas a través de 50 campañas, los actores IA lograron del 92-98% de las tasas de conversión de creadores UGC humanos cuando los guiones estaban correctamente optimizados. La diferencia de costo (85% más barato) hace que los actores IA sean ideales para pruebas de alto volumen, mientras que los creadores humanos sobresalen en narrativas profundamente emocionales y personales."}},{"@type":"Question","name":"¿Qué es el requisito de etiqueta 'generado por IA'?","acceptedAnswer":{"@type":"Answer","text":"Desde el cuarto trimestre de 2025, TikTok y Meta exigen divulgación visible cuando el contenido presenta humanos generados por IA. Los anuncios sin esta etiqueta enfrentan supresión algorítmica (shadowbanning). La mayoría de las plataformas de video IA ahora agregan automáticamente etiquetas compatibles, pero los especialistas en marketing deben verificar antes de publicar."}},{"@type":"Question","name":"¿Puedo crear videos IA en múltiples idiomas?","acceptedAnswer":{"@type":"Answer","text":"Sí, la mayoría de las plataformas modernas de actores IA soportan más de 50 idiomas. AdMaker AI ofrece voces multilingües naturales, mientras que Arcads se especializa en precisión de acentos. Esto permite campañas globales sin contratar hablantes nativos para cada mercado."}},{"@type":"Question","name":"¿Cuántos videos debo probar por campaña?","acceptedAnswer":{"@type":"Answer","text":"El estándar de 2026 para campañas de respuesta directa es 15-25 variaciones creativas por producto. Las herramientas IA hacen esto económicamente viable: producir 20 videos con AdMaker AI cuesta los mismos $29/mes, mientras que contratar creadores humanos costaría más de $3,000 a $150 por video."}},{"@type":"Question","name":"¿Cuál es la diferencia entre actores IA y deepfakes?","acceptedAnswer":{"@type":"Answer","text":"Los actores IA son personajes sintéticos originales, no imitaciones de personas reales. Los deepfakes replican individuos específicos sin consentimiento (a menudo ilegal). Plataformas legítimas como AdMaker AI, HeyGen y Arcads solo ofrecen avatares originales licenciados diseñados para uso comercial."}},{"@type":"Question","name":"¿Funcionan los videos IA para marketing B2B?","acceptedAnswer":{"@type":"Answer","text":"Absolutamente. Las empresas B2B usan actores IA para videos explicativos, demostraciones de productos y anuncios de LinkedIn. Los avatares profesionales con vestimenta empresarial funcionan particularmente bien para secuencias de incorporación SaaS y promociones de webinars, con tasas de finalización 35% más altas que el contenido basado en texto."}},{"@type":"Question","name":"¿Cuánto tiempo tarda en generarse un video IA?","acceptedAnswer":{"@type":"Answer","text":"El tiempo de generación varía según la plataforma y la duración del video. AdMaker AI produce videos de 30 segundos en 3-5 minutos, mientras que herramientas más complejas como Runway pueden tomar 15-20 minutos para salidas de alta resolución. Esto sigue siendo 40 veces más rápido que los flujos de trabajo de producción de video tradicionales."}},{"@type":"Question","name":"¿Pueden los actores IA mostrar productos y usar accesorios?","acceptedAnswer":{"@type":"Answer","text":"La tecnología actual de actores IA (2026) sobresale en presentaciones de busto parlante pero tiene limitaciones con el manejo de productos físicos. La mayoría de las plataformas superponen imágenes/videos de productos detrás del avatar. Para demostraciones prácticas, los enfoques híbridos que combinan narración IA con metraje B-roll funcionan mejor."}}]}};
 
     return (
         <>
-            <Head>
-                <title>Mejores Actores IA para Anuncios de Video que Convierten en 2026 | AdMaker AI</title>
-                <meta name="description" content="Descubre los mejores actores IA y presentadores virtuales que transforman el marketing de video. Compara herramientas, precios y datos reales de ROI para 2026." />
-                <link rel="canonical" href="https://admakerai.app/blog/ai-actors" />
-                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/ai-actors" />
-                <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/meilleurs-acteurs-ia-publicites-video-performantes-2026" />
-                <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/mejores-actores-ia-anuncios-video-convierten-2026" />
-                <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/melhores-atores-ia-anuncios-video-convertem-2026" />
-                <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/beste-ki-schauspieler-fuer-video-anzeigen-conversion-2026" />
-                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/ai-actors" />
-                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-            </Head >
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             
             <Navbar lang="es" />
             
@@ -147,13 +126,7 @@ export default function BlogPost() {
             </div>
 
     {/* Sticky Mobile CTA */ }
-    <a
-        href={landingPageUrl}
-        className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
-                aria-label="Create your AI Ads now"
-            >
-                Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
-            </a>
+    <StickyCta locale={locale} />
         </>
     );
 }

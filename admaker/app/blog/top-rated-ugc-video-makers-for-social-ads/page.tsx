@@ -1,73 +1,29 @@
-'use client';
 
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import SimilarArticles from '@/components/SimilarArticles';
 import styles from '../compare-pricing-ugc-video-production-tools/Article.module.css'; // Reusing styles
 import Image from 'next/image';
+import StickyCta from '@/components/StickyCta';
 
 // Helper function to get the landing page URL based on locale
-function getLandingPageUrl(locale: string = 'en'): string {
-    if (locale === 'en') return '/';
-    return `/${locale}`;
-}
+export const metadata = {
+    title: `Top-Rated UGC Video Makers for Social Ads (2025 Reviews) | AdMaker AI`,
+    description: `Discover top-rated UGC video makers for social ads based on user reviews, performance data, and ROI. Compare features, ratings, and real campaign results.`,
+    alternates: {
+    }
+};
 
 export default function TopRatedUGCVideoMakersArticle() {
     const locale = 'en';
-    const landingPageUrl = getLandingPageUrl(locale);
+        
+
+
+            
     
-
-
-            const [showStickyCta, setShowStickyCta] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowStickyCta(window.scrollY > 300);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
     return (
         <>
-            <Head>
-                {/* Primary Meta Tags */}
-                <title>Top-Rated UGC Video Makers for Social Ads (2025 Reviews) | AdMaker AI</title>
-                <meta name="description" content="Discover top-rated UGC video makers for social ads based on user reviews, performance data, and ROI. Compare features, ratings, and real campaign results." />
-                <meta name="keywords" content="UGC video makers, social ads video tools, top rated UGC software, ad performance reviews, AdMaker reviews, Creatify reviews, Arcads reviews" />
-
-                {/* Canonical URL */}
-                <link rel="canonical" href="https://admakerai.app/blog/top-rated-ugc-video-makers-for-social-ads" />
-
-                {/* Hreflang Tags */}
-                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/top-rated-ugc-video-makers-for-social-ads" />
-                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/top-rated-ugc-video-makers-for-social-ads" />
-                <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/meilleurs-createurs-video-ugc-pour-publicites-sociales" />
-                <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/mejores-creadores-video-ugc-para-anuncios-sociales" />
-                <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/melhores-criadores-video-ugc-para-anuncios-sociais" />
-                <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/beste-ugc-video-macher-fuer-social-ads" />
-                <link rel="alternate" hrefLang="ko" href="https://admakerai.app/ko/blog/top-rated-ugc-video-makers-social-ads" />
-                <link rel="alternate" hrefLang="ja" href="https://admakerai.app/ja/blog/top-rated-ugc-video-makers-social-ads" />
-
-                {/* Open Graph / Facebook */}
-                <meta property="og:type" content="article" />
-                <meta property="og:title" content="Top-Rated UGC Video Makers for Social Ads (2025 Reviews)" />
-                <meta property="og:description" content="Discover top-rated UGC video makers for social ads based on user reviews, performance data, and ROI." />
-                <meta property="og:image" content="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=1280&h=720&fit=crop" />
-                <meta property="og:url" content="https://admakerai.app/blog/top-rated-ugc-video-makers-for-social-ads" />
-                <meta property="og:site_name" content="AdMaker AI" />
-                <meta property="article:published_time" content="2025-01-03T00:00:00Z" />
-                <meta property="article:author" content="AdMaker AI" />
-
-                {/* Twitter Card */}
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Top-Rated UGC Video Makers for Social Ads (2025 Reviews)" />
-                <meta name="twitter:description" content="Discover top-rated UGC video makers for social ads based on user reviews, performance data, and ROI." />
-                <meta name="twitter:image" content="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=1280&h=720&fit=crop" />
-            </Head>
+            
             <Navbar lang="en" />
             <div className={styles.pageContainer}>
                 <div className={styles.contentWrapper}>
@@ -104,7 +60,7 @@ export default function TopRatedUGCVideoMakersArticle() {
 
                             <section id="rating-methodology" className={styles.section}>
                                 <h2>How We Rate UGC Video Makers for Social Ads</h2>
-                                <p>Rating <a href={landingPageUrl}>video creation tools</a> requires objective evaluation beyond marketing claims. This analysis examines actual social ad performance data, user reviews from verified customers, and measurable metrics across Facebook, Instagram, TikTok, and other platforms.</p>
+                                <p>Rating <a href="#">video creation tools</a> requires objective evaluation beyond marketing claims. This analysis examines actual social ad performance data, user reviews from verified customers, and measurable metrics across Facebook, Instagram, TikTok, and other platforms.</p>
 
                                 <p><strong>Data sources for this review:</strong></p>
                                 <ul>
@@ -116,9 +72,9 @@ export default function TopRatedUGCVideoMakersArticle() {
                                     <li>Output quality assessment by 25 marketing experts in blind testing</li>
                                 </ul>
 
-                                <p><strong>Why ratings matter for social ads:</strong> A tool might generate beautiful videos that perform poorly in paid campaigns. Conversely, <a href={landingPageUrl}>authentic-looking content</a> might drive 3-5x better cost-per-acquisition despite seeming less &quot;polished.&quot; Our ratings prioritize actual ad performance over subjective aesthetics.</p>
+                                <p><strong>Why ratings matter for social ads:</strong> A tool might generate beautiful videos that perform poorly in paid campaigns. Conversely, <a href="#">authentic-looking content</a> might drive 3-5x better cost-per-acquisition despite seeming less &quot;polished.&quot; Our ratings prioritize actual ad performance over subjective aesthetics.</p>
 
-                                <p><strong>Industry context:</strong> The <a href={landingPageUrl}>UGC video creation</a> market has exploded from 12 significant platforms in 2023 to over 40 in 2025. This growth makes objective ratings essential—marketing teams waste thousands testing unsuitable tools. This guide consolidates real performance data to accelerate decision-making.</p>
+                                <p><strong>Industry context:</strong> The <a href="#">UGC video creation</a> market has exploded from 12 significant platforms in 2023 to over 40 in 2025. This growth makes objective ratings essential—marketing teams waste thousands testing unsuitable tools. This guide consolidates real performance data to accelerate decision-making.</p>
 
                                 <div className={styles.imageWrapper}>
                                     <Image
@@ -181,7 +137,7 @@ export default function TopRatedUGCVideoMakersArticle() {
                                 <p><strong>Analysis notes:</strong> High user satisfaction doesn't always correlate with ad performance. Some tools rate 4.5+ stars for ease-of-use but generate content that converts poorly. Our methodology weighs performance metrics heavier than subjective satisfaction.</p>
 
                                 <h3>3. Processing Speed and Reliability (15% of total score)</h3>
-                                <p><strong>Why speed matters:</strong> Social media marketing requires rapid iteration. A/B testing 20 variations needs fast <a href={landingPageUrl}>video generation</a>.</p>
+                                <p><strong>Why speed matters:</strong> Social media marketing requires rapid iteration. A/B testing 20 variations needs fast <a href="#">video generation</a>.</p>
 
                                 <p><strong>Benchmarks:</strong></p>
                                 <ul>
@@ -262,7 +218,7 @@ export default function TopRatedUGCVideoMakersArticle() {
                                     <li>Genuine enthusiasm in delivery</li>
                                 </ul>
 
-                                <p><strong>Testing method:</strong> 25 marketing professionals rated videos blind—without knowing which <a href={landingPageUrl}>AI platform</a> created them. Highest authenticity scores came from platforms prioritizing &quot;real person&quot; aesthetic over technical perfection.</p>
+                                <p><strong>Testing method:</strong> 25 marketing professionals rated videos blind—without knowing which <a href="#">AI platform</a> created them. Highest authenticity scores came from platforms prioritizing &quot;real person&quot; aesthetic over technical perfection.</p>
 
                                 <h3>7. Feature Set and Flexibility (5% of total score)</h3>
                                 <p><strong>Evaluation areas:</strong></p>
@@ -276,7 +232,7 @@ export default function TopRatedUGCVideoMakersArticle() {
                                     <li>Analytics and tracking</li>
                                 </ul>
 
-                                <p>While features matter, they receive lowest weighting—unused features don't improve ad performance. A tool with 20 features but poor CTR rates lower than a simple <a href={landingPageUrl}>AI video maker</a> generating high-converting content.</p>
+                                <p>While features matter, they receive lowest weighting—unused features don't improve ad performance. A tool with 20 features but poor CTR rates lower than a simple <a href="#">AI video maker</a> generating high-converting content.</p>
 
                                 <div className={styles.imageWrapper}>
                                     <Image
@@ -307,7 +263,7 @@ export default function TopRatedUGCVideoMakersArticle() {
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><a href={landingPageUrl}><strong>AdMaker AI</strong></a></td>
+                                            <td><a href="#"><strong>AdMaker AI</strong></a></td>
                                             <td>92/100</td>
                                             <td>28/30</td>
                                             <td>18/20</td>
@@ -434,7 +390,7 @@ export default function TopRatedUGCVideoMakersArticle() {
                                     <li>Learning curve for optimal script writing</li>
                                 </ul>
 
-                                <p><strong>Best suited for:</strong> Performance marketers prioritizing ad results over features, high-volume creators (20+ videos monthly), agencies managing multiple clients, brands scaling <a href={landingPageUrl}>UGC testing</a>.</p>
+                                <p><strong>Best suited for:</strong> Performance marketers prioritizing ad results over features, high-volume creators (20+ videos monthly), agencies managing multiple clients, brands scaling <a href="#">UGC testing</a>.</p>
                                 <p><strong>User satisfaction:</strong> 4.6/5 stars (847 reviews aggregated)</p>
 
                                 <h4>2. Creatify.ai — Overall Score: 84/100</h4>
@@ -553,7 +509,7 @@ export default function TopRatedUGCVideoMakersArticle() {
 
                                 <h3>Performance Marketing Agency Perspective</h3>
                                 <p><strong>Company:</strong> Digital growth agency managing $2M monthly ad spend</p>
-                                <p><strong>Quote:</strong> &quot;We tested four platforms for <a href={landingPageUrl}>UGC ad creative</a> across 15 e-commerce clients. AdMaker AI delivered best CTR (3.9% average vs 2.7% on Creatify) and fastest turnaround.&quot; - David L., Performance Director</p>
+                                <p><strong>Quote:</strong> &quot;We tested four platforms for <a href="#">UGC ad creative</a> across 15 e-commerce clients. AdMaker AI delivered best CTR (3.9% average vs 2.7% on Creatify) and fastest turnaround.&quot; - David L., Performance Director</p>
 
                                 <h3>E-commerce Brand Case Study</h3>
                                 <p><strong>Results:</strong> ROAS improvement from 2.6x to 4.1x. Creative budget reduced from $4,800/month to $29/month.</p>
@@ -613,11 +569,11 @@ export default function TopRatedUGCVideoMakersArticle() {
 
                             <section className={styles.section}>
                                 <h2>Conclusion: Selecting Your Optimal Video Maker</h2>
-                                <p>Analysis of <a href={landingPageUrl}>top-rated platforms</a> reveals clear performance tiers. For most social advertising use cases—particularly those requiring high volume testing and strong ROI—platforms rated 85+ overall deliver best results.</p>
+                                <p>Analysis of <a href="#">top-rated platforms</a> reveals clear performance tiers. For most social advertising use cases—particularly those requiring high volume testing and strong ROI—platforms rated 85+ overall deliver best results.</p>
 
                                 <div className={styles.ctaBox}>
                                     <h3>Start with top-rated platforms</h3>
-                                    <a href={landingPageUrl} className={styles.ctaButton}>Compare Top-Rated Tools with Free Trials →</a>
+                                    <a href="#" className={styles.ctaButton}>Compare Top-Rated Tools with Free Trials →</a>
                                 </div>
                             </section>
                         </article>
@@ -630,14 +586,7 @@ export default function TopRatedUGCVideoMakersArticle() {
                 <SimilarArticles currentSlug="top-rated-ugc-video-makers-for-social-ads" locale={locale} />
             </div>
 
-                {/* Sticky Mobile CTA */}
-                <a
-                    href={landingPageUrl}
-                    className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
-                    aria-label="Create your AI Ads now"
-                >
-                    Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
-                </a>
+                <StickyCta locale={locale} />
             
         </>
     );

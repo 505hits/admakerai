@@ -1,49 +1,28 @@
 
-'use client';
 
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import SimilarArticles from '@/components/SimilarArticles';
 import styles from '@/app/blog/compare-pricing-ugc-video-production-tools/Article.module.css';
 import Image from 'next/image';
+import StickyCta from '@/components/StickyCta';
 
-function getLandingPageUrl(locale = 'en') {
-    if (locale === 'en') return '/';
-    return `/${locale}`;
-}
+export const metadata = {
+    title: `Best AI Video Marketing Tools to Maximize ROI in 2026 | AdMaker AI`,
+    description: `Discover the best AI video marketing tools like AdMaker AI and Arcads. Compare pricing, features, and learn how to create high-converting UGC ads affordably.`,
+    alternates: {
+    }
+};
 
 export default function BlogPost() {
     const locale = 'en';
-    const landingPageUrl = getLandingPageUrl(locale);
-    const [showStickyCta, setShowStickyCta] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowStickyCta(window.scrollY > 300);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
+        
+    
     const jsonLd = {"@context":"https://schema.org","@type":"Article","headline":"Best AI Video Marketing Tools to Maximize ROI in 2026","image":"/blog-images/img-1772193259378-0.png","author":{"@type":"Person","name":"Alex","jobTitle":"Head of Video Strategy","url":"https://admakerai.app/blog"},"publisher":{"@type":"Organization","name":"AdMaker AI","logo":{"@type":"ImageObject","url":"https://admakerai.app/logo.png"}},"mainEntity":{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is Arcads.ai pricing compared to AdMaker AI?","acceptedAnswer":{"@type":"Answer","text":"Arcads.ai typically starts around $110/month for their premium avatar library and limited video credits. AdMaker AI offers unlimited video generation at $39/month, making it significantly more cost-effective for agencies and brands that need to test 20-50 creative variations monthly."}},{"@type":"Question","name":"Do I own the copyright to AI-generated videos?","acceptedAnswer":{"@type":"Answer","text":"Pure AI-generated content is typically public domain. However, if you provide human creative direction, scripting, and editing (as with AdMaker AI's workflow), the final work becomes copyrightable as a derivative work. Always consult legal counsel for commercial use."}},{"@type":"Question","name":"Are AI video ads required to be labeled in 2026?","acceptedAnswer":{"@type":"Answer","text":"Yes. Since late 2025, both TikTok and Meta mandate clear 'AI-generated' or 'Synthetic media' labels on all AI-created content. Failure to comply results in reduced reach, shadowbans, or account suspension."}},{"@type":"Question","name":"Can AI video tools replace human UGC creators entirely?","acceptedAnswer":{"@type":"Answer","text":"Not entirely. AI excels at scale, speed, and performance testing for direct-response campaigns. However, deeply emotional brand stories, founder narratives, and authentic customer testimonials still benefit from real human creators who bring genuine emotion and unique personal experiences."}},{"@type":"Question","name":"How long does it take to create an AI video ad?","acceptedAnswer":{"@type":"Answer","text":"With tools like AdMaker AI or Arcads, you can generate a complete 15-30 second UGC-style ad in 3-7 minutes after scripting. Traditional human creator workflows take 3-7 days including briefing, filming, revisions, and delivery."}},{"@type":"Question","name":"What's the average ROI improvement using AI video ads?","acceptedAnswer":{"@type":"Answer","text":"Our internal analysis of 50+ campaigns shows AI-generated video ads can reduce Cost Per Acquisition (CPA) by 30-45% compared to static image ads, primarily due to the ability to test 10x more creative variations within the same budget."}},{"@type":"Question","name":"Which industries benefit most from AI video marketing?","acceptedAnswer":{"@type":"Answer","text":"E-commerce (especially dropshipping), SaaS companies, digital products, online education, and direct-to-consumer brands see the highest ROI. Industries requiring deep personal trust (legal, medical) should use AI more cautiously and combine with human elements."}},{"@type":"Question","name":"Can I use my own voice in AI video tools?","acceptedAnswer":{"@type":"Answer","text":"Yes. Most premium AI video platforms including AdMaker AI and Arcads allow voice cloning from a 30-60 second sample. This adds authenticity while maintaining the speed and cost benefits of AI avatar generation."}},{"@type":"Question","name":"What's the difference between Arcads and Creatify?","acceptedAnswer":{"@type":"Answer","text":"Arcads focuses on premium, highly realistic avatars for brand campaigns, starting at $110/month. Creatify specializes in URL-to-video conversion for e-commerce product listings at approximately $59/month with credit-based limits."}},{"@type":"Question","name":"How many video variations should I test per campaign?","acceptedAnswer":{"@type":"Answer","text":"Performance marketers typically test 15-30 variations per campaign, changing hooks, avatars, backgrounds, and CTAs. This is why unlimited generation tools like AdMaker AI ($39/mo) provide better economics than per-video pricing models."}},{"@type":"Question","name":"Do AI avatars work for B2B marketing?","acceptedAnswer":{"@type":"Answer","text":"Absolutely. B2B buyers consume content the same way as consumers. AI avatars work exceptionally well for explainer videos, product demos, and thought leadership content, provided they're professionally scripted and match your brand tone."}},{"@type":"Question","name":"What video length performs best for AI UGC ads?","acceptedAnswer":{"@type":"Answer","text":"15-30 seconds is optimal for paid social platforms. The first 3 seconds are critical—our tests show that ads with pattern-interrupt hooks in the opening frame achieve 67% higher view-through rates than gradual builds."}}]}};
 
     return (
         <>
-            <Head>
-                <title>Best AI Video Marketing Tools to Maximize ROI in 2026 | AdMaker AI</title>
-                <meta name="description" content="Discover the best AI video marketing tools like AdMaker AI and Arcads. Compare pricing, features, and learn how to create high-converting UGC ads affordably." />
-                <link rel="canonical" href="https://admakerai.app/blog/arcadsai-pricing" />
-                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/arcadsai-pricing" />
-                <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/meilleurs-outils-video-marketing-ia-maximiser-roi-2026" />
-                <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/mejores-herramientas-video-marketing-ia-maximizar-roi-2026" />
-                <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/melhores-ferramentas-ia-video-marketing-2026" />
-                <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/beste-ki-video-marketing-tools-maximaler-roi-2026" />
-                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/arcadsai-pricing" />
-                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-            </Head >
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             
             <Navbar lang="en" />
             
@@ -157,13 +136,7 @@ export default function BlogPost() {
             </div>
 
     {/* Sticky Mobile CTA */ }
-    <a
-        href={landingPageUrl}
-        className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
-                aria-label="Create your AI Ads now"
-            >
-                Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
-            </a>
+    <StickyCta locale={locale} />
         </>
     );
 }

@@ -1,61 +1,28 @@
-'use client';
 
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import Navbar from '@/components/Navbar';
 import SimilarArticles from '@/components/SimilarArticles';
 import styles from '../compare-pricing-ugc-video-production-tools/Article.module.css';
 import Image from 'next/image';
+import StickyCta from '@/components/StickyCta';
 
-function getLandingPageUrl(locale: string = 'en'): string {
-    if (locale === 'en') return '/';
-    return `/${locale}`;
-}
+export const metadata = {
+    title: `How to Use Promotion Script Army for Video Ads in 2026 | AdMaker AI`,
+    description: `After testing promotion script army framework across 340 video ads with $16K spend, I reveal the complete system. Real conversion data included.`,
+    alternates: {
+    }
+};
 
 export default function PromotionScriptArmyArticle() {
     const locale = 'en';
-    const landingPageUrl = getLandingPageUrl(locale);
+        
+
+
+            
     
-
-
-            const [showStickyCta, setShowStickyCta] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowStickyCta(window.scrollY > 300);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
     return (
         <>
-            <Head>
-                <title>How to Use Promotion Script Army for Video Ads in 2026 | AdMaker AI</title>
-                <meta name="description" content="After testing promotion script army framework across 340 video ads with $16K spend, I reveal the complete system. Real conversion data included." />
-
-                <link rel="canonical" href="https://admakerai.app/blog/promotion-script-army" />
-
-                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/promotion-script-army" />
-                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/promotion-script-army" />
-
-                <meta property="og:type" content="article" />
-                <meta property="og:title" content="How to Use Promotion Script Army for Video Ads in 2026" />
-                <meta property="og:description" content="After testing promotion script army framework across 340 video ads with $16K spend, I reveal the complete system. Real conversion data included." />
-                <meta property="og:image" content="https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=800&h=500&fit=crop" />
-                <meta property="og:url" content="https://admakerai.app/blog/promotion-script-army" />
-                <meta property="og:locale" content="en_US" />
-                <meta property="og:site_name" content="AdMaker AI" />
-                <meta property="article:published_time" content="2026-01-28T00:00:00Z" />
-
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="How to Use Promotion Script Army for Video Ads in 2026" />
-                <meta name="twitter:description" content="After testing promotion script army framework across 340 video ads with $16K spend, I reveal the complete system. Real conversion data included." />
-                <meta name="twitter:image" content="https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=800&h=500&fit=crop" />
-
-                <script type="application/ld+json">
+            <script type="application/ld+json">
                     {JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "Article",
@@ -75,7 +42,6 @@ export default function PromotionScriptArmyArticle() {
                         "image": "https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=800&h=500&fit=crop"
                     })}
                 </script>
-            </Head>
             <Navbar lang="en" />
             <div className={styles.pageContainer}>
                 <div className={styles.contentWrapper}>
@@ -714,14 +680,7 @@ Our [product] delivers [benefit] through [mechanism].
                 
             </div>
 
-            {/* Sticky Mobile CTA */}
-            <a
-                href={landingPageUrl}
-                className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
-                aria-label="Create your AI Ads now"
-            >
-                Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
-            </a>
+            <StickyCta locale={locale} />
         </>
     );
 }

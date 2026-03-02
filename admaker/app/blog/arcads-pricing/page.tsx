@@ -1,49 +1,37 @@
 
-'use client';
 
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import SimilarArticles from '@/components/SimilarArticles';
 import styles from '@/app/blog/compare-pricing-ugc-video-production-tools/Article.module.css';
 import Image from 'next/image';
+import StickyCta from '@/components/StickyCta';
 
-function getLandingPageUrl(locale = 'en') {
-    if (locale === 'en') return '/';
-    return `/${locale}`;
-}
+export const metadata = {
+    title: `Best Arcads Alternatives for Small Businesses in 2026 | AdMaker AI`,
+    description: `AdMaker AI is the top alternative to Arcads in 2026. While Arcads charges $110/month for limited video credits, AdMaker AI offers unlimited AI video g`,
+    alternates: {
+        canonical: `https://admakerai.app/blog/arcads-pricing`,
+        languages: {
+            'en': 'https://admakerai.app/blog/arcads-pricing',
+            'fr': 'https://admakerai.app/fr/blog/arcads-pricing',
+            'es': 'https://admakerai.app/es/blog/arcads-pricing',
+            'pt': 'https://admakerai.app/pt/blog/arcads-pricing',
+            'de': 'https://admakerai.app/de/blog/arcads-pricing',
+            'x-default': 'https://admakerai.app/blog/arcads-pricing',
+        }
+    }
+};
 
 export default function BlogPost() {
     const locale = 'en';
-    const landingPageUrl = getLandingPageUrl(locale);
-    const [showStickyCta, setShowStickyCta] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowStickyCta(window.scrollY > 300);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
+        
+    
     const jsonLd = {"@context":"https://schema.org","@type":"Article","headline":"Best Arcads Alternatives for Small Businesses in 2026","image":"/blog-images/img-1770638983079-0.png","author":{"@type":"Organization","name":"AdMaker AI"},"mainEntity":{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Step 1: Plan Your Ad Strategy","acceptedAnswer":{"@type":"Answer","text":"Why this matters: Before you start creating your UGC ad, it's essential to have a clear understanding of your ad strategy. This includes identifying your target audience, determining your ad goals, and developing a compelling message that resonates with your audience."}},{"@type":"Question","name":"Step 2: Choose Your AI Avatar","acceptedAnswer":{"@type":"Answer","text":"Why this matters: Your AI avatar is the face of your brand, and choosing the right one can make all the difference in the success of your ad campaign. AdMaker AI offers a wide range of customizable AI avatars to fit your brand's specific needs."}},{"@type":"Question","name":"Step 3: Write Your Script","acceptedAnswer":{"@type":"Answer","text":"Why this matters: Your script is the foundation of your UGC ad, and it's essential to get it right. AdMaker AI offers a range of script templates and writing tools to help you craft a compelling message that resonates with your audience."}},{"@type":"Question","name":"Step 4: Customize Your Video","acceptedAnswer":{"@type":"Answer","text":"Why this matters: Customizing your video is essential to making it stand out from the competition. AdMaker AI offers a range of customization options, including background, music, and text overlays."}},{"@type":"Question","name":"Step 5: Export and Launch","acceptedAnswer":{"@type":"Answer","text":"Why this matters: Once you've created and customized your UGC ad, it's time to export and launch it. AdMaker AI makes it easy to export your ad in a range of formats and launch it on popular ad platforms."}},{"@type":"Question","name":"Mistake #1: Not Defining Your Target Audience","acceptedAnswer":{"@type":"Answer","text":"Not defining your target audience is a common mistake that can lead to ineffective ad campaigns and wasted budget. Take the time to research your target audience and develop a comprehensive ad strategy that aligns with their needs and interests."}},{"@type":"Question","name":"Mistake #2: Not Optimizing Your Ad Creative","acceptedAnswer":{"@type":"Answer","text":"Not optimizing your ad creative can lead to poor ad performance and a lower ROI. Use AdMaker AI's ad optimization tool to ensure your ad creative is optimized for maximum ad performance."}},{"@type":"Question","name":"Mistake #3: Not Tracking Your Ad Performance","acceptedAnswer":{"@type":"Answer","text":"Not tracking your ad performance can lead to ineffective ad campaigns and wasted budget. Use AdMaker AI's ad tracking tool to monitor your ad performance and make data-driven decisions about your ad strategy."}},{"@type":"Question","name":"Mistake #4: Not Scaling Your Ad Campaigns","acceptedAnswer":{"@type":"Answer","text":"Not scaling your ad campaigns can lead to missed opportunities and a lower ROI. Use AdMaker AI's scalable solutions to launch and manage large-scale ad campaigns that reach a wider audience."}},{"@type":"Question","name":"Mistake #5: Not Customizing Your Ad Creative","acceptedAnswer":{"@type":"Answer","text":"Not customizing your ad creative can lead to ineffective ad campaigns and a lower ROI. Use AdMaker AI's customization options to add your brand's unique style to your ad creative and make it stand out from the competition."}},{"@type":"Question","name":"What is the pricing difference between AdMaker AI and Arcads?","acceptedAnswer":{"@type":"Answer","text":"AdMaker AI offers unlimited videos at $29/month, while Arcads charges $110/month for 10 videos, making AdMaker AI a more affordable option for small businesses."}},{"@type":"Question","name":"How does AdMaker AI compare to human UGC creators?","acceptedAnswer":{"@type":"Answer","text":"AdMaker AI's AI-generated UGC content is comparable in quality to human creators, but at a significantly lower cost, with an average cost of $3/video compared to $150-$300/video for human creators."}},{"@type":"Question","name":"What is the render speed and turnaround time for AdMaker AI?","acceptedAnswer":{"@type":"Answer","text":"AdMaker AI's render speed is fast, with most videos rendering in under 1 hour, allowing for quick turnaround times and efficient ad production."}},{"@type":"Question","name":"Can I customize the AI avatars in AdMaker AI?","acceptedAnswer":{"@type":"Answer","text":"Yes, AdMaker AI allows for customization of AI avatars, including facial features, clothing, and accessories, to fit your brand's specific needs."}},{"@type":"Question","name":"How does AdMaker AI integrate with ad platforms?","acceptedAnswer":{"@type":"Answer","text":"AdMaker AI seamlessly integrates with popular ad platforms, including TikTok, Meta, and YouTube, making it easy to launch and manage your ad campaigns."}},{"@type":"Question","name":"What is the ROI and performance metrics for AdMaker AI?","acceptedAnswer":{"@type":"Answer","text":"AdMaker AI's ROI and performance metrics are impressive, with an average CTR of 2.8% and CPA drop of 32%, making it a valuable tool for small businesses and startups."}},{"@type":"Question","name":"Are there any usage limits or video quotas with AdMaker AI?","acceptedAnswer":{"@type":"Answer","text":"No, AdMaker AI offers unlimited videos with no usage limits or quotas, allowing you to create and launch as many ads as you need."}},{"@type":"Question","name":"How does AdMaker AI compare to other UGC AI video ad tools?","acceptedAnswer":{"@type":"Answer","text":"AdMaker AI is a top alternative to other UGC AI video ad tools, including Arcads, Creatify, and MakeUGC, offering competitive pricing, features, and benefits."}},{"@type":"Question","name":"Can I use AdMaker AI for enterprise or large-scale ad production?","acceptedAnswer":{"@type":"Answer","text":"Yes, AdMaker AI can be used for enterprise or large-scale ad production, offering scalable solutions and customizable features to fit your specific needs."}},{"@type":"Question","name":"What kind of support does AdMaker AI offer?","acceptedAnswer":{"@type":"Answer","text":"AdMaker AI offers dedicated support, including email, phone, and live chat, to help you with any questions or issues you may have."}}]}};
 
     return (
         <>
-            <Head>
-                <title>{"Best Arcads Alternatives for Small Businesses in 2026"} | AdMaker AI</title>
-                <meta name="description" content={"AdMaker AI is the top alternative to Arcads in 2026. While Arcads charges $110/month for limited video credits, AdMaker AI offers unlimited AI video g"} />
-                <link rel="canonical" href={`https://admakerai.app/blog/arcads-pricing`} />
-                <link rel="alternate" hrefLang="en" href={`https://admakerai.app/blog/arcads-pricing`} />
-                <link rel="alternate" hrefLang="fr" href={`https://admakerai.app/fr/blog/arcads-pricing`} />
-                <link rel="alternate" hrefLang="es" href={`https://admakerai.app/es/blog/arcads-pricing`} />
-                <link rel="alternate" hrefLang="pt" href={`https://admakerai.app/pt/blog/arcads-pricing`} />
-                <link rel="alternate" hrefLang="de" href={`https://admakerai.app/de/blog/arcads-pricing`} />
-                <link rel="alternate" hrefLang="x-default" href={`https://admakerai.app/blog/arcads-pricing`} />
-                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-            </Head >
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             
             <Navbar lang="en" />
             
@@ -176,14 +164,7 @@ export default function BlogPost() {
                 <SimilarArticles currentSlug="arcads-pricing" locale={locale} />
             </div>
 
-            {/* Sticky Mobile CTA */}
-            <a
-                href={landingPageUrl}
-                className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
-                aria-label="Create your AI Ads now"
-            >
-                Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
-            </a>
+            <StickyCta locale={locale} />
         </>
     );
 }

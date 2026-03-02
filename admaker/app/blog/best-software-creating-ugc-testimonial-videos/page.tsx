@@ -1,66 +1,29 @@
-'use client';
 
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import Navbar from '@/components/Navbar';
 import SimilarArticles from '@/components/SimilarArticles';
 import styles from './Article.module.css';
 import Image from 'next/image';
+import StickyCta from '@/components/StickyCta';
 
 // Helper function to get the landing page URL based on locale
-function getLandingPageUrl(locale: string = 'en'): string {
-    if (locale === 'en') return '/';
-    return `/${locale}`;
-}
+export const metadata = {
+    title: `Best Software for Creating UGC Testimonial Videos (2025 Guide) | AdMaker AI`,
+    description: `Discover the best software for creating UGC testimonial videos. Compare features, pricing, and results. Generate authentic brand testimonials in seconds.`,
+    alternates: {
+    }
+};
 
 export default function TopAIPlatformsUGCArticle() {
     const locale = 'en'; // Current article is in English
-    const landingPageUrl = getLandingPageUrl(locale);
+        
+
+
+            
     
-
-
-            const [showStickyCta, setShowStickyCta] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowStickyCta(window.scrollY > 300);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
     return (
         <>
-            <Head>
-                {/* Primary Meta Tags */}
-                <title>Best Software for Creating UGC Testimonial Videos (2025 Guide) | AdMaker AI</title>
-                <meta name="description" content="Discover the best software for creating UGC testimonial videos. Compare features, pricing, and results. Generate authentic brand testimonials in seconds." />
-                <meta name="keywords" content="UGC testimonial software, video testimonial tools, AI video generator, customer testimonials, authentic brand videos" />
-
-                {/* Canonical URL */}
-                <link rel="canonical" href="https://admakerai.app/blog/best-software-creating-ugc-testimonial-videos" />
-
-                {/* Hreflang Tags */}
-                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/best-software-creating-ugc-testimonial-videos" />
-                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/best-software-creating-ugc-testimonial-videos" />
-
-                {/* Open Graph / Facebook */}
-                <meta property="og:type" content="article" />
-                <meta property="og:title" content="Best Software for Creating UGC Testimonial Videos (2025 Guide)" />
-                <meta property="og:description" content="Discover the best software for creating UGC testimonial videos. Compare features, pricing, and results." />
-                <meta property="og:image" content="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1280&h=720&fit=crop" />
-                <meta property="og:url" content="https://admakerai.app/blog/best-software-creating-ugc-testimonial-videos" />
-                <meta property="og:locale" content="en_US" />
-                <meta property="og:site_name" content="AdMaker AI" />
-
-                {/* Twitter Card */}
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Best Software for Creating UGC Testimonial Videos (2025 Guide)" />
-                <meta name="twitter:description" content="Discover the best software for creating UGC testimonial videos. Compare features, pricing, and results." />
-                <meta name="twitter:image" content="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1280&h=720&fit=crop" />
-            </Head>
+            
             <Navbar lang="en" />
             <div className={styles.pageContainer}>
                 <div className={styles.contentWrapper}>
@@ -98,13 +61,13 @@ export default function TopAIPlatformsUGCArticle() {
                         <section id="what-are" className={styles.section}>
                             <h2>What Are the Top AI Platforms for Creating UGC Brand Videos?</h2>
 
-                            <p>Need authentic user-generated content for your brand without hiring creators? Want videos that look like real customers instead of polished ads? The <strong>top <a href={landingPageUrl}>AI platforms for creating UGC brand videos</a></strong> generate authentic-looking content in minutesÔÇöand 2025 technology creates videos that even marketing experts struggle to identify as AI-generated.</p>
+                            <p>Need authentic user-generated content for your brand without hiring creators? Want videos that look like real customers instead of polished ads? The <strong>top <a href="#">AI platforms for creating UGC brand videos</a></strong> generate authentic-looking content in minutesÔÇöand 2025 technology creates videos that even marketing experts struggle to identify as AI-generated.</p>
 
                             <p>Traditional UGC campaigns require recruiting creators, managing submissions, coordinating rights, and editing raw footage. Average cost per finished UGC video: $150-500. Timeline: 2-4 weeks. The <strong>top AI video generators</strong> deliver comparable authenticity at $0.10-2.00 per video, in under 60 seconds.</p>
 
-                            <p>The <strong>top ai platforms for creating ugc brand videos</strong> are <a href={landingPageUrl}>AI-powered tools</a> that generate user-generated content style videos specifically optimized for brand marketing. These platforms use AI avatars that look like real customers, natural speech patterns, authentic backgrounds, and casual filming styles to create videos indistinguishable from actual user reviews, testimonials, and product demonstrations.</p>
+                            <p>The <strong>top ai platforms for creating ugc brand videos</strong> are <a href="#">AI-powered tools</a> that generate user-generated content style videos specifically optimized for brand marketing. These platforms use AI avatars that look like real customers, natural speech patterns, authentic backgrounds, and casual filming styles to create videos indistinguishable from actual user reviews, testimonials, and product demonstrations.</p>
 
-                            <p>I spent four months testing 22 different AI video platforms, generating over 500 UGC-style brand videos across beauty, fitness, tech, food, and fashion categories. I ran controlled A/B tests with actual paid ad campaigns, tracking CTR, engagement, and conversion rates. Some platforms produced obviously AI content that performed 40% worse than real UGC. OthersÔÇöparticularly <a href={landingPageUrl}>AdMaker AI</a>ÔÇögenerated videos that matched or exceeded real UGC performance.</p>
+                            <p>I spent four months testing 22 different AI video platforms, generating over 500 UGC-style brand videos across beauty, fitness, tech, food, and fashion categories. I ran controlled A/B tests with actual paid ad campaigns, tracking CTR, engagement, and conversion rates. Some platforms produced obviously AI content that performed 40% worse than real UGC. OthersÔÇöparticularly <a href="#">AdMaker AI</a>ÔÇögenerated videos that matched or exceeded real UGC performance.</p>
 
                             <div className={styles.imageWrapper}>
                                 <Image
@@ -128,7 +91,7 @@ export default function TopAIPlatformsUGCArticle() {
                                 <li><strong>Casual filming style:</strong> Slight camera movement, natural lighting</li>
                             </ul>
 
-                            <p><strong>Testing method:</strong> Show videos to 20 people unfamiliar with AI. If more than 3 identify it as AI-generated, the platform fails the authenticity test. <a href={landingPageUrl}>Top platforms</a> passed with 18/20 believing videos were real UGC. Competitors averaged 11/20.</p>
+                            <p><strong>Testing method:</strong> Show videos to 20 people unfamiliar with AI. If more than 3 identify it as AI-generated, the platform fails the authenticity test. <a href="#">Top platforms</a> passed with 18/20 believing videos were real UGC. Competitors averaged 11/20.</p>
 
                             <div className={styles.imageWrapper}>
                                 <Image
@@ -140,7 +103,7 @@ export default function TopAIPlatformsUGCArticle() {
                             </div>
 
                             <h3>Step 2: Test Generation Speed</h3>
-                            <p>Speed directly impacts campaign agility. I tested each <a href={landingPageUrl}>AI video platform</a> with identical 30-second scripts:</p>
+                            <p>Speed directly impacts campaign agility. I tested each <a href="#">AI video platform</a> with identical 30-second scripts:</p>
 
                             <div className={styles.tableWrapper}>
                                 <table className={styles.comparisonTable}>
@@ -176,7 +139,7 @@ export default function TopAIPlatformsUGCArticle() {
                                 </table>
                             </div>
 
-                            <p><strong>Why speed matters:</strong> Marketing teams need to test 5-10 variations per campaign. At 45 seconds per video, <a href={landingPageUrl}>AI platforms</a> generate 10 variations in 7.5 minutes. Competitors require 30-70 minutes for the same output.</p>
+                            <p><strong>Why speed matters:</strong> Marketing teams need to test 5-10 variations per campaign. At 45 seconds per video, <a href="#">AI platforms</a> generate 10 variations in 7.5 minutes. Competitors require 30-70 minutes for the same output.</p>
 
                             <h3>Step 3: Analyze Cost Structure</h3>
                             <p><strong>Hidden costs to watch for:</strong></p>
@@ -221,7 +184,7 @@ export default function TopAIPlatformsUGCArticle() {
 
                             <p><strong>Best for:</strong> E-commerce brands, DTC companies, marketing agencies running high-volume campaigns</p>
 
-                            <p><strong>Real results:</strong> Beauty brand tested <a href={landingPageUrl}>AI-generated UGC videos</a> vs real creator content. AI videos: 3.2% CTR, $1.80 CPA. Real UGC: 3.4% CTR, $1.65 CPA. Performance difference: 6% (negligible at 95% cost savings).</p>
+                            <p><strong>Real results:</strong> Beauty brand tested <a href="#">AI-generated UGC videos</a> vs real creator content. AI videos: 3.2% CTR, $1.80 CPA. Real UGC: 3.4% CTR, $1.65 CPA. Performance difference: 6% (negligible at 95% cost savings).</p>
 
                             <div className={styles.imageWrapper}>
                                 <Image
@@ -305,7 +268,7 @@ export default function TopAIPlatformsUGCArticle() {
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><a href={landingPageUrl}><strong>AdMaker AI</strong></a></td>
+                                            <td><a href="#"><strong>AdMaker AI</strong></a></td>
                                             <td>Ô¡ÉÔ¡ÉÔ¡ÉÔ¡ÉÔ¡É</td>
                                             <td>45-60s</td>
                                             <td>$0.98</td>
@@ -353,7 +316,7 @@ export default function TopAIPlatformsUGCArticle() {
                             <h2>Best Ways to Use AI Platforms for UGC Brand Videos</h2>
 
                             <h3>1. Product Launch Campaigns</h3>
-                            <p><a href={landingPageUrl}>Generate 20-30 variations</a> featuring different demographics, use cases, and messaging angles. Test simultaneously to identify winning creative before scaling ad spend.</p>
+                            <p><a href="#">Generate 20-30 variations</a> featuring different demographics, use cases, and messaging angles. Test simultaneously to identify winning creative before scaling ad spend.</p>
 
                             <p><strong>Case study:</strong> Skincare brand launching new serum. Created 25 UGC-style videos with AI tools in 30 minutes. Tested all variations with $10/day budget. Top 3 performers scaled to $500/day, generating $47,000 revenue in first week. Total creative cost: $49 (one month subscription).</p>
 
@@ -400,7 +363,7 @@ export default function TopAIPlatformsUGCArticle() {
                             </div>
 
                             <h3>5. Influencer-Style Product Reviews</h3>
-                            <p>Create <a href={landingPageUrl}>authentic-looking product reviews</a> for platforms where traditional ads perform poorly (TikTok, Instagram Reels).</p>
+                            <p>Create <a href="#">authentic-looking product reviews</a> for platforms where traditional ads perform poorly (TikTok, Instagram Reels).</p>
 
                             <p><strong>Performance data:</strong> Tech accessories brand compared AI UGC reviews vs traditional product ads on TikTok. AI UGC: 4.7% engagement rate, $0.12 cost per engagement. Traditional ads: 1.2% engagement, $0.48 cost per engagement. 3.9x better performance.</p>
                         </section>
@@ -598,7 +561,7 @@ export default function TopAIPlatformsUGCArticle() {
 
                             <div className={styles.faqItem}>
                                 <h3 className={styles.faqQuestion}>What are the top AI platforms for creating UGC brand videos?</h3>
-                                <p className={styles.faqAnswer}>The top AI platforms for creating UGC brand videos are <a href={landingPageUrl}>AdMaker AI</a> (best overall), Synthesia (best for training), HeyGen (best for multilingual), D-ID (best for prototypes), and Creatify (best for social ads). AdMaker AI ranks highest for authentic UGC creation with 300+ avatars, 45-second generation, and $0.98/video cost.</p>
+                                <p className={styles.faqAnswer}>The top AI platforms for creating UGC brand videos are <a href="#">AdMaker AI</a> (best overall), Synthesia (best for training), HeyGen (best for multilingual), D-ID (best for prototypes), and Creatify (best for social ads). AdMaker AI ranks highest for authentic UGC creation with 300+ avatars, 45-second generation, and $0.98/video cost.</p>
                             </div>
 
                             <div className={styles.faqItem}>
@@ -623,7 +586,7 @@ export default function TopAIPlatformsUGCArticle() {
 
                             <div className={styles.faqItem}>
                                 <h3 className={styles.faqQuestion}>What's the best AI platform for e-commerce brands?</h3>
-                                <p className={styles.faqAnswer}><a href={landingPageUrl}>AdMaker AI</a> is best for e-commerce due to product-in-hand feature, outfit swapping, and authentic avatars. E-commerce brands tested showed 2.8x more conversions vs traditional product videos and 95% cost reduction vs hiring creators.</p>
+                                <p className={styles.faqAnswer}><a href="#">AdMaker AI</a> is best for e-commerce due to product-in-hand feature, outfit swapping, and authentic avatars. E-commerce brands tested showed 2.8x more conversions vs traditional product videos and 95% cost reduction vs hiring creators.</p>
                             </div>
 
                             <div className={styles.faqItem}>
@@ -675,7 +638,7 @@ export default function TopAIPlatformsUGCArticle() {
                         <section className={styles.section}>
                             <h2>Conclusion: Choose the Best AI Platform for Your Brand</h2>
 
-                            <p>After testing 22 platforms and generating 500+ UGC-style videos, <a href={landingPageUrl}>AdMaker AI</a> emerges as the top AI platform for creating UGC brand videos.</p>
+                            <p>After testing 22 platforms and generating 500+ UGC-style videos, <a href="#">AdMaker AI</a> emerges as the top AI platform for creating UGC brand videos.</p>
 
                             <p><strong>Why AdMaker AI excels:</strong></p>
                             <ul>
@@ -688,7 +651,7 @@ export default function TopAIPlatformsUGCArticle() {
                             </ul>
 
                             <p className={styles.highlight}>
-                                <a href={landingPageUrl} style={{ color: 'white', fontSize: '20px', fontWeight: '700' }}>Try AdMaker AI Free - Create Your First UGC Video ÔåÆ</a><br /><br />
+                                <a href="#" style={{ color: 'white', fontSize: '20px', fontWeight: '700' }}>Try AdMaker AI Free - Create Your First UGC Video ÔåÆ</a><br /><br />
                                 No credit card required ÔÇó 300+ avatars ÔÇó 45-second generation ÔÇó Unlimited testing
                             </p>
 
@@ -710,14 +673,7 @@ export default function TopAIPlatformsUGCArticle() {
                 <SimilarArticles currentSlug="best-software-creating-ugc-testimonial-videos" locale={locale} />
             </div>
 
-                {/* Sticky Mobile CTA */}
-                <a
-                    href={landingPageUrl}
-                    className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
-                    aria-label="Create your AI Ads now"
-                >
-                    Create your AI Ads now <span className={styles.emojiPointer}>­ƒæë</span>
-                </a>
+                <StickyCta locale={locale} />
             
         </>
     );

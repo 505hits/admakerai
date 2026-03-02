@@ -1,62 +1,28 @@
-'use client';
 
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import Navbar from '@/components/Navbar';
 import SimilarArticles from '@/components/SimilarArticles';
 import styles from '../compare-pricing-ugc-video-production-tools/Article.module.css';
 import Image from 'next/image';
+import StickyCta from '@/components/StickyCta';
 
-function getLandingPageUrl(locale: string = 'en'): string {
-    if (locale === 'en') return '/';
-    return `/${locale}`;
-}
+export const metadata = {
+    title: `UGC Video Ads AI Complete Creation Guide for 2026 | AdMaker AI`,
+    description: `After creating 500+ AI-generated UGC video ads with $45K spend, we reveal what actually works. Complete guide with real performance data and tested workflows.`,
+    alternates: {
+    }
+};
 
 export default function UGCVideoAdsGuide2026() {
     const locale = 'en';
-    const landingPageUrl = getLandingPageUrl(locale);
+        
+
+
+            
     
-
-
-            const [showStickyCta, setShowStickyCta] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowStickyCta(window.scrollY > 300);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
     return (
         <>
-            <Head>
-                <title>UGC Video Ads AI Complete Creation Guide for 2026 | AdMaker AI</title>
-                <meta name="description" content="After creating 500+ AI-generated UGC video ads with $45K spend, we reveal what actually works. Complete guide with real performance data and tested workflows." />
-                <meta name="keywords" content="AI UGC video ads, AI video creation, AdMaker AI, UGC ads 2026, AI ad performance" />
-
-                <link rel="canonical" href="https://admakerai.app/blog/ugc-video-ads-ai" />
-
-                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/ugc-video-ads-ai" />
-                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/ugc-video-ads-ai" />
-
-                <meta property="og:type" content="article" />
-                <meta property="og:title" content="UGC Video Ads AI Complete Creation Guide for 2026" />
-                <meta property="og:description" content="After creating 500+ AI-generated UGC video ads with $45K spend, we reveal what actually works. Complete guide with real performance data and tested workflows." />
-                <meta property="og:image" content="https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=1280&h=720&fit=crop" />
-                <meta property="og:url" content="https://admakerai.app/blog/ugc-video-ads-ai" />
-                <meta property="og:locale" content="en_US" />
-                <meta property="og:site_name" content="AdMaker AI" />
-                <meta property="article:published_time" content="2026-01-15T00:00:00Z" />
-
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="UGC Video Ads AI Complete Creation Guide for 2026" />
-                <meta name="twitter:description" content="Complete guide with real performance data and tested workflows for AI UGC video ads." />
-                <meta name="twitter:image" content="https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=1280&h=720&fit=crop" />
-
-                <script type="application/ld+json">
+            <script type="application/ld+json">
                     {JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "Article",
@@ -83,7 +49,6 @@ export default function UGCVideoAdsGuide2026() {
                         }
                     })}
                 </script>
-            </Head>
             <Navbar lang="en" />
             <div className={styles.pageContainer}>
                 <div className={styles.contentWrapper}>
@@ -106,11 +71,11 @@ export default function UGCVideoAdsGuide2026() {
 
                         <section className={styles.section}>
                             <h2>Quick Answer: Best AI Tools for UGC Video Ads</h2>
-                            <p><strong>After testing 8 AI platforms over 4 months with 500+ video ads and $45,000 ad spend, <a href={landingPageUrl} title="Try AdMaker AI for free">AdMaker AI</a> delivered the best balance of authenticity and performance</strong> with 3.8% average CTR versus 2.9% industry baseline. We measured real campaign results, not synthetic tests.</p>
+                            <p><strong>After testing 8 AI platforms over 4 months with 500+ video ads and $45,000 ad spend, <a href="#" title="Try AdMaker AI for free">AdMaker AI</a> delivered the best balance of authenticity and performance</strong> with 3.8% average CTR versus 2.9% industry baseline. We measured real campaign results, not synthetic tests.</p>
 
                             <p><strong>Top 3 AI Tools We Actually Use:</strong></p>
                             <ol>
-                                <li><strong><a href={landingPageUrl} title="Start creating with AdMaker AI">AdMaker AI</a></strong> - 3.8% CTR, $19 CPA, most authentic output (4.7/5 rating)</li>
+                                <li><strong><a href="#" title="Start creating with AdMaker AI">AdMaker AI</a></strong> - 3.8% CTR, $19 CPA, most authentic output (4.7/5 rating)</li>
                                 <li><strong>HeyGen</strong> - 3.4% CTR, $24 CPA, best avatar variety (4.5/5 rating)</li>
                                 <li><strong>Synthesia</strong> - 3.1% CTR, $28 CPA, most professional look (4.3/5 rating)</li>
                             </ol>
@@ -156,7 +121,7 @@ export default function UGCVideoAdsGuide2026() {
 
                             <p>The narrative that "audiences always prefer real people" proved false in our testing. AI-generated UGC ads achieved <strong>3.8% average CTR</strong> versus <strong>3.2% for traditional UGC creators</strong> across audiences aged 35-55.</p>
 
-                            <p>However, the 18-24 demographic showed reverse preference: <strong>4.1% CTR for real creators</strong> versus <strong>3.4% for AI</strong>. This age correlation is critical for platform and audience targeting decisions. Tools like <a href={landingPageUrl} title="Explore AdMaker AI features">AdMaker AI</a> allow specific demographic targeting to maximize these results.</p>
+                            <p>However, the 18-24 demographic showed reverse preference: <strong>4.1% CTR for real creators</strong> versus <strong>3.4% for AI</strong>. This age correlation is critical for platform and audience targeting decisions. Tools like <a href="#" title="Explore AdMaker AI features">AdMaker AI</a> allow specific demographic targeting to maximize these results.</p>
 
                             <p><strong>Hypothesis:</strong> Older audiences focus on message and value proposition over creator authenticity. Younger audiences, having grown up with influencer culture, detect and reject inauthentic content more readily.</p>
 
@@ -203,7 +168,7 @@ export default function UGCVideoAdsGuide2026() {
 
                             <p>Early AI voices (2023-2024) sounded robotic with unnatural cadence and emphasis. The neural voice models deployed in 2025 by leading platforms incorporate micro-variations in pitch, breath sounds, and emotional inflection indistinguishable from human speech in blind tests.</p>
 
-                            <p>We conducted blind testing with 200 participants comparing AI-generated voices from <a href={landingPageUrl}>AdMaker AI</a>, HeyGen, and Synthesia against real creator voiceovers. <strong>Accuracy in identifying AI voices: 51%</strong>—essentially random guessing. The authenticity gap closed.</p>
+                            <p>We conducted blind testing with 200 participants comparing AI-generated voices from <a href="#">AdMaker AI</a>, HeyGen, and Synthesia against real creator voiceovers. <strong>Accuracy in identifying AI voices: 51%</strong>—essentially random guessing. The authenticity gap closed.</p>
                         </section>
 
                         <section id="real-performance-data-ai-vs-traditional-ugc" className={styles.section}>
@@ -296,7 +261,7 @@ export default function UGCVideoAdsGuide2026() {
 
                         <section id="complete-ai-ugc-creation-workflow" className={styles.section}>
                             <h2>Complete AI UGC Creation Workflow</h2>
-                            <p>Our optimized workflow for creating high-converting AI UGC video ads, refined over 512 videos using the <a href={landingPageUrl}>AdMaker AI dashboard</a>.</p>
+                            <p>Our optimized workflow for creating high-converting AI UGC video ads, refined over 512 videos using the <a href="#">AdMaker AI dashboard</a>.</p>
 
                             <div className={styles.imageWrapper}>
                                 <Image
@@ -326,7 +291,7 @@ export default function UGCVideoAdsGuide2026() {
 
                         <section id="avatar-selection-strategy" className={styles.section}>
                             <h2>Avatar Selection Strategy</h2>
-                            <p><strong>I use <a href={landingPageUrl}>AdMaker AI</a> for 90% of our AI UGC videos</strong> based on speed, cost, and output quality. Here's my actual selection process:</p>
+                            <p><strong>I use <a href="#">AdMaker AI</a> for 90% of our AI UGC videos</strong> based on speed, cost, and output quality. Here's my actual selection process:</p>
 
                             <div className={styles.imageWrapper}>
                                 <Image
@@ -393,7 +358,7 @@ export default function UGCVideoAdsGuide2026() {
                             <h2>FAQ</h2>
 
                             <h3>1. Is AI-generated UGC effectively legal in 2026?</h3>
-                            <p>Yes, but disclosure regulations are tightening. Platforms like TikTok and Instagram now require labeling synthetic content. <a href={landingPageUrl}>AdMaker AI</a> and similar tools automatically include necessary metadata to comply with platform policies.</p>
+                            <p>Yes, but disclosure regulations are tightening. Platforms like TikTok and Instagram now require labeling synthetic content. <a href="#">AdMaker AI</a> and similar tools automatically include necessary metadata to comply with platform policies.</p>
 
                             <h3>2. How much does AdMaker AI cost compared to hiring creators?</h3>
                             <p><a href="/pricing">AdMaker AI starts at $29/month</a> for unlimited videos. Hiring a single UGC creator typically costs between $150 and $500 per video. For a campaign of 10 videos, you save approximately $2,000 to $4,500 using AI.</p>
@@ -402,7 +367,7 @@ export default function UGCVideoAdsGuide2026() {
                             <p>Most premium platforms now offer "Voice Verification" features allowing you to clone your own voice or upload audio files for the avatar to lip-sync, increasing personalization capabilities.</p>
 
                             <h3>4. How long does it really take to make one video?</h3>
-                            <p>Once you have a script, the actual generation time is typically 1-3 minutes. The entire workflow from concept to downloaded video can be completed in under 10 minutes with practice using the <a href={landingPageUrl}>AdMaker AI studio</a>.</p>
+                            <p>Once you have a script, the actual generation time is typically 1-3 minutes. The entire workflow from concept to downloaded video can be completed in under 10 minutes with practice using the <a href="#">AdMaker AI studio</a>.</p>
 
                             <h3>5. Do these videos work for Instagram Reels and TikTok?</h3>
                             <p>Absolutely. The vertical (9:16) format is standard on all major AI video platforms. Our data shows 9:16 AI UGC performs exceptionally well on both Reels and TikTok due to the native "social" look.</p>
@@ -411,7 +376,7 @@ export default function UGCVideoAdsGuide2026() {
                             <p>We've seen the highest ROI in e-commerce, specifically for Tech Accessories, Home Goods, and Digital Products. These categories often focus on feature demonstration where clear articulation—a strength of AI—is key.</p>
 
                             <h3>7. Can I A/B test different avatars for the same script?</h3>
-                            <p>Yes, this is one of the biggest advantages. You can duplicate a project in <a href={landingPageUrl}>AdMaker AI</a>, swap the avatar in one click, and generate a variation in minutes to test which face resonates best with your audience.</p>
+                            <p>Yes, this is one of the biggest advantages. You can duplicate a project in <a href="#">AdMaker AI</a>, swap the avatar in one click, and generate a variation in minutes to test which face resonates best with your audience.</p>
 
                             <h3>8. Does AdMaker AI support multiple languages?</h3>
                             <p>Yes, AdMaker AI supports over 29 languages with native accents, allowing you to scale your campaigns globally without hiring native speakers for every region.</p>
@@ -420,13 +385,13 @@ export default function UGCVideoAdsGuide2026() {
                             <p>Not if you follow advertising guidelines. The content quality is high enough to pass moderation. However, you must avoid making false claims, just like with any ad. The AI origin itself is not a flagging trigger on major ad platforms.</p>
 
                             <h3>10. Can I edit the videos after generation?</h3>
-                            <p>Yes, you can download the raw video and add your own overlays, music, or effects in CapCut, Premiere, or any editor. <a href={landingPageUrl}>AdMaker AI</a> also provides built-in editing tools for quick text and sticker additions.</p>
+                            <p>Yes, you can download the raw video and add your own overlays, music, or effects in CapCut, Premiere, or any editor. <a href="#">AdMaker AI</a> also provides built-in editing tools for quick text and sticker additions.</p>
 
                             <h3>11. How realistic are the emotions in AI videos?</h3>
                             <p>Newer models in 2026 have vastly improved emotional range. You can adjust the tone to be "Excited," "Serious," "Empathetic," or "Sales-y" to match your script's intent.</p>
 
                             <h3>12. Is there a free trial for AdMaker AI?</h3>
-                            <p>Yes, you can <a href={landingPageUrl} title="Try AdMaker AI for free">try AdMaker AI for free</a> to generate your first few video concepts and see the quality for yourself before committing to a subscription.</p>
+                            <p>Yes, you can <a href="#" title="Try AdMaker AI for free">try AdMaker AI for free</a> to generate your first few video concepts and see the quality for yourself before committing to a subscription.</p>
 
                             <h3>13. What is the best video length for AI UGC?</h3>
                             <p>Our data suggests that 15 to 30 seconds is the sweet spot. This is long enough to deliver a hook and a benefit stack, but short enough to maintain high retention rates suitable for TikTok and Reels.</p>
@@ -483,14 +448,7 @@ export default function UGCVideoAdsGuide2026() {
                 
             </div>
 
-            {/* Sticky Mobile CTA */}
-            <a
-                href={landingPageUrl}
-                className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
-                aria-label="Create your AI Ads now"
-            >
-                Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
-            </a>
+            <StickyCta locale={locale} />
         </>
     );
 }

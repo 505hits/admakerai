@@ -1,35 +1,24 @@
-'use client';
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
 import Navbar from '@/components/Navbar';
+import StickyCta from '@/components/StickyCta';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import SimilarArticles from '@/components/SimilarArticles';
 
+export const metadata = {
+    title: `Top AI Tools for UGC Video Content | AdMaker AI`,
+    description: `Discover the best AI tools for creating UGC-style video ads at scale.`,
+    alternates: {
+    }
+};
+
 export default function BlogPost() {
     const locale = 'en';
-    const [showStickyCta, setShowStickyCta] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => setShowStickyCta(window.scrollY > 300);
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
+    
+    
     const jsonLd = { "@context": "https://schema.org", "@type": "Article", "image": "/ blog - images / img-1770678994462-0.png ", "author": { "@type": "Organization", "name": "AdMaker AI" }, "mainEntity": { "@type": "FAQPage", "mainEntity": [{ "@type": "Question", "name": "What is the price of AdMaker AI?", "acceptedAnswer": { "@type": "Answer", "text": "$39/mo for unlimited video creation" } }, { "@type": "Question", "name": "What is the difference between public domain and edited AI-generated content?", "acceptedAnswer": { "@type": "Answer", "text": "Public domain AI-generated content is 100% created by AI and has no copyright, while edited AI-generated content has been modified by a human and can be copyrighted." } }, { "@type": "Question", "name": "Do I need to label AI-generated content on TikTok and Meta?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, since late 2025, TikTok and Meta require labeling AI-generated content to avoid shadowbans." } }, { "@type": "Question", "name": "Can I use AI-generated content for emotional, personal founder stories?", "acceptedAnswer": { "@type": "Answer", "text": "No, for highly emotional, personal founder stories, real human video is still best." } }, { "@type": "Question", "name": "What is the benefit of using AI-generated content?", "acceptedAnswer": { "@type": "Answer", "text": "AI-generated content allows for scale and performance, while human-generated content is better for deep connection." } }, { "@type": "Question", "name": "How does AdMaker AI compare to other AI tools?", "acceptedAnswer": { "@type": "Answer", "text": "AdMaker AI offers unlimited video creation at $39/mo, making it a more affordable option compared to other tools like Arcads and Creatify." } }, { "@type": "Question", "name": "What is the ROI of AI video ads?", "acceptedAnswer": { "@type": "Answer", "text": "AI video ads can offer a higher ROI compared to human-generated content, with a lower cost per acquisition and faster speed to market." } }, { "@type": "Question", "name": "What are the industry trends for 2026?", "acceptedAnswer": { "@type": "Answer", "text": "Hyper-personalization, interactive video ads, and the blurring line between real and AI creators are some of the industry trends for 2026." } }, { "@type": "Question", "name": "Can I use AI-generated content for all types of videos?", "acceptedAnswer": { "@type": "Answer", "text": "No, AI-generated content is best suited for UGC-style videos, while human-generated content is better for other types of videos." } }, { "@type": "Question", "name": "How do I get started with AdMaker AI?", "acceptedAnswer": { "@type": "Answer", "text": "Sign up for a free trial on the AdMaker AI website to get started with creating your own AI-generated UGC video content." } }] } };
 
     return (
         <>
-            <Head>
-                <title>Top AI Tools for UGC Video Content | AdMaker AI</title>
-                <meta name="description" content="Discover the best AI tools for creating UGC-style video ads at scale." />
-                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/top-ai-tools-ugc-video-content" />
-                <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/top-ai-tools-ugc-video-content" />
-                <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/top-ai-tools-ugc-video-content" />
-                <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/top-ai-tools-ugc-video-content" />
-                <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/top-ai-tools-ugc-video-content" />
-                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/top-ai-tools-ugc-video-content" />
-                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-            </Head>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
             <Navbar lang="en" />
 
@@ -97,9 +86,7 @@ export default function BlogPost() {
                 <SimilarArticles currentSlug="top-ai-tools-ugc-video-content" locale={locale} />
             </div>
 
-            <a href="https://admakerai.app" className={`fixed bottom-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#ff0844] to-[#ff5478] text-white px-8 py-4 rounded-full font-bold shadow-[0_10px_30px_rgba(255,8,68,0.4)] z-50 transition-all duration-300 whitespace-nowrap hover:scale-105 active:scale-95 ${showStickyCta ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-10'}`}>
-                Create your AI Ads now 👆
-            </a>
+            <StickyCta locale={locale} />
         </>
     );
 }

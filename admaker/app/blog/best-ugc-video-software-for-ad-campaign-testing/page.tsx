@@ -1,63 +1,28 @@
-'use client';
 
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import Navbar from '@/components/Navbar';
 import SimilarArticles from '@/components/SimilarArticles';
 import styles from '../compare-pricing-ugc-video-production-tools/Article.module.css';
 import Image from 'next/image';
+import StickyCta from '@/components/StickyCta';
 
-function getLandingPageUrl(locale: string = 'en'): string {
-    if (locale === 'en') return '/';
-    return `/${locale}`;
-}
+export const metadata = {
+    title: `Best UGC Video Software for Ad Campaign Testing in 2026 | AdMaker AI`,
+    description: `After running 1,200+ A/B tests with $82K spend, I reveal the best UGC video software for ad campaign testing. Real data from 6-month systematic testing program.`,
+    alternates: {
+    }
+};
 
 export default function BestUgcVideoSoftwareArticle() {
     const locale = 'en';
-    const landingPageUrl = getLandingPageUrl(locale);
+        
+
+
+            
     
-
-
-            const [showStickyCta, setShowStickyCta] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowStickyCta(window.scrollY > 300);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
     return (
         <>
-            <Head>
-                <title>Best UGC Video Software for Ad Campaign Testing in 2026 | AdMaker AI</title>
-                <meta name="description" content="After running 1,200+ A/B tests with $82K spend, I reveal the best UGC video software for ad campaign testing. Real data from 6-month systematic testing program." />
-                <meta name="keywords" content="UGC video software, ad campaign testing, A/B testing, video ads, AdMaker AI, creative optimization, ROAS improvement" />
-
-                <link rel="canonical" href="https://admakerai.app/blog/best-ugc-video-software-for-ad-campaign-testing" />
-
-                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/best-ugc-video-software-for-ad-campaign-testing" />
-                <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/meilleur-logiciel-video-ugc-test-campagne-publicitaire" />
-                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/best-ugc-video-software-for-ad-campaign-testing" />
-
-                <meta property="og:type" content="article" />
-                <meta property="og:title" content="Best UGC Video Software for Ad Campaign Testing in 2026" />
-                <meta property="og:description" content="After running 1,200+ A/B tests with $82K spend, I reveal the best UGC video software for ad campaign testing. Real data from 6-month systematic testing program." />
-                <meta property="og:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1280&h=720&fit=crop" />
-                <meta property="og:url" content="https://admakerai.app/blog/best-ugc-video-software-for-ad-campaign-testing" />
-                <meta property="og:locale" content="en_US" />
-                <meta property="og:site_name" content="AdMaker AI" />
-                <meta property="article:published_time" content="2026-01-15T00:00:00Z" />
-
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Best UGC Video Software for Ad Campaign Testing in 2026" />
-                <meta name="twitter:description" content="After running 1,200+ A/B tests to find the best UGC video software." />
-                <meta name="twitter:image" content="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1280&h=720&fit=crop" />
-
-                <script type="application/ld+json">
+            <script type="application/ld+json">
                     {JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "Article",
@@ -84,7 +49,6 @@ export default function BestUgcVideoSoftwareArticle() {
                         }
                     })}
                 </script>
-            </Head>
             <Navbar lang="en" />
             <div className={styles.pageContainer}>
                 <div className={styles.contentWrapper}>
@@ -107,11 +71,11 @@ export default function BestUgcVideoSoftwareArticle() {
 
                         <div className={styles.highlight} style={{ marginTop: '20px', marginBottom: '30px' }}>
                             <h2 style={{ fontSize: '1.2rem', marginBottom: '10px' }}>Quick Answer: Top Software for Ad Campaign Testing</h2>
-                            <p><strong>After running 1,247 A/B tests across 9 platforms over 6 months with $82,400 ad spend, <a href={landingPageUrl}>AdMaker AI</a> proved best for systematic testing</strong> with unlimited variations at $29/month enabling 60-80 monthly tests versus 5-8 with traditional platforms.</p>
+                            <p><strong>After running 1,247 A/B tests across 9 platforms over 6 months with $82,400 ad spend, <a href="#">AdMaker AI</a> proved best for systematic testing</strong> with unlimited variations at $29/month enabling 60-80 monthly tests versus 5-8 with traditional platforms.</p>
 
                             <p style={{ marginTop: '15px' }}><strong>Top 3 for Systematic Testing:</strong></p>
                             <ol style={{ marginBottom: '15px' }}>
-                                <li><strong><a href={landingPageUrl}>AdMaker AI</a></strong> - 45s per variation, unlimited testing, batch duplication (Best for volume)</li>
+                                <li><strong><a href="#">AdMaker AI</a></strong> - 45s per variation, unlimited testing, batch duplication (Best for volume)</li>
                                 <li><strong>Creatify</strong> - Built-in analytics, winner tracking, $39/mo (Best for data analysis)</li>
                                 <li><strong>Arcads</strong> - Template variations, organized testing, $49/mo (Best for consistency)</li>
                             </ol>
@@ -169,7 +133,7 @@ export default function BestUgcVideoSoftwareArticle() {
                             <p><strong>June Performance (After 6 Months Testing):</strong></p>
                             <ul>
                                 <li>Creating 180-220 variations monthly</li>
-                                <li>Using primarily <a href={landingPageUrl}>AdMaker AI</a> (87% of variations)</li>
+                                <li>Using primarily <a href="#">AdMaker AI</a> (87% of variations)</li>
                                 <li>Average production time: 1 minute 45 seconds per variation</li>
                                 <li>Average cost: $0.13 per variation (platform subscription divided by volume)</li>
                                 <li>Testing budget: $29 monthly (platform) + ad spend</li>
@@ -283,7 +247,7 @@ export default function BestUgcVideoSoftwareArticle() {
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><strong>1. <a href={landingPageUrl}>AdMaker AI</a></strong></td>
+                                        <td><strong>1. <a href="#">AdMaker AI</a></strong></td>
                                         <td>1,084</td>
                                         <td>1m 45s</td>
                                         <td>$29</td>
@@ -335,7 +299,7 @@ export default function BestUgcVideoSoftwareArticle() {
                             <p><strong>My Result:</strong> 1,084 variations created, 7.8x Average ROAS, ~450 hours saved vs traditional.</p>
 
                             <p><strong>My Rating:</strong> ⭐⭐⭐⭐⭐ (5/5 for testing)</p>
-                            <p><a href={landingPageUrl}>Start testing with AdMaker AI</a></p>
+                            <p><a href="#">Start testing with AdMaker AI</a></p>
 
                             <h3>2. Creatify - Best Analytics Dashboard</h3>
                             <p><strong>Usage:</strong> 89 variations for clients requiring detailed performance reporting</p>
@@ -368,7 +332,7 @@ export default function BestUgcVideoSoftwareArticle() {
 
                             <h3>Tuesday-Wednesday: Batch Creation (90 minutes total)</h3>
                             <p><strong>Step 1: Script Writing (30 mins)</strong> - Write 15-20 scripts in Google Doc using proven templates.</p>
-                            <p><strong>Step 2: Base Variation Creation (10 mins)</strong> - Create first complete video in <a href={landingPageUrl}>AdMaker AI</a>.</p>
+                            <p><strong>Step 2: Base Variation Creation (10 mins)</strong> - Create first complete video in <a href="#">AdMaker AI</a>.</p>
                             <p><strong>Step 3: Batch Duplication (40 mins)</strong> - Duplicate base variation, swap variable (script/avatar), repeat.</p>
                             <p><strong>Step 4: Campaign Upload (10 mins)</strong> - Upload to Ads Manager, set budgets.</p>
                             <p><strong>Total Time:</strong> 90 minutes for 15-20 variations.</p>
@@ -431,7 +395,7 @@ export default function BestUgcVideoSoftwareArticle() {
 
                             <h3>Primary Tools Stack</h3>
                             <ul>
-                                <li><strong>1. <a href={landingPageUrl}>AdMaker AI</a> (Video Creation):</strong> $29/month. Used for 87% of variations.</li>
+                                <li><strong>1. <a href="#">AdMaker AI</a> (Video Creation):</strong> $29/month. Used for 87% of variations.</li>
                                 <li><strong>2. Google Sheets (Testing Tracker):</strong> Free. Master test log with 1,247 rows.</li>
                                 <li><strong>3. Facebook Ads Manager:</strong> Native platform analytics are sufficient.</li>
                                 <li><strong>4. Google Docs (Script Writing):</strong> Free. Batch script writing.</li>
@@ -528,7 +492,7 @@ export default function BestUgcVideoSoftwareArticle() {
                             <p>For a brand spending $5,000-10,000 monthly, aim for 20-30 variations. For spend over $20,000, target 50-80 variations. Frequency beats perfection.</p>
 
                             <h3>Do I need a professional videographer?</h3>
-                            <p>No. 87% of my 1,247 tests were AI-generated or self-edited using tools like <a href={landingPageUrl}>AdMaker AI</a>. Professional videographers are great for "hero" brand assets, but too slow/expensive for daily performance testing.</p>
+                            <p>No. 87% of my 1,247 tests were AI-generated or self-edited using tools like <a href="#">AdMaker AI</a>. Professional videographers are great for "hero" brand assets, but too slow/expensive for daily performance testing.</p>
 
                             <h3>How long does it take to see results from systematic testing?</h3>
                             <p>Typically 4-6 weeks. Month 1 is about establishing baselines and finding your first "hook" wins. By Month 3, you should see significant ROAS improvements (doubling is common) as you stack learnings.</p>
@@ -554,7 +518,7 @@ export default function BestUgcVideoSoftwareArticle() {
                         <section className={styles.section}>
                             <h2>Conclusion</h2>
                             <p>Systematic high-volume testing is the single biggest lever for modern ad performance. It's not about being a creative genius; it's about being a diligent scientist.</p>
-                            <p>Transitioning from "guessing and hoping" to "testing and knowing" improved my ROAS by 212%. Tools like <a href={landingPageUrl}>AdMaker AI</a> remove the friction of creation, making this workflow accessible to anyone.</p>
+                            <p>Transitioning from "guessing and hoping" to "testing and knowing" improved my ROAS by 212%. Tools like <a href="#">AdMaker AI</a> remove the friction of creation, making this workflow accessible to anyone.</p>
                             <p><strong>Your next step:</strong> Stop trying to make one perfect video. Go make 10 imperfect ones, test them, and let the data tell you what's perfect.</p>
                         </section>
 
@@ -580,14 +544,7 @@ export default function BestUgcVideoSoftwareArticle() {
                 
             </div>
 
-            {/* Sticky Mobile CTA */}
-            <a
-                href={landingPageUrl}
-                className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
-                aria-label="Create your AI Ads now"
-            >
-                Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
-            </a>
+            <StickyCta locale={locale} />
         </>
     );
 }

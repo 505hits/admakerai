@@ -1,37 +1,26 @@
-'use client';
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
 import Navbar from '@/components/Navbar';
+import StickyCta from '@/components/StickyCta';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import SimilarArticles from '@/components/SimilarArticles';
 
+export const metadata = {
+    title: `undefined | AdMaker AI`,
+    description: `undefined`,
+    alternates: {
+    }
+};
+
 export default function BlogPost() {
     const locale = 'en';
-    const [showStickyCta, setShowStickyCta] = useState(false);
-    
+        
 
 
-            useEffect(() => {
-        const handleScroll = () => setShowStickyCta(window.scrollY > 300);
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
+            
     const jsonLd = {"@context":"https://schema.org","@type":"Article","image":"/ blog - images / img-1770680119378-0.png ","author":{"@type":"Organization","name":"AdMaker AI"},"mainEntity":{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the price of AdMaker AI?","acceptedAnswer":{"@type":"Answer","text":"$39/mo (Unlimited videos)"}},{"@type":"Question","name":"Do I own the copyright of AI-generated videos?","acceptedAnswer":{"@type":"Answer","text":"100% AI generation = Public Domain (No copyright). Human-structured/edited AI video (like AdMaker) = Copyrightable."}},{"@type":"Question","name":"Do I need to label AI-generated videos on TikTok and Meta?","acceptedAnswer":{"@type":"Answer","text":"Yes, since late 2025, TikTok and Meta require the 'AI-generated' label. Failure to use it results in shadowbans."}},{"@type":"Question","name":"Can I use AI tools for all types of video content?","acceptedAnswer":{"@type":"Answer","text":"No, for highly emotional, personal founder stories, real human video is still best. AI is for scale and performance, human is for deep connection."}},{"@type":"Question","name":"How does AdMaker AI compare to other tools?","acceptedAnswer":{"@type":"Answer","text":"AdMaker AI offers unlimited videos at $39/mo, making it the value champion for marketers who need to test multiple variations."}},{"@type":"Question","name":"What is the ROI of AI video ads?","acceptedAnswer":{"@type":"Answer","text":"AI video ads offer a lower Cost Per Acquisition (CPA) compared to human-made videos, and can launch trends in hours, not weeks."}},{"@type":"Question","name":"What are the industry trends for video marketing in 2026?","acceptedAnswer":{"@type":"Answer","text":"Hyper-personalization, interactive video ads, and the blurring line between real and AI creators are some of the trends to watch in 2026."}},{"@type":"Question","name":"Can I use AI tools for e-commerce lists?","acceptedAnswer":{"@type":"Answer","text":"Yes, tools like Creatify offer URL-to-video capabilities that can help e-commerce businesses create engaging video ads."}},{"@type":"Question","name":"Are AI-generated videos engaging?","acceptedAnswer":{"@type":"Answer","text":"Yes, our internal tests on 50 campaigns show that AI-generated videos can be just as engaging as human-made videos, if not more so."}},{"@type":"Question","name":"How do I get started with AdMaker AI?","acceptedAnswer":{"@type":"Answer","text":"Try AdMaker AI for free and start creating engaging video ads today!"}}]}};
 
     return (
       <>
-        <Head>
-          <title>undefined | AdMaker AI</title>
-          <meta name="description" content="undefined" />
-          <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/best-tool-facebook-video-ads" />
-          <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/best-tool-facebook-video-ads" />
-          <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/best-tool-facebook-video-ads" />
-          <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/best-tool-facebook-video-ads" />
-          <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/best-tool-facebook-video-ads" />
-          <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/best-tool-facebook-video-ads" />
-          <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-        </Head>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         
         <Navbar lang="en" />
         
@@ -127,9 +116,7 @@ export default function BlogPost() {
             </div>
         
         {/* Mobile Sticky CTA */}
-        <a href="https://admakerai.app" className={`fixed bottom-6 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#ff0844] to-[#ff5478] text-white px-8 py-4 rounded-full font-bold shadow-[0_10px_30px_rgba(255,8,68,0.4)] z-50 transition-all duration-300 whitespace-nowrap hover:scale-105 active:scale-95 ${showStickyCta ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-10'}`}>
-            Create your AI Ads now 👆
-        </a>
+        <StickyCta locale={locale} />
 
       </>
     );

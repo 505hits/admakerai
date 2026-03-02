@@ -1,51 +1,30 @@
-'use client';
 
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import SimilarArticles from '@/components/SimilarArticles';
 import styles from '@/app/blog/compare-pricing-ugc-video-production-tools/Article.module.css';
 import Image from 'next/image';
+import StickyCta from '@/components/StickyCta';
 
-function getLandingPageUrl(locale = 'en') {
-    if (locale === 'en') return '/';
-    return `/${locale}`;
-}
+export const metadata = {
+    title: `Best Arcads Alternatives for AI Video Ads in 2026 | AdMaker AI`,
+    description: `Compare top Arcads alternatives like AdMaker AI, Creatify, and MakeUGC. Discover which AI video tool delivers the best ROI for your ad campaigns.`,
+    alternates: {
+    }
+};
 
 export default function BlogPost() {
     const locale = 'en';
-    const landingPageUrl = getLandingPageUrl(locale);
+    
 
 
-
-    const [showStickyCta, setShowStickyCta] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowStickyCta(window.scrollY > 300);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
+    
+    
     const jsonLd = { "@context": "https://schema.org", "@type": "Article", "headline": "Best Arcads Alternatives for AI Video Ads in 2026", "image": "/blog-images/img-1770842617604-0.png", "author": { "@type": "Person", "name": "Alex", "jobTitle": "Head of Video Strategy", "url": "https://admakerai.app/blog" }, "publisher": { "@type": "Organization", "name": "AdMaker AI", "logo": { "@type": "ImageObject", "url": "https://admakerai.app/logo.png" } }, "mainEntity": { "@type": "FAQPage", "mainEntity": [{ "@type": "Question", "name": "What is the actual price of AdMaker AI compared to Arcads?", "acceptedAnswer": { "@type": "Answer", "text": "AdMaker AI costs $39/mo with unlimited video generation, while Arcads starts at approximately $110/mo with credit-based limits. For brands testing 15-30 variations monthly, AdMaker AI offers significantly better cost efficiency." } }, { "@type": "Question", "name": "Are AI-generated videos subject to copyright protection?", "acceptedAnswer": { "@type": "Answer", "text": "Purely AI-generated content falls into public domain with no copyright protection. However, AI videos that involve human creative direction, script writing, and editing (like those created with AdMaker AI's workflow) qualify for copyright as derivative works under current 2026 USPTO guidelines." } }, { "@type": "Question", "name": "Do I need to label AI-generated ads on TikTok and Meta?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, absolutely. Since late 2025, both TikTok and Meta require the 'AI-generated' or 'Altered media' label on synthetic content. Failure to comply results in shadowbans, reduced reach, and potential account restrictions. All major platforms now enforce this policy." } }, { "@type": "Question", "name": "Which Arcads alternative is best for e-commerce dropshippers?", "acceptedAnswer": { "@type": "Answer", "text": "AdMaker AI is optimal for dropshippers due to unlimited video generation at $39/mo, allowing rapid testing of product angles. Creatify is a close second for its URL-to-video feature that extracts product details automatically." } }, { "@type": "Question", "name": "Can AI video tools match the quality of human UGC creators?", "acceptedAnswer": { "@type": "Answer", "text": "For performance-driven direct response ads, AI tools now achieve 85-92% of human UGC effectiveness at 5-10% of the cost. However, for deeply emotional brand storytelling or founder narratives, authentic human creators still outperform by 15-20% in engagement metrics." } }, { "@type": "Question", "name": "How many video variations should I test for optimal ad performance?", "acceptedAnswer": { "@type": "Answer", "text": "Our internal analysis of 50+ campaigns shows brands testing 12-20 creative variations achieve 34% lower CPA than those testing 1-5 variations. The 'winner' often emerges after the 8th iteration, making unlimited tools like AdMaker AI strategically valuable." } }, { "@type": "Question", "name": "What's the learning curve for using AI video ad platforms?", "acceptedAnswer": { "@type": "Answer", "text": "Most platforms require 2-4 hours to master basics. AdMaker AI and Bandy AI offer the fastest onboarding (under 1 hour), while Arcads demands more time learning avatar selection and voice matching (3-5 hours for proficiency)." } }, { "@type": "Question", "name": "Do AI avatars work for B2B SaaS marketing?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, with caveats. AI avatars excel in explainer videos and feature demos. However, B2B trust-building content (case studies, founder stories) still benefits from real executives on camera. A hybrid approach yields best results." } }, { "@type": "Question", "name": "How do I avoid the 'uncanny valley' effect in AI videos?", "acceptedAnswer": { "@type": "Answer", "text": "Focus on mid-realism avatars rather than hyper-realistic ones. Use natural, conversational scripts avoiding robotic phrasing. Add subtle imperfections like occasional pauses. Tools like AdMaker AI include 'authenticity settings' to introduce human-like variability." } }, { "@type": "Question", "name": "Can I use AI video ads for retargeting campaigns?", "acceptedAnswer": { "@type": "Answer", "text": "Absolutely. AI-generated personalized video ads for retargeting show 40-55% higher conversion rates than static retargeting ads. The ability to rapidly produce variations addressing specific objections makes AI tools particularly effective for warm audiences." } }, { "@type": "Question", "name": "What resolution and format should AI videos be for social ads?", "acceptedAnswer": { "@type": "Answer", "text": "For 2026 standards: TikTok and Reels require 1080x1920 (9:16), Facebook Feed uses 1080x1080 (1:1), and YouTube Shorts prefers 1080x1920. All major AI platforms including AdMaker AI export in these optimized formats natively." } }, { "@type": "Question", "name": "Is there a free trial available for Arcads alternatives?", "acceptedAnswer": { "@type": "Answer", "text": "AdMaker AI offers a free trial with 3 video credits. Creatify provides a 14-day trial with limited exports. MakeUGC has no free tier. Arcads occasionally runs 7-day trials but typically requires immediate paid access." } }] } };
 
     return (
         <>
-            <Head>
-                <title>Best Arcads Alternatives for AI Video Ads in 2026 | AdMaker AI</title>
-                <meta name="description" content="Compare top Arcads alternatives like AdMaker AI, Creatify, and MakeUGC. Discover which AI video tool delivers the best ROI for your ad campaigns." />
-                <link rel="canonical" href="https://admakerai.app/blog/arcads-alternatives" />
-                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/arcads-alternatives" />
-                <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/arcads-alternatives" />
-                <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/arcads-alternatives" />
-                <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/arcads-alternatives" />
-                <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/arcads-alternatives" />
-                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/arcads-alternatives" />
-                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-            </Head>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
             <Navbar lang="en" />
 
@@ -160,14 +139,7 @@ export default function BlogPost() {
 
             </div>
 
-            {/* Sticky Mobile CTA */}
-            <a
-                href={landingPageUrl}
-                className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
-                aria-label="Create your AI Ads now"
-            >
-                Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
-            </a>
+            <StickyCta locale={locale} />
         </>
     );
 }

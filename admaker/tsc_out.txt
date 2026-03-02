@@ -1,0 +1,2 @@
+app/blog/best-mobile-apps-creating-ugc-videos-tiktok/page.tsx(22,49): error TS2304: Cannot find name 'useState'.
+app/blog/best-mobile-apps-creating-ugc-videos-tiktok/page.tsx(26,55): error TS2304: Cannot find name 'useState'.

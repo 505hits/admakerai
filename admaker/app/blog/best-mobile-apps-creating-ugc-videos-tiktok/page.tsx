@@ -1,7 +1,6 @@
-'use client';
 
-import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import StickyCta from '@/components/StickyCta';
 import Navbar from '../../../components/Navbar';
 import styles from '../compare-pricing-ugc-video-production-tools/Article.module.css';
 import BlogVideoSidebar from '../../../components/BlogVideoSidebar';
@@ -14,6 +13,11 @@ function getLandingPageUrl(locale: string = 'en'): string {
 
 const locale = 'en';
 
+export const metadata = {
+    alternates: {
+    }
+};
+
 export default function BestMobileAppsForTikTokUGC() {
     const [scrollProgress, setScrollProgress] = useState(0);
     
@@ -21,20 +25,7 @@ export default function BestMobileAppsForTikTokUGC() {
 
             const [showMobileCTA, setShowMobileCTA] = useState(false);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-            const scrollTop = window.scrollY;
-            const scrollPercentage = (scrollTop / (documentHeight - windowHeight)) * 100;
-            setScrollProgress(scrollPercentage);
-            setShowMobileCTA(scrollTop > 500);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
+    
     const scrollToSection = (id: string) => {
         const element = document.getElementById(id);
         if (element) {
@@ -922,14 +913,7 @@ export default function BestMobileAppsForTikTokUGC() {
                 <SimilarArticles currentSlug="best-mobile-apps-creating-ugc-videos-tiktok" locale={locale} />
             </div>
 
-                {/* Sticky Mobile CTA */}
-                <a
-                    href={getLandingPageUrl(locale)}
-                    className={`${styles.stickyCta} ${showMobileCTA ? styles.stickyCtaVisible : ''}`}
-                    aria-label="Create your AI Ads now"
-                >
-                    Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
-                </a>
+                <StickyCta locale={locale} />
         </>
     );
 }

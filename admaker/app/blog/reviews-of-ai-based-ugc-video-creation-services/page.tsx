@@ -1,49 +1,28 @@
-'use client';
 
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import SimilarArticles from '@/components/SimilarArticles';
 import styles from '@/app/blog/compare-pricing-ugc-video-production-tools/Article.module.css';
 import Image from 'next/image';
+import StickyCta from '@/components/StickyCta';
 
-function getLandingPageUrl(locale = 'en') {
-    if (locale === 'en') return '/';
-    return `/${locale}`;
-}
+export const metadata = {
+    title: `Best Reviews of AI-Based UGC Video Creation Services in 2026 | AdMaker AI`,
+    description: `After analyzing 920+ verified reviews of AI UGC video services, I reveal which platforms actually deliver. Real user performance data included.`,
+    alternates: {
+    }
+};
 
 export default function BlogPost() {
     const locale = 'en';
-    const landingPageUrl = getLandingPageUrl(locale);
-
-    const [showStickyCta, setShowStickyCta] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowStickyCta(window.scrollY > 300);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
+    
+    
+    
     const jsonLd = { "@context": "https://schema.org", "@type": "Article", "headline": "Best Reviews of AI-Based UGC Video Creation Services in 2026", "image": "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=1280&h=720&fit=crop", "author": { "@type": "Person", "name": "Alex", "jobTitle": "Head of Video Strategy", "url": "https://admakerai.app/blog" }, "publisher": { "@type": "Organization", "name": "AdMaker AI", "logo": { "@type": "ImageObject", "url": "https://admakerai.app/logo.png" } }, "mainEntity": { "@type": "FAQPage", "mainEntity": [{ "@type": "Question", "name": "What do users say about AI UGC video quality in 2026?", "acceptedAnswer": { "@type": "Answer", "text": "Users rate AI UGC video quality at 4.1/5 average satisfaction in 2026, with 76% stating AI quality is now good enough for professional use." } }, { "@type": "Question", "name": "Which AI UGC service received the highest user rating?", "acceptedAnswer": { "@type": "Answer", "text": "AdMaker AI received highest overall rating at 4.6/5 stars from 340 verified reviews for 1m 52s average creation speed, $29/month unlimited pricing, and 4.2% average CTR." } }, { "@type": "Question", "name": "Do AI UGC videos actually perform well in advertising campaigns?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, AI UGC videos perform 67-114% better than traditional content in advertising campaigns according to user-reported data, with 84% confirming AI videos match or exceed human creator performance." } }, { "@type": "Question", "name": "How much time do users save with AI UGC services?", "acceptedAnswer": { "@type": "Answer", "text": "Users report saving 6-12 hours weekly. Traditional video creation requires 45-120 minutes per video. AI workflow requires 2-8 minutes, an 83-94% time reduction." } }, { "@type": "Question", "name": "What are the biggest limitations of AI UGC services?", "acceptedAnswer": { "@type": "Answer", "text": "Top limitations include restricted avatar customization (68%), limited emotional range (61%), awkward hand gestures (54%), inability to handle complex scenes (47%), and voice emotion constraints (42%)." } }, { "@type": "Question", "name": "How do AI UGC services compare to hiring freelance creators?", "acceptedAnswer": { "@type": "Answer", "text": "AI costs $29-149/month unlimited versus freelancers $200-2000 per video (95-99% cost reduction). AI delivers videos in 2-8 minutes versus 3-7 days. 86% of reviewers state AI replaced 80-90% of freelancer usage." } }, { "@type": "Question", "name": "Can beginners use AI UGC services successfully?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, 91% of first-time users report creating professional video within first hour when using user-friendly platforms like AdMaker AI." } }, { "@type": "Question", "name": "How reliable and stable are AI UGC platforms according to users?", "acceptedAnswer": { "@type": "Answer", "text": "Users rate AI UGC platform reliability at 4.0/5 average. Established platforms rated 4.2-4.6/5 reliability. Uptime is rated most critical factor by 91% of users." } }] } };
 
     return (
         <>
-            <Head>
-                <title>Best Reviews of AI-Based UGC Video Creation Services in 2026 | AdMaker AI</title>
-                <meta name="description" content="After analyzing 920+ verified reviews of AI UGC video services, I reveal which platforms actually deliver. Real user performance data included." />
-                <link rel="canonical" href="https://admakerai.app/blog/reviews-of-ai-based-ugc-video-creation-services" />
-                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/reviews-of-ai-based-ugc-video-creation-services" />
-                <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/reviews-of-ai-based-ugc-video-creation-services" />
-                <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/reviews-of-ai-based-ugc-video-creation-services" />
-                <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/reviews-of-ai-based-ugc-video-creation-services" />
-                <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/reviews-of-ai-based-ugc-video-creation-services" />
-                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/reviews-of-ai-based-ugc-video-creation-services" />
-                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-            </Head>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
             <Navbar lang="en" />
 
@@ -432,14 +411,7 @@ export default function BlogPost() {
 
             </div>
 
-            {/* Sticky Mobile CTA */}
-            <a
-                href={landingPageUrl}
-                className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
-                aria-label="Create your AI Ads now"
-            >
-                Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
-            </a>
+            <StickyCta locale={locale} />
         </>
     );
 }

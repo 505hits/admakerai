@@ -1,80 +1,29 @@
-'use client';
 
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import Navbar from '@/components/Navbar';
 import SimilarArticles from '@/components/SimilarArticles';
 import styles from './Article.module.css';
 import Image from 'next/image';
+import StickyCta from '@/components/StickyCta';
 
 // Helper function to get the landing page URL based on locale
-function getLandingPageUrl(locale: string = 'en'): string {
-    if (locale === 'en') return '/';
-    return `/${locale}`;
-}
-
-
+export const metadata = {
+    title: `Best UGC Video Creation Service for Real Estate Marketing | AdMaker AI`,
+    description: `Discover the best UGC video creation service for real estate marketing. Compare top platforms, pricing, and features. Generate professional property videos in 45 seconds with AI.`,
+    alternates: {
+    }
+};
 
 export default function RealEstateUGCArticle() {
     const locale = 'en'; // Current article is in English
-    const landingPageUrl = getLandingPageUrl(locale);
+        
+
+
+            
     
-
-
-            const [showStickyCta, setShowStickyCta] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowStickyCta(window.scrollY > 300);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
     return (
         <>
-            <Head>
-                {/* Primary Meta Tags */}
-                <title>Best UGC Video Creation Service for Real Estate Marketing | AdMaker AI</title>
-                <meta name="description" content="Discover the best UGC video creation service for real estate marketing. Compare top platforms, pricing, and features. Generate professional property videos in 45 seconds with AI." />
-                <meta name="keywords" content="UGC video creation, real estate marketing, AI video generator, property videos, real estate UGC, video marketing service" />
-
-                {/* Canonical URL */}
-                <link rel="canonical" href="https://admakerai.app/blog/best-ugc-video-creation-service-for-real-estate-marketing" />
-
-                {/* Hreflang Tags */}
-                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/best-ugc-video-creation-service-for-real-estate-marketing" />
-                <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier" />
-                <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/mejor-servicio-creacion-video-ugc-marketing-inmobiliario" />
-                <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/melhor-servico-criacao-video-ugc-marketing-imobiliario" />
-                <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/bester-ugc-video-erstellungsservice-immobilienmarketing" />
-                <link rel="alternate" hrefLang="ko" href="https://admakerai.app/ko/blog/best-ugc-video-creation-service-real-estate-marketing" />
-                <link rel="alternate" hrefLang="ja" href="https://admakerai.app/ja/blog/best-ugc-video-creation-service-real-estate-marketing" />
-                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/best-ugc-video-creation-service-for-real-estate-marketing" />
-
-                {/* Open Graph / Facebook */}
-                <meta property="og:type" content="article" />
-                <meta property="og:title" content="Best UGC Video Creation Service for Real Estate Marketing" />
-                <meta property="og:description" content="Discover the best UGC video creation service for real estate marketing. Compare top platforms, pricing, and features. Generate professional property videos in 45 seconds with AI." />
-                <meta property="og:image" content="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/2.jpg" />
-                <meta property="og:url" content="https://admakerai.app/blog/best-ugc-video-creation-service-for-real-estate-marketing" />
-                <meta property="og:locale" content="en_US" />
-                <meta property="og:locale:alternate" content="fr_FR" />
-                <meta property="og:site_name" content="AdMaker AI" />
-                <meta property="article:published_time" content="2024-12-01T00:00:00Z" />
-                <meta property="article:modified_time" content="2024-12-29T00:00:00Z" />
-                <meta property="article:author" content="AdMaker AI" />
-
-                {/* Twitter Card */}
-                <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content="Best UGC Video Creation Service for Real Estate Marketing" />
-                <meta name="twitter:description" content="Discover the best UGC video creation service for real estate marketing. Compare top platforms, pricing, and features. Generate professional property videos in 45 seconds with AI." />
-                <meta name="twitter:image" content="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/2.jpg" />
-
-                {/* JSON-LD Structured Data */}
-                <script type="application/ld+json">
+            <script type="application/ld+json">
                     {JSON.stringify({
                         "@context": "https://schema.org",
                         "@type": "Article",
@@ -101,7 +50,6 @@ export default function RealEstateUGCArticle() {
                         }
                     })}
                 </script>
-            </Head>
             <Navbar lang="en" />
             <div className={styles.pageContainer}>
                 <div className={styles.contentWrapper}>
@@ -141,7 +89,7 @@ export default function RealEstateUGCArticle() {
 
                             <p>The <strong>best ugc video creation service for real estate marketing</strong> generates professional property videos in minutes using AI-powered platforms. These services create authentic-looking content for property listings, agent testimonials, and neighborhood tours without production costs.</p>
 
-                            <p>I tested 18 platforms over three months. <a href={landingPageUrl}>AdMaker AI's real estate video suite</a> created content that potential homebuyers couldn't distinguish from real testimonials. Property videos received 3.2x more inquiries than competitors and 2.7x more than static photos. Zillow reports video listings receive 403% more inquiries.</p>
+                            <p>I tested 18 platforms over three months. <a href="#">AdMaker AI's real estate video suite</a> created content that potential homebuyers couldn't distinguish from real testimonials. Property videos received 3.2x more inquiries than competitors and 2.7x more than static photos. Zillow reports video listings receive 403% more inquiries.</p>
 
                             <div className={styles.imageWrapper}>
                                 <Image
@@ -159,13 +107,13 @@ export default function RealEstateUGCArticle() {
                             <h3>Step 1: Choose Your Platform</h3>
                             <p><strong>AdMaker AI (Recommended)</strong></p>
                             <ul>
-                                <li>Visit <a href={landingPageUrl}>AdMaker AI</a></li>
+                                <li>Visit <a href="#">AdMaker AI</a></li>
                                 <li>Select "Real Estate" templates</li>
                                 <li>Free: 3 videos, no credit card</li>
                                 <li>Quality: ⭐⭐⭐⭐⭐</li>
                             </ul>
 
-                            <p><strong>Why AdMaker AI is best:</strong> Trained on 50,000+ <a href={landingPageUrl}>real estate videos</a>, understands property-specific language, and converts browsers into buyers. Same property tested: generated 47 inquiries vs 28 from competitors vs 18 from photos only.</p>
+                            <p><strong>Why AdMaker AI is best:</strong> Trained on 50,000+ <a href="#">real estate videos</a>, understands property-specific language, and converts browsers into buyers. Same property tested: generated 47 inquiries vs 28 from competitors vs 18 from photos only.</p>
 
                             <div className={styles.imageWrapper}>
                                 <Image
@@ -240,7 +188,7 @@ export default function RealEstateUGCArticle() {
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><a href={landingPageUrl}><strong>AdMaker AI</strong></a></td>
+                                        <td><a href="#"><strong>AdMaker AI</strong></a></td>
                                         <td>⭐⭐⭐⭐⭐</td>
                                         <td>45-60s</td>
                                         <td>$29</td>
@@ -279,7 +227,7 @@ export default function RealEstateUGCArticle() {
                             <h2>Best Ways to Use UGC Videos in Real Estate</h2>
 
                             <h3>1. Property Listing Videos</h3>
-                            <p>Post to MLS, Zillow, Realtor.com, Facebook, Instagram. Austin agent using <a href={landingPageUrl}>AI video creation</a> reduced time-on-market from 42 to 28 days.</p>
+                            <p>Post to MLS, Zillow, Realtor.com, Facebook, Instagram. Austin agent using <a href="#">AI video creation</a> reduced time-on-market from 42 to 28 days.</p>
 
                             <div className={styles.imageWrapper}>
                                 <Image
@@ -315,7 +263,7 @@ export default function RealEstateUGCArticle() {
                             </div>
 
                             <h3>4. Open House Promotions</h3>
-                            <p>Video invitations generate 2-3x more attendees. <a href={landingPageUrl}>AI-generated videos</a> averaged 14 attendees vs 8 with photos.</p>
+                            <p>Video invitations generate 2-3x more attendees. <a href="#">AI-generated videos</a> averaged 14 attendees vs 8 with photos.</p>
                         </section>
 
                         <section id="tips" className={styles.section}>
@@ -360,13 +308,13 @@ export default function RealEstateUGCArticle() {
                             <h2>Common Real Estate Video Problems Fixed</h2>
 
                             <h3>Problem 1: "AI Avatars Don't Look Professional"</h3>
-                            <p><strong>Solution:</strong> Use <a href={landingPageUrl}>AI-powered real estate avatars</a>. Match professionalism to price point.</p>
+                            <p><strong>Solution:</strong> Use <a href="#">AI-powered real estate avatars</a>. Match professionalism to price point.</p>
 
                             <h3>Problem 2: "Videos Take Forever"</h3>
-                            <p><a href={landingPageUrl}>Fast video generation</a>: 45-60 seconds vs competitors at 3-5 minutes. 6x faster.</p>
+                            <p><a href="#">Fast video generation</a>: 45-60 seconds vs competitors at 3-5 minutes. 6x faster.</p>
 
                             <h3>Problem 3: "Can't Afford Video for Every Listing"</h3>
-                            <p>Traditional: $300-500 per property. <a href={landingPageUrl}>AI video tools</a>: $29/month unlimited. Create 3 listings = save $900-1,500 monthly.</p>
+                            <p>Traditional: $300-500 per property. <a href="#">AI video tools</a>: $29/month unlimited. Create 3 listings = save $900-1,500 monthly.</p>
 
                             <div className={styles.imageWrapper}>
                                 <Image
@@ -406,22 +354,22 @@ export default function RealEstateUGCArticle() {
 
                             <div className={styles.faqItem}>
                                 <h3 className={styles.faqQuestion}>What is the best UGC video creation service for real estate marketing?</h3>
-                                <p className={styles.faqAnswer}>The best ugc video creation service for real estate marketing is <a href={landingPageUrl}>AdMaker AI</a>, trained on 50,000+ real estate videos with property-specific features. Processes 6x faster (45-60s vs 3-5 min) and costs less ($29/month) while generating measurably more leads.</p>
+                                <p className={styles.faqAnswer}>The best ugc video creation service for real estate marketing is <a href="#">AdMaker AI</a>, trained on 50,000+ real estate videos with property-specific features. Processes 6x faster (45-60s vs 3-5 min) and costs less ($29/month) while generating measurably more leads.</p>
                             </div>
 
                             <div className={styles.faqItem}>
                                 <h3 className={styles.faqQuestion}>How much does the best UGC video creation service for real estate marketing cost?</h3>
-                                <p className={styles.faqAnswer}>Traditional videography: $300-500 per property. <a href={landingPageUrl}>AI-powered platforms</a> offer 3 free videos, then $29/month unlimited (Pro) or $99/month (Agency). 95% cost reduction—2 listings monthly saves $600-1,000.</p>
+                                <p className={styles.faqAnswer}>Traditional videography: $300-500 per property. <a href="#">AI-powered platforms</a> offer 3 free videos, then $29/month unlimited (Pro) or $99/month (Agency). 95% cost reduction—2 listings monthly saves $600-1,000.</p>
                             </div>
 
                             <div className={styles.faqItem}>
                                 <h3 className={styles.faqQuestion}>Do real estate videos actually generate more leads than photos alone?</h3>
-                                <p className={styles.faqAnswer}>Yes. Zillow research shows video listings receive 403% more inquiries. Testing with <a href={landingPageUrl}>AI video tools</a> across 5 markets: video listings averaged 42 inquiries vs 15 for photos—2.8x increase. Videos also generated 2.6x more showings and sold 67% faster.</p>
+                                <p className={styles.faqAnswer}>Yes. Zillow research shows video listings receive 403% more inquiries. Testing with <a href="#">AI video tools</a> across 5 markets: video listings averaged 42 inquiries vs 15 for photos—2.8x increase. Videos also generated 2.6x more showings and sold 67% faster.</p>
                             </div>
 
                             <div className={styles.faqItem}>
                                 <h3 className={styles.faqQuestion}>Can I legally use AI-generated videos on MLS and Zillow listings?</h3>
-                                <p className={styles.faqAnswer}>Yes, fully permitted on MLS, Zillow, Realtor.com as long as videos accurately represent the property using your actual photos. <a href={landingPageUrl}>Professional AI platforms</a> export MLS-ready formats with required agent info and branding.</p>
+                                <p className={styles.faqAnswer}>Yes, fully permitted on MLS, Zillow, Realtor.com as long as videos accurately represent the property using your actual photos. <a href="#">Professional AI platforms</a> export MLS-ready formats with required agent info and branding.</p>
                             </div>
 
                             <div className={styles.faqItem}>
@@ -487,7 +435,7 @@ export default function RealEstateUGCArticle() {
                         <section className={styles.section}>
                             <h2>Conclusion: Choose the Best Real Estate Video Service</h2>
 
-                            <p>After testing 18 platforms, <a href={landingPageUrl}>AdMaker AI</a> emerges as the best ugc video creation service for real estate marketing.</p>
+                            <p>After testing 18 platforms, <a href="#">AdMaker AI</a> emerges as the best ugc video creation service for real estate marketing.</p>
 
                             <p><strong>Why AdMaker AI excels:</strong></p>
                             <ul>
@@ -499,7 +447,7 @@ export default function RealEstateUGCArticle() {
                             </ul>
 
                             <p className={styles.highlight}>
-                                <a href={landingPageUrl} style={{ color: 'white', fontSize: '20px', fontWeight: '700' }}>Try AdMaker AI Free - 3 Real Estate Video Generations →</a><br /><br />
+                                <a href="#" style={{ color: 'white', fontSize: '20px', fontWeight: '700' }}>Try AdMaker AI Free - 3 Real Estate Video Generations →</a><br /><br />
                                 No credit card required • Real estate templates • 45-second processing
                             </p>
 
@@ -521,14 +469,7 @@ export default function RealEstateUGCArticle() {
                 <SimilarArticles currentSlug="best-ugc-video-creation-service-for-real-estate-marketing" locale={locale} />
             </div>
 
-                {/* Sticky Mobile CTA */}
-                <a
-                    href={landingPageUrl}
-                    className={`${styles.stickyCta} ${showStickyCta ? styles.stickyCtaVisible : ''}`}
-                    aria-label="Create your AI Ads now"
-                >
-                    Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
-                </a>
+                <StickyCta locale={locale} />
         </>
     );
 }

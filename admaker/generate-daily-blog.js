@@ -971,49 +971,37 @@ function createPageTsx(topic, content, images, lang, relatedArticles = []) {
     return `
 'use client';
 
-import { useState, useEffect } from 'react';
-import Head from 'next/head';
 import Navbar from '@/components/Navbar';
 import BlogVideoSidebar from '@/components/BlogVideoSidebar';
 import SimilarArticles from '@/components/SimilarArticles';
 import styles from '@/app/blog/compare-pricing-ugc-video-production-tools/Article.module.css';
 import Image from 'next/image';
+import StickyCta from '@/components/StickyCta';
 
-function getLandingPageUrl(locale = 'en') {
-    if (locale === 'en') return '/';
-    return \`/\${locale}\`;
-}
+export const metadata = {
+    title: \`${content.title_translated} | AdMaker AI\`,
+    description: \`${content.meta_description}\`,
+    alternates: {
+        canonical: \`https://admakerai.app/blog/${topic.translatedSlugs?.['en'] || topic.slug}\`,
+        languages: {
+            'en': \`https://admakerai.app/blog/${topic.translatedSlugs?.['en'] || topic.slug}\`,
+            'fr': \`https://admakerai.app/fr/blog/${topic.translatedSlugs?.['fr'] || topic.slug}\`,
+            'es': \`https://admakerai.app/es/blog/${topic.translatedSlugs?.['es'] || topic.slug}\`,
+            'pt': \`https://admakerai.app/pt/blog/${topic.translatedSlugs?.['pt'] || topic.slug}\`,
+            'de': \`https://admakerai.app/de/blog/${topic.translatedSlugs?.['de'] || topic.slug}\`,
+            'x-default': \`https://admakerai.app/blog/${topic.translatedSlugs?.['en'] || topic.slug}\`
+        }
+    }
+};
 
 export default function BlogPost() {
     const locale = '${lang}';
-    const landingPageUrl = getLandingPageUrl(locale);
-    const [showStickyCta, setShowStickyCta] = useState(false);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowStickyCta(window.scrollY > 300);
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
+    
     const jsonLd = ${JSON.stringify(jsonLd)};
 
     return (
         <>
-            <Head>
-                <title>${content.title_translated} | AdMaker AI</title>
-                <meta name="description" content="${content.meta_description}" />
-                <link rel="canonical" href="https://admakerai.app/blog/${topic.translatedSlugs?.['en'] || topic.slug}" />
-                <link rel="alternate" hrefLang="en" href="https://admakerai.app/blog/${topic.translatedSlugs?.['en'] || topic.slug}" />
-                <link rel="alternate" hrefLang="fr" href="https://admakerai.app/fr/blog/${topic.translatedSlugs?.['fr'] || topic.slug}" />
-                <link rel="alternate" hrefLang="es" href="https://admakerai.app/es/blog/${topic.translatedSlugs?.['es'] || topic.slug}" />
-                <link rel="alternate" hrefLang="pt" href="https://admakerai.app/pt/blog/${topic.translatedSlugs?.['pt'] || topic.slug}" />
-                <link rel="alternate" hrefLang="de" href="https://admakerai.app/de/blog/${topic.translatedSlugs?.['de'] || topic.slug}" />
-                <link rel="alternate" hrefLang="x-default" href="https://admakerai.app/blog/${topic.translatedSlugs?.['en'] || topic.slug}" />
-                <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-            </Head >
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
             
             <Navbar lang="${lang}" />
             
@@ -1071,14 +1059,7 @@ export default function BlogPost() {
                 <SimilarArticles currentSlug="${content.finalSlug}" locale={locale} matches={${JSON.stringify(relatedArticles)}} />
             </div>
 
-    {/* Sticky Mobile CTA */ }
-    <a
-        href={landingPageUrl}
-        className={\`\${styles.stickyCta} \${showStickyCta ? styles.stickyCtaVisible : ''}\`}
-                aria-label="Create your AI Ads now"
-            >
-                Create your AI Ads now <span className={styles.emojiPointer}>👉</span>
-            </a>
+            <StickyCta locale={locale} />
         </>
     );
 }
@@ -1101,7 +1082,7 @@ function updateBlogIndex(dir, topic, thumbnail, lang, title) {
 
     // Standard card injection with correct clean JSX
     const newCard = `
-                        <Link href="${linkPath}" className={styles.blogCard}>
+        < Link href = "${linkPath}" className = { styles.blogCard } >
                             <div className={styles.cardImage}>
                                 <Image
                                     src="${thumbnail}"
@@ -1119,7 +1100,7 @@ function updateBlogIndex(dir, topic, thumbnail, lang, title) {
                                     <span>${new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</span>
                                 </div>
                             </div>
-                        </Link>`;
+                        </Link > `;
 
     // Robust regex replacement to find the opening tag of the grid
     // Matches: className={styles.blogGrid}, allowing for newlines and spaces
@@ -1127,11 +1108,11 @@ function updateBlogIndex(dir, topic, thumbnail, lang, title) {
     const gridRegex = /(className=\{styles\.blogGrid\}\s*>)/;
 
     if (gridRegex.test(content)) {
-        content = content.replace(gridRegex, `$1\n${newCard}`);
+        content = content.replace(gridRegex, `$1\n${newCard} `);
         fs.writeFileSync(listPath, content);
-        console.log(`    ✅ Updated blog index at ${listPath}`);
+        console.log(`    ✅ Updated blog index at ${listPath} `);
     } else {
-        console.warn(`    ⚠️ Could not find blogGrid in ${listPath}`);
+        console.warn(`    ⚠️ Could not find blogGrid in ${listPath} `);
     }
 }
 
@@ -1156,7 +1137,7 @@ function getRelatedArticles(allTopics, currentKeyword, langCode) {
         }
 
         // Ensure path logic matches standard
-        const prefix = langCode === 'en' ? '/blog' : `/${langCode}/blog`;
+        const prefix = langCode === 'en' ? '/blog' : `/ ${langCode}/blog`;
 
         // Get Translated Title if available, else EN h1/keyword
         const title = t.translatedTitles?.[langCode] || t.translatedTitles?.['en'] || t.h1 || t.keyword;
