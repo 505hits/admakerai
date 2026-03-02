@@ -229,5 +229,40 @@
     "es": "/es/blog/mejores-herramientas-ia-generar-videos-ugc-2026",
     "pt": "/pt/blog/melhores-ferramentas-ia-gerar-conteudo-video-ugc-2026",
     "de": "/de/blog/beste-ki-tools-fuer-ugc-videoinhalte-2026"
+  },
+  "/blog/ai-advertisement": {
+    "en": "/blog/ai-advertisement",
+    "fr": "/fr/blog/meilleurs-outils-publicitaires-ia-marketing-video",
+    "es": "/es/blog/mejores-herramientas-publicidad-ia-marketing-video",
+    "pt": "/pt/blog/melhores-ferramentas-ia-anuncios-marketing-video",
+    "de": "/de/blog/beste-ki-werbungstools-zur-transformation-ihres-videomarketings"
+  },
+  "/blog/meilleurs-outils-publicitaires-ia-marketing-video": {
+    "en": "/blog/ai-advertisement",
+    "fr": "/fr/blog/meilleurs-outils-publicitaires-ia-marketing-video",
+    "es": "/es/blog/mejores-herramientas-publicidad-ia-marketing-video",
+    "pt": "/pt/blog/melhores-ferramentas-ia-anuncios-marketing-video",
+    "de": "/de/blog/beste-ki-werbungstools-zur-transformation-ihres-videomarketings"
+  },
+  "/blog/mejores-herramientas-publicidad-ia-marketing-video": {
+    "en": "/blog/ai-advertisement",
+    "fr": "/fr/blog/meilleurs-outils-publicitaires-ia-marketing-video",
+    "es": "/es/blog/mejores-herramientas-publicidad-ia-marketing-video",
+    "pt": "/pt/blog/melhores-ferramentas-ia-anuncios-marketing-video",
+    "de": "/de/blog/beste-ki-werbungstools-zur-transformation-ihres-videomarketings"
+  },
+  "/blog/melhores-ferramentas-ia-anuncios-marketing-video": {
+    "en": "/blog/ai-advertisement",
+    "fr": "/fr/blog/meilleurs-outils-publicitaires-ia-marketing-video",
+    "es": "/es/blog/mejores-herramientas-publicidad-ia-marketing-video",
+    "pt": "/pt/blog/melhores-ferramentas-ia-anuncios-marketing-video",
+    "de": "/de/blog/beste-ki-werbungstools-zur-transformation-ihres-videomarketings"
+  },
+  "/blog/beste-ki-werbungstools-zur-transformation-ihres-videomarketings": {
+    "en": "/blog/ai-advertisement",
+    "fr": "/fr/blog/meilleurs-outils-publicitaires-ia-marketing-video",
+    "es": "/es/blog/mejores-herramientas-publicidad-ia-marketing-video",
+    "pt": "/pt/blog/melhores-ferramentas-ia-anuncios-marketing-video",
+    "de": "/de/blog/beste-ki-werbungstools-zur-transformation-ihres-videomarketings"
   }
 }
