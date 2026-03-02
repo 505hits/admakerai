@@ -146,7 +146,22 @@
   },
   {
     "keyword": "ai advertisement",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "ai-advertisement",
+      "fr": "meilleurs-outils-publicitaires-ia-marketing-video",
+      "es": "mejores-herramientas-publicidad-ia-marketing-video",
+      "pt": "melhores-ferramentas-ia-anuncios-marketing-video",
+      "de": "beste-ki-werbungstools-zur-transformation-ihres-videomarketings"
+    },
+    "translatedTitles": {
+      "en": "Best AI Advertisement Tools to Transform Your Video Marketing",
+      "fr": "Meilleurs outils publicitaires IA pour transformer votre marketing vidéo",
+      "es": "Mejores Herramientas de Publicidad con IA para Marketing de Video",
+      "pt": "Melhores Ferramentas de IA para Anúncios e Marketing de Vídeo",
+      "de": "Beste KI-Werbungstools zur Transformation Ihres Videomarketings"
+    },
+    "completedDate": "2026-03-02T12:04:26.587Z"
   },
   {
     "keyword": "arcards",
