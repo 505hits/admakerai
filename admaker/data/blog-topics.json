@@ -165,7 +165,22 @@
   },
   {
     "keyword": "arcards",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "arcards",
+      "fr": "meilleurs-outils-marketing-video-ia-transformant-roi-2026",
+      "es": "mejores-herramientas-video-marketing-ia-transforman-roi-campanas-2026",
+      "pt": "melhores-ferramentas-ia-video-marketing-2026",
+      "de": "beste-ki-video-marketing-tools-kampagnen-roi-2026"
+    },
+    "translatedTitles": {
+      "en": "Best AI Video Marketing Tools That Transform Campaign ROI in 2026",
+      "fr": "Meilleurs outils de marketing vidéo IA transformant le ROI en 2026",
+      "es": "Mejores Herramientas de Video Marketing con IA para 2026",
+      "pt": "Melhores Ferramentas de IA para Vídeo Marketing em 2026",
+      "de": "Beste KI-Video-Marketing-Tools für maximalen Kampagnen-ROI 2026"
+    },
+    "completedDate": "2026-03-03T11:59:09.212Z"
   },
   {
     "keyword": "coursiv login",
