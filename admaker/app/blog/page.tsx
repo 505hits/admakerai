@@ -16,6 +16,26 @@ export default function BlogPage() {
 
                     <div className={styles.blogGrid}>
 
+        < Link href = "/blog/coursiv-login" className = { styles.blogCard } >
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1772625319630-0.png"
+                                    alt="Best AI Video Marketing Tools to Transform Your Ad Campaigns"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Best AI Video Marketing Tools to Transform Your Ad Campaigns</h2>
+                                <p className={styles.cardExcerpt}>coursiv login</p>
+                                <div className={styles.cardMeta}>
+                                    <span>March 2026</span>
+                                </div>
+                            </div>
+                        </Link >  
+
         < Link href = "/blog/arcards" className = { styles.blogCard } >
                             <div className={styles.cardImage}>
                                 <Image

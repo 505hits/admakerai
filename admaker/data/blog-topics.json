@@ -184,7 +184,22 @@
   },
   {
     "keyword": "coursiv login",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "coursiv-login",
+      "fr": "meilleurs-outils-video-marketing-ia-campagnes-publicitaires",
+      "es": "mejores-herramientas-video-marketing-ia-anuncios",
+      "pt": "melhores-ferramentas-ia-video-marketing",
+      "de": "beste-ki-video-marketing-tools-werbekampagnen"
+    },
+    "translatedTitles": {
+      "en": "Best AI Video Marketing Tools to Transform Your Ad Campaigns",
+      "fr": "Meilleurs outils de vidéo marketing IA pour vos campagnes pub",
+      "es": "Mejores Herramientas de Video Marketing con IA para Anuncios",
+      "pt": "Melhores Ferramentas de IA para Vídeo Marketing em 2026",
+      "de": "Beste KI-Video-Marketing-Tools für Ihre Werbekampagnen 2026"
+    },
+    "completedDate": "2026-03-04T11:57:17.507Z"
   },
   {
     "keyword": "best online tool for creating engaging facebook video ads",

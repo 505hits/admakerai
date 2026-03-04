@@ -16,6 +16,26 @@ export default function BlogPageES() {
 
                     <div className={styles.blogGrid} >
 
+        < Link href = "/es/blog/mejores-herramientas-video-marketing-ia-anuncios" className = { styles.blogCard } >
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1772625319630-0.png"
+                                    alt="Mejores Herramientas de Video Marketing con IA para Anuncios"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Mejores Herramientas de Video Marketing con IA para Anuncios</h2>
+                                <p className={styles.cardExcerpt}>coursiv login</p>
+                                <div className={styles.cardMeta}>
+                                    <span>March 2026</span>
+                                </div>
+                            </div>
+                        </Link >  
+
         < Link href = "/es/blog/mejores-herramientas-video-marketing-ia-transforman-roi-campanas-2026" className = { styles.blogCard } >
                             <div className={styles.cardImage}>
                                 <Image
