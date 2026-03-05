@@ -969,17 +969,16 @@ function createPageTsx(topic, content, images, lang, relatedArticles = []) {
     if (!content.quick_answer) content.quick_answer = content.meta_description || "Summary not available.";
 
     return `
-'use client';
+    return `
+    import Navbar from '@/components/Navbar';
+    import BlogVideoSidebar from '@/components/BlogVideoSidebar';
+    import SimilarArticles from '@/components/SimilarArticles';
+    import styles from '@/app/blog/compare-pricing-ugc-video-production-tools/Article.module.css';
+    import Image from 'next/image';
+    import StickyCta from '@/components/StickyCta';
 
-import Navbar from '@/components/Navbar';
-import BlogVideoSidebar from '@/components/BlogVideoSidebar';
-import SimilarArticles from '@/components/SimilarArticles';
-import styles from '@/app/blog/compare-pricing-ugc-video-production-tools/Article.module.css';
-import Image from 'next/image';
-import StickyCta from '@/components/StickyCta';
-
-export const metadata = {
-    title: \`${content.title_translated} | AdMaker AI\`,
+    export const metadata = {
+        title: \`${content.title_translated} | AdMaker AI\`,
     description: \`${content.meta_description}\`,
     alternates: {
         canonical: \`https://admakerai.app/blog/${topic.translatedSlugs?.['en'] || topic.slug}\`,
