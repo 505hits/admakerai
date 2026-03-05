@@ -16,6 +16,26 @@ export default function BlogPageES() {
 
                     <div className={styles.blogGrid} >
 
+        < Link href = "/es/blog/mejor-herramienta-online-crear-anuncios-video-facebook-2026" className = { styles.blogCard } >
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1772711618224-0.png"
+                                    alt="Mejor herramienta online para crear anuncios de video en Facebook 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Mejor herramienta online para crear anuncios de video en Facebook 2026</h2>
+                                <p className={styles.cardExcerpt}>best online tool for creating engaging facebook video ads</p>
+                                <div className={styles.cardMeta}>
+                                    <span>March 2026</span>
+                                </div>
+                            </div>
+                        </Link >  
+
         < Link href = "/es/blog/mejores-herramientas-video-marketing-ia-anuncios" className = { styles.blogCard } >
                             <div className={styles.cardImage}>
                                 <Image

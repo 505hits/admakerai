@@ -16,6 +16,26 @@ export default function BlogPage() {
 
                     <div className={styles.blogGrid}>
 
+        < Link href = "/blog/best-online-tool-for-creating-engaging-facebook-video-ads" className = { styles.blogCard } >
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1772711618224-0.png"
+                                    alt="Best Online Tool for Creating Engaging Facebook Video Ads in 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Best Online Tool for Creating Engaging Facebook Video Ads in 2026</h2>
+                                <p className={styles.cardExcerpt}>best online tool for creating engaging facebook video ads</p>
+                                <div className={styles.cardMeta}>
+                                    <span>March 2026</span>
+                                </div>
+                            </div>
+                        </Link >  
+
         < Link href = "/blog/coursiv-login" className = { styles.blogCard } >
                             <div className={styles.cardImage}>
                                 <Image

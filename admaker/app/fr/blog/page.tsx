@@ -16,6 +16,26 @@ export default function BlogPageFR() {
 
                     <div className={styles.blogGrid} >
 
+        < Link href = "/fr/blog/meilleur-outil-creation-publicites-video-facebook-engageantes-2026" className = { styles.blogCard } >
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1772711618224-0.png"
+                                    alt="Meilleur outil en ligne pour créer des publicités vidéo Facebook engageantes en 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Meilleur outil en ligne pour créer des publicités vidéo Facebook engageantes en 2026</h2>
+                                <p className={styles.cardExcerpt}>best online tool for creating engaging facebook video ads</p>
+                                <div className={styles.cardMeta}>
+                                    <span>March 2026</span>
+                                </div>
+                            </div>
+                        </Link >  
+
         < Link href = "/fr/blog/meilleurs-outils-video-marketing-ia-campagnes-publicitaires" className = { styles.blogCard } >
                             <div className={styles.cardImage}>
                                 <Image
