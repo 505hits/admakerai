@@ -218,8 +218,11 @@ async function main() {
             }
 
             try {
-                // Force slug to be exactly the keyword across all languages
-                const translatedSlug = slugify(topic.keyword);
+                // TRANSLATE the EN content (not regenerate from scratch)
+                const translatedContent = await translateArticleContent(generatedContent['en'], lang, topic);
+
+                // Determine translated slug from AI output
+                const translatedSlug = slugify(translatedContent.slug_translated || topic.keyword);
 
                 // Cache the slug
                 // Cache the slug AND Title
@@ -641,7 +644,7 @@ You are a professional translator. Translate the following blog article from Eng
 5. DO NOT shorten or summarize - translate the FULL content maintaining the same word count
 6. The title MUST be 60-70 characters and MUST NOT contain a colon (:)
 7. Each FAQ answer must be 60+ words in ${lang.name}
-8. The translated title MUST explicitly include the exact original English keyword: "${topic.keyword}". Do not translate this specific keyword.
+8. IMPORTANT: You must perfectly translate the main keyword "${topic.keyword}" into ${lang.name}. The translated title MUST explicitly include this translated keyword. The \`slug_translated\` MUST be an accurate translation of this keyword in kebab-case.
 
 **IMPORTANT: PRICING DATA (DO NOT CHANGE THESE NUMBERS)**:
 - AdMaker AI: $29/month
