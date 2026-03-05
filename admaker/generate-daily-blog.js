@@ -218,9 +218,8 @@ async function main() {
             }
 
             try {
-                // TRANSLATE the EN content (not regenerate from scratch)
-                const translatedContent = await translateArticleContent(generatedContent['en'], lang, topic);
-                const translatedSlug = slugify(translatedContent.slug_translated || topic.keyword);
+                // Force slug to be exactly the keyword across all languages
+                const translatedSlug = slugify(topic.keyword);
 
                 // Cache the slug
                 // Cache the slug AND Title
@@ -385,6 +384,7 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             1. MUST start with: "Best", "Top", "How to", "The Ultimate Guide to", "7 Best Ways", or similar.
             2. Length: STRICTLY between 60-70 characters.
             3. NO COLONS (:) in the middle. Use a single flowing sentence.
+            4. MUST explicitly include the EXACT keyword: "${topic.keyword}". Do not alter it.
 
             ⚠️ INTERNAL LINKS STRATEGY (CRITICAL):
             1. You MUST include **10 INTERNAL LINKS** to other relevant articles.
@@ -641,6 +641,7 @@ You are a professional translator. Translate the following blog article from Eng
 5. DO NOT shorten or summarize - translate the FULL content maintaining the same word count
 6. The title MUST be 60-70 characters and MUST NOT contain a colon (:)
 7. Each FAQ answer must be 60+ words in ${lang.name}
+8. The translated title MUST explicitly include the exact original English keyword: "${topic.keyword}". Do not translate this specific keyword.
 
 **IMPORTANT: PRICING DATA (DO NOT CHANGE THESE NUMBERS)**:
 - AdMaker AI: $29/month
@@ -968,7 +969,6 @@ function createPageTsx(topic, content, images, lang, relatedArticles = []) {
     if (!content.title_translated) content.title_translated = topic.keyword;
     if (!content.quick_answer) content.quick_answer = content.meta_description || "Summary not available.";
 
-    return `
     return `
     import Navbar from '@/components/Navbar';
     import BlogVideoSidebar from '@/components/BlogVideoSidebar';
