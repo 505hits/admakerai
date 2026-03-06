@@ -1084,7 +1084,7 @@ function updateBlogIndex(dir, topic, thumbnail, lang, title) {
 
     // Standard card injection with correct clean JSX
     const newCard = `
-        < Link href = "${linkPath}" className = { styles.blogCard } >
+        <Link href="${linkPath}" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="${thumbnail}"
@@ -1102,7 +1102,8 @@ function updateBlogIndex(dir, topic, thumbnail, lang, title) {
                                     <span>${new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}</span>
                                 </div>
                             </div>
-                        </Link > `;
+                        </Link>
+`;
 
     // Robust regex replacement to find the opening tag of the grid
     // Matches: className={styles.blogGrid}, allowing for newlines and spaces

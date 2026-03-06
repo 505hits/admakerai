@@ -16,7 +16,7 @@ export default function BlogPageES() {
 
                     <div className={styles.blogGrid} >
 
-        < Link href = "/es/blog/mejor-herramienta-online-crear-anuncios-video-facebook-2026" className = { styles.blogCard } >
+        <Link href="/es/blog/mejor-herramienta-online-crear-anuncios-video-facebook-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772711618224-0.png"
@@ -34,9 +34,8 @@ export default function BlogPageES() {
                                     <span>March 2026</span>
                                 </div>
                             </div>
-                        </Link >  
-
-        < Link href = "/es/blog/mejores-herramientas-video-marketing-ia-anuncios" className = { styles.blogCard } >
+                        </Link>
+<Link href="/es/blog/mejores-herramientas-video-marketing-ia-anuncios" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772625319630-0.png"
@@ -54,9 +53,8 @@ export default function BlogPageES() {
                                     <span>March 2026</span>
                                 </div>
                             </div>
-                        </Link >  
-
-        < Link href = "/es/blog/mejores-herramientas-video-marketing-ia-transforman-roi-campanas-2026" className = { styles.blogCard } >
+                        </Link>
+<Link href="/es/blog/mejores-herramientas-video-marketing-ia-transforman-roi-campanas-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772539009100-0.png"
@@ -74,9 +72,8 @@ export default function BlogPageES() {
                                     <span>March 2026</span>
                                 </div>
                             </div>
-                        </Link >  
-
-                        <Link href="/es/blog/mejores-herramientas-publicidad-ia-marketing-video" className={styles.blogCard}>
+                        </Link>
+<Link href="/es/blog/mejores-herramientas-publicidad-ia-marketing-video" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772452641206-0.png"
@@ -95,8 +92,7 @@ export default function BlogPageES() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/es/blog/mejores-herramientas-ia-generar-videos-ugc-2026" className={styles.blogCard}>
+<Link href="/es/blog/mejores-herramientas-ia-generar-videos-ugc-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772365557200-0.png"
@@ -115,8 +111,7 @@ export default function BlogPageES() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/es/blog/mejores-actores-ia-anuncios-video-convierten-2026" className={styles.blogCard}>
+<Link href="/es/blog/mejores-actores-ia-anuncios-video-convierten-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772278999883-0.png"
@@ -135,8 +130,7 @@ export default function BlogPageES() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/es/blog/mejores-herramientas-video-marketing-ia-maximizar-roi-2026" className={styles.blogCard}>
+<Link href="/es/blog/mejores-herramientas-video-marketing-ia-maximizar-roi-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772193259378-0.png"
@@ -155,8 +149,7 @@ export default function BlogPageES() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/es/blog/mejores-herramientas-ia-anuncios-video-ugc-2026" className={styles.blogCard}>
+<Link href="/es/blog/mejores-herramientas-ia-anuncios-video-ugc-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772107398639-0.png"
@@ -175,8 +168,7 @@ export default function BlogPageES() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/es/blog/mejores-alternativas-arcads-pequenas-empresas-2026" className={styles.blogCard}>
+<Link href="/es/blog/mejores-alternativas-arcads-pequenas-empresas-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772054208500-0.png"
@@ -195,8 +187,7 @@ export default function BlogPageES() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/es/blog/mejores-herramientas-ai-ugc-escalar-anuncios-video-2026" className={styles.blogCard}>
+<Link href="/es/blog/mejores-herramientas-ai-ugc-escalar-anuncios-video-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1771958725822-0.png"
@@ -215,8 +206,7 @@ export default function BlogPageES() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/es/blog/mejores-herramientas-ai-ugc-crear-anuncios-video-autenticos" className={styles.blogCard}>
+<Link href="/es/blog/mejores-herramientas-ai-ugc-crear-anuncios-video-autenticos" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1770857313594-0.png"
@@ -235,8 +225,7 @@ export default function BlogPageES() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/es/blog/arcads-alternatives" className={styles.blogCard}>
+<Link href="/es/blog/arcads-alternatives" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1770842617604-0.png"
@@ -255,9 +244,7 @@ export default function BlogPageES() {
                                 </div>
                             </div>
                         </Link>
-
-
-                        <Link href="/es/blog/mejores-creadores-video-ugc-para-anuncios-sociales" className={styles.blogCard}>
+<Link href="/es/blog/mejores-creadores-video-ugc-para-anuncios-sociales" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop"
@@ -278,8 +265,7 @@ export default function BlogPageES() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/es/blog/mejor-servicio-creacion-video-ugc-marketing-inmobiliario" className={styles.blogCard}>
+<Link href="/es/blog/mejor-servicio-creacion-video-ugc-marketing-inmobiliario" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/2.jpg"
@@ -300,8 +286,7 @@ export default function BlogPageES() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/es/blog/mejores-plataformas-ia-crear-videos-ugc-marca" className={styles.blogCard}>
+<Link href="/es/blog/mejores-plataformas-ia-crear-videos-ugc-marca" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=500&fit=crop"
@@ -322,8 +307,7 @@ export default function BlogPageES() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/es/blog/comparar-precios-herramientas-produccion-video-ugc" className={styles.blogCard}>
+<Link href="/es/blog/comparar-precios-herramientas-produccion-video-ugc" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=500&fit=crop"
@@ -344,7 +328,7 @@ export default function BlogPageES() {
                                 </div>
                             </div>
                         </Link>
-                    </div>
+</div>
                 </div>
     
                         </div>

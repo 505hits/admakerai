@@ -16,7 +16,7 @@ export default function BlogPage() {
 
                     <div className={styles.blogGrid}>
 
-        < Link href = "/blog/best-online-tool-for-creating-engaging-facebook-video-ads" className = { styles.blogCard } >
+        <Link href="/blog/best-online-tool-for-creating-engaging-facebook-video-ads" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772711618224-0.png"
@@ -34,9 +34,8 @@ export default function BlogPage() {
                                     <span>March 2026</span>
                                 </div>
                             </div>
-                        </Link >  
-
-        < Link href = "/blog/coursiv-login" className = { styles.blogCard } >
+                        </Link>
+<Link href="/blog/coursiv-login" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772625319630-0.png"
@@ -54,9 +53,8 @@ export default function BlogPage() {
                                     <span>March 2026</span>
                                 </div>
                             </div>
-                        </Link >  
-
-        < Link href = "/blog/arcards" className = { styles.blogCard } >
+                        </Link>
+<Link href="/blog/arcards" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772539009100-0.png"
@@ -74,9 +72,8 @@ export default function BlogPage() {
                                     <span>March 2026</span>
                                 </div>
                             </div>
-                        </Link >  
-
-                        <Link href="/blog/ai-advertisement" className={styles.blogCard}>
+                        </Link>
+<Link href="/blog/ai-advertisement" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772452641206-0.png"
@@ -95,8 +92,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/blog/top-ai-tools-for-generating-ugc-video-content" className={styles.blogCard}>
+<Link href="/blog/top-ai-tools-for-generating-ugc-video-content" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772365557200-0.png"
@@ -115,8 +111,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/blog/ai-actors" className={styles.blogCard}>
+<Link href="/blog/ai-actors" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1770664916144-0.png"
@@ -135,8 +130,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/blog/arcads-pricing" className={styles.blogCard}>
+<Link href="/blog/arcads-pricing" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1770638983079-0.png"
@@ -155,8 +149,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/blog/arcadsai-pricing" className={styles.blogCard}>
+<Link href="/blog/arcadsai-pricing" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772193259378-0.png"
@@ -175,8 +168,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/blog/ai-ugc" className={styles.blogCard}>
+<Link href="/blog/ai-ugc" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1771958725822-0.png"
@@ -195,8 +187,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/blog/reviews-of-ai-based-ugc-video-creation-services" className={styles.blogCard}>
+<Link href="/blog/reviews-of-ai-based-ugc-video-creation-services" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop"
@@ -217,8 +208,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/blog/arcads-alternatives" className={styles.blogCard}>
+<Link href="/blog/arcads-alternatives" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1770842617604-0.png"
@@ -237,8 +227,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/blog/arcads-vs-admaker" className={styles.blogCard}>
+<Link href="/blog/arcads-vs-admaker" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1770834278677-0.png"
@@ -257,16 +246,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-
-
-
-
-
-
-
-
-
-                        <Link href="/blog/reviews-of-ugc-video-makers-with-mobile-support" className={styles.blogCard}>
+<Link href="/blog/reviews-of-ugc-video-makers-with-mobile-support" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=800&h=500&fit=crop"
@@ -287,7 +267,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-                        <Link href="/blog/promotion-script-army" className={styles.blogCard}>
+<Link href="/blog/promotion-script-army" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=800&h=500&fit=crop"
@@ -308,7 +288,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-                        <Link href="/blog/compare-ugc-video-tools-for-low-budget-campaigns" className={styles.blogCard}>
+<Link href="/blog/compare-ugc-video-tools-for-low-budget-campaigns" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop"
@@ -329,7 +309,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-                        <Link href="/blog/emotion-generator" className={styles.blogCard}>
+<Link href="/blog/emotion-generator" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=800&h=500&fit=crop"
@@ -350,8 +330,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/blog/best-ugc-video-software-for-ad-campaign-testing" className={styles.blogCard}>
+<Link href="/blog/best-ugc-video-software-for-ad-campaign-testing" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1483058712412-4245e9b90334?w=800&h=500&fit=crop"
@@ -372,8 +351,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/blog/ugc-video-ads-ai" className={styles.blogCard}>
+<Link href="/blog/ugc-video-ads-ai" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=800&h=500&fit=crop"
@@ -394,8 +372,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/blog/best-rated-platforms-quick-ugc-product-ad-videos" className={styles.blogCard}>
+<Link href="/blog/best-rated-platforms-quick-ugc-product-ad-videos" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop"
@@ -416,8 +393,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/blog/hook-generator" className={styles.blogCard}>
+<Link href="/blog/hook-generator" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop"
@@ -438,8 +414,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/blog/startup-video-tools" className={styles.blogCard}>
+<Link href="/blog/startup-video-tools" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&h=500&fit=crop"
@@ -460,8 +435,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/blog/best-mobile-apps-creating-ugc-videos-tiktok" className={styles.blogCard}>
+<Link href="/blog/best-mobile-apps-creating-ugc-videos-tiktok" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/article1.png"
@@ -482,8 +456,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/blog/top-rated-ugc-video-makers-for-social-ads" className={styles.blogCard}>
+<Link href="/blog/top-rated-ugc-video-makers-for-social-ads" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop"
@@ -504,7 +477,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-                        <Link href="/blog/compare-pricing-ugc-video-production-tools" className={styles.blogCard}>
+<Link href="/blog/compare-pricing-ugc-video-production-tools" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=500&fit=crop"
@@ -525,8 +498,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/blog/compare-free-vs-paid-ugc-video-creation-tools" className={styles.blogCard}>
+<Link href="/blog/compare-free-vs-paid-ugc-video-creation-tools" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop"
@@ -547,8 +519,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/blog/best-ugc-video-creation-service-for-real-estate-marketing" className={styles.blogCard}>
+<Link href="/blog/best-ugc-video-creation-service-for-real-estate-marketing" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/2.jpg"
@@ -569,8 +540,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/blog/top-ai-platforms-creating-ugc-brand-videos" className={styles.blogCard}>
+<Link href="/blog/top-ai-platforms-creating-ugc-brand-videos" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=500&fit=crop"
@@ -591,8 +561,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/blog/best-software-creating-ugc-testimonial-videos" className={styles.blogCard}>
+<Link href="/blog/best-software-creating-ugc-testimonial-videos" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=500&fit=crop"
@@ -613,7 +582,7 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-                    </div>
+</div>
                 </div>
 
             </div>

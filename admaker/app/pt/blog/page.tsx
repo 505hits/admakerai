@@ -16,7 +16,7 @@ export default function BlogPagePT() {
 
                     <div className={styles.blogGrid} >
 
-        < Link href = "/pt/blog/melhor-ferramenta-online-para-criar-anuncios-em-video-envolventes-no-facebook" className = { styles.blogCard } >
+        <Link href="/pt/blog/melhor-ferramenta-online-para-criar-anuncios-em-video-envolventes-no-facebook" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772797554849-0.png"
@@ -34,9 +34,8 @@ export default function BlogPagePT() {
                                     <span>March 2026</span>
                                 </div>
                             </div>
-                        </Link >  
-
-                        <Link href="/pt/blog/melhores-ferramentas-ia-anuncios-marketing-video" className={styles.blogCard}>
+                        </Link>
+<Link href="/pt/blog/melhores-ferramentas-ia-anuncios-marketing-video" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772452641206-0.png"
@@ -55,8 +54,7 @@ export default function BlogPagePT() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/pt/blog/melhores-ferramentas-ia-gerar-conteudo-video-ugc-2026" className={styles.blogCard}>
+<Link href="/pt/blog/melhores-ferramentas-ia-gerar-conteudo-video-ugc-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772365557200-0.png"
@@ -75,8 +73,7 @@ export default function BlogPagePT() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/pt/blog/melhores-atores-ia-anuncios-video-convertem-2026" className={styles.blogCard}>
+<Link href="/pt/blog/melhores-atores-ia-anuncios-video-convertem-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772278999883-0.png"
@@ -95,8 +92,7 @@ export default function BlogPagePT() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/pt/blog/melhores-ferramentas-ia-video-marketing-2026" className={styles.blogCard}>
+<Link href="/pt/blog/melhores-ferramentas-ia-video-marketing-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772193259378-0.png"
@@ -115,8 +111,7 @@ export default function BlogPagePT() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/pt/blog/melhores-ferramentas-ia-anuncios-video-ugc-2026" className={styles.blogCard}>
+<Link href="/pt/blog/melhores-ferramentas-ia-anuncios-video-ugc-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772107398639-0.png"
@@ -135,8 +130,7 @@ export default function BlogPagePT() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/pt/blog/melhores-alternativas-ao-arcads-para-pequenas-empresas-2026" className={styles.blogCard}>
+<Link href="/pt/blog/melhores-alternativas-ao-arcads-para-pequenas-empresas-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772054208500-0.png"
@@ -155,8 +149,7 @@ export default function BlogPagePT() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/pt/blog/melhores-ferramentas-ia-ugc-escalar-anuncios-video-2026" className={styles.blogCard}>
+<Link href="/pt/blog/melhores-ferramentas-ia-ugc-escalar-anuncios-video-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1771958725822-0.png"
@@ -175,8 +168,7 @@ export default function BlogPagePT() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/pt/blog/melhores-ferramentas-ia-ugc-criam-anuncios-video-autenticos" className={styles.blogCard}>
+<Link href="/pt/blog/melhores-ferramentas-ia-ugc-criam-anuncios-video-autenticos" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1770857313594-0.png"
@@ -195,8 +187,7 @@ export default function BlogPagePT() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/pt/blog/arcads-alternatives" className={styles.blogCard}>
+<Link href="/pt/blog/arcads-alternatives" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1770842617604-0.png"
@@ -215,9 +206,7 @@ export default function BlogPagePT() {
                                 </div>
                             </div>
                         </Link>
-
-
-                        <Link href="/pt/blog/melhores-criadores-video-ugc-para-anuncios-sociais" className={styles.blogCard}>
+<Link href="/pt/blog/melhores-criadores-video-ugc-para-anuncios-sociais" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop"
@@ -238,8 +227,7 @@ export default function BlogPagePT() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/pt/blog/comparar-precos-ferramentas-producao-video-ugc" className={styles.blogCard}>
+<Link href="/pt/blog/comparar-precos-ferramentas-producao-video-ugc" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=500&fit=crop"
@@ -260,8 +248,7 @@ export default function BlogPagePT() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/pt/blog/melhor-servico-criacao-video-ugc-marketing-imobiliario" className={styles.blogCard}>
+<Link href="/pt/blog/melhor-servico-criacao-video-ugc-marketing-imobiliario" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/2.jpg"
@@ -282,8 +269,7 @@ export default function BlogPagePT() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/pt/blog/melhores-plataformas-ia-criar-videos-ugc-marca" className={styles.blogCard}>
+<Link href="/pt/blog/melhores-plataformas-ia-criar-videos-ugc-marca" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=500&fit=crop"
@@ -304,7 +290,7 @@ export default function BlogPagePT() {
                                 </div>
                             </div>
                         </Link>
-                    </div>
+</div>
                 </div>
     
                         </div>

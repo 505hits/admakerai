@@ -16,7 +16,7 @@ export default function BlogPageDE() {
 
                     <div className={styles.blogGrid} >
 
-        < Link href = "/de/blog/bestes-online-tool-fuer-ansprechende-facebook-videoanzeigen" className = { styles.blogCard } >
+        <Link href="/de/blog/bestes-online-tool-fuer-ansprechende-facebook-videoanzeigen" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772797554849-0.png"
@@ -34,9 +34,8 @@ export default function BlogPageDE() {
                                     <span>March 2026</span>
                                 </div>
                             </div>
-                        </Link >  
-
-        < Link href = "/de/blog/beste-ki-video-marketing-tools-werbekampagnen" className = { styles.blogCard } >
+                        </Link>
+<Link href="/de/blog/beste-ki-video-marketing-tools-werbekampagnen" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772625319630-0.png"
@@ -54,9 +53,8 @@ export default function BlogPageDE() {
                                     <span>March 2026</span>
                                 </div>
                             </div>
-                        </Link >  
-
-        < Link href = "/de/blog/beste-ki-video-marketing-tools-kampagnen-roi-2026" className = { styles.blogCard } >
+                        </Link>
+<Link href="/de/blog/beste-ki-video-marketing-tools-kampagnen-roi-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772539009100-0.png"
@@ -74,9 +72,8 @@ export default function BlogPageDE() {
                                     <span>March 2026</span>
                                 </div>
                             </div>
-                        </Link >  
-
-                        <Link href="/de/blog/beste-ki-werbungstools-zur-transformation-ihres-videomarketings" className={styles.blogCard}>
+                        </Link>
+<Link href="/de/blog/beste-ki-werbungstools-zur-transformation-ihres-videomarketings" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772452641206-0.png"
@@ -95,8 +92,7 @@ export default function BlogPageDE() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/de/blog/beste-ki-tools-fuer-ugc-videoinhalte-2026" className={styles.blogCard}>
+<Link href="/de/blog/beste-ki-tools-fuer-ugc-videoinhalte-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772365557200-0.png"
@@ -115,8 +111,7 @@ export default function BlogPageDE() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/de/blog/beste-ki-schauspieler-fuer-video-anzeigen-conversion-2026" className={styles.blogCard}>
+<Link href="/de/blog/beste-ki-schauspieler-fuer-video-anzeigen-conversion-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772278999883-0.png"
@@ -135,8 +130,7 @@ export default function BlogPageDE() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/de/blog/beste-ki-video-marketing-tools-maximaler-roi-2026" className={styles.blogCard}>
+<Link href="/de/blog/beste-ki-video-marketing-tools-maximaler-roi-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772193259378-0.png"
@@ -155,8 +149,7 @@ export default function BlogPageDE() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/de/blog/beste-ki-tools-fuer-ugc-videoanzeigen-vergleich" className={styles.blogCard}>
+<Link href="/de/blog/beste-ki-tools-fuer-ugc-videoanzeigen-vergleich" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772107398639-0.png"
@@ -175,8 +168,7 @@ export default function BlogPageDE() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/de/blog/beste-arcads-alternativen-fuer-kleine-unternehmen-2026" className={styles.blogCard}>
+<Link href="/de/blog/beste-arcads-alternativen-fuer-kleine-unternehmen-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772054208500-0.png"
@@ -195,8 +187,7 @@ export default function BlogPageDE() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/de/blog/beste-ki-ugc-tools-fuer-videoanzeigen-2026" className={styles.blogCard}>
+<Link href="/de/blog/beste-ki-ugc-tools-fuer-videoanzeigen-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1771958725822-0.png"
@@ -215,8 +206,7 @@ export default function BlogPageDE() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/de/blog/beste-ki-ugc-tools-fuer-authentische-videoanzeigen" className={styles.blogCard}>
+<Link href="/de/blog/beste-ki-ugc-tools-fuer-authentische-videoanzeigen" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1770857313594-0.png"
@@ -235,8 +225,7 @@ export default function BlogPageDE() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/de/blog/arcads-alternatives" className={styles.blogCard}>
+<Link href="/de/blog/arcads-alternatives" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1770842617604-0.png"
@@ -255,9 +244,7 @@ export default function BlogPageDE() {
                                 </div>
                             </div>
                         </Link>
-
-
-                        <Link href="/de/blog/beste-ugc-video-macher-fuer-social-ads" className={styles.blogCard}>
+<Link href="/de/blog/beste-ugc-video-macher-fuer-social-ads" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop"
@@ -278,8 +265,7 @@ export default function BlogPageDE() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/de/blog/preise-vergleichen-ugc-video-produktionstools" className={styles.blogCard}>
+<Link href="/de/blog/preise-vergleichen-ugc-video-produktionstools" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=500&fit=crop"
@@ -300,8 +286,7 @@ export default function BlogPageDE() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/de/blog/bester-ugc-video-erstellungsservice-immobilienmarketing" className={styles.blogCard}>
+<Link href="/de/blog/bester-ugc-video-erstellungsservice-immobilienmarketing" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/2.jpg"
@@ -322,8 +307,7 @@ export default function BlogPageDE() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/de/blog/beste-ki-plattformen-ugc-markenvideos" className={styles.blogCard}>
+<Link href="/de/blog/beste-ki-plattformen-ugc-markenvideos" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=500&fit=crop"
@@ -344,8 +328,7 @@ export default function BlogPageDE() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/de/blog/preise-vergleichen-ugc-video-produktionstools" className={styles.blogCard}>
+<Link href="/de/blog/preise-vergleichen-ugc-video-produktionstools" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=500&fit=crop"
@@ -366,7 +349,7 @@ export default function BlogPageDE() {
                                 </div>
                             </div>
                         </Link>
-                    </div>
+</div>
                 </div>
     
                         </div>

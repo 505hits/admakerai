@@ -16,7 +16,7 @@ export default function BlogPageFR() {
 
                     <div className={styles.blogGrid} >
 
-        < Link href = "/fr/blog/meilleur-outil-creation-publicites-video-facebook-engageantes-2026" className = { styles.blogCard } >
+        <Link href="/fr/blog/meilleur-outil-creation-publicites-video-facebook-engageantes-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772711618224-0.png"
@@ -34,9 +34,8 @@ export default function BlogPageFR() {
                                     <span>March 2026</span>
                                 </div>
                             </div>
-                        </Link >  
-
-        < Link href = "/fr/blog/meilleurs-outils-video-marketing-ia-campagnes-publicitaires" className = { styles.blogCard } >
+                        </Link>
+<Link href="/fr/blog/meilleurs-outils-video-marketing-ia-campagnes-publicitaires" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772625319630-0.png"
@@ -54,9 +53,8 @@ export default function BlogPageFR() {
                                     <span>March 2026</span>
                                 </div>
                             </div>
-                        </Link >  
-
-        < Link href = "/fr/blog/meilleurs-outils-marketing-video-ia-transformant-roi-2026" className = { styles.blogCard } >
+                        </Link>
+<Link href="/fr/blog/meilleurs-outils-marketing-video-ia-transformant-roi-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772539009100-0.png"
@@ -74,9 +72,8 @@ export default function BlogPageFR() {
                                     <span>March 2026</span>
                                 </div>
                             </div>
-                        </Link >  
-
-                        <Link href="/fr/blog/meilleurs-outils-publicitaires-ia-marketing-video" className={styles.blogCard}>
+                        </Link>
+<Link href="/fr/blog/meilleurs-outils-publicitaires-ia-marketing-video" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772452641206-0.png"
@@ -95,8 +92,7 @@ export default function BlogPageFR() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/fr/blog/meilleurs-outils-ia-pour-creer-des-videos-ugc-en-2026" className={styles.blogCard}>
+<Link href="/fr/blog/meilleurs-outils-ia-pour-creer-des-videos-ugc-en-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772365557200-0.png"
@@ -115,8 +111,7 @@ export default function BlogPageFR() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/fr/blog/meilleurs-acteurs-ia-publicites-video-performantes-2026" className={styles.blogCard}>
+<Link href="/fr/blog/meilleurs-acteurs-ia-publicites-video-performantes-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772278999883-0.png"
@@ -135,8 +130,7 @@ export default function BlogPageFR() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/fr/blog/meilleurs-outils-video-marketing-ia-maximiser-roi-2026" className={styles.blogCard}>
+<Link href="/fr/blog/meilleurs-outils-video-marketing-ia-maximiser-roi-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772193259378-0.png"
@@ -155,8 +149,7 @@ export default function BlogPageFR() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/fr/blog/meilleurs-outils-ia-publicites-video-ugc-2026" className={styles.blogCard}>
+<Link href="/fr/blog/meilleurs-outils-ia-publicites-video-ugc-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772107398639-0.png"
@@ -175,8 +168,7 @@ export default function BlogPageFR() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/fr/blog/meilleures-alternatives-arcads-petites-entreprises-2026" className={styles.blogCard}>
+<Link href="/fr/blog/meilleures-alternatives-arcads-petites-entreprises-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1772054208500-0.png"
@@ -195,8 +187,7 @@ export default function BlogPageFR() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/fr/blog/meilleurs-outils-ia-ugc-publicites-video-2026" className={styles.blogCard}>
+<Link href="/fr/blog/meilleurs-outils-ia-ugc-publicites-video-2026" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1771958725822-0.png"
@@ -215,8 +206,7 @@ export default function BlogPageFR() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/fr/blog/meilleurs-outils-ia-ugc-publicites-video-authentiques" className={styles.blogCard}>
+<Link href="/fr/blog/meilleurs-outils-ia-ugc-publicites-video-authentiques" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1770857313594-0.png"
@@ -235,8 +225,7 @@ export default function BlogPageFR() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/fr/blog/arcads-alternatives" className={styles.blogCard}>
+<Link href="/fr/blog/arcads-alternatives" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="/blog-images/img-1770842617604-0.png"
@@ -255,9 +244,7 @@ export default function BlogPageFR() {
                                 </div>
                             </div>
                         </Link>
-
-
-                        <Link href="/fr/blog/meilleur-logiciel-video-ugc-test-campagne-publicitaire" className={styles.blogCard}>
+<Link href="/fr/blog/meilleur-logiciel-video-ugc-test-campagne-publicitaire" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1483058712412-4245e9b90334?w=800&h=500&fit=crop"
@@ -278,7 +265,7 @@ export default function BlogPageFR() {
                                 </div>
                             </div>
                         </Link>
-                        <Link href="/fr/blog/meilleurs-createurs-video-ugc-pour-publicites-sociales" className={styles.blogCard}>
+<Link href="/fr/blog/meilleurs-createurs-video-ugc-pour-publicites-sociales" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=800&h=500&fit=crop"
@@ -299,8 +286,7 @@ export default function BlogPageFR() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/fr/blog/comparer-prix-outils-production-video-ugc" className={styles.blogCard}>
+<Link href="/fr/blog/comparer-prix-outils-production-video-ugc" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&h=500&fit=crop"
@@ -321,8 +307,7 @@ export default function BlogPageFR() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier" className={styles.blogCard}>
+<Link href="/fr/blog/meilleur-service-creation-video-ugc-marketing-immobilier" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://pub-02bf1ac6244444b5810b067310ef4874.r2.dev/Actors/2.jpg"
@@ -343,8 +328,7 @@ export default function BlogPageFR() {
                                 </div>
                             </div>
                         </Link>
-
-                        <Link href="/fr/blog/meilleures-plateformes-ia-creation-videos-ugc-marque" className={styles.blogCard}>
+<Link href="/fr/blog/meilleures-plateformes-ia-creation-videos-ugc-marque" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
                                     src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=500&fit=crop"
@@ -365,7 +349,7 @@ export default function BlogPageFR() {
                                 </div>
                             </div>
                         </Link>
-                    </div>
+</div>
                 </div>
     
                         </div>
