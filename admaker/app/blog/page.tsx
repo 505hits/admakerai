@@ -15,6 +15,25 @@ export default function BlogPage() {
                     <p className={styles.subtitle}>Latest news and insights from AdMaker AI</p>
 
                     <div className={styles.blogGrid}>
+<Link href="/blog/arcads-ai" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/ blog - images / img-1770603106650-0.png "
+                                    alt="Best AI Video Tools for Marketing Using arcads ai Technology"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Best AI Video Tools for Marketing Using arcads ai Technology</h2>
+                                <p className={styles.cardExcerpt}>arcads ai</p>
+                                <div className={styles.cardMeta}>
+                                    <span>March 2026</span>
+                                </div>
+                            </div>
+                        </Link>
 
         <Link href="/blog/best-online-tool-for-creating-engaging-facebook-video-ads" className={styles.blogCard}>
                             <div className={styles.cardImage}>

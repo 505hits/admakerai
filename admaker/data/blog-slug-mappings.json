@@ -50,10 +50,10 @@
   },
   "/blog/arcads-ai": {
     "en": "/blog/arcads-ai",
-    "fr": "/fr/blog/arcads-ai",
-    "es": "/es/blog/arcads-ai",
-    "pt": "/pt/blog/arcads-ai",
-    "de": "/de/blog/arcads-ai"
+    "fr": "/fr/blog/arcads-ia",
+    "es": "/es/blog/arcads-ia-herramientas-video-marketing",
+    "pt": "/pt/blog/arcads-ia",
+    "de": "/de/blog/arcads-ai-ki-video-marketing-tools"
   },
   "/blog/arcads-pricing": {
     "en": "/blog/arcads-pricing",
@@ -362,5 +362,26 @@
     "es": "/es/blog/mejor-herramienta-online-crear-anuncios-video-facebook-2026",
     "pt": "/pt/blog/melhor-ferramenta-online-para-criar-anuncios-em-video-envolventes-no-facebook",
     "de": "/de/blog/bestes-online-tool-fuer-ansprechende-facebook-videoanzeigen"
+  },
+  "/blog/arcads-ia": {
+    "en": "/blog/arcads-ai",
+    "fr": "/fr/blog/arcads-ia",
+    "es": "/es/blog/arcads-ia-herramientas-video-marketing",
+    "pt": "/pt/blog/arcads-ia",
+    "de": "/de/blog/arcads-ai-ki-video-marketing-tools"
+  },
+  "/blog/arcads-ia-herramientas-video-marketing": {
+    "en": "/blog/arcads-ai",
+    "fr": "/fr/blog/arcads-ia",
+    "es": "/es/blog/arcads-ia-herramientas-video-marketing",
+    "pt": "/pt/blog/arcads-ia",
+    "de": "/de/blog/arcads-ai-ki-video-marketing-tools"
+  },
+  "/blog/arcads-ai-ki-video-marketing-tools": {
+    "en": "/blog/arcads-ai",
+    "fr": "/fr/blog/arcads-ia",
+    "es": "/es/blog/arcads-ia-herramientas-video-marketing",
+    "pt": "/pt/blog/arcads-ia",
+    "de": "/de/blog/arcads-ai-ki-video-marketing-tools"
   }
 }

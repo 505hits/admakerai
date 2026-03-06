@@ -222,7 +222,22 @@
   },
   {
     "keyword": "arcads ai",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "arcads-ai",
+      "fr": "arcads-ia",
+      "es": "arcads-ia-herramientas-video-marketing",
+      "pt": "arcads-ia",
+      "de": "arcads-ai-ki-video-marketing-tools"
+    },
+    "translatedTitles": {
+      "en": "Best AI Video Tools for Marketing Using arcads ai Technology",
+      "fr": "Meilleurs outils vidéo IA pour le marketing avec arcads ia",
+      "es": "Mejores Herramientas de Video IA con Tecnología arcads ai",
+      "pt": "Melhores Ferramentas de Vídeo IA para Marketing com Tecnologia arcads ai",
+      "de": "Beste KI-Video-Tools für Marketing mit arcads ai Technologie"
+    },
+    "completedDate": "2026-03-06T14:16:26.469Z"
   },
   {
     "keyword": "arcards",
