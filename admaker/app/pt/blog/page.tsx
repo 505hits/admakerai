@@ -16,6 +16,26 @@ export default function BlogPagePT() {
 
                     <div className={styles.blogGrid} >
 
+        < Link href = "/pt/blog/melhor-ferramenta-online-para-criar-anuncios-em-video-envolventes-no-facebook" className = { styles.blogCard } >
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1772797554849-0.png"
+                                    alt="Melhor ferramenta online para criar anúncios em vídeo envolventes no Facebook"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Melhor ferramenta online para criar anúncios em vídeo envolventes no Facebook</h2>
+                                <p className={styles.cardExcerpt}>best online tool for creating engaging facebook video ads</p>
+                                <div className={styles.cardMeta}>
+                                    <span>March 2026</span>
+                                </div>
+                            </div>
+                        </Link >  
+
                         <Link href="/pt/blog/melhores-ferramentas-ia-anuncios-marketing-video" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

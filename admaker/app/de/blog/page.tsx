@@ -16,6 +16,26 @@ export default function BlogPageDE() {
 
                     <div className={styles.blogGrid} >
 
+        < Link href = "/de/blog/bestes-online-tool-fuer-ansprechende-facebook-videoanzeigen" className = { styles.blogCard } >
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1772797554849-0.png"
+                                    alt="Bestes Online-Tool für ansprechende Facebook-Videoanzeigen 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Bestes Online-Tool für ansprechende Facebook-Videoanzeigen 2026</h2>
+                                <p className={styles.cardExcerpt}>best online tool for creating engaging facebook video ads</p>
+                                <div className={styles.cardMeta}>
+                                    <span>March 2026</span>
+                                </div>
+                            </div>
+                        </Link >  
+
         < Link href = "/de/blog/beste-ki-video-marketing-tools-werbekampagnen" className = { styles.blogCard } >
                             <div className={styles.cardImage}>
                                 <Image
