@@ -165,7 +165,7 @@ async function main() {
                 // const enSlug = enContent.slug_translated || topic.slug; // ORIGINAL logic replaced
 
                 // Cache the slug
-                const topicIndex = topics.findIndex(t => t.keyword === topic.keyword);
+                const topicIndex = topics.findIndex(t => t === topic);
                 if (topicIndex !== -1) {
                     if (!topics[topicIndex].translatedSlugs) topics[topicIndex].translatedSlugs = {};
                     topics[topicIndex].translatedSlugs['en'] = enSlug;
@@ -226,7 +226,7 @@ async function main() {
 
                 // Cache the slug
                 // Cache the slug AND Title
-                const topicIndex = topics.findIndex(t => t.keyword === topic.keyword);
+                const topicIndex = topics.findIndex(t => t === topic);
                 if (topicIndex !== -1) {
                     if (!topics[topicIndex].translatedSlugs) topics[topicIndex].translatedSlugs = {};
                     topics[topicIndex].translatedSlugs[lang.code] = translatedSlug;
@@ -341,7 +341,7 @@ async function main() {
         // STEP 5: Mark Complete
         // ================================================================
         if (allLanguagesSuccessful) {
-            const originalIndex = topics.findIndex(t => t.keyword === topic.keyword);
+            const originalIndex = topics.findIndex(t => t === topic);
             if (originalIndex !== -1) {
                 topics[originalIndex].status = 'completed';
                 topics[originalIndex].completedDate = new Date().toISOString();
