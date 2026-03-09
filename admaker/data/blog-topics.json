@@ -241,7 +241,22 @@
   },
   {
     "keyword": "tiktok automation",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "tiktok-automation",
+      "fr": "automatisation-tiktok",
+      "es": "automatizacion-tiktok",
+      "pt": "automacao-tiktok",
+      "de": "tiktok-automatisierung-tools-videomarketing"
+    },
+    "translatedTitles": {
+      "en": "Best TikTok Automation Tools for Video Marketing in 2026",
+      "fr": "Meilleurs outils d'automatisation TikTok pour le marketing vidéo 2026",
+      "es": "Mejores Herramientas de Automatización TikTok para Marketing 2026",
+      "pt": "Melhores Ferramentas de Automação TikTok para Marketing em 2026",
+      "de": "Beste TikTok Automatisierung Tools für Videomarketing 2026"
+    },
+    "completedDate": "2026-03-09T23:16:43.565Z"
   },
   {
     "keyword": "acardi",

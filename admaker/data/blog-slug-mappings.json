@@ -390,5 +390,40 @@
     "es": "/es/blog/arcads-ia-herramientas-video-marketing",
     "pt": "/pt/blog/arcads-ia",
     "de": "/de/blog/arcads-ki-video-marketing-tools"
+  },
+  "/blog/tiktok-automation": {
+    "en": "/blog/tiktok-automation",
+    "fr": "/fr/blog/automatisation-tiktok",
+    "es": "/es/blog/automatizacion-tiktok",
+    "pt": "/pt/blog/automacao-tiktok",
+    "de": "/de/blog/tiktok-automatisierung-tools-videomarketing"
+  },
+  "/blog/automatisation-tiktok": {
+    "en": "/blog/tiktok-automation",
+    "fr": "/fr/blog/automatisation-tiktok",
+    "es": "/es/blog/automatizacion-tiktok",
+    "pt": "/pt/blog/automacao-tiktok",
+    "de": "/de/blog/tiktok-automatisierung-tools-videomarketing"
+  },
+  "/blog/automatizacion-tiktok": {
+    "en": "/blog/tiktok-automation",
+    "fr": "/fr/blog/automatisation-tiktok",
+    "es": "/es/blog/automatizacion-tiktok",
+    "pt": "/pt/blog/automacao-tiktok",
+    "de": "/de/blog/tiktok-automatisierung-tools-videomarketing"
+  },
+  "/blog/automacao-tiktok": {
+    "en": "/blog/tiktok-automation",
+    "fr": "/fr/blog/automatisation-tiktok",
+    "es": "/es/blog/automatizacion-tiktok",
+    "pt": "/pt/blog/automacao-tiktok",
+    "de": "/de/blog/tiktok-automatisierung-tools-videomarketing"
+  },
+  "/blog/tiktok-automatisierung-tools-videomarketing": {
+    "en": "/blog/tiktok-automation",
+    "fr": "/fr/blog/automatisation-tiktok",
+    "es": "/es/blog/automatizacion-tiktok",
+    "pt": "/pt/blog/automacao-tiktok",
+    "de": "/de/blog/tiktok-automatisierung-tools-videomarketing"
   }
 }
