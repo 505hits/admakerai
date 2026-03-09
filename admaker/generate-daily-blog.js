@@ -272,23 +272,22 @@ async function main() {
             const postDir = path.join(lang.dir, content.finalSlug);
 
             if (fs.existsSync(path.join(postDir, 'page.tsx'))) {
-                console.log(`    ⚠️ Already exists: ${lang.code}/${content.finalSlug}`);
-            } else {
-                if (!fs.existsSync(postDir)) {
-                    fs.mkdirSync(postDir, { recursive: true });
-                }
-
-                // Pass imageUrls to createPageTsx to ensuring images are available
-                const relatedArticles = getRelatedArticles(topics, topic.keyword, lang.code);
-                // Attach the images to content if not already there (for EN it's there, for others it might not be)
-                const contentWithImages = { ...content, images: imageUrls };
-
-                const pageContent = createPageTsx(topic, contentWithImages, imageUrls, lang.code, relatedArticles);
-                fs.writeFileSync(path.join(postDir, 'page.tsx'), pageContent);
-                console.log(`    ✅ Created ${lang.code}/blog/${content.finalSlug}/page.tsx`);
-
-                updateBlogIndex(lang.dir, { ...topic, slug: content.finalSlug }, imageUrls[0] ? imageUrls[0].url : '', lang.code, content.title_translated || topic.h1);
+                console.log(`    ⚠️ Overwriting existing file: ${lang.code}/${content.finalSlug}`);
             }
+            if (!fs.existsSync(postDir)) {
+                fs.mkdirSync(postDir, { recursive: true });
+            }
+
+            // Pass imageUrls to createPageTsx to ensuring images are available
+            const relatedArticles = getRelatedArticles(topics, topic.keyword, lang.code);
+            // Attach the images to content if not already there (for EN it's there, for others it might not be)
+            const contentWithImages = { ...content, images: imageUrls };
+
+            const pageContent = createPageTsx(topic, contentWithImages, imageUrls, lang.code, relatedArticles);
+            fs.writeFileSync(path.join(postDir, 'page.tsx'), pageContent);
+            console.log(`    ✅ Created/Updated ${lang.code}/blog/${content.finalSlug}/page.tsx`);
+
+            updateBlogIndex(lang.dir, { ...topic, slug: content.finalSlug }, imageUrls[0] ? imageUrls[0].url : '', lang.code, content.title_translated || topic.h1);
         }
 
         // ================================================================
