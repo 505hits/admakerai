@@ -260,7 +260,22 @@
   },
   {
     "keyword": "acardi",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "acardi",
+      "fr": "meilleurs-outils-video-ia-marketing-campagnes-acardi",
+      "es": "herramientas-video-marketing-ia-campanas-acardi",
+      "pt": "ferramentas-ia-video-marketing",
+      "de": "beste-ki-videomarketing-tools-acardi-kampagnen"
+    },
+    "translatedTitles": {
+      "en": "Best AI Video Marketing Tools for acardi Campaigns in 2026",
+      "fr": "Meilleurs outils vidéo IA marketing pour campagnes acardi 2026",
+      "es": "Mejores Herramientas de Video Marketing IA para Campañas acardi 2026",
+      "pt": "Melhores Ferramentas de IA para Vídeo Marketing em 2026",
+      "de": "Beste KI-Videomarketing-Tools für Acardi-Kampagnen 2026"
+    },
+    "completedDate": "2026-03-10T11:58:58.390Z"
   },
   {
     "keyword": "arcads.ai",
