@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT || github.token }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -47,7 +49,23 @@ jobs:
             git commit -m "Auto-generated blog posts (SEO Optimized)"
             echo "📦 Commit created. Pulling latest changes..."
             git pull --rebase origin main
-            echo "🚀 Pushing to origin..."
-            git push origin main
-            echo "✅ Push successful!"
+            echo "🚀 Pushing to origin with PAT to trigger Vercel deployment..."
+            if [ -n "${{ secrets.GH_PAT }}" ]; then
+              git push https://x-access-token:${{ secrets.GH_PAT }}@github.com/${{ github.repository }}.git HEAD:main
+              echo "✅ Push with PAT successful - Vercel should trigger a new deployment!"
+            else
+              git push origin main
+              echo "⚠️ No GH_PAT found, pushed with default token (Vercel may not rebuild)"
+            fi
+          fi
+
+      - name: Trigger Vercel Deploy Hook (fallback)
+        if: secrets.VERCEL_DEPLOY_HOOK_URL != ''
+        env:
+          VERCEL_DEPLOY_HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -n "$VERCEL_DEPLOY_HOOK_URL" ]; then
+            echo "🚀 Triggering Vercel deploy hook..."
+            curl -X POST "$VERCEL_DEPLOY_HOOK_URL"
+            echo "✅ Vercel deploy hook triggered!"
           fi
