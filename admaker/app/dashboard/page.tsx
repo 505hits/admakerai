@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useState, useEffect, useRef, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
@@ -53,6 +53,7 @@ function DashboardContent() {
     const [credits, setCredits] = useState(0); // Start with 0 credits
     const [actorCredits, setActorCredits] = useState(0); // AI Actor credits
     const [replicatorCredits, setReplicatorCredits] = useState(0); // Replicator credits
+    const [isLoadingCredits, setIsLoadingCredits] = useState(true); // True until credits are loaded
     const [showCreditsModal, setShowCreditsModal] = useState(false);
     const [showCreateActorModal, setShowCreateActorModal] = useState(false);
     const [showSuccessNotification, setShowSuccessNotification] = useState(false);
@@ -105,10 +106,28 @@ function DashboardContent() {
                         setPaymentStatus(`Finalizing subscription setup... (Attempt ${pollAttempts + 1}/${maxPollAttempts})`);
                     }
 
-                    // Use server action to get fresh data (bypassing cache potentially)
-                    const { profile } = await getUserData();
+                    let profile: any = null;
+                    if (isPaymentSuccess) {
+                        // For payment success: use server action to bypass cache and get fresh data
+                        const result = await getUserData();
+                        profile = result.profile;
+                    } else {
+                        // For normal load: use fast client-side Supabase query
+                        const { data } = await supabase
+                            .from('profiles')
+                            .select('id, credits, actor_credits, replicator_credits, subscription_plan, subscription_status, subscription_end_date')
+                            .eq('id', user.id)
+                            .maybeSingle();
+                        profile = data;
+                    }
 
                     if (profile) {
+                        // ALWAYS update credits state once profile is loaded, regardless of access status
+                        setCredits(profile.credits || 0);
+                        setActorCredits(profile.actor_credits || 0);
+                        setReplicatorCredits(profile.replicator_credits || 0);
+                        setIsLoadingCredits(false); // Credits are now loaded
+
                         const hasCredits = (profile.credits || 0) > 0 ||
                             (profile.actor_credits || 0) > 0 ||
                             (profile.replicator_credits || 0) > 0;
@@ -117,11 +136,6 @@ function DashboardContent() {
                         const hasAccess = hasActiveSubscription || hasCredits;
 
                         if (hasAccess) {
-                            // User has access! Update state and stop polling
-                            setCredits(profile.credits || 0);
-                            setActorCredits(profile.actor_credits || 0);
-                            setReplicatorCredits(profile.replicator_credits || 0);
-
                             if (isPaymentSuccess) {
                                 setIsCheckingPayment(false);
                                 setPaymentStatus('Subscription active! Redirecting to dashboard...');
@@ -130,6 +144,9 @@ function DashboardContent() {
                             }
                             return true;
                         }
+                    } else {
+                        // Profile not loaded yet, but mark credits as not loading if we've already tried
+                        if (pollAttempts > 0) setIsLoadingCredits(false);
                     }
                     return false;
                 };
@@ -143,16 +160,15 @@ function DashboardContent() {
                     if (pollAttempts < maxPollAttempts) {
                         setTimeout(runCheck, 2000); // Check every 2 seconds
                     } else {
-                        // Final check failed - redirect to payment if not just a refresh
-                        if (!isPaymentSuccess) {
-                            window.location.href = '/payment';
-                        } else {
-                            // Payment success but still no access?
-                            // Maybe just let them stay but show error?
-                            // For now, redirect to payment page as "failed"
+                        // Final check failed
+                        if (isPaymentSuccess) {
+                            // Payment success but still no access after 20s? Show support message
                             alert("We couldn't verify your subscription yet. Please contact support if this persists.");
                             window.location.href = '/payment';
                         }
+                        // If not from payment, just stay on dashboard - credits might be 0
+                        // Do NOT redirect to /payment - user might just have 0 credits
+                        setIsLoadingCredits(false);
                     }
                 };
 
@@ -664,6 +680,11 @@ function DashboardContent() {
         }
 
         const cost = getCreditCost();
+        // Don't show modal while credits are still loading from server
+        if (isLoadingCredits) {
+            setError('Credits are still loading, please wait a moment...');
+            return;
+        }
         if (credits < cost) {
             setShowCreditsModal(true);
             return;
@@ -1200,7 +1221,7 @@ function DashboardContent() {
                         </svg>
                         <div>
                             <span className={styles.creditsLabel}>Video Credits</span>
-                            <span className={styles.creditsValue}>{credits}</span>
+                            <span className={styles.creditsValue}>{isLoadingCredits ? '...' : credits}</span>
                         </div>
                     </div>
                     <div className={styles.creditItem}>
@@ -1209,7 +1230,7 @@ function DashboardContent() {
                         </svg>
                         <div>
                             <span className={styles.creditsLabel}>AI Actor Credits</span>
-                            <span className={styles.creditsValue}>{actorCredits}</span>
+                            <span className={styles.creditsValue}>{isLoadingCredits ? '...' : actorCredits}</span>
                         </div>
                     </div>
                     <div className={styles.creditItem}>
@@ -1218,7 +1239,7 @@ function DashboardContent() {
                         </svg>
                         <div>
                             <span className={styles.creditsLabel}>Replicator Credits</span>
-                            <span className={styles.creditsValue}>{replicatorCredits}</span>
+                            <span className={styles.creditsValue}>{isLoadingCredits ? '...' : replicatorCredits}</span>
                         </div>
                     </div>
                 </div>
