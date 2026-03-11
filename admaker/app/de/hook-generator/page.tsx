@@ -18,6 +18,7 @@ export default function HookGenerator() {
     const [error, setError] = useState<string | null>(null);
     const [hooksRemaining, setHooksRemaining] = useState<number | null>(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isPaidUser, setIsPaidUser] = useState(false);
     const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
     const [showPremiumModal, setShowPremiumModal] = useState(false);
     const resultsRef = useRef<HTMLDivElement>(null);
@@ -29,6 +30,12 @@ export default function HookGenerator() {
         const checkAuth = async () => {
             const { data: { user } } = await supabase.auth.getUser();
             setIsAuthenticated(!!user);
+            if (user) {
+                const { data: profile } = await supabase.from('profiles').select('subscription_status').eq('id', user.id).single();
+                if (profile && (profile.subscription_status === 'active' || profile.subscription_status === 'trialing')) {
+                    setIsPaidUser(true);
+                }
+            }
         };
         checkAuth();
     }, []);
@@ -67,6 +74,7 @@ export default function HookGenerator() {
             setHooks(data.hooks);
             setHooksRemaining(data.hooksRemaining);
             setIsAuthenticated(data.isAuthenticated);
+            setIsPaidUser(data.isPaidUser || false);
 
             // Scroll to results after successful generation
             setTimeout(() => {
@@ -122,7 +130,7 @@ export default function HookGenerator() {
                             Erstelle 3 virale Video-Hooks in Sekunden. Perfekt für TikTok, Instagram Reels und YouTube Shorts.
                         </p>
 
-                        {isAuthenticated && hooksRemaining !== null && (
+                        {isAuthenticated && hooksRemaining !== null && hooksRemaining >= 0 && !isPaidUser && (
                             <div className={styles.hooksCounter}>
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                                     <path d="M8 2v12M2 8h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -228,7 +236,7 @@ export default function HookGenerator() {
                                                     </>
                                                 )}
                                             </button>
-                                            <a href="/de" className={styles.generateVideoBtn}>
+                                            <a href={isPaidUser ? "/de/dashboard" : "/de"} className={styles.generateVideoBtn}>
                                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
                                                     <path d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                                 </svg>

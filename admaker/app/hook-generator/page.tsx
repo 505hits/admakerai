@@ -20,6 +20,7 @@ export default function HookGeneratorPage() {
     const [error, setError] = useState<string | null>(null);
     const [hooksRemaining, setHooksRemaining] = useState<number | null>(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isPaidUser, setIsPaidUser] = useState(false);
     const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
     const [showPremiumModal, setShowPremiumModal] = useState(false);
     const [showPromoPopup, setShowPromoPopup] = useState(false);
@@ -32,6 +33,12 @@ export default function HookGeneratorPage() {
         const checkAuth = async () => {
             const { data: { user } } = await supabase.auth.getUser();
             setIsAuthenticated(!!user);
+            if (user) {
+                const { data: profile } = await supabase.from('profiles').select('subscription_status').eq('id', user.id).single();
+                if (profile && (profile.subscription_status === 'active' || profile.subscription_status === 'trialing')) {
+                    setIsPaidUser(true);
+                }
+            }
         };
         checkAuth();
     }, []);
@@ -70,6 +77,7 @@ export default function HookGeneratorPage() {
             setHooks(data.hooks);
             setHooksRemaining(data.hooksRemaining);
             setIsAuthenticated(data.isAuthenticated);
+            setIsPaidUser(data.isPaidUser || false);
 
             // Scroll to results after successful generation
             setTimeout(() => {
@@ -125,7 +133,7 @@ export default function HookGeneratorPage() {
                             Create 3 viral video hooks in seconds. Perfect for TikTok, Instagram Reels, and YouTube Shorts.
                         </p>
 
-                        {isAuthenticated && hooksRemaining !== null && (
+                        {isAuthenticated && hooksRemaining !== null && hooksRemaining >= 0 && !isPaidUser && (
                             <div className={styles.hooksCounter}>
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                                     <path d="M8 2v12M2 8h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -232,7 +240,13 @@ export default function HookGeneratorPage() {
                                                 )}
                                             </button>
                                             <button
-                                                onClick={() => setShowPromoPopup(true)}
+                                                onClick={() => {
+                                                    if (isPaidUser) {
+                                                        router.push('/dashboard');
+                                                    } else {
+                                                        setShowPromoPopup(true);
+                                                    }
+                                                }}
                                                 className={styles.generateVideoBtn}
                                             >
                                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none">

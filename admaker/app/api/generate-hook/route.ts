@@ -20,6 +20,7 @@ export async function POST(request: NextRequest) {
         const { data: { user } } = await supabase.auth.getUser();
 
         let hooksRemaining = null; // Initialize hooksRemaining here
+        let isPaidUser = false;
 
         // Rate limiting for non-authenticated users (stricter - 10 total per hour)
         let rateLimitResult; // Declare rateLimitResult here to be accessible later
@@ -65,7 +66,7 @@ export async function POST(request: NextRequest) {
             }
 
             // Check if user has a paid subscription
-            const isPaidUser = profile?.subscription_status === 'active' ||
+            isPaidUser = profile?.subscription_status === 'active' ||
                 profile?.subscription_status === 'trialing';
 
             if (!isPaidUser) {
@@ -210,7 +211,9 @@ Generate 3 hooks:`;
                 console.error('❌ Error updating hook_generations_used:', updateError);
             } else {
                 console.log(`✅ Hook generations updated: ${newUsageCount}/10`);
-                hooksRemaining = Math.max(0, 10 - newUsageCount);
+                if (!isPaidUser) {
+                    hooksRemaining = Math.max(0, 10 - newUsageCount);
+                }
             }
         }
 
@@ -220,7 +223,8 @@ Generate 3 hooks:`;
                 hooks,
                 success: true,
                 hooksRemaining,
-                isAuthenticated: !!user
+                isAuthenticated: !!user,
+                isPaidUser
             },
             rateLimitResult ? { headers: getRateLimitHeaders(rateLimitResult) } : {}
         );
