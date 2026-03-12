@@ -1085,16 +1085,16 @@ function updateBlogIndex(dir, topic, thumbnail, lang, title) {
 `;
 
     // Robust regex replacement to find the opening tag of the grid
-    // Matches: className={styles.blogGrid}, allowing for newlines and spaces
-    // CAPTURING GROUP added so $1 works in replace
-    const gridRegex = /(className=\{styles\.blogGrid\}\s*>)/;
+    // Matches: <div className={styles.blogGrid}>
+    const gridRegex = /(<div[^>]*className=\{styles\.blogGrid\}[^>]*>)/;
 
     if (gridRegex.test(content)) {
-        content = content.replace(gridRegex, `$1\n${newCard} `);
+        // Insert IMMEDIATELY after the opening tag so new articles appear at the TOP
+        content = content.replace(gridRegex, `$1\n${newCard}`);
         fs.writeFileSync(listPath, content);
-        console.log(`    ✅ Updated blog index at ${listPath} `);
+        console.log(`    ✅ Updated blog index at ${listPath}`);
     } else {
-        console.warn(`    ⚠️ Could not find blogGrid in ${listPath} `);
+        console.warn(`    ⚠️ Could not find blogGrid in ${listPath}`);
     }
 }
 

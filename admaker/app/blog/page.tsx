@@ -16,6 +16,66 @@ export default function BlogPage() {
 
                     <div className={styles.blogGrid}>
 
+                        <Link href="/blog/arcads-ai" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1770603106650-0.png"
+                                    alt="Best AI Video Tools for Marketing Using arcads ai Technology"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Best AI Video Tools for Marketing Using arcads ai Technology</h2>
+                                <p className={styles.cardExcerpt}>arcads.ai</p>
+                                <div className={styles.cardMeta}>
+                                    <span>March 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+                        <Link href="/blog/top-ai-tools-ugc-video-content" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1770678994462-0.png"
+                                    alt="Top AI Tools for UGC Video Content"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Top AI Tools for UGC Video Content</h2>
+                                <p className={styles.cardExcerpt}>top ai tools ugc video content</p>
+                                <div className={styles.cardMeta}>
+                                    <span>March 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+                        <Link href="/blog/best-tool-facebook-video-ads" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1770680119378-0.png"
+                                    alt="Best Tool for Facebook Video Ads"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Best Tool for Facebook Video Ads</h2>
+                                <p className={styles.cardExcerpt}>best tool facebook video ads</p>
+                                <div className={styles.cardMeta}>
+                                    <span>March 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
         <Link href="/blog/acardi" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
@@ -57,25 +117,7 @@ export default function BlogPage() {
                             </div>
                         </Link>
  
-<Link href="/blog/arcads-ai" className={styles.blogCard}>
-                            <div className={styles.cardImage}>
-                                <Image
-                                    src="/ blog - images / img-1770603106650-0.png "
-                                    alt="Best AI Video Tools for Marketing Using arcads ai Technology"
-                                    width={400}
-                                    height={250}
-                                    style={{ objectFit: 'cover' }}
-                                />
-                            </div>
-                            <div className={styles.cardContent}>
-                                <span className={styles.category}>AdMaker AI</span>
-                                <h2 className={styles.cardTitle}>Best AI Video Tools for Marketing Using arcads ai Technology</h2>
-                                <p className={styles.cardExcerpt}>arcads ai</p>
-                                <div className={styles.cardMeta}>
-                                    <span>March 2026</span>
-                                </div>
-                            </div>
-                        </Link>
+
 
         <Link href="/blog/best-online-tool-for-creating-engaging-facebook-video-ads" className={styles.blogCard}>
                             <div className={styles.cardImage}>
