@@ -60,7 +60,6 @@ jobs:
           fi
 
       - name: Trigger Vercel Deploy Hook (fallback)
-        if: secrets.VERCEL_DEPLOY_HOOK_URL != ''
         env:
           VERCEL_DEPLOY_HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
         run: |
