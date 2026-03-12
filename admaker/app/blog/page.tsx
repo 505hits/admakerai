@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import Navbar from '@/components/Navbar';
 import styles from './Blog.module.css';
@@ -307,27 +307,6 @@ export default function BlogPage() {
                                 </div>
                             </div>
                         </Link>
-<Link href="/blog/reviews-of-ugc-video-makers-with-mobile-support" className={styles.blogCard}>
-                            <div className={styles.cardImage}>
-                                <Image
-                                    src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=800&h=500&fit=crop"
-                                    alt="Best Reviews of UGC Video Makers with Mobile Support in 2026"
-                                    width={400}
-                                    height={250}
-                                    style={{ objectFit: 'cover' }}
-                                />
-                            </div>
-                            <div className={styles.cardContent}>
-                                <span className={styles.category}>Video Strategy</span>
-                                <h2 className={styles.cardTitle}>Best Reviews of UGC Video Makers with Mobile Support in 2026</h2>
-                                <p className={styles.cardExcerpt}>
-                                    After reviewing 19 mobile UGC video makers with 580+ user testimonials analyzed, I reveal which platforms actually deliver. Real user data included.
-                                </p>
-                                <div className={styles.cardMeta}>
-                                    <span>January 2026</span>
-                                </div>
-                            </div>
-                        </Link>
 <Link href="/blog/promotion-script-army" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
@@ -553,27 +532,6 @@ export default function BlogPage() {
                                 <h2 className={styles.cardTitle}>Compare Pricing for UGC Video Production Tools (2025 Guide)</h2>
                                 <p className={styles.cardExcerpt}>
                                     Compare pricing for UGC video production tools across 15+ platforms. Detailed cost breakdown, hidden fees, and ROI analysis. Find the right tool for your budget.
-                                </p>
-                                <div className={styles.cardMeta}>
-                                    <span>January 2025</span>
-                                </div>
-                            </div>
-                        </Link>
-<Link href="/blog/compare-free-vs-paid-ugc-video-creation-tools" className={styles.blogCard}>
-                            <div className={styles.cardImage}>
-                                <Image
-                                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop"
-                                    alt="Compare Free vs Paid UGC Video Creation Tools"
-                                    width={400}
-                                    height={250}
-                                    style={{ objectFit: 'cover' }}
-                                />
-                            </div>
-                            <div className={styles.cardContent}>
-                                <span className={styles.category}>Tool Comparison</span>
-                                <h2 className={styles.cardTitle}>Compare Free vs Paid UGC Video Creation Tools (2025)</h2>
-                                <p className={styles.cardExcerpt}>
-                                    Compare free vs paid UGC video creation tools. Detailed analysis of features, limitations, and when each option makes sense. Make the right choice for your needs.
                                 </p>
                                 <div className={styles.cardMeta}>
                                     <span>January 2025</span>

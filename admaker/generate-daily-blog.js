@@ -506,12 +506,12 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
             `;
 
             // === SINGLE-SHOT GENERATION (Full Article) ===
-            console.log(`    📝 Generating FULL article with Claude 4.5 Sonnet (max_tokens: 8192)...`);
+            console.log(`    📝 Generating FULL article with Claude 4.5 Sonnet (max_tokens: 16384)...`);
 
             const input = {
                 system_prompt: "You are an expert SEO content writer. Generate the COMPLETE article with JSON metadata followed by full HTML content. \n\nIMPORTANT: You MUST wrap the HTML content in `[[[HTML_CONTENT_START]]]` and `[[[HTML_CONTENT_END]]]` markers. \n\nCRITICAL: Ensure the content is VERY LONG, DETAILED, and includes ALL [IMAGE_PLACEHOLDER_X] markers exactly as requested in the HTML. Do not skip any section.\n\nREQUIRED JSON STRUCTURE:\n{\n  \"title_translated\": \"Title of the article\",\n  \"meta_description\": \"SEO Description (150 chars)\",\n  \"quick_answer\": \"A direct, concise answer to the main topic (50-80 words).\",\n  \"faq\": [{ \"question\": \"Question?\", \"answer\": \"Answer.\" }]\n}\n\nExample Output:\n```json\n{\n  \"title_translated\": \"...\",\n  \"meta_description\": \"...\",\n  \"quick_answer\": \"...\",\n  \"faq\": [...]\n}\n```\n\n[[[HTML_CONTENT_START]]]\n<!DOCTYPE html>\n...\n[[[HTML_CONTENT_END]]]",
                 prompt: prompt,
-                max_tokens: 8192,
+                max_tokens: 16384,
                 temperature: 0.7
             };
 
@@ -619,120 +619,100 @@ async function generateArticleContent(topic, lang, completedTopics = []) {
 // TRANSLATE article content from English to other languages
 // ================================================================
 async function translateArticleContent(enContent, lang, topic) {
-    // Check if we have actual content to translate (need at least content_html)
     if (!enContent.content_html || enContent.content_html.length < 100) {
         throw new Error('Cannot translate: EN content is missing or too short');
     }
 
     let retries = 3;
     while (retries > 0) {
-        let output;
-        let fullText;
-
         try {
-            console.log(`    🤖 Translating with Claude 4.5 Sonnet (${retries} attempts left)...`);
+            console.log(`    🤖 Translating Metadata with Claude 4.5 Sonnet (${retries} attempts left)...`);
 
-            const prompt = `
-You are a professional translator. Translate the following blog article from English to ${lang.name}.
+            // --- Part 1: Translate Metadata ---
+            const metaPrompt = `
+You are a professional translator. Translate ONLY the metadata for the following blog article from English to ${lang.name}.
 
 **TRANSLATION RULES**:
-1. Translate ALL text to ${lang.name} including title, headings, paragraphs, FAQ questions and answers
-2. Keep the exact same HTML structure (h1, h2, h3, p, table, etc.)
-3. Keep all [IMAGE_PLACEHOLDER_X] placeholders exactly as they are
-4. Keep all URLs and links exactly as they are
-5. DO NOT shorten or summarize - translate the FULL content maintaining the same word count
-6. The title MUST be 60-70 characters and MUST NOT contain a colon (:)
-7. Each FAQ answer must be 60+ words in ${lang.name}
-8. IMPORTANT: You must perfectly translate the main keyword "${topic.keyword}" into ${lang.name}. The translated title MUST explicitly include this translated keyword. The \`slug_translated\` MUST be an accurate translation of this keyword in kebab-case.
-
-**IMPORTANT: PRICING DATA (DO NOT CHANGE THESE NUMBERS)**:
-- AdMaker AI: $29/month
-- Arcads: $110/month (Starter, 10 videos)
-- Arcads Pro: $220/month (30 videos)
-- Canva Pro: $12.99/month
-- CapCut: Free
+1. Translate to ${lang.name}.
+2. The title MUST be 60-70 characters and MUST NOT contain a colon (:).
+3. Each FAQ answer must be 60+ words in ${lang.name}.
+4. IMPORTANT: You must perfectly translate the main keyword "${topic.keyword}" into ${lang.name}. The translated title MUST explicitly include this translated keyword. The \`slug_translated\` MUST be an accurate translation of this keyword in kebab-case.
+5. KEEP PRICING DATA EXACT:
+   - AdMaker AI: $39/month (unlimited)
+   - Arcads: $110/month
+   - Creatify: ~$59/month
 
 **ORIGINAL ENGLISH CONTENT**:
 - Title: ${enContent.title_translated}
 - Meta Description: ${enContent.meta_description}
 - Quick Answer: ${enContent.quick_answer}
-
-**HTML Content to translate**:
-${enContent.content_html}
-
-**FAQ to translate**:
-${JSON.stringify(enContent.faq, null, 2)}
+- FAQ: ${JSON.stringify(enContent.faq, null, 2)}
 
 **OUTPUT FORMAT**:
-You must output TWO parts.
-
-PART 1: Metadata in valid JSON output (NO markdown, NO HTML content here):
+You must output ONLY valid JSON (NO markdown, NO HTML content here):
 {
    "title_translated": "Translated title (60-70 chars, no colons)",
    "slug_translated": "translated-slug-kebab-case",
    "meta_description": "Translated meta description (155 chars max)",
    "quick_answer": "Translated quick answer",
    "faq": [{"question":"Translated question", "answer":"Translated answer (60+ words)"}]
-}
+}`;
 
-PART 2: The translated HTML content, enclosed specifically between these delimiters:
----HTML_CONTENT_START---
-(Put the full translated HTML content here)
----HTML_CONTENT_END---
-`;
-
-            const input = {
-                system_prompt: `You are a professional translator. Translate everything to ${lang.name} accurately.`,
-                prompt: prompt,
-                max_tokens: 8192,
-                temperature: 0.7,
-                top_p: 0.9
+            let metaInput = {
+                system_prompt: `You are a professional translator. Translate metadata to ${lang.name} accurately and return JSON ONLY.`,
+                prompt: metaPrompt,
+                max_tokens: 4000,
+                temperature: 0.7
             };
 
-            output = await replicate.run('anthropic/claude-4.5-sonnet', { input });
-            fullText = Array.isArray(output) ? output.join('') : String(output);
+            let metaOutput = await replicate.run('anthropic/claude-4.5-sonnet', { input: metaInput });
+            let metaFullText = Array.isArray(metaOutput) ? metaOutput.join('') : String(metaOutput);
 
-            // 1. Extract JSON Metadata from code block or balanced braces
             let jsonString = '';
-            const codeBlockMatch = fullText.match(/```(?:json)?\s*\n?([\s\S]*?)```/);
+            const codeBlockMatch = metaFullText.match(/```(?:json)?\s*\n?([\s\S]*?)```/);
             if (codeBlockMatch) {
                 jsonString = codeBlockMatch[1].trim();
             } else {
-                // Fallback: find balanced braces
-                const firstBrace = fullText.indexOf('{');
-                if (firstBrace === -1) throw new Error('No JSON found in translation');
-                let depth = 0;
-                let endBrace = -1;
-                for (let i = firstBrace; i < fullText.length; i++) {
-                    if (fullText[i] === '{') depth++;
-                    if (fullText[i] === '}') depth--;
-                    if (depth === 0) { endBrace = i; break; }
-                }
-                if (endBrace === -1) throw new Error('Unbalanced JSON braces in translation');
-                jsonString = fullText.substring(firstBrace, endBrace + 1);
+                const firstBrace = metaFullText.indexOf('{');
+                const lastBrace = metaFullText.lastIndexOf('}');
+                if (firstBrace === -1 || lastBrace === -1) throw new Error('No JSON found in metadata translation');
+                jsonString = metaFullText.substring(firstBrace, lastBrace + 1);
             }
-            console.log('    🔍 DEBUG: Translation jsonString length =', jsonString.length);
-
-            // Clean and parse
             jsonString = jsonString.replace(/,\s*}/g, '}').replace(/,\s*]/g, ']');
             const metadata = JSON.parse(jsonString);
 
-            // 2. Extract HTML Content
-            const contentStartMarker = '---HTML_CONTENT_START---';
-            const contentEndMarker = '---HTML_CONTENT_END---';
+            console.log(`    🤖 Translating HTML Content with Claude 4.5 Sonnet...`);
+            // --- Part 2: Translate HTML ---
+            const htmlPrompt = `
+You are a professional translator. Translate ONLY the HTML body of the following blog article from English to ${lang.name}.
 
-            let startIndex = fullText.indexOf(contentStartMarker);
-            let endIndex = fullText.indexOf(contentEndMarker);
+**CRITICAL TRANSLATION RULES**:
+1. Translate ALL text to ${lang.name} (headings, paragraphs, lists, table content).
+2. Keep the exact same HTML structure (h1, h2, h3, p, table, etc.).
+3. Keep ALL [IMAGE_PLACEHOLDER_X] placeholders exactly as they are. Do not translate them.
+4. Keep all URLs and links (like [INTERNAL_LINK:...]) exactly as they are.
+5. DO NOT shorten or summarize - you MUST translate the FULL content maintaining the exact same depth, nuance, and word count (over 2000 words). The article's length is critical for SEO.
+6. DO NOT include the FAQ section, as that was handled separately. If the HTML contains a FAQ section at the end, simply ignore it.
 
-            if (startIndex === -1) throw new Error('HTML content start marker not found');
+**HTML Content to translate**:
+${enContent.content_html}
 
-            // If end marker missing (truncation), use end of text
-            if (endIndex === -1) {
-                console.warn('    ⚠️ Warning: HTML content end marker missing (truncation suspect). Using full text end.');
-                endIndex = fullText.length;
-            }
+**OUTPUT FORMAT**:
+You must output ONLY the translated HTML content. Do NOT include any JSON, Markdown blocks, or introductory text. Just the raw HTML starting and ending precisely with the translated content.
+`;
 
-            let htmlContent = fullText.substring(startIndex + contentStartMarker.length, endIndex).trim();
+            let htmlInput = {
+                system_prompt: `You are a professional translator. Provide ONLY the translated HTML content without markdown formatting or pleasantries. Maintain the EXACT length and detail of the original.`,
+                prompt: htmlPrompt,
+                max_tokens: 16384,
+                temperature: 0.7
+            };
+
+            let htmlOutput = await replicate.run('anthropic/claude-4.5-sonnet', { input: htmlInput });
+            let htmlContent = Array.isArray(htmlOutput) ? htmlOutput.join('') : String(htmlOutput);
+
+            // Clean up potentially wrapped markdown
+            htmlContent = htmlContent.replace(/```html/g, '').replace(/```/g, '').trim();
 
             if (htmlContent.length < 500) throw new Error('Translated HTML content seems too short');
 

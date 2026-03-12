@@ -16,6 +16,27 @@ export default function BlogPagePT() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/pt/blog/arcads-ai-ferramentas-video-ia-marketing" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1773236768317-0.png"
+                                    alt="Melhores Ferramentas de Vídeo IA para Marketing com Arcads AI"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Melhores Ferramentas de Vídeo IA para Marketing com Arcads AI</h2>
+                                <p className={styles.cardExcerpt}>arcads ai</p>
+                                <div className={styles.cardMeta}>
+                                    <span>March 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+ 
+
         <Link href="/pt/blog/ferramentas-video-ia-arcads-marketing" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

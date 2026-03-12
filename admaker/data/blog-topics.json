@@ -1,7 +1,22 @@
 [
   {
     "keyword": "arcads ai",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "arcads-ai",
+      "fr": "arcads-ia",
+      "es": "arcads-ia",
+      "pt": "arcads-ai-ferramentas-video-ia-marketing",
+      "de": "arcads-ki-alternativen"
+    },
+    "translatedTitles": {
+      "en": "Best AI Video Tools for Marketing with Arcads AI Alternatives",
+      "fr": "Meilleurs outils vidéo IA marketing avec alternatives Arcads AI",
+      "es": "Mejores Herramientas de Video IA con Alternativas a Arcads AI",
+      "pt": "Melhores Ferramentas de Vídeo IA para Marketing com Arcads AI",
+      "de": "Beste KI Video Tools für Marketing mit Arcads KI Alternativen"
+    },
+    "completedDate": "2026-03-11T13:48:20.753Z"
   },
   {
     "keyword": "arcads vs admaker",
@@ -245,41 +260,25 @@
   },
   {
     "keyword": "acardi",
-    "status": "completed",
+    "status": "pending",
     "translatedSlugs": {
       "en": "acardi",
-      "fr": "meilleurs-outils-video-ia-marketing-campagnes-acardi",
-      "es": "herramientas-video-marketing-ia-campanas-acardi",
-      "pt": "ferramentas-ia-video-marketing",
-      "de": "beste-ki-videomarketing-tools-acardi-kampagnen"
+      "fr": "outils-video-marketing-campagnes-acardi-ia",
+      "es": "herramientas-video-marketing-acardi-ia",
+      "pt": "acardi",
+      "de": "acardi-video-marketing-tools"
     },
     "translatedTitles": {
-      "en": "Best AI Video Marketing Tools for acardi Campaigns in 2026",
-      "fr": "Meilleurs outils vidéo IA marketing pour campagnes acardi 2026",
-      "es": "Mejores Herramientas de Video Marketing IA para Campañas acardi 2026",
-      "pt": "Melhores Ferramentas de IA para Vídeo Marketing em 2026",
-      "de": "Beste KI-Videomarketing-Tools für Acardi-Kampagnen 2026"
-    },
-    "completedDate": "2026-03-10T11:58:58.390Z"
+      "en": "Best Video Marketing Tools for acardi AI Campaign Success 2026",
+      "fr": "Meilleurs outils vidéo marketing pour campagnes acardi IA 2026",
+      "es": "Mejores Herramientas de Video Marketing para Campañas AI 2026",
+      "pt": "Melhores Ferramentas de Vídeo Marketing para Acardi AI 2026",
+      "de": "Beste Video Marketing Tools für acardi AI Kampagnen 2026"
+    }
   },
   {
     "keyword": "arcads.ai",
-    "status": "completed",
-    "translatedSlugs": {
-      "en": "arcadsai",
-      "fr": "outils-video-ia-marketing-arcads-ai",
-      "es": "arcads-ai-herramientas-video-ia-marketing",
-      "pt": "ferramentas-video-ia-arcads-marketing",
-      "de": "beste-ki-video-tools-marketing-arcads-ai-2026"
-    },
-    "translatedTitles": {
-      "en": "Best AI Video Tools for Marketing with arcads.ai in 2026",
-      "fr": "Meilleurs outils vidéo IA pour le marketing avec arcads.ai 2026",
-      "es": "Mejores Herramientas de Video IA para Marketing con arcads.ai 2026",
-      "pt": "Melhores Ferramentas de Vídeo IA com arcads.ai para 2026",
-      "de": "Beste KI-Video-Tools für Marketing mit arcads.ai in 2026"
-    },
-    "completedDate": "2026-03-11T11:58:37.830Z"
+    "status": "pending"
   },
   {
     "keyword": "best ai avatar services for influencer content.",

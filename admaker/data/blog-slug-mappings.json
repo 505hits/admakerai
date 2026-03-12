@@ -51,9 +51,9 @@
   "/blog/arcads-ai": {
     "en": "/blog/arcads-ai",
     "fr": "/fr/blog/arcads-ia",
-    "es": "/es/blog/arcads-ia-herramientas-video-marketing",
-    "pt": "/pt/blog/arcads-ia",
-    "de": "/de/blog/arcads-ki-video-marketing-tools"
+    "es": "/es/blog/arcads-ia",
+    "pt": "/pt/blog/arcads-ai-ferramentas-video-ia-marketing",
+    "de": "/de/blog/arcads-ki-alternativen"
   },
   "/blog/arcads-pricing": {
     "en": "/blog/arcads-pricing",
@@ -366,9 +366,9 @@
   "/blog/arcads-ia": {
     "en": "/blog/arcads-ai",
     "fr": "/fr/blog/arcads-ia",
-    "es": "/es/blog/arcads-ia-herramientas-video-marketing",
-    "pt": "/pt/blog/arcads-ia",
-    "de": "/de/blog/arcads-ki-video-marketing-tools"
+    "es": "/es/blog/arcads-ia",
+    "pt": "/pt/blog/arcads-ai-ferramentas-video-ia-marketing",
+    "de": "/de/blog/arcads-ki-alternativen"
   },
   "/blog/arcads-ia-herramientas-video-marketing": {
     "en": "/blog/arcads-ai",
@@ -495,5 +495,19 @@
     "es": "/es/blog/arcads-ai-herramientas-video-ia-marketing",
     "pt": "/pt/blog/ferramentas-video-ia-arcads-marketing",
     "de": "/de/blog/beste-ki-video-tools-marketing-arcads-ai-2026"
+  },
+  "/blog/arcads-ai-ferramentas-video-ia-marketing": {
+    "en": "/blog/arcads-ai",
+    "fr": "/fr/blog/arcads-ia",
+    "es": "/es/blog/arcads-ia",
+    "pt": "/pt/blog/arcads-ai-ferramentas-video-ia-marketing",
+    "de": "/de/blog/arcads-ki-alternativen"
+  },
+  "/blog/arcads-ki-alternativen": {
+    "en": "/blog/arcads-ai",
+    "fr": "/fr/blog/arcads-ia",
+    "es": "/es/blog/arcads-ia",
+    "pt": "/pt/blog/arcads-ai-ferramentas-video-ia-marketing",
+    "de": "/de/blog/arcads-ki-alternativen"
   }
 }
