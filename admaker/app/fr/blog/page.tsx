@@ -16,6 +16,27 @@ export default function BlogPageFR() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/fr/blog/acardi" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1773324307157-0.png"
+                                    alt="Meilleurs Outils Vidéo IA Marketing pour Campagnes acardi 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Meilleurs Outils Vidéo IA Marketing pour Campagnes acardi 2026</h2>
+                                <p className={styles.cardExcerpt}>acardi</p>
+                                <div className={styles.cardMeta}>
+                                    <span>March 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+ 
+
         <Link href="/fr/blog/outils-video-ia-marketing-arcads-ai" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

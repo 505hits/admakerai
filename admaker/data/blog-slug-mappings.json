@@ -428,10 +428,10 @@
   },
   "/blog/acardi": {
     "en": "/blog/acardi",
-    "fr": "/fr/blog/meilleurs-outils-video-ia-marketing-campagnes-acardi",
-    "es": "/es/blog/herramientas-video-marketing-ia-campanas-acardi",
-    "pt": "/pt/blog/ferramentas-ia-video-marketing",
-    "de": "/de/blog/beste-ki-videomarketing-tools-acardi-kampagnen"
+    "fr": "/fr/blog/acardi",
+    "es": "/es/blog/herramientas-video-marketing-ia-campanas",
+    "pt": "/pt/blog/acardi",
+    "de": "/de/blog/acardi-kampagnen"
   },
   "/blog/meilleurs-outils-video-ia-marketing-campagnes-acardi": {
     "en": "/blog/acardi",
@@ -509,5 +509,19 @@
     "es": "/es/blog/arcads-ia",
     "pt": "/pt/blog/arcads-ai-ferramentas-video-ia-marketing",
     "de": "/de/blog/arcads-ki-alternativen"
+  },
+  "/blog/herramientas-video-marketing-ia-campanas": {
+    "en": "/blog/acardi",
+    "fr": "/fr/blog/acardi",
+    "es": "/es/blog/herramientas-video-marketing-ia-campanas",
+    "pt": "/pt/blog/acardi",
+    "de": "/de/blog/acardi-kampagnen"
+  },
+  "/blog/acardi-kampagnen": {
+    "en": "/blog/acardi",
+    "fr": "/fr/blog/acardi",
+    "es": "/es/blog/herramientas-video-marketing-ia-campanas",
+    "pt": "/pt/blog/acardi",
+    "de": "/de/blog/acardi-kampagnen"
   }
 }
