@@ -137,6 +137,6 @@ export default function BlogPost() {
 
     {/* Sticky Mobile CTA */ }
     <StickyCta locale={locale} />
-        </>
+        </div></>
     );
 }

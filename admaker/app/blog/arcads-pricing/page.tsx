@@ -165,6 +165,6 @@ export default function BlogPost() {
             </div>
 
             <StickyCta locale={locale} />
-        </>
+        </div></>
     );
 }

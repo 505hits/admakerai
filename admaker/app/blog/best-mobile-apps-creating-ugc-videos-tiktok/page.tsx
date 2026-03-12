@@ -23,7 +23,10 @@ export default function BestMobileAppsForTikTokUGC() {
 
 
 
-    const [showMobileCTA, setShowMobileCTA] = useState(false);
+    
+
+            <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
+                const [showMobileCTA, setShowMobileCTA] = useState(false);
 
 
     const scrollToSection = (id: string) => {
@@ -916,4 +919,5 @@ export default function BestMobileAppsForTikTokUGC() {
             <StickyCta locale={locale} />
         </>
     );
-}
+            </div>
+        }

@@ -62,6 +62,6 @@ export default function BlogPost() {
                 <SimilarArticles currentSlug="arcads-ai" locale={locale} />
             </div>
             <StickyCta locale={locale} />
-        </>
+        </div></>
     );
 }
