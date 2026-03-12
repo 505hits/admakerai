@@ -55,8 +55,13 @@ jobs:
             if [ -n "$GH_PAT" ]; then
               git remote set-url origin "https://x-access-token:${GH_PAT}@github.com/${REPO}.git"
               git pull --rebase origin main
-              git push origin main
-              echo "✅ Push with PAT successful - Vercel should trigger a new deployment!"
+              if git push origin main; then
+                echo "✅ Push with PAT successful - Vercel should trigger a new deployment!"
+              else
+                echo "⚠️ Push with PAT failed (token might be expired). Falling back to default token..."
+                git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git"
+                git push origin main
+              fi
             else
               git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPO}.git"
               git pull --rebase origin main
