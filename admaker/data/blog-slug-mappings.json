@@ -49,11 +49,11 @@
     "de": "/de/blog/arcads-vs-admaker"
   },
   "/blog/arcads-ai": {
-    "en": "/blog/arcads-ai",
-    "fr": "/fr/blog/arcads-ia",
-    "es": "/es/blog/arcads-ia",
-    "pt": "/pt/blog/arcads-ai-ferramentas-video-ia-marketing",
-    "de": "/de/blog/arcads-ki-alternativen"
+    "en": "/blog/arcadsai",
+    "fr": "/fr/blog/arcads-ai",
+    "es": "/es/blog/arcads-ai",
+    "pt": "/pt/blog/melhores-ferramentas-video-ia-superam-arcads-ai-2026",
+    "de": "/de/blog/beste-ki-videomarketing-tools-die-arcads-ai-uebertreffen"
   },
   "/blog/arcads-pricing": {
     "en": "/blog/arcads-pricing",
@@ -463,10 +463,10 @@
   },
   "/blog/arcadsai": {
     "en": "/blog/arcadsai",
-    "fr": "/fr/blog/outils-video-ia-marketing-arcads-ai",
-    "es": "/es/blog/arcads-ai-herramientas-video-ia-marketing",
-    "pt": "/pt/blog/ferramentas-video-ia-arcads-marketing",
-    "de": "/de/blog/beste-ki-video-tools-marketing-arcads-ai-2026"
+    "fr": "/fr/blog/arcads-ai",
+    "es": "/es/blog/arcads-ai",
+    "pt": "/pt/blog/melhores-ferramentas-video-ia-superam-arcads-ai-2026",
+    "de": "/de/blog/beste-ki-videomarketing-tools-die-arcads-ai-uebertreffen"
   },
   "/blog/outils-video-ia-marketing-arcads-ai": {
     "en": "/blog/arcadsai",
@@ -523,5 +523,19 @@
     "es": "/es/blog/herramientas-video-marketing-ia-campanas",
     "pt": "/pt/blog/acardi",
     "de": "/de/blog/acardi-kampagnen"
+  },
+  "/blog/melhores-ferramentas-video-ia-superam-arcads-ai-2026": {
+    "en": "/blog/arcadsai",
+    "fr": "/fr/blog/arcads-ai",
+    "es": "/es/blog/arcads-ai",
+    "pt": "/pt/blog/melhores-ferramentas-video-ia-superam-arcads-ai-2026",
+    "de": "/de/blog/beste-ki-videomarketing-tools-die-arcads-ai-uebertreffen"
+  },
+  "/blog/beste-ki-videomarketing-tools-die-arcads-ai-uebertreffen": {
+    "en": "/blog/arcadsai",
+    "fr": "/fr/blog/arcads-ai",
+    "es": "/es/blog/arcads-ai",
+    "pt": "/pt/blog/melhores-ferramentas-video-ia-superam-arcads-ai-2026",
+    "de": "/de/blog/beste-ki-videomarketing-tools-die-arcads-ai-uebertreffen"
   }
 }

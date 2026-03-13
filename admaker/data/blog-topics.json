@@ -279,7 +279,22 @@
   },
   {
     "keyword": "arcads.ai",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "arcadsai",
+      "fr": "arcads-ai",
+      "es": "arcads-ai",
+      "pt": "melhores-ferramentas-video-ia-superam-arcads-ai-2026",
+      "de": "beste-ki-videomarketing-tools-die-arcads-ai-uebertreffen"
+    },
+    "translatedTitles": {
+      "en": "Best AI Video Marketing Tools That Beat arcads.ai in 2026",
+      "fr": "Meilleurs outils IA vidéo marketing qui surpassent arcads.ai 2026",
+      "es": "Mejores herramientas AI de video marketing que superan arcads.ai",
+      "pt": "Melhores Ferramentas de Vídeo IA que Superam arcads.ai em 2026",
+      "de": "Beste KI-Videomarketing-Tools, die arcads.ai 2026 übertreffen"
+    },
+    "completedDate": "2026-03-13T12:20:39.671Z"
   },
   {
     "keyword": "best ai avatar services for influencer content.",
