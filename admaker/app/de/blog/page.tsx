@@ -16,6 +16,27 @@ export default function BlogPageDE() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/de/blog/beste-ki-avatar-dienste-fuer-influencer-content" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1773490207886-0.png"
+                                    alt="Beste KI Avatar Dienste für Influencer Content und Marketing"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Beste KI Avatar Dienste für Influencer Content und Marketing</h2>
+                                <p className={styles.cardExcerpt}>best ai avatar services for influencer content.</p>
+                                <div className={styles.cardMeta}>
+                                    <span>March 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/de/blog/beste-ki-videomarketing-tools-die-arcads-ai-uebertreffen" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

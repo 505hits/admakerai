@@ -16,6 +16,27 @@ export default function BlogPageFR() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/fr/blog/meilleurs-services-ia-avatar-pour-contenu-influenceur" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1773490207886-0.png"
+                                    alt="Meilleurs services IA avatar pour contenu influenceur en 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Meilleurs services IA avatar pour contenu influenceur en 2026</h2>
+                                <p className={styles.cardExcerpt}>best ai avatar services for influencer content.</p>
+                                <div className={styles.cardMeta}>
+                                    <span>March 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/fr/blog/arcads-ai" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
