@@ -317,7 +317,22 @@
   },
   {
     "keyword": "ads law firm",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "ads-law-firm",
+      "fr": "pub-cabinet-avocat",
+      "es": "anuncios-bufete-abogados",
+      "pt": "anuncios-escritorio-advocacia",
+      "de": "anwaltskanzlei-werbung"
+    },
+    "translatedTitles": {
+      "en": "Best Ads Law Firm Marketing Strategies Using AI Video Tools",
+      "fr": "Meilleures stratégies pub cabinet avocat avec IA vidéo",
+      "es": "Mejores Estrategias de Anuncios para Bufetes con Herramientas IA",
+      "pt": "Melhores Estratégias de Marketing com Vídeos IA para Escritórios",
+      "de": "KI-Videotools für Kanzlei-Werbung im Anwaltsmarketing"
+    },
+    "completedDate": "2026-03-15T12:13:16.891Z"
   },
   {
     "keyword": "acard",

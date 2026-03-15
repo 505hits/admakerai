@@ -16,6 +16,27 @@ export default function BlogPageES() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/es/blog/anuncios-bufete-abogados" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1773576681586-0.png"
+                                    alt="Mejores Estrategias de Anuncios para Bufetes con Herramientas IA"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Mejores Estrategias de Anuncios para Bufetes con Herramientas IA</h2>
+                                <p className={styles.cardExcerpt}>ads law firm</p>
+                                <div className={styles.cardMeta}>
+                                    <span>March 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/es/blog/mejores-servicios-de-avatares-ia-para-contenido-de-influencers" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

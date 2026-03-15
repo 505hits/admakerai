@@ -16,6 +16,27 @@ export default function BlogPagePT() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/pt/blog/anuncios-escritorio-advocacia" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1773576681586-0.png"
+                                    alt="Melhores Estratégias de Marketing com Vídeos IA para Escritórios"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Melhores Estratégias de Marketing com Vídeos IA para Escritórios</h2>
+                                <p className={styles.cardExcerpt}>ads law firm</p>
+                                <div className={styles.cardMeta}>
+                                    <span>March 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/pt/blog/melhores-servicos-de-avatar-ia-para-conteudo-de-influenciadores" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
