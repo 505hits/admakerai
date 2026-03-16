@@ -607,5 +607,40 @@
     "es": "/es/blog/anuncios-bufete-abogados",
     "pt": "/pt/blog/anuncios-escritorio-advocacia",
     "de": "/de/blog/anwaltskanzlei-werbung"
+  },
+  "/blog/acard": {
+    "en": "/blog/acard",
+    "fr": "/fr/blog/outils-ia-marketing-video-acard",
+    "es": "/es/blog/herramientas-video-marketing-ia-acard",
+    "pt": "/pt/blog/ferramentas-ia-marketing-arcads",
+    "de": "/de/blog/arcads-ki-videomarketing-tools"
+  },
+  "/blog/outils-ia-marketing-video-acard": {
+    "en": "/blog/acard",
+    "fr": "/fr/blog/outils-ia-marketing-video-acard",
+    "es": "/es/blog/herramientas-video-marketing-ia-acard",
+    "pt": "/pt/blog/ferramentas-ia-marketing-arcads",
+    "de": "/de/blog/arcads-ki-videomarketing-tools"
+  },
+  "/blog/herramientas-video-marketing-ia-acard": {
+    "en": "/blog/acard",
+    "fr": "/fr/blog/outils-ia-marketing-video-acard",
+    "es": "/es/blog/herramientas-video-marketing-ia-acard",
+    "pt": "/pt/blog/ferramentas-ia-marketing-arcads",
+    "de": "/de/blog/arcads-ki-videomarketing-tools"
+  },
+  "/blog/ferramentas-ia-marketing-arcads": {
+    "en": "/blog/acard",
+    "fr": "/fr/blog/outils-ia-marketing-video-acard",
+    "es": "/es/blog/herramientas-video-marketing-ia-acard",
+    "pt": "/pt/blog/ferramentas-ia-marketing-arcads",
+    "de": "/de/blog/arcads-ki-videomarketing-tools"
+  },
+  "/blog/arcads-ki-videomarketing-tools": {
+    "en": "/blog/acard",
+    "fr": "/fr/blog/outils-ia-marketing-video-acard",
+    "es": "/es/blog/herramientas-video-marketing-ia-acard",
+    "pt": "/pt/blog/ferramentas-ia-marketing-arcads",
+    "de": "/de/blog/arcads-ki-videomarketing-tools"
   }
 }

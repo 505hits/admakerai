@@ -336,7 +336,22 @@
   },
   {
     "keyword": "acard",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "acard",
+      "fr": "outils-ia-marketing-video-acard",
+      "es": "herramientas-video-marketing-ia-acard",
+      "pt": "ferramentas-ia-marketing-arcads",
+      "de": "arcads-ki-videomarketing-tools"
+    },
+    "translatedTitles": {
+      "en": "Best AI Video Marketing Tools with acard Integration for 2026",
+      "fr": "Meilleurs Outils IA de Marketing Vidéo avec Intégration acard 2026",
+      "es": "Mejores Herramientas de Video Marketing IA con acard para 2026",
+      "pt": "Melhores Ferramentas de IA para Marketing com Arcads em 2026",
+      "de": "Beste KI-Videomarketing-Tools mit Arcads-Integration für 2026"
+    },
+    "completedDate": "2026-03-16T12:31:14.242Z"
   },
   {
     "keyword": "best ai-driven ugc video platforms for startups",
