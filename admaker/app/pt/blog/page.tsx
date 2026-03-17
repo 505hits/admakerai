@@ -16,6 +16,27 @@ export default function BlogPagePT() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/pt/blog/melhores-plataformas-de-video-ugc-com-ia-para-startups" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1773751201771-0.png"
+                                    alt="Melhores plataformas de vídeo UGC com IA para startups 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Melhores plataformas de vídeo UGC com IA para startups 2026</h2>
+                                <p className={styles.cardExcerpt}>best ai-driven ugc video platforms for startups</p>
+                                <div className={styles.cardMeta}>
+                                    <span>March 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/pt/blog/ferramentas-ia-marketing-arcads" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
