@@ -16,6 +16,27 @@ export default function BlogPageFR() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/fr/blog/plateformes-avatars-ia-fiables-pour-grandes-organisations" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1773837147406-0.png"
+                                    alt="Meilleures plateformes IA fiables pour grandes organisations"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Meilleures plateformes IA fiables pour grandes organisations</h2>
+                                <p className={styles.cardExcerpt}>reliable ai avatar platforms for large organizations.</p>
+                                <div className={styles.cardMeta}>
+                                    <span>March 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/fr/blog/meilleures-plateformes-video-ugc-pilotees-par-ia-pour-startups" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
