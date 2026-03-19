@@ -16,6 +16,27 @@ export default function BlogPagePT() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/pt/blog/ai-ai-capitao" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1773923086861-0.png"
+                                    alt="Melhores Ferramentas AI AI Captain para Sucesso em Vídeo 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Melhores Ferramentas AI AI Captain para Sucesso em Vídeo 2026</h2>
+                                <p className={styles.cardExcerpt}>ai ai captain</p>
+                                <div className={styles.cardMeta}>
+                                    <span>March 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/pt/blog/plataformas-confiaveis-de-avatar-ia-para-grandes-organizacoes" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

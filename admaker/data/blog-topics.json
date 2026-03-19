@@ -393,7 +393,22 @@
   },
   {
     "keyword": "ai ai captain",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "ai-ai-captain",
+      "fr": "ia-capitaine-ia",
+      "es": "ia-capitan",
+      "pt": "ai-ai-capitao",
+      "de": "ki-ki-kapitaen-tools"
+    },
+    "translatedTitles": {
+      "en": "Best AI AI Captain Tools for Video Marketing Success in 2026",
+      "fr": "Meilleurs outils IA Capitaine IA pour le marketing vidéo 2026",
+      "es": "Mejores Herramientas IA Capitán para Marketing de Video 2026",
+      "pt": "Melhores Ferramentas AI AI Captain para Sucesso em Vídeo 2026",
+      "de": "Beste KI KI Kapitän Tools für Videomarketing Erfolg 2026"
+    },
+    "completedDate": "2026-03-19T12:28:31.550Z"
   },
   {
     "keyword": "best ai to make characters realistic",
