@@ -16,6 +16,27 @@ export default function BlogPage() {
 
                     <div className={styles.blogGrid}>
 
+        <Link href="/blog/best-ai-to-make-characters-realistic" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1775996474520-0.png"
+                                    alt="Best AI to Make Characters Realistic for Video Marketing Success"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Best AI to Make Characters Realistic for Video Marketing Success</h2>
+                                <p className={styles.cardExcerpt}>best ai to make characters realistic</p>
+                                <div className={styles.cardMeta}>
+                                    <span>April 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/blog/ai-ai-captain" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

@@ -16,6 +16,27 @@ export default function BlogPageDE() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/de/blog/beste-ki-um-charaktere-realistisch-zu-machen" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1775996474520-0.png"
+                                    alt="Beste KI um Charaktere realistisch zu machen für Videomarketing"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Beste KI um Charaktere realistisch zu machen für Videomarketing</h2>
+                                <p className={styles.cardExcerpt}>best ai to make characters realistic</p>
+                                <div className={styles.cardMeta}>
+                                    <span>April 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/de/blog/ki-ki-kapitaen-tools" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
