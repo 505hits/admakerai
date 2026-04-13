@@ -16,6 +16,27 @@ export default function BlogPageDE() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/de/blog/bester-ugc-video-erstellungsservice-fuer-immobilienmarketing" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1776084297470-0.png"
+                                    alt="Bester UGC Video Service für Immobilienmarketing 2026 im Test"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Bester UGC Video Service für Immobilienmarketing 2026 im Test</h2>
+                                <p className={styles.cardExcerpt}>best ugc video creation service for real estate marketing</p>
+                                <div className={styles.cardMeta}>
+                                    <span>April 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/de/blog/beste-ki-um-charaktere-realistisch-zu-machen" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
