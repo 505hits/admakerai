@@ -450,7 +450,22 @@
   },
   {
     "keyword": "make influencer ai",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "make-influencer-ai",
+      "fr": "creer-videos-ia-influenceur",
+      "es": "como-crear-ia-de-influencer",
+      "pt": "criar-ia-de-influenciador",
+      "de": "ki-influencer-erstellen"
+    },
+    "translatedTitles": {
+      "en": "Best Ways to Make Influencer AI Videos That Convert in 2026",
+      "fr": "Créer des vidéos IA influenceur performantes en 2026",
+      "es": "Cómo crear IA de influencer para videos que convierten en 2026",
+      "pt": "Melhores Formas de Criar IA de Influenciador em Vídeos 2026",
+      "de": "KI-Influencer erstellen: Videos für maximale Conversion 2026"
+    },
+    "completedDate": "2026-04-14T12:44:39.691Z"
   },
   {
     "keyword": "adsdog.ai",

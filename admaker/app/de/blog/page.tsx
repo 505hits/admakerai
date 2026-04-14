@@ -16,6 +16,27 @@ export default function BlogPageDE() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/de/blog/ki-influencer-erstellen" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1776170512478-0.png"
+                                    alt="KI-Influencer erstellen: Videos für maximale Conversion 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>KI-Influencer erstellen: Videos für maximale Conversion 2026</h2>
+                                <p className={styles.cardExcerpt}>make influencer ai</p>
+                                <div className={styles.cardMeta}>
+                                    <span>April 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/de/blog/bester-ugc-video-erstellungsservice-fuer-immobilienmarketing" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

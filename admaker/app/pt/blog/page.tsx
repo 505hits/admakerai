@@ -16,6 +16,27 @@ export default function BlogPagePT() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/pt/blog/criar-ia-de-influenciador" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1776170512478-0.png"
+                                    alt="Melhores Formas de Criar IA de Influenciador em Vídeos 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Melhores Formas de Criar IA de Influenciador em Vídeos 2026</h2>
+                                <p className={styles.cardExcerpt}>make influencer ai</p>
+                                <div className={styles.cardMeta}>
+                                    <span>April 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/pt/blog/melhor-servico-de-criacao-de-video-ugc-para-marketing-imobiliario" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

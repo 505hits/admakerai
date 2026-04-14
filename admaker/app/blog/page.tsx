@@ -16,6 +16,27 @@ export default function BlogPage() {
 
                     <div className={styles.blogGrid}>
 
+        <Link href="/blog/make-influencer-ai" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1776170512478-0.png"
+                                    alt="Best Ways to Make Influencer AI Videos That Convert in 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Best Ways to Make Influencer AI Videos That Convert in 2026</h2>
+                                <p className={styles.cardExcerpt}>make influencer ai</p>
+                                <div className={styles.cardMeta}>
+                                    <span>April 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/blog/best-ai-to-make-characters-realistic" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
