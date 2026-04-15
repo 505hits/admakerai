@@ -144,5 +144,4 @@ export default function BlogPost() {
             <StickyCta locale={locale} />
         </>
     );
-            </div>
-        }
+}
