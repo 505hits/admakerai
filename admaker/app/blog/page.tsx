@@ -19,7 +19,7 @@ export default function BlogPage() {
         <Link href="/blog/adsdogai" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
-                                    src="https://placehold.co/800x450?text=Gen+Failed"
+                                    src="/blog-images/img-1776257515945-9.png"
                                     alt="Best AI Video Marketing Tools Including adsdog.ai for 2026"
                                     width={400}
                                     height={250}
