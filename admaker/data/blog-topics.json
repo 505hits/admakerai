@@ -469,7 +469,22 @@
   },
   {
     "keyword": "adsdog.ai",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "adsdogai",
+      "fr": "adsdog-ai",
+      "es": "herramientas-video-marketing-ia-adsdog-ai",
+      "pt": "ferramentas-video-marketing-ia-adsdog-ai",
+      "de": "adsdog-ai"
+    },
+    "translatedTitles": {
+      "en": "Best AI Video Marketing Tools Including adsdog.ai for 2026",
+      "fr": "Meilleurs outils IA marketing vidéo dont adsdog.ai pour 2026",
+      "es": "Mejores Herramientas de Video Marketing con IA para 2026",
+      "pt": "Melhores Ferramentas de Vídeo Marketing com IA e adsdog.ai 2026",
+      "de": "Beste KI-Videomarketing-Tools inklusive adsdog.ai für 2026"
+    },
+    "completedDate": "2026-04-15T12:51:56.204Z"
   },
   {
     "keyword": "ai commercial",

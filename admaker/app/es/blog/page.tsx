@@ -16,6 +16,27 @@ export default function BlogPageES() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/es/blog/herramientas-video-marketing-ia-adsdog-ai" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://placehold.co/800x450?text=Gen+Failed"
+                                    alt="Mejores Herramientas de Video Marketing con IA para 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Mejores Herramientas de Video Marketing con IA para 2026</h2>
+                                <p className={styles.cardExcerpt}>adsdog.ai</p>
+                                <div className={styles.cardMeta}>
+                                    <span>April 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/es/blog/como-crear-ia-de-influencer" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

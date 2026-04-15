@@ -16,6 +16,27 @@ export default function BlogPageDE() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/de/blog/adsdog-ai" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="https://placehold.co/800x450?text=Gen+Failed"
+                                    alt="Beste KI-Videomarketing-Tools inklusive adsdog.ai für 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Beste KI-Videomarketing-Tools inklusive adsdog.ai für 2026</h2>
+                                <p className={styles.cardExcerpt}>adsdog.ai</p>
+                                <div className={styles.cardMeta}>
+                                    <span>April 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/de/blog/ki-influencer-erstellen" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
