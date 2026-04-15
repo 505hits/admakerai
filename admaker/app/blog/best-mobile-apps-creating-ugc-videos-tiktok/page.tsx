@@ -919,5 +919,4 @@ export default function BestMobileAppsForTikTokUGC() {
             <StickyCta locale={locale} />
         </>
     );
-            </div>
-        }
+}
