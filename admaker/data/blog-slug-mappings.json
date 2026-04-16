@@ -880,5 +880,33 @@
     "es": "/es/blog/herramientas-video-marketing-ia-adsdog-ai",
     "pt": "/pt/blog/ferramentas-video-marketing-ia-adsdog-ai",
     "de": "/de/blog/adsdog-ai"
+  },
+  "/blog/ai-commercial": {
+    "en": "/blog/ai-commercial",
+    "fr": "/fr/blog/ia-publicitaire",
+    "es": "/es/blog/video-comercial-ia",
+    "pt": "/pt/blog/video-comercial-ia",
+    "de": "/de/blog/ki-werbung"
+  },
+  "/blog/ia-publicitaire": {
+    "en": "/blog/ai-commercial",
+    "fr": "/fr/blog/ia-publicitaire",
+    "es": "/es/blog/video-comercial-ia",
+    "pt": "/pt/blog/video-comercial-ia",
+    "de": "/de/blog/ki-werbung"
+  },
+  "/blog/video-comercial-ia": {
+    "en": "/blog/ai-commercial",
+    "fr": "/fr/blog/ia-publicitaire",
+    "es": "/es/blog/video-comercial-ia",
+    "pt": "/pt/blog/video-comercial-ia",
+    "de": "/de/blog/ki-werbung"
+  },
+  "/blog/ki-werbung": {
+    "en": "/blog/ai-commercial",
+    "fr": "/fr/blog/ia-publicitaire",
+    "es": "/es/blog/video-comercial-ia",
+    "pt": "/pt/blog/video-comercial-ia",
+    "de": "/de/blog/ki-werbung"
   }
 }

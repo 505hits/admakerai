@@ -488,7 +488,22 @@
   },
   {
     "keyword": "ai commercial",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "ai-commercial",
+      "fr": "ia-publicitaire",
+      "es": "video-comercial-ia",
+      "pt": "video-comercial-ia",
+      "de": "ki-werbung"
+    },
+    "translatedTitles": {
+      "en": "Best AI Commercial Video Tools to Scale Your Ad Campaigns in 2026",
+      "fr": "Meilleurs outils vidéo IA publicitaire pour vos campagnes 2026",
+      "es": "Mejores Herramientas de Video Comercial IA para 2026",
+      "pt": "Melhores Ferramentas de Vídeo Comercial IA para 2026",
+      "de": "Beste KI Werbung Tools für skalierbare Kampagnen 2026"
+    },
+    "completedDate": "2026-04-16T12:43:19.500Z"
   },
   {
     "keyword": "best ugc video software for google ads",

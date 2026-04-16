@@ -16,6 +16,27 @@ export default function BlogPagePT() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/pt/blog/video-comercial-ia" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1776343242220-0.png"
+                                    alt="Melhores Ferramentas de Vídeo Comercial IA para 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Melhores Ferramentas de Vídeo Comercial IA para 2026</h2>
+                                <p className={styles.cardExcerpt}>ai commercial</p>
+                                <div className={styles.cardMeta}>
+                                    <span>April 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/pt/blog/ferramentas-video-marketing-ia-adsdog-ai" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
