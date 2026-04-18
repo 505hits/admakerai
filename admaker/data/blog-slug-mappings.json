@@ -943,5 +943,13 @@
     "es": "/es/blog/mejor-software-video-ugc-para-google-ads",
     "pt": "/pt/blog/melhor-software-de-video-ugc-para-google-ads",
     "de": "/de/blog/beste-ugc-video-software-fuer-google-ads"
+  },
+  "/blog/adprice": {
+    "en": "/blog/adprice",
+    "fr": "/fr/blog/tarif-publicitaire"
+  },
+  "/blog/tarif-publicitaire": {
+    "en": "/blog/adprice",
+    "fr": "/fr/blog/tarif-publicitaire"
   }
 }

@@ -526,7 +526,15 @@
   },
   {
     "keyword": "adprice",
-    "status": "pending"
+    "status": "pending",
+    "translatedSlugs": {
+      "en": "adprice",
+      "fr": "tarif-publicitaire"
+    },
+    "translatedTitles": {
+      "en": "Best AdPrice Strategies Using AI Video Marketing Tools in 2026",
+      "fr": "Meilleures stratégies de tarif publicitaire IA vidéo 2026"
+    }
   },
   {
     "keyword": "ad videography",
