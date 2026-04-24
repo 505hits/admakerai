@@ -946,10 +946,37 @@
   },
   "/blog/adprice": {
     "en": "/blog/adprice",
-    "fr": "/fr/blog/tarif-publicitaire"
+    "fr": "/fr/blog/tarif-publicitaire",
+    "es": "/es/blog/precio-de-anuncios",
+    "pt": "/pt/blog/preco-de-anuncios",
+    "de": "/de/blog/anzeigenpreis-strategien-ki-videomarketing"
   },
   "/blog/tarif-publicitaire": {
     "en": "/blog/adprice",
-    "fr": "/fr/blog/tarif-publicitaire"
+    "fr": "/fr/blog/tarif-publicitaire",
+    "es": "/es/blog/precio-de-anuncios",
+    "pt": "/pt/blog/preco-de-anuncios",
+    "de": "/de/blog/anzeigenpreis-strategien-ki-videomarketing"
+  },
+  "/blog/precio-de-anuncios": {
+    "en": "/blog/adprice",
+    "fr": "/fr/blog/tarif-publicitaire",
+    "es": "/es/blog/precio-de-anuncios",
+    "pt": "/pt/blog/preco-de-anuncios",
+    "de": "/de/blog/anzeigenpreis-strategien-ki-videomarketing"
+  },
+  "/blog/preco-de-anuncios": {
+    "en": "/blog/adprice",
+    "fr": "/fr/blog/tarif-publicitaire",
+    "es": "/es/blog/precio-de-anuncios",
+    "pt": "/pt/blog/preco-de-anuncios",
+    "de": "/de/blog/anzeigenpreis-strategien-ki-videomarketing"
+  },
+  "/blog/anzeigenpreis-strategien-ki-videomarketing": {
+    "en": "/blog/adprice",
+    "fr": "/fr/blog/tarif-publicitaire",
+    "es": "/es/blog/precio-de-anuncios",
+    "pt": "/pt/blog/preco-de-anuncios",
+    "de": "/de/blog/anzeigenpreis-strategien-ki-videomarketing"
   }
 }
