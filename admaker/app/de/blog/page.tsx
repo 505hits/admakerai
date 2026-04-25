@@ -16,6 +16,27 @@ export default function BlogPageDE() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/de/blog/werbevideografie" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1777119877373-0.png"
+                                    alt="Beste KI-Tools für Werbevideografie und hohe Conversion-Raten"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Beste KI-Tools für Werbevideografie und hohe Conversion-Raten</h2>
+                                <p className={styles.cardExcerpt}>ad videography</p>
+                                <div className={styles.cardMeta}>
+                                    <span>April 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/de/blog/anzeigenpreis-strategien-ki-videomarketing" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

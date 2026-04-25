@@ -16,6 +16,27 @@ export default function BlogPageFR() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/fr/blog/videographie-publicitaire" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1777119877373-0.png"
+                                    alt="Meilleurs outils de vidéographie publicitaire IA pour 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Meilleurs outils de vidéographie publicitaire IA pour 2026</h2>
+                                <p className={styles.cardExcerpt}>ad videography</p>
+                                <div className={styles.cardMeta}>
+                                    <span>April 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/fr/blog/tarif-publicitaire" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

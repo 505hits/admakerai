@@ -978,5 +978,33 @@
     "es": "/es/blog/precio-de-anuncios",
     "pt": "/pt/blog/preco-de-anuncios",
     "de": "/de/blog/anzeigenpreis-strategien-ki-videomarketing"
+  },
+  "/blog/ad-videography": {
+    "en": "/blog/ad-videography",
+    "fr": "/fr/blog/videographie-publicitaire",
+    "es": "/es/blog/videografia-publicitaria",
+    "pt": "/pt/blog/videografia-publicitaria",
+    "de": "/de/blog/werbevideografie"
+  },
+  "/blog/videographie-publicitaire": {
+    "en": "/blog/ad-videography",
+    "fr": "/fr/blog/videographie-publicitaire",
+    "es": "/es/blog/videografia-publicitaria",
+    "pt": "/pt/blog/videografia-publicitaria",
+    "de": "/de/blog/werbevideografie"
+  },
+  "/blog/videografia-publicitaria": {
+    "en": "/blog/ad-videography",
+    "fr": "/fr/blog/videographie-publicitaire",
+    "es": "/es/blog/videografia-publicitaria",
+    "pt": "/pt/blog/videografia-publicitaria",
+    "de": "/de/blog/werbevideografie"
+  },
+  "/blog/werbevideografie": {
+    "en": "/blog/ad-videography",
+    "fr": "/fr/blog/videographie-publicitaire",
+    "es": "/es/blog/videografia-publicitaria",
+    "pt": "/pt/blog/videografia-publicitaria",
+    "de": "/de/blog/werbevideografie"
   }
 }

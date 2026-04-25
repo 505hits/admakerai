@@ -545,7 +545,22 @@
   },
   {
     "keyword": "ad videography",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "ad-videography",
+      "fr": "videographie-publicitaire",
+      "es": "videografia-publicitaria",
+      "pt": "videografia-publicitaria",
+      "de": "werbevideografie"
+    },
+    "translatedTitles": {
+      "en": "Best Ad Videography Tools with AI for High Converting Campaigns",
+      "fr": "Meilleurs outils de vidéographie publicitaire IA pour 2026",
+      "es": "Mejores Herramientas de Videografía Publicitaria con IA 2026",
+      "pt": "Melhores Ferramentas de Videografia Publicitária com IA 2026",
+      "de": "Beste KI-Tools für Werbevideografie und hohe Conversion-Raten"
+    },
+    "completedDate": "2026-04-25T12:27:25.242Z"
   },
   {
     "keyword": "mellowflow",
