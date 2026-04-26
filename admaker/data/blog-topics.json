@@ -564,7 +564,22 @@
   },
   {
     "keyword": "mellowflow",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "mellowflow",
+      "fr": "marketing-video-fluide",
+      "es": "flujo-natural-video-marketing",
+      "pt": "marketing-video-fluido",
+      "de": "sanfter-fluss-videomarketing-ki-tools"
+    },
+    "translatedTitles": {
+      "en": "Best mellowflow Video Marketing AI Tools to Scale Your Ads",
+      "fr": "Meilleurs outils IA de vidéo marketing fluide pour vos pubs",
+      "es": "Mejores Herramientas IA de Flujo Natural para Anuncios en Video",
+      "pt": "Melhores Ferramentas de IA para Marketing em Vídeo Fluido",
+      "de": "Beste Sanfter Fluss KI-Tools für Videomarketing und Skalierung"
+    },
+    "completedDate": "2026-04-26T12:31:29.024Z"
   },
   {
     "keyword": "is coursiv legit",

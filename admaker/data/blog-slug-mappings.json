@@ -1006,5 +1006,40 @@
     "es": "/es/blog/videografia-publicitaria",
     "pt": "/pt/blog/videografia-publicitaria",
     "de": "/de/blog/werbevideografie"
+  },
+  "/blog/mellowflow": {
+    "en": "/blog/mellowflow",
+    "fr": "/fr/blog/marketing-video-fluide",
+    "es": "/es/blog/flujo-natural-video-marketing",
+    "pt": "/pt/blog/marketing-video-fluido",
+    "de": "/de/blog/sanfter-fluss-videomarketing-ki-tools"
+  },
+  "/blog/marketing-video-fluide": {
+    "en": "/blog/mellowflow",
+    "fr": "/fr/blog/marketing-video-fluide",
+    "es": "/es/blog/flujo-natural-video-marketing",
+    "pt": "/pt/blog/marketing-video-fluido",
+    "de": "/de/blog/sanfter-fluss-videomarketing-ki-tools"
+  },
+  "/blog/flujo-natural-video-marketing": {
+    "en": "/blog/mellowflow",
+    "fr": "/fr/blog/marketing-video-fluide",
+    "es": "/es/blog/flujo-natural-video-marketing",
+    "pt": "/pt/blog/marketing-video-fluido",
+    "de": "/de/blog/sanfter-fluss-videomarketing-ki-tools"
+  },
+  "/blog/marketing-video-fluido": {
+    "en": "/blog/mellowflow",
+    "fr": "/fr/blog/marketing-video-fluide",
+    "es": "/es/blog/flujo-natural-video-marketing",
+    "pt": "/pt/blog/marketing-video-fluido",
+    "de": "/de/blog/sanfter-fluss-videomarketing-ki-tools"
+  },
+  "/blog/sanfter-fluss-videomarketing-ki-tools": {
+    "en": "/blog/mellowflow",
+    "fr": "/fr/blog/marketing-video-fluide",
+    "es": "/es/blog/flujo-natural-video-marketing",
+    "pt": "/pt/blog/marketing-video-fluido",
+    "de": "/de/blog/sanfter-fluss-videomarketing-ki-tools"
   }
 }

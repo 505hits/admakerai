@@ -16,6 +16,27 @@ export default function BlogPageFR() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/fr/blog/marketing-video-fluide" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1777206446238-0.png"
+                                    alt="Meilleurs outils IA de vidéo marketing fluide pour vos pubs"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Meilleurs outils IA de vidéo marketing fluide pour vos pubs</h2>
+                                <p className={styles.cardExcerpt}>mellowflow</p>
+                                <div className={styles.cardMeta}>
+                                    <span>April 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/fr/blog/videographie-publicitaire" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

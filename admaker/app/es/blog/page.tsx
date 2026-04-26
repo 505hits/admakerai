@@ -16,6 +16,27 @@ export default function BlogPageES() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/es/blog/flujo-natural-video-marketing" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1777206446238-0.png"
+                                    alt="Mejores Herramientas IA de Flujo Natural para Anuncios en Video"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Mejores Herramientas IA de Flujo Natural para Anuncios en Video</h2>
+                                <p className={styles.cardExcerpt}>mellowflow</p>
+                                <div className={styles.cardMeta}>
+                                    <span>April 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/es/blog/videografia-publicitaria" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
