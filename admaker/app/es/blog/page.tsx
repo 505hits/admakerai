@@ -16,6 +16,27 @@ export default function BlogPageES() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/es/blog/es-coursiv-legitimo" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1777294768317-0.png"
+                                    alt="Herramientas de Video IA para verificar es coursiv legítimo 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Herramientas de Video IA para verificar es coursiv legítimo 2026</h2>
+                                <p className={styles.cardExcerpt}>is coursiv legit</p>
+                                <div className={styles.cardMeta}>
+                                    <span>April 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/es/blog/flujo-natural-video-marketing" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
