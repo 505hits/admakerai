@@ -16,6 +16,27 @@ export default function BlogPageFR() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/fr/blog/arcid-outils-video-marketing-ia" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1777383197040-0.png"
+                                    alt="Meilleurs outils IA vidéo marketing 2026 avec analyse arcid"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Meilleurs outils IA vidéo marketing 2026 avec analyse arcid</h2>
+                                <p className={styles.cardExcerpt}>arcid</p>
+                                <div className={styles.cardMeta}>
+                                    <span>April 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/fr/blog/coursiv-est-il-fiable" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

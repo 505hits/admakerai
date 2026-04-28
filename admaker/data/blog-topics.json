@@ -602,7 +602,22 @@
   },
   {
     "keyword": "arcid",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "arcid",
+      "fr": "arcid-outils-video-marketing-ia",
+      "es": "herramientas-ia-video-marketing-arcid",
+      "pt": "ferramentas-video-marketing-ia-arcid",
+      "de": "arcid-video-marketing-tools"
+    },
+    "translatedTitles": {
+      "en": "Best AI Video Marketing Tools for 2026 Including arcid Analysis",
+      "fr": "Meilleurs outils IA vidéo marketing 2026 avec analyse arcid",
+      "es": "Mejores Herramientas IA Video Marketing 2026 con Análisis Arcid",
+      "pt": "Melhores Ferramentas de Vídeo Marketing com IA para 2026",
+      "de": "Beste KI-Video-Marketing-Tools 2026 mit arcid-Analyse erklärt"
+    },
+    "completedDate": "2026-04-28T13:36:48.168Z"
   },
   {
     "keyword": "coursiv.io reviews",

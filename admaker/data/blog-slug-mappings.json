@@ -1076,5 +1076,40 @@
     "es": "/es/blog/es-coursiv-legitimo",
     "pt": "/pt/blog/coursiv-e-confiavel",
     "de": "/de/blog/ist-coursiv-serioes"
+  },
+  "/blog/arcid": {
+    "en": "/blog/arcid",
+    "fr": "/fr/blog/arcid-outils-video-marketing-ia",
+    "es": "/es/blog/herramientas-ia-video-marketing-arcid",
+    "pt": "/pt/blog/ferramentas-video-marketing-ia-arcid",
+    "de": "/de/blog/arcid-video-marketing-tools"
+  },
+  "/blog/arcid-outils-video-marketing-ia": {
+    "en": "/blog/arcid",
+    "fr": "/fr/blog/arcid-outils-video-marketing-ia",
+    "es": "/es/blog/herramientas-ia-video-marketing-arcid",
+    "pt": "/pt/blog/ferramentas-video-marketing-ia-arcid",
+    "de": "/de/blog/arcid-video-marketing-tools"
+  },
+  "/blog/herramientas-ia-video-marketing-arcid": {
+    "en": "/blog/arcid",
+    "fr": "/fr/blog/arcid-outils-video-marketing-ia",
+    "es": "/es/blog/herramientas-ia-video-marketing-arcid",
+    "pt": "/pt/blog/ferramentas-video-marketing-ia-arcid",
+    "de": "/de/blog/arcid-video-marketing-tools"
+  },
+  "/blog/ferramentas-video-marketing-ia-arcid": {
+    "en": "/blog/arcid",
+    "fr": "/fr/blog/arcid-outils-video-marketing-ia",
+    "es": "/es/blog/herramientas-ia-video-marketing-arcid",
+    "pt": "/pt/blog/ferramentas-video-marketing-ia-arcid",
+    "de": "/de/blog/arcid-video-marketing-tools"
+  },
+  "/blog/arcid-video-marketing-tools": {
+    "en": "/blog/arcid",
+    "fr": "/fr/blog/arcid-outils-video-marketing-ia",
+    "es": "/es/blog/herramientas-ia-video-marketing-arcid",
+    "pt": "/pt/blog/ferramentas-video-marketing-ia-arcid",
+    "de": "/de/blog/arcid-video-marketing-tools"
   }
 }

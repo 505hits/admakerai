@@ -16,6 +16,27 @@ export default function BlogPage() {
 
                     <div className={styles.blogGrid}>
 
+        <Link href="/blog/arcid" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1777383197040-0.png"
+                                    alt="Best AI Video Marketing Tools for 2026 Including arcid Analysis"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Best AI Video Marketing Tools for 2026 Including arcid Analysis</h2>
+                                <p className={styles.cardExcerpt}>arcid</p>
+                                <div className={styles.cardMeta}>
+                                    <span>April 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/blog/is-coursiv-legit" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
