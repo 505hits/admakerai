@@ -1111,5 +1111,40 @@
     "es": "/es/blog/herramientas-ia-video-marketing-arcid",
     "pt": "/pt/blog/ferramentas-video-marketing-ia-arcid",
     "de": "/de/blog/arcid-video-marketing-tools"
+  },
+  "/blog/coursivio-reviews": {
+    "en": "/blog/coursivio-reviews",
+    "fr": "/fr/blog/avis-coursiv-io",
+    "es": "/es/blog/resenas-coursiv-io",
+    "pt": "/pt/blog/avaliacoes-coursiv-io",
+    "de": "/de/blog/coursiv-io-bewertungen"
+  },
+  "/blog/avis-coursiv-io": {
+    "en": "/blog/coursivio-reviews",
+    "fr": "/fr/blog/avis-coursiv-io",
+    "es": "/es/blog/resenas-coursiv-io",
+    "pt": "/pt/blog/avaliacoes-coursiv-io",
+    "de": "/de/blog/coursiv-io-bewertungen"
+  },
+  "/blog/resenas-coursiv-io": {
+    "en": "/blog/coursivio-reviews",
+    "fr": "/fr/blog/avis-coursiv-io",
+    "es": "/es/blog/resenas-coursiv-io",
+    "pt": "/pt/blog/avaliacoes-coursiv-io",
+    "de": "/de/blog/coursiv-io-bewertungen"
+  },
+  "/blog/avaliacoes-coursiv-io": {
+    "en": "/blog/coursivio-reviews",
+    "fr": "/fr/blog/avis-coursiv-io",
+    "es": "/es/blog/resenas-coursiv-io",
+    "pt": "/pt/blog/avaliacoes-coursiv-io",
+    "de": "/de/blog/coursiv-io-bewertungen"
+  },
+  "/blog/coursiv-io-bewertungen": {
+    "en": "/blog/coursivio-reviews",
+    "fr": "/fr/blog/avis-coursiv-io",
+    "es": "/es/blog/resenas-coursiv-io",
+    "pt": "/pt/blog/avaliacoes-coursiv-io",
+    "de": "/de/blog/coursiv-io-bewertungen"
   }
 }

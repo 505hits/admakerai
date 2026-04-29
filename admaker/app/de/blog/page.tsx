@@ -16,6 +16,27 @@ export default function BlogPageDE() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/de/blog/coursiv-io-bewertungen" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1777467413751-0.png"
+                                    alt="Beste KI-Video-Marketing-Tools mit coursiv.io Bewertungen 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Beste KI-Video-Marketing-Tools mit coursiv.io Bewertungen 2026</h2>
+                                <p className={styles.cardExcerpt}>coursiv.io reviews</p>
+                                <div className={styles.cardMeta}>
+                                    <span>April 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/de/blog/arcid-video-marketing-tools" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

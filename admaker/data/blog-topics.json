@@ -621,7 +621,22 @@
   },
   {
     "keyword": "coursiv.io reviews",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "coursivio-reviews",
+      "fr": "avis-coursiv-io",
+      "es": "resenas-coursiv-io",
+      "pt": "avaliacoes-coursiv-io",
+      "de": "coursiv-io-bewertungen"
+    },
+    "translatedTitles": {
+      "en": "Best AI Video Marketing Tools Including coursiv.io reviews 2026",
+      "fr": "Meilleurs outils IA vidéo marketing avec avis coursiv.io 2026",
+      "es": "Mejores Herramientas de Video Marketing IA y Reseñas coursiv.io",
+      "pt": "Melhores Ferramentas de Vídeo IA e Avaliações coursiv.io 2026",
+      "de": "Beste KI-Video-Marketing-Tools mit coursiv.io Bewertungen 2026"
+    },
+    "completedDate": "2026-04-29T13:00:46.384Z"
   },
   {
     "keyword": "free ugc",
