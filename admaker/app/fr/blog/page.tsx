@@ -16,6 +16,27 @@ export default function BlogPageFR() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/fr/blog/ugc-gratuit" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1777553838602-0.png"
+                                    alt="Meilleurs outils vidéo UGC gratuit pour développer votre marque"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Meilleurs outils vidéo UGC gratuit pour développer votre marque</h2>
+                                <p className={styles.cardExcerpt}>free ugc</p>
+                                <div className={styles.cardMeta}>
+                                    <span>April 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/fr/blog/avis-coursiv-io" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

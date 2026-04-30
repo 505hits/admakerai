@@ -1146,5 +1146,33 @@
     "es": "/es/blog/resenas-coursiv-io",
     "pt": "/pt/blog/avaliacoes-coursiv-io",
     "de": "/de/blog/coursiv-io-bewertungen"
+  },
+  "/blog/free-ugc": {
+    "en": "/blog/free-ugc",
+    "fr": "/fr/blog/ugc-gratuit",
+    "es": "/es/blog/ugc-gratis",
+    "pt": "/pt/blog/ugc-gratis",
+    "de": "/de/blog/kostenlose-ugc-videotools"
+  },
+  "/blog/ugc-gratuit": {
+    "en": "/blog/free-ugc",
+    "fr": "/fr/blog/ugc-gratuit",
+    "es": "/es/blog/ugc-gratis",
+    "pt": "/pt/blog/ugc-gratis",
+    "de": "/de/blog/kostenlose-ugc-videotools"
+  },
+  "/blog/ugc-gratis": {
+    "en": "/blog/free-ugc",
+    "fr": "/fr/blog/ugc-gratuit",
+    "es": "/es/blog/ugc-gratis",
+    "pt": "/pt/blog/ugc-gratis",
+    "de": "/de/blog/kostenlose-ugc-videotools"
+  },
+  "/blog/kostenlose-ugc-videotools": {
+    "en": "/blog/free-ugc",
+    "fr": "/fr/blog/ugc-gratuit",
+    "es": "/es/blog/ugc-gratis",
+    "pt": "/pt/blog/ugc-gratis",
+    "de": "/de/blog/kostenlose-ugc-videotools"
   }
 }

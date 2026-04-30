@@ -640,7 +640,22 @@
   },
   {
     "keyword": "free ugc",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "free-ugc",
+      "fr": "ugc-gratuit",
+      "es": "ugc-gratis",
+      "pt": "ugc-gratis",
+      "de": "kostenlose-ugc-videotools"
+    },
+    "translatedTitles": {
+      "en": "Best Free UGC Video Tools to Scale Your Brand in 2026",
+      "fr": "Meilleurs outils vidéo UGC gratuit pour développer votre marque",
+      "es": "Mejores Herramientas de Video UGC Gratis para 2026",
+      "pt": "Melhores Ferramentas de UGC Grátis para Escalar Sua Marca 2026",
+      "de": "Beste kostenlose UGC-Videotools für Markenwachstum 2026"
+    },
+    "completedDate": "2026-04-30T13:00:48.334Z"
   },
   {
     "keyword": "a-ads",
