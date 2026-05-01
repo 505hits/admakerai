@@ -659,7 +659,22 @@
   },
   {
     "keyword": "a-ads",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "a-ads",
+      "fr": "outils-ia-video-marketing-a-ads",
+      "es": "a-ads",
+      "pt": "a-ads",
+      "de": "a-ads-kampagnen"
+    },
+    "translatedTitles": {
+      "en": "Best AI Video Marketing Tools for a-ads Campaigns in 2026",
+      "fr": "Meilleurs outils IA vidéo marketing pour campagnes a-ads 2026",
+      "es": "Mejores Herramientas de Video IA para Campañas a-ads en 2026",
+      "pt": "Melhores Ferramentas de Vídeo IA para Campanhas a-ads 2026",
+      "de": "Beste KI-Videomarketing-Tools für A-Ads-Kampagnen 2026"
+    },
+    "completedDate": "2026-05-01T12:43:30.771Z"
   },
   {
     "keyword": "product ad",

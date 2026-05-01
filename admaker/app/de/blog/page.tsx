@@ -16,6 +16,27 @@ export default function BlogPageDE() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/de/blog/a-ads-kampagnen" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1777639248920-0.png"
+                                    alt="Beste KI-Videomarketing-Tools für A-Ads-Kampagnen 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Beste KI-Videomarketing-Tools für A-Ads-Kampagnen 2026</h2>
+                                <p className={styles.cardExcerpt}>a-ads</p>
+                                <div className={styles.cardMeta}>
+                                    <span>May 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/de/blog/kostenlose-ugc-videotools" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

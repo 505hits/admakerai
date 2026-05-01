@@ -1174,5 +1174,26 @@
     "es": "/es/blog/ugc-gratis",
     "pt": "/pt/blog/ugc-gratis",
     "de": "/de/blog/kostenlose-ugc-videotools"
+  },
+  "/blog/a-ads": {
+    "en": "/blog/a-ads",
+    "fr": "/fr/blog/outils-ia-video-marketing-a-ads",
+    "es": "/es/blog/a-ads",
+    "pt": "/pt/blog/a-ads",
+    "de": "/de/blog/a-ads-kampagnen"
+  },
+  "/blog/outils-ia-video-marketing-a-ads": {
+    "en": "/blog/a-ads",
+    "fr": "/fr/blog/outils-ia-video-marketing-a-ads",
+    "es": "/es/blog/a-ads",
+    "pt": "/pt/blog/a-ads",
+    "de": "/de/blog/a-ads-kampagnen"
+  },
+  "/blog/a-ads-kampagnen": {
+    "en": "/blog/a-ads",
+    "fr": "/fr/blog/outils-ia-video-marketing-a-ads",
+    "es": "/es/blog/a-ads",
+    "pt": "/pt/blog/a-ads",
+    "de": "/de/blog/a-ads-kampagnen"
   }
 }
