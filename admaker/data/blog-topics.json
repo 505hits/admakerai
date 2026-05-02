@@ -678,7 +678,22 @@
   },
   {
     "keyword": "product ad",
-    "status": "pending"
+    "status": "completed",
+    "translatedSlugs": {
+      "en": "product-ad",
+      "fr": "publicite-produit",
+      "es": "anuncios-de-producto",
+      "pt": "anuncio-de-produto",
+      "de": "produktanzeigen-video-tools"
+    },
+    "translatedTitles": {
+      "en": "Best Product Ad Video Tools with AI Avatars for 2026 Marketing",
+      "fr": "Meilleurs outils vidéo publicitaire produit avec avatars IA 2026",
+      "es": "Mejores Herramientas de Video para Anuncios de Producto con IA",
+      "pt": "Melhores Ferramentas de Vídeo de Anúncio de Produto com IA 2026",
+      "de": "Beste Produktanzeigen-Video-Tools mit KI-Avataren für 2026"
+    },
+    "completedDate": "2026-05-02T12:40:15.551Z"
   },
   {
     "keyword": "best-rated platforms for quick ugc product ad videos",

@@ -1195,5 +1195,40 @@
     "es": "/es/blog/a-ads",
     "pt": "/pt/blog/a-ads",
     "de": "/de/blog/a-ads-kampagnen"
+  },
+  "/blog/product-ad": {
+    "en": "/blog/product-ad",
+    "fr": "/fr/blog/publicite-produit",
+    "es": "/es/blog/anuncios-de-producto",
+    "pt": "/pt/blog/anuncio-de-produto",
+    "de": "/de/blog/produktanzeigen-video-tools"
+  },
+  "/blog/publicite-produit": {
+    "en": "/blog/product-ad",
+    "fr": "/fr/blog/publicite-produit",
+    "es": "/es/blog/anuncios-de-producto",
+    "pt": "/pt/blog/anuncio-de-produto",
+    "de": "/de/blog/produktanzeigen-video-tools"
+  },
+  "/blog/anuncios-de-producto": {
+    "en": "/blog/product-ad",
+    "fr": "/fr/blog/publicite-produit",
+    "es": "/es/blog/anuncios-de-producto",
+    "pt": "/pt/blog/anuncio-de-produto",
+    "de": "/de/blog/produktanzeigen-video-tools"
+  },
+  "/blog/anuncio-de-produto": {
+    "en": "/blog/product-ad",
+    "fr": "/fr/blog/publicite-produit",
+    "es": "/es/blog/anuncios-de-producto",
+    "pt": "/pt/blog/anuncio-de-produto",
+    "de": "/de/blog/produktanzeigen-video-tools"
+  },
+  "/blog/produktanzeigen-video-tools": {
+    "en": "/blog/product-ad",
+    "fr": "/fr/blog/publicite-produit",
+    "es": "/es/blog/anuncios-de-producto",
+    "pt": "/pt/blog/anuncio-de-produto",
+    "de": "/de/blog/produktanzeigen-video-tools"
   }
 }
