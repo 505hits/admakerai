@@ -16,6 +16,27 @@ export default function BlogPagePT() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/pt/blog/melhores-plataformas-avaliadas-para-videos-rapidos-de-anuncios-de-produtos-ugc" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1777811668622-0.png"
+                                    alt="Melhores plataformas para vídeos rápidos de anúncios UGC 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Melhores plataformas para vídeos rápidos de anúncios UGC 2026</h2>
+                                <p className={styles.cardExcerpt}>best-rated platforms for quick ugc product ad videos</p>
+                                <div className={styles.cardMeta}>
+                                    <span>May 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/pt/blog/anuncio-de-produto" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
