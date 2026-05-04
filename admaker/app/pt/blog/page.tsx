@@ -16,6 +16,27 @@ export default function BlogPagePT() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/pt/blog/melhores-plataformas-de-ia-para-criar-videos-ugc-de-marca" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1777899648091-0.png"
+                                    alt="Melhores plataformas de IA para criar vídeos UGC de marca"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Melhores plataformas de IA para criar vídeos UGC de marca</h2>
+                                <p className={styles.cardExcerpt}>top ai platforms for creating ugc brand videos</p>
+                                <div className={styles.cardMeta}>
+                                    <span>May 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/pt/blog/melhores-plataformas-avaliadas-para-videos-rapidos-de-anuncios-de-produtos-ugc" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
