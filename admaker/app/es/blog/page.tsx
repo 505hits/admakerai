@@ -16,6 +16,27 @@ export default function BlogPageES() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/es/blog/icono-publicitario" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1777984900970-0.png"
+                                    alt="Mejores Herramientas de Ícono Publicitario con IA para 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Mejores Herramientas de Ícono Publicitario con IA para 2026</h2>
+                                <p className={styles.cardExcerpt}>advertising icon</p>
+                                <div className={styles.cardMeta}>
+                                    <span>May 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/es/blog/mejores-plataformas-ia-para-crear-videos-ugc-de-marca" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image

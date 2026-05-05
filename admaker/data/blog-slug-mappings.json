@@ -1300,5 +1300,20 @@
     "es": "/es/blog/mejores-plataformas-ia-para-crear-videos-ugc-de-marca",
     "pt": "/pt/blog/melhores-plataformas-de-ia-para-criar-videos-ugc-de-marca",
     "de": "/de/blog/top-ki-plattformen-fuer-ugc-markenvideos-erstellen"
+  },
+  "/blog/advertising-icon": {
+    "en": "/blog/advertising-icon",
+    "fr": "/fr/blog/icone-publicitaire",
+    "es": "/es/blog/icono-publicitario"
+  },
+  "/blog/icone-publicitaire": {
+    "en": "/blog/advertising-icon",
+    "fr": "/fr/blog/icone-publicitaire",
+    "es": "/es/blog/icono-publicitario"
+  },
+  "/blog/icono-publicitario": {
+    "en": "/blog/advertising-icon",
+    "fr": "/fr/blog/icone-publicitaire",
+    "es": "/es/blog/icono-publicitario"
   }
 }

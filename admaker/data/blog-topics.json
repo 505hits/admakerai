@@ -735,7 +735,17 @@
   },
   {
     "keyword": "advertising icon",
-    "status": "pending"
+    "status": "pending",
+    "translatedSlugs": {
+      "en": "advertising-icon",
+      "fr": "icone-publicitaire",
+      "es": "icono-publicitario"
+    },
+    "translatedTitles": {
+      "en": "Best Advertising Icon Tools Using AI for Video Marketing in 2026",
+      "fr": "Meilleurs outils icône publicitaire IA pour le marketing vidéo 2026",
+      "es": "Mejores Herramientas de Ícono Publicitario con IA para 2026"
+    }
   },
   {
     "keyword": "generate in spanish",
