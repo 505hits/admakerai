@@ -1304,16 +1304,25 @@
   "/blog/advertising-icon": {
     "en": "/blog/advertising-icon",
     "fr": "/fr/blog/icone-publicitaire",
-    "es": "/es/blog/icono-publicitario"
+    "es": "/es/blog/icono-publicitario",
+    "de": "/de/blog/werbeikonen-tools-ki-videomarketing"
   },
   "/blog/icone-publicitaire": {
     "en": "/blog/advertising-icon",
     "fr": "/fr/blog/icone-publicitaire",
-    "es": "/es/blog/icono-publicitario"
+    "es": "/es/blog/icono-publicitario",
+    "de": "/de/blog/werbeikonen-tools-ki-videomarketing"
   },
   "/blog/icono-publicitario": {
     "en": "/blog/advertising-icon",
     "fr": "/fr/blog/icone-publicitaire",
-    "es": "/es/blog/icono-publicitario"
+    "es": "/es/blog/icono-publicitario",
+    "de": "/de/blog/werbeikonen-tools-ki-videomarketing"
+  },
+  "/blog/werbeikonen-tools-ki-videomarketing": {
+    "en": "/blog/advertising-icon",
+    "fr": "/fr/blog/icone-publicitaire",
+    "es": "/es/blog/icono-publicitario",
+    "de": "/de/blog/werbeikonen-tools-ki-videomarketing"
   }
 }

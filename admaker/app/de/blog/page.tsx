@@ -16,6 +16,27 @@ export default function BlogPageDE() {
 
                     <div className={styles.blogGrid} >
 
+        <Link href="/de/blog/werbeikonen-tools-ki-videomarketing" className={styles.blogCard}>
+                            <div className={styles.cardImage}>
+                                <Image
+                                    src="/blog-images/img-1782914274479-0.png"
+                                    alt="Beste Werbeikonen Tools mit KI für Videomarketing 2026"
+                                    width={400}
+                                    height={250}
+                                    style={{ objectFit: 'cover' }}
+                                />
+                            </div>
+                            <div className={styles.cardContent}>
+                                <span className={styles.category}>AdMaker AI</span>
+                                <h2 className={styles.cardTitle}>Beste Werbeikonen Tools mit KI für Videomarketing 2026</h2>
+                                <p className={styles.cardExcerpt}>advertising icon</p>
+                                <div className={styles.cardMeta}>
+                                    <span>July 2026</span>
+                                </div>
+                            </div>
+                        </Link>
+
+
         <Link href="/de/blog/top-ki-plattformen-fuer-ugc-markenvideos-erstellen" className={styles.blogCard}>
                             <div className={styles.cardImage}>
                                 <Image
